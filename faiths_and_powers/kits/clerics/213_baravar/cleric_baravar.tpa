@@ -102,7 +102,7 @@ COPY_EXISTING ~faiths_and_powers/kits/clerics/212_leira/d5_lei1.spl~ ~override/b
   INT_VAR
 	c_cleric 		= 1
   STR_VAR
-    clab_name 		= ~d5clei~
+    clab_name 		= ~b_bara~
 	race 			= ~gnome~
 	s_Life 			= ~major~
 	s_Death 		= ~x~
@@ -231,7 +231,7 @@ END
   INT_VAR
 	c_cleric_thief 	= 1
   STR_VAR
-    clab_name 		= ~d52lei~
+    clab_name 		= ~b_bart~
 	race 			= ~gnome~
 	s_Life 			= ~major~
 	s_Death 		= ~x~
