@@ -7,12 +7,46 @@
 //__________________________________________________________________________________
 
 
-//assign kits to NPCs________________________________________________________________
+//remove NPC memorized spalls_______________________________________________________
+//
+//	IS THERE A BETTER WAY TO DO THIS??  CAN IT BE DONE IN-GAME??
+//
+LAM JOINABLE_NPC_ARRAY
+
+ACTION_PHP_EACH JOINABLE_NPC_ARRAY AS cre => dv BEGIN
+//  PRINT ~%cre% => %dv%~ 
+  COPY_EXISTING ~%cre%~ ~override~
+	PATCH_IF (SOURCE_SIZE > 0x2d3) BEGIN
+	  READ_BYTE 0x273 npc_class
+	  PATCH_IF (npc_class = 3) OR 
+	  			(npc_class = 6) OR 
+	  			(npc_class = 8) OR 
+	  			(npc_class = 11) OR 
+	  			(npc_class = 12) OR 
+	  			(npc_class = 14) OR 
+	  			(npc_class = 15) OR 
+	  			(npc_class = 16) OR 
+	  			(npc_class = 17) OR 
+	  			(npc_class = 18) OR 
+	  			(npc_class = 21) BEGIN 	// 	all divine casters who will be affected by the sphere system
+		REMOVE_MEMORIZED_SPELLS
+	  END
+	END
+  BUT_ONLY
+END
+//__________________________________________________________________________________
+
+// add Faldorn below!
+
+//assign kits to particular NPCs____________________________________________________
 //
 COPY_EXISTING ~kitlist.2da~ ~override~
 	COUNT_2DA_ROWS 8 "rows"
 	FOR ( index = 31 ; index < rows ; index = index + 1 ) BEGIN
 		READ_2DA_ENTRY "%index%" 5 8 "clab"
+		PATCH_IF ("%clab%" STRING_EQUAL_CASE "d5drfi" = 1) BEGIN
+			SET "d5drfi" = ("%index%" - 1)
+		END
 		PATCH_IF ("%clab%" STRING_EQUAL_CASE "b_ch05" = 1) BEGIN
 			SET b_ch05 = (%index% - 1)
 		END
@@ -40,8 +74,34 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 		PATCH_IF ("%clab%" STRING_EQUAL_CASE "b_cfhe" = 1) BEGIN
 			SET b_cfhe = (%index% - 1)
 		END
+		PATCH_IF ("%clab%" STRING_EQUAL_CASE "b_umb" = 1) BEGIN
+			SET b_umb = (%index% - 1)
+		END
 	END
 BUT_ONLY
+
+ACTION_IF VARIABLE_IS_SET %d5drfi% BEGIN
+  ACTION_FOR_EACH char IN ~%tutu_var%jaheir~ 
+					~%tutu_var%jaheir2~ 
+					~%tutu_var%jaheir4~ 
+					~%tutu_var%jaheir6~ 
+					~jaheir7~ 
+					~jaheir8~ 
+					~jaheir11~ 
+					~jaheir12~ 
+					~jahei12b~ 
+					~jahei14~ BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
+	  COPY_EXISTING ~%char%.cre~ ~override~
+		WRITE_BYTE 0x273 8 // sets class
+		WRITE_SHORT 0x244 0
+		WRITE_SHORT 0x246 0x4000 + ~%d5drfi%~ // changes kit
+		REMOVE_MEMORIZED_SPELLS
+		REMOVE_KNOWN_SPELLS
+	  BUT_ONLY
+	END
+  END
+END
 
 ACTION_IF VARIABLE_IS_SET %b_ch05% BEGIN
   ACTION_FOR_EACH char IN ~ajanti~ 
@@ -55,6 +115,8 @@ ACTION_IF VARIABLE_IS_SET %b_ch05% BEGIN
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
 		WRITE_SHORT 0x246 0x4000 + %b_ch05% // changes kit
+		REMOVE_MEMORIZED_SPELLS
+		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY
 	END
   END
@@ -71,10 +133,14 @@ ACTION_IF VARIABLE_IS_SET %b_ctem% BEGIN
 	    PATCH_IF %class% = 3 BEGIN
 		  WRITE_SHORT 0x244 0
 		  WRITE_SHORT 0x246 0x4000 + %b_ctem% // changes kit
+		  REMOVE_MEMORIZED_SPELLS
+		  REMOVE_KNOWN_SPELLS
 		END
 	    PATCH_IF %class% = 8 BEGIN
 		  WRITE_SHORT 0x244 0
 		  WRITE_SHORT 0x246 0x4000 + %b_2tem% // changes kit
+		  REMOVE_MEMORIZED_SPELLS
+		  REMOVE_KNOWN_SPELLS
 		END
 	  BUT_ONLY
 	END
@@ -90,6 +156,8 @@ ACTION_IF VARIABLE_IS_SET %b_bart% BEGIN
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
 		WRITE_SHORT 0x246 0x4000 + %b_bart% // changes kit
+		REMOVE_MEMORIZED_SPELLS
+		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY
 	END
   END
@@ -100,11 +168,13 @@ ACTION_IF VARIABLE_IS_SET %b_ctcyr% BEGIN
 					~tiax~ 
 					~tiax4~ 
 					~tiax6~  
-                                        ~tiaxd~ BEGIN
+                    ~tiaxd~ BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
 		WRITE_SHORT 0x246 0x4000 + %b_ctcyr% // changes kit
+		REMOVE_MEMORIZED_SPELLS
+		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY
 	END
   END
@@ -113,11 +183,13 @@ END
 ACTION_IF VARIABLE_IS_SET %d5cfcla% BEGIN
   ACTION_FOR_EACH char IN ~yeslic~
 					~yeslic5~  
-                                        ~yeslid~ BEGIN
+                    ~yeslid~ BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
 		WRITE_SHORT 0x246 0x4000 + %d5cfcla% // changes kit
+		REMOVE_MEMORIZED_SPELLS
+		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY
 	END
   END
@@ -128,7 +200,7 @@ ACTION_FOR_EACH char IN ~viconi~
 					~viconi4~ 
 					~viconi6~ 
 					~viconi7~
-                                        ~%viconi6_var%~
+                    ~%viconi6_var%~
 					~viconi8~ 
 					~viconi9~ 
 					~viconi11~ 
@@ -138,13 +210,15 @@ ACTION_FOR_EACH char IN ~viconi~
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
 		WRITE_SHORT 0x246 0x4000 + %d5asha% // changes kit
+		REMOVE_MEMORIZED_SPELLS
+		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY
 	END
   END
 END 
 
 ACTION_IF VARIABLE_IS_SET %d5baerv% BEGIN
-  ACTION_FOR_EACH char IN ~aerie6.cre~ ~override~
+  ACTION_FOR_EACH char IN ~aerie6.cre~
 					~aerie7.cre~
 					~aerie9.cre~
 					~aerie10.cre~
@@ -154,13 +228,15 @@ ACTION_IF VARIABLE_IS_SET %d5baerv% BEGIN
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
 		WRITE_SHORT 0x246 0x4000 + %d5baerv% // changes kit
+		REMOVE_MEMORIZED_SPELLS
+		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY
 	END
   END
 END
 
 ACTION_IF VARIABLE_IS_SET %b_cfhe% BEGIN
-  ACTION_FOR_EACH char IN ~anomen6.cre~ ~override~
+  ACTION_FOR_EACH char IN ~anomen6.cre~
 					~anomen7.cre~
 					~anomen8.cre~
 					~anomen9.cre~
@@ -170,6 +246,36 @@ ACTION_IF VARIABLE_IS_SET %b_cfhe% BEGIN
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
 		WRITE_SHORT 0x246 0x4000 + %b_cfhe% // changes kit
+		REMOVE_MEMORIZED_SPELLS
+		REMOVE_KNOWN_SPELLS
+	  BUT_ONLY
+	END
+  END
+END
+
+ACTION_IF VARIABLE_IS_SET %b_umb% BEGIN
+  ACTION_FOR_EACH char IN ~tenya.cre~   BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
+	  COPY_EXISTING ~%char%.cre~ ~override~
+		WRITE_SHORT 0x244 0
+		WRITE_SHORT 0x246 0x4000 + %b_umb% // changes kit
+		REMOVE_MEMORIZED_SPELLS
+		REMOVE_KNOWN_SPELLS
+	  BUT_ONLY
+	END
+  END
+END
+
+ACTION_IF VARIABLE_IS_SET %b_aden% BEGIN
+  ACTION_FOR_EACH char IN ~sufinch1.cre~
+					~sufinch2.cre~
+					~sufinch4.cre~   BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
+	  COPY_EXISTING ~%char%.cre~ ~override~
+		WRITE_SHORT 0x244 0
+		WRITE_SHORT 0x246 0x4000 + %b_aden% // changes kit
+		REMOVE_MEMORIZED_SPELLS
+		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY
 	END
   END

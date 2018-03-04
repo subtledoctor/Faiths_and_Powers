@@ -4,7 +4,7 @@
 //
 @100  = ~Select an installation method below:~
 @101  = ~ALL the new kits, the kit selection dialogue, and the sphere system~
-@102  = ~all the new kits and the sphere system, but kits in menus~
+@102  = ~all the new kits and the sphere system~
 @103  = ~choose components individually~
 @105  = ~no new kits - JUST install the sphere system~
 @110  = ~Change item usability for priests~
@@ -24,6 +24,7 @@
 @219  = ~Add Cleric of Loviatar~
 @224  = ~Add Cleric of Talos~
 @225  = ~Add Cleric of Cyric~
+@226  = ~Add Cleric of Umberlee~
 //
 // ... Acolyte kits = 301-399
 //
@@ -73,7 +74,7 @@
 // ... Occultist kits = 761-780
 //
 @761  = ~Add Ur-Priest~
-@762  = ~Add Animist~
+@762  = ~Add Beast Lord~
 @763  = ~Add Elementalist~
 @765  = ~Add Chaos Priest~
 //
@@ -137,6 +138,9 @@
 //
 // ... sphere stuff
 //
+@997  = ~Acid Arrow~
+@998  = ~Summon Slimes~
+@999  = ~Acid Sheath~
 @1000  = ~install Sphere System~
 @1001  = ~install Sphere System alone~
 @1002  = ~- Access to the spheres of:~
@@ -148,19 +152,16 @@
 @1008  = ~Disadvantages:~
 @1009  = ~Restrictions:~
 // ... cleric
-@1010  = ~Abilities:
-- Major access to the spheres of Benediction, Life, Protection, War, Destruction, Knowledge, and Fire.
-- Minor access to the spheres of Death, Thought, Dread, Vigor, Light, and Magic.~
+@1010  = ~Abilities:~
 // ... paladin
-@1016  = ~Abilities:
-- Access to the spheres of Benediction, Life, Protection, Destruction, War, and Knowledge.~
+@1016  = ~Abilities:~
 // ... ranger
-@1021  = ~Abilities:
-- Access to the spheres of Life, Protection, Vigor, Animal, Plant, Air, and Light.~
+@1021  = ~Abilities:~
 // ... druid
-@1025  = ~Abilities:
-- Major access to the spheres of Life, Thought, Vigor, Affliction, Animal, Plant, and Light.
-- Minor access to the spheres of Knowledge, Earth, Air, Water, Fire, and Shadow.~
+@1025  = ~Abilities:~
+//
+@1100  = ~Memorize spells~
+@1101  = ~After choosing a deity to follow, you will gain access to spells within the spheres of magic - the domains - available to that deity. Once you choose which spells to memorize, using this scroll will allow you to memorize them instantly, without needing to rest. This may only be done once. Beware, if you wait too long, the scroll may disappear.~
 //
 // ... strings for new kits
 //
@@ -169,18 +170,43 @@
 @10001 = ~priest~
 @10002 = ~Priest~
 @10003 = ~PRIEST~
-@10011 = ~warrior-priest~
-@10012 = ~Warrior-Priest~
-@10013 = ~WARRIOR-PRIEST~
+@10005 = ~PRIEST: The basic Cleric is an adventuring priest who promotes the principles and philosophy dear to <PRO_HISHER> deity. Though <PRO_HESHE> is both protector and healer, <PRO_HESHE> is not purely defensive-when enemies threaten, the Cleric is well suited to challenge them on their own ground and destroy them.
+
+CLASS FEATURES:
+- May wear helmets.
+- May wear up to Chain Mail armor.
+- Deity Selection: All clerics must select a deity.  Deity selection determines sphere access, granted powers, and other bonuses.
+- May become Proficient (one slot) with the short sword, Dagger, War Hammer, Club, Spear, Flail, Mace, Quarterstaff, Crossbow, Dart, Sling, or any fighting style.
+- May Turn Undead.
+- May cast priest spells, but is limited to universal spells until <PRO_HESHE> selects <PRO_HISHER> deity.
+- Hit Die: d8~
+@10011 = ~fighter / priest~
+@10012 = ~Fighter / Priest~
+@10013 = ~FIGHTER/PRIEST~
 @10014 = ~FIGHTER/CLERIC~
-@10021 = ~mage-priest~
-@10022 = ~Mage-Priest~
-@10023 = ~MAGE-PRIEST~
+@10015 = ~FIGHTER/PRIEST: This character can use the abilities of a Fighter and a Priest, though weapons are restricted to only those allowed by the Priest's ethos. They may Specialize in, but not Master, any weapon they can use.~
+@10021 = ~mage / priest~
+@10022 = ~Mage / Priest~
+@10023 = ~MAGE/PRIEST~
 @10024 = ~CLERIC/MAGE~
-@10031 = ~rogue-priest~
-@10032 = ~Rogue-Priest~
-@10033 = ~ROGUE-PRIEST~
+@10025 = ~MAGE/PRIEST: This character can use the abilities of a Priest and a Mage, though weapons are restricted to only those allowed by the Priest's ethos, and Mage spells cannot be cast while wearing armor.
+
+Gnomes can choose this multi-class, but become Cleric/Illusionists by default. Gnomes are the only race that can combine a specialist Mage class in a multi-class.~
+@10031 = ~thief / priest~
+@10032 = ~Thief / Priest~
+@10033 = ~THIEF/PRIEST~
 @10034 = ~CLERIC/THIEF~
+@10035 = ~THIEF/PRIEST: This character can use the abilities of a Priest and a Thief, though weapons are restricted to only those allowed by the Priest's ethos. Thieving skills cannot be used while wearing more than studded leather armor.~
+@10041 = ~ranger / priest~
+@10042 = ~Ranger / Priest~
+@10043 = ~RANGER/PRIEST~
+@10044 = ~CLERIC/RANGER~
+@10045 = ~RANGER/PRIEST: This character can use the abilities of a Priest and a Ranger, though weapons are restricted to only those allowed by the Priest's ethos. This character may Specialize in, but not Master, any weapon they can use.~
+@10051 = ~mystic warrior~
+@10052 = ~Mystic Warrior~
+@10053 = ~MYSTIC WARRIOR~
+@10054 = ~FIGHTER/DRUID~
+@10055 = ~MYSTIC WARRIOR: This character can use the abilities of a Fighter and a Mystic, though weapons and armor are restricted to only those allowed by the Mystic's ethos. This character may Specialize in, but not Master, any weapon they can use.~
 @10100 = ~CLERIC: The Cleric is an adventuring priest who promotes the principles and philosophy dear to <PRO_HISHER> deity. Though <PRO_HESHE> is both protector and healer, <PRO_HESHE> is not purely defensive-when enemies threaten, the Cleric is well suited to challenge them on their own ground and destroy them.
 
 CLASS FEATURES:
@@ -191,8 +217,6 @@ CLASS FEATURES:
 - May Turn Undead.
 - May cast priest spells, but is limited to universal spells until <PRO_HESHE> selects <PRO_HISHER> deity.
 - Hit Die: d8~
-
-
 @10101 = ~incarnate~
 @10102 = ~Incarnate~
 @10103 = ~INCARNATE: Often called, "Chosen", Incarnates are 'natural' priests, with little or no connection to any church hierarchy. It is less true to say that they choose their deity than they are 'chosen' by a given deity (whether they like it or not) for their temperament, and natural connection to divine magic. Often peasants, they typically have few skills or other special training.
@@ -346,9 +370,9 @@ The allies of this spellcaster gain extraordinary luck for the next 1 turn, rece
 //
 @20801 = ~cleric of helm~
 @20802 = ~Watcher of Helm~
-@20803 = ~WATCHER OF HELM:
+@20803 = ~WATCHER OF HELM: Like their deity, Watchers of Helm are stern, dedicated, and loyal, perhaps to a fault.  Helm teaches that the right path is not always obvious, but the surest way to the right path is through the execution of duty.  As such, watchers of helm strive to do what they must despite the consequences, to themselves or even to others.  While othes may suggest that this supposed 'dedication' is nothing more than a fetish, the watcher has no time for such nonsense. They do not have the idle time to question; it is their duty to be ever alert for possible threats to cosmic order.   
 Advantages:
-- Watchers automatically gain a proficiency point in longsword, Helm's favored weapon.  Fighter clerics do not get this bonus, but they are able to gain mastery with the longsword.
+- Watchers automatically gain a proficiency point in bastard , Helm's favored weapon.  Fighter clerics do not get this bonus, but they are able to gain mastery with the bastard sword.
 - Heightened Awareness: +1 bonus to AC and +2 bonus to save vs breath
 - Can cast Helm's eye as a special ability once per day at 9th level.  The watcher gains an additional use at levels 11, 13, 15, 17 and 19. Helm's eye is equivalent to the wizard spell, wizard eye.
 - Can cast Seeking Sword as a special ability once per day.  The Watcher gains an additional use at levels 4, 8, 12, 16 and 20.
@@ -375,7 +399,7 @@ When this spell is employed, the priest creates an invisible sensory organ that 
 //
 @20901 = ~cleric of kelemvor~
 @20902 = ~Doomguide of Kelemvor~
-@20903 = ~DOOMGUIDE OF KELEMVOR: Kelemvor is the most recent god of death.
+@20903 = ~DOOMGUIDE OF KELEMVOR: Kelemvor is the most recent god of death.  He has proven to be quite different from Mykrul, the former god of death.  In particular, while the latter encouraged the creation of undead monstrosities, Kelevmor charges his clergy to actively destroy undead, seeing their existance as an unnatural perversion of the order of life and death.  As such, his clergy have become particularly talented undead slayers.
 
 Advantages:
 - Doomguides turn undead at 4 levels higher than a cleric of their level.
@@ -530,14 +554,14 @@ Casting Time: 3
 Area of Effect: Path of bolt
 Saving Throw: 1/2
 
-Upon casting this spell, the cleric releases a powerful stroke of energy that inflicts 1d6 points of electrical damage per level of the spellcaster to each creature within its area of effect (maximum damage of 10d6). A successful Save vs. Spell reduces this damage to half (round fractions down). When the lightning bolt intersects with a wall, it will rebound until it reaches its full length—hitting the same enemy multiple times, or even members of the caster's own party.~
+Upon casting this spell, the cleric releases a powerful stroke of energy that inflicts 1d6 points of electrical damage per level of the spellcaster to each creature within its area of effect (maximum damage of 10d6). A successful Save vs. Spell reduces this damage to half (round fractions down). When the lightning bolt intersects with a wall, it will rebound until it reaches its full lengthâhitting the same enemy multiple times, or even members of the caster's own party.~
 
 //
 // ... cleric of Cyric:
 //
 @22501 = ~cleric of cyric~
 @22502 = ~the Sworn of Cyric~
-@22503 = ~THE SWORN OF CYRIC: Cyric, the mad god
+@22503 = ~THE SWORN OF CYRIC: The sworn of Cyric do what they can to appease their mad, fickle god.  In the meantime, they try to take what they can, when they can, before being smited either by their god, or one of their many victims.  
 
 Advantages:
 - +1 to save vs. Illusion spells
@@ -547,6 +571,22 @@ Advantages:
 Restrictions:
 - Alignment: any evil or chaotic neutral
 - Sworn of Cyric may be cleric/thieves
+~
+
+//
+// ... cleric of Umberlee:
+//
+@22601 = ~cleric of umberlee~
+@22602 = ~Waveservant of Umberlee~
+@22603 = ~WAVESERVANT OF UMBERLEE: Umberlee is a fickle goddess who claims the sea as her sole domain.  Like many evil gods, she is more often feared than revered, though there are notable exceptions.  Umberlee has something of an...affection for lost souls, and so she has been known to take them under her wing from time to time.  
+
+Advantages:
+- Mistress of the Waves: Unlike most clerics, waveservants have focus access in the elemental water sphere.
+- Can cast Smashing Wave as the cleric spell as a special ability once per day.  The Waveservant can use this ability an additional time per day at levels 4, 8, 12, 16 and 20.
+Disadvantages: 
+- The Waveservant cannot turn undead.
+Restrictions:
+- Alignment: any evil or chaotic neutral
 ~
 
 //
@@ -647,7 +687,7 @@ Casting Time: 1
 Area of Effect: 30-ft. radius
 Saving Throw: None
 
-By means of the Chant spell, the priest brings special favor upon <PRO_HISHER>self and <PRO_HISHER> party and causes harm to <PRO_HISHER> enemies. When the Chant spell is completed, all the priest's allies within the area of effect gain a +1 bonus to attack rolls, minimum damage/healing rolls, and Saving Throws. Furthermore, damage dice for all effects outside a weapon’s base damage is reduced by 1. For example, a 6d6 fireball will do 6d5 damage, and an arrow of fire that deals 1d6+2 piercing plus 1d6 fire damage will deal 1d6+2 piercing plus 1d5 fire damage instead. The priest's enemies suffer the opposite effects.
+By means of the Chant spell, the priest brings special favor upon <PRO_HISHER>self and <PRO_HISHER> party and causes harm to <PRO_HISHER> enemies. When the Chant spell is completed, all the priest's allies within the area of effect gain a +1 bonus to attack rolls, minimum damage/healing rolls, and Saving Throws. Furthermore, damage dice for all effects outside a weaponâs base damage is reduced by 1. For example, a 6d6 fireball will do 6d5 damage, and an arrow of fire that deals 1d6+2 piercing plus 1d6 fire damage will deal 1d6+2 piercing plus 1d5 fire damage instead. The priest's enemies suffer the opposite effects.
 
 Multiple chants are not cumulative.
 ~
@@ -740,7 +780,7 @@ Advantages:
 -  Doommasters can cast a special version of the doom spell at will.  It can be used once, and only once, on a given opponent.
 -  Doommasters gain a +1 bonus to all saves.
 -  At 7th level, the doommaster can cast misfire as a special ability once per day.  Misfire works as the spell of the same name.  The doommaster can use this abilty an additional time per day at levels 10, 13, 16 and 19.
--  At 10th level, the doommaster can cast misfortune.  <PRO_HESHE> can use this abilty one additional time at levels 15, and 20.
+-  At 10th level, the doommaster can cast misfortune. <PRO_HESHE> can use this abilty one additional time at levels 15, and 20.
 
 MISFORTUNE:
 This abilty curses the target, causing them a penalty of -10 penalty to THAC0, saves and AC for one round/level if they fail a save vs. spell.
@@ -799,14 +839,28 @@ Restrictions:
 @45111  = ~Druidic Talisman~
 @45112  = ~With this item, you may choose to adhere to the tenets of the druidic orders and become a priest of Sylvanus.~
 //
-// ... monitor of mystra 
+// ... abjurist of mystra 
+//
+@46401  = ~abjurist of mystra~
+@46402  = ~Abjurist of Mystra~
+@46403  = ~ABJURIST OF MYSTRA: Mystra is known as the Lady of Spells and the Mother of Magic. She tends to the Weave, which enables mortals to cast spells. One sect of Mystra's clerics, known as Abjurists, can channel the Weave into protective shields, making them excellent spell duelists.
+
+Advantages:
+- When an Abjurist casts Spell Deflection, Spell Turning, or Spell Trap spells, <PRO_HESHE> automatically gets the benefit of a Spell Shield as well. Every Abjurist automatically has these spells in <PRO_HISHER> wizard spellbook.
+- One With the Weave: Abjurists can cast spells slightly more easily than most priests, gaining a -1 bonus to casting time.
+
+Restrictions:
+- Alignment: May not be Evil.
+~
+//
+// ... monitor of azuth 
 //
 @46501  = ~monitor of azuth~
 @46502  = ~Monitor of Azuth~
-@46503  = ~MONITOR OF AZUTH: fluff text
+@46503  = ~MONITOR OF AZUTH: Azuth is a lesser deity who assists Mystra, the Mother of Magic, in tending to 'the Weave' that enables all magic in Faerun to exist. Followers of Azuth, known as Monitors, are magical enforcers, policing misuse of the Weave by evile practitioners and empowered to challenge even the mightiest spellcasters.
 
 Advantages:
-- Monitors gain a bonus to their effective caster level, making them as effective as single-class clerics with equivalent experience (+1 caster level per 5 levels).
+- Monitors gain a bonus to their effective caster level, making them as effective as single-class spellcasterscasters with equivalent experience (+1 caster level per 5 levels).
 - One With the Weave: Monitors can cast spells slightly more easily than most priests, gaining a -1 bonus to casting time.
 
 Restrictions:
@@ -814,18 +868,18 @@ Restrictions:
 ~
 @46504  = ~MONITOR OF AZUTH: ~
 //
-// ... dweomerweaver of mystra 
+// ... spellbender 
 //
-@46601  = ~dweomerweaver of mystra~
-@46602  = ~Dweomerweaver of Mystra~
-@46603  = ~DWEOMERWEAVER OF MYSTRA: Mystra is known as the Lady of Spells and the Mother of Magic. She tends to the Weave, which enables mortals to cast spells. Mystra's clerics, known as Monitors, watch over the use of arcane magic by mortals, and seek to prevent magical abuse.
+@46601  = ~spellbender~
+@46602  = ~Spellbender~
+@46603  = ~SPELLBENDER: The goddess Mystra rules all magic, and mandates that spellcasters must formulate known spells, and must memorize the patterns of those spells in order to successfully release them. But as with any system, the are gaps and shortcuts that may be used to circumvent the rules. Sorcerers are born with the ability to shape magic directly, though only into a limited number of effects; and wild mages shape spells without discipline, achieving powerful results at the risk of disastrous side-effects. Spellbenders make a science of mapping the ways to bypass Mystra's restrictions. Practicing as generalist clerics as well as studying arcane wizardry, they learn to manipulate the intersection of those two areas of magic.
 
 Advantages:
-- May use the 'Arcane Weaving' ability in place of memorizing priest spells. This ability allows the Dweomerweaver to spontaneously cast one of several wizard spells of one level lower than the sacrificed priest spell.
-- May use the 'Divine Weaving' ability in place of memorizing wizard spells. This ability allows the Dweomerweaver to spontaneously cast one of several priest spells of one level lower than the sacrificed wizard spell.
+- May use the 'Arcane Weaving' ability in place of memorizing priest spells. This ability allows the Spellbender to spontaneously cast one of several wizard spells of one level lower than the sacrificed priest spell.
+- May use the 'Divine Weaving' ability in place of memorizing wizard spells. This ability allows the Spellbender to spontaneously cast one of several priest spells of one level lower than the sacrificed wizard spell.
 
 Restrictions:
-- Alignment: May not be Evil.
+- None.
 ~
 @46605  = ~Arcane Weaving I~
 @46606  = ~Arcane Weaving
@@ -999,7 +1053,7 @@ Restrictions:
 
 Advantages:
 - Woodscouts combine the abilities of a ranger and cleric simultaneously.
-- Woodscouts may reach Grandmastery (+++++) with longbows or shortbows
+- Woodscouts may reach Mastery (+++) with longbows or shortbows
 
 Restrictions:
 - Alignment: must be Good.
@@ -1500,31 +1554,16 @@ This spell invokes a wall of electric energy.  This wall is intangible, requirin
 
 @51701 = ~Conjure Water Elemental~
 @51702 = ~Conjure Water Elemental
+
 Level: 6
-School: Conjuration
 Sphere: Elemental (Water)
-Range: Medium
-Duration: 1 turn + 1 round/level
-Casting Time: 1 round
+Range: Visual range of the caster
+Duration: 1 turn/level
+Casting Time: 9
 Area of Effect: Special
 Saving Throw: None
 
-Upon casting a Conjure Water Elemental spell, the caster opens a special gate to the Elemental Plane of Water, and a water elemental is summoned to the vicinity of the spellcaster. Normally, an elemental with 12 hit dice will be conjured. At fifteenth level and above, however, the caster will be able to summon an elemental with 16 hit dice. The elemental will do the bidding of the caster until it is slain or the duration of the spell runs out. All of the commands given to the elemental are done so telepathically, so there is no time lost due to miscommunication, and it is not necessary to know the language of the summoned creature.
-
-Water Elemental (12 Hit Dice):
-STR 21, DEX 9, CON 9, INT 9, WIS 9, CHA 9;  AL Neutral
-HP 128, AC 2, THAC0 7, Saving Throws 4/6/5/4/7
-2 Attacks Per Round, 4d6+9 Blunt (Fist +3)
-
-Greater Water Elemental (16 Hit Dice):
-STR 22, DEX 15, CON 16, INT 9, WIS 9, CHA 9;  AL Neutral
-HP 168, AC 0, THAC0 3, Saving Throws 3/5/4/3/6
-2 Attacks Per Round, 4d8+10 Blunt (Fist +3)
-
-Special Qualities (12 & 16 Hit Dice):
-Immune to normal weapons
-Immune to hold, poison, polymorph, sleep, & stun effects
-Slashing, Crushing, Piercing, & Missile Resistance 20%~
+Upon casting a Conjure Water Elemental spell, the caster opens a special gate to the Elemental Plane of Water, and a water elemental is summoned in the vicinity of the caster. There is a 60% chance that a 12-Hit-Dice elemental appears; a 35% chance that a 16-Hit-Dice elemental appears; and a 5% chance that a 24-Hit-Dice elemental appears. The elemental will do the bidding of the caster until it is slain or the duration of the spell runs out. All the commands given to the elemental are done telepathically, so there is no time lost due to miscommunication and no need to know the language of the summoned creature. Unlike Mages, priests do not have to engage in a battle of the minds to control their elemental.~
 
 @51703 = ~Conjure Water Elemental (Focus)
 Level: 5
@@ -1678,6 +1717,11 @@ STATISTICS:
 Damage: 1d8+10 (cold)
 Speed Factor: 2~
 
+@51720 = ~Water Elemental~
+@51721 = ~Greater Water Elemental~
+
+//@52000 Shadow
+
 @52001  = ~Shadow Step~
 @52002  = ~Shadow Step
 
@@ -1707,8 +1751,63 @@ Casting Time: 6
 Area of Effect: 1 creature
 Saving Throw: None
 
-This spell shrouds the recipient in darkness, protecting <PRO_HIMHER> from both attacks and spells.  They gain a +1 bonus to AC per four levels (maximum of +5), +2 bonus to save vs. spells, and infravision for the duration of this spell.  Additionally, if the recipeient can hide in shadows, they gain a +15% bonus to that ability.~
+This spell shrouds the recipient in darkness, protecting <PRO_HIMHER> from both attacks and spells.  They gain a +1 bonus to AC per four levels (maximum of +5), +2 bonus to save vs. spells, and infravision for the duration of this spell.  Additionally, if the recipeient can hide in shadows, they gain a +15% bonus to that ability.
+~
+@52007  = ~Summon Shadows~
+@52008  = ~Summon Shadows
+Level: 5
+Range: Long
+Duration: 3 turns
+Casting Time: 1 round
+Area of Effect: Special
+Saving Throw: None
 
+This spell summons a number of shadows, which serve the caster under any condition. The type and number of creatures that appear depend upon the level of the wizard casting the spell.
+
+9th : 3 shadows
+12th+ : 2 wraiths
+
+The shadowy creatures will remain under the caster's control until they are slain or the spell duration expires.
+
+Shadow (3 Hit Dice):
+STR -, DEX 14, CON -, INT 6, WIS 12, CHA 11;  AL Chaotic Evil
+HP 36, AC 5, THAC0 13, Saving Throws 11/13/11/13/13
+1 Attack Per Round, 1d6+1 Cold Damage (Touch +1)
+
+Combat Abilities:
+Chill Touch: creatures struck must save vs. death or lose 1 point of strength for 1 hour
+
+Special Qualities:
+Immune to normal weapons
+Immune to backstab, charm, confusion, hold, poison, sleep, stun, & death effects
+Cold Resistance 100%; Physical Damage Resistance 50%
+
+
+Wraith (5 Hit Dice):
+STR -, DEX 15, CON -, INT 11, WIS 13, CHA 12;  AL Lawful Evil
+HP 60, AC 4, THAC0 12, Saving Throws 10/13/10/13/13
+1 Attack Per Round, 1d8+1 Cold Damage (Touch +1)
+
+Combat Abilities:
+Life Drain: each successeful hit raises wraith hit points by 5 for 1 turn, and the target must save vs. death or lose 1 level
+
+Special Qualities:
+Immune to normal weapons
+Immune to backstab, blindness, charm, confusion, hold, poison, sleep, stun, & death effects
+Cold Resistance 100%; Physical Damage Resistance 50%~
+@59999  = ~Spirit Ward
+(Abjuration)
+
+Level: 1
+Sphere: Perdition
+Range: Touch
+Duration: 3 rounds/level
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None 
+
+This spell surrounds the recipient with a magical barrier at a distance of one foot. Spirits, fey creatures, elementals, lower-planar creatures, and spectral undead receive a penalty of -2 to hit when attacking the protected creature. In addition, the recipient gains a +3 bonus to Saving Throws against all spells that belong to the Enchantment school. 
+~
 //
 // HLAs..........................................................................
 //
@@ -2435,11 +2534,11 @@ POLAR BEAR: in bear form, the Druid has 21 strength. He can attack twice per rou
 @73515  = ~Shapechange: Polar Bear~
 @73516  = ~Shapechange into polar bear form~
 //
-// ... beast mystic:
+// ... lycanthropic mystic:
 //
-@76201  = ~lupinist~
-@76202  = ~Lupinist~
-@76203  = ~LUPINIST: these individuals have come to understand that within even the most rational and civilized man or woman lies an animal driven by primal needs and desires. (Often, this understanding is developed from horrifying experiments performed on subjects who are very rarely willing.) Through the application of a serum derived from a strain of lycanthropy, the Animist can all forth <PRO_HISHER> own bestial nature, causing <PRO_HISHER> very body to take on lupine qualities. This also gives the Animist a deep insight into magic relating to summoning and controlling animals.
+@76201  = ~beast lord~
+@76202  = ~Beast Lord~
+@76203  = ~BEAST LORD: these individuals have come to understand that within even the most rational and civilized man or woman lies an animal driven by primal needs and desires. (Often, this understanding is developed from horrifying experiments performed on subjects who are very rarely willing.) Through the application of a serum derived from a strain of lycanthropy, the Beast Lord can all forth <PRO_HISHER> own bestial nature, causing <PRO_HISHER> very body to take on lupine qualities. This also gives the Beast Lord a deep insight into magic relating to summoning and controlling animals.
 
 Advantages:
 - May cast "Beast Claw" as an innate ability, at will.
@@ -2450,7 +2549,7 @@ Advantages:
 Restrictions:
 - May not be Lawful
 ~
-@76204  = ~LUPINIST: these individuals have come to understand that within even the most rational and civilized man or woman lies an animal driven by primal needs and desires. (Often, this understanding is developed from horrifying experiments performed on subjects who are very rarely willing.) Through the application of a serum derived from a strain of lycanthropy, the Animist can all forth <PRO_HISHER> own bestial nature, causing <PRO_HISHER> very body to take on lupine qualities. This also gives the Animist a deep insight into magic relating to summoning and controlling animals.
+@76204  = ~BEAST LORD: these individuals have come to understand that within even the most rational and civilized man or woman lies an animal driven by primal needs and desires. (Often, this understanding is developed from horrifying experiments performed on subjects who are very rarely willing.) Through the application of a serum derived from a strain of lycanthropy, the Beast Lord can all forth <PRO_HISHER> own bestial nature, causing <PRO_HISHER> very body to take on lupine qualities. This also gives the Beast Lord a deep insight into magic relating to summoning and controlling animals.
 ~
 @76205  = ~~
 @76211  = ~Beast Claw~
@@ -2486,6 +2585,10 @@ The damage types relating to each element are as follows:
 @76313  = ~Element: Earth~
 @76314  = ~Element: Fire~
 @76315  = ~Element: Water~
+@76316  = ~Control Elemental~
+@76317  = ~Control Elemental
+The targeted elemental creature is under the control of the elementalist for 3 turns.  No save is allowed.~
+
 //
 // ... chaos priest:
 //
@@ -2562,13 +2665,13 @@ Disadvantages:
 @80011 = ~INQUISITOR: The Inquisitor has dedicated <PRO_HISHER> life to finding and eliminating infiltrators of <PRO_HISHER> faith; <PRO_HISHER> god has provided <PRO_HIMHER> with special abilities toward that end.
 
 Advantages:
-� May cast Dispel Magic once per day. Gains one use at level 1 and an additional use every 4 levels thereafter. The spell is cast at Speed Factor 1 and acts at twice the Inquisitor's character level. 
-� May cast True Sight once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
+ May cast Dispel Magic once per day. Gains one use at level 1 and an additional use every 4 levels thereafter. The spell is cast at Speed Factor 1 and acts at twice the Inquisitor's character level. 
+ May cast True Sight once per day. Gains one use at level 1 and an additional use every 4 levels thereafter.
 
 Disadvantages:
-� May not turn undead.
-� May not use the Lay On Hands ability. 
-� May not cast priest spells.~
+ May not turn undead.
+ May not use the Lay On Hands ability. 
+ May not cast priest spells.~
 
 @80012  = ~Frenzy~
 @80013  = ~Frenzy
@@ -2601,7 +2704,7 @@ Restrictions:
 //Paladin of Tyr
 @80101  = ~champion of tyr~
 @80102  = ~Paladin of Tyr~
-@80103  = ~PALADIN OF TYR: Paladins of Tyr are the quintessential champions of light.  
+@80103  = ~PALADIN OF TYR: Paladins of Tyr are the quintessential champions of light.  They must hold themselves to a high standard, but in exchange for their dedication, they are empowered to destroy the enemies of light.  
 
 Advantages:
 - Smite Evil: As smite, but evil creatures must save vs. death or be stunned for 1 round
@@ -2628,25 +2731,25 @@ An opponent can only be affected by smite evil once per round.~
 @80108  = ~CAVALIER OF TYR: This class represents the most common picture of the knight: the chivalrous warrior who epitomizes honor, courage, and loyalty. The cavalier is specialized in battling "classical" evil monsters such as demons and dragons.
 
 Abilities: 
-� +3 bonus to hit and damage rolls against demons, devils, dragons and wyverns.
-� May cast Remove Fear 1 time per day per level.
-� Immune to charm, fear, poison, and morale failure.
-� 20% resistance to fire and acid.
+ +3 bonus to hit and damage rolls against demons, devils, dragons and wyverns.
+ May cast Remove Fear 1 time per day per level.
+ Immune to charm, fear, poison, and morale failure.
+ 20% resistance to fire and acid.
 
 Restrictions:
-� May not use ranged weapons (both missile and thrown).~
+ May not use ranged weapons (both missile and thrown).~
 
 @80109  = ~undead hunter of tyr~
 @80110  = ~Undead Hunter of Tyr~
 @80111  = ~UNDEAD HUNTER OF TYR: This holy avenger has honed <PRO_HISHER> abilities toward the destruction of the undead and other unnatural creatures and is immune to many of their most devastating abilities.
 
 Abilities: 
-� +3 bonus to hit and damage rolls against undead creatures.
-� Immune to hold and level drain.
+ +3 bonus to hit and damage rolls against undead creatures.
+ Immune to hold and level drain.
 
 Restrictions:
-� May not use Lay On Hands ability.
-� May not use Cure Disease ability.~
+ May not use Lay On Hands ability.
+ May not use Cure Disease ability.~
 
 @80201  = ~champion of kelemvor~
 @80202  = ~Knight of Eternal Order~
@@ -2673,7 +2776,7 @@ An opponent can only be affected by Disrupting Smite once per round.~
 
 @80206  = ~champion of myrkul~
 @80207  = ~Harvester of Myrkul~
-@80208  = ~HARVESTER OF MYRKUL: While his priests are fond of creating undead minions, Myrkul still finds it necessary to sponsor a contingent of undead slayers.  After all, it shouldn't be thought that undeath can be an escape from Myrkul's grasp. 
+@80208  = ~HARVESTER OF MYRKUL: While his priests are fond of creating undead minions, Myrkul still finds it necessary to sponsor a contingent of undead slayers.  After all, it shouldn't be thought that undeath can be an escape from Myrkul's icy grasp. Enter the Harvester: Unholy warriors empowered to destroy undead creatures that dare subvert Mykrul's will.  
 
 
 Advantages:
@@ -2740,7 +2843,7 @@ Restrictions:
 
 @80501 = ~champion of helm~
 @80502 = ~Everwatch Knight~
-@80503 = ~EVERWATCH KNIGHT: Champion of Helm, so does helmy things...
+@80503 = ~EVERWATCH KNIGHT: Everwatch knights act as the elite shock troops for the church of Helm.  Also, they are often sent on the most difficult missions for the church.  
 
 Advantages:
 - Mastery: Everwatch Knights can attain mastery in any melee weapon.
@@ -2761,7 +2864,7 @@ Restrictions:
 This spell creates a sword in the Champion's hand that cannot be dropped or unequipped. The sword is enchanted as a +4 weapon and provides a +4 THAC0 bonus, and does an additional 4 points of magic damage. It deals 2d4 damage to any target it hits. This ability lasts for 1 round per level. While it is equipped, the wielder cannot cast further spells.
 The Everwatch Sword is weilded as a longsword.~
 
-@80506 = ~EVERWATCH KNIGHT:
+@80506 = ~EVERWATCH KNIGHT: Everwatch knights act as the elite shock troops for the church of Helm.  Also, they are often sent on the most difficult missions for the church.
 
 Advantages:
 - Mastery: Everwatch Knights can attain mastery in any melee weapon.
@@ -2854,7 +2957,7 @@ An opponent can only be affected by Wizard's Bane once per round.~
 
 @80901 = ~champion of the red knight~
 @80902 = ~Knight of the Red Falcon~
-@80903 = ~KNIGHT OF THE RED FALCON:
+@80903 = ~KNIGHT OF THE RED FALCON: 
 
 Advantages:
 - Mastery: Knights of the Red Falcon can attain mastery in any melee weapon.
@@ -2880,7 +2983,7 @@ An opponent can only be affected by smite of dread once per round.~
 
 @86201  = ~zealot of gruumsh~
 @86202  = ~Eye of Gruumsh~
-@86203  = ~EYE OF GRUUMSH: The eye of Gruumsh's devotion is such that they pluck out their eye in honor of their deity.
+@86203  = ~EYE OF GRUUMSH: The eye of Gruumsh's devotion is such that they pluck out their eye in honor of their deity.  
 
 Advantages:
 - May use the frenzy ability once per day.  The zealot gains an additional use of this ability at levels 10, 15 and 20.
@@ -2934,7 +3037,7 @@ After the effect ends, the character becomes winded, suffering a -2 penalty to A
 
 @86401  = ~zealot of kossuth~
 @86402  = ~Disciple of the Flame~
-@86403  = ~DISCIPLE OF THE FLAME: Disciples are dedicated to Kossuth, the Firelord.  ...
+@86403  = ~DISCIPLE OF THE FLAME: Disciples are dedicated to Kossuth, the Firelord.  
 
 Advantages:
 - May use the frenzy ability once per day.  The zealot gains an additional use of this ability at levels 10, 15 and 20.
@@ -3044,7 +3147,7 @@ After the effect ends, the character becomes winded, suffering a -2 penalty to A
 
 @86801  = ~zealot of sune~
 @86802  = ~Cherub of the Ruby Rose~
-@86803  = ~CHERUB OF THE RUBY ROSE: Zealots dedicated to the service of Sune ...
+@86803  = ~CHERUB OF THE RUBY ROSE: Zealots dedicated to the service of Sune, cherubs of the ruby rose exude passion and fury.  
 
 Advantages:
 - May use the frenzy ability once per day.  The zealot gains an additional use of this ability at levels 10, 15 and 20.
@@ -3776,7 +3879,7 @@ Casting Time: 6
 Area of Effect: Special
 Saving Throw: None
 
-Shades is similar to Shadow Monsters and Demi-Shadow Monsters—it allows the caster to shape material from the Demiplane of Shadow into illusionary creatures. These shadows are tougher than the shadows summoned by Shadow Monsters and Demi-Shadow Monsters, and they will obey the caster until the spell expires or they are slain.~
+Shades is similar to Shadow Monsters and Demi-Shadow Monstersâit allows the caster to shape material from the Demiplane of Shadow into illusionary creatures. These shadows are tougher than the shadows summoned by Shadow Monsters and Demi-Shadow Monsters, and they will obey the caster until the spell expires or they are slain.~
 
 @6310000 = ~Soul Eater~
 @6310001 = ~Soul Eater
@@ -3803,7 +3906,7 @@ Casting Time: 7
 Area of Effect: 24-ft. radius
 Saving Throw: 1/2
 
-This spell unleashes an acidic downpour on the area of effect, doing 1d4 points of acid damage each round for the first three rounds, 1d6 points for the next three rounds, and 1d8 points for each round thereafter. Moving out of the area of effect does not stop the damage—the acid adheres to the skin, and any creatures in the area of effect when Acid Storm is cast continue to suffer acid damage as long as the spell duration lasts. Creatures make a Save vs. Spell every round after they have been hit by the cloud—if successful, they only take half damage (for that round only).~
+This spell unleashes an acidic downpour on the area of effect, doing 1d4 points of acid damage each round for the first three rounds, 1d6 points for the next three rounds, and 1d8 points for each round thereafter. Moving out of the area of effect does not stop the damageâthe acid adheres to the skin, and any creatures in the area of effect when Acid Storm is cast continue to suffer acid damage as long as the spell duration lasts. Creatures make a Save vs. Spell every round after they have been hit by the cloudâif successful, they only take half damage (for that round only).~
 
 //DIVINE SPELLS
 @50101 = ~Cure Light Wounds
@@ -3819,7 +3922,7 @@ Saving Throw: None
 
 By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest heals the touched creature of 4 points, plus 20% of that creature's hit point total, of damage . This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin.
 
-Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.~
+Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will healâor can be curedâjust as any normal injury.~
 
 @50102 = ~Cure Moderate Wounds
 (Necromancy)
@@ -3845,7 +3948,7 @@ Casting Time: 5
 Area of Effect: 1 creature 
 Saving Throw: None 
 
-By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest heals 8, plus 40% of the recipients total hit points of wound or other injury damage from the creature's body. This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin. Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.~
+By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest heals 8, plus 40% of the recipients total hit points of wound or other injury damage from the creature's body. This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin. Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will healâor can be curedâjust as any normal injury.~
 
 @50104 = ~Cure Serious Wounds
 (Necromancy)
@@ -5013,7 +5116,7 @@ Casting Time: 7
 Area of Effect: 60-ft. radius
 Saving Throw: None
 
-By reciting a sacred passage or declaration, the priest invokes <PRO_HISHER> deity's blessing upon <PRO_HIMHER>self and <PRO_HISHER> allies while sowing confusion and weakness among <PRO_HISHER> enemies. The priest's allies gain a +2 bonus to their attack rolls and Saving Throws, and the priest's enemies receive a -2 penalty to the same. Recitation does not nullify a Prayer spell—the two can be cast in tandem, and the effects are cumulative.~
+By reciting a sacred passage or declaration, the priest invokes <PRO_HISHER> deity's blessing upon <PRO_HIMHER>self and <PRO_HISHER> allies while sowing confusion and weakness among <PRO_HISHER> enemies. The priest's allies gain a +2 bonus to their attack rolls and Saving Throws, and the priest's enemies receive a -2 penalty to the same. Recitation does not nullify a Prayer spellâthe two can be cast in tandem, and the effects are cumulative.~
 
 //BLOOD RAGE
 @42200000= ~Blood Rage~
@@ -5332,7 +5435,7 @@ Casting Time: 9
 Area of Effect: 14-ft. radius
 Saving Throw: None
 
-This spell blankets the area of effect with a silver-blue mist—any creature within the mist will be cured of disease and poison and healed 25 Hit Points.~
+This spell blankets the area of effect with a silver-blue mistâany creature within the mist will be cured of disease and poison and healed 25 Hit Points.~
 
 @73700000 = ~Stalker~
 @73700001 = ~Stalker
@@ -5391,7 +5494,7 @@ Saving Throw: None
 
 By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest causes 3 points of wound or other injury damage to the creature's body to be healed. This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin.
 
-Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.
+Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will healâor can be curedâjust as any normal injury.
 
 This spell will only affect a given creature once per 8 hours.~
 
@@ -5408,7 +5511,7 @@ Saving Throw: None
 
 By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest causes 1 point, plus 10% of that creature's hit point total, of wound or other injury damage to the creature's body to be healed. This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin.
 
-Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.
+Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will healâor can be curedâjust as any normal injury.
 
 A creature can only be affected by Cure Minor Wounds once per 8 hours.~
 
@@ -5425,7 +5528,7 @@ Saving Throw: None
 
 By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest causes 4 points of wound or other injury damage to the creature's body to be healed. This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin.
 
-Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.
+Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will healâor can be curedâjust as any normal injury.
 
 This spell will only affect a given creature once per 8 hours.~
 
@@ -5442,7 +5545,7 @@ Saving Throw: None
 
 By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest causes 2 points, plus 10% of that creature's hit point total, of wound or other injury damage to the creature's body to be healed. This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin.
 
-Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.
+Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will healâor can be curedâjust as any normal injury.
 
 A creature can only be affected by Cure Minor Wounds once per 8 hours.~
 

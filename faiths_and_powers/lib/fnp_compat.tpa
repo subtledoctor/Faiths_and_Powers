@@ -6,6 +6,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY d5_fnp_spheres BEGIN
   Destruction => 0
   Protection => 0
   War => 0
+  Exploration => 0
   Knowledge => 0
   Deception => 0
   Thought => 0
@@ -21,27 +22,31 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY d5_fnp_spheres BEGIN
   Light => 0
   Shadow => 0
   Magic => 0
+  Perdition => 0
 END
 
-ACTION_DEFINE_ASSOCIATIVE_ARRAY d5_fnp_classes BEGIN
-  CLERIC => 0
-  ACOLYTE => 0
-  FIGHTER_CLERIC => 0
-  CLERIC_MAGE => 0
-  CLERIC_THIEF => 0
-  RANGER_CLERIC => 0
-  F_M_C => 0
-  DRUID => 0
-  MYSTIC => 0
-  OCCULTIST => 0
-  FIGHTER_DRUID => 0
-  INCARNATE => 0  
-  CHAMPION => 0
-  INQUISITOR => 0
-  ZEALOT => 0
-  RANGER => 0
-  DERVISH => 0
-  SCOUT => 0
+ACTION_DEFINE_ASSOCIATIVE_ARRAY d5_fnp_usable BEGIN
+	LEATHER_ARMOR => 0
+	CHAIN_ARMOR => 0
+	PLATE_ARMOR => 0
+	CLUB_STAFF => 0
+	HAMMERS => 0
+	MACES => 0
+	FLAILS => 0
+	AXES => 0
+	DAGGERS => 0
+	SHORT_SWORDS => 0
+	LONG_SWORDS => 0
+	SCIMITARS => 0
+	KATANAS => 0
+	BASTARD_SWORDS => 0
+	2HAND_SWORDS => 0
+	HALBERDS => 0
+	SPEARS => 0
+	DARTS => 0
+	SLINGS => 0
+	BOWS => 0
+	CROSSBOWS => 0  
 END
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY d5_fnp_sphere_access BEGIN
@@ -54,44 +59,58 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY d5_fnp_sphere_access BEGIN
   INCARNATE => 0
 END
 
-ACTION_DEFINE_ASSOCIATIVE_ARRAY d5_fnp_race_access BEGIN
-  ALL => 0
-  HUMAN => 0
-  ELF => 0
-  DWARF => 0
-  GNOME => 0
-  HALFLING => 0
-  ORC => 0
+ACTION_DEFINE_ASSOCIATIVE_ARRAY d5_fnp_class_access BEGIN
+  X => 0
+  CLERIC => 0
+  ACOLYTE => 0
+  FIGHTER_CLERIC => 0
+  CLERIC_MAGE => 0
+  CLERIC_THIEF => 0
+  RANGER_CLERIC => 0
+  DRUID => 0
+  MYSTIC => 0
+  OCCULTIST => 0
+  FIGHTER_MYSTIC => 0
+  RANGER => 0
+  SCOUT => 0
+  CHAMPION => 0
+  ZEALOT => 0
+  SHAMAN => 0
 END
 
 DEFINE_ACTION_FUNCTION ~DEFINE_FNP_KIT_INFO~
   INT_VAR
-    c_cleric = 0
-    c_acolyte = 0
-    c_fighter_cleric = 0
-    c_cleric_mage = 0
-    c_cleric_thief = 0
-    c_ranger_cleric = 0
-    c_f_m_c = 0
-    c_druid = 0
-    c_mystic = 0
-    c_occultist = 0
-    c_fighter_druid = 0
-    c_champion = 0
-    c_inquisitor = 0
-    c_zealot = 0
-    c_ranger = 0
-    c_dervish = 0
-    c_scout = 0
+	u_leather_armor = 1
+	u_chain_armor = 0
+	u_plate_armor = 0
+	u_club_staff = 1
+	u_hammers = 0
+	u_maces = 0
+	u_flails = 0
+	u_axes = 0
+	u_daggers = 0
+	u_short_swords = 0
+	u_long_swords = 0
+	u_scimitars = 0
+	u_katanas = 0
+	u_bastard_swords = 0
+	u_2hand_swords = 0
+	u_halberds = 0
+	u_spears = 0
+	u_darts = 0
+	u_slings = 0
+	u_bows = 0
+	u_crossbows = 0  
   STR_VAR
     clab_name = ~d5defa~
-    race = ~ALL~
+    class = ~x~
     s_Life = ~x~
     s_Death = ~x~
     s_Benediction = ~x~
     s_Destruction = ~x~
     s_Protection = ~x~
     s_War = ~x~
+	s_Exploration = ~x~
     s_Knowledge = ~x~
     s_Deception = ~x~
     s_Thought = ~x~
@@ -107,21 +126,22 @@ DEFINE_ACTION_FUNCTION ~DEFINE_FNP_KIT_INFO~
     s_Light = ~x~
     s_Shadow = ~x~
     s_Magic = ~x~
+	s_Perdition = ~x~
     2da_folder = EVAL ~%MOD_FOLDER%/lib~
 BEGIN
   PRINT ~Defining Faiths and Powers info for kit %clab_name% ...~ 
   
   // validate required files exist
-  ACTION_IF (NOT FILE_EXISTS ~%2da_folder%/d5_race.2da~
-               || NOT FILE_EXISTS ~%2da_folder%/d5_class.2da~
-               || NOT FILE_EXISTS ~%2da_folder%/d5_sphere.2da~) BEGIN
-    FAIL ~DEFINE_FNP_KIT_INFO: The required d5_race.2da, d5_class.2da, and d5_sphere.2da template files could not be found in the folder %2da_folder%.~
+  ACTION_IF (NOT FILE_EXISTS ~%2da_folder%/d5_class.2da~
+               || NOT FILE_EXISTS ~%2da_folder%/d5_usabl.2da~
+               || NOT FILE_EXISTS ~%2da_folder%/d5_spher.2da~) BEGIN
+    FAIL ~DEFINE_FNP_KIT_INFO: The required d5_class.2da, d5_usabl.2da, and d5_spher.2da template files could not be found in the folder %2da_folder%.~
   END
   
-  // validate race
-  ACTION_TO_UPPER race
-  ACTION_IF (NOT VARIABLE_IS_SET $d5_fnp_race_access(~%race%~)) BEGIN
-    FAIL ~DEFINE_FNP_KIT_INFO: The specified race (%race%) does not match one of the valid options: ALL, HUMAN, ELF, DWARF, GNOME, HALFLING, or ORC.~
+  // validate class
+  ACTION_TO_UPPER class
+  ACTION_IF (NOT VARIABLE_IS_SET $d5_fnp_class_access(~%class%~)) BEGIN
+    FAIL ~DEFINE_FNP_KIT_INFO: The specified class (%class%) does not match one of the valid options: ALL, HUMAN, ELF, DWARF, GNOME, HALFLING, or ORC.~
   END
   
   // validate spheres
@@ -141,68 +161,71 @@ BEGIN
   END
   
   // copy over template files if they aren't present yet
-  ACTION_IF (NOT FILE_EXISTS_IN_GAME ~d5_race.2da~) BEGIN
-    COPY ~%2da_folder%/d5_race.2da~ ~override~
-  END
   ACTION_IF (NOT FILE_EXISTS_IN_GAME ~d5_class.2da~) BEGIN
     COPY ~%2da_folder%/d5_class.2da~ ~override~
   END
-  ACTION_IF (NOT FILE_EXISTS_IN_GAME ~d5_sphere.2da~) BEGIN
-    COPY ~%2da_folder%/d5_sphere.2da~ ~override~
+  ACTION_IF (NOT FILE_EXISTS_IN_GAME ~d5_usabl.2da~) BEGIN
+    COPY ~%2da_folder%/d5_usabl.2da~ ~override~
+  END
+  ACTION_IF (NOT FILE_EXISTS_IN_GAME ~d5_spher.2da~) BEGIN
+    COPY ~%2da_folder%/d5_spher.2da~ ~override~
   END
   
   // define the text that will be added to the files
-  OUTER_TEXT_SPRINT race_text ~%clab_name% %race%~
-  OUTER_TEXT_SPRINT class_text ~%clab_name% %c_cleric% %c_acolyte% %c_fighter_cleric% %c_cleric_mage% %c_cleric_thief% %c_ranger_cleric% %c_f_m_c% %c_druid% %c_mystic% %c_occultist% %c_fighter_druid% %c_champion% %c_inquisitor% %c_zealot% %c_ranger% %c_dervish% %c_scout%~
-  OUTER_TEXT_SPRINT sphere_text ~%clab_name% %s_Life% %s_Death% %s_Benediction% %s_Destruction% %s_Protection% %s_War% %s_Knowledge% %s_Deception% %s_Thought% %s_Dread% %s_Vigor% %s_Affliction% %s_Animal% %s_Plant% %s_Earth% %s_Water% %s_Air% %s_Fire% %s_Light% %s_Shadow% %s_Magic%~
+  OUTER_TEXT_SPRINT class_text ~%clab_name% %class%~
+  OUTER_TEXT_SPRINT usable_text ~%clab_name% 	%u_leather_armor% %u_chain_armor% %u_plate_armor% %u_club_staff% %u_hammers% %u_maces% %u_flails% %u_axes% %u_daggers% %u_short_swords% %u_long_swords% %u_scimitars% %u_katanas% %u_bastard_swords% %u_2hand_swords% %u_halberds% %u_spears% %u_darts% %u_slings% %u_bows% %u_crossbows%~
+  OUTER_TEXT_SPRINT sphere_text ~%clab_name% %s_Life% %s_Death% %s_Benediction% %s_Destruction% %s_Protection% %s_War% %s_Exploration% %s_Knowledge% %s_Deception% %s_Thought% %s_Dread% %s_Vigor% %s_Affliction% %s_Animal% %s_Plant% %s_Earth% %s_Water% %s_Air% %s_Fire% %s_Light% %s_Shadow% %s_Magic% %s_Perdition%~
 
   // uppercase text
-  ACTION_TO_UPPER race_text
   ACTION_TO_UPPER class_text
+  ACTION_TO_UPPER usable_text
   ACTION_TO_UPPER sphere_text
     
   // append to the .2da files
-  APPEND ~d5_race.2da~ ~%race_text%~
   APPEND ~d5_class.2da~ ~%class_text%~
-  APPEND ~d5_sphere.2da~ ~%sphere_text%~
+  APPEND ~d5_usabl.2da~ ~%usable_text%~
+  APPEND ~d5_spher.2da~ ~%sphere_text%~
   
   // clean up the .2da files
-  COPY_EXISTING ~d5_class.2da~ ~override~
-                ~d5_race.2da~ ~override~
-                ~d5_sphere.2da~ ~override~
+  COPY_EXISTING ~d5_usabl.2da~ ~override~
+                ~d5_class.2da~ ~override~
+                ~d5_spher.2da~ ~override~
     PRETTY_PRINT_2DA
 END
 
 DEFINE_ACTION_MACRO ~READ_FNP_KIT_INFO~ BEGIN
-  ACTION_IF (FILE_EXISTS_IN_GAME ~d5_race.2da~
-               && FILE_EXISTS_IN_GAME ~d5_class.2da~
-               && FILE_EXISTS_IN_GAME ~d5_sphere.2da~) BEGIN
+
+//  CLEAR_ARRAYS
+
+  ACTION_IF (FILE_EXISTS_IN_GAME ~d5_class.2da~
+               && FILE_EXISTS_IN_GAME ~d5_usabl.2da~
+               && FILE_EXISTS_IN_GAME ~d5_spher.2da~) BEGIN
     
-    // read kits and race access
-    COPY_EXISTING ~d5_race.2da~ ~override~
-      READ_2DA_ENTRIES_NOW ~r2en_d5_race~ 2
-      FOR (row = 1; row < r2en_d5_race; row += 1) BEGIN
-        READ_2DA_ENTRY_FORMER ~r2en_d5_race~ row 0 kit
-        READ_2DA_ENTRY_FORMER ~r2en_d5_race~ row 1 race
-        TEXT_SPRINT $d5_fnp_kits(~%row%~) ~%kit%~
-        TEXT_SPRINT $d5_fnp_kit_race_access(~%kit%~) ~%race%~
-      END
-    
-    // read class access
+    // read kits and class access
     COPY_EXISTING ~d5_class.2da~ ~override~
-      COUNT_2DA_COLS num_cols
-      READ_2DA_ENTRIES_NOW ~r2en_d5_class~ (num_cols - 1)
+      READ_2DA_ENTRIES_NOW ~r2en_d5_class~ 2
       FOR (row = 1; row < r2en_d5_class; row += 1) BEGIN
         READ_2DA_ENTRY_FORMER ~r2en_d5_class~ row 0 kit
+        READ_2DA_ENTRY_FORMER ~r2en_d5_class~ row 1 class
+        TEXT_SPRINT $d5_fnp_kits(~%row%~) ~%kit%~
+        TEXT_SPRINT $d5_fnp_kit_class_access(~%kit%~) ~%class%~
+      END
+    
+    // read usability access
+    COPY_EXISTING ~d5_usabl.2da~ ~override~
+      COUNT_2DA_COLS num_cols
+      READ_2DA_ENTRIES_NOW ~r2en_d5_usable~ (num_cols - 1)
+      FOR (row = 1; row < r2en_d5_usable; row += 1) BEGIN
+        READ_2DA_ENTRY_FORMER ~r2en_d5_usable~ row 0 kit
         FOR (col = 0; col < (num_cols - 1); col += 1) BEGIN
-          READ_2DA_ENTRY_FORMER ~r2en_d5_class~ 0 col class
-          READ_2DA_ENTRY_FORMER ~r2en_d5_class~ row (col + 1) access
-          TEXT_SPRINT $d5_fnp_kit_class_access(~%class%~ ~%kit%~) ~%access%~
+          READ_2DA_ENTRY_FORMER ~r2en_d5_usable~ 0 col usable
+          READ_2DA_ENTRY_FORMER ~r2en_d5_usable~ row (col + 1) access
+          TEXT_SPRINT $d5_fnp_kit_usable_access(~%kit%~ ~%usable%~) ~%access%~
         END
       END
     
     // read sphere access
-    COPY_EXISTING ~d5_sphere.2da~ ~override~
+    COPY_EXISTING ~d5_spher.2da~ ~override~
       COUNT_2DA_COLS num_cols
       READ_2DA_ENTRIES_NOW ~r2en_d5_sphere~ (num_cols - 1)
       FOR (row = 1; row < r2en_d5_sphere; row += 1) BEGIN
@@ -219,15 +242,15 @@ END
 DEFINE_ACTION_FUNCTION ~DISPLAY_FNP_KIT_INFO~ BEGIN
   ACTION_PHP_EACH d5_fnp_kits AS ind => kit BEGIN
     PRINT ~KIT: %kit%~
-    ACTION_IF (VARIABLE_IS_SET $d5_fnp_kit_race_access(~%kit%~)) BEGIN
-      OUTER_TEXT_SPRINT race $d5_fnp_kit_race_access(~%kit%~)
-      PRINT ~  RACE: %race%~
-      PRINT ~  CLASSES:~
-      ACTION_PHP_EACH d5_fnp_classes AS class => val BEGIN
-        ACTION_IF (VARIABLE_IS_SET $d5_fnp_kit_class_access(~%class%~ ~%kit%~)) BEGIN
-          OUTER_TEXT_SPRINT access $d5_fnp_kit_class_access(~%class%~ ~%kit%~)
+    ACTION_IF (VARIABLE_IS_SET $d5_fnp_kit_class_access(~%kit%~)) BEGIN
+      OUTER_TEXT_SPRINT class $d5_fnp_kit_class_access(~%kit%~)
+      PRINT ~  CLASS: %class%~
+      PRINT ~  USABILITY:~
+      ACTION_PHP_EACH d5_fnp_usable AS usable => val BEGIN
+        ACTION_IF (VARIABLE_IS_SET $d5_fnp_kit_usable_access(~%kit%~ ~%usable%~)) BEGIN
+          OUTER_TEXT_SPRINT access $d5_fnp_kit_usable_access(~%kit%~ ~%usable%~)
           ACTION_IF (IS_AN_INT access && access == 1) BEGIN
-            PRINT ~    %class%: %access%~
+            PRINT ~    %usable%: %access%~
           END
         END
       END

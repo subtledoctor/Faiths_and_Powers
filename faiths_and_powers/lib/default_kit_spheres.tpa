@@ -18,10 +18,32 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	END
 BUT_ONLY
 ACTION_PHP_EACH d5_sphere_kits AS green => eggs BEGIN
- ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~override/d5_race.2da~ ~%green%~)) BEGIN
+ ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~override/d5_class.2da~ ~%green%~)) BEGIN
   ACTION_IF (%eggs% = 3) BEGIN //..................................................clerics
-   LAF ~DEFINE_FNP_KIT_INFO~
-    STR_VAR
+LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 1
+	u_plate_armor 		= 0
+	u_club_staff	 	= 1
+	u_hammers	 		= 1
+	u_maces 	 		= 1
+	u_flails 			= 1
+	u_axes 				= 0
+	u_daggers 			= 1
+	u_short_swords		= 1
+	u_long_swords		= 0
+	u_scimitars 		= 0
+	u_katanas 			= 0
+	u_bastard_swords 	= 0
+	u_2hand_swords 		= 0
+	u_halberds 			= 0
+	u_spears 	 		= 1
+	u_darts 			= 0
+	u_slings	 		= 1
+	u_bows 				= 0
+	u_crossbows 		= 1
+  STR_VAR
     clab_name 		= EVAL ~%green%~
 	s_Life 			= ~major~
 	s_Death 		= ~minor~
@@ -29,6 +51,7 @@ ACTION_PHP_EACH d5_sphere_kits AS green => eggs BEGIN
 	s_Destruction 	= ~major~
 	s_Protection 	= ~major~
 	s_War 			= ~minor~
+	s_Exploration   = ~minor~
 	s_Knowledge 	= ~major~
 	s_Deception 	= ~x~
 	s_Thought 		= ~minor~
@@ -44,11 +67,34 @@ ACTION_PHP_EACH d5_sphere_kits AS green => eggs BEGIN
 	s_Light 		= ~major~
 	s_Shadow 		= ~x~
 	s_Magic 		= ~minor~
+	s_Perdition     = ~x~
    END
   END
   ACTION_IF (%eggs% = 11) BEGIN //..................................................druids
-   LAF ~DEFINE_FNP_KIT_INFO~
-    STR_VAR
+LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 0
+	u_plate_armor 		= 0
+	u_club_staff	 	= 1
+	u_hammers	 		= 0
+	u_maces 	 		= 0
+	u_flails 			= 0
+	u_axes 				= 0
+	u_daggers 			= 1
+	u_short_swords		= 0
+	u_long_swords		= 0
+	u_scimitars 		= 0
+	u_katanas 			= 0
+	u_bastard_swords 	= 0
+	u_2hand_swords 		= 0
+	u_halberds 			= 0
+	u_spears 	 		= 1
+	u_darts 			= 1
+	u_slings	 		= 1
+	u_bows 				= 1
+	u_crossbows 		= 0
+  STR_VAR
     clab_name 		= EVAL ~%green%~
 	s_Life 			= ~major~
 	s_Death 		= ~minor~
@@ -56,6 +102,7 @@ ACTION_PHP_EACH d5_sphere_kits AS green => eggs BEGIN
 	s_Destruction 	= ~x~
 	s_Protection 	= ~x~
 	s_War 			= ~x~
+	s_Exploration   = ~minor~
 	s_Knowledge 	= ~x~
 	s_Deception 	= ~x~
 	s_Thought 		= ~minor~
@@ -71,11 +118,34 @@ ACTION_PHP_EACH d5_sphere_kits AS green => eggs BEGIN
 	s_Light 		= ~x~
 	s_Shadow 		= ~minor~
 	s_Magic 		= ~x~
+	s_Perdition     = ~x~
    END
   END
   ACTION_IF (%eggs% = 6) BEGIN //.................................................paladins
-   LAF ~DEFINE_FNP_KIT_INFO~
-    STR_VAR
+LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 1
+	u_plate_armor 		= 1
+	u_club_staff	 	= 2
+	u_hammers	 		= 2
+	u_maces 	 		= 2
+	u_flails 			= 2
+	u_axes 				= 2
+	u_daggers 			= 2
+	u_short_swords		= 2
+	u_long_swords		= 2
+	u_scimitars 		= 2
+	u_katanas 			= 2
+	u_bastard_swords 	= 2
+	u_2hand_swords 		= 2
+	u_halberds 			= 2
+	u_spears 	 		= 2
+	u_darts 			= 0
+	u_slings	 		= 2
+	u_bows 				= 2
+	u_crossbows 		= 2
+  STR_VAR
     clab_name 		= EVAL ~%green%~
 	s_Life 			= ~paladin~
 	s_Death 		= ~x~
@@ -83,6 +153,7 @@ ACTION_PHP_EACH d5_sphere_kits AS green => eggs BEGIN
 	s_Destruction 	= ~paladin~
 	s_Protection 	= ~paladin~
 	s_War 			= ~paladin~
+	s_Exploration   = ~x~
 	s_Knowledge 	= ~paladin~
 	s_Deception 	= ~x~
 	s_Thought 		= ~x~
@@ -98,11 +169,34 @@ ACTION_PHP_EACH d5_sphere_kits AS green => eggs BEGIN
 	s_Light 		= ~paladin~
 	s_Shadow 		= ~x~
 	s_Magic 		= ~x~
+	s_Perdition     = ~x~
    END
   END
   ACTION_IF (%eggs% = 12) BEGIN //.................................................rangers
-   LAF ~DEFINE_FNP_KIT_INFO~
-    STR_VAR
+LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 1
+	u_plate_armor 		= 0
+	u_club_staff	 	= 2
+	u_hammers	 		= 1
+	u_maces 	 		= 2
+	u_flails 			= 2
+	u_axes 				= 2
+	u_daggers 			= 2
+	u_short_swords		= 2
+	u_long_swords		= 2
+	u_scimitars 		= 2
+	u_katanas 			= 2
+	u_bastard_swords 	= 2
+	u_2hand_swords 		= 2
+	u_halberds 			= 2
+	u_spears 	 		= 2
+	u_darts 			= 2
+	u_slings	 		= 2
+	u_bows 				= 2
+	u_crossbows 		= 2
+  STR_VAR
     clab_name 		= EVAL ~%green%~
 	s_Life 			= ~ranger~
 	s_Death 		= ~x~
@@ -110,6 +204,7 @@ ACTION_PHP_EACH d5_sphere_kits AS green => eggs BEGIN
 	s_Destruction 	= ~x~
 	s_Protection 	= ~x~
 	s_War 			= ~x~
+	s_Exploration   = ~ranger~
 	s_Knowledge 	= ~x~
 	s_Deception 	= ~x~
 	s_Thought 		= ~x~
@@ -125,6 +220,7 @@ ACTION_PHP_EACH d5_sphere_kits AS green => eggs BEGIN
 	s_Light 		= ~ranger~
 	s_Shadow 		= ~x~
 	s_Magic 		= ~x~
+	s_Perdition     = ~x~
    END
   END
  END
