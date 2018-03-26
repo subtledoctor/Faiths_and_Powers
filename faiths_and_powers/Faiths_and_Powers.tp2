@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.74.25~
+VERSION ~0.74.29~
 
 //README ~faiths_and_powers/readme-pnp.html~
 
@@ -1234,6 +1234,7 @@ PRINT ~therefore, we'll let the player to choose which ones to install~
 
 
 
+
 //__________________________________________________________________________________
 BEGIN @105 // no deity selection or new kits
 DESIGNATED 105
@@ -1262,6 +1263,11 @@ INCLUDE ~faiths_and_powers/lib/default_kit_spheres.tpa~
 //read fnp_compat info______________________________________________________________
 //
 LAM ~READ_FNP_KIT_INFO~
+//__________________________________________________________________________________
+
+//deity selection___________________________________________________________________
+//
+INCLUDE ~faiths_and_powers/lib/deity_selection.tpa~
 //__________________________________________________________________________________
 
 //alter item usability______________________________________________________________
@@ -2152,6 +2158,11 @@ END
 //read fnp_compat info______________________________________________________________
 //
 LAM ~READ_FNP_KIT_INFO~
+//__________________________________________________________________________________
+
+//deity selection___________________________________________________________________
+//
+INCLUDE ~faiths_and_powers/lib/deity_selection.tpa~
 //__________________________________________________________________________________
 
 //alter item usability______________________________________________________________

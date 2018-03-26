@@ -1061,6 +1061,7 @@ ACTION_PHP_EACH spellsphere AS spl => sph BEGIN
    END // end type = priest spells
 //
    ELSE BEGIN // non-priest spells: make clones
+// NOTE: STRIP OUT 216 EFFECTS FROM TNB LEVEL 1 CANTRIPS
 	COPY_EXISTING ~%the_spell%.spl~ ~override/%priest_res%.spl~ 
 	  WRITE_SHORT 0x1c 2
 	  LPF ALTER_SPELL_HEADER INT_VAR location = 2 END

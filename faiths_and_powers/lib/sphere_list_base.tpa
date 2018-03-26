@@ -14,8 +14,8 @@ CLERIC_CURE_MODERATE_WOUNDS            , 2 => Life
 CLERIC_CURE_MEDIUM_WOUNDS              , 3 => Life
 CLERIC_CURE_SERIOUS_WOUNDS             , 4 => Life
 //CLERIC_CURE_CRITICAL_WOUNDS            , 5 => Life // universal
-CLERIC_RAISE_DEAD                      , 5 => Life
 CLERIC_MASS_CURE                       , 5 => Life
+CLERIC_RAISE_DEAD                      , 6 => Life
 CLERIC_HEAL                            , 6 => Life
 CLERIC_RESURRECTION                    , 7 => Life
 
@@ -29,7 +29,7 @@ CLERIC_CIRCLE_OF_BONES                 , 3 => Death
 CLERIC_ANIMATE_DEAD                    , 4 => Death
 CLERIC_UNDEAD_WARD                     , 4 => Death
 CLERIC_SLAY_LIVING                     , 5 => Death
-CLERIC_RECALL_SPIRIT                   , 5 => Death // a 'good' spell in Death?
+CLERIC_RECALL_SPIRIT                   , 6 => Death // a 'good' spell in Death?
 WIZARD_SOUL_EATER                      , 6 => Death
 CLERIC_SYMBOL_DEATH                    , 7 => Death
 CLERIC_FINGER_OF_DEATH                 , 7 => Death
@@ -164,8 +164,8 @@ CLERIC_FAVOR_OF_ILMATER                , 3 => Vigor
 //CLERIC_NEUTRALIZE_POISON               , 4 => Vigor // why does this spell exist??
 CLERIC_ANIMAL_RAGE                     , 5 => Vigor
 //WIZARD_TENSERS_TRANSFORMATION          , 6 => Vigor
+CLERIC_REGENERATE                      , 6 => Vigor
 CLERIC_RESTORATION                     , 7 => Vigor
-CLERIC_REGENERATE                      , 7 => Vigor
 
 //  AFFLICTION
 CLERIC_CAUSE_DISEASE                   , 1 => Affliction
