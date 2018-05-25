@@ -105,6 +105,7 @@ LANGUAGE
 //__________________________________________________________________________________
 
 
+/*
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
@@ -644,7 +645,7 @@ END
 //PRINT ~it will also replace the K_C_x.2da files so only the archetype kits are available in the menus~
 //__________________________________________________________________________________
 
-
+*/
 
 
 //__________________________________________________________________________________
@@ -656,7 +657,7 @@ END
 
 BEGIN @102 // all the new kits, and kits in menus
 DESIGNATED 102
-SUBCOMPONENT @100 (GAME_IS ~bgee bg2ee eet~)
+SUBCOMPONENT @100 /*(GAME_IS ~bgee bg2ee eet~)*/
 //Acolyte Lore (added to clabs)
 COPY ~faiths_and_powers/kits/acolytes/B_LOR.spl~ ~override~
 
@@ -863,10 +864,8 @@ END
 ACTION_IF (%d5_install_druids% = 1) BEGIN
  LAM forest_druid
  LAM mountain_druid
- ACTION_IF NOT GAME_IS ~iwdee~ THEN BEGIN  //	unless/until it gets kit scroll bars
-  LAM jungle_druid
-  LAM desert_druid
- END
+ LAM jungle_druid
+ LAM desert_druid
  LAM arctic_druid
 END
 //
@@ -877,9 +876,7 @@ ACTION_IF (%d5_install_mystics% = 1) BEGIN
  LAM air_mystic
  LAM fire_mystic
  LAM light_mystic
- ACTION_IF NOT GAME_IS ~iwdee~ THEN BEGIN   //	unless/until it gets kit scroll bars
-  LAM shadow_mystic
- END
+ LAM shadow_mystic
 END
 //
 // (occultists)
