@@ -204,7 +204,7 @@ sppr324 /*SR magic fang*/              , 3 => Animal
 CLERIC_SUMMON_INSECTS                  , 3 => Animal
 CLERIC_ANIMAL_SUMMONING_1              , 4 => Animal // now SR AS4
 CLERIC_GIANT_INSECT                    , 4 => Animal
-sppr525 /*SR Animal growth*?           , 5 => Animal
+sppr525 /*SR Animal growth*/           , 5 => Animal
 CLERIC_ANIMAL_SUMMONING_2              , 5 => Animal // now SR AS5
 CLERIC_INSECT_PLAGUE                   , 5 => Animal
 CLERIC_ANIMAL_SUMMONING_3              , 6 => Animal // now SR AS6
@@ -304,7 +304,7 @@ CLERIC_SUNRAY                          , 7 => Light
 
 //  SHADOW
 CLERIC_SANCTUARY                       , 1 => Shadow
-WIZARD_BLIND_OLD                       , 1 => Shadow // SR fog cloud
+spwi106 /*SR obscuring mist*/          , 1 => Shadow
 WIZARD_SHADOW_MONSTERS                 , 3 => Shadow
 WIZARD_PHANTOM_BLADE                   , 4 => Shadow
 WIZARD_SHADOW_DOOR                     , 4 => Shadow
