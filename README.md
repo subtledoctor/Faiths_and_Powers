@@ -3,6 +3,19 @@ Faiths and Powers mod
 
 ## Cleric Kits
 
+**Battleguard of Tempus**
+
+BATTLEGUARD OF TEMPUS:  Tempus, also known as the Lord of Battles or the Foehammer, is random in his favors, yet his chaotic nature favors all sides equally. Lord Tempus may be on an army's side one day and against them the next; such is the nature of war. Tempuran clergy can be found on both sides of a conflict, as none can ever truly know whom the war god will favor.
+
+Advantages:
+- Battleguards can be proficient with any weapon
+- Battleguards gain a +1 bonus to damage with any melee weapon.
+- Incite Rage: Battleguards can incite a berserker rage beginning at level 5, and again at levels 10, 15 and 20.  This ability is like the berserkers enrage, except that <PRO_HESHE> can incite this rage in <PRO_HIMHER>self or in others.
+
+Restrictions:
+- Alignment: No alignment restrictions.
+- Multiclass: Cleric/Fighters can be Battleguards
+
 **Dawnbringer of Lathander**
 
 DAWNBRINGER OF LATHANDER: Dawnbringers are the representatives of Lathander, a widely worshiped deity of birth, renewal, health, and the dawn. Dawnbringers are especially vigilant foes of the undead, which they see as a plague upon the living, corrupting the life that is the gift of Lathander. They look to cleanse the world with Lathander's light, eradicating any undead with its purifying rays.
@@ -16,6 +29,20 @@ BOON OF LATHANDER: This spell lasts 1 round per level of the caster. It gives th
 Restrictions:
 - Alignment: Any good, or lawful neutral.
 - Multiclass: Fighter/Clerics, and Fighter/Mage/Clerics can all be Dawnbringers.
+
+**Doomguide of Kelemvor** (not available in IWDEE)
+
+DOOMGUIDE OF KELEMVOR: Kelemvor is the most recent god of death.  He has proven to be quite different from Mykrul, the former god of death.  In particular, while the latter encouraged the creation of undead monstrosities, Kelevmor charges his clergy to actively destroy undead, seeing their existance as an unnatural perversion of the order of life and death.  As such, his clergy have become particularly talented undead slayers.
+
+Advantages:
+- Doomguides turn undead at 4 levels higher than a cleric of their level.
+- +4 to saves against death
+- At 7th level, the doomguide is protected as if with the Death Ward spell.  
+- At 11th level, the doomguide is protected as if with the Negative Plane Protection spell.
+
+Restrictions:
+- Alignment: May not be evil or chaotic.
+- Multiclass: Cleric/Fighters, and Cleric/Mages can be Doomguides.
 
 **Hand of Torm**
 
@@ -31,6 +58,17 @@ Advantages:
 Restrictions:
 - Alignment: Lawful good, lawful neutral, or neutral good only.
 - Multiclass: Fighter/Clerics can be Hands of Torm.
+
+**Hoodwinker of Baravar Cloakshadow**
+HOODWINKER OF BARAVAR CLOAKSHADOW: 
+
+Advantages:
+- May use Shadowstep at 1st level.  The Hoodwinker gains an additional use at levels 5, 10, 15 and 20.
+SHADOWSTEP: 
+The character steps into the Shadow Plane and may move for 7 seconds while others are frozen in time. The caster cannot attack or cast spells while in the Shadow Plane.
+
+Restrictions:
+- Alignment: may not be Lawful.
 
 **Luckrider of Tymora**
 
@@ -48,6 +86,77 @@ Restrictions:
 - Alignment: may not Lawful or Evil.
 - Multiclass: Cleric/Thieves can be Luckriders
 
+**Mistwalker of Leira**
+
+MISTWALKER OF LEIRA: Leira is the goddess of deception and illusion. She was supposedly slain under mysterious circumstances during the Avatar crisis, but at least one sect of her worshippers, the Mistwalkers, continue to receive divine power. Lies are their currency, illusion is their tool.
+ 
+Advantages:
+- May use the "Leira's Double" ability once every 5 rounds. Often used in emergencies, this causes an illusionary double of the cleric to spring into existence. If the cleric is being attacked, the double will absorb the first blow that lands, and disappear. At 6th level two doubles are created, and at 12th level one of the two doubles can actually wander away from the cleric to distract enemies. Mistwalkers may use this ability once per turn.
+
+Restrictions:
+- May not dual-class to fighter.
+- Alignment: may not be Lawful.
+
+**Paingiver of Loviatar**
+
+PAINGIVER OF LOVIATAR: Known as The Maiden of Pain and The Willing Whip, loviatar is the evil goddess of agony. She is often seen as a cold-hearted bully, calculating and despotic; she revels in inflicting physical and psychological suffering. Her priests, known simply as "Paingivers" find freedom and power in such pain, and they seek to spread that gospel to others... regardless whether their victims are actually seeking such enlightenment.
+
+Advantages:
+- Can use the Pain Touch ability at will.
+
+PAIN TOUCH: When the priest of Lovitar activates this ability, her mere touch creates waves of pain for any creature with a nervous system.  When she touches any creature, they must save vs death or suffer a -2 penalty to their dexterity and -4 to thac0 as they writhe in agony and will suffer 1 point of non-lethal damage every 12 seconds.
+The penalties and damage occurs over an excruciating period of 10 rounds.
+Paingivers have have this touch indefinitely, but they can suppress it as needed.
+
+- At 3rd level, Paingivers can use Loviatar's Caress once per day.  <PRO_HESHE> can use this ability one more time at levels 6, 9, 12, 15 and 18.
+
+LOVIATAR'S CARESS: When the cleric uses this ability, <PRO_HISHER> hands become instruments of Lovitar for four rounds.  <PRO_HESHE> can strike with uncanny accuracy with <PRO_HISHER> hands (+10 to hit) and <PRO_HESHE> inflicts an additional +2 points of damage per level to a maximum of +20 points at 10th level.  This spell stacks with other unarmed attacks, such as the priest's pain touch.
+
+Restrictions:
+- May not be Good.
+
+**Priest of Baervan** (Not available if Divine Remix is installed)
+
+PRIEST OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
+
+Advantages:
+- May cast Call Woodland Beings once per day every 5 levels of the caster (starts at 1st level with one use).  This ability functions as the spell of the same name.
+- May cast Naturewalk once per day every 10 levels of the caster (starts at 1st level with one use).
+
+NATUREWALK: This spell grants one person protection from ground and nature based movement impairing effects such as webs, entangling, and grease. This spell lasts 1 round per level of the caster.
+
+Restrictions:
+- Race: restricted to gnome.
+- Alignment: restricted to good.
+
+**Stormbringer of Talos**
+
+STORMBRINGER OF TALOS: Stormbringers are clerics of Talos, the Destroyer, the Raging One, the Stormstar, the Storm Lord.  MORE!!!!
+
+Advantages:
+- Talos' Favor: Stormbringers are 50% resistant to electricity damage.
+- Can cast Storm Shield as a special ablity once per day.  The Stormbringer gains an additional use at levels 4, 8, 12, 16 and 20.
+
+STORM SHIELD: This spell lasts 1 round per level of the caster. It protects the caster completely from lightning, fire, cold, and normal missiles.
+
+- Can cast Lightning Bolt as a special ability once per day at 9th level.  The stormbringer gains an additional use at levels 20 and 30.  The abilty functions as the wizard spell of the same name.
+
+Restrictions:
+- Alignment: any evil or chaotic neutral
+
+**The Sworn of Cyric**
+
+THE SWORN OF CYRIC: The sworn of Cyric do what they can to appease their mad, fickle god.  In the meantime, they try to take what they can, when they can, before being smited either by their god, or one of their many victims.  
+
+Advantages:
+- +1 to save vs. Illusion spells
+- Sworn are completely fearless.  As such, they are not affected either by magical fear or moral failure.
+- At 5th level, the Sworn can cast Confusion as the 4th level wizard spell once per day.  They can cast this spell an additional time per day at levels 10, 15 and 20.
+- At 10th level, the Sworn can cast Feeblemind once per day as the wizard spell.  They gain an additional use of this ability at 20th and 30th level.
+Restrictions:
+- Alignment: any evil or chaotic neutral
+- Sworn of Cyric may be cleric/thieves
+
 **Watcher of Helm**
 
 WATCHER OF HELM: Like their deity, Watchers of Helm are stern, dedicated, and loyal, perhaps to a fault.  Helm teaches that the right path is not always obvious, but the surest way to the right path is through the execution of duty.  As such, watchers of helm strive to do what they must despite the consequences, to themselves or even to others.  While othes may suggest that this supposed 'dedication' is nothing more than a fetish, the watcher has no time for such nonsense. They do not have the idle time to question; it is their duty to be ever alert for possible threats to cosmic order.   
@@ -62,6 +171,23 @@ SEEKING SWORD: This spell creates a sword in the Cleric's hand that cannot be dr
 
 Restrictions:
 - Alignment: May be Lawful Good, Lawful Neutral, or True Neutral.
+
+**Waveservant of Umberlee**
+
+WAVESERVANT OF UMBERLEE: Umberlee is a fickle goddess who claims the sea as her sole domain.  Like many evil gods, she is more often feared than revered, though there are notable exceptions.  Umberlee has something of an...affection for lost souls, and so she has been known to take them under her wing from time to time.  
+
+Advantages:
+- Mistress of the Waves: Unlike most clerics, waveservants have focus access in the elemental water sphere.
+- Can cast Smashing Wave as the cleric spell as a special ability once per day.  The Waveservant can use this ability an additional time per day at levels 4, 8, 12, 16 and 20.
+
+Disadvantages: 
+- The Waveservant cannot turn undead.
+
+Restrictions:
+- Alignment: any evil or chaotic neutral
+
+
+### Special Cleric Kits
 
 **Ur-Priest**
 
@@ -83,3 +209,77 @@ Disadvantages:
 Deity access: None, despises the gods.
 
 Restrictions: Cannot be of a good or lawful alignment
+
+## Acolyte (cleric) Kits
+
+**Broken Blade of Tempus**
+
+BROKEN BLADE OF TEMPUS:  Broken Blades honor Tempus by treating those wounded in battle.  Unlike Battleguards and Glorybloods, who are most frequently found on the front lines, it is more common to find a Broken Blades at the rear, treating and protecting the wounded.  Broken Blades are particulary millitant for acolytes, wearing chain armor, and often weilding battle axes, and will be found defending any of Tempus's holy sites.
+
+Advantages:
+- Unlike most acolytes, Broken Blades can wear chain armor.
+- Broken Blades automatically gain proficiency with the axe.  
+- Can cast Chant as a spell like ability one time per day but with a casting time of 1 at first level.  The Battleguard gains an additional use every 5 levels.  This ability functions as the spell of the same name.  
+
+Restrictions:
+- Alignment: No alignment restrictions
+- Multiclass: None
+
+**Glyphscribe of Deneir**
+
+GLYPHSCRIBE OF DENEIR:  Deneir is the patron of artists, scribes and cartographers.  He values the written word, and the information that that word carries, and so do his priests.
+
+Advantages:
+- Glyphscribes are immune to all symbol spells, and the glyph of warding spell.
+- Glyphscribes can cast find trap as a special ability.  They can use this ability an additional time at levels 3, 6, 9, 12, 15 and 18.
+- At 5th level, Glyphscribes can cast glyph of warding as a special ability once per day.  They can use this ability an additional time per day at levels 10, 15, and 20.
+- At 11th level, Glyphscribes can cast dispel magic as a special ability once per day.  They can use this ability an additional time per day at levels 16, and 20.
+- Glyphscribes can cast all symbol spells at their normal level, regardless of sphere.
+
+Restrictions:
+- Alignment: May not be Evil
+- Multiclass: Cleric/Mages, or Cleric/Thieves can become glyphscribes
+
+**Heartwarder of Sune**
+
+HEARTWARDER OF SUNE:  Sune teaches that external beauty ultimately reflects ones internal worth.  Thus, her followers strive to preserve beauty, both in themselves and in others, whether those othere be individuals or objects, such as works of art.
+
+Advantages:
+- Heartwarders are especially resistant to the influence of mind altering magic.  They recieve a +2 bonus to their save vs. spell.
+- Heartwarders may charm person as a special ability once per day.  This ability is especially potent, and opponents suffer a -2 to their save, though it otherwise functions as the wizard spell of the same name.  The Heartwarder can use this ability an additional time per day at levels 3, 6, 9, 12, 15, 18 and 20.
+- Hartwarders may cast emotion: Hope as a special ability once per day at level 5.  The heartwarder can use this ability an additional time at levels 10, 15 and 20. This ability functions as the spell of the same name.  
+- At 11th level, the Heartwarder gains a permenant +1 bonus to charisma.
+
+Restrictions:
+- Alignment: May not be Lawful or Evil
+- Multiclass: Cleric/Mages, or Cleric/Thieves can become hartwarders
+
+**Priest of Mystra**
+
+PRIEST OF MYSTRA: Mystra is known as the Lady of Spells and the Mother of Magic. She tends to the Weave, the magical energies surrounding Faerun which enables mortals to learn and cast spells. 
+
+Advantages:
+- May use the 'Arcane Weaving' abilities in place of memorizing priest spells. This ability allows the priest to spontaneously cast one of several wizard spells of one level lower than the sacrificed priest spell. 
+- Mystra's Blessing: Cast's priest spells at +1 level
+
+Restrictions:
+- May not be Evil.
+- May not dual-class.
+
+**Painbearer of Ilmater**
+
+PAINBEARER OF ILMATER:  Priests of Ilmater are often itinerant, traveling the land looking to assuage suffering wherever it may exist. Painbearers
+
+Advantages:
+- Can cast remove fear at will.
+- +4 to saves against death
+- Painbearers gain a 20% resistance to cold and fire damage
+- At 3rd level, the priest of Ilmater can use Endurance of Ilmater once per day as a special ability. <PRO_HESHE> can use this ability an additional time at levels 7, 10, 13, 16 and 19.
+
+ENDURANCE OF ILMATER: When the priest casts this spell, <PRO_HESHE> doubles the hit points of any creature that <PRO_HESHE> touches (including <PRO_HIMHER>self). In addition, the recipient of the spell gains a +2 to all saves.  This ability lasts for 1 turn.
+
+Restrictions:
+- Alignment: May not be Evil
+- Multiclass: Multiclass characters may not become painbearers
+
+
