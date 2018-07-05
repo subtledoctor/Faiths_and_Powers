@@ -4,6 +4,7 @@ Faiths and Powers mod
 ## Cleric Kits
 
 **Dawnbringer of Lathander**
+
 DAWNBRINGER OF LATHANDER: Dawnbringers are the representatives of Lathander, a widely worshiped deity of birth, renewal, health, and the dawn. Dawnbringers are especially vigilant foes of the undead, which they see as a plague upon the living, corrupting the life that is the gift of Lathander. They look to cleanse the world with Lathander's light, eradicating any undead with its purifying rays.
 
 Advantages:
@@ -17,6 +18,7 @@ Restrictions:
 - Multiclass: Fighter/Clerics, and Fighter/Mage/Clerics can all be Dawnbringers.
 
 **Hand of Torm**
+
 HAND OF TORM: Hands seek to emulate their deity Torm, who is known for his steadfast loyalty and dedication to all that is good.  While a great many of his worshipers are Champions (known as Paladins or Holy Champions of Torm), as Torm is the patron of Paladinhood, Hands are no less fierce and loyal to the cause of their god (if slightly less martial).
 
 Advantages:
@@ -31,6 +33,7 @@ Restrictions:
 - Multiclass: Fighter/Clerics can be Hands of Torm.
 
 **Luckrider of Tymora**
+
 LUCKRIDER OF TYMORA: Also known as Lady Luck, Tymora is the goddess of good fortune. The sect of her clerics known as Luckriders eat, drink, and sleep luck. Confident to the point of cockiness, they enter battle recklessly, throwing caution to the wind and trusting in fate. Considering how many adventurers perish despite crafting meticulous strategies and plans, this is not a ridiculous position.
  
 Advantages:
@@ -46,6 +49,7 @@ Restrictions:
 - Multiclass: Cleric/Thieves can be Luckriders
 
 **Watcher of Helm**
+
 WATCHER OF HELM: Like their deity, Watchers of Helm are stern, dedicated, and loyal, perhaps to a fault.  Helm teaches that the right path is not always obvious, but the surest way to the right path is through the execution of duty.  As such, watchers of helm strive to do what they must despite the consequences, to themselves or even to others.  While othes may suggest that this supposed 'dedication' is nothing more than a fetish, the watcher has no time for such nonsense. They do not have the idle time to question; it is their duty to be ever alert for possible threats to cosmic order.   
 
 Advantages:
@@ -60,6 +64,7 @@ Restrictions:
 - Alignment: May be Lawful Good, Lawful Neutral, or True Neutral.
 
 **Ur-Priest**
+
 Ur-Priests are heretical practitioners that have found a way to wrest divine power from the gods with the use of ancient and forbidden rituals.  As might be expected, this behavior is frowned upon by the gods, and Ur-Priests have to keep their profession secret or risk persecution or worse.
 
 Advantages:
