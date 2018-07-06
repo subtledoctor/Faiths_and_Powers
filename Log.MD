@@ -1,5 +1,9 @@
 # Log
 
+Version 0.74.35
+
+- Added 'radical version' descriptor for full install
+
 Version 0.74.34 
 
 2018-07-06

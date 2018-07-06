@@ -3,7 +3,7 @@
 
 //
 @100  = ~Select an installation method below:~
-@101  = ~ALL the new kits, the kit selection dialogue, and the sphere system~
+@101  = ~ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')~
 @102  = ~all the new kits and the sphere system~
 @103  = ~choose components individually~
 @105  = ~no new kits - JUST install the sphere system~
