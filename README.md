@@ -1,7 +1,7 @@
 # Faiths_and_Powers
 Faiths and Powers mod
 
-# Component: ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')
+## Component: ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')
 
 ## Cleric Kits
 
