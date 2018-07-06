@@ -5,7 +5,15 @@ Faiths and Powers mod
 
 GIVE AN OVERVIEW OF EACH COMPONENT HERE.  Describe them more fully below
 
-**Component: ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')**
+**Component 101: EVERYTHING, USING DEITY SELECTION DIALOGUE**
+
+This Component has been depreciated.  In the initial implementation, we added deity kits by dialog due to engine limitations.  Recent updates to the game engine have rendered this technique unnecessary. 
+
+**Component 102: ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')**
+
+This component radically alters the way classes and kits work in the game.  CONTINUE
+
+## Component 102 
 
 ## Cleric Kits
 
