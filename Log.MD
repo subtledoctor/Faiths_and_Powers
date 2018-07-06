@@ -1,5 +1,9 @@
 # Log
 
+2018-07-06
+
+- Revised several kit description entries.  
+
 Version 0.74.36
 
 - 'officially' depreciated component 101
@@ -12,7 +16,7 @@ Version 0.74.35
 
 Version 0.74.34 
 
-2018-07-06
+
 
 - Updated Weidu to 245
 
