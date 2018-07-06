@@ -1,5 +1,11 @@
 # Log
 
+Version 0.74.36
+
+- 'officially' depreciated component 101
+
+- Further updated the readme
+
 Version 0.74.35
 
 - Added 'radical version' descriptor for full install
