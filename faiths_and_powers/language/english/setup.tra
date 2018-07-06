@@ -627,9 +627,9 @@ When the priest casts this spell, <PRO_HESHE> doubles the hit points of any crea
 
 Advantages:
 - Glyphscribes are immune to all symbol spells, and the glyph of warding spell.
-- Glyphscribes can cast find trap as a special ability.  They can use this ability an additional time at levels 3, 6, 9, 12, 15 and 18.
-- At 5th level, Glyphscribes can cast glyph of warding as a special ability once per day.  They can use this ability an additional time per day at levels 10, 15, and 20.
-- At 11th level, Glyphscribes can cast dispel magic as a special ability once per day.  They can use this ability an additional time per day at levels 16, and 20.
+- Glyphscribes can cast find trap once per day as a special ability.  They can use this ability an additional time at levels 3, 6, 9, 12, 15 and 18.  This ability functions as the cleric spell of the same name.
+- At 5th level, Glyphscribes can cast glyph of warding as a special ability once per day.  They can use this ability an additional time per day at levels 10, 15, and 20.  This ability functions as the cleric spell of the same name.  
+- At 11th level, Glyphscribes can cast dispel magic as a special ability once per day.  They can use this ability an additional time per day at levels 16, and 20.  This ability functions as the spell of the same name.
 - Glyphscribes can cast all symbol spells at their normal level, regardless of sphere.
 
 Restrictions:
@@ -645,8 +645,8 @@ Restrictions:
 
 Advantages:
 - Heartwarders are especially resistant to the influence of mind altering magic.  They recieve a +2 bonus to their save vs. spell.
-- Heartwarders may charm person as a special ability once per day.  This ability is especially potent, and opponents suffer a -2 to their save.  The Heartwarder can use this ability an additional time per day at levels 3, 6, 9, 12, 15, 18 and 20.
-- Hartwarders may cast emotion: Hope as a special ability once per day at level 5.  The heartwarder can use this ability an additional time at levels 10, 15 and 20.  
+- Heartwarders may charm person as a special ability once per day.  This ability is especially potent, and opponents suffer a -2 to their save.  Otherwise, this ability functions as the wizard spell of the same name.  The Heartwarder can use this ability an additional time per day at levels 3, 6, 9, 12, 15, 18 and 20.  
+- Hartwarders may cast emotion: Hope as a special ability once per day at level 5.  The heartwarder can use this ability an additional time at levels 10, 15 and 20.  This spell functions as the wizard spell of the same name.  
 - At 11th level, the Heartwarder gains a permenant +1 bonus to charisma.
 
 Restrictions:
@@ -736,13 +736,13 @@ Restrictions:
 //
 @33001  = ~acolyte of shar~
 @33002  = ~Darkcloak of Shar~
-@33003  = ~DARKCLOAK OF SHAR: Shar is known as the Mistress of the Night. She is the goddess of darkness, presiding over caverns, darkness, dungeons, forgetfulness, loss, night, and secrets. The Darkcloaks are an unusual sect, who use Shar's influence to give care and comfort to those who are lost or emotionally damaged. While some other followers of Shar spurn these acolytes for failing to be militant enough, Darkcloaks still possess powerful abilities to strive against their enemies.
+@33003  = ~DARKCLOAK OF SHAR: Shar is known as the Mistress of the Night. She is the goddess of darkness, presiding over caverns, dungeons, forgetfulness, loss, night, and secrets. The Darkcloaks are an unusual sect, who use Shar's influence to give care and comfort to those who are lost or emotionally damaged. While some other followers of Shar spurn these acolytes for failing to be militant enough, Darkcloaks still possess powerful abilities to strive against their enemies.
  
 Advantages:
-- May cast Power Word: Sleep once per day at level 1 once per day.  The Darkcloak can use this ability an additinal time at levels 3, 6, 9, 12, 15, and 18.
-- May cast Blur once per day at level 5.  The Darkcloak can use this ability an additional time per day at levels 10, 15, and 20.
-- May cast Phantom Blade once per day at level 9.  The Darkcloak can use this ability at levels 20 and 30.
-- May cast Power Word: Blindness once per day at level 13. The Darkcloak can use this ability an additional time at level 20.
+- May cast Power Word: Sleep once per day at level 1 once per day.  The Darkcloak can use this ability an additinal time at levels 3, 6, 9, 12, 15, and 18.  This ability functions as the spell of the same name.  
+- May cast Blur once per day at level 5.  The Darkcloak can use this ability an additional time per day at levels 10, 15, and 20.  This ability functions as the spell of the same name. 
+- May cast Phantom Blade once per day at level 9.  The Darkcloak can use this ability at levels 20 and 30.  This ability functions as the spell of the same name.  
+- May cast Power Word: Blindness once per day at level 13. The Darkcloak can use this ability an additional time at level 20.  This ability functions as the spell of the same name. 
 
 Restrictions:
 - May not dual-class to fighter.
@@ -756,7 +756,7 @@ Restrictions:
 //
 @33101 = ~acolyte of moander~
 @33102 = ~Minion of Moander~
-@33103 = ~MINION OF MOANDER:  Moander, is thought to be dead.  However, cults dedicated to the lord of rot continue to exist.  Minions of the darkbringer seek to spread rot and decay wherever they go, and
+@33103 = ~MINION OF MOANDER:  Moander, is thought to be dead.  However, cults dedicated to the lord of rot continue to exist.  Minions of the darkbringer seek to spread rot and decay wherever they go.
 
 Advantages:
 -  Minions are immune to the assassin vines and entangle spells.  
@@ -775,7 +775,7 @@ Restrictions:
 //
 @33201 = ~acolyte of beshaba~
 @33202 = ~Doommaster of Beshaba~
-@33203 = ~DOOMMASTER OF BESHABA:  Beshaba, the maid of misfortune, is the jealous goddess of ill-fate.  Not worshiped so much as feared, she demands tribute, or at least lip service, else she is likey to doom those that offend her to a life of failure.  Her priests work to ensure that she her ego is adequately sated.
+@33203 = ~DOOM<PRO_MASTERMISTRESS> OF BESHABA:  Beshaba, the maid of misfortune, is the jealous goddess of ill-fate.  Not worshiped so much as feared, she demands tribute, or at least lip service, else she is likey to doom those that offend her to a life of failure.  Her priests work to ensure that she her ego is adequately sated.
 
 Advantages:
 -  Doommasters can cast a special version of the doom spell at will.  It can be used once, and only once, on a given opponent.
