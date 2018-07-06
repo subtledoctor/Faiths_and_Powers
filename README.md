@@ -1,13 +1,62 @@
 # Faiths_and_Powers
 Faiths and Powers mod
 
-## Component: ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')
+**Component: ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')**
 
 ## Cleric Kits
 
 **Cleric Overveiw**
 
-There are no generic clerics in FnP if this component is installed.  All clerics begin play as clerics of particular deities (or otherworldly forces, in come cases).  
+There are no generic clerics in FnP if this component is installed.  All clerics must begin play begin play by answering the question, "what power do I worship?".  For most clerics, the answer will be some Farunian deity, but a few will have 'other answers' (see the 'Special Cleric Kits' section below).  
+
+Typically, the Infinity Engine treats Clerics Specialists as Cleric kits.  In pnp, however, thera are _actual_ cleric kits that work in tandem with Priest Kits to create truely unique combinations.  Of course, we're not particularly fond of the cleric kits that you find in the Complete Priests Handbook--they're basically reskinned fighter kits--so we created our own.  Kits affect which deities you can select--in a few cases, such as the Ur-Priest, these kits dramatically influence deity selection (the Ur-Priest does not select any deity--see the kit below for details).  
+
+In addition, some changes have been made to the cleric base kit, to further differentiate it from the paladin/champion (see below for details on the paladin changes).  
+
+**The Cleric Base Class**
+
+DETAIL CHANGES
+
+**The Acolyte Kit**
+
+DETAIL CHANGES
+
+**The Incarnate Kit** (forthcoming)
+
+DETAILS
+
+**Priest of Light** (forthcoming)
+
+DETAILS (does not worship a specific deity but venerates all good deities)
+
+**Priest of Darkness**
+
+DETAILS (does not worship a specific deity but venerates all evil deities)
+
+### Special Cleric Kits
+
+**Ur-Priest**
+
+Ur-Priests are heretical practitioners that have found a way to wrest divine power from the gods with the use of ancient and forbidden rituals.  As might be expected, this behavior is frowned upon by the gods, and Ur-Priests have to keep their profession secret or risk persecution or worse.
+
+Advantages:
+- Sphere Access: Very high access.  The Ur-Priest gains major access to all spheres except the life, benediction, plant, animal and light spheres.
+- Sap the Spirit: Ur-Priests can use the same techniques to drain living beings of their divine essence in much the same way they do so from the gods; though, of course, mortals do not have much of a divine essence, and so the benefits of this ability are limited.
+This ability can be used once per day at fifth level.  The Ur-Priest can use Sap the Spirit an additional time per day at levels 10, 15 and 20.
+
+SAP THE SPIRIT: This ability deals 1d4 magic damage to a living target per 4 levels of the Ur-Priest (2d4 at 5th level; maximum 6d4 at 20th level).
+Beginning at 5th level, if the Ur-Priest kills a target with this ability, <PRO_HESHE> casts priest spells at +1 level for 5 rounds.  
+At 10th level, if the Ur-Priest kills a target with this ability, <PRO_HESHE> also gains the benefits of the spell, Wondrous Recall.
+
+Disadvantages:
+- Cannot Turn Undead
+- The rituals tax the Ur-Priest, making them more vulnerable to the effects of disease and magic.  They gain a -2 penalty to save vs. death and spells.
+
+Deity access: None, despises the gods.
+
+Restrictions: Cannot be of a good or lawful alignment
+
+## Base Cleric Deity Templates
 
 **Battleguard of Tempus**
 
@@ -192,31 +241,7 @@ Disadvantages:
 Restrictions:
 - Alignment: any evil or chaotic neutral
 
-
-### Special Cleric Kits
-
-**Ur-Priest**
-
-Ur-Priests are heretical practitioners that have found a way to wrest divine power from the gods with the use of ancient and forbidden rituals.  As might be expected, this behavior is frowned upon by the gods, and Ur-Priests have to keep their profession secret or risk persecution or worse.
-
-Advantages:
-- Sphere Access: Very high access.  The Ur-Priest gains major access to all spheres except the life, benediction, plant, animal and light spheres.
-- Sap the Spirit: Ur-Priests can use the same techniques to drain living beings of their divine essence in much the same way they do so from the gods; though, of course, mortals do not have much of a divine essence, and so the benefits of this ability are limited.
-This ability can be used once per day at fifth level.  The Ur-Priest can use Sap the Spirit an additional time per day at levels 10, 15 and 20.
-
-SAP THE SPIRIT: This ability deals 1d4 magic damage to a living target per 4 levels of the Ur-Priest (2d4 at 5th level; maximum 6d4 at 20th level).
-Beginning at 5th level, if the Ur-Priest kills a target with this ability, <PRO_HESHE> casts priest spells at +1 level for 5 rounds.  
-At 10th level, if the Ur-Priest kills a target with this ability, <PRO_HESHE> also gains the benefits of the spell, Wondrous Recall.
-
-Disadvantages:
-- Cannot Turn Undead
-- The rituals tax the Ur-Priest, making them more vulnerable to the effects of disease and magic.  They gain a -2 penalty to save vs. death and spells.
-
-Deity access: None, despises the gods.
-
-Restrictions: Cannot be of a good or lawful alignment
-
-## Acolyte (cleric) Kits
+## Acolyte Kit Deity Templates
 
 **Broken Blade of Tempus**
 
