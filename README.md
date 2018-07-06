@@ -1,7 +1,13 @@
 # Faiths_and_Powers
 Faiths and Powers mod
 
+# Component: ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')
+
 ## Cleric Kits
+
+**Cleric Overveiw**
+
+There are no generic clerics in FnP if this component is installed.  All clerics begin play as clerics of particular deities (or otherworldly forces, in come cases).  
 
 **Battleguard of Tempus**
 
