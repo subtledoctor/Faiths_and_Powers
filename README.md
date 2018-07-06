@@ -5,7 +5,7 @@ Faiths and Powers mod
 
 GIVE AN OVERVIEW OF EACH COMPONENT HERE.  Describe them more fully below
 
-**Component 101: EVERYTHING, USING DEITY SELECTION DIALOGUE**
+**Component 101: Everything, Using Deity Selection Dialogue**
 
 This Component has been depreciated.  In the initial implementation, we added deity kits by dialog due to engine limitations.  Recent updates to the game engine have rendered this technique unnecessary. 
 
@@ -45,7 +45,7 @@ DETAILS (does not worship a specific deity but venerates all good deities)
 
 DETAILS (does not worship a specific deity but venerates all evil deities)
 
-### Special Cleric Kits
+## Special Cleric Kits
 
 **Ur-Priest**
 
