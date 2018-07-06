@@ -268,15 +268,64 @@ Restrictions:
 - Alignment: No alignment restrictions
 - Multiclass: None
 
+**Darkcloak of Shar**
+
+DARKCLOAK OF SHAR: Shar is known as the Mistress of the Night. She is the goddess of darkness, presiding over caverns, dungeons, forgetfulness, loss, night, and secrets. The Darkcloaks are an unusual sect, who use Shar's influence to give care and comfort to those who are lost or emotionally damaged. While some other followers of Shar spurn these acolytes for failing to be militant enough, Darkcloaks still possess powerful abilities to strive against their enemies.
+ 
+Advantages:
+- May cast Power Word: Sleep once per day at level 1 once per day.  The Darkcloak can use this ability an additinal time at levels 3, 6, 9, 12, 15, and 18.  This ability functions as the spell of the same name.  
+- May cast Blur once per day at level 5.  The Darkcloak can use this ability an additional time per day at levels 10, 15, and 20.  This ability functions as the spell of the same name. 
+- May cast Phantom Blade once per day at level 9.  The Darkcloak can use this ability at levels 20 and 30.  This ability functions as the spell of the same name.  
+- May cast Power Word: Blindness once per day at level 13. The Darkcloak can use this ability an additional time at level 20.  This ability functions as the spell of the same name. 
+
+Restrictions:
+- May not dual-class to fighter.
+- Alignment: may not be Chaotic or Good
+- Multiclass: Cleric/Mages and Cleric/Thieves can be Darkcloaks
+
+**Doommaster of Beshaba**
+
+DOOM<PRO_MASTERMISTRESS> OF BESHABA:  Beshaba, the maid of misfortune, is the jealous goddess of ill-fate.  Not worshiped so much as feared, she demands tribute, or at least lip service, else she is likey to doom those that offend her to a life of failure.  Her priests work to ensure that she her ego is adequately sated.
+
+Advantages:
+-  Doommasters can cast a special version of the doom spell at will.  It can be used once, and only once, on a given opponent but otherwise functions as the spell of the same name.
+-  Doommasters gain a +1 bonus to all saves.
+-  At 7th level, the doommaster can cast misfire as a special ability once per day.  Misfire works as the spell of the same name.  The doommaster can use this abilty an additional time per day at levels 10, 13, 16 and 19.
+-  At 10th level, the doommaster can cast misfortune. <PRO_HESHE> can use this abilty one additional time at levels 15, and 20.
+
+MISFORTUNE:
+This abilty curses the target, causing them a penalty of -10 penalty to THAC0, saves and AC for one round/level if they fail a save vs. spell.
+
+Restrictions:
+- Alignment: Any evil or chaotic neutral
+
+**Fastpaws of Baervan**
+
+FASTPAWS OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
+
+Advantages:
+- May summon a spirit animal ally for protection once per day. This being is similar to a bear, and increases in power at 3rd, 5th, 7th, and 10th levels.
+
+Restrictions:
+- Race restricted to gnome.
+- Alignment restricted to good.Fastpaws of Baervan~ 
+
+Advantages:
+- May summon a spirit animal ally for protection once per day. This being is similar to a bear, and increases in power at 3rd, 5th, 7th, and 10th levels.
+
+Restrictions:
+- Race restricted to gnome.
+- Alignment restricted to good.
+
 **Glyphscribe of Deneir**
 
 GLYPHSCRIBE OF DENEIR:  Deneir is the patron of artists, scribes and cartographers.  He values the written word, and the information that that word carries, and so do his priests.
 
 Advantages:
 - Glyphscribes are immune to all symbol spells, and the glyph of warding spell.
-- Glyphscribes can cast find trap as a special ability.  They can use this ability an additional time at levels 3, 6, 9, 12, 15 and 18.
-- At 5th level, Glyphscribes can cast glyph of warding as a special ability once per day.  They can use this ability an additional time per day at levels 10, 15, and 20.
-- At 11th level, Glyphscribes can cast dispel magic as a special ability once per day.  They can use this ability an additional time per day at levels 16, and 20.
+- Glyphscribes can cast find trap once per day as a special ability.  They can use this ability an additional time at levels 3, 6, 9, 12, 15 and 18.  This ability functions as the cleric spell of the same name.
+- At 5th level, Glyphscribes can cast glyph of warding as a special ability once per day.  They can use this ability an additional time per day at levels 10, 15, and 20.  This ability functions as the cleric spell of the same name.  
+- At 11th level, Glyphscribes can cast dispel magic as a special ability once per day.  They can use this ability an additional time per day at levels 16, and 20.  This ability functions as the spell of the same name.
 - Glyphscribes can cast all symbol spells at their normal level, regardless of sphere.
 
 Restrictions:
@@ -289,13 +338,44 @@ HEARTWARDER OF SUNE:  Sune teaches that external beauty ultimately reflects ones
 
 Advantages:
 - Heartwarders are especially resistant to the influence of mind altering magic.  They recieve a +2 bonus to their save vs. spell.
-- Heartwarders may charm person as a special ability once per day.  This ability is especially potent, and opponents suffer a -2 to their save, though it otherwise functions as the wizard spell of the same name.  The Heartwarder can use this ability an additional time per day at levels 3, 6, 9, 12, 15, 18 and 20.
-- Hartwarders may cast emotion: Hope as a special ability once per day at level 5.  The heartwarder can use this ability an additional time at levels 10, 15 and 20. This ability functions as the spell of the same name.  
+- Heartwarders may charm person as a special ability once per day.  This ability is especially potent, and opponents suffer a -2 to their save.  Otherwise, this ability functions as the wizard spell of the same name.  The Heartwarder can use this ability an additional time per day at levels 3, 6, 9, 12, 15, 18 and 20.  
+- Hartwarders may cast emotion: Hope as a special ability once per day at level 5.  The heartwarder can use this ability an additional time at levels 10, 15 and 20.  This spell functions as the wizard spell of the same name.  
 - At 11th level, the Heartwarder gains a permenant +1 bonus to charisma.
 
 Restrictions:
 - Alignment: May not be Lawful or Evil
 - Multiclass: Cleric/Mages, or Cleric/Thieves can become hartwarders
+
+**Minion of Moander**
+
+MINION OF MOANDER:  Moander, is thought to be dead.  However, cults dedicated to the lord of rot continue to exist.  Minions of the darkbringer seek to spread rot and decay wherever they go.
+
+Advantages:
+-  Minions are immune to the assassin vines and entangle spells.  
+-  Minions can cast entangle as the spell once per day.  <PRO_HESHE> can cast the spell an additional time at levels 4, 8, 12, 16 and 20.  
+-  At 11th level, the Minion can cast assassin vines as the spell once per day.  <PRO_HESHE> can cast the spell an additional time per day at levels 20 and 30.
+
+Restrictions:
+- Alignment: Any evil or chaotic neutral- Multiclass: Cleric/Mages and Cleric/Thieves can be Darkcloaks
+
+Restrictions:
+- Alignment: Any evil or chaotic neutral
+- Multiclass: Cleric/Mages and Cleric/Thieves can be Minions
+
+
+**Nightrunner of Mask**
+
+NIGHTRUNNER OF MASK: Mask is the god of shadow and intrigue. His goals are always hidden, and his actions are motivated by many layers of schemes and plans. His sect of Nightrunners includes both priests and cleric/thieves who travel the land advancing Mask's agenda.
+
+Advantages:
+- May create a Shadow Eye, an invisible floating eye through which the Nightrunner can scout distant locations.  The Nightrunner gains an extra use of this ability at levels, 6, 12, and 18.
+- From 4th level, Nightrunners can suddenly disappear from sight via a magical Shadow Door.  The nightrunner gains an extra use of this ability at levels 10 and 16.
+- At 8th level, Nightrunners gain the ability to conjure a creature of pure shadow to fight on their behalf. They gains an extra use of this ability at levels 14 and 20.
+
+Restrictions:
+- Alignment: may not Lawful or Good.
+- Multiclass: Cleric/Thieves can be Nightrunners
+
 
 **Priest of Mystra**
 
@@ -325,4 +405,17 @@ Restrictions:
 - Alignment: May not be Evil
 - Multiclass: Multiclass characters may not become painbearers
 
+## Druid Kits
 
+**Druid Overveiw**
+
+Druids have been heavily overhauled in this component to cover a vast array of archetypes.  The base class has been replaced by Mystics as the term 'mystic' covers a more vast number of character types, one of which is the typical druid.  As such, the druid itself has become a kit, with different sybtypes.  
+
+
+**The Mystic Base Class**
+
+DETAIL CHANGES
+
+**The Druid Kit**
+
+DETAIL CHANGES
