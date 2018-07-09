@@ -45,28 +45,7 @@ DETAILS (does not worship a specific deity but venerates all good deities)
 
 DETAILS (does not worship a specific deity but venerates all evil deities)
 
-## Special Cleric Kits
 
-**Ur-Priest**
-
-Ur-Priests are heretical practitioners that have found a way to wrest divine power from the gods with the use of ancient and forbidden rituals.  As might be expected, this behavior is frowned upon by the gods, and Ur-Priests have to keep their profession secret or risk persecution or worse.
-
-Advantages:
-- Sphere Access: Very high access.  The Ur-Priest gains major access to all spheres except the life, benediction, plant, animal and light spheres.
-- Sap the Spirit: Ur-Priests can use the same techniques to drain living beings of their divine essence in much the same way they do so from the gods; though, of course, mortals do not have much of a divine essence, and so the benefits of this ability are limited.
-This ability can be used once per day at fifth level.  The Ur-Priest can use Sap the Spirit an additional time per day at levels 10, 15 and 20.
-
-SAP THE SPIRIT: This ability deals 1d4 magic damage to a living target per 4 levels of the Ur-Priest (2d4 at 5th level; maximum 6d4 at 20th level).
-Beginning at 5th level, if the Ur-Priest kills a target with this ability, <PRO_HESHE> casts priest spells at +1 level for 5 rounds.  
-At 10th level, if the Ur-Priest kills a target with this ability, <PRO_HESHE> also gains the benefits of the spell, Wondrous Recall.
-
-Disadvantages:
-- Cannot Turn Undead
-- The rituals tax the Ur-Priest, making them more vulnerable to the effects of disease and magic.  They gain a -2 penalty to save vs. death and spells.
-
-Deity access: None, despises the gods.
-
-Restrictions: Cannot be of a good or lawful alignment
 
 ## Base Cleric Deity Templates
 
@@ -405,11 +384,104 @@ Restrictions:
 - Alignment: May not be Evil
 - Multiclass: Multiclass characters may not become painbearers
 
+## Special Multiclass Cleric Kits
+
+**Abjurist of Mystra**(Cleric/Mage)
+
+ABJURIST OF MYSTRA: Mystra is known as the Lady of Spells and the Mother of Magic. She tends to the Weave, which enables mortals to cast spells. One sect of Mystra's clerics, known as Abjurists, can channel the Weave into protective shields, making them excellent spell duelists.
+
+Advantages:
+- When an Abjurist casts Spell Deflection, Spell Turning, or Spell Trap spells, <PRO_HESHE> automatically gets the benefit of a Spell Shield as well. Every Abjurist automatically has these spells in <PRO_HISHER> wizard spellbook.
+- One With the Weave: Abjurists can cast spells slightly more easily than most priests, gaining a -1 bonus to casting time.
+
+Restrictions:
+- Alignment: May not be Evil.
+
+**Alaghor of Clangeddin** (Cleric/Fighter)
+
+ALAGHOR OF CLANGEDDIN: Alaghors are an elite order of fighter/clerics devoted to the dwarven god of war, Clangeddin. They are powerful warriors as well as wise ministers, protecting dwarven communities from threats both physical and spiritual. Alaghors share some abilities with the famed Dwarven Defenders, with whom they often fight side-by-side.
+
+Advantages: 
+- Once per day, an Alaghor may use the Hardiness power, gaining 35% resistance to physical attacks for one round per two levels of experience.
+- Alaghors may create a Spiritual Hammer of Clangeddin at will. This weapon of magical force does d4+1 blunt damage and d4 magic damage to foes, and has a chance to briefly Hold undead struck by it. The damage and expertise with which the hammer is wielded increases as the Alaghor gains experience.
+
+Restrictions:
+- Must be a dwarf.
+- May not be evil or chaotic.
+
+**Monitor of Azuth** (Cleric/Mage)
+
+MONITOR OF AZUTH: Azuth is a lesser deity who assists Mystra, the Mother of Magic, in tending to 'the Weave' that enables all magic in Faerun to exist. Followers of Azuth, known as Monitors, are magical enforcers, policing misuse of the Weave by evile practitioners and empowered to challenge even the mightiest spellcasters.
+
+Advantages:
+- Monitors gain a bonus to their effective caster level, making them as effective as single-class spellcasterscasters with equivalent experience (+1 caster level per 5 levels).
+- One With the Weave: Monitors can cast spells slightly more easily than most priests, gaining a -1 bonus to casting time.
+
+Restrictions:
+- Alignment: May not be Evil.
+
+**Spellbender** (Cleric/Mage)
+
+SPELLBENDER: The goddess Mystra rules all magic, and mandates that spellcasters must formulate known spells, and must memorize the patterns of those spells in order to successfully release them. But as with any system, the are gaps and shortcuts that may be used to circumvent the rules. Sorcerers are born with the ability to shape magic directly, though only into a limited number of effects; and wild mages shape spells without discipline, achieving powerful results at the risk of disastrous side-effects. Spellbenders make a science of mapping the ways to bypass Mystra's restrictions. Practicing as generalist clerics as well as studying arcane wizardry, they learn to manipulate the intersection of those two areas of magic.
+
+Advantages:
+- May use the 'Arcane Weaving' ability in place of memorizing priest spells. This ability allows the Spellbender to spontaneously cast one of several wizard spells of one level lower than the sacrificed priest spell.
+- May use the 'Divine Weaving' ability in place of memorizing wizard spells. This ability allows the Spellbender to spontaneously cast one of several priest spells of one level lower than the sacrificed wizard spell.
+
+Restrictions:
+- None.
+
+**Windrider of Shaundakul**
+
+WINDRIDER OF SHAUNDAKUL: A minor deity of travel and exploration, Shaundakul was popular during the heyday of Myth Drannor. Most of his followers are now based in the forests of Cormanthor near the old Elven Court, but they are particularly susceptible to wanderlust, so Windriders may be found singly in almost any locale in the Realms. All of his clergy are also rangers, using outdoor survival skills to aid themselves and others as they travel.
+
+Advantages:
+- When in the Cormanthor Forest, Windriders in need of aid may send a silent distress call. All rangers within 50 miles will instantly know of the Windrider's need and precise location.
+- Once per day per five levels of experience, may Wind Walk, blinking from one location to another almost instantaneously.
+
+Restrictions:
+- Alignment: must be Good.
+
+
+**Woodscout of Mielikki** (Ranger/Cleric)
+
+WOODSCOUT of MIELIKKI: the Lady of the Forest, Mielikki, helps humanoids commune with the spirits of nature, teaching them to survive in harsh climes. While her ally Silvanus teaches druid to mold nature, Mielikki's Woodscouts train as rangers to live in simple harmony with nature. Woodscouts enjoy the company of civilized beings; they are often found exploring with adventuring parties, striving against unnatural threats while instructing their companions in how to respect nature.
+
+Advantages:
+- Woodscouts combine the abilities of a ranger and cleric simultaneously.
+- Woodscouts may reach Mastery (+++) with longbows or shortbows
+
+Restrictions:
+- Alignment: must be Good.
+
+## Special Cleric Kits
+
+**Ur-Priest**
+
+Ur-Priests are heretical practitioners that have found a way to wrest divine power from the gods with the use of ancient and forbidden rituals.  As might be expected, this behavior is frowned upon by the gods, and Ur-Priests have to keep their profession secret or risk persecution or worse.
+
+Advantages:
+- Sphere Access: Very high access.  The Ur-Priest gains major access to all spheres except the life, benediction, plant, animal and light spheres.
+- Sap the Spirit: Ur-Priests can use the same techniques to drain living beings of their divine essence in much the same way they do so from the gods; though, of course, mortals do not have much of a divine essence, and so the benefits of this ability are limited.
+This ability can be used once per day at fifth level.  The Ur-Priest can use Sap the Spirit an additional time per day at levels 10, 15 and 20.
+
+SAP THE SPIRIT: This ability deals 1d4 magic damage to a living target per 4 levels of the Ur-Priest (2d4 at 5th level; maximum 6d4 at 20th level).
+Beginning at 5th level, if the Ur-Priest kills a target with this ability, <PRO_HESHE> casts priest spells at +1 level for 5 rounds.  
+At 10th level, if the Ur-Priest kills a target with this ability, <PRO_HESHE> also gains the benefits of the spell, Wondrous Recall.
+
+Disadvantages:
+- Cannot Turn Undead
+- The rituals tax the Ur-Priest, making them more vulnerable to the effects of disease and magic.  They gain a -2 penalty to save vs. death and spells.
+
+Deity access: None, despises the gods.
+
+Restrictions: Cannot be of a good or lawful alignment
+
 ## Druid Kits
 
 **Druid Overveiw**
 
-Druids have been heavily overhauled in this component to cover a vast array of archetypes.  The base class has been replaced by Mystics as the term 'mystic' covers a more vast number of character types, one of which is the typical druid.  As such, the druid itself has become a kit, with different sybtypes.  
+Druids have been heavily overhauled in this component to cover a vast array of archetypes.  The base class has been replaced by Mystics as the term 'mystic' covers a larger number of character types, one of which is the typical druid.  As such, the druid itself has become a kit, with different sybtypes.  
 
 
 **The Mystic Base Class**
@@ -417,5 +489,7 @@ Druids have been heavily overhauled in this component to cover a vast array of a
 DETAIL CHANGES
 
 **The Druid Kit**
+
+The druid kit is broken down into a number of kits each covering 
 
 DETAIL CHANGES
