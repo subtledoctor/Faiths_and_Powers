@@ -14,6 +14,10 @@ Faiths and Powers mod
 
 GIVE AN OVERVIEW OF EACH COMPONENT HERE.  Describe them more fully below
 
+## Known Issues
+
+- You MUST explicitly select a kit when prompted during character creation.  If you do not do so, you will end up with the old class and a likely very messed up spell list
+
 **Component 101: Everything, Using Deity Selection Dialogue**
 
 This Component has been depreciated.  In the initial implementation, we added deity kits by dialog due to engine limitations.  Recent updates to the game engine have rendered this technique unnecessary. 
