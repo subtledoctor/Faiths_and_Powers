@@ -1,5 +1,11 @@
 # Log
 
+VERSION 0.74.37
+
+2018-07-26
+
+- Upgraded Weidu to v246
+
 2018-07-06
 
 - Revised several kit description entries.  
