@@ -6,13 +6,14 @@
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
-ACTION_IF NOT GAME_IS ~iwdee~ BEGIN 
+DEFINE_ACTION_FUNCTION change_usability BEGIN
+
+//ACTION_IF NOT GAME_IS ~iwdee~ BEGIN 
 
 //copy marker file___________________________________________________________________
 //
 COPY ~faiths_and_powers/lib/markers/d5_fnp_usability.d5~ ~override~ 
 //___________________________________________________________________________________
-
 
 //first, fix category 44_____________________________________________________________
 //
@@ -20,7 +21,6 @@ COPY_EXISTING ~itemtype.2da~ ~override~
   SET_2DA_ENTRY 44 3 4 35
 BUT_ONLY
 //___________________________________________________________________________________
-
 
 /*
 // NOTES:
@@ -432,8 +432,8 @@ ACTION_PHP_EACH d5_fnp_kit_use_access AS clab => val BEGIN
 	ACTION_IF (%val% = 1) BEGIN
 	  PRINT ~    %clab% : %clab_1% : %val%~
 	  COPY_EXISTING ~kitlist.2da~ ~override~
-		COUNT_2DA_COLS cols
-		READ_2DA_ENTRIES_NOW ~r2en_kitlist~ cols
+//		COUNT_2DA_COLS cols
+		READ_2DA_ENTRIES_NOW ~r2en_kitlist~ 10
 		FOR (row = 3; row < r2en_kitlist; row += 1) BEGIN
 		  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 5 kit_clab
 		  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 8 kit_class
@@ -448,12 +448,13 @@ ACTION_PHP_EACH d5_fnp_kit_use_access AS clab => val BEGIN
 	ELSE BEGIN
 	  PRINT ~    %clab% : %clab_1% : %val%~
 	  COPY_EXISTING ~kitlist.2da~ ~override~
-		COUNT_2DA_COLS cols
-		READ_2DA_ENTRIES_NOW ~r2en_kitlist~ cols
+//		COUNT_2DA_COLS cols
+		READ_2DA_ENTRIES_NOW ~r2en_kitlist~ 10
 		FOR (row = 3; row < r2en_kitlist; row += 1) BEGIN
 		  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 5 kit_clab
 		  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 8 kit_class
-		  PATCH_IF (~%kit_clab%~ STRING_EQUAL_CASE ~%clab%~) BEGIN
+		  PATCH_IF (~%kit_clab%~ STRING_EQUAL_CASE ~%clab%~) && NOT (~%kit_clab%~ STRING_EQUAL_CASE ~d5fsorc~) && NOT (~%kit_clab%~ STRING_EQUAL_CASE ~d5rsorc~) && NOT (~%kit_clab%~ STRING_EQUAL_CASE ~d5tsorc~) BEGIN
+// (exclude multi sorcerers from this)
 			PATCH_IF (%kit_class% = 3 || %kit_class% = 11 || %kit_class% = 21 || %kit_class% = 8 || %kit_class% = 14 || %kit_class% = 15 || %kit_class% = 18 || %kit_class% = 16) BEGIN
 			  SET_2DA_ENTRY row 7 cols ~0x%hex_lat%~
 			END
@@ -466,8 +467,8 @@ ACTION_PHP_EACH d5_fnp_kit_use_access AS clab => val BEGIN
 	ACTION_IF (%val% = 1) BEGIN
 	  PRINT ~    %clab% : %clab_1% : %val%~
 	  COPY_EXISTING ~kitlist.2da~ ~override~
-		COUNT_2DA_COLS cols
-		READ_2DA_ENTRIES_NOW ~r2en_kitlist~ cols
+//		COUNT_2DA_COLS cols
+		READ_2DA_ENTRIES_NOW ~r2en_kitlist~ 10
 		FOR (row = 3; row < r2en_kitlist; row += 1) BEGIN
 		  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 5 kit_clab
 		  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 8 kit_class
@@ -483,8 +484,8 @@ ACTION_PHP_EACH d5_fnp_kit_use_access AS clab => val BEGIN
 END
 
 COPY_EXISTING ~kitlist.2da~ ~override~
-  COUNT_2DA_COLS cols
-  READ_2DA_ENTRIES_NOW ~r2en_kitlist~ cols
+//  COUNT_2DA_COLS cols
+  READ_2DA_ENTRIES_NOW ~r2en_kitlist~ 10
   FOR (row = 3; row < r2en_kitlist; row += 1) BEGIN
    READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 0 kit_index
    READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 1 kit_label
@@ -1095,5 +1096,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~enginest.2da~ BEGIN
 END
 //__________________________________________________________________________________
 
+//END  // 	end not iwdee
 
-END  // 	end not iwdee, see first line
+END // end function
+
