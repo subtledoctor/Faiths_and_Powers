@@ -371,7 +371,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_2den.2da~ BEGIN
 		kit_name = ~B_CM_DENEIR~
 		kit_clab = ~b_2den~
 		base_class = ~P~
-		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -657,7 +656,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_2sun.2da~ BEGIN
 		kit_name = ~B_CT_SUNE~ 
 		kit_clab = ~b_2sun~
 		base_class = ~P~
-		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -782,7 +780,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_3sun.2da~ BEGIN
 		kit_name = ~B_CM_SUNE~
 		kit_clab = ~b_3sun~
 		base_class = ~P~
-		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1356,7 +1353,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d52mas.2da~ BEGIN
 		kit_name = ~D5_CT_MASK~ 
 		kit_clab = ~d52mas~
 		base_class = ~P~
-		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1616,7 +1612,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d52sha.2da~ BEGIN
 		kit_name = ~D5_CM_SHAR~ 
 		kit_clab = ~d52sha~
 		base_class = ~P~
-		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1743,7 +1738,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d52sha.2da~ BEGIN
 		kit_name = ~B_CT_SHAR~
 		kit_clab = ~b_ctshr~
 		base_class = ~P~
-		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -2010,7 +2004,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_c2moa.2da~ BEGIN
 		kit_name = ~B_CM_MOANDER~
 		kit_clab = ~b_c2moa~
 		base_class = ~P~
-		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -2135,7 +2128,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_c3moa.2da~ BEGIN
 		kit_name = ~B_CT_MOANDER~
 		kit_clab = ~b_c3moa~
 		base_class = ~P~
-		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -2606,7 +2598,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5baer2.2da~ BEGIN
 		kit_name = ~D5_CM_BAERVAN~
 		kit_clab = ~d5baer2~
 		base_class = ~P~
-		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 

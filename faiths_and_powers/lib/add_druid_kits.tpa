@@ -1293,7 +1293,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5drfi.2da~ BEGIN
 		kit_name = ~D5_DR_FIGHTER~ 
 		kit_clab = ~d5drfi~
 		base_class = ~P~
-		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1440,7 +1439,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5drma.2da~ BEGIN
 		kit_name = ~D5_DR_MAGE~ 
 		kit_clab = ~d5drma~
 		base_class = ~P~
-		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1586,7 +1584,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5drra.2da~ BEGIN
 		kit_name = ~D5_DR_RANGER~ 
 		kit_clab = ~d5drra~
 		base_class = ~P~
-		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1733,7 +1730,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5drth.2da~ BEGIN
 		kit_name = ~D5_DR_THIEF~ 
 		kit_clab = ~d5drth~
 		base_class = ~P~
-		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 

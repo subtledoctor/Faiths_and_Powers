@@ -154,14 +154,6 @@ COPY_EXISTING ~sppr208.spl~ ~override~
 //__________________________________________________________________________________
 
 
-//add new spells____________________________________________________________________
-
-ACTION_CLEAR_ARRAY aoe_spell
-
-//INCLUDE ~%mod_folder%/lib/fnp_wiz.tpa~
-INCLUDE ~%mod_folder%/lib/fnp_new_spells.tpa~
-
-
 /*
 //add new SR spells_________________________________________________________________
 //
@@ -748,7 +740,7 @@ ACTION_PHP_EACH spellsphere AS spl => sph BEGIN
   END  
   ACTION_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ BEGIN
 	COPY_EXISTING ~%the_spell%.spl~ ~override~
-	  WRITE_BYTE 0x21 (THIS & 0b00111111)
+	  WRITE_BYTE 0x21 (THIS BAND 0b00111111)
 	BUT_ONLY
   END
  END
@@ -917,5 +909,6 @@ COPY_EXISTING
 COPY_EXISTING ~d5sphspl.2da~ ~override~
   PRETTY_PRINT_2DA
 //__________________________________________________________________________________
+
 
 END // end function
