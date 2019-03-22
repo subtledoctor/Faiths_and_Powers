@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.75.27~
+VERSION ~0.75.28~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -936,6 +936,28 @@ ACTION_IF (%d5_dual_class% = 0) BEGIN
 END
 //__________________________________________________________________________________
 
+//finally, make sure universal spells are universal_________________________________
+//
+ACTION_IF (%d5_use_spheres% = 1) BEGIN
+  ACTION_PHP_EACH spellsphere AS spl => sph BEGIN 
+	ACTION_IF (~%sph%~ STRING_EQUAL_CASE ~universal~) BEGIN
+	  ACTION_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~%spl%~)) BEGIN
+		LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%spl%~ RET spell_res spell_num END
+		OUTER_TEXT_SPRINT the_spell ~%spell_res%~
+	  END
+	  ELSE BEGIN
+		OUTER_TEXT_SPRINT the_spell ~%spl%~
+	  END  
+	  ACTION_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ BEGIN
+		COPY_EXISTING ~%the_spell%.spl~ ~override~
+		  WRITE_BYTE 0x21 (THIS BAND 0b00111111)
+		BUT_ONLY
+	  END
+	END
+  END
+END
+//__________________________________________________________________________________
+
 
 
 //__________________________________________________________________________________
@@ -1326,6 +1348,28 @@ END
 ACTION_IF (%d5_use_spheres% = 1) BEGIN
   INCLUDE ~faiths_and_powers/lib/npc_kits.tpa~
   LAF npc_kits END
+END
+//__________________________________________________________________________________
+
+//finally, make sure universal spells are universal_________________________________
+//
+ACTION_IF (%d5_use_spheres% = 1) BEGIN
+  ACTION_PHP_EACH spellsphere AS spl => sph BEGIN 
+	ACTION_IF (~%sph%~ STRING_EQUAL_CASE ~universal~) BEGIN
+	  ACTION_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~%spl%~)) BEGIN
+		LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%spl%~ RET spell_res spell_num END
+		OUTER_TEXT_SPRINT the_spell ~%spell_res%~
+	  END
+	  ELSE BEGIN
+		OUTER_TEXT_SPRINT the_spell ~%spl%~
+	  END  
+	  ACTION_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ BEGIN
+		COPY_EXISTING ~%the_spell%.spl~ ~override~
+		  WRITE_BYTE 0x21 (THIS BAND 0b00111111)
+		BUT_ONLY
+	  END
+	END
+  END
 END
 //__________________________________________________________________________________
 
