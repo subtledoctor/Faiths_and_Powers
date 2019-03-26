@@ -560,6 +560,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_2tor.2da~ BEGIN
 		kit_name = ~B_FC_TORM~ 
 		kit_clab = ~b_2tor~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -818,6 +819,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d52tym.2da~ BEGIN
 		kit_name = ~D5_CT_TYMORA~ 
 		kit_clab = ~d52tym~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1304,6 +1306,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_cmkel.2da~ BEGIN
 		kit_name = ~B_CM_KELEMVOR~
 		kit_clab = ~b_cmkel~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1429,6 +1432,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_ckel.2da~ BEGIN
 		kit_name = ~B_CF_KELEMVOR~
 		kit_clab = ~b_cfkel~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1705,6 +1709,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_2tem.2da~ BEGIN
 		kit_name = ~B_FC_TEMPUS~ 
 		kit_clab = ~b_2tem~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1958,6 +1963,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d52lei.2da~ BEGIN
 		kit_name = ~D5_CT_LEIRA~ 
 		kit_clab = ~d52lei~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -2211,6 +2217,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_bart.2da~ BEGIN
 		kit_name = ~B_CT_BARAVAR~
 		kit_clab = ~b_bart~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -2485,6 +2492,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_2lov.2da~ BEGIN
 		kit_name = ~B_CT_LOVIATAR~ 
 		kit_clab = ~b_2lov~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -2759,6 +2767,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_2tal.2da~ BEGIN
 		kit_name = ~B_FC_TALOS~ 
 		kit_clab = ~b_2tal~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -2883,6 +2892,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_3tal.2da~ BEGIN
 		kit_name = ~B_CM_TALOS~
 		kit_clab = ~b_3tal~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -3161,6 +3171,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_ctcyr.2da~ BEGIN
 		kit_name = ~B_CT_CYRIC~
 		kit_clab = ~b_ctcyr~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 

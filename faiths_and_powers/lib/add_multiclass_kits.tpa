@@ -129,6 +129,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5cmmys.2da~ BEGIN
 		kit_name = ~D5_CM_MYSTRA~
 		kit_clab = ~d5cmmys~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -283,6 +284,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5cmazu.2da~ BEGIN
 		kit_name = ~D5_CM_AZUTH~
 		kit_clab = ~d5cmazu~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -467,6 +469,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5_bendr.2da~ BEGIN
 		kit_name = ~D5_BENDR~
 		kit_clab = ~d5_bendr~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -623,6 +626,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5cfcla.2da~ BEGIN
 		kit_name = ~D5_CF_CLANG~ 
 		kit_clab = ~d5cfcla~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -760,6 +764,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5crmi.2da~ BEGIN
 		kit_name = ~D5_CR_MIELI~ 
 		kit_clab = ~d5crmi~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -901,6 +906,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5crsh.2da~ BEGIN
 		kit_name = ~D5_CR_SHAUNDAKUL~ 
 		kit_clab = ~d5crsh~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1059,6 +1065,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~b_cfhe.2da~ BEGIN
 		kit_name = ~B_CF_HELM~ 
 		kit_clab = ~b_cfhe~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 

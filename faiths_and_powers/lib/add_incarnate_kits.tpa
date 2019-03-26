@@ -395,8 +395,9 @@ OUTER_SET priest_spell_ind = 1
 COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
   READ_SHORT 0x1c spell_type
   PATCH_IF spell_type = 2 BEGIN
+   PATCH_IF (~%SOURCE_RES%~ STRING_MATCHES_REGEXP ~[SsDd][Pp5][PpFfMm][RrPpWwLlNnSsBb85][1-7][0-5][0-9]$~ = 0) BEGIN
 	TEXT_SPRINT the_spell ~%SOURCE_RES%~
-	PATCH_IF (~%the_spell%~ STRING_MATCHES_REGEXP ~[Dd]5[PpFfMm][PpWwLlNnSsBb85][1-9][0-5][0-9]~ = 0) BEGIN
+	PATCH_IF (~%the_spell%~ STRING_MATCHES_REGEXP ~[Dd]5[PpFfMm][PpWwLlNnSsBb85][1-7][0-5][0-9]~ = 0) BEGIN
 	  INNER_PATCH_SAVE spell_to_cast ~%the_spell%~ BEGIN
 		REPLACE_TEXTUALLY ~^[Dd]5[PpFfMm][Pp]~ ~sppr~
 		REPLACE_TEXTUALLY ~^[Dd]5[PpFfMm][Ww]~ ~spwi~
@@ -411,13 +412,14 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 	  TEXT_SPRINT spell_to_cast ~%the_spell%~
 	END
 	TEXT_SPRINT 206_spell ~d5c6%priest_spell_ind%~
-	TEXT_SPRINT learn_spell ~d5cx%priest_spell_ind%~
+	TEXT_SPRINT learn_spell ~D5CX%priest_spell_ind%~
 	TEXT_SPRINT spell_eff ~D5CV%priest_spell_ind%~
 	TEXT_SPRINT innate_spell ~d5c4%priest_spell_ind%~
 	INNER_ACTION BEGIN
 	  APPEND ~d5cclons.2da~ ~%the_spell%	%206_spell%	%learn_spell%	%spell_eff%	%innate_spell%	%spell_to_cast% ~
 	END
 	SET ++priest_spell_ind
+   END
   END
 BUT_ONLY
 
@@ -545,7 +547,7 @@ END
 // spell to set prepped spells and refresh slots______________________________________
 //
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5prpcd.spl~ BEGIN
-  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5prepd.spl~
+  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5prpcd.spl~
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 93 target = 1 parameter1 = 1 parameter2 = 1 timing = 1 END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 9 STR_VAR resource = ~d5ncslt~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 9 STR_VAR resource = ~d5ncslt~ END
@@ -697,15 +699,6 @@ COPY_EXISTING ~d5cclons.2da~ ~override~
 BUT_ONLY
 
 APPEND ~d5incmys.2da~ ~206_PREP    AP_D5C206   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
-
-
-// "initialize" songs & spells________________________________________________________
-//
-COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5prpc0.spl~
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 328 target = 1 special = 1 parameter2 = %prepared_pspells_state% timing = 9 END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 316 target = 1 timing = 1 END
-
-APPEND ~d5incmys.2da~ ~INIT_PREP   AP_D5PRPC0 ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 
 //disable quickspell buttons__________________________________________________________

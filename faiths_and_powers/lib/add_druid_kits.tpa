@@ -332,9 +332,9 @@ APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_SPDR201  ****        ****    
 //LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_GIANT_INSECT~ RET spell_res spell_num END
 //APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell-res%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
 LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_INSECT_PLAGUE~ RET spell_res spell_num END
-APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell-res%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
+APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell_res%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
 LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_CREEPING_DOOM~ RET spell_res spell_num END
-APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell-res%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
+APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell_res%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
@@ -1293,6 +1293,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5drfi.2da~ BEGIN
 		kit_name = ~D5_DR_FIGHTER~ 
 		kit_clab = ~d5drfi~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1439,6 +1440,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5drma.2da~ BEGIN
 		kit_name = ~D5_DR_MAGE~ 
 		kit_clab = ~d5drma~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1584,6 +1586,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5drra.2da~ BEGIN
 		kit_name = ~D5_DR_RANGER~ 
 		kit_clab = ~d5drra~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1730,6 +1733,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5drth.2da~ BEGIN
 		kit_name = ~D5_DR_THIEF~ 
 		kit_clab = ~d5drth~
 		base_class = ~P~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 

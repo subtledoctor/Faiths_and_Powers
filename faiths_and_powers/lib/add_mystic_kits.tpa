@@ -255,6 +255,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5mear2.2da~ BEGIN
 		kit_name = ~D5_MW_EARTH~ 
 		kit_clab = ~d5mear2~
 		base_class = ~D~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -543,6 +544,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5mwat2.2da~ BEGIN
 		kit_name = ~D5_MW_WATER~ 
 		kit_clab = ~d5mwat2~
 		base_class = ~D~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -832,6 +834,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5mair2.2da~ BEGIN
 		kit_name = ~D5_MW_AIR~ 
 		kit_clab = ~d5mair2~
 		base_class = ~D~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1129,6 +1132,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5mfir2.2da~ BEGIN
 		kit_name = ~D5_MW_FIRE~ 
 		kit_clab = ~d5mfir2~
 		base_class = ~D~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1420,6 +1424,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5mlig2.2da~ BEGIN
 		kit_name = ~D5_MW_LIGHT~ 
 		kit_clab = ~d5mlig2~
 		base_class = ~D~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 
@@ -1731,6 +1736,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5mshd2.2da~ BEGIN
 		kit_name = ~D5_MW_SHADOW~ 
 		kit_clab = ~d5mshd2~
 		base_class = ~D~
+		mc_dir = ~faiths_and_powers/lib/qd_mc~
   END
 END 
 

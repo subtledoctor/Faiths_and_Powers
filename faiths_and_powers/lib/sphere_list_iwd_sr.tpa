@@ -3796,7 +3796,7 @@ END
 //
 DEFINE_ACTION_MACRO vanilla_shaman_spheres BEGIN
  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabshgs_spheres BEGIN
-	Life 			=> minor
+	Life 			=> x
 	Death 			=> x
 	Benediction 	=> x
 	Destruction 	=> x
@@ -3809,19 +3809,19 @@ DEFINE_ACTION_MACRO vanilla_shaman_spheres BEGIN
 	Dread 			=> x
 	Vigor 			=> x
 	Affliction 		=> x
-	Animal 			=> major
-	Plant 			=> major
+	Animal 			=> x
+	Plant 			=> x
 	Earth 			=> x
 	Water 			=> x
 	Air 			=> x
 	Fire 			=> x
 	Light 			=> x
-	Shadow 			=> major
+	Shadow 			=> x
 	Magic 			=> x
-	Perdition 		=> major
+	Perdition 		=> x
  END
  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabsh01_spheres BEGIN
-	Life 			=> minor
+	Life 			=> x
 	Death 			=> x
 	Benediction 	=> x
 	Destruction 	=> x
@@ -3834,16 +3834,16 @@ DEFINE_ACTION_MACRO vanilla_shaman_spheres BEGIN
 	Dread 			=> x
 	Vigor 			=> x
 	Affliction 		=> x
-	Animal 			=> major
-	Plant 			=> major
+	Animal 			=> x
+	Plant 			=> x
 	Earth 			=> x
 	Water 			=> x
 	Air 			=> x
 	Fire 			=> x
 	Light 			=> x
-	Shadow 			=> major
+	Shadow 			=> x
 	Magic 			=> x
-	Perdition 		=> major
+	Perdition 		=> x
  END
 END
 //___________________________________________________________________________________
