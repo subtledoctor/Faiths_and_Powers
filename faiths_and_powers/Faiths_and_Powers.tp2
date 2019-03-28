@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.76 SD2~
+VERSION ~0.77sd1~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -217,16 +217,18 @@ LAF shaman_spells END
 ACTION_CLEAR_ARRAY aoe_spell
 
 ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells..from any source
-	COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component
-      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~
-      INCLUDE ~%mod_folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
+ COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component  Needed anymore???
+ COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~    //Needed anymore???
+  INCLUDE ~%mod_folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
 END
-//special, older versions of SR and IWDee
+
+//special, 'older' versions of SR and IWDee
 ACTION_IF GAME_IS ~iwdee~ BEGIN
   ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BEAST_CLAW~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
    INCLUDE ~faiths_and_powers/lib/iwdee_sr_readd.tpa~
   END
 END
+
 //special: reinstall spells if any version of SR installed
   ACTION_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN
    INCLUDE ~faiths_and_powers/lib/sr_readd.tpa~
@@ -238,7 +240,7 @@ INCLUDE ~%mod_folder%/lib/fnp_wiz.tpa~
 INCLUDE ~%mod_folder%/lib/fnp_new_spells.tpa~
 
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
-//INCLUDE ~%mod_folder%/lib/immunities.tpa~
+INCLUDE ~%mod_folder%/lib/immunities.tpa~
 
 //sr spell deflection compatibility
 ACTION_IF MOD_IS_INSTALLED ~spell_rev.tp2~ ~55~ BEGIN
@@ -262,7 +264,7 @@ ACTION_IF (%d5_use_spheres% = 0) BEGIN
    OUTER_SET d5_multiclass_druids =	0
    OUTER_SET d5_earth_mystic 	=	0
    OUTER_SET d5_water_mystic 	=	0
-   OUTER_SET d5_air_mystic 		=	0
+   OUTER_SET d5_air_mystic 	=	0
    OUTER_SET d5_fire_mystic 	=	0
    OUTER_SET d5_light_mystic 	=	0
    OUTER_SET d5_shadow_mystic 	=	0
@@ -675,11 +677,6 @@ ACTION_IF (%d5_use_spheres% = 1) BEGIN
 END
 //__________________________________________________________________________________
 
-//SPell Immunities, etc.____________________________________________________________
-//Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS (including kits with spls)
-//INCLUDE ~%mod_folder%/lib/immunities.tpa~
-
-
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
@@ -768,9 +765,9 @@ LAF shaman_spells END
 ACTION_CLEAR_ARRAY aoe_spell
 
 ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells..from any source
-	COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component
-      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~
-      INCLUDE ~%mod_folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
+ COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component
+ COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~
+  INCLUDE ~%mod_folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
 END
 //special, older versions of SR and IWDee
 ACTION_IF GAME_IS ~iwdee~ BEGIN
@@ -789,7 +786,7 @@ INCLUDE ~%mod_folder%/lib/fnp_wiz.tpa~
 INCLUDE ~%mod_folder%/lib/fnp_new_spells.tpa~
 
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
-//INCLUDE ~%mod_folder%/lib/immunities.tpa~
+INCLUDE ~%mod_folder%/lib/immunities.tpa~
 
 //sr spell deflection compatibility
 ACTION_IF MOD_IS_INSTALLED ~spell_rev.tp2~ ~55~ BEGIN

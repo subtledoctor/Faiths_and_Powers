@@ -1,6 +1,9 @@
 
 // sphere names
 
+ACTION_DEFINE_ASSOCIATIVE_ARRAY sphere_name_changes BEGIN
+	yyyyy 	=> Zzzzz
+END
 
 
 // spell spheres
@@ -18,17 +21,17 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spellsphere BEGIN
 //  UNIVERSAL
 // 	universal spells will be available to every kit, regardless of their defined sphere assignments
 // 	this "sphere" MUST MUST MUST have at least one spell of each spell level
-// 	and their spell level MUST NOT be changed from the vanilla game (leave at 0)
-// 	those are the rules you MUST abide by if you want to change which spells are universal
+// 	and their spell level MUST NOT be changed from the vanilla game
+// 	those are the rules you MUST abide by if you want to change which spells are uiniversal
 
-CLERIC_CURE_LIGHT_WOUNDS               , 0 => Universal
-CLERIC_RESIST_FIRE_AND_COLD            , 0 => Universal
-CLERIC_DISPEL_MAGIC                    , 0 => Universal
-CLERIC_LESSER_RESTORATION              , 0 => Universal
-CLERIC_CURE_CRITICAL_WOUNDS            , 0 => Universal
-CLERIC_WONDROUS_RECALL                 , 0 => Universal
-CLERIC_HOLY_WORD                       , 0 => Universal
-CLERIC_UNHOLY_WORD                     , 0 => Universal
+CLERIC_CURE_LIGHT_WOUNDS               , 1 => Universal
+CLERIC_RESIST_FIRE_AND_COLD            , 2 => Universal
+CLERIC_DISPEL_MAGIC                    , 3 => Universal
+CLERIC_LESSER_RESTORATION              , 4 => Universal
+CLERIC_CURE_CRITICAL_WOUNDS            , 5 => Universal
+CLERIC_WONDROUS_RECALL                 , 6 => Universal
+CLERIC_HOLY_WORD                       , 7 => Universal
+CLERIC_UNHOLY_WORD                     , 7 => Universal
 
 //  LIFE 
 
@@ -119,9 +122,9 @@ CLERIC_SYMBOL_FEAR                     , 7 => War
 
 //  EXPLORATION
 
-WIZARD_PFP_OLD                         , 1 => Exploration // IWDEE exped. retreat... need to add for non-IWDEE
+b_w101                                 , 1 => Exploration // Expeditious Retreat
 CLERIC_FIND_TRAPS                      , 2 => Exploration
-CLERIC_FAR_SIGHT                       , 2 => Knowledge
+CLERIC_FAR_SIGHT                       , 2 => Exploration
 WIZARD_HASTE                           , 3 => Exploration
 CLERIC_FREE_ACTION                     , 3 => Exploration // move higher; make new low-level version
 WIZARD_EYE                             , 4 => Exploration
@@ -360,6 +363,9 @@ WIZARD_MALAVONS_RAGE                   , 7 => Perdition // need to add for non-I
 WIZARD_SUMMON_FIEND                    , 7 => Perdition
 
 END
+
+
+// VANILLA KIT SPHERE ASSIGNMENTS_____________________________________________________
 
 
 // FnP KIT SPHERE ASSIGNMENTS_________________________________________________________
@@ -3789,54 +3795,54 @@ END
 //
 DEFINE_ACTION_MACRO vanilla_shaman_spheres BEGIN
  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabshgs_spheres BEGIN
-	Life 			=> x
-	Death 			=> x
+	Life 			=> minor
+	Death 		=> x
 	Benediction 	=> x
 	Destruction 	=> x
-	Protection 		=> x
+	Protection 	=> x
 	War 			=> x
-	Exploration   	=> x
-	Knowledge 		=> x
-	Deception 		=> x
+	Exploration   => x
+	Knowledge 	=> x
+	Deception 	=> x
 	Thought 		=> x
-	Dread 			=> x
-	Vigor 			=> x
-	Affliction 		=> x
-	Animal 			=> x
-	Plant 			=> x
-	Earth 			=> x
-	Water 			=> x
+	Dread 		=> x
+	Vigor 		=> x
+	Affliction 	=> x
+	Animal 		=> major
+	Plant 		=> major
+	Earth 		=> x
+	Water 		=> x
 	Air 			=> x
 	Fire 			=> x
-	Light 			=> x
-	Shadow 			=> x
-	Magic 			=> x
-	Perdition     	=> x
+	Light 		=> x
+	Shadow 		=> major
+	Magic 		=> x
+	Perdition     => major
  END
  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabsh01_spheres BEGIN
-	Life 			=> x
-	Death 			=> x
+	Life 			=> minor
+	Death 		=> x
 	Benediction 	=> x
 	Destruction 	=> x
-	Protection 		=> x
+	Protection 	=> x
 	War 			=> x
-	Exploration   	=> x
-	Knowledge 		=> x
-	Deception 		=> x
+	Exploration   => x
+	Knowledge 	=> x
+	Deception 	=> x
 	Thought 		=> x
-	Dread 			=> x
-	Vigor 			=> x
-	Affliction 		=> x
-	Animal 			=> x
-	Plant 			=> x
-	Earth 			=> x
-	Water 			=> x
+	Dread 		=> x
+	Vigor 		=> x
+	Affliction 	=> x
+	Animal 		=> major
+	Plant 		=> major
+	Earth 		=> x
+	Water 		=> x
 	Air 			=> x
 	Fire 			=> x
-	Light 			=> x
-	Shadow 			=> x
-	Magic 			=> x
-	Perdition     	=> x
+	Light 		=> x
+	Shadow 		=> major
+	Magic 		=> x
+	Perdition     => major
  END
 END
 //___________________________________________________________________________________
@@ -4492,7 +4498,198 @@ DEFINE_ACTION_MACRO vanilla_fallen_ranger_spheres BEGIN
 END
 //___________________________________________________________________________________
 
+/*
 
+// OTHER MOD KIT SPHERE ASSIGNMENTS__________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+
+// DEFAULT KIT SPHERE ASSIGNMENTS____________________________________________________
+
+// ________________________________________________________________
+//
+DEFINE_ACTION_MACRO __spheres BEGIN
+ ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
+ END
+END
+//___________________________________________________________________________________
+
+*/
 // OTHER MOD KIT SPHERE ASSIGNMENTS__________________________________________________
 
 // ________________________________________________________________
