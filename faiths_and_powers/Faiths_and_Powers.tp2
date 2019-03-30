@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.77sd1~
+VERSION ~0.77sd2~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -242,11 +242,12 @@ INCLUDE ~%mod_folder%/lib/fnp_new_spells.tpa~
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
 INCLUDE ~%mod_folder%/lib/immunities.tpa~
 
+/*
 //sr spell deflection compatibility
 ACTION_IF MOD_IS_INSTALLED ~spell_rev.tp2~ ~55~ BEGIN
   INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 END
-
+*/
 //__________________________________________________________________________________
 
 //Create Sphere System______________________________________________________________
@@ -788,10 +789,13 @@ INCLUDE ~%mod_folder%/lib/fnp_new_spells.tpa~
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
 INCLUDE ~%mod_folder%/lib/immunities.tpa~
 
+/*
 //sr spell deflection compatibility
 ACTION_IF MOD_IS_INSTALLED ~spell_rev.tp2~ ~55~ BEGIN
   INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 END
+*/
+
 //__________________________________________________________________________________
 
 //run the sphere system______________________________________________________________
