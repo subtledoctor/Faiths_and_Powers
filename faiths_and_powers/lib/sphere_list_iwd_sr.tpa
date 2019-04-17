@@ -18,7 +18,8 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spellsphere BEGIN
 
 CLERIC_CURE_LIGHT_WOUNDS               , 0 => Universal
 CLERIC_RESIST_FIRE_AND_COLD            , 0 => Universal
-CLERIC_REMOVE_CURSE                    , 0 => Magic // SR break enchantment
+CLERIC_RESIST_ELEMENTS 	               , 0 => Universal // sppr210 - looks like SR's C_RFaC
+CLERIC_REMOVE_CURSE                    , 0 => Universal // SR break enchantment
 CLERIC_LESSER_RESTORATION              , 0 => Universal
 CLERIC_CURE_CRITICAL_WOUNDS            , 0 => Universal
 CLERIC_WONDROUS_RECALL                 , 0 => Universal
