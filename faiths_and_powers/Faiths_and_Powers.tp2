@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.77sd4~
+VERSION ~0.77sd5~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -27,8 +27,6 @@ ALWAYS
 	INCLUDE ~faiths_and_powers/lib/bg2fp_effect_batches_fnp.tpa~
 
 	INCLUDE ~faiths_and_powers/lib/fl#add_kit_ee.tpa~
-
-	INCLUDE ~faiths_and_powers/lib/qd_multiclass.tpa~
 
 //	INCLUDE ~faiths_and_powers/lib/spell_clone_effects.tpa~
 	
@@ -164,6 +162,11 @@ END
 //copy marker files_________________________________________________________________
 //
 COPY ~faiths_and_powers/lib/markers/d5_menu.d5~ ~override~
+//__________________________________________________________________________________
+
+//prep for multiclasses_____________________________________________________________
+//
+INCLUDE ~faiths_and_powers/lib/qd_multiclass.tpa~
 //__________________________________________________________________________________
 
 //read in kit functions_____________________________________________________________

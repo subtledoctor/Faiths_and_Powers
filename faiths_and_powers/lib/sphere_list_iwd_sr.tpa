@@ -3851,14 +3851,58 @@ END
 // ________________________________________________________________
 //
 DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~QD_MCP01.spl~) BEGIN
+  COPY_EXISTING ~QD_MCP01.spl~ ~override~ // trueclass spheres via .eff
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5splif#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smdea#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spben#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spdes#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5sppro#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smwar#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smexp#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spkno#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smtho#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spdre#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smvig#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smfir#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5splig#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smmag#~ END
+  IF_EXISTS BUT_ONLY
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
+	Life 			=> x
+	Death 			=> x
+	Benediction 	=> x
+	Destruction 	=> x
+	Protection 		=> x
+	War 			=> x
+	Exploration 	=> x
+	Knowledge 		=> x
+	Deception 		=> x
+	Thought 		=> x
+	Dread 			=> x
+	Vigor 			=> x
+	Affliction 		=> x
+	Animal 			=> x
+	Plant 			=> x
+	Earth 			=> x
+	Water 			=> x
+	Air 			=> x
+	Fire 			=> x
+	Light 			=> x
+	Shadow 			=> x
+	Magic 			=> x
+	Perdition 		=> x
+  END
+ END
+ ACTION_IF !(FILE_EXISTS_IN_GAME ~QD_MCP01.spl~) BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
 	Life 			=> major
 	Death 			=> minor
 	Benediction 	=> major
 	Destruction 	=> major
 	Protection 		=> major
 	War 			=> minor
-	Exploration 	=> minor
+	Exploration  	=> minor
 	Knowledge 		=> major
 	Deception 		=> x
 	Thought 		=> minor
@@ -3874,7 +3918,8 @@ DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
 	Light 			=> major
 	Shadow 			=> x
 	Magic 			=> minor
-	Perdition 		=> x
+	Perdition   	=> x
+  END
  END
 END
 //___________________________________________________________________________________

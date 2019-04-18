@@ -3850,30 +3850,75 @@ END
 // ________________________________________________________________
 //
 DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~QD_MCP01.spl~) BEGIN
+  COPY_EXISTING ~QD_MCP01.spl~ ~override~ // trueclass spheres via .eff
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5splif#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smdea#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spben#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spdes#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5sppro#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smwar#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smexp#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spkno#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smtho#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spdre#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smvig#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smfir#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5splig#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smmag#~ END
+  IF_EXISTS BUT_ONLY
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
+	Life 			=> x
+	Death 			=> x
+	Benediction 	=> x
+	Destruction 	=> x
+	Protection 		=> x
+	War 			=> x
+	Exploration 	=> x
+	Knowledge 		=> x
+	Deception 		=> x
+	Thought 		=> x
+	Dread 			=> x
+	Vigor 			=> x
+	Affliction 		=> x
+	Animal 			=> x
+	Plant 			=> x
+	Earth 			=> x
+	Water 			=> x
+	Air 			=> x
+	Fire 			=> x
+	Light 			=> x
+	Shadow 			=> x
+	Magic 			=> x
+	Perdition 		=> x
+  END
+ END
+ ACTION_IF !(FILE_EXISTS_IN_GAME ~QD_MCP01.spl~) BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
 	Life 			=> major
-	Death 		=> minor
+	Death 			=> minor
 	Benediction 	=> major
 	Destruction 	=> major
-	Protection 	=> major
+	Protection 		=> major
 	War 			=> minor
-	Exploration   => minor
-	Knowledge 	=> major
-	Deception 	=> x
+	Exploration  	=> minor
+	Knowledge 		=> major
+	Deception 		=> x
 	Thought 		=> minor
-	Dread 		=> major
-	Vigor 		=> minor
-	Affliction 	=> x
-	Animal 		=> x
-	Plant 		=> x
-	Earth 		=> x
-	Water 		=> x
+	Dread 			=> major
+	Vigor 			=> minor
+	Affliction 		=> x
+	Animal 			=> x
+	Plant 			=> x
+	Earth 			=> x
+	Water 			=> x
 	Air 			=> x
 	Fire 			=> minor
-	Light 		=> major
-	Shadow 		=> x
-	Magic 		=> minor
-	Perdition     => x
+	Light 			=> major
+	Shadow 			=> x
+	Magic 			=> minor
+	Perdition   	=> x
+  END
  END
 END
 //___________________________________________________________________________________
@@ -4498,198 +4543,6 @@ DEFINE_ACTION_MACRO vanilla_fallen_ranger_spheres BEGIN
 END
 //___________________________________________________________________________________
 
-/*
-
-// OTHER MOD KIT SPHERE ASSIGNMENTS__________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-
-// DEFAULT KIT SPHERE ASSIGNMENTS____________________________________________________
-
-// ________________________________________________________________
-//
-DEFINE_ACTION_MACRO __spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres BEGIN
- END
-END
-//___________________________________________________________________________________
-
-*/
 // OTHER MOD KIT SPHERE ASSIGNMENTS__________________________________________________
 
 // ________________________________________________________________

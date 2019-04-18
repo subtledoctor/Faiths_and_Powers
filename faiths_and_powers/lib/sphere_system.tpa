@@ -876,6 +876,7 @@ COPY_EXISTING ~d5sphspl.2da~ ~override~
   PRETTY_PRINT_2DA
 //__________________________________________________________________________________
 
+
 END // end create spheres function
 
 
@@ -1167,6 +1168,11 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 	  END
 	END
 END
+
+COPY_EXISTING ~QD_MCP01.spl~ ~override~
+  LPF DELETE_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~QD_MCP01~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 duration = 0 STR_VAR resource = ~QD_MCP01~ END
+IF_EXISTS BUT_ONLY
 //___________________________________________________________________________________
 
 CLEAR_ARRAYS
@@ -1214,7 +1220,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5hkno1.spl~ BEGIN
   BUT_ONLY
 END
 //___________________________________________________________________________________
-
 
 
 END // end apply spheres function
