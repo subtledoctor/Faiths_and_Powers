@@ -46,7 +46,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY alt_spheres BEGIN
 // 	universal spells will be available to every kit, regardless of their defined sphere assignments
 // 	this "sphere" MUST MUST MUST have at least one spell of each spell level
 // 	and their spell level MUST NOT be changed from the vanilla game
-// 	those are the rules you MUST abide by if you want to change which spells are uiniversal
+// 	those are the rules you MUST abide by if you want to change which spells are universal
 
 //Universal/all
 CLERIC_BLESS                           , 1 => Universal

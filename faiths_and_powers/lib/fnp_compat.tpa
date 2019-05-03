@@ -132,7 +132,7 @@ BEGIN
   PRINT ~Defining Faiths and Powers info for kit %clab_name% ...~ 
   
   // validate required files exist
-  ACTION_IF (NOT FILE_EXISTS ~%2da_folder%/d5_class.2da~
+  ACTION_IF !(FILE_EXISTS ~%2da_folder%/d5_class.2da~
                || NOT FILE_EXISTS ~%2da_folder%/d5_usabl.2da~
                || NOT FILE_EXISTS ~%2da_folder%/d5_spher.2da~) BEGIN
     FAIL ~DEFINE_FNP_KIT_INFO: The required d5_class.2da, d5_usabl.2da, and d5_spher.2da template files could not be found in the folder %2da_folder%.~
@@ -140,7 +140,7 @@ BEGIN
   
   // validate class
   ACTION_TO_UPPER class
-  ACTION_IF NOT (VARIABLE_IS_SET $d5_fnp_class_access(~%class%~)) BEGIN
+  ACTION_IF !(VARIABLE_IS_SET $d5_fnp_class_access(~%class%~)) BEGIN
     FAIL ~DEFINE_FNP_KIT_INFO: The specified class (%class%) does not match one of the valid options: ALL, HUMAN, ELF, DWARF, GNOME, HALFLING, or ORC.~
   END
   
@@ -150,28 +150,28 @@ BEGIN
     OUTER_TEXT_SPRINT sphere ~s_%sphere%~
     OUTER_TEXT_SPRINT access EVAL ~%%sphere%%~
     ACTION_TO_UPPER %access%
-    ACTION_IF (NOT VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~)) BEGIN
+    ACTION_IF !(VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~)) BEGIN
       FAIL ~DEFINE_FNP_KIT_INFO: The access value (%access%) for the sphere %sphere% does not match one of the valid options: X, MAJOR, MINOR, FOCUS, PALADIN, or RANGER.~
     END
   END
 
   // warn if CLAB could not be found
-  ACTION_IF (NOT FILE_EXISTS_IN_GAME ~%clab_name%.2da~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~%clab_name%.2da~) BEGIN
     WARN ~DEFINE_FNP_KIT_INFO: The CLAB file (%clab_name%.2da) could not be found in the game.~
   END
   
   // copy over template files if they aren't present yet
-  ACTION_IF (NOT FILE_EXISTS_IN_GAME ~d5_class.2da~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_class.2da~) BEGIN
     COPY ~%2da_folder%/d5_class.2da~ ~override~
   END
-  ACTION_IF (NOT FILE_EXISTS_IN_GAME ~d5_usabl.2da~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_usabl.2da~) BEGIN
     COPY ~%2da_folder%/d5_usabl.2da~ ~override~
   END
-  ACTION_IF (NOT FILE_EXISTS_IN_GAME ~d5_spher.2da~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_spher.2da~) BEGIN
     COPY ~%2da_folder%/d5_spher.2da~ ~override~
   END
 
-  ACTION_IF NOT (FILE_CONTAINS_EVALUATED (~d5_class.2da~ ~%clab_name%~)) BEGIN
+  ACTION_IF !(FILE_CONTAINS_EVALUATED (~d5_class.2da~ ~%clab_name%~)) BEGIN
 
 	ACTION_IF FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~ BEGIN
 	  INCLUDE ~override/fnp_sphere_list.tpa~
