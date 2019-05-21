@@ -448,7 +448,7 @@ ACTION_IF (%d5_champion_kelemvor% = 1) BEGIN
  ACTION_IF GAME_IS ~iwdee~ THEN BEGIN   //
   LAF iwdee_champion_kelemvor END
  END
- //kelevmore undead hunter for non-iwdee
+ //kelevmor undead hunter for non-iwdee
  ACTION_IF GAME_IS ~bgee bg2ee eet~ THEN BEGIN   //
   LAF champion_kelemvor END
  END
@@ -568,9 +568,11 @@ END
 ACTION_IF (%d5_elven_archer% = 1) BEGIN
  LAF elven_archer END
 END
+/*
 ACTION_IF (%d5_halfling_slinger% = 1) BEGIN
  LAF halfling_slinger END
 END
+*/
 //
 // (multiclass)
 ACTION_IF (%d5_cm_mystra% = 1) BEGIN
