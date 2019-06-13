@@ -72,6 +72,9 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 		PATCH_IF ("%clab%" STRING_EQUAL_CASE "d5baerv" = 1) BEGIN
 			SET d5baerv = (%index% - 1)
 		END
+		PATCH_IF ("%clab%" STRING_EQUAL_CASE "b_chel" = 1) BEGIN
+			SET b_chel = (%index% - 1)
+		END
 		PATCH_IF ("%clab%" STRING_EQUAL_CASE "b_cfhe" = 1) BEGIN
 			SET b_cfhe = (%index% - 1)
 		END
@@ -230,6 +233,24 @@ ACTION_IF VARIABLE_IS_SET %d5baerv% BEGIN
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
 		WRITE_SHORT 0x246 0x4000 + %d5baerv% // changes kit
+		REMOVE_MEMORIZED_SPELLS
+		REMOVE_KNOWN_SPELLS
+	  BUT_ONLY
+	END
+  END
+END
+
+ACTION_IF VARIABLE_IS_SET %b_chel% BEGIN
+  ACTION_FOR_EACH char IN ~anomen6.cre~
+					~anomen7.cre~
+					~anomen8.cre~
+					~anomen9.cre~
+					~anomen10.cre~
+					~anomen12.cre~   BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
+	  COPY_EXISTING ~%char%.cre~ ~override~
+		WRITE_SHORT 0x244 0
+		WRITE_SHORT 0x246 0x4000 + %b_chel% // changes kit
 		REMOVE_MEMORIZED_SPELLS
 		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY

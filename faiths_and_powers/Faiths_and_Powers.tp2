@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.77sd6~
+VERSION ~0.77sd9~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -268,7 +268,7 @@ ACTION_IF (%d5_use_spheres% = 0) BEGIN
    OUTER_SET d5_multiclass_druids =	0
    OUTER_SET d5_earth_mystic 	=	0
    OUTER_SET d5_water_mystic 	=	0
-   OUTER_SET d5_air_mystic 	=	0
+   OUTER_SET d5_air_mystic 		=	0
    OUTER_SET d5_fire_mystic 	=	0
    OUTER_SET d5_light_mystic 	=	0
    OUTER_SET d5_shadow_mystic 	=	0

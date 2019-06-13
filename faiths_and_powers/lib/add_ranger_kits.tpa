@@ -1027,7 +1027,7 @@ LAM ranger_beastmaster_spheres
 	u_bows 				= 3
 	u_crossbows 		= 0
   STR_VAR
-    clab_name = EVAL ~CLABRN04~
+    clab_name 		= ~CLABRN04~
 	class 			= ~ranger~
  END
 
