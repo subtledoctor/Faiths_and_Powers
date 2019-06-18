@@ -17,6 +17,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY spellsphere BEGIN
 // 	those are the rules you MUST abide by if you want to change which spells are uiniversal
 
 CLERIC_CURE_LIGHT_WOUNDS               , 0 => Universal // sppr103
+CLERIC_HOLD_PERSON                     , 0 => Universal // level 2
 CLERIC_RESIST_FIRE_AND_COLD            , 0 => Universal // sppr210
 CLERIC_RESIST_ELEMENTS 	               , 0 => Universal // sppr210 - looks like SR's C_RFaC
 CLERIC_REMOVE_CURSE                    , 0 => Universal // sppr307 - SR break enchantment
@@ -175,7 +176,6 @@ CLERIC_NATURE_BEAUTY                   , 7 => Thought
 CLERIC_CURSE                           , 1 => Dread
 CLERIC_DOOM                            , 1 => Dread
 b_c201 /*forbiddance*/                 , 2 => Dread
-CLERIC_HOLD_PERSON                     , 2 => Dread
 CLERIC_CLOAK_OF_FEAR                   , 3 => Dread
 WIZARD_GREATER_MALISON                 , 4 => Dread
 WIZARD_EMOTION_FEAR                    , 4 => Dread

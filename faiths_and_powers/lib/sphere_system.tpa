@@ -888,7 +888,8 @@ DEFINE_ACTION_FUNCTION universal_spells BEGIN
 
 //finally, make sure universal spells are universal_________________________________
 //
-ACTION_PHP_EACH spellsphere AS spl => sph BEGIN 
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5altsph.2da~) BEGIN
+  ACTION_PHP_EACH spellsphere AS spl => sph BEGIN 
 	ACTION_IF (~%sph%~ STRING_EQUAL_CASE ~universal~) BEGIN
 	  ACTION_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~%spl%~)) BEGIN
 		LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%spl%~ RET spell_res spell_num END
@@ -903,7 +904,27 @@ ACTION_PHP_EACH spellsphere AS spl => sph BEGIN
 		BUT_ONLY
 	  END
 	END
+  END
 END
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5altsph.2da~) BEGIN
+  ACTION_PHP_EACH alt_spheres AS spl => sph BEGIN
+	ACTION_IF (~%sph%~ STRING_EQUAL_CASE ~universal~) BEGIN
+	  ACTION_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~%spl%~)) BEGIN
+		LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%spl%~ RET spell_res spell_num END
+		OUTER_TEXT_SPRINT the_spell ~%spell_res%~
+	  END
+	  ELSE BEGIN
+		OUTER_TEXT_SPRINT the_spell ~%spl%~
+	  END  
+	  ACTION_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ BEGIN
+		COPY_EXISTING ~%the_spell%.spl~ ~override~
+		  WRITE_BYTE 0x21 (THIS BAND 0b00111111)
+		BUT_ONLY
+	  END
+	END
+  END
+END
+
 //__________________________________________________________________________________
 
 END // end universal spells function

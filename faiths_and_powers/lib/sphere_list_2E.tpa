@@ -5,31 +5,34 @@
 // There can be 23 spheres at most; they must correspond to the FnP spheres
 // So DO NOT change anything in the left column.
 
-ACTION_DEFINE_ASSOCIATIVE_ARRAY sphere_name_changes BEGIN
-	Life 			=> Healing
-	Death 			=> Necromantic
-	Benediction 	        => Creation    //All is a Pseudo-sphere (universal)
-	Destruction 	        => Decay
-	Protection 		=> Protection
-	War 			=> Combat      //+ war
-	Exploration             => Travelers
-	Knowledge 		=> Divination
-	Deception 		=> Wards
-	Thought 		=> Thought     //+ numbers
-	Dread 			=> Charm
-	Vigor 			=> Law
-	Affliction 		=> Chaos
-	Animal 			=> Animal
-	Plant 			=> Plant
-	Earth 			=> Earth
-	Air 			=> Air
-	Water 			=> Water
-	Fire 			=> Fire
-	Light 			=> Sun
-	Shadow 			=> Shadow
-	Magic 			=> Weather
-	Perdition 		=> Astral   //replace with something else - Time??? Cosmos??? Give Shamans the 'Astral' pseudo-sphere as normal.  
-END
+<<<<<<<< d5/d5altsph.2da
+2DA
+Life 			Healing
+Death 			Necromantic
+Benediction 	Creation
+Destruction 	Harm
+Protection 		Protection
+War 			Combat
+Exploration     Travelers
+Knowledge 		Divination
+Deception 		Wards
+Thought 		Thought
+Dread 			Charm
+Vigor 			Law
+Affliction 		Chaos
+Animal 			Animal
+Plant 			Plant
+Earth 			Earth
+Air 			Air
+Water 			Water
+Fire 			Fire
+Light 			Sun
+Shadow 			Shadow
+Magic 			Weather
+Perdition 		Astral
+>>>>>>>> 
+
+COPY ~d5/d5altsph.2da~ ~override~
 //____________________________________________________________________________________
 
 
@@ -49,18 +52,18 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY alt_spheres BEGIN
 // 	those are the rules you MUST abide by if you want to change which spells are universal
 
 //Universal/all
-CLERIC_BLESS                           , 1 => Universal
-CLERIC_CURSE                           , 1 => Universal
-CLERIC_CHANT                           , 2 => Universal
-CLERIC_REMOVE_CURSE                    , 2 => Universal
-CLERIC_DISPEL_MAGIC                    , 3 => Universal
-CLERIC_PRAYER                          , 3 => Universal
-CLERIC_RECITATION                      , 4 => Universal
-CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL , 5 => Universal
-//SR_WIZARD_DEATH_SPELL                , 5 => Universal //sr banishment
-CLERIC_WONDROUS_RECALL                 , 6 => Universal
-CLERIC_HOLY_WORD                       , 7 => Universal
-CLERIC_UNHOLY_WORD                     , 7 => Universal
+CLERIC_BLESS                           , 0 => Universal
+CLERIC_CURSE                           , 0 => Universal
+CLERIC_CHANT                           , 0 => Universal
+CLERIC_REMOVE_CURSE                    , 0 => Universal
+CLERIC_DISPEL_MAGIC                    , 0 => Universal
+CLERIC_PRAYER                          , 0 => Universal
+CLERIC_RECITATION                      , 0 => Universal
+CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL , 0 => Universal
+//SR_WIZARD_DEATH_SPELL                , 0 => Universal //sr banishment
+CLERIC_WONDROUS_RECALL                 , 0 => Universal
+CLERIC_HOLY_WORD                       , 0 => Universal
+CLERIC_UNHOLY_WORD                     , 0 => Universal
 
 //  "Healing"
 CLERIC_CURE_LIGHT_WOUNDS               , 1 => Healing 
