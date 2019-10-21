@@ -165,7 +165,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM beast_lord_spheres
+ LAF beast_lord_spheres RET_ARRAY ~d5obst_spheres~ = beast_lord_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -369,7 +369,7 @@ COPY ~faiths_and_powers/kits/occultists/763_elementalist/b_ele20.2da~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM occultist_elementalist_spheres
+ LAF elementalist_spheres RET_ARRAY ~d5oelm_spheres~ = elementalist_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR

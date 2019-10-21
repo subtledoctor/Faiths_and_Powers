@@ -413,13 +413,13 @@ END
 
 //apply spells to sphere system_____________________________________________________
 //
-<<<<<<<< d5/d5sphspl.2da
+<<<<<<<< d5/d5spsph.2da
 2DA V1.0 
 SPHERE
 			SPELL		LEVEL
 >>>>>>>> 
 
-COPY ~d5/d5sphspl.2da~ ~override/d5sphspl.2da~ 
+COPY ~d5/d5spsph.2da~ ~override/d5spsph.2da~ 
 
 LAM d5_minor_access_levels
 
@@ -431,13 +431,26 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5altsph.2da~ BEGIN
 		READ_2DA_ENTRY_FORMER rows row 0 ~fnp_sphere~
 		READ_2DA_ENTRY_FORMER rows row 1 ~alt_sphere~
 		PATCH_IF (~%sphere%~ STRING_EQUAL_CASE ~%alt_sphere%~) BEGIN
-		  SPRINT $spellsphere(~%spell%~ ~%spell_1%~ ~%alt_sphere%~) ~%fnp_sphere%~
+//		  SPRINT $spellsphere(~%spell%~ ~%spell_1%~ ~%alt_sphere%~) ~%fnp_sphere%~
+		  INNER_ACTION BEGIN
+			APPEND ~d5spsph.2da~ ~%spell%	%spell_1%	%alt_sphere%	%fnp_sphere%~
+		  END
 		END
 	  END
 	BUT_ONLY
   END
 END
 
+COPY_EXISTING ~d5altsph.2da~ ~override~
+  READ_2DA_ENTRIES_NOW rows 4
+  FOR (row = 0; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY_FORMER rows row 0 spl
+	READ_2DA_ENTRY_FORMER rows row 1 lvl
+	READ_2DA_ENTRY_FORMER rows row 3 desc_sph
+	READ_2DA_ENTRY_FORMER rows row 1 sph
+	INNER_ACTION BEGIN
+	  
+/*
 ACTION_PHP_EACH spellsphere AS spl => sph BEGIN 
 //
   OUTER_SET lvl = %spl_1%
@@ -448,6 +461,7 @@ ACTION_PHP_EACH spellsphere AS spl => sph BEGIN
 	OUTER_SPRINT desc_sph ~%sph%~
   END
 //
+*/
  ACTION_IF !(~%sph%~ STRING_EQUAL_CASE ~universal~) BEGIN
  
   OUTER_INNER_PATCH ~%sph%~ BEGIN
@@ -510,7 +524,6 @@ ACTION_PHP_EACH spellsphere AS spl => sph BEGIN
 	  OUTER_SET mlvl = (%lvl% + %d5_minor_shift%)
 	  OUTER_SET flvl = (%lvl% - 1)
    END
-   APPEND ~d5sphspl.2da~ ~%sph%	%the_spell%	%lvl%~
    ACTION_IF (%spell_type% = 2) BEGIN  // priest spells: add to spheres
 	ACTION_IF (%lvl% = %spell_lvl%) BEGIN
 	  COPY_EXISTING ~%the_spell%.spl~ ~override~ 
@@ -711,6 +724,8 @@ ACTION_PHP_EACH spellsphere AS spl => sph BEGIN
   END
  END
 END
+END
+BUT_ONLY
 //__________________________________________________________________________________
 
 /*
@@ -870,9 +885,9 @@ COPY_EXISTING
 //__________________________________________________________________________________
 
 
-//clean up shere-spell .2da_________________________________________________________
+//clean up sphere-spell .2da_________________________________________________________
 //
-COPY_EXISTING ~d5sphspl.2da~ ~override~
+COPY_EXISTING ~d5spsph.2da~ ~override~
   PRETTY_PRINT_2DA
 //__________________________________________________________________________________
 

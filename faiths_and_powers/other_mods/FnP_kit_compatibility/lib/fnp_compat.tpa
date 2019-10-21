@@ -78,7 +78,7 @@ END
 ACTION_DEFINE_ASSOCIATIVE_ARRAY d5_fnp_class_access BEGIN
   X => 0
   CLERIC => 0
-  ACOLYTE => 0
+  PRIEST => 0
   FIGHTER_CLERIC => 0
   CLERIC_MAGE => 0
   CLERIC_THIEF => 0
@@ -97,15 +97,15 @@ END
 DEFINE_ACTION_FUNCTION ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor = 1
-	u_chain_armor = 0
-	u_plate_armor = 0
+	u_chain_armor = 1
+	u_plate_armor = 1
 	u_club_staff = 1
-	u_hammers = 0
-	u_maces = 0
-	u_flails = 0
+	u_hammers = 1
+	u_maces = 1
+	u_flails = 1
 	u_axes = 0
 	u_daggers = 0
-	u_short_swords = 0
+	u_short_swords = 1
 	u_long_swords = 0
 	u_scimitars = 0
 	u_katanas = 0
@@ -114,9 +114,9 @@ DEFINE_ACTION_FUNCTION ~DEFINE_FNP_KIT_INFO~
 	u_halberds = 0
 	u_spears = 0
 	u_darts = 0
-	u_slings = 0
+	u_slings = 1
 	u_bows = 0
-	u_crossbows = 0  
+	u_crossbows = 1  
   STR_VAR
     clab_name = ~d5defa~
     class = ~x~
@@ -202,26 +202,118 @@ ALL
 	COPY ~d5/d5_spher.2da~ ~override/d5_spher.2da~ 
   END
   
+  ACTION_IF !(FILE_CONTAINS_EVALUATED (~d5_class.2da~ ~%clab_name%~)) BEGIN
+
+	ACTION_IF FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~ BEGIN
+	  INCLUDE ~override/fnp_sphere_list.tpa~
+	END
+	ACTION_PHP_EACH EVAL ~%clab_name%_spheres~ AS this_variable => kit_access BEGIN
+	  ACTION_IF FILE_EXISTS_IN_GAME ~d5altsph.2da~ BEGIN
+		COPY_EXISTING ~d5altsph.2da~ ~override~
+		  READ_2DA_ENTRIES_NOW rows 2
+		  FOR (row = 0; row < rows; ++row) BEGIN
+			READ_2DA_ENTRY_FORMER rows row 0 ~fnp_sphere~
+			READ_2DA_ENTRY_FORMER rows row 1 ~alt_sphere~
+			PATCH_IF ~%this_variable%~ STRING_EQUAL_CASE ~%alt_sphere%~ BEGIN
+			  SPRINT new_variable ~%fnp_sphere%~
+			END
+		  END
+		BUT_ONLY
+	  END ELSE BEGIN
+		OUTER_SPRINT new_variable ~%this_variable%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Life~) BEGIN
+		OUTER_SPRINT s_Life ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Death~) BEGIN
+		OUTER_SPRINT s_Death ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Benediction~) BEGIN
+		OUTER_SPRINT s_Benediction ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Destruction~) BEGIN
+		OUTER_SPRINT s_Destruction ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Protection~) BEGIN
+		OUTER_SPRINT s_Protection ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~War~) BEGIN
+		OUTER_SPRINT s_War ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Exploration~) BEGIN
+		OUTER_SPRINT s_Exploration ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Knowledge~) BEGIN
+		OUTER_SPRINT s_Knowledge ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Deception~) BEGIN
+		OUTER_SPRINT s_Deception ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Thought~) BEGIN
+		OUTER_SPRINT s_Thought ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Dread~) BEGIN
+		OUTER_SPRINT s_Dread ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Vigor~) BEGIN
+		OUTER_SPRINT s_Vigor ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Affliction~) BEGIN
+		OUTER_SPRINT s_Affliction ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Animal~) BEGIN
+		OUTER_SPRINT s_Animal ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Plant~) BEGIN
+		OUTER_SPRINT s_Plant ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Earth~) BEGIN
+		OUTER_SPRINT s_Earth ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Air~) BEGIN
+		OUTER_SPRINT s_Air ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Water~) BEGIN
+		OUTER_SPRINT s_Water ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Fire~) BEGIN
+		OUTER_SPRINT s_Fire ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Light~) BEGIN
+		OUTER_SPRINT s_Light ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Shadow~) BEGIN
+		OUTER_SPRINT s_Shadow ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Magic~) BEGIN
+		OUTER_SPRINT s_Magic ~%kit_access%~
+	  END
+	  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Perdition~) BEGIN
+		OUTER_SPRINT s_Perdition ~%kit_access%~
+	  END
+    END
+
   // define the text that will be added to the files
-  OUTER_TEXT_SPRINT class_text ~%clab_name% %class%~
-  OUTER_TEXT_SPRINT usable_text ~%clab_name% 	%u_leather_armor% %u_chain_armor% %u_plate_armor% %u_club_staff% %u_hammers% %u_maces% %u_flails% %u_axes% %u_daggers% %u_short_swords% %u_long_swords% %u_scimitars% %u_katanas% %u_bastard_swords% %u_2hand_swords% %u_halberds% %u_spears% %u_darts% %u_slings% %u_bows% %u_crossbows%~
-  OUTER_TEXT_SPRINT sphere_text ~%clab_name% %s_Life% %s_Death% %s_Benediction% %s_Destruction% %s_Protection% %s_War% %s_Exploration% %s_Knowledge% %s_Deception% %s_Thought% %s_Dread% %s_Vigor% %s_Affliction% %s_Animal% %s_Plant% %s_Earth% %s_Water% %s_Air% %s_Fire% %s_Light% %s_Shadow% %s_Magic% %s_Perdition%~
+    OUTER_TEXT_SPRINT class_text ~%clab_name% %class%~
+    OUTER_TEXT_SPRINT usable_text ~%clab_name% 	%u_leather_armor% %u_chain_armor% %u_plate_armor% %u_club_staff% %u_hammers% %u_maces% %u_flails% %u_axes% %u_daggers% %u_short_swords% %u_long_swords% %u_scimitars% %u_katanas% %u_bastard_swords% %u_2hand_swords% %u_halberds% %u_spears% %u_darts% %u_slings% %u_bows% %u_crossbows%~
+    OUTER_TEXT_SPRINT sphere_text ~%clab_name% %s_Life% %s_Death% %s_Benediction% %s_Destruction% %s_Protection% %s_War% %s_Exploration% %s_Knowledge% %s_Deception% %s_Thought% %s_Dread% %s_Vigor% %s_Affliction% %s_Animal% %s_Plant% %s_Earth% %s_Water% %s_Air% %s_Fire% %s_Light% %s_Shadow% %s_Magic% %s_Perdition%~
 
   // uppercase text
-  ACTION_TO_UPPER class_text
-  ACTION_TO_UPPER usable_text
-  ACTION_TO_UPPER sphere_text
+    ACTION_TO_UPPER class_text
+    ACTION_TO_UPPER usable_text
+    ACTION_TO_UPPER sphere_text
     
   // append to the .2da files
-  APPEND ~d5_class.2da~ ~%class_text%~
-  APPEND ~d5_usabl.2da~ ~%usable_text%~
-  APPEND ~d5_spher.2da~ ~%sphere_text%~
+    APPEND ~d5_class.2da~ ~%class_text%~
+    APPEND ~d5_usabl.2da~ ~%usable_text%~
+    APPEND ~d5_spher.2da~ ~%sphere_text%~
   
   // clean up the .2da files
-  COPY_EXISTING ~d5_usabl.2da~ ~override~
+    COPY_EXISTING ~d5_usabl.2da~ ~override~
                 ~d5_class.2da~ ~override~
                 ~d5_spher.2da~ ~override~
-    PRETTY_PRINT_2DA
+      PRETTY_PRINT_2DA
+  END
 END
 
 DEFINE_ACTION_MACRO ~READ_FNP_KIT_INFO~ BEGIN

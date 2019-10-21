@@ -243,10 +243,16 @@ END // end function
 //__________________________________________________________________________________
 
 
-DEFINE_ACTION_FUNCTION spell_tables BEGIN
+DEFINE_ACTION_FUNCTION paladin_spell_tables BEGIN
 
-COPY ~faiths_and_powers/spheres/mxsplpal.2da~ ~override~
-COPY ~faiths_and_powers/spheres/mxsplran.2da~ ~override~
+  COPY ~faiths_and_powers/spheres/mxsplpal.2da~ ~override~
+
+END // end function
+
+
+DEFINE_ACTION_FUNCTION ranger_spell_tables BEGIN
+
+  COPY ~faiths_and_powers/spheres/mxsplran.2da~ ~override~
 
 END // end function
 
@@ -318,25 +324,9 @@ END // end function
 //__________________________________________________________________________________
 
 
-DEFINE_ACTION_FUNCTION remove_menu_kits BEGIN
+DEFINE_ACTION_FUNCTION remove_sc_menu_kits BEGIN
 
-/*
-COPY_EXISTING ~kitlist.2da~ ~override~
-//	COUNT_2DA_COLS k_cols
-	READ_2DA_ENTRIES_NOW k_rows 9
-	FOR (k_row = 1; k_row < k_rows; ++k_row) BEGIN
-	  READ_2DA_ENTRY_FORMER k_rows k_row 1 ~k_kit~
-	  PATCH_IF ~%k_kit%~ STRING_EQUAL_CASE ~B_ACOLYTE~ BEGIN
-	    READ_2DA_ENTRY_FORMER k_rows k_row 0 acolyte_num
-	  END
-	  PATCH_IF ~%k_kit%~ STRING_EQUAL_CASE ~B_ZEALOT_1~ BEGIN
-	    READ_2DA_ENTRY_FORMER k_rows k_row 0 zealot_num
-	  END
-	END
-BUT_ONLY
-*/
-
-ACTION_FOR_EACH class IN ~C~ ~D~ ~P~ ~R~ ~FC~ ~FD~ ~CM~ ~CT~ ~CR~ BEGIN
+//ACTION_FOR_EACH class IN ~C~ ~D~ ~P~ ~R~ /*~FC~ ~FD~ ~CM~ ~CT~ ~CR~*/ BEGIN
   ACTION_FOR_EACH race IN ~D~ ~E~ ~G~ ~H~ ~HE~ ~HL~ ~HO~ BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME ~K_%class%_%race%.2da~ BEGIN
 	  COPY_EXISTING ~K_%class%_%race%.2da~ ~override~
@@ -346,8 +336,6 @@ ACTION_FOR_EACH class IN ~C~ ~D~ ~P~ ~R~ ~FC~ ~FD~ ~CM~ ~CT~ ~CR~ BEGIN
 		FOR (row = 1; row < rows; ++row) BEGIN
 		  READ_2DA_ENTRY_FORMER rows row 1 kit
 		  PATCH_IF 
-//		  			(%kit% = acolyte_num) OR 
-//		  			(%kit% = zealot_num) OR
 					(%kit% = 0) OR 
 		  			(%kit% = 17) OR 
 		  			(%kit% = 19) OR 
@@ -363,7 +351,7 @@ ACTION_FOR_EACH class IN ~C~ ~D~ ~P~ ~R~ ~FC~ ~FD~ ~CM~ ~CT~ ~CR~ BEGIN
 	  BUT_ONLY
 	END
   END
-END
+//END
 
 END // end function
 

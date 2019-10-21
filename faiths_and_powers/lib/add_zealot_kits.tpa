@@ -126,7 +126,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_gruumsh_spheres
+ LAF gruumsh_spheres RET_ARRAY ~b_ze02_spheres~ = gruumsh_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -256,7 +256,7 @@ COPY ~faiths_and_powers/kits/zealots/862_Gruumsh/component_2/b_gruu.spl~ ~overri
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_gruumsh_spheres
+ LAF gruumsh_spheres RET_ARRAY ~b_zgruu_spheres~ = gruumsh_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -429,7 +429,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_talos_spheres
+ LAF talos_spheres RET_ARRAY ~b_ze03_spheres~ = talos_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -560,7 +560,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_talos_spheres
+ LAF talos_spheres RET_ARRAY ~b_ztal_spheres~ = talos_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -736,7 +736,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_kossuth_spheres
+ LAF kossuth_spheres RET_ARRAY ~b_ze04_spheres~ = kossuth_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -866,7 +866,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_kossuth_spheres
+ LAF kossuth_spheres RET_ARRAY ~b_koss_spheres~ = kossuth_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1026,7 +1026,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_ilmater_spheres
+ LAF ilmater_spheres RET_ARRAY ~b_ze05_spheres~ = ilmater_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1156,7 +1156,7 @@ COPY ~faiths_and_powers/kits/zealots/865_ilmater/component_2/b_zilm.spl~ ~overri
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_ilmater_spheres
+ LAF ilmater_spheres RET_ARRAY ~b_zilm_spheres~ = ilmater_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1318,7 +1318,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_garagos_spheres
+ LAF garagos_spheres RET_ARRAY ~b_ze06_spheres~ = garagos_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1450,7 +1450,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_garagos_spheres
+ LAF garagos_spheres RET_ARRAY ~b_gara_spheres~ = garagos_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1610,7 +1610,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_corellon_spheres
+ LAF corellon_spheres RET_ARRAY ~b_ze07_spheres~ = corellon_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1740,7 +1740,7 @@ COPY ~faiths_and_powers/kits/zealots/867_corellon/component_2/b_zcor.spl~ ~overr
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_corellon_spheres
+ LAF corellon_spheres RET_ARRAY ~b_zcor_spheres~ = corellon_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1902,7 +1902,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_sune_spheres
+ LAF sune_spheres RET_ARRAY ~b_ze08_spheres~ = sune_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -2030,7 +2030,7 @@ COPY ~faiths_and_powers/kits/zealots/868_sune/component_2/b_zsun.spl~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_sune_spheres
+ LAF sune_spheres RET_ARRAY ~b_zsun_spheres~ = sune_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -2208,7 +2208,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_mystra_spheres
+ LAF mystra_spheres RET_ARRAY ~b_ze09_spheres~ = mystra_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -2336,7 +2336,7 @@ COPY ~faiths_and_powers/kits/zealots/869_mystra/component_2/b_zmys.spl~ ~overrid
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_mystra_spheres
+ LAF mystra_spheres RET_ARRAY ~b_zmys_spheres~ = mystra_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -2496,7 +2496,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_eilistraee_spheres
+ LAF eilistraee_spheres RET_ARRAY ~b_ze10_spheres~ = eilistraee_spheres_array END
 
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -2624,7 +2624,7 @@ COPY ~faiths_and_powers/kits/zealots/870_eilistraee/component_2/b_zeil.spl~ ~ove
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM zealot_eilistraee_spheres
+ LAF eilistraee_spheres RET_ARRAY ~b_zeil_spheres~ = eilistraee_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR

@@ -126,7 +126,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM champion_tyr_spheres
+ LAF tyr_spheres RET_ARRAY ~b_ch01_spheres~ = tyr_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -301,7 +301,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM champion_kelemvor_spheres
+ LAF kelemvor_spheres RET_ARRAY ~b_ch02_spheres~ = kelemvor_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -445,7 +445,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM champion_kelemvor_spheres
+ LAF kelemvor_spheres RET_ARRAY ~b_ch02_spheres~ = kelemvor_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -610,7 +610,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM champion_tempus_spheres
+ LAF tempus_spheres RET_ARRAY ~b_ch03_spheres~ = tempus_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -773,7 +773,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM champion_bane_spheres
+ LAF bane_spheres RET_ARRAY ~b_ch04_spheres~ = bane_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -926,7 +926,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM champion_bane_spheres
+ LAF bane_spheres RET_ARRAY ~b_ch04_spheres~ = bane_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1075,7 +1075,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM champion_helm_spheres
+ LAF helm_spheres RET_ARRAY ~b_ch05_spheres~ = helm_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1214,7 +1214,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM champion_helm_spheres
+ LAF helm_spheres RET_ARRAY ~b_ch05_spheres~ = helm_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1360,7 +1360,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM champion_talos_spheres
+ LAF talos_spheres RET_ARRAY ~b_ch06_spheres~ = talos_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1496,7 +1496,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM champion_talos_spheres
+ LAF talos_spheres RET_ARRAY ~b_ch06_spheres~ = talos_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1643,7 +1643,7 @@ COPY ~faiths_and_powers/kits/champions/807_Moradin/b_mor02.itm~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM champion_moradin_spheres
+ LAF moradin_spheres RET_ARRAY ~b_ch07_spheres~ = moradin_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1803,7 +1803,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM champion_azuth_spheres
+ LAF azuth_spheres RET_ARRAY ~b_ch08_spheres~ = azuth_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1953,7 +1953,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM champion_red_knight_spheres
+ LAF redknight_spheres RET_ARRAY ~b_ch09_spheres~ = redknight_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR

@@ -62,7 +62,7 @@ END
 ACTION_DEFINE_ASSOCIATIVE_ARRAY d5_fnp_class_access BEGIN
   X => 0
   CLERIC => 0
-  ACOLYTE => 0
+  PRIEST => 0
   FIGHTER_CLERIC => 0
   CLERIC_MAGE => 0
   CLERIC_THIEF => 0
@@ -81,15 +81,15 @@ END
 DEFINE_ACTION_FUNCTION ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor = 1
-	u_chain_armor = 0
-	u_plate_armor = 0
+	u_chain_armor = 1
+	u_plate_armor = 1
 	u_club_staff = 1
-	u_hammers = 0
-	u_maces = 0
-	u_flails = 0
+	u_hammers = 1
+	u_maces = 1
+	u_flails = 1
 	u_axes = 0
 	u_daggers = 0
-	u_short_swords = 0
+	u_short_swords = 1
 	u_long_swords = 0
 	u_scimitars = 0
 	u_katanas = 0
@@ -98,9 +98,9 @@ DEFINE_ACTION_FUNCTION ~DEFINE_FNP_KIT_INFO~
 	u_halberds = 0
 	u_spears = 0
 	u_darts = 0
-	u_slings = 0
+	u_slings = 1
 	u_bows = 0
-	u_crossbows = 0  
+	u_crossbows = 1  
   STR_VAR
     clab_name = ~d5defa~
     class = ~x~
@@ -162,13 +162,28 @@ BEGIN
   
   // copy over template files if they aren't present yet
   ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_class.2da~) BEGIN
-    COPY ~%2da_folder%/d5_class.2da~ ~override~
+<<<<<<<< d5/d5_class.2da
+2DA V1.0
+ALL
+         CLASS
+>>>>>>>> 
+	COPY ~d5/d5_class.2da~ ~override/d5_class.2da~ 
   END
   ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_usabl.2da~) BEGIN
-    COPY ~%2da_folder%/d5_usabl.2da~ ~override~
+<<<<<<<< d5/d5_usabl.2da
+2DA V1.0
+0
+				LEATHER_ARMOR	CHAIN_ARMOR		PLATE_ARMOR	CLUB_STAFF	HAMMERS		MACES		FLAILS		AXES	DAGGERS		SHORT_SWORDS	LONG_SWORDS		SCIMITARS	KATANAS		BASTARD_SWORDS	2HAND_SWORDS	HALBERDS	SPEARS	DARTS	SLINGS	BOWS	CROSSBOWS  
+>>>>>>>> 
+	COPY ~d5/d5_usabl.2da~ ~override/d5_usabl.2da~ 
   END
   ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_spher.2da~) BEGIN
-    COPY ~%2da_folder%/d5_spher.2da~ ~override~
+<<<<<<<< d5/d5_spher.2da
+2DA V1.0
+0
+            Life        Death       Benediction Destruction Protection  War         Exploration Knowledge   Deception   Thought     Dread       Vigor       Affliction  Animal      Plant       Earth       Water       Air         Fire        Light       Shadow      Magic     Perdition
+>>>>>>>> 
+	COPY ~d5/d5_spher.2da~ ~override/d5_spher.2da~ 
   END
 
   ACTION_IF !(FILE_CONTAINS_EVALUATED (~d5_class.2da~ ~%clab_name%~)) BEGIN
@@ -263,25 +278,25 @@ BEGIN
     END
 
   // define the text that will be added to the 2da files
-   OUTER_TEXT_SPRINT class_text ~%clab_name% %class%~
-   OUTER_TEXT_SPRINT usable_text ~%clab_name% 	%u_leather_armor% %u_chain_armor% %u_plate_armor% %u_club_staff% %u_hammers% %u_maces% %u_flails% %u_axes% %u_daggers% %u_short_swords% %u_long_swords% %u_scimitars% %u_katanas% %u_bastard_swords% %u_2hand_swords% %u_halberds% %u_spears% %u_darts% %u_slings% %u_bows% %u_crossbows%~
-   OUTER_TEXT_SPRINT sphere_text ~%clab_name% %s_Life% %s_Death% %s_Benediction% %s_Destruction% %s_Protection% %s_War% %s_Exploration% %s_Knowledge% %s_Deception% %s_Thought% %s_Dread% %s_Vigor% %s_Affliction% %s_Animal% %s_Plant% %s_Earth% %s_Water% %s_Air% %s_Fire% %s_Light% %s_Shadow% %s_Magic% %s_Perdition%~
+    OUTER_TEXT_SPRINT class_text ~%clab_name% %class%~
+    OUTER_TEXT_SPRINT usable_text ~%clab_name% 	%u_leather_armor% %u_chain_armor% %u_plate_armor% %u_club_staff% %u_hammers% %u_maces% %u_flails% %u_axes% %u_daggers% %u_short_swords% %u_long_swords% %u_scimitars% %u_katanas% %u_bastard_swords% %u_2hand_swords% %u_halberds% %u_spears% %u_darts% %u_slings% %u_bows% %u_crossbows%~
+    OUTER_TEXT_SPRINT sphere_text ~%clab_name% %s_Life% %s_Death% %s_Benediction% %s_Destruction% %s_Protection% %s_War% %s_Exploration% %s_Knowledge% %s_Deception% %s_Thought% %s_Dread% %s_Vigor% %s_Affliction% %s_Animal% %s_Plant% %s_Earth% %s_Water% %s_Air% %s_Fire% %s_Light% %s_Shadow% %s_Magic% %s_Perdition%~
 
   // uppercase text
-   ACTION_TO_UPPER class_text
-   ACTION_TO_UPPER usable_text
-   ACTION_TO_UPPER sphere_text
+    ACTION_TO_UPPER class_text
+    ACTION_TO_UPPER usable_text
+    ACTION_TO_UPPER sphere_text
     
   // append to the .2da files
-   APPEND ~d5_class.2da~ ~%class_text%~
-   APPEND ~d5_usabl.2da~ ~%usable_text%~
-   APPEND ~d5_spher.2da~ ~%sphere_text%~
+    APPEND ~d5_class.2da~ ~%class_text%~
+    APPEND ~d5_usabl.2da~ ~%usable_text%~
+    APPEND ~d5_spher.2da~ ~%sphere_text%~
   
   // clean up the .2da files
-   COPY_EXISTING ~d5_usabl.2da~ ~override~
+    COPY_EXISTING ~d5_usabl.2da~ ~override~
                 ~d5_class.2da~ ~override~
                 ~d5_spher.2da~ ~override~
-	PRETTY_PRINT_2DA
+	  PRETTY_PRINT_2DA
   END
 END
 
@@ -359,6 +374,7 @@ DEFINE_ACTION_FUNCTION ~DISPLAY_FNP_KIT_INFO~ BEGIN
   END
 END
 
+/*
 // NECESSARY FUNCTIONS________________________________________________________________
 // Don't change this stuff
 //
@@ -375,3 +391,5 @@ DEFINE_ACTION_FUNCTION ~USE_ALT_SPHERES~ BEGIN
   END
 END
 //____________________________________________________________________________________
+*/
+

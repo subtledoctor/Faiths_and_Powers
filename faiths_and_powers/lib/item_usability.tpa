@@ -108,7 +108,7 @@ what about shields??
 */ 
 
 
-//acolyte bonuses____________________________________________________________________
+//ariest bonuses____________________________________________________________________
 //
 COPY ~faiths_and_powers/kits/misc/b_lor.spl~ ~override~
 	SAY NAME1 @6
@@ -137,10 +137,11 @@ COPY ~faiths_and_powers/kits/misc/b_sp7.spl~ ~override~
 //___________________________________________________________________________________
 
 
-//acolytes extra spells_____________________________________________________________
+/*
+//priests extra spells_____________________________________________________________
 //
 ACTION_PHP_EACH d5_fnp_kit_class_access AS kit => class BEGIN
-  ACTION_IF (~%class%~ STRING_EQUAL_CASE ~ACOLYTE~) BEGIN
+  ACTION_IF (~%class%~ STRING_EQUAL_CASE ~PRIEST~) BEGIN
     COPY_EXISTING ~%kit%.2da~ ~override~
 	  LPM remove_blank_lines
 	  APPEND_FILE ~faiths_and_powers/kits/misc/morespells.txt~
@@ -148,6 +149,7 @@ ACTION_PHP_EACH d5_fnp_kit_class_access AS kit => class BEGIN
   END
 END
 //___________________________________________________________________________________
+*/
 
 
 // vv THIS IS OVERBROAD vv ... restrict to weapons??
@@ -404,6 +406,11 @@ COPY_EXISTING_REGEXP	~.*\.sto~	override
 	END
 BUT_ONLY
 //__________________________________________________________________________________
+
+END // end item changes function
+
+
+DEFINE_ACTION_FUNCTION apply_usability BEGIN
 
 //apply armor and weapon variables__________________________________________________
 //

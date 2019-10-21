@@ -104,7 +104,7 @@ COPY ~faiths_and_powers/kits/scouts/953_mage_hunter/d5_mghs2.eff~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM scout_mage_hunter_spheres
+ LAF mage_hunter_spheres RET_ARRAY ~d5_mageh_spheres~ = mage_hunter_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -233,7 +233,7 @@ COPY ~faiths_and_powers/kits/scouts/954_barbarian_ranger/d5_rback.spl~ ~override
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM barbarian_ranger_spheres
+ LAF barbarian_ranger_spheres RET_ARRAY ~d5_rbarb_spheres~ = barbarian_ranger_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -372,7 +372,7 @@ COPY ~faiths_and_powers/kits/scouts/955_elven_archer/d5_earch.2da~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM scout_elven_archer_spheres
+ LAF elven_archer_spheres RET_ARRAY ~d5_earch_spheres~ = elven_archer_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -584,7 +584,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM scout_slinger_spheres
+ LAF ranger_forest_spheres RET_ARRAY ~d5_sling_spheres~ = ranger_forest_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR

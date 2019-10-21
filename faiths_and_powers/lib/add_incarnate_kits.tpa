@@ -93,6 +93,8 @@ COPY ~faiths_and_powers/kits/incarnates/405_mystra/d5incmys.2da~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
+ LAF mystra_spheres RET_ARRAY ~d5incmys_spheres~ = mystra_spheres_array END
+
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 0
@@ -119,6 +121,7 @@ COPY ~faiths_and_powers/kits/incarnates/405_mystra/d5incmys.2da~ ~override~
   STR_VAR
     clab_name 		= ~d5incmys~
 	class 			= ~cleric~
+/*
 	s_Life 			= ~major~
 	s_Death 		= ~minor~
 	s_Benediction 	= ~minor~
@@ -142,6 +145,7 @@ COPY ~faiths_and_powers/kits/incarnates/405_mystra/d5incmys.2da~ ~override~
 	s_Shadow 		= ~x~
 	s_Magic 		= ~major~
 	s_Perdition     = ~minor~
+*/
  END
 
 

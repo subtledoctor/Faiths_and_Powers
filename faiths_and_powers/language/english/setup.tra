@@ -2,9 +2,21 @@
 @8   = ~skipping component~
 @10 = ~Scroll~
 @13 = ~*Please be patient. This will take some time...*~
-
 @18 = ~Component has been depreciated~
-
+//
+@20  = ~Choose a sphere system~
+@21  = ~FnP: the Faiths & Powers original sphere system~
+@22  = ~2E: a more traditional PnP-style sphere system~
+@23  = ~Custom: a player-supplied custom sphere system~
+@24  = ~None: no sphere system, just vanilla-style kits~
+//
+@31  = ~Install Cleric kits~
+@33  = ~Install Druid kits~
+@35  = ~Install Paladin kits~
+@37  = ~Install Ranger kits~
+@91  = ~Alter weapon usability and proficiency?~
+@95  = ~Apply sphere system~
+@99  = ~Install multiclass kits~
 //
 @100  = ~Select an installation method below:~
 @101  = ~ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')~
@@ -30,18 +42,18 @@
 @225  = ~Add Cleric of Cyric~
 @226  = ~Add Cleric of Umberlee~
 //
-// ... Acolyte kits = 301-399
+// ... Priest kits = 301-399
 //
-@314  = ~Add Acolyte of Ilmater~
-@315  = ~Add Acolyte of Deneir~
-@316  = ~Add Acolyte of Sune~
-@322  = ~Add Acolyte of Tempus~
-@325  = ~Add Acolyte of Mystra~
-@329  = ~Add Acolyte of Mask~
-@330  = ~Add Acolyte of Shar~
-@331  = ~Add Acolyte of Moander~
-@332  = ~Add Acolyte of Beshaba~
-@342  = ~Add Acolyte of Baervan Wildwanderer~
+@314  = ~Add Priest of Ilmater~
+@315  = ~Add Priest of Deneir~
+@316  = ~Add Priest of Sune~
+@322  = ~Add Priest of Tempus~
+@325  = ~Add Priest of Azuth~
+@329  = ~Add Priest of Mask~
+@330  = ~Add Priest of Shar~
+@331  = ~Add Priest of Moander~
+@332  = ~Add Priest of Beshaba~
+@342  = ~Add Priest of Baervan Wildwanderer~
 //
 // ... Incarnate kits = 401-449
 //
@@ -233,14 +245,14 @@ Advantages:
 Disadvantages:
 - Is not proficient with armor, shields or helmets.~
 
-@10104 = ~acolyte~
-@10105 = ~Acolyte~
-@10106 = ~ACOLYTE: Also known as "Archivists" or "Cloisters", Acolytes are especially pious and studious clerics that rarely venture beyond abbey walls. However, when they do go adventuring, their skills and spells are quite useful, even if they lack combat training typical of most clerics.
+@10104 = ~priest~
+@10105 = ~Priest~
+@10106 = ~PRIEST: Also known as "Archivists" or "Cloisters", Priests are especially pious and studious clerics that rarely venture beyond abbey walls. However, when they do go adventuring, their skills and spells are quite useful, even if they lack combat training typical of most clerics.
 
 CLASS FEATURES:
 
-- Devoted Servant: Acolytes always get more bonus spells than other clerics of the same deity as the have spent years cultivating a connection with that deity through rigorous ritual and meditation. As such, they gain +1 spell per spell level.
-- Sphere Focus: Acolytes gain access to spells earlier than other priests.  They gain access to spells one level earlier to their deity's favored sphere.
+- Devoted Servant: Priests always get more bonus spells than other clerics of the same deity as the have spent years cultivating a connection with that deity through rigorous ritual and meditation. As such, they gain +1 spell per spell level.
+- Sphere Focus: Priests gain access to spells earlier than other priests.  They gain access to spells one level earlier to their deity's favored sphere.
 
 Disadvantages:
 - Can only wear leather armors
@@ -597,9 +609,9 @@ Restrictions:
 ~
 
 //
-// ... acolyte of ilmater:
+// ... priest of ilmater:
 //
-@31401  = ~acolyte of ilmater~
+@31401  = ~priest of ilmater~
 @31402  = ~Painbearer of Ilmater~
 @31403  = ~PAINBEARER OF ILMATER:  Priests of Ilmater are often itinerant, traveling the land looking to assuage suffering wherever it may exist. Painbearers
 
@@ -623,10 +635,10 @@ The priest instills courage in the spell's recipients, raising their morale to i
 When the priest casts this spell, <PRO_HESHE> doubles the hit points of any creature that <PRO_HESHE> touches (including <PRO_HIMHER>self). In addition, the recipient of the spell gains a +2 to all saves.  The spell lasts for one turn.
 ~
 //
-// ... acolyte of deneir:
+// ... priest of deneir:
 //
 
-@31501  = ~acolyte of deneir~
+@31501  = ~priest of deneir~
 @31502  = ~Glyphscribe of Deneir~
 @31503  = ~GLYPHSCRIBE OF DENEIR:  Deneir is the patron of artists, scribes and cartographers.  He values the written word, and the information that that word carries, and so do his priests.
 
@@ -642,9 +654,9 @@ Restrictions:
 - Multiclass: Cleric/Mages, or Cleric/Thieves can become glyphscribes
 ~
 //
-// ... acolyte of sune:
+// ... priest of sune:
 //
-@31601  = ~acolyte of sune~
+@31601  = ~priest of sune~
 @31602  = ~Heartwarder of Sune~
 @31603  = ~HEARTWARDER OF SUNE:  Sune teaches that external beauty ultimately reflects ones internal worth.  Thus, her followers strive to preserve beauty, both in themselves and in others, whether those othere be individuals or objects, such as works of art.
 
@@ -668,12 +680,12 @@ If the caster harms, or attempts to harm, the charmed person by some overt actio
 //
 // ... Broken Blades of Tempus
 //
-@32201 = ~acolyte of tempus~
+@32201 = ~priest of tempus~
 @32202 = ~Broken Blade of Tempus~
-@32203 = ~BROKEN BLADE OF TEMPUS:  Broken Blades honor Tempus by treating those wounded in battle.  Unlike Battleguards and Glorybloods, who are most frequently found on the front lines, it is more common to find a Broken Blades at the rear, treating and protecting the wounded.  Broken Blades are particulary millitant for acolytes, wearing chain armor, and often weilding battle axes, and will be found defending any of Tempus's holy sites.
+@32203 = ~BROKEN BLADE OF TEMPUS:  Broken Blades honor Tempus by treating those wounded in battle.  Unlike Battleguards and Glorybloods, who are most frequently found on the front lines, it is more common to find a Broken Blades at the rear, treating and protecting the wounded.  Broken Blades are particulary millitant for priests, wearing chain armor, and often weilding battle axes, and will be found defending any of Tempus's holy sites.
 
 Advantages:
-- Unlike most acolytes, Broken Blades can wear chain armor.
+- Unlike most priests, Broken Blades can wear chain armor.
 - Broken Blades automatically gain proficiency with the axe.  
 - Can cast Chant as a spell like ability one time per day but with a casting time of 1 at first level.  The Battleguard gains an additional use every 5 levels.
 
@@ -698,23 +710,24 @@ By means of the Chant spell, the priest brings special favor upon <PRO_HISHER>se
 Multiple chants are not cumulative.
 ~
 //
-// ... acolyte of mystra:
+// ... priest of azuth:
 //
-@32501  = ~priest of mystra~
-@32502  = ~Priest of Mystra~
-@32503  = ~PRIEST OF MYSTRA: Mystra is known as the Lady of Spells and the Mother of Magic. She tends to the Weave, the magical energies surrounding Faerun which enables mortals to learn and cast spells. 
+@32501  = ~priest of azuth~
+@32502  = ~Magistrati of Azuth~
+@32503  = ~MAGISTRATI OF AZUTH: Azuth is a lesser deity who assists Mystra, the Mother of Magic, in tending to 'the Weave' that enables all magic in Faerun to exist.  
 
 Advantages:
 - May use the 'Arcane Weaving' abilities in place of memorizing priest spells. This ability allows the priest to spontaneously cast one of several wizard spells of one level lower than the sacrificed priest spell. 
-- Mystra's Blessing: Cast's priest spells at +1 level
+- Once per day, a Magistrati can concentrate and briefly increase <PRO_HISHER> ability to understand and identify the workings of magical items.
+- Magistrati can use scrolls and wands normally restricted to wizards.
 
 Restrictions:
 - May not be Evil.
 - May not dual-class.~
 //
-// ... acolyte of mask:
+// ... priest of mask:
 //
-@32901  = ~acolyte of mask~
+@32901  = ~priest of mask~
 @32902  = ~Nightrunner of Mask~
 @32903  = ~NIGHTRUNNER OF MASK: Mask is the god of shadow and intrigue. His goals are always hidden, and his actions are motivated by many layers of schemes and plans. His sect of Nightrunners includes both priests and cleric/thieves who travel the land advancing Mask's agenda.
 
@@ -737,11 +750,11 @@ Restrictions:
 @32916  = ~This spell summons a shadow, an undead monster which will serve the Nightrunner under any conditions.~
 @32917  = ~Shadow~
 //
-// ... acolyte of shar:
+// ... priest of shar:
 //
-@33001  = ~acolyte of shar~
+@33001  = ~priest of shar~
 @33002  = ~Darkcloak of Shar~
-@33003  = ~DARKCLOAK OF SHAR: Shar is known as the Mistress of the Night. She is the goddess of darkness, presiding over caverns, dungeons, forgetfulness, loss, night, and secrets. The Darkcloaks are an unusual sect, who use Shar's influence to give care and comfort to those who are lost or emotionally damaged. While some other followers of Shar spurn these acolytes for failing to be militant enough, Darkcloaks still possess powerful abilities to strive against their enemies.
+@33003  = ~DARKCLOAK OF SHAR: Shar is known as the Mistress of the Night. She is the goddess of darkness, presiding over caverns, dungeons, forgetfulness, loss, night, and secrets. The Darkcloaks are an unusual sect, who use Shar's influence to give care and comfort to those who are lost or emotionally damaged. While some other followers of Shar spurn these priests for failing to be militant enough, Darkcloaks still possess powerful abilities to strive against their enemies.
  
 Advantages:
 - May cast Power Word: Sleep once per day at level 1 once per day.  The Darkcloak can use this ability an additinal time at levels 3, 6, 9, 12, 15, and 18.  This ability functions as the spell of the same name.  
@@ -754,12 +767,12 @@ Restrictions:
 - Alignment: may not be Chaotic or Good
 - Multiclass: Cleric/Mages and Cleric/Thieves can be Darkcloaks
 ~
-@33004  = ~DARKCLOAK OF SHAR: Shar is known as the Mistress of the Night. She is the goddess of darkness, presiding over caverns, darkness, dungeons, forgetfulness, loss, night, and secrets. The Darkcloaks are an unusual sect, who use Shar's influence to give care and comfort to those who are lost or emotionally damaged. While some other followers of Shar spurn these acolytes for failing to be militant enough, Darkcloaks still possess powerful abilities to strive against their enemies.~
+@33004  = ~DARKCLOAK OF SHAR: Shar is known as the Mistress of the Night. She is the goddess of darkness, presiding over caverns, darkness, dungeons, forgetfulness, loss, night, and secrets. The Darkcloaks are an unusual sect, who use Shar's influence to give care and comfort to those who are lost or emotionally damaged. While some other followers of Shar spurn these priests for failing to be militant enough, Darkcloaks still possess powerful abilities to strive against their enemies.~
 @33005  = ~~
 //
-// ... acolyte of moander:
+// ... priest of moander:
 //
-@33101 = ~acolyte of moander~
+@33101 = ~priest of moander~
 @33102 = ~Minion of Moander~
 @33103 = ~MINION OF MOANDER:  Moander, is thought to be dead.  However, cults dedicated to the lord of rot continue to exist.  Minions of the darkbringer seek to spread rot and decay wherever they go.
 
@@ -776,9 +789,9 @@ Restrictions:
 - Multiclass: Cleric/Mages and Cleric/Thieves can be Minions
 ~
 //
-// ... acolyte of besheba:
+// ... priest of besheba:
 //
-@33201 = ~acolyte of beshaba~
+@33201 = ~priest of beshaba~
 @33202 = ~Doommaster of Beshaba~
 @33203 = ~DOOM<PRO_MASTERMISTRESS> OF BESHABA:  Beshaba, the maid of misfortune, is the jealous goddess of ill-fate.  Not worshiped so much as feared, she demands tribute, or at least lip service, else she is likey to doom those that offend her to a life of failure.  Her priests work to ensure that she her ego is adequately sated.
 
@@ -799,9 +812,9 @@ Restrictions:
 This abilty curses the target, causing them a penalty of -10 penalty to THAC0, saves and AC for one round/level if they fail a save vs. spell.
 ~
 //
-// ... acolyte of baervan:
+// ... priest of baervan:
 //
-@34201 = ~acolyte of baervan~ 
+@34201 = ~priest of baervan~ 
 @34202 = ~Fastpaws of Baervan~ 
 @34203 = ~FASTPAWS OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
 
@@ -930,7 +943,7 @@ Restrictions:
 //
 @46501  = ~monitor of azuth~
 @46502  = ~Monitor of Azuth~
-@46503  = ~MONITOR OF AZUTH: Azuth is a lesser deity who assists Mystra, the Mother of Magic, in tending to 'the Weave' that enables all magic in Faerun to exist. Followers of Azuth, known as Monitors, are magical enforcers, policing misuse of the Weave by evile practitioners and empowered to challenge even the mightiest spellcasters.
+@46503  = ~MONITOR OF AZUTH: Azuth is a lesser deity who assists Mystra, the Mother of Magic, in tending to 'the Weave' that enables all magic in Faerun to exist. Monitors, followers of Azuth, are magical enforcers, policing misuse of the Weave by evile practitioners and empowered to challenge even the mightiest spellcasters.
 
 Advantages:
 - Monitors gain a bonus to their effective caster level, making them as effective as single-class spellcasterscasters with equivalent experience (+1 caster level per 5 levels).

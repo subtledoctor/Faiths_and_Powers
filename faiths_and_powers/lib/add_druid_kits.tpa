@@ -116,7 +116,7 @@ COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
 	  
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM druid_forest_spheres
+ LAF druid_forest_spheres RET_ARRAY ~d5dfor_spheres~ = druid_forest_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -210,7 +210,7 @@ COPY ~faiths_and_powers/kits/druids/732_totemic/totemic.2da~ ~override/clabdr02.
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM druid_totemic_spheres
+ LAF druid_forest_spheres RET_ARRAY ~clabdr02_spheres~ = druid_forest_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -338,7 +338,7 @@ APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell_res%  ****        ****
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM druid_hivekeeper_spheres
+ LAF druid_hivekeeper_spheres RET_ARRAY ~clabdr04_spheres~ = druid_hivekeeper_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -470,7 +470,7 @@ COPY ~faiths_and_powers/kits/druids/735_arctic_druid/d5drsc5.eff~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM druid_northern_spheres
+ LAF druid_northern_spheres RET_ARRAY ~d5darc_spheres~ = druid_northern_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -650,7 +650,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM druid_shadow_spheres
+ LAF druid_shadow_spheres RET_ARRAY ~d5dshad_spheres~ = druid_shadow_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -802,7 +802,7 @@ COPY ~faiths_and_powers/kits/druids/737_gray_druid/d5drss8.eff~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM druid_gray_spheres
+ LAF druid_gray_spheres RET_ARRAY ~d5dgray_spheres~ = druid_gray_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -973,7 +973,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM druid_lost_spheres
+ LAF druid_lost_spheres RET_ARRAY ~d5dlost_spheres~ = druid_lost_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1187,7 +1187,7 @@ END // end lost druid macro
 //__________________________________________________________________________________
 
 
-
+/*
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
@@ -1298,7 +1298,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM druid_fighter_spheres
+ LAF druid_forest_spheres RET_ARRAY ~d5drfi_spheres~ = druid_forest_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1444,7 +1444,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM druid_mage_spheres
+ LAF druid_forest_spheres RET_ARRAY ~d5drma_spheres~ = druid_forest_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1589,7 +1589,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM druid_ranger_spheres
+ LAF druid_forest_spheres RET_ARRAY ~d5drra_spheres~ = druid_forest_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1735,7 +1735,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM druid_thief_spheres
+ LAF druid_forest_spheres RET_ARRAY ~d5drth_spheres~ = druid_forest_spheres_array END
 
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -1768,6 +1768,7 @@ LAM druid_thief_spheres
 END
 //__________________________________________________________________________________
 
+*/
 
 
 
@@ -2766,6 +2767,8 @@ END // end shapeshifting function
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
+DEFINE_ACTION_FUNCTION druid_strongholds BEGIN
+
 ACTION_IF GAME_IS ~bg2ee eet~ BEGIN
 
 <<<<<<<< d5/cechall+.d
@@ -2972,6 +2975,8 @@ END
 COMPILE ~d5/druidad+.d~
 
 END
+
+END // end function
 //__________________________________________________________________________________
 
 /*
