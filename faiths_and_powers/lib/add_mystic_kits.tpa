@@ -2,7 +2,7 @@
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//					    	EARTH MYSTIC
+//					    		EARTH MYSTIC
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -136,8 +136,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF mystic_earth_spheres RET_ARRAY ~d5mear_spheres~ = mystic_earth_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -163,7 +161,9 @@ END
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5mear~
+	sphere_list		= ~mystic_earth_spheres~
 	class 			= ~mystic~
+	multiclass		= ~fd~
  END
 
 END
@@ -175,7 +175,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//					    	WATER MYSTIC
+//					    		WATER MYSTIC
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -300,8 +300,6 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF mystic_water_spheres RET_ARRAY ~d5mwat_spheres~ = mystic_water_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -327,7 +325,9 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5mwat~
+	sphere_list		= ~mystic_water_spheres~
 	class 			= ~mystic~
+	multiclass		= ~fd~
  END
 
 END
@@ -339,7 +339,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//					    	AIR MYSTIC
+//					    		AIR MYSTIC
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -464,8 +464,6 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF mystic_air_spheres RET_ARRAY ~d5mair_spheres~ = mystic_air_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -491,7 +489,9 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5mair~
+	sphere_list		= ~mystic_air_spheres~
 	class 			= ~mystic~
+	multiclass		= ~fd~
  END
 
 END
@@ -503,7 +503,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//					    	FIRE MYSTIC
+//					    		FIRE MYSTIC
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -637,8 +637,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF mystic_fire_spheres RET_ARRAY ~d5mfir_spheres~ = mystic_fire_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -664,7 +662,9 @@ END
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5mfir~
+	sphere_list		= ~mystic_fire_spheres~
 	class 			= ~mystic~
+	multiclass		= ~fd~
  END
 
 END
@@ -676,7 +676,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//					    	LIGHT MYSTIC
+//					    		LIGHT MYSTIC
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -804,8 +804,6 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF mystic_light_spheres RET_ARRAY ~d5mlig_spheres~ = mystic_light_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -831,7 +829,9 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5mlig~
+	sphere_list		= ~mystic_light_spheres~
 	class 			= ~mystic~
+	multiclass		= ~fd~
  END
 
 END
@@ -843,7 +843,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//					    	SHADOW MYSTIC
+//					    		SHADOW MYSTIC
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -967,8 +967,6 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF mystic_shadow_spheres RET_ARRAY ~d5mshd_spheres~ = mystic_shadow_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -994,7 +992,9 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5mshd~
+	sphere_list		= ~mystic_shadow_spheres~
 	class 			= ~mystic~
+	multiclass		= ~fd~
  END
 
 END

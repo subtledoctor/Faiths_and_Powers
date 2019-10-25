@@ -1,7 +1,7 @@
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//					SPHERE ASSIGNMENTS FOR VANILLA KITS
+//						SPHERE ASSIGNMENTS FOR VANILLA KITS
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -10,7 +10,6 @@ DEFINE_ACTION_FUNCTION vanilla_kit_spheres BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabshgs.2da~ BEGIN
- LAF vanilla_shaman_spheres RET_ARRAY ~clabshgs_spheres~ = vanilla_shaman_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -36,6 +35,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabshgs.2da~ BEGIN
 	u_crossbows 		= 0  
   STR_VAR
     clab_name 		= ~clabshgs~
+	sphere_list		= ~vanilla_shaman_spheres~
 	class 			= ~shaman~
  END
 END
@@ -44,7 +44,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabsh01.2da~ BEGIN
- LAF vanilla_shaman_spheres RET_ARRAY ~clabsh01_spheres~ = vanilla_shaman_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -70,6 +69,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabsh01.2da~ BEGIN
 	u_crossbows 		= 0  
  STR_VAR
     clab_name 		= ~clabsh01~
+	sphere_list		= ~vanilla_shaman_spheres~
 	class 			= ~shaman~
  END
 END
@@ -114,7 +114,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpr02.2da~ BEGIN
- LAF talos_spheres RET_ARRAY ~clabpr02_spheres~ = talos_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -140,7 +139,9 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpr02.2da~ BEGIN
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= ~clabpr02~
+	sphere_list		= ~talos_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc_cm~
  END
 END
 //__________________________________________________________________________________
@@ -148,7 +149,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpr03.2da~ BEGIN
- LAF helm_spheres RET_ARRAY ~clabpr03_spheres~ = helm_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -174,7 +174,9 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpr03.2da~ BEGIN
 	u_crossbows 		= 1
  STR_VAR
     clab_name 		= ~clabpr03~
+	sphere_list		= ~helm_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc~
  END
 END
 //__________________________________________________________________________________
@@ -182,7 +184,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpr04.2da~ BEGIN
- LAF lathander_spheres RET_ARRAY ~clabpr04_spheres~ = lathander_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -208,7 +209,9 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpr04.2da~ BEGIN
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= ~clabpr04~
+	sphere_list		= ~lathander_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc_cm~
  END
 END
 //__________________________________________________________________________________
@@ -216,7 +219,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~ohtyr.2da~ BEGIN
- LAF tyr_spheres RET_ARRAY ~ohtyr_spheres~ = tyr_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -242,7 +244,9 @@ ACTION_IF FILE_EXISTS_IN_GAME ~ohtyr.2da~ BEGIN
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= ~ohtyr~
+	sphere_list		= ~tyr_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc~
  END
 END
 //__________________________________________________________________________________
@@ -250,7 +254,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~ohtempus.2da~ BEGIN
- LAF tempus_spheres RET_ARRAY ~ohtempus_spheres~ = tempus_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -276,7 +279,9 @@ ACTION_IF FILE_EXISTS_IN_GAME ~ohtempus.2da~ BEGIN
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= ~ohtempus~
+	sphere_list		= ~tempus_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc~
  END
 END
 //__________________________________________________________________________________
@@ -284,7 +289,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabdr01.2da~ BEGIN
- LAF druid_forest_spheres RET_ARRAY ~clabdr01_spheres~ = druid_forest_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -310,6 +314,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabdr01.2da~ BEGIN
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~clabdr01~
+	sphere_list		= ~druid_forest_spheres~
 	class 			= ~druid~
  END
 END
@@ -318,7 +323,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabdr02.2da~ BEGIN
- LAF druid_forest_spheres RET_ARRAY ~clabdr02_spheres~ = druid_forest_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -344,6 +348,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabdr02.2da~ BEGIN
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~clabdr02~
+	sphere_list		= ~druid_forest_spheres~
 	class 			= ~druid~
  END
 END
@@ -352,7 +357,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabdr03.2da~ BEGIN
- LAF beast_lord_spheres RET_ARRAY ~clabdr03_spheres~ = beast_lord_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -378,6 +382,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabdr03.2da~ BEGIN
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~clabdr03~
+	sphere_list		= ~beast_lord_spheres~
 	class 			= ~druid~
  END
 END
@@ -386,7 +391,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabdr04.2da~ BEGIN
- LAF vanilla_avenger_spheres RET_ARRAY ~clabdr04_spheres~ = vanilla_avenger_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -412,6 +416,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabdr04.2da~ BEGIN
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~clabdr04~
+	sphere_list		= ~vanilla_avenger_spheres~
 	class 			= ~druid~
  END
 END
@@ -420,7 +425,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpa01.2da~ BEGIN
- LAF vanilla_paladin_spheres RET_ARRAY ~clabpa01_spheres~ = vanilla_paladin_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -446,6 +450,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpa01.2da~ BEGIN
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~clabpa01~
+	sphere_list		= ~vanilla_paladin_spheres~
 	class 			= ~champion~
  END
 END
@@ -454,7 +459,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpa02.2da~ BEGIN
- LAF vanilla_cavalier_spheres RET_ARRAY ~clabpa02_spheres~ = vanilla_cavalier_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -480,6 +484,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpa02.2da~ BEGIN
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~clabpa02~
+	sphere_list		= ~vanilla_cavalier_spheres~
 	class 			= ~champion~
  END
 END
@@ -488,7 +493,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpa03.2da~ BEGIN
- LAF vanilla_inquisitor_spheres RET_ARRAY ~clabpa03_spheres~ = vanilla_inquisitor_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -514,6 +518,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpa03.2da~ BEGIN
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~clabpa03~
+	sphere_list		= ~vanilla_inquisitor_spheres~
 	class 			= ~champion~
  END
 END
@@ -522,7 +527,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpa04.2da~ BEGIN
- LAF vanilla_undead_hunter_spheres RET_ARRAY ~clabpa04_spheres~ = vanilla_undead_hunter_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -548,6 +552,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpa04.2da~ BEGIN
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~clabpa04~
+	sphere_list		= ~vanilla_undead_hunter_spheres~
 	class 			= ~champion~
  END
 END
@@ -556,7 +561,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpa05.2da~ BEGIN
- LAF vanilla_paladin_spheres RET_ARRAY ~clabpa05_spheres~ = vanilla_paladin_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -582,6 +586,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpa05.2da~ BEGIN
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~clabpa05~
+	sphere_list		= ~vanilla_paladin_spheres~
 	class 			= ~champion~
  END
 END
@@ -590,7 +595,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpa06.2da~ BEGIN
- LAF vanilla_blackguard_spheres RET_ARRAY ~clabpa06_spheres~ = vanilla_blackguard_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -616,6 +620,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpa06.2da~ BEGIN
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~clabpa06~
+	sphere_list		= ~vanilla_blackguard_spheres~
 	class 			= ~champion~
  END
 END
@@ -626,7 +631,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabrn01.2da~ BEGIN
- LAF ranger_forest_spheres RET_ARRAY ~clabrn01_spheres~ = ranger_forest_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -652,6 +656,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabrn01.2da~ BEGIN
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~clabrn01~
+	sphere_list		= ~ranger_forest_spheres~
 	class 			= ~ranger~
  END
 END
@@ -660,7 +665,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabrn02.2da~ BEGIN
- LAF ranger_forest_spheres RET_ARRAY ~clabrn02_spheres~ = ranger_forest_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -686,6 +690,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabrn02.2da~ BEGIN
 	u_crossbows 		= 5
   STR_VAR
     clab_name 		= ~clabrn02~
+	sphere_list		= ~ranger_forest_spheres~
 	class 			= ~scout~
  END
 END
@@ -694,7 +699,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabrn03.2da~ BEGIN
- LAF mage_hunter_spheres RET_ARRAY ~clabrn03_spheres~ = mage_hunter_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -720,6 +724,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabrn03.2da~ BEGIN
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~clabrn03~
+	sphere_list		= ~mage_hunter_spheres~
 	class 			= ~scout~
  END
 END
@@ -728,7 +733,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabrn04.2da~ BEGIN
- LAF ranger_beastmaster_spheres RET_ARRAY ~clabrn04_spheres~ = ranger_beastmaster_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -754,7 +758,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabrn04.2da~ BEGIN
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~clabrn04~
-	class 			= ~x~
+	sphere_list		= ~ranger_beastmaster_spheres~
+	class 			= ~ranger~
  END
 END
 //__________________________________________________________________________________
@@ -762,7 +767,6 @@ END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabrn05.2da~ BEGIN
- LAF ranger_forest_spheres RET_ARRAY ~clabrn05_spheres~ = ranger_forest_spheres_array END
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -788,7 +792,8 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabrn05.2da~ BEGIN
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~clabrn05~
-	class 			= ~x~
+	sphere_list		= ~ranger_forest_spheres~
+	class 			= ~ranger~
  END
 END
 //__________________________________________________________________________________
@@ -818,7 +823,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~a#cyric.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF cyric_spheres RET_ARRAY ~a#cyric_spheres~ = cyric_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -844,7 +848,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= EVAL ~a#cyric~
+	sphere_list		= ~cyric_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc_ct~
 END
 //__________________________________________________________________________________
 END
@@ -859,7 +865,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~a#feyw.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF corellon_spheres RET_ARRAY ~a#feyw_spheres~ = corellon_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -885,7 +890,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= EVAL ~a#feyw~
+	sphere_list		= ~corellon_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc_cm~
 END
 //__________________________________________________________________________________
 END
@@ -899,7 +906,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~a#koss.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF kossuth_spheres RET_ARRAY ~a#koss_spheres~ = kossuth_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -925,7 +931,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= EVAL ~a#koss~
+	sphere_list		= ~kossuth_spheres~
 	class 			= ~acolyte~
+	multiclass 		= ~fc~
 END
 //__________________________________________________________________________________
 END
@@ -939,7 +947,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~a#ogma.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF oghma_spheres RET_ARRAY ~a#ogma_spheres~ = oghma_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -965,7 +972,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= EVAL ~a#ogma~
+	sphere_list		= ~oghma_spheres~
 	class 			= ~acolyte~
+	multiclass 		= ~ct_cm~
 END
 //__________________________________________________________________________________
 END
@@ -1041,7 +1050,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~a#red.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF redknight_spheres RET_ARRAY ~a#red_spheres~ = redknight_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1067,7 +1075,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= EVAL ~a#red~
+	sphere_list		= ~redknight_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc~
 END
 //__________________________________________________________________________________
 END
@@ -1086,7 +1096,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~a#shar.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF shar_spheres RET_ARRAY ~a#shar_spheres~ = shar_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1112,7 +1121,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= EVAL ~a#shar~
+	sphere_list		= ~shar_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~ct_cm~
 END
 //__________________________________________________________________________________
 END
@@ -1124,7 +1135,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~a#temp.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF tempus_spheres RET_ARRAY ~a#temp_spheres~ = tempus_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1150,7 +1160,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= EVAL ~a#temp~
+	sphere_list		= ~tempus_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc~
 END
 //__________________________________________________________________________________
 END
@@ -1162,7 +1174,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~cdilmatr.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF ilmater_spheres RET_ARRAY ~cdilmatr_spheres~ = ilmater_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1188,7 +1199,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= EVAL ~cdilmatr~
+	sphere_list		= ~ilmater_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~ct~
 END
 //__________________________________________________________________________________
 END
@@ -1200,7 +1213,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~cdselune.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF selune_spheres RET_ARRAY ~cdselune_spheres~ = selune_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1226,7 +1238,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= EVAL ~cdselune~
+	sphere_list		= ~selune_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~ct_cm~
 END
 //__________________________________________________________________________________
 END
@@ -1238,7 +1252,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~cdxvim.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF xvim_spheres RET_ARRAY ~cdxvim_spheres~ = xvim_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1264,7 +1277,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= EVAL ~cdxvim~
+	sphere_list		= ~xvim_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc_ct~
 END
 //__________________________________________________________________________________
 END
@@ -1276,7 +1291,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~nmsune.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF sune_spheres RET_ARRAY ~nmsune_spheres~ = sune_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1302,7 +1316,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= EVAL ~nmsune~
+	sphere_list		= ~sune_spheres~
 	class 			= ~acolyte~
+	multiclass 		= ~ct_cm~
 END
 //__________________________________________________________________________________
 END
@@ -1313,7 +1329,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~nmrnwlrn.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF ranger_forest_spheres RET_ARRAY ~nmrnwlrn_spheres~ = ranger_forest_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1339,6 +1354,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= EVAL ~nmrnwlrn~
+	sphere_list		= ~ranger_forest_spheres~
 	class 			= ~scout~
 END
 //__________________________________________________________________________________
@@ -1350,7 +1366,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~nmrnbsln.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF ranger_forest_spheres RET_ARRAY ~nmrnbsln_spheres~ = ranger_forest_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1376,6 +1391,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= EVAL ~nmrnbsln~
+	sphere_list		= ~ranger_forest_spheres~
 	class 			= ~scout~
 END
 //__________________________________________________________________________________
@@ -1387,7 +1403,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~a#feral.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF ranger_beastmaster_spheres RET_ARRAY ~a#feral_spheres~ = ranger_beastmaster_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1413,6 +1428,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= EVAL ~a#feral~
+	sphere_list		= ~ranger_beastmaster_spheres~
 	class 			= ~ranger~
 END
 //__________________________________________________________________________________
@@ -1424,7 +1440,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~nmrnfrrn.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF ranger_forest_spheres RET_ARRAY ~nmrnfrrn_spheres~ = ranger_forest_spheres_array END
+LAM DR_justifier_spheres
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1450,6 +1466,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 3
   STR_VAR
     clab_name 		= EVAL ~nmrnfrrn~
+//	sphere_list		= ~ranger_forest_spheres~
 	class 			= ~scout~
 END
 //__________________________________________________________________________________
@@ -1497,7 +1514,6 @@ END
 ACTION_IF FILE_EXISTS_IN_GAME ~clabauri.2da~ BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF auril_spheres RET_ARRAY ~clabauri_spheres~ = auril_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1523,7 +1539,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= EVAL ~clabauri~
+	sphere_list		= ~auril_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc~
 END
 //__________________________________________________________________________________
 END
@@ -1533,7 +1551,6 @@ END
 ACTION_IF FILE_EXISTS_IN_GAME ~clabiceg.2da~ BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF ulutiu_spheres RET_ARRAY ~clabiceg_spheres~ = ulutiu_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1559,7 +1576,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= EVAL ~clabiceg~
+	sphere_list		= ~ulutiu_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc_ct~
 END
 //__________________________________________________________________________________
 END
@@ -1569,7 +1588,6 @@ END
 ACTION_IF FILE_EXISTS_IN_GAME ~clabeart.2da~ BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF grumbar_spheres RET_ARRAY ~clabeart_spheres~ = grumbar_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1595,7 +1613,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= EVAL ~clabeart~
+	sphere_list		= ~grumbar_spheres~
 	class 			= ~acolyte~
+	multiclass 		= ~fc~
 END
 //__________________________________________________________________________________
 END
@@ -1605,7 +1625,6 @@ END
 ACTION_IF FILE_EXISTS_IN_GAME ~clableaf.2da~ BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF druid_forest_spheres RET_ARRAY ~clableaf_spheres~ = druid_forest_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1631,7 +1650,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= EVAL ~clableaf~
+	sphere_list		= ~druid_forest_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~ct~
 END
 //__________________________________________________________________________________
 END
@@ -1641,7 +1662,6 @@ END
 ACTION_IF FILE_EXISTS_IN_GAME ~clabtree.2da~ BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF druid_forest_spheres RET_ARRAY ~clabtree_spheres~ = druid_forest_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1667,7 +1687,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= EVAL ~clabtree~
+	sphere_list		= ~druid_forest_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~ct_cm~
 END
 //__________________________________________________________________________________
 END
@@ -1677,7 +1699,6 @@ END
 ACTION_IF FILE_EXISTS_IN_GAME ~clabgruu.2da~ BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF gruumsh_spheres RET_ARRAY ~clabgruu_spheres~ = gruumsh_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1703,7 +1724,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= EVAL ~clabgruu~
+	sphere_list		= ~gruumsh_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc~
 END
 //__________________________________________________________________________________
 END
@@ -1713,7 +1736,6 @@ END
 ACTION_IF FILE_EXISTS_IN_GAME ~clabluth.2da~ BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF luthic_spheres RET_ARRAY ~clabluth_spheres~ = luthic_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1739,7 +1761,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= EVAL ~clabluth~
+	sphere_list		= ~luthic_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc~
 END
 //__________________________________________________________________________________
 END
@@ -1749,7 +1773,6 @@ END
 ACTION_IF FILE_EXISTS_IN_GAME ~k9hive.2da~ BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF druid_hivekeeper_spheres RET_ARRAY ~k9hive_spheres~ = druid_hivekeeper_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1775,6 +1798,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= EVAL ~k9hive~
+	sphere_list		= ~druid_hivekeeper_spheres~
 	class 			= ~occultist~
 END
 //__________________________________________________________________________________
@@ -1785,7 +1809,6 @@ END
 ACTION_IF FILE_EXISTS_IN_GAME ~k9ilma.2da~ BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF ilmater_spheres RET_ARRAY ~k9ilma_spheres~ = ilmater_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1811,6 +1834,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= EVAL ~k9ilma~
+	sphere_list		= ~ilmater_spheres~
 	class 			= ~champion~
 END
 //__________________________________________________________________________________
@@ -1821,7 +1845,6 @@ END
 ACTION_IF FILE_EXISTS_IN_GAME ~k9miel.2da~ BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF mielikki_spheres RET_ARRAY ~k9miel_spheres~ = mielikki_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1847,6 +1870,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= EVAL ~k9miel~
+	sphere_list		= ~mielikki_spheres~
 	class 			= ~champion~
 END
 //__________________________________________________________________________________
@@ -1857,7 +1881,6 @@ END
 ACTION_IF FILE_EXISTS_IN_GAME ~k9myst.2da~ BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF mystra_spheres RET_ARRAY ~k9myst_spheres~ = mystra_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1883,6 +1906,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= EVAL ~k9myst~
+	sphere_list		= ~mystra_spheres~
 	class 			= ~champion~
 END
 //__________________________________________________________________________________
@@ -1893,7 +1917,6 @@ END
 ACTION_IF FILE_EXISTS_IN_GAME ~c0ilmcl.2da~ BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF ilmater_spheres RET_ARRAY ~c0ilmcl_spheres~ = ilmater_spheres_array END
 LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1919,6 +1942,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~c0ilmcl~
+	sphere_list		= ~ilmater_spheres~
 	class 			= ~champion~
 END
 //__________________________________________________________________________________

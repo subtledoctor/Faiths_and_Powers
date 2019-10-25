@@ -3,7 +3,7 @@
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//					    	BEAST LORD
+//					    		BEAST LORD
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -165,8 +165,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF beast_lord_spheres RET_ARRAY ~d5obst_spheres~ = beast_lord_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -192,7 +190,9 @@ END
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= ~d5obst~
+	sphere_list		= ~beast_lord_spheres~
 	class 			= ~occultist~
+	multiclass		= ~fd~
  END
 
 END
@@ -204,7 +204,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//					    	ELEMENTALIST
+//					    		ELEMENTALIST
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -369,8 +369,6 @@ COPY ~faiths_and_powers/kits/occultists/763_elementalist/b_ele20.2da~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF elementalist_spheres RET_ARRAY ~d5oelm_spheres~ = elementalist_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -396,6 +394,7 @@ COPY ~faiths_and_powers/kits/occultists/763_elementalist/b_ele20.2da~ ~override~
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= ~d5oelm~
+	sphere_list		= ~elementalist_spheres~
 	class 			= ~occultist~
  END
 

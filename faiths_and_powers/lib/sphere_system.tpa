@@ -11,7 +11,10 @@ DEFINE_ACTION_FUNCTION create_spheres BEGIN
 
 //copy marker file___________________________________________________________________
 //
-COPY ~faiths_and_powers/lib/markers/d5_spheres.d5~ ~override~ 
+//COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_spheres.d5~ 
+
+// already did this in the .tp2
+
 //___________________________________________________________________________________
 
 
@@ -272,104 +275,6 @@ END
 //__________________________________________________________________________________
 
 
-/*
-//certain spells for everyone_______________________________________________________
-//
-COPY_EXISTING ~sppr103.spl~ ~override~ // cure light wounds
-			~sppr210.spl~ ~override~ // resist fire/cold
-			~sppr307.spl~ ~override~ // remove curse
-			~sppr417.spl~ ~override~ // lesser restoration
-			~sppr502.spl~ ~override~ // cure critical
-			~sppr611.spl~ ~override~ // wondrous recall
-			~sppr710.spl~ ~override~ // holy word
-			~sppr715.spl~ ~override~ // unholy word
-	WRITE_BYTE 0x21 (THIS & 0b00111111)
-BUT_ONLY
-
-<<<<<<<< d5/d5unvrsl.2da
-2DA V1.0 
-SPLRES
-			UNIVERSAL
->>>>>>>> 
-
-COPY ~d5/d5unvrsl.2da~ ~override/d5unvrsl.2da~ 
-APPEND ~d5unvrsl.2da~ ~SPPR103		cure_light_wounds
-SPPR210		resist_fire_cold
-SPPR212		slow_poison
-SPPR307		remove_curse
-SPPR417		lesser_restoration
-SPPR502		cure_crit_wounds
-SPPR508		chaotic_commands
-SPPR611		wondrous_recall
-SPPR710		holy_word
-SPPR715		unholy_word~
-
-
-COPY ~faiths_and_powers/spheres/d5ph000.spl~ ~override~
-
-COPY_EXISTING ~clabpr01.2da~ ~override~
-	LPM remove_blank_lines
-	APPEND_FILE ~faiths_and_powers/spheres/universal_spells.txt~
-COPY_EXISTING ~clabdr01.2da~ ~override~
-	LPM remove_blank_lines
-	APPEND_FILE ~faiths_and_powers/spheres/universal_spells.txt~
-COPY_EXISTING ~clabpa01.2da~ ~override~
-	LPM remove_blank_lines
-	APPEND_FILE ~faiths_and_powers/spheres/universal_spells.txt~
-COPY_EXISTING ~clabrn01.2da~ ~override~
-	LPM remove_blank_lines
-	APPEND_FILE ~faiths_and_powers/spheres/universal_spells.txt~
-ACTION_IF FILE_EXISTS_IN_GAME ~clabsh01.2da~ BEGIN
-  COPY_EXISTING ~clabsh01.2da~ ~override~
-	LPM remove_blank_lines
-	APPEND_FILE ~faiths_and_powers/spheres/universal_spells.txt~
-END  
-ACTION_IF FILE_EXISTS_IN_GAME ~clabshgs.2da~ BEGIN
-  COPY_EXISTING ~clabshgs.2da~ ~override~
-	LPM remove_blank_lines
-	APPEND_FILE ~faiths_and_powers/spheres/universal_spells.txt~
-END
-
-COPY_EXISTING ~kitlist.2da~ ~override~
-	COUNT_2DA_ROWS ~9~ "rows"
-	FOR ( index = 2 ; index < rows ; index = index + 1 ) BEGIN
-		READ_2DA_ENTRY %index% 5 9 modclab
-		READ_2DA_ENTRY %index% 8 9 modclass
-		DEFINE_ASSOCIATIVE_ARRAY d5_base_spell_array BEGIN "%modclab%" => "%modclass%" END
-	END
-BUT_ONLY
-
-ACTION_PHP_EACH d5_base_spell_array AS bo => zo BEGIN
-	ACTION_IF (%zo% = 3) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
-		COPY_EXISTING ~%bo%.2da~ ~override~
-			LPM remove_blank_lines
-			APPEND_FILE ~faiths_and_powers/spheres/universal_spells.txt~
-	END
-	ACTION_IF (%zo% = 11) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
-		COPY_EXISTING ~%bo%.2da~ ~override~
-			LPM remove_blank_lines
-			APPEND_FILE ~faiths_and_powers/spheres/universal_spells.txt~
-	END
-	ACTION_IF (%zo% = 21) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
-		COPY_EXISTING ~%bo%.2da~ ~override~
-			LPM remove_blank_lines
-			APPEND_FILE ~faiths_and_powers/spheres/universal_spells.txt~
-	END
-	ACTION_IF (%zo% = 6) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
-		COPY_EXISTING ~%bo%.2da~ ~override~
-			LPM remove_blank_lines
-			APPEND_FILE ~faiths_and_powers/spheres/universal_spells.txt~
-	END
-	ACTION_IF (%zo% = 12) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
-		COPY_EXISTING ~%bo%.2da~ ~override~
-			LPM remove_blank_lines
-			APPEND_FILE ~faiths_and_powers/spheres/universal_spells.txt~
-	END
-END
-//__________________________________________________________________________________
-*/
-
-
 //some vanilla spell modifications__________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~sppr518.spl~ THEN BEGIN
@@ -413,318 +318,307 @@ END
 
 //apply spells to sphere system_____________________________________________________
 //
-<<<<<<<< d5/d5spsph.2da
-2DA V1.0 
-SPHERE
-			SPELL		LEVEL
->>>>>>>> 
-
-COPY ~d5/d5spsph.2da~ ~override/d5spsph.2da~ 
-
 LAM d5_minor_access_levels
 
-ACTION_IF FILE_EXISTS_IN_GAME ~d5altsph.2da~ BEGIN
-  ACTION_PHP_EACH alt_spheres AS spell => sphere BEGIN
-	COPY_EXISTING ~d5altsph.2da~ ~override~
-	  READ_2DA_ENTRIES_NOW rows 2
-	  FOR (row = 0; row < rows; ++row) BEGIN
-		READ_2DA_ENTRY_FORMER rows row 0 ~fnp_sphere~
-		READ_2DA_ENTRY_FORMER rows row 1 ~alt_sphere~
-		PATCH_IF (~%sphere%~ STRING_EQUAL_CASE ~%alt_sphere%~) BEGIN
-//		  SPRINT $spellsphere(~%spell%~ ~%spell_1%~ ~%alt_sphere%~) ~%fnp_sphere%~
-		  INNER_ACTION BEGIN
-			APPEND ~d5spsph.2da~ ~%spell%	%spell_1%	%alt_sphere%	%fnp_sphere%~
-		  END
-		END
-	  END
-	BUT_ONLY
+COPY ~d5/d5altsph.2da~ ~override~
+
+COPY ~d5/d5spsph.2da~ ~override~
+  REPLACE_TEXTUALLY ~//.*$~ ~~
+  PATCH_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+	REPLACE_TEXTUALLY ~SR_~ ~~
   END
-END
+BUT_ONLY
 
 COPY_EXISTING ~d5altsph.2da~ ~override~
+  READ_2DA_ENTRIES_NOW rows 2
+  FOR (row = 0; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY_FORMER rows row 0 ~fnp_sphere~
+	READ_2DA_ENTRY_FORMER rows row 1 ~alt_sphere~
+	SPRINT $altspheres(~%alt_sphere%~) ~%fnp_sphere%~
+  END
+BUT_ONLY
+
+COPY_EXISTING ~d5spsph.2da~ ~override~
+  READ_2DA_ENTRIES_NOW rows 4
+  FOR (row = 0; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY_FORMER rows row 3 nu_sph
+	PATCH_IF (~%nu_sph%~ STRING_EQUAL_CASE ~universal~) BEGIN
+	  SET_2DA_ENTRY row 2 4 ~Universal~
+	END
+	PHP_EACH altspheres AS alt_sph => fnp_sph BEGIN
+	  PATCH_IF (~%alt_sph%~ STRING_EQUAL_CASE ~%nu_sph%~) BEGIN
+		SET_2DA_ENTRY row 2 4 ~%fnp_sph%~
+	  END
+	END
+  END
+BUT_ONLY
+
+COPY_EXISTING ~d5spsph.2da~ ~override~
   READ_2DA_ENTRIES_NOW rows 4
   FOR (row = 0; row < rows; ++row) BEGIN
 	READ_2DA_ENTRY_FORMER rows row 0 spl
 	READ_2DA_ENTRY_FORMER rows row 1 lvl
+	READ_2DA_ENTRY_FORMER rows row 2 sph
 	READ_2DA_ENTRY_FORMER rows row 3 desc_sph
-	READ_2DA_ENTRY_FORMER rows row 1 sph
 	INNER_ACTION BEGIN
-	  
-/*
-ACTION_PHP_EACH spellsphere AS spl => sph BEGIN 
-//
-  OUTER_SET lvl = %spl_1%
-
-  ACTION_IF FILE_EXISTS_IN_GAME ~d5altsph.2da~ BEGIN
-	OUTER_SPRINT desc_sph ~%spl_2%~
-  END ELSE BEGIN
-	OUTER_SPRINT desc_sph ~%sph%~
-  END
-//
-*/
- ACTION_IF !(~%sph%~ STRING_EQUAL_CASE ~universal~) BEGIN
- 
-  OUTER_INNER_PATCH ~%sph%~ BEGIN
-    SNPRINT 3 ~shortsphere~ ~%sph%~ 
-    SPRINT sphere ~d5sp%shortsphere%~
-    SPRINT fsphere ~d5sf%shortsphere%~
-    SPRINT msphere ~d5sm%shortsphere%~
-  END
-//
-//  COPY_EXISTING - ~spell.ids~ ~faiths_and_powers/backup~
-//	COUNT_REGEXP_INSTANCES ~%spl%~ ids_exists
-//  ACTION_IF (ids_exists) THEN BEGIN
-  ACTION_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~%spl%[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
-	LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%spl%~ RET spell_res spell_num END
-	OUTER_TEXT_SPRINT the_spell ~%spell_res%~
-  END
-  ELSE BEGIN
-	OUTER_TEXT_SPRINT the_spell ~%spl%~
-  END  
-  OUTER_INNER_PATCH_SAVE minor_res ~%the_spell%~ BEGIN
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Pp][Rr]~ ~d5mp~
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Ww][Ii]~ ~d5mw~
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Cc][Ll]~ ~d5ml~
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Ii][Nn]~ ~d5mn~
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Ss][Dd]~ ~d5ms~
-	REPLACE_TEXTUALLY ~^[Bb]_[Cc]~ ~d5mb~
-	REPLACE_TEXTUALLY ~^[Bb]_[Pp][Rr]~ ~d5m8~
-	REPLACE_TEXTUALLY ~^[Dd]5[Ff][Nn][Pp]~ ~d5m5~
-  END
-  OUTER_INNER_PATCH_SAVE focus_res ~%the_spell%~ BEGIN
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Pp][Rr]~ ~d5fp~
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Ww][Ii]~ ~d5fw~
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Cc][Ll]~ ~d5fl~
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Ii][Nn]~ ~d5fn~
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Ss][Dd]~ ~d5fs~
-	REPLACE_TEXTUALLY ~^[Bb]_[Cc]~ ~d5fb~
-	REPLACE_TEXTUALLY ~^[Bb]_[Pp][Rr]~ ~d5f8~
-	REPLACE_TEXTUALLY ~^[Dd]5[Ff][Nn][Pp]~ ~d5f5~
-  END
-  OUTER_INNER_PATCH_SAVE priest_res ~%the_spell%~ BEGIN
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Pp][Rr]~ ~d5pp~
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Ww][Ii]~ ~d5pw~
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Cc][Ll]~ ~d5pl~
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Ii][Nn]~ ~d5pn~
-	REPLACE_TEXTUALLY ~^[Ss][Pp][Ss][Dd]~ ~d5ps~
-	REPLACE_TEXTUALLY ~^[Bb]_[Cc]~ ~d5pb~
-	REPLACE_TEXTUALLY ~^[Bb]_[Pp][Rr]~ ~d5p8~
-	REPLACE_TEXTUALLY ~^[Dd]5[Ff][Nn][Pp]~ ~d5p5~
-  END
-  ACTION_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ BEGIN 
-   COPY_EXISTING ~%the_spell%.spl~ ~override~ 
-	  READ_SHORT 0x1c spell_type
-	  READ_LONG 0x34 spell_lvl
-   BUT_ONLY
-   ACTION_IF (%lvl% = 0) BEGIN
-	  OUTER_SET %lvl% = %spell_lvl%
-	  OUTER_SET mlvl = (%spell_lvl% + %d5_minor_shift%)
-	  OUTER_SET flvl = (%spell_lvl% - 1)
-   END ELSE BEGIN
-	  OUTER_SET mlvl = (%lvl% + %d5_minor_shift%)
-	  OUTER_SET flvl = (%lvl% - 1)
-   END
-   ACTION_IF (%spell_type% = 2) BEGIN  // priest spells: add to spheres
-	ACTION_IF (%lvl% = %spell_lvl%) BEGIN
-	  COPY_EXISTING ~%the_spell%.spl~ ~override~ 
-		READ_LONG 0x50 "valid"
-		PATCH_IF (%valid% >= 0) BEGIN 
-		  READ_STRREF 0x50 ~desc~
-		  INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-			REPLACE_TEXTUALLY ~^Level:.*$~ ~Level: %lvl%~
-			REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]Sphere:.*$~ ~~
-			REPLACE_TEXTUALLY ~^Range:~ ~Sphere: %desc_sph% %WNL%Range:~
-		  END
-		  SAY_EVALUATED 0x50 ~%new_desc%~
-		END
-	  IF_EXISTS BUT_ONLY
-	  COPY_EXISTING ~%sphere%.spl~ ~override~ 
-		LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%the_spell%~ END
-	  IF_EXISTS BUT_ONLY
-	  ACTION_IF (%lvl% = 1) OR (%lvl% = 7) BEGIN
-		COPY_EXISTING ~%fsphere%.spl~ ~override~
-		  LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%the_spell%~ END
-		IF_EXISTS BUT_ONLY
+	 ACTION_IF !(~%sph%~ STRING_EQUAL_CASE ~universal~) BEGIN
+ 	  OUTER_INNER_PATCH ~%sph%~ BEGIN
+	    SNPRINT 3 ~shortsphere~ ~%sph%~ 
+	    SPRINT sphere ~d5sp%shortsphere%~
+	    SPRINT fsphere ~d5sf%shortsphere%~
+	    SPRINT msphere ~d5sm%shortsphere%~
 	  END
-	END
-	ACTION_IF (%lvl% != %spell_lvl%) BEGIN
-	  COPY_EXISTING ~%the_spell%.spl~ ~override/%priest_res%.spl~ 
-	  	WRITE_LONG 0x34 %lvl%
-		READ_LONG 0x64 abil_offset
-		READ_SHORT 0x68 abil_number
-		READ_BYTE (%abil_offset% + 0x0c) abil_target					
-		READ_SHORT (%abil_offset% + 0x0e) abil_range
-		READ_LONG 0x6a eff_offset
-		WHILE (%abil_number% > 0) BEGIN
-		  SET abil_number = (%abil_number% - 1)
-		  WRITE_SHORT (%abil_offset% + 0x26 + (0x28 * %abil_number%)) 1
-		END
-		READ_BYTE (%eff_offset% + 0x02) eff_target
-		LPF DELETE_EFFECT INT_VAR match_probability2 = 0 END
-		PATCH_IF (%abil_target% = 4) BEGIN
-		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 148 target = 1 power = %lvl% parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%the_spell%~ END
-		  PATCH_IF (%abil_range% < 35) BEGIN
-			PATCH_IF (%abil_range% > 4) BEGIN
-				LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
-			END
-			PATCH_IF (%abil_range% < 5) BEGIN
-			  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END	// what the hell??  why did I do this??
-			END
-		  END
-		END
-		ELSE BEGIN
-		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = %eff_target% power = %lvl% parameter2 = 1 timing = 9 STR_VAR resource = EVAL ~%the_spell%~ END
-		END
-		READ_LONG 0x50 "valid"
-		PATCH_IF (%valid% >= 0) BEGIN 
-		  READ_STRREF 0x50 ~desc~
-		  INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-			REPLACE_TEXTUALLY ~^Level:.*$~ ~Level: %lvl%~
-			REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]Sphere:.*$~ ~~
-			REPLACE_TEXTUALLY ~^Range:~ ~Sphere: %desc_sph% %WNL%Range:~
-		  END
-		  SAY_EVALUATED 0x50 ~%new_desc%~
-		END
-	  IF_EXISTS BUT_ONLY
-	  COPY_EXISTING ~%sphere%.spl~ ~override~ 
-		LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%priest_res%~ END
-	  IF_EXISTS BUT_ONLY
-	  ACTION_IF (%lvl% = 1) OR (%lvl% = 7) BEGIN
-		COPY_EXISTING ~%fsphere%.spl~ ~override~
-		  LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%priest_res%~ END
-		BUT_ONLY
+	  ACTION_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~%spl%[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%spl%~ RET spell_res spell_num END
+		OUTER_TEXT_SPRINT the_spell ~%spell_res%~
 	  END
-	END
-	ACTION_IF (%lvl% < 4) BEGIN
-	  COPY_EXISTING ~%the_spell%.spl~ ~override/%minor_res%.spl~ 
-		PATCH_IF (%d5_minor_shift% = 1) BEGIN
-		  WRITE_LONG 0x34 %mlvl%
-		END
-		PATCH_IF (%d5_minor_shift% = 0) BEGIN
-		  WRITE_LONG 0x34 %lvl%
-		END
-		READ_LONG 0x64 abil_offset
-		READ_SHORT 0x68 abil_number
-		READ_BYTE (%abil_offset% + 0x0c) abil_target
-		READ_SHORT (%abil_offset% + 0x0e) abil_range
-		READ_LONG 0x6a eff_offset
-		WHILE (%abil_number% > 0) BEGIN
-		  SET abil_number = (%abil_number% - 1)
-		  WRITE_SHORT (%abil_offset% + 0x26 + (0x28 * %abil_number%)) 1
-		END
-		READ_BYTE (%eff_offset% + 0x02) eff_target
-		LPF DELETE_EFFECT INT_VAR match_probability2 = 0 END
-		PATCH_IF (%abil_target% = 4) BEGIN
-		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 148 target = 1 power = %lvl% parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%the_spell%~ END
-		  PATCH_IF (%abil_range% < 35) BEGIN
-			PATCH_IF (%abil_range% > 4) BEGIN
-			  LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
+	  ELSE BEGIN
+		OUTER_TEXT_SPRINT the_spell ~%spl%~
+	  END  
+	  OUTER_INNER_PATCH_SAVE minor_res ~%the_spell%~ BEGIN
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Pp][Rr]~ ~d5mp~
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Ww][Ii]~ ~d5mw~
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Cc][Ll]~ ~d5ml~
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Ii][Nn]~ ~d5mn~
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Ss][Dd]~ ~d5ms~
+		REPLACE_TEXTUALLY ~^[Bb]_[Cc]~ ~d5mb~
+		REPLACE_TEXTUALLY ~^[Bb]_[Pp][Rr]~ ~d5m8~
+		REPLACE_TEXTUALLY ~^[Dd]5[Ff][Nn][Pp]~ ~d5m5~
+	  END
+	  OUTER_INNER_PATCH_SAVE focus_res ~%the_spell%~ BEGIN
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Pp][Rr]~ ~d5fp~
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Ww][Ii]~ ~d5fw~
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Cc][Ll]~ ~d5fl~
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Ii][Nn]~ ~d5fn~
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Ss][Dd]~ ~d5fs~
+		REPLACE_TEXTUALLY ~^[Bb]_[Cc]~ ~d5fb~
+		REPLACE_TEXTUALLY ~^[Bb]_[Pp][Rr]~ ~d5f8~
+		REPLACE_TEXTUALLY ~^[Dd]5[Ff][Nn][Pp]~ ~d5f5~
+	  END
+	  OUTER_INNER_PATCH_SAVE priest_res ~%the_spell%~ BEGIN
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Pp][Rr]~ ~d5pp~
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Ww][Ii]~ ~d5pw~
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Cc][Ll]~ ~d5pl~
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Ii][Nn]~ ~d5pn~
+		REPLACE_TEXTUALLY ~^[Ss][Pp][Ss][Dd]~ ~d5ps~
+		REPLACE_TEXTUALLY ~^[Bb]_[Cc]~ ~d5pb~
+		REPLACE_TEXTUALLY ~^[Bb]_[Pp][Rr]~ ~d5p8~
+		REPLACE_TEXTUALLY ~^[Dd]5[Ff][Nn][Pp]~ ~d5p5~
+	  END
+	  ACTION_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ BEGIN 
+	   COPY_EXISTING ~%the_spell%.spl~ ~override~ 
+		  READ_SHORT 0x1c spell_type
+		  READ_LONG 0x34 spell_lvl
+	   BUT_ONLY
+	   ACTION_IF (%lvl% = 0) BEGIN
+		  OUTER_SET %lvl% = %spell_lvl%
+		  OUTER_SET mlvl = (%spell_lvl% + %d5_minor_shift%)
+		  OUTER_SET flvl = (%spell_lvl% - 1)
+	   END ELSE BEGIN
+		  OUTER_SET mlvl = (%lvl% + %d5_minor_shift%)
+		  OUTER_SET flvl = (%lvl% - 1)
+	   END
+	   ACTION_IF (%spell_type% = 2) BEGIN  // priest spells: add to spheres
+		ACTION_IF (%lvl% = %spell_lvl%) BEGIN
+		  COPY_EXISTING ~%the_spell%.spl~ ~override~ 
+			READ_LONG 0x50 "valid"
+			PATCH_IF (%valid% >= 0) BEGIN 
+			  READ_STRREF 0x50 ~desc~
+			  INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+				REPLACE_TEXTUALLY ~^Level:.*$~ ~Level: %lvl%~
+				REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]Sphere:.*$~ ~~
+				REPLACE_TEXTUALLY ~^Range:~ ~Sphere: %desc_sph% %WNL%Range:~
+			  END
+			  SAY_EVALUATED 0x50 ~%new_desc%~
 			END
-			PATCH_IF (%abil_range% < 5) BEGIN
-			  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END	// what the hell??  why did I do this??
-			END
+		  IF_EXISTS BUT_ONLY
+		  COPY_EXISTING ~%sphere%.spl~ ~override~ 
+			LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%the_spell%~ END
+		  IF_EXISTS BUT_ONLY
+		  ACTION_IF (%lvl% = 1) OR (%lvl% = 7) BEGIN
+			COPY_EXISTING ~%fsphere%.spl~ ~override~
+			  LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%the_spell%~ END
+			IF_EXISTS BUT_ONLY
 		  END
 		END
-		ELSE BEGIN
-		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = %eff_target% power = %lvl% parameter1 = 0 parameter2 = 1 timing = 2 STR_VAR resource = EVAL ~%the_spell%~ END
-		END
-	  IF_EXISTS BUT_ONLY
-	  COPY_EXISTING ~%msphere%.spl~ ~override~
-		LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%minor_res%~ END
-	  IF_EXISTS BUT_ONLY
-	END
-	ACTION_IF (1 < %lvl%) BEGIN
-	  COPY_EXISTING ~%the_spell%.spl~ ~override/%focus_res%.spl~ 	
-		WRITE_LONG 0x34 %flvl%
-		READ_LONG 0x64 abil_offset
-		READ_SHORT 0x68 abil_number
-		READ_BYTE (%abil_offset% + 0x0c) abil_target
-		READ_SHORT (%abil_offset% + 0x0e) abil_range
-		READ_LONG 0x6a eff_offset
-		WHILE (%abil_number% > 0) BEGIN
-		  SET abil_number = (%abil_number% - 1)
-		  WRITE_SHORT (%abil_offset% + 0x26 + (0x28 * %abil_number%)) 1
-		END
-//		READ_BYTE (%eff_offset% + 0x02) eff_target
-		LPF DELETE_EFFECT INT_VAR match_probability2 = 0 END
-		PATCH_IF (%abil_target% = 4) BEGIN
-		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 148 target = 1 power = %lvl% parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%the_spell%~ END
-		  PATCH_IF (%abil_range% < 35) BEGIN
-			PATCH_IF (%abil_range% > 4) BEGIN
-			  LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
+		ACTION_IF (%lvl% != %spell_lvl%) BEGIN
+		  COPY_EXISTING ~%the_spell%.spl~ ~override/%priest_res%.spl~ 
+		  	WRITE_LONG 0x34 %lvl%
+			READ_LONG 0x64 abil_offset
+			READ_SHORT 0x68 abil_number
+			READ_BYTE (%abil_offset% + 0x0c) abil_target					
+			READ_SHORT (%abil_offset% + 0x0e) abil_range
+			READ_LONG 0x6a eff_offset
+			WHILE (%abil_number% > 0) BEGIN
+			  SET abil_number = (%abil_number% - 1)
+			  WRITE_SHORT (%abil_offset% + 0x26 + (0x28 * %abil_number%)) 1
 			END
-			PATCH_IF (%abil_range% < 5) BEGIN
-			  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END	// what the hell??  why did I do this??
- //			  LPF ALTER_SPELL_HEADER INT_VAR range = 2 END	// maybe this is what I meant to do
+			READ_BYTE (%eff_offset% + 0x02) eff_target
+			LPF DELETE_EFFECT INT_VAR match_probability2 = 0 END
+			PATCH_IF (%abil_target% = 4) BEGIN
+			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 148 target = 1 power = %lvl% parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%the_spell%~ END
+			  PATCH_IF (%abil_range% < 35) BEGIN
+				PATCH_IF (%abil_range% > 4) BEGIN
+					LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
+				END
+				PATCH_IF (%abil_range% < 5) BEGIN
+				  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END	// what the hell??  why did I do this??
+				END
+			  END
 			END
+			ELSE BEGIN
+			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = %eff_target% power = %lvl% parameter2 = 1 timing = 9 STR_VAR resource = EVAL ~%the_spell%~ END
+			END
+			READ_LONG 0x50 "valid"
+			PATCH_IF (%valid% >= 0) BEGIN 
+			  READ_STRREF 0x50 ~desc~
+			  INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+				REPLACE_TEXTUALLY ~^Level:.*$~ ~Level: %lvl%~
+				REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]Sphere:.*$~ ~~
+				REPLACE_TEXTUALLY ~^Range:~ ~Sphere: %desc_sph% %WNL%Range:~
+			  END
+			  SAY_EVALUATED 0x50 ~%new_desc%~
+			END
+		  IF_EXISTS BUT_ONLY
+		  COPY_EXISTING ~%sphere%.spl~ ~override~ 
+			LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%priest_res%~ END
+		  IF_EXISTS BUT_ONLY
+		  ACTION_IF (%lvl% = 1) OR (%lvl% = 7) BEGIN
+			COPY_EXISTING ~%fsphere%.spl~ ~override~
+			  LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%priest_res%~ END
+			BUT_ONLY
 		  END
 		END
-		ELSE BEGIN
-		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 power = %lvl% parameter1 = 0 parameter2 = 1 timing = 2 STR_VAR resource = EVAL ~%the_spell%~ END
+		ACTION_IF (%lvl% < 4) BEGIN
+		  COPY_EXISTING ~%the_spell%.spl~ ~override/%minor_res%.spl~ 
+			PATCH_IF (%d5_minor_shift% = 1) BEGIN
+			  WRITE_LONG 0x34 %mlvl%
+			END
+			PATCH_IF (%d5_minor_shift% = 0) BEGIN
+			  WRITE_LONG 0x34 %lvl%
+			END
+			READ_LONG 0x64 abil_offset
+			READ_SHORT 0x68 abil_number
+			READ_BYTE (%abil_offset% + 0x0c) abil_target
+			READ_SHORT (%abil_offset% + 0x0e) abil_range
+			READ_LONG 0x6a eff_offset
+			WHILE (%abil_number% > 0) BEGIN
+			  SET abil_number = (%abil_number% - 1)
+			  WRITE_SHORT (%abil_offset% + 0x26 + (0x28 * %abil_number%)) 1
+			END
+			READ_BYTE (%eff_offset% + 0x02) eff_target
+			LPF DELETE_EFFECT INT_VAR match_probability2 = 0 END
+			PATCH_IF (%abil_target% = 4) BEGIN
+			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 148 target = 1 power = %lvl% parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%the_spell%~ END
+			  PATCH_IF (%abil_range% < 35) BEGIN
+				PATCH_IF (%abil_range% > 4) BEGIN
+				  LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
+				END
+				PATCH_IF (%abil_range% < 5) BEGIN
+				  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END	// what the hell??  why did I do this??
+				END
+			  END
+			END
+			ELSE BEGIN
+			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = %eff_target% power = %lvl% parameter1 = 0 parameter2 = 1 timing = 2 STR_VAR resource = EVAL ~%the_spell%~ END
+			END
+		  IF_EXISTS BUT_ONLY
+		  COPY_EXISTING ~%msphere%.spl~ ~override~
+			LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%minor_res%~ END
+		  IF_EXISTS BUT_ONLY
 		END
-	  IF_EXISTS BUT_ONLY
-	  COPY_EXISTING ~%fsphere%.spl~ ~override~
-		LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%focus_res%~ END
-	  IF_EXISTS BUT_ONLY
-	END
-   END // end type = priest spells
+		ACTION_IF (1 < %lvl%) BEGIN
+		  COPY_EXISTING ~%the_spell%.spl~ ~override/%focus_res%.spl~ 	
+			WRITE_LONG 0x34 %flvl%
+			READ_LONG 0x64 abil_offset
+			READ_SHORT 0x68 abil_number
+			READ_BYTE (%abil_offset% + 0x0c) abil_target
+			READ_SHORT (%abil_offset% + 0x0e) abil_range
+			READ_LONG 0x6a eff_offset
+			WHILE (%abil_number% > 0) BEGIN
+			  SET abil_number = (%abil_number% - 1)
+			  WRITE_SHORT (%abil_offset% + 0x26 + (0x28 * %abil_number%)) 1
+			END
+//			READ_BYTE (%eff_offset% + 0x02) eff_target
+			LPF DELETE_EFFECT INT_VAR match_probability2 = 0 END
+			PATCH_IF (%abil_target% = 4) BEGIN
+			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 148 target = 1 power = %lvl% parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%the_spell%~ END
+			  PATCH_IF (%abil_range% < 35) BEGIN
+				PATCH_IF (%abil_range% > 4) BEGIN
+				  LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
+				END
+				PATCH_IF (%abil_range% < 5) BEGIN
+				  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END	// what the hell??  why did I do this??
+//				  LPF ALTER_SPELL_HEADER INT_VAR range = 2 END	// maybe this is what I meant to do
+				END
+			  END
+			END
+			ELSE BEGIN
+			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 power = %lvl% parameter1 = 0 parameter2 = 1 timing = 2 STR_VAR resource = EVAL ~%the_spell%~ END
+			END
+		  IF_EXISTS BUT_ONLY
+		  COPY_EXISTING ~%fsphere%.spl~ ~override~
+			LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%focus_res%~ END
+		  IF_EXISTS BUT_ONLY
+		END
+	   END // end type = priest spells
 //
-   ELSE BEGIN // non-priest spells: make clones
-// NOTE: STRIP OUT 216 EFFECTS FROM TNB LEVEL 1 CANTRIPS
-	COPY_EXISTING ~%the_spell%.spl~ ~override/%priest_res%.spl~ 
-	  WRITE_SHORT 0x1c 2
-	  LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
-	  WRITE_LONG 0x34 %lvl%
-	  READ_LONG 0x50 "valid"
-	  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-		READ_STRREF 0x50 ~desc~
-		INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-		  REPLACE_TEXTUALLY ~^Level:.*$~ ~Level: %lvl%~
-		  REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]Sphere:.*$~ ~~
-		  REPLACE_TEXTUALLY ~^Range:~ ~Sphere: %desc_sph% %WNL%Range:~
-		END
-		SAY_EVALUATED 0x50 ~%new_desc%~
-	  END
-	COPY_EXISTING ~%sphere%.spl~ ~override~
-	  LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%priest_res%~ END
-	IF_EXISTS BUT_ONLY
-	ACTION_IF (%lvl% = 7) BEGIN
-	  COPY_EXISTING ~%fsphere%.spl~ ~override~
-		LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%priest_res%~ END
-	  IF_EXISTS BUT_ONLY
-	END
-	ACTION_IF (%lvl% < 4) BEGIN
-	  ACTION_IF (%d5_minor_shift% > 0) BEGIN
-		COPY_EXISTING ~%the_spell%.spl~ ~override/%minor_res%.spl~ 
+	   ELSE BEGIN // non-priest spells: make clones
+//	 NOTE: STRIP OUT 216 EFFECTS FROM TNB LEVEL 1 CANTRIPS
+		COPY_EXISTING ~%the_spell%.spl~ ~override/%priest_res%.spl~ 
 		  WRITE_SHORT 0x1c 2
 		  LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
-		  WRITE_LONG 0x34 %mlvl%
-		IF_EXISTS BUT_ONLY
-		COPY_EXISTING ~%msphere%.spl~ ~override~
-		  LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%minor_res%~ END
-		IF_EXISTS BUT_ONLY
-	  END
-	  ACTION_IF (%d5_minor_shift% = 0) BEGIN
-		COPY_EXISTING ~%msphere%.spl~ ~override~
+		  WRITE_LONG 0x34 %lvl%
+		  READ_LONG 0x50 "valid"
+		  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+			READ_STRREF 0x50 ~desc~
+			INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+			  REPLACE_TEXTUALLY ~^Level:.*$~ ~Level: %lvl%~
+			  REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]Sphere:.*$~ ~~
+			  REPLACE_TEXTUALLY ~^Range:~ ~Sphere: %desc_sph% %WNL%Range:~
+			END
+			SAY_EVALUATED 0x50 ~%new_desc%~
+		  END
+		COPY_EXISTING ~%sphere%.spl~ ~override~
 		  LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%priest_res%~ END
 		IF_EXISTS BUT_ONLY
+		ACTION_IF (%lvl% = 7) BEGIN
+		  COPY_EXISTING ~%fsphere%.spl~ ~override~
+			LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%priest_res%~ END
+		  IF_EXISTS BUT_ONLY
+		END
+		ACTION_IF (%lvl% < 4) BEGIN
+		  ACTION_IF (%d5_minor_shift% > 0) BEGIN
+			COPY_EXISTING ~%the_spell%.spl~ ~override/%minor_res%.spl~ 
+			  WRITE_SHORT 0x1c 2
+			  LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
+			  WRITE_LONG 0x34 %mlvl%
+			IF_EXISTS BUT_ONLY
+			COPY_EXISTING ~%msphere%.spl~ ~override~
+			  LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%minor_res%~ END
+			IF_EXISTS BUT_ONLY
+		  END
+		  ACTION_IF (%d5_minor_shift% = 0) BEGIN
+			COPY_EXISTING ~%msphere%.spl~ ~override~
+			  LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%priest_res%~ END
+			IF_EXISTS BUT_ONLY
+		  END
+		END
+		ACTION_IF (%lvl% > 1) BEGIN
+		  COPY_EXISTING ~%the_spell%.spl~ ~override/%focus_res%.spl~ 	
+			WRITE_SHORT 0x1c 2
+			LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
+			WRITE_LONG 0x34 %flvl%
+		  IF_EXISTS BUT_ONLY
+		  COPY_EXISTING ~%fsphere%.spl~ ~override~
+			LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%focus_res%~ END
+		  IF_EXISTS BUT_ONLY
+		END
+	   END
 	  END
+	 END
 	END
-	ACTION_IF (%lvl% > 1) BEGIN
-	  COPY_EXISTING ~%the_spell%.spl~ ~override/%focus_res%.spl~ 	
-		WRITE_SHORT 0x1c 2
-		LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
-		WRITE_LONG 0x34 %flvl%
-	  IF_EXISTS BUT_ONLY
-	  COPY_EXISTING ~%fsphere%.spl~ ~override~
-		LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%focus_res%~ END
-	  IF_EXISTS BUT_ONLY
-	END
-   END
   END
- END
-END
-END
 BUT_ONLY
 //__________________________________________________________________________________
 
@@ -892,6 +786,9 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 //__________________________________________________________________________________
 
 
+LAM ~BACKFILL_FNP_KIT_INFO~
+
+
 END // end create spheres function
 
 
@@ -903,43 +800,29 @@ DEFINE_ACTION_FUNCTION universal_spells BEGIN
 
 //finally, make sure universal spells are universal_________________________________
 //
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5altsph.2da~) BEGIN
-  ACTION_PHP_EACH spellsphere AS spl => sph BEGIN 
-	ACTION_IF (~%sph%~ STRING_EQUAL_CASE ~universal~) BEGIN
-	  ACTION_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~%spl%~)) BEGIN
-		LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%spl%~ RET spell_res spell_num END
-		OUTER_TEXT_SPRINT the_spell ~%spell_res%~
+COPY_EXISTING ~d5spsph.2da~ ~override~
+  READ_2DA_ENTRIES_NOW rows 4
+  FOR (row = 0; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY_FORMER rows row 0 spl
+	READ_2DA_ENTRY_FORMER rows row 2 sph
+	PATCH_IF (~%sph%~ STRING_EQUAL_CASE ~universal~) BEGIN
+	  PATCH_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~%spl%~)) BEGIN
+		LPF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%spl%~ RET spell_res spell_num END
+		TEXT_SPRINT the_spell ~%spell_res%~
 	  END
 	  ELSE BEGIN
-		OUTER_TEXT_SPRINT the_spell ~%spl%~
+		TEXT_SPRINT the_spell ~%spl%~
 	  END  
-	  ACTION_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ BEGIN
-		COPY_EXISTING ~%the_spell%.spl~ ~override~
-		  WRITE_BYTE 0x21 (THIS BAND 0b00111111)
-		BUT_ONLY
-	  END
+	  PATCH_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ BEGIN
+		INNER_ACTION BEGIN
+		  COPY_EXISTING ~%the_spell%.spl~ ~override~
+			WRITE_BYTE 0x21 (THIS BAND 0b00111111)
+		  BUT_ONLY
+		END
+	 END
 	END
   END
-END
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5altsph.2da~) BEGIN
-  ACTION_PHP_EACH alt_spheres AS spl => sph BEGIN
-	ACTION_IF (~%sph%~ STRING_EQUAL_CASE ~universal~) BEGIN
-	  ACTION_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~%spl%~)) BEGIN
-		LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%spl%~ RET spell_res spell_num END
-		OUTER_TEXT_SPRINT the_spell ~%spell_res%~
-	  END
-	  ELSE BEGIN
-		OUTER_TEXT_SPRINT the_spell ~%spl%~
-	  END  
-	  ACTION_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ BEGIN
-		COPY_EXISTING ~%the_spell%.spl~ ~override~
-		  WRITE_BYTE 0x21 (THIS BAND 0b00111111)
-		BUT_ONLY
-	  END
-	END
-  END
-END
-
+BUT_ONLY
 //__________________________________________________________________________________
 
 END // end universal spells function
@@ -950,7 +833,6 @@ END // end universal spells function
 
 
 DEFINE_ACTION_FUNCTION apply_spheres BEGIN
-
 
 INCLUDE ~faiths_and_powers/lib/hla_actions.tpa~
 
@@ -1039,7 +921,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~clastext.2da~) BEGIN
 */
 END
 ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
-//	APPEND ~%goo%.2da~ ~SPHERES     AP_D5SPMEM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+//	APPEND ~%goo%.2da~ ~SPHERES     GA_D5SPMEM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 	ACTION_IF (%roo% = 3) OR  
  			(%roo% = 11) OR  
  			(%roo% = 8) OR  
@@ -1067,21 +949,16 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 	  COPY ~faiths_and_powers/spheres/hlas/lucmxyz.2da~ ~override/lub_%goo_1%.2da~
 	END
 	ACTION_PHP_EACH d5_fnp_spheres AS sphere => val BEGIN
-	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5altsph.2da~) BEGIN
-		OUTER_SPRINT ~text_sphere~ ~%sphere%~
-	  END
-	  ACTION_IF (FILE_EXISTS_IN_GAME ~d5altsph.2da~) BEGIN
-		COPY_EXISTING ~d5altsph.2da~ ~override~
-		  READ_2DA_ENTRIES_NOW rows 2
-		  FOR (row = 0; row < rows; ++row) BEGIN
-			READ_2DA_ENTRY_FORMER rows row 0 ~fnp_sphere~
-			READ_2DA_ENTRY_FORMER rows row 1 ~alt_sphere~
-			PATCH_IF (~%sphere%~ STRING_EQUAL_CASE ~%fnp_sphere%~) BEGIN
-			  SPRINT ~text_sphere~ ~%alt_sphere%~
-			END
+	  COPY_EXISTING ~d5altsph.2da~ ~override~
+		READ_2DA_ENTRIES_NOW rows 2
+		FOR (row = 0; row < rows; ++row) BEGIN
+		  READ_2DA_ENTRY_FORMER rows row 0 ~fnp_sphere~
+		  READ_2DA_ENTRY_FORMER rows row 1 ~alt_sphere~
+		  PATCH_IF (~%sphere%~ STRING_EQUAL_CASE ~%fnp_sphere%~) BEGIN
+			SPRINT ~text_sphere~ ~%alt_sphere%~
 		  END
-		BUT_ONLY
-	  END
+		END
+	  BUT_ONLY
 	  ACTION_IF (VARIABLE_IS_SET $d5_fnp_kit_sphere_access(~%sphere%~ ~%goo%~)) BEGIN
 		OUTER_TEXT_SPRINT access $d5_fnp_kit_sphere_access(~%sphere%~ ~%goo%~)
 		OUTER_INNER_PATCH ~%sphere%~ BEGIN
@@ -1204,10 +1081,13 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 	  END
 	END
 END
-
 COPY_EXISTING ~QD_MCP01.spl~ ~override~
-  LPF DELETE_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~QD_MCP01~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 duration = 0 STR_VAR resource = ~QD_MCP01~ END
+  LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = EVAL ~QD#MCP01~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 9 STR_VAR resource = EVAL ~QD#MCP01~ END
+IF_EXISTS BUT_ONLY
+COPY_EXISTING ~QD_MCD01.spl~ ~override~
+  LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = EVAL ~QD#MCD01~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 9 STR_VAR resource = EVAL ~QD#MCD01~ END
 IF_EXISTS BUT_ONLY
 //___________________________________________________________________________________
 

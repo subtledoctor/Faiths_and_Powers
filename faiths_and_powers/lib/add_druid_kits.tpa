@@ -3,7 +3,7 @@
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							BASE DRUID
+//								BASE DRUID
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -116,8 +116,6 @@ COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
 	  
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF druid_forest_spheres RET_ARRAY ~d5dfor_spheres~ = druid_forest_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -143,6 +141,7 @@ COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5dfor~
+	sphere_list		= ~druid_forest_spheres~
 	class 			= ~druid~
  END
 
@@ -210,8 +209,6 @@ COPY ~faiths_and_powers/kits/druids/732_totemic/totemic.2da~ ~override/clabdr02.
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF druid_forest_spheres RET_ARRAY ~clabdr02_spheres~ = druid_forest_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -237,6 +234,7 @@ COPY ~faiths_and_powers/kits/druids/732_totemic/totemic.2da~ ~override/clabdr02.
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~clabdr02~
+	sphere_list		= ~druid_forest_spheres~
 	class 			= ~druid~
  END
 
@@ -248,7 +246,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//						AVENGER -> HIVEKEEPER DRUID
+//							AVENGER -> HIVEKEEPER DRUID
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -338,8 +336,6 @@ APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell_res%  ****        ****
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF druid_hivekeeper_spheres RET_ARRAY ~clabdr04_spheres~ = druid_hivekeeper_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -365,6 +361,7 @@ APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell_res%  ****        ****
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~clabdr04~
+	sphere_list		= ~druid_hivekeeper_spheres~
 	class 			= ~druid~
  END
 
@@ -376,7 +373,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							NORTHERN DRUID
+//								NORTHERN DRUID
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -470,8 +467,6 @@ COPY ~faiths_and_powers/kits/druids/735_arctic_druid/d5drsc5.eff~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF druid_northern_spheres RET_ARRAY ~d5darc_spheres~ = druid_northern_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -497,6 +492,7 @@ COPY ~faiths_and_powers/kits/druids/735_arctic_druid/d5drsc5.eff~ ~override~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5darc~
+	sphere_list		= ~druid_northern_spheres~
 	class 			= ~druid~
  END
 
@@ -509,7 +505,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							SHADOW DRUID
+//								SHADOW DRUID
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -650,8 +646,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF druid_shadow_spheres RET_ARRAY ~d5dshad_spheres~ = druid_shadow_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -677,6 +671,7 @@ END
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5dshad~
+	sphere_list		= ~druid_shadow_spheres~
 	class 			= ~druid~
  END
 
@@ -690,7 +685,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							GRAY DRUID
+//								GRAY DRUID
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -802,8 +797,6 @@ COPY ~faiths_and_powers/kits/druids/737_gray_druid/d5drss8.eff~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF druid_gray_spheres RET_ARRAY ~d5dgray_spheres~ = druid_gray_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -829,6 +822,7 @@ COPY ~faiths_and_powers/kits/druids/737_gray_druid/d5drss8.eff~ ~override~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5dgray~
+	sphere_list		= ~druid_gray_spheres~
 	class 			= ~druid~
  END
 
@@ -841,7 +835,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							LOST DRUID
+//								LOST DRUID
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -973,8 +967,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF druid_lost_spheres RET_ARRAY ~d5dlost_spheres~ = druid_lost_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1000,6 +992,7 @@ END
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5dlost~
+	sphere_list		= ~druid_lost_spheres~
 	class 			= ~druid~
  END
 //__________________________________________________________________________________
@@ -1186,589 +1179,6 @@ END
 END // end lost druid macro
 //__________________________________________________________________________________
 
-
-/*
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//							FIGHTER/DRUID
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-DEFINE_ACTION_FUNCTION fighter_druid BEGIN
-
-ADD_KIT ~D5_DR_FIGHTER~
-
-//WEAPON PROFICIENCIES_______________________________________________________________
-//11                                     T   S           F   Q             S S
-//10             L S                     W   C           L   U             W I
-//9              A M             B L S   O   I   W       A   A             O N
-//8              R A             A O H   H   M   A       I   R C   S       R G
-//7              G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6              E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5              S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4              W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3              O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2              R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1              D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_DR_FIGHTER   0 2 2 0 2 2 0 2~
-~D5_DR_FIGHTER   0 2 2 0 2 2 0 2 0 0 0 0 0 0 2 2 0 2 2 0 2 0 2 0 2 2 2 2 2 0 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-
-//MINIMUM KIT STATS_________________________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_FIGHTER       9   0   0   0   12  0~
-
-//KIT STAT MODIFIERS________________________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_FIGHTER       0   0   0   0   0   0~
-
-//REQUIREMENTS TO DUAL TO THIS KIT__________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_FIGHTER       17  0   0   0   17  0~
-
-//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_FIGHTER        15  0   0   0   15  0~
-
-//ALIGNMENT RESTRICTIONS____________________________________________________________
-//                 LG LN LE NG TN NE CG CN CE
-~D5_DR_FIGHTER       0  1  0  1  1  1  0  1  0~
-
-//DUAL CLASS OPTIONS________________________________________________________________
-//                 FT CL MA TH DR RA
-~D5_DR_FIGHTER       0  0  0  0  0  0~
-
-//KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/druids/741_fighter_druid/d5drfi.2da~
-
-//RACIAL KIT AVAILABILITY_____________________________________________________________
-~K_FC_D  K_FC_E  K_FC_G  K_FC_H  K_FC_HE  K_FC_HL  K_FC_HO~
-
-//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
-//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
-//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
-//         Monk = 20
-~0x08000000 8~ // totemic flag
-
-//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
-~Dr0~
-
-//TOB STARTING EQUIPMENT_____________________________________________________________
-~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
-
-//CHARACTER CREATION KIT DESCRIPTION________________________________________________
-SAY @74100
-SAY @74102
-SAY @74103
-
-//EE KIT EXTRAS______________________________________________________________________
-// 
-ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
-	LAF fl#add_kit_ee
-		INT_VAR
-			briefdesc = RESOLVE_STR_REF (@74103)
-		STR_VAR
-			kit_name = D5_DR_FIGHTER
-			clswpbon = ~1 0 2~
-	END
-END
-
-//MULTICLASS DRUID FILES______________________________________________________________
-//
-COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5dfor.2da~ ~override/d5drfi.2da~
-COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
-APPEND ~d5drfi.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
-  COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
-	SAY NAME1 @73111
-	SAY UNIDENTIFIED_DESC @73112
-  COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
-END
-
-//MULTICLASS KIT______________________________________________________________________
-//
-ACTION_IF FILE_EXISTS_IN_GAME ~d5drfi.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_DR_FIGHTER~ 
-		kit_clab = ~d5drfi~
-		base_class = ~P~
-  END
-END 
-
-//DEFINE SPHERE ACCESS______________________________________________________________
-//
- LAF druid_forest_spheres RET_ARRAY ~d5drfi_spheres~ = druid_forest_spheres_array END
-
- LAF ~DEFINE_FNP_KIT_INFO~
-  INT_VAR
-	u_leather_armor 	= 1
-	u_chain_armor 		= 0
-	u_plate_armor 		= 0
-	u_club_staff	 	= 2
-	u_hammers	 		= 0
-	u_maces 	 		= 0
-	u_flails 			= 0
-	u_axes 				= 0
-	u_daggers 			= 2
-	u_short_swords		= 0
-	u_long_swords		= 0
-	u_scimitars 		= 0
-	u_katanas 			= 0
-	u_bastard_swords 	= 0
-	u_2hand_swords 		= 0
-	u_halberds 			= 0
-	u_spears 	 		= 2
-	u_darts 			= 2
-	u_slings	 		= 2
-	u_bows 				= 2
-	u_crossbows 		= 0
-  STR_VAR
-    clab_name 		= ~d5drfi~
-	class 			= ~fighter_cleric~
- END
-
-END
-//__________________________________________________________________________________
-
-
-
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//							DRUID/MAGE
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-DEFINE_ACTION_FUNCTION druid_mage BEGIN
-
-ADD_KIT ~D5_DR_MAGE~
-
-//WEAPON PROFICIENCIES_______________________________________________________________
-//11                                     T   S           F   Q             S S
-//10             L S                     W   C           L   U             W I
-//9              A M             B L S   O   I   W       A   A             O N
-//8              R A             A O H   H   M   A       I   R C   S       R G
-//7              G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6              E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5              S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4              W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3              O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2              R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1              D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_DR_MAGE      0 0 0 0 1 1 0 1~
-~D5_DR_MAGE      0 1 0 0 1 1 0 1 0 0 1 0 0 0 1 1 0 1 1 0 1 0 1 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-
-//MINIMUM KIT STATS_________________________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_MAGE          0   0   0   0   11  0~
-
-//KIT STAT MODIFIERS________________________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_MAGE          0   0   0   0   0   0~
-
-//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_MAGE          0   0   0   0   17  0~
-
-//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_MAGE          0   0   0   0   15  0~
-
-//ALIGNMENT RESTRICTIONS____________________________________________________________
-//                 LG LN LE NG TN NE CG CN CE
-~D5_DR_MAGE          0  1  0  1  1  1  0  1  0~
-
-//DUAL CLASS OPTIONS________________________________________________________________
-//                 FT CL MA TH DR RA
-~D5_DR_MAGE          0  0  0  0  0  0~
-
-//KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/druids/743_druid_mage/d5drma.2da~
-
-//RACIAL KIT AVAILABILITY_____________________________________________________________
-~K_CM_D  K_CM_E  K_CM_G  K_CM_H  K_CM_HE  K_CM_HL  K_CM_HO~
-
-//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
-//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
-//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
-//         Monk = 20
-~0x08000000 14~ // totemic flag
-
-//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
-~CM0~
-
-//TOB STARTING EQUIPMENT_____________________________________________________________
-~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
-
-//CHARACTER CREATION KIT DESCRIPTION________________________________________________
-SAY @74300
-SAY @74102
-SAY @74103
-
-//EE KIT EXTRAS______________________________________________________________________
-// 
-ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
-	LAF fl#add_kit_ee
-		INT_VAR
-			briefdesc = RESOLVE_STR_REF (@74103)
-		STR_VAR
-			kit_name = D5_DR_MAGE
-			clswpbon = ~0 0 3~
-	END
-END
-
-//MULTICLASS DRUID FILES______________________________________________________________
-//
-COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5dfor.2da~ ~override/d5drma.2da~
-COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
-APPEND ~d5drma.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
-  COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
-	SAY NAME1 @73111
-	SAY UNIDENTIFIED_DESC @73112
-  COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
-END
-
-//MULTICLASS KIT______________________________________________________________________
-//
-ACTION_IF FILE_EXISTS_IN_GAME ~d5drma.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_DR_MAGE~ 
-		kit_clab = ~d5drma~
-		base_class = ~P~
-  END
-END 
-
-//DEFINE SPHERE ACCESS______________________________________________________________
-//
- LAF druid_forest_spheres RET_ARRAY ~d5drma_spheres~ = druid_forest_spheres_array END
-
- LAF ~DEFINE_FNP_KIT_INFO~
-  INT_VAR
-	u_leather_armor 	= 1
-	u_chain_armor 		= 0
-	u_plate_armor 		= 0
-	u_club_staff	 	= 1
-	u_hammers	 		= 0
-	u_maces 	 		= 0
-	u_flails 			= 0
-	u_axes 				= 0
-	u_daggers 			= 1
-	u_short_swords		= 0
-	u_long_swords		= 0
-	u_scimitars 		= 0
-	u_katanas 			= 0
-	u_bastard_swords 	= 0
-	u_2hand_swords 		= 0
-	u_halberds 			= 0
-	u_spears 	 		= 1
-	u_darts 			= 1
-	u_slings	 		= 1
-	u_bows 				= 1
-	u_crossbows 		= 0
-  STR_VAR
-    clab_name 		= ~d5drma~
-	class 			= ~cleric_mage~
- END
-
-END
-//__________________________________________________________________________________
-
-
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//							DRUID/RANGER
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-DEFINE_ACTION_FUNCTION druid_ranger BEGIN
-
-ADD_KIT ~D5_DR_RANGER~
-
-//WEAPON PROFICIENCIES________________________________________________________________
-//11                                     T   S           F   Q             S S
-//10             L S                     W   C           L   U             W I
-//9              A M             B L S   O   I   W       A   A             O N
-//8              R A             A O H   H   M   A       I   R C   S       R G
-//7              G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6              E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5              S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4              W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3              O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2              R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1              D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_DR_RANGER    0 2 2 0 2 2 0 2~
-~D5_DR_RANGER    0 2 2 0 2 2 0 2 0 0 0 0 0 0 2 2 0 2 2 0 2 0 2 0 2 2 2 2 2 0 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-
-//MINIMUM KIT STATS_________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_RANGER        0   0   9   0   11  0~
-
-//KIT STAT MODIFIERS________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_RANGER        0   0   0   0   0   0~
-
-//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_RANGER        0   0   17  0   17  0~
-
-//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_RANGER        0   0   15  0   15  0~
-
-//ALIGNMENT RESTRICTIONS____________________________________________________________
-//                  LG LN LE NG TN NE CG CN CE
-~D5_DR_RANGER        0  1  0  1  1  1  0  1  0~
-
-//DUAL CLASS OPTIONS________________________________________________________________
-//                  FT CL MA TH DR RA
-~D5_DR_RANGER        0  0  0  0  0  0~
-
-//KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/druids/745_druid_ranger/d5drra.2da~
-
-//RACIAL KIT AVAILABILITY_____________________________________________________________
-~K_CR_D  K_CR_E  K_CR_G  K_CR_H  K_CR_HE  K_CR_HL  K_CR_HO~
-
-//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
-//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
-//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
-//         Monk = 20
-~0x08000000 18~ // totemic flag
-
-//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
-~CR0~
-
-//TOB STARTING EQUIPMENT_____________________________________________________________
-~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
-
-//CHARACTER CREATION KIT DESCRIPTION________________________________________________
-SAY @74500
-SAY @74102
-SAY @74102
-
-//EE KIT EXTRAS______________________________________________________________________
-// 
-ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
-	LAF fl#add_kit_ee
-		INT_VAR
-			briefdesc = RESOLVE_STR_REF (@74103)
-		STR_VAR
-			kit_name = D5_DR_RANGER
-			clswpbon = ~1 0 2~
-	END
-END
-
-//MULTICLASS DRUID FILES______________________________________________________________
-//
-COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5dfor.2da~ ~override/d5drra.2da~
-COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
-APPEND ~d5drra.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
-  COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
-	SAY NAME1 @73111
-	SAY UNIDENTIFIED_DESC @73112
-  COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
-END
-
-//MULTICLASS KIT______________________________________________________________________
-//
-ACTION_IF FILE_EXISTS_IN_GAME ~d5drra.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_DR_RANGER~ 
-		kit_clab = ~d5drra~
-		base_class = ~P~
-  END
-END 
-
-//DEFINE SPHERE ACCESS______________________________________________________________
-//
- LAF druid_forest_spheres RET_ARRAY ~d5drra_spheres~ = druid_forest_spheres_array END
-
- LAF ~DEFINE_FNP_KIT_INFO~
-  INT_VAR
-	u_leather_armor 	= 1
-	u_chain_armor 		= 0
-	u_plate_armor 		= 0
-	u_club_staff	 	= 2
-	u_hammers	 		= 0
-	u_maces 	 		= 0
-	u_flails 			= 0
-	u_axes 				= 0
-	u_daggers 			= 2
-	u_short_swords		= 0
-	u_long_swords		= 0
-	u_scimitars 		= 0
-	u_katanas 			= 0
-	u_bastard_swords 	= 0
-	u_2hand_swords 		= 0
-	u_halberds 			= 0
-	u_spears 	 		= 2
-	u_darts 			= 2
-	u_slings	 		= 2
-	u_bows 				= 2
-	u_crossbows 		= 0
-  STR_VAR
-    clab_name 		= ~d5drra~
-	class 			= ~ranger_cleric~
- END
-
-END
-//__________________________________________________________________________________
-
-
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//							DRUID/THIEF
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-DEFINE_ACTION_FUNCTION druid_thief BEGIN
-
-ADD_KIT ~D5_DR_THIEF~
-
-//WEAPON PROFICIENCIES________________________________________________________________
-//11                                     T   S           F   Q             S S
-//10             L S                     W   C           L   U             W I
-//9              A M             B L S   O   I   W       A   A             O N
-//8              R A             A O H   H   M   A       I   R C   S       R G
-//7              G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6              E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5              S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4              W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3              O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2              R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1              D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_DR_THIEF     0 0 0 0 1 1 0 1~
-~D5_DR_THIEF     0 1 0 0 1 1 0 1 0 1 1 0 0 0 1 1 0 1 0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-
-//MINIMUM KIT STATS_________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_THIEF         0   9   0   0   11  0~
-
-//KIT STAT MODIFIERS________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_THIEF         0   0   0   0   0   0~
-
-//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_THIEF         0   17  0   0   17  0~
-
-//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_THIEF         0   15  0   0   15  0~
-
-//ALIGNMENT RESTRICTIONS____________________________________________________________
-//                  LG LN LE NG TN NE CG CN CE
-~D5_DR_THIEF         0  1  0  1  1  1  0  1  0~
-
-//DUAL CLASS OPTIONS________________________________________________________________
-//                  FT CL MA TH DR RA
-~D5_DR_THIEF         0  0  0  0  0  0~
-
-//KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/druids/747_druid_thief/d5drth.2da~
-
-//RACIAL KIT AVAILABILITY_____________________________________________________________
-~K_CT_D  K_CT_E  K_CT_G  K_CT_H  K_CT_HE  K_CT_HL  K_CT_HO~
-
-//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
-//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
-//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
-//         Monk = 20
-~0x08000000 15~ // totemic flag
-
-//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
-~CT0~
-
-//TOB STARTING EQUIPMENT_____________________________________________________________
-~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
-
-//CHARACTER CREATION KIT DESCRIPTION________________________________________________
-SAY @74700
-SAY @74102
-SAY @74103
-
-//EE KIT EXTRAS______________________________________________________________________
-// 
-ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
-	LAF fl#add_kit_ee
-		INT_VAR
-			briefdesc = RESOLVE_STR_REF (@74103)
-		STR_VAR
-			kit_name = D5_DR_THIEF
-			clswpbon = ~0 0 3~
-	END
-END
-
-//MULTICLASS DRUID FILES______________________________________________________________
-//
-COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5dfor.2da~ ~override/d5drth.2da~
-COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
-APPEND ~d5drth.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
-  COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
-	SAY NAME1 @73111
-	SAY UNIDENTIFIED_DESC @73112
-  COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
-END
-
-
-//MULTICLASS KIT______________________________________________________________________
-//
-ACTION_IF FILE_EXISTS_IN_GAME ~d5drth.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_DR_THIEF~ 
-		kit_clab = ~d5drth~
-		base_class = ~P~
-  END
-END 
-
-//DEFINE SPHERE ACCESS______________________________________________________________
-//
- LAF druid_forest_spheres RET_ARRAY ~d5drth_spheres~ = druid_forest_spheres_array END
-
- LAF ~DEFINE_FNP_KIT_INFO~
-  INT_VAR
-	u_leather_armor 	= 1
-	u_chain_armor 		= 0
-	u_plate_armor 		= 0
-	u_club_staff	 	= 1
-	u_hammers	 		= 0
-	u_maces 	 		= 0
-	u_flails 			= 0
-	u_axes 				= 0
-	u_daggers 			= 1
-	u_short_swords		= 0
-	u_long_swords		= 0
-	u_scimitars 		= 0
-	u_katanas 			= 0
-	u_bastard_swords 	= 0
-	u_2hand_swords 		= 0
-	u_halberds 			= 0
-	u_spears 	 		= 1
-	u_darts 			= 1
-	u_slings	 		= 1
-	u_bows 				= 1
-	u_crossbows 		= 0
-  STR_VAR
-    clab_name 		= ~d5drth~
-	class 			= ~cleric_thief~
- END
-
-END
-//__________________________________________________________________________________
-
-*/
 
 
 

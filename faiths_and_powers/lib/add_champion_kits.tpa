@@ -2,7 +2,7 @@
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							CHAMPION OF TYR
+//								CHAMPION OF TYR
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -126,8 +126,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF tyr_spheres RET_ARRAY ~b_ch01_spheres~ = tyr_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -152,7 +150,8 @@ END
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ch01~
+    clab_name 		= ~b_ch01~
+	sphere_list		= ~tyr_spheres~
 	class 			= ~champion~
  END
 
@@ -301,8 +300,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF kelemvor_spheres RET_ARRAY ~b_ch02_spheres~ = kelemvor_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -327,7 +324,8 @@ END
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ch02~
+    clab_name 		= ~b_ch02~
+	sphere_list		= ~kelemvor_spheres~
 	class 			= ~champion~
  END
 
@@ -445,8 +443,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF kelemvor_spheres RET_ARRAY ~b_ch02_spheres~ = kelemvor_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -471,7 +467,8 @@ END
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ch02~
+    clab_name 		= ~b_ch02~
+	sphere_list		= ~kelemvor_spheres~
 	class 			= ~champion~
  END
 
@@ -610,8 +607,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF tempus_spheres RET_ARRAY ~b_ch03_spheres~ = tempus_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -636,7 +631,8 @@ END
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ch03~
+    clab_name 		= ~b_ch03~
+	sphere_list		= ~tempus_spheres~
 	class 			= ~champion~
  END
 
@@ -773,8 +769,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF bane_spheres RET_ARRAY ~b_ch04_spheres~ = bane_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -799,7 +793,8 @@ END
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ch04~
+    clab_name 		= ~b_ch04~
+	sphere_list		= ~bane_spheres~
 	class 			= ~champion~
  END
 
@@ -926,8 +921,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF bane_spheres RET_ARRAY ~b_ch04_spheres~ = bane_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -952,7 +945,8 @@ END
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ch04~
+    clab_name 		= ~b_ch04~
+	sphere_list		= ~bane_spheres~
 	class 			= ~champion~
  END
 
@@ -1075,8 +1069,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF helm_spheres RET_ARRAY ~b_ch05_spheres~ = helm_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1101,7 +1093,8 @@ END
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ch05~
+    clab_name 		= ~b_ch05~
+	sphere_list		= ~helm_spheres~
 	class 			= ~champion~
  END
 
@@ -1214,8 +1207,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF helm_spheres RET_ARRAY ~b_ch05_spheres~ = helm_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1240,7 +1231,8 @@ END
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ch05~
+    clab_name 		= ~b_ch05~
+	sphere_list		= ~helm_spheres~
 	class 			= ~champion~
  END
 
@@ -1360,8 +1352,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF talos_spheres RET_ARRAY ~b_ch06_spheres~ = talos_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1386,7 +1376,8 @@ END
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ch06~
+    clab_name 		= ~b_ch06~
+	sphere_list		= ~talos_spheres~
 	class 			= ~champion~
  END
 
@@ -1496,8 +1487,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF talos_spheres RET_ARRAY ~b_ch06_spheres~ = talos_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1522,7 +1511,8 @@ END
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ch06~
+    clab_name 		= ~b_ch06~
+	sphere_list		= ~talos_spheres~
 	class 			= ~champion~
  END
 
@@ -1643,8 +1633,6 @@ COPY ~faiths_and_powers/kits/champions/807_Moradin/b_mor02.itm~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF moradin_spheres RET_ARRAY ~b_ch07_spheres~ = moradin_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1669,7 +1657,8 @@ COPY ~faiths_and_powers/kits/champions/807_Moradin/b_mor02.itm~ ~override~
 	u_bows 				= 0
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ch07~
+    clab_name 		= ~b_ch07~
+	sphere_list		= ~moradin_spheres~
 	class 			= ~champion~
  END
 
@@ -1803,8 +1792,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF azuth_spheres RET_ARRAY ~b_ch08_spheres~ = azuth_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1829,7 +1816,8 @@ END
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ch08~
+    clab_name 		= ~b_ch08~
+	sphere_list		= ~azuth_spheres~
 	class 			= ~champion~
  END
 
@@ -1953,8 +1941,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF redknight_spheres RET_ARRAY ~b_ch09_spheres~ = redknight_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1979,7 +1965,8 @@ END
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ch09~
+    clab_name 		= ~b_ch09~
+	sphere_list		= ~redknight_spheres~
 	class 			= ~champion~
  END
 

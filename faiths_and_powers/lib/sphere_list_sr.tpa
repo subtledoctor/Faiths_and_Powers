@@ -1,5 +1,8 @@
-
-// sphere names
+// SPHERE NAMES___________________________________________________________________
+//
+// You can define the names of your spheres in the right-hand column
+// There can be 23 spheres at most; they must correspond to the FnP spheres
+// So DO NOT change anything in the left column.
 
 <<<<<<<< d5/d5altsph.2da
 2DA
@@ -28,7 +31,6 @@ Magic 			Magic
 Perdition 		Perdition
 >>>>>>>> 
 
-COPY ~d5/d5altsph.2da~ ~override~
 //____________________________________________________________________________________
 
 // spell spheres
@@ -41,378 +43,334 @@ COPY ~d5/d5altsph.2da~ ~override~
 // simply change the entry in the right-most column to the new sphere.
 // You don't have to actually move the spell, though you can if you want to.
 
-ACTION_DEFINE_ASSOCIATIVE_ARRAY spellsphere BEGIN
-
 //  UNIVERSAL
 // 	universal spells will be available to every kit, regardless of their defined sphere assignments
 // 	this "sphere" MUST MUST MUST have at least one spell of each spell level
 // 	and their spell level MUST NOT be changed from the vanilla game
 // 	those are the rules you MUST abide by if you want to change which spells are uiniversal
 
-//  'ALL' / UNIVERSAL
+<<<<<<<< d5/d5spsph.2da
+2DA V1.0 
+SPELL
+			LEVEL		FnP_SPHERE		DESC_SPHERE
+CLERIC_BLESS                          	0	=	Universal
+CLERIC_CHANT                          	0	=	Universal
+CLERIC_RESIST_ELEMENTS 	              	0	=	Universal
+CLERIC_PRAYER                         	0	=	Universal
+CLERIC_DISPEL_MAGIC                   	0	=	Universal
+CLERIC_REMOVE_CURSE                   	0	=	Universal
+CLERIC_LESSER_RESTORATION             	0	=	Universal
+CLERIC_RECITATION                     	0	=	Universal
+CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL	0	=	Universal
+CLERIC_WONDROUS_RECALL                	0	=	Universal
+CLERIC_HOLY_WORD                      	0	=	Universal
+CLERIC_UNHOLY_WORD                    	0	=	Universal
+CLERIC_CURE_LIGHT_WOUNDS              	1	=	Life
+CLERIC_SLOW_POISON                    	1	=	Life
+sppr215                               	2	=	Life // SR cure moderate
+CLERIC_CURE_MEDIUM_WOUNDS             	3	=	Life
+CLERIC_CURE_SERIOUS_WOUNDS            	4	=	Life
+CLERIC_CURE_CRITICAL_WOUNDS           	5	=	Life
+CLERIC_MASS_CURE                      	5	=	Life
+CLERIC_RAISE_DEAD                     	6	=	Life
+CLERIC_HEAL                           	6	=	Life
+CLERIC_RESURRECTION                   	7	=	Life
+b_c104                               	1	=	Death // eyes of the dead
+b_c105                               	1	=	Death // disrupt undead
+WIZARD_LARLOCH_MINOR_DRAIN            	1	=	Death
+b_c202                              	2	=	Death // pacify the dead
+WIZARD_HOLD_UNDEAD                    	2	=	Death
+CLERIC_CIRCLE_OF_BONES                	3	=	Death
+CLERIC_ANIMATE_DEAD                   	4	=	Death
+CLERIC_UNDEAD_WARD                    	4	=	Death
+CLERIC_MASS_CAUSE_LIGHT_WOUNDS        	5	=	Death
+CLERIC_SLAY_LIVING                    	5	=	Death
+CLERIC_RECALL_SPIRIT                  	5	=	Death
+WIZARD_SOUL_EATER                     	6	=	Death
+WIZARD_CARRION                         	6	=	Death // sr skeleton warrior
+CLERIC_SYMBOL_DEATH                   	7	=	Death
+CLERIC_FINGER_OF_DEATH                	7	=	Death
+CLERIC_ABUNDANT_AMMO                  	1	=	Creation
+WIZARD_GREASE                         	1	=	Creation 
+WIZARD_GLITTERDUST                    	2	=	Creation 
+WIZARD_WEB                            	3	=	Creation
+CLERIC_STAR_METAL_CUDGEL              	4	=	Creation
+CLERIC_BLADE_BARRIER                  	6	=	Creation
+WIZARD_PRISMATIC_SPRAY                	7	=	Creation
+b_pr101                             	1	=	Destruction // holy smite
+CLERIC_CAUSE_LIGHT_WOUNDS             	1	=	Destruction
+b_pr201                             	2	=	Destruction // shatter
+CLERIC_CAUSE_MODERATE_WOUNDS          	2	=	Destruction
+WIZARD_KNOCK                          	2	=	Destruction // SR battering ram
+CLERIC_CAUSE_MEDIUM_WOUNDS            	3	=	Destruction
+CLERIC_HOLY_SMITE                     	3	=	Destruction
+CLERIC_UNHOLY_BLIGHT                  	3	=	Destruction
+b_pr401                             	4	=	Destruction // shout
+CLERIC_CAUSE_SERIOUS_WOUNDS           	4	=	Destruction
+CLERIC_CAUSE_CRITICAL_WOUNDS          	5	=	Destruction
+WIZARD_DEATH_SPELL                    	5	=	Destruction // sr banishment
+CLERIC_HARM                           	6	=	Destruction
+WIZARD_DISINTEGRATE                   	6	=	Destruction
+WIZARD_CACOFIEND                      	7	=	Destruction
+CLERIC_DESTRUCTION                    	7	=	Destruction
+CLERIC_PROTECT_FROM_EVIL              	1	=	Protection
+CLERIC_ARMOR_OF_FAITH                 	1	=	Protection
+WIZARD_SHIELD                         	2	=	Protection
+CLERIC_NEGATIVE_PLANE_PROTECTION      	2	=	Protection
+CLERIC_GLYPH_OF_WARDING               	3	=	Protection
+CLERIC_DEATH_WARD                     	3	=	Protection
+CLERIC_PROTECTION_FROM_EVIL_10_FOOT   	4	=	Protection
+CLERIC_REPULSE_UNDEAD                 	5	=	Protection // sr repulsion
+CLERIC_SHIELD_OF_LATHANDER            	5	=	Protection
+CLERIC_PHYSICAL_MIRROR                	6	=	Protection
+CLERIC_SHIELD_OF_THE_ARCHONS          	7	=	Protection
+CLERIC_GREATER_SHIELD_OF_LATHANDER    	7	=	Protection
+CLERIC_REMOVE_FEAR                    	1	=	War
+CLERIC_ABUNDANT_AMMO                  	1	=	War
+CLERIC_SPIRITUAL_HAMMER               	2	=	War
+CLERIC_STRENGTH_OF_ONE                	3	=	War
+CLERIC_HOLY_POWER                     	3	=	War
+CLERIC_DEFENSIVE_HARMONY              	4	=	War
+CLERIC_CHAMPIONS_STRENGTH             	5	=	War
+CLERIC_RIGHTEOUS_MAGIC                	5	=	War
+CLERIC_BOLT_OF_GLORY                  	6	=	War
+CLERIC_BLADE_BARRIER                  	6	=	War
+CLERIC_SYMBOL_FEAR                    	7	=	War //  SR symbol weakness
+WIZARD_PFP_OLD                        	1	=	Exploration // exped. retreat... need to add for non-IWDEE
+WIZARD_PROTECTION_FROM_PETRIFICATION  	1	=	Exploration // SR exped. retreat
+CLERIC_FIND_TRAPS                     	1	=	Exploration
+MAZZY_HASTE                           	2	=	Exploration
+CLERIC_FREE_ACTION                    	3	=	Exploration
+WIZARD_EYE                            	4	=	Exploration
+WIZARD_DIMENSION_DOOR                 	5	=	Exploration
+WIZARD_TELEPORT_FIELD                 	6	=	Exploration
+WIZARD_IMPROVED_HASTE                 	6	=	Exploration
+WIZARD_FREEDOM                        	7	=	Exploration
+CLERIC_ETHER_GATE                     	7	=	Exploration
+WIZARD_INFRAVISION                    	1	=	Knowledge // SR true strike
+CLERIC_DETECT_EVIL                    	1	=	Knowledge
+CLERIC_KNOW_ALIGNMENT                 	2	=	Knowledge // sr know opponent
+CLERIC_FIND_TRAPS                     	2	=	Knowledge
+WIZARD_CLAIRVOYANCE                   	2	=	Knowledge
+CLERIC_INVISIBILITY_PURGE             	3	=	Knowledge
+CLERIC_FAR_SIGHT                      	3	=	Knowledge
+WIZARD_DETECT_ILLUSION                	4	=	Knowledge
+WIZARD_ORACLE                         	5	=	Knowledge
+CLERIC_TRUE_SIGHT                     	6	=	Knowledge
+WIZARD_CONTINGENCY                    	7	=	Knowledge
+WIZARD_REFLECTED_IMAGE                	1	=	Deception
+WIZARD_BLUR                           	2	=	Deception
+WIZARD_INVISIBILITY                   	3	=	Deception
+WIZARD_NON_DETECTION                  	3	=	Deception
+WIZARD_MIRROR_IMAGE                   	4	=	Deception
+WIZARD_INVISIBILITY_10_FOOT           	5	=	Deception
+WIZARD_MISLEAD                        	6	=	Deception
+CLERIC_PIXIE_DUST                     	6	=	Deception
+WIZARD_SIMULACRUM                     	7	=	Deception
+CLERIC_COMMAND                        	1	=	Thought
+CLERIC_ENTHRALL                       	2	=	Thought
+CLERIC_FORBID                         	2	=	Thought
+CLERIC_CHARM_PERSON                   	2	=	Thought
+CLERIC_EXALTATION                     	3	=	Thought
+CLERIC_DICTATE                        	3	=	Thought
+CLERIC_RIGID_THINKING                 	3	=	Thought
+CLERIC_MENTAL_DOMINATION              	4	=	Thought
+CLERIC_BLOOD_RAGE                     	4	=	Thought
+WIZARD_EMOTION_HOPE                   	4	=	Thought
+WIZARD_EMOTION_COURAGE                	5	=	Thought
+CLERIC_CHAOTIC_COMMANDS               	5	=	Thought
+CLERIC_GREATER_COMMAND                	5	=	Thought
+CLERIC_CONFUSION                      	6	=	Thought
+CLERIC_NATURE_BEAUTY                  	7	=	Thought
+CLERIC_IMPERVIOUS_SANCTITY_OF_MIND    	7	=	Thought
+CLERIC_CURSE                          	1	=	Dread
+CLERIC_DOOM                           	1	=	Dread
+CLERIC_HOLD_PERSON                    	2	=	Dread
+b_c201                              	2	=	Dread // forbiddance
+CLERIC_CLOAK_OF_FEAR                  	3	=	Dread
+WIZARD_GREATER_MALISON                	4	=	Dread
+WIZARD_EMOTION_FEAR                   	4	=	Dread
+b_c501                               	5	=	Dread // misfire
+WIZARD_EMOTION_HOPELESSNESS           	5	=	Dread
+WIZARD_CHAOS                          	5	=	Dread // SR waves of fatigue
+CLERIC_SPIRITUAL_WRATH                	6	=	Dread
+CLERIC_SYMBOL_OF_HOPELESSNESS         	7	=	Dread
+sppr117                             	1	=	Vigor // SR regenerate 1
+CLERIC_UNFAILING_ENDURANCE            	1	=	Vigor
+CLERIC_SLOW_POISON                    	1	=	Vigor
+sppr217                             	2	=	Vigor // SR regenerate 2
+CLERIC_CURE_DISEASE                   	2	=	Vigor
+CLERIC_REMOVE_PARALYSIS               	2	=	Vigor
+sppr323                             	3	=	Vigor // SR regenerate 3
+CLERIC_DRAW_UPON_HOLY_MIGHT           	3	=	Vigor
+CLERIC_FAVOR_OF_ILMATER               	3	=	Vigor
+sppr419                             	4	=	Vigor // SR regenerate 4
+CLERIC_NEUTRALIZE_POISON              	4	=	Vigor
+sppr524                             	5	=	Vigor // SR regenerate 5
+CLERIC_ANIMAL_RAGE                    	5	=	Vigor
+CLERIC_REGENERATE                     	6	=	Vigor
+CLERIC_RESTORATION                    	7	=	Vigor
+CLERIC_CAUSE_DISEASE                  	1	=	Affliction
+WIZARD_RAY_OF_ENFEEBLEMENT            	2	=	Affliction
+CLERIC_MOLD_TOUCH                     	3	=	Affliction
+CLERIC_POISON                         	4	=	Affliction
+WIZARD_CONTAGION                      	4	=	Affliction
+b_pr501                             	5	=	Affliction // waves of agony
+CLERIC_CLOUD_OF_PESTILENCE            	5	=	Affliction
+CLERIC_DOLOROUS_DECAY                 	6	=	Affliction
+CLERIC_SYMBOL_OF_PAIN                 	6	=	Affliction
+CLERIC_WITHER                         	7	=	Affliction
+CLERIC_SYMBOL_STUN                    	7	=	Affliction
+b_c102                              	1	=	Animal // animal eyes
+sppr120                             	1	=	Animal // SR Animal Summon 1
+CLERIC_HOLD_ANIMAL                    	1	=	Animal
+sppr220                             	2	=	Animal // SR Animal Summon 2
+CLERIC_BEAST_CLAW                     	2	=	Animal
+sppr320                             	3	=	Animal // SR Animal Summon 3
+CLERIC_FERAL_INSTINCT                 	3	=	Animal
+sppr324                             	3	=	Animal // SR Magic Fang
+CLERIC_SUMMON_INSECTS                 	3	=	Animal
+CLERIC_ANIMAL_SUMMONING_1             	4	=	Animal
+CLERIC_GIANT_INSECT                   	4	=	Animal
+CLERIC_ANIMAL_SUMMONING_2             	5	=	Animal
+sppr525                             	5	=	Animal // SR Animal Growth
+CLERIC_INSECT_PLAGUE                  	5	=	Animal
+CLERIC_ANIMAL_RAGE                    	5	=	Animal
+CLERIC_ANIMAL_SUMMONING_3             	6	=	Animal
+sppr716                                	7	=	Animal // SR Animal Summon 7
+CLERIC_CREEPING_DOOM                  	7	=	Animal
+CLERIC_ENTANGLE                       	1	=	Plant
+CLERIC_SHILLELAGH                     	1	=	Plant
+CLERIC_GOOD_BERRIES                 	1	=	Plant
+CLERIC_GOODBERRY                      	2	=	Plant
+CLERIC_BARKSKIN                       	2	=	Plant
+CLERIC_THORN_SPRAY                    	3	=	Plant
+CLERIC_SNARE                          	3	=	Plant
+sppr325                             	4	=	Plant // SR spike growth
+CLERIC_CALL_WOODLAND_BEINGS           	5	=	Plant
+b_c601                              	6	=	Plant // assassin vines
+b_pr601                             	6	=	Plant // nature's wrath
+d5pr601                              	6	=	Plant // nature's wrath
+CLERIC_CONJURE_EARTH_ELEMENTAL        	7	=	Plant // SR shambling mound
+sppr115                             	1	=	Earth // SR strength of stone
+CLERIC_CAMOUFLAGE                    	1	=	Earth
+CLERIC_MAGIC_STONE                    	2	=	Earth
+b_pr301                                	3	=	Earth // stone fist
+CLERIC_STAR_METAL_CUDGEL              	4	=	Earth
+CLERIC_SPIKE_STONES                   	4	=	Earth
+CLERIC_IRONSKIN                       	5	=	Earth
+WIZARD_STONE_TO_FLESH                 	5	=	Earth
+WIZARD_FLESH_TO_STONE                 	6	=	Earth
+sppr622                             	6	=	Earth // SR Earth elemental
+CLERIC_EARTHQUAKE                     	7	=	Earth
+WIZARD_IRON_BODY                      	7	=	Earth // need to add for non-IWD
+CLERIC_ZONE_OF_SWEET_AIR              	1	=	Air
+WIZARD_BLINDNESS                      	1	=	Air // SR obscuring mist
+WIZARD_STINKING_CLOUD                 	2	=	Air
+sppr322                              	3	=	Air // SR storm shield
+CLERIC_CLOUDBURST                     	3	=	Air
+b_c401                               	4	=	Air // stormwall
+CLERIC_CALL_LIGHTNING                 	4	=	Air
+sppr522                             	5	=	Air // SR pro. lightning
+CLERIC_STATIC_CHARGE                  	5	=	Air
+CLERIC_WHIRLWIND                      	5	=	Air
+sppr621                             	6	=	Air // SR air elemental
+CLERIC_ENTROPY_SHIELD                 	6	=	Air
+WIZARD_CHAIN_LIGHTNING                	6	=	Air
+WIZARD_DEATH_FOG                      	7	=	Air
+CLERIC_AERIAL_SERVANT                 	7	=	Air
+b_c103                               	1	=	Water // frost fingers
+CLERIC_WATERY_FIST                    	2	=	Water
+b_c203                                 	2	=	Water // ice blade
+WIZARD_ICELANCE                       	3	=	Water
+CLERIC_SMASHING_WAVE                  	4	=	Water
+b_w432                                  4	=	Water // vitriolic sphere
+WIZARD_CONE_OF_COLD                   	4	=	Water
+sppr520                             	5	=	Water // SR pro. acid
+sppr521                             	5	=	Water // SR pro. cold
+WIZARD_ICE_STORM                      	5	=	Water
+CLERIC_MIST_OF_ELDATH                 	6	=	Water
+b_pr602                             	6	=	Water // water elemental
+WIZARD_ACID_STORM                     	7	=	Water
+WIZARD_BURNING_HANDS                  	1	=	Fire
+CLERIC_RESIST_FIRE                    	1	=	Fire
+CLERIC_RESIST_FIRE_AND_COLD           	1	=	Fire
+CLERIC_FLAME_BLADE                    	2	=	Fire
+WIZARD_AGANNAZAR_SCORCHER             	2	=	Fire
+sppr216                                	3	=	Fire // SR Fire trap
+CLERIC_PROTECTION_FROM_FIRE           	3	=	Fire
+WIZARD_FLAME_ARROW                    	4	=	Fire
+CLERIC_PRODUCE_FIRE                   	4	=	Fire
+sppr523                               	5	=	Fire // SR pro. Fire
+WIZARD_FIRE_SHIELD_RED                	5	=	Fire
+CLERIC_FLAME_STRIKE                   	5	=	Fire
+CLERIC_CONJURE_FIRE_ELEMENTAL         	6	=	Fire
+CLERIC_FIRE_SEEDS                     	6	=	Fire
+CLERIC_FIRE_STORM                     	7	=	Fire
+sppr114                             	1	=	Light // SR faerie fire
+CLERIC_SUNSCORCH                      	1	=	Light
+WIZARD_GLITTERDUST                    	2	=	Light
+CLERIC_ALICORN_LANCE                  	2	=	Light 
+CLERIC_MOONBLADE                      	3	=	Light
+CLERIC_WALL_OF_MOONLIGHT              	4	=	Light
+CLERIC_FALSE_DAWN                     	5	=	Light
+CLERIC_SOL_SEARING_ORB                	6	=	Light
+CLERIC_SUNRAY                         	7	=	Light
+CLERIC_SANCTUARY                      	1	=	Shadow
+b_w206                                  2	=	Shadow // blindness
+b_c302                              	3	=	Shadow // cloak of darkness
+WIZARD_DEMI_SHADOW_MONSTERS           	4	=	Shadow
+WIZARD_PHANTOM_BLADE                  	4	=	Shadow
+WIZARD_SHADOW_DOOR                    	4	=	Shadow
+d5sh501                             	5	=	Shadow // SR summon shadows
+spsd02                               	5	=	Shadow // shadowstep
+WIZARD_SHADES                         	6	=	Shadow
+WIZARD_WRAITH_FORM                    	6	=	Shadow
+WIZARD_POWER_WORD_BLIND               	7	=	Shadow 
+CLERIC_SILENCE_15_FOOT                	1	=	Magic
+CLERIC_MISCAST_MAGIC                  	2	=	Magic
+CLERIC_DISPEL_MAGIC                   	3	=	Magic
+WIZARD_MINOR_SPELL_DEFLECTION         	3	=	Magic
+WIZARD_SECRET_WORD                    	4	=	Magic
+WIZARD_MINOR_SPELL_TURNING            	5	=	Magic
+WIZARD_BREACH                         	5	=	Magic
+CLERIC_MAGIC_RESISTANCE               	6	=	Magic
+WIZARD_GLOBE_OF_INVULNERABILITY       	6	=	Magic
+WIZARD_PIERCE_SHIELD                  	7	=	Magic
+CLERIC_SPIRIT_WARD                    	1	=	Perdition // modify to work against all planar creatures, maybe undead too?
+CLERIC_WRITHING_FOG                   	2	=	Perdition
+CLERIC_SPIRIT_FIRE                    	3	=	Perdition
+WIZARD_BELTYNS_BURNING_BLOOD          	4	=	Perdition // need to add for non-IWDEE
+CLERIC_SPIRITUAL_LOCK                 	5	=	Perdition // modify to work against all planar creatures
+WIZARD_CACOFIEND                      	6	=	Perdition
+WIZARD_MALAVONS_RAGE                  	7	=	Perdition // need to add for non-IWDEE
+WIZARD_SUMMON_FIEND                   	7	=	Perdition
+>>>>>>>>
 
-CLERIC_BLESS                           , 0 => Universal // level 1
-CLERIC_CHANT                           , 0 => Universal // level 2
-CLERIC_RESIST_ELEMENTS 	               , 0 => Universal // sppr210 - looks like SR's C_RFaC
-CLERIC_PRAYER                          , 0 => Universal // level 3
-CLERIC_DISPEL_MAGIC                    , 0 => Universal // level 3
-CLERIC_REMOVE_CURSE                    , 0 => Universal // level 3
-CLERIC_LESSER_RESTORATION              , 0 => Universal // level 4
-CLERIC_RECITATION                      , 0 => Universal // level 4
-CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL , 0 => Universal // level 5
-CLERIC_WONDROUS_RECALL                 , 0 => Universal // level 6
-CLERIC_HOLY_WORD                       , 0 => Universal // level 7
-CLERIC_UNHOLY_WORD                     , 0 => Universal // level 7
+/*
 
-//  LIFE
-CLERIC_CURE_LIGHT_WOUNDS               , 1 => Life
-sppr215 /* SR cure moderate*/          , 2 => Life
-//CLERIC_CURE_MODERATE_WOUNDS            , 2 => Life   //regenerate moderate wounds
-CLERIC_CURE_MEDIUM_WOUNDS              , 3 => Life
-CLERIC_CURE_SERIOUS_WOUNDS             , 4 => Life
-CLERIC_CURE_CRITICAL_WOUNDS            , 5 => Life
-CLERIC_MASS_CURE                       , 5 => Life
-CLERIC_RAISE_DEAD                      , 6 => Life
-CLERIC_HEAL                            , 6 => Life
-CLERIC_RESURRECTION                    , 7 => Life
+NOTES:
 
-//  DEATH
-b_c104 /*eyes of the dead*/            , 1 => Death
-b_c105 /*disrupt undead*/              , 1 => Death
-WIZARD_LARLOCH_MINOR_DRAIN             , 1 => Death
-b_c202 /*pacify the dead*/             , 2 => Death
-WIZARD_HOLD_UNDEAD                     , 2 => Death
-CLERIC_CIRCLE_OF_BONES                 , 3 => Death
-CLERIC_ANIMATE_DEAD                    , 4 => Death
-CLERIC_UNDEAD_WARD                     , 4 => Death
-CLERIC_MASS_CAUSE_LIGHT_WOUNDS         , 5 => Death
-CLERIC_SLAY_LIVING                     , 5 => Death
-CLERIC_RECALL_SPIRIT                   , 5 => Death // a 'good' spell in Death?
-WIZARD_SOUL_EATER                      , 6 => Death
-WIZARD_CARRION                          , 6 => Death //sr skeleton warrior
-CLERIC_SYMBOL_DEATH                    , 7 => Death
-CLERIC_FINGER_OF_DEATH                 , 7 => Death
+//CLERIC_CURE_MODERATE_WOUNDS  regenerate moderate wounds
 
-//  CREATION
+//d5clgol /*clay golem*/                	5
+//d5stgol /*stone golem*/               	6
+//d5jugol /*juggernaut golem*/          	7 // or make this the HLA...?
+//WIZARD_MORDENKAINENS_SWORD            	7 // or 6
+//WIZARD_IDENTIFY                       	1 => Knowledge  //  make cleric version
+//CLERIC_SPIRITUAL_CLARITY              	3 => Thought (does it duplicate exaltation?)
+//CLERIC_CONJURE_ANIMALS                	7 => Animal
+//CLERIC_SPIKE_GROWTH                   	3 => Plant // use new SR version instead ... ??
+//CLERIC_STALKER                        	7 => Plant // IWD shambling mound x2
+//CLERIC_CONJURE_EARTH_ELEMENTAL        	6 => Earth // use new SR version instead
+//CLERIC_STORM_SHELL                    	3 => Air // use new SR version instead
+//WIZARD_MELF_ACID_ARROW                	2 => Water
+//WIZARD_VITRIOLIC_SPHERE               	4 => Water
+// add enhanced Chameleon here         	2 => Shadow
 
-CLERIC_ABUNDANT_AMMO                   , 1 => Creation
-WIZARD_GREASE                          , 1 => Creation 
-WIZARD_GLITTERDUST                     , 2 => Creation 
-WIZARD_WEB                             , 3 => Creation
-CLERIC_STAR_METAL_CUDGEL               , 4 => Creation
-//d5clgol /*clay golem*/                 , 5
-//d5stgol /*stone golem*/                , 6
-//d5jugol /*juggernaut golem*/           , 7 // or make this the HLA...?
-//WIZARD_MORDENKAINENS_SWORD             , 7 // or 6
-CLERIC_BLADE_BARRIER                   , 6 => Creation
-WIZARD_PRISMATIC_SPRAY                 , 7 => Creation
+*/
+//___________________________________________________________________________________
 
-//  DESTRUCTION
-b_pr101 /*holy smite*/                 , 1 => Destruction
-//PALADIN_SMITE_EVIL                     , 1 => Destruction // use new Smite spell
-CLERIC_CAUSE_LIGHT_WOUNDS              , 1 => Destruction
-b_pr201 /*shatter*/                    , 2 => Destruction
-CLERIC_CAUSE_MODERATE_WOUNDS           , 2 => Destruction
-WIZARD_KNOCK                           , 2 => Destruction // SR battering ram
-CLERIC_CAUSE_MEDIUM_WOUNDS             , 3 => Destruction
-CLERIC_HOLY_SMITE                      , 3 => Destruction
-CLERIC_UNHOLY_BLIGHT                   , 3 => Destruction
-b_pr401 /*shout*/                      , 4 => Destruction
-CLERIC_CAUSE_SERIOUS_WOUNDS            , 4 => Destruction
-CLERIC_CAUSE_CRITICAL_WOUNDS           , 5 => Destruction
-WIZARD_DEATH_SPELL                     , 5 => Destruction  //sr banishment
-CLERIC_HARM                            , 6 => Destruction
-WIZARD_DISINTEGRATE                    , 6 => Destruction
-WIZARD_CACOFIEND                       , 7 => Destruction
-CLERIC_DESTRUCTION                     , 7 => Destruction
-
-//  PROTECTION
-CLERIC_PROTECT_FROM_EVIL               , 1 => Protection
-CLERIC_ARMOR_OF_FAITH                  , 1 => Protection
-WIZARD_SHIELD                          , 2 => Protection
-CLERIC_NEGATIVE_PLANE_PROTECTION       , 2 => Protection
-CLERIC_GLYPH_OF_WARDING                , 3 => Protection
-CLERIC_DEATH_WARD                      , 3 => Protection
-CLERIC_PROTECTION_FROM_EVIL_10_FOOT    , 4 => Protection
-CLERIC_REPULSE_UNDEAD                  , 5 => Protection // SR repulsion
-CLERIC_SHIELD_OF_LATHANDER             , 5 => Protection
-CLERIC_PHYSICAL_MIRROR                 , 6 => Protection
-CLERIC_SHIELD_OF_THE_ARCHONS           , 7 => Protection
-CLERIC_GREATER_SHIELD_OF_LATHANDER     , 7 => Protection
-
-//  WAR
-CLERIC_REMOVE_FEAR                     , 1 => War
-CLERIC_ABUNDANT_AMMO                   , 1 => War
-CLERIC_SPIRITUAL_HAMMER                , 2 => War
-CLERIC_STRENGTH_OF_ONE                 , 3 => War
-CLERIC_HOLY_POWER                      , 3 => War
-CLERIC_DEFENSIVE_HARMONY               , 4 => War
-CLERIC_CHAMPIONS_STRENGTH              , 5 => War
-CLERIC_RIGHTEOUS_MAGIC                 , 5 => War
-CLERIC_BOLT_OF_GLORY                   , 6 => War
-CLERIC_BLADE_BARRIER                   , 6 => War
-CLERIC_SYMBOL_FEAR                     , 7 => War // SR symbol weakness
-
-//  EXPLORATION
-WIZARD_PFP_OLD                         , 1 => Exploration // exped. retreat... need to add for non-IWDEE
-WIZARD_PROTECTION_FROM_PETRIFICATION   , 1 => Exploration // SR exped. retreat
-CLERIC_FIND_TRAPS                      , 1 => Exploration
-MAZZY_HASTE                            , 2 => Exploration
-CLERIC_FREE_ACTION                     , 3 => Exploration // move higher, make new low-level version
-WIZARD_EYE                             , 4 => Exploration
-WIZARD_DIMENSION_DOOR                  , 5 => Exploration
-WIZARD_TELEPORT_FIELD                  , 6 => Exploration
-WIZARD_IMPROVED_HASTE                  , 6 => Exploration
-WIZARD_FREEDOM                         , 7 => Exploration
-CLERIC_ETHER_GATE                      , 7 => Exploration
-
-//  KNOWLEDGE
-//WIZARD_IDENTIFY                        , 1 => Knowledge
-WIZARD_INFRAVISION                     , 1 => Knowledge // SR true strike
-CLERIC_DETECT_EVIL                     , 1 => Knowledge
-CLERIC_KNOW_ALIGNMENT                  , 2 => Knowledge // SR know opponent
-CLERIC_FIND_TRAPS                      , 2 => Knowledge
-WIZARD_CLAIRVOYANCE                    , 2 => Knowledge
-CLERIC_INVISIBILITY_PURGE              , 3 => Knowledge
-CLERIC_FAR_SIGHT                       , 3 => Knowledge
-WIZARD_DETECT_ILLUSION                 , 4 => Knowledge
-WIZARD_ORACLE                          , 5 => Knowledge
-CLERIC_TRUE_SIGHT                      , 6 => Knowledge
-WIZARD_CONTINGENCY                     , 7 => Knowledge
-
-//  DECEPTION
-WIZARD_REFLECTED_IMAGE                 , 1 => Deception
-WIZARD_BLUR                            , 2 => Deception
-WIZARD_INVISIBILITY                    , 3 => Deception
-WIZARD_NON_DETECTION                   , 3 => Deception
-WIZARD_MIRROR_IMAGE                    , 4 => Deception
-WIZARD_INVISIBILITY_10_FOOT            , 5 => Deception
-WIZARD_MISLEAD                         , 6 => Deception
-CLERIC_PIXIE_DUST                      , 6 => Deception
-WIZARD_SIMULACRUM                      , 7 => Deception
-
-//  THOUGHT/CHARM
-CLERIC_COMMAND                         , 1 => Thought
-CLERIC_ENTHRALL                        , 2 => Thought
-CLERIC_FORBID                          , 2 => Thought
-CLERIC_CHARM_PERSON                    , 2 => Thought
-CLERIC_EXALTATION                      , 3 => Thought
-CLERIC_DICTATE                         , 3 => Thought
-//CLERIC_SPIRITUAL_CLARITY               , 3 => Thought (does it duplicate exaltation?)
-CLERIC_RIGID_THINKING                  , 3 => Thought
-CLERIC_MENTAL_DOMINATION               , 4 => Thought
-CLERIC_BLOOD_RAGE                      , 4 => Thought
-WIZARD_EMOTION_HOPE                    , 4 => Thought
-WIZARD_EMOTION_COURAGE                 , 5 => Thought
-CLERIC_CHAOTIC_COMMANDS                , 5 => Thought
-CLERIC_GREATER_COMMAND                 , 5 => Thought
-CLERIC_CONFUSION                       , 6 => Thought
-CLERIC_NATURE_BEAUTY                   , 7 => Thought
-CLERIC_IMPERVIOUS_SANCTITY_OF_MIND     , 7 => Thought
-
-//  DREAD
-CLERIC_CURSE                           , 1 => Dread
-CLERIC_DOOM                            , 1 => Dread
-CLERIC_HOLD_PERSON                     , 2 => Universal
-b_c201 /*forbiddance*/                 , 2 => Dread
-CLERIC_CLOAK_OF_FEAR                   , 3 => Dread
-WIZARD_GREATER_MALISON                 , 4 => Dread
-WIZARD_EMOTION_FEAR                    , 4 => Dread
-b_c501 /*misfire*/                     , 5 => Dread
-WIZARD_EMOTION_HOPELESSNESS            , 5 => Dread
-WIZARD_CHAOS                           , 5 => Dread // SR waves of fatigue
-CLERIC_SPIRITUAL_WRATH                 , 6 => Dread
-CLERIC_SYMBOL_OF_HOPELESSNESS          , 7 => Dread
-
-//  VIGOR
-sppr117 /*SR regenerate 1*/            , 1 => Vigor
-CLERIC_UNFAILING_ENDURANCE             , 1 => Vigor
-CLERIC_SLOW_POISON                     , 1 => Vigor // universal
-sppr217 /*SR regenerate 2*/            , 2 => Vigor
-CLERIC_CURE_DISEASE                    , 2 => Vigor
-CLERIC_REMOVE_PARALYSIS                , 2 => Vigor
-sppr323 /*SR regenerate 3*/            , 3 => Vigor
-CLERIC_DRAW_UPON_HOLY_MIGHT            , 3 => Vigor
-CLERIC_FAVOR_OF_ILMATER                , 3 => Vigor
-sppr419 /*SR regenerate 4*/             , 4 => Vigor
-//CLERIC_NEUTRALIZE_POISON               , 4 => Vigor // why does this spell exist??
-//CLERIC_FREE_ACTION                     , 4 => Vigor
-sppr524 /*SR regenerate 5*/            , 5 => Vigor
-CLERIC_ANIMAL_RAGE                     , 5 => Vigor
-//WIZARD_TENSERS_TRANSFORMATION          , 6 => Vigor
-CLERIC_REGENERATE                      , 6 => Vigor
-CLERIC_RESTORATION                     , 7 => Vigor
-
-//  AFFLICTION
-CLERIC_CAUSE_DISEASE                   , 1 => Affliction
-WIZARD_RAY_OF_ENFEEBLEMENT             , 2 => Affliction
-CLERIC_MOLD_TOUCH                      , 3 => Affliction
-CLERIC_POISON                          , 4 => Affliction
-WIZARD_CONTAGION                       , 4 => Affliction
-b_pr501 /*waves of agony*/             , 5 => Affliction
-CLERIC_CLOUD_OF_PESTILENCE             , 5 => Affliction
-CLERIC_DOLOROUS_DECAY                  , 6 => Affliction
-CLERIC_SYMBOL_OF_PAIN                  , 6 => Affliction
-CLERIC_WITHER                          , 7 => Affliction
-CLERIC_SYMBOL_STUN                     , 7 => Affliction
-
-//  ANIMAL
-b_c102 /*animal eyes*/                 , 1 => Animal
-sppr120 /*SR Animal Summon 1*/         , 1 => Animal
-CLERIC_HOLD_ANIMAL                     , 1 => Animal
-sppr220 /*SR Animal Summon 2*/         , 2 => Animal
-CLERIC_BEAST_CLAW                      , 2 => Animal
-sppr320 /*SR Animal Summon 3*/         , 3 => Animal
-CLERIC_FERAL_INSTINCT                  , 3 => Animal
-sppr324 /*SR Magic Fang*/              , 3 => Animal
-CLERIC_SUMMON_INSECTS                  , 3 => Animal
-CLERIC_ANIMAL_SUMMONING_1              , 4 => Animal // SR AS4
-CLERIC_GIANT_INSECT                    , 4 => Animal
-CLERIC_ANIMAL_SUMMONING_2              , 5 => Animal // SR AS5
-sppr525 /*SR Animal Growth*/           , 5 => Animal
-CLERIC_INSECT_PLAGUE                   , 5 => Animal
-CLERIC_ANIMAL_RAGE                     , 5 => Animal
-CLERIC_ANIMAL_SUMMONING_3              , 6 => Animal // SR AS6
-sppr716 /*SR Animal Summon 7*/         , 7 => Animal
-//CLERIC_CONJURE_ANIMALS                 , 7 => Animal
-CLERIC_CREEPING_DOOM                   , 7 => Animal
-
-//  PLANT
-CLERIC_ENTANGLE                        , 1 => Plant
-CLERIC_SHILLELAGH                      , 1 => Plant
-//CLERIC_GOOD_BERRIES                  , 1 => Plant
-CLERIC_GOODBERRY                       , 2 => Plant
-CLERIC_BARKSKIN                        , 2 => Plant
-CLERIC_THORN_SPRAY                     , 3 => Plant
-//CLERIC_SPIKE_GROWTH                    , 3 => Plant // use new SR version instead ... ??
-CLERIC_SNARE                           , 3 => Plant
-sppr325 /*SR spike growth*/            , 4 => Plant
-CLERIC_CALL_WOODLAND_BEINGS            , 5 => Plant
-b_c601 /*assassin vines*/              , 6 => Plant
-b_pr601 /*nature's wrath*/             , 6 => Plant
-d5pr601 /*nature's wrath*/             , 6 => Plant
-CLERIC_CONJURE_EARTH_ELEMENTAL         , 7 => Plant // SR shambling mound
-//CLERIC_STALKER                         , 7 => Plant // IWD shambling mound x2
-
-//  EARTH
-sppr115 /*SR strength of stone*/       , 1 => Earth
-CLERIC_CAMOUFLAGE                     , 1 => Earth
-CLERIC_MAGIC_STONE                     , 2 => Earth
-//CLERIC_PROTECTION_FROM_LIGHTNING       , 2 => Earth
-b_pr301 /*stone fist*/                 , 3 => Earth
-CLERIC_STAR_METAL_CUDGEL               , 4 => Earth
-CLERIC_SPIKE_STONES                    , 4 => Earth
-CLERIC_IRONSKIN                        , 5 => Earth
-WIZARD_STONE_TO_FLESH                  , 5 => Earth
-WIZARD_FLESH_TO_STONE                  , 6 => Earth
-//CLERIC_CONJURE_EARTH_ELEMENTAL         , 6 => Earth // use new SR version instead
-sppr622 /*SR Earth elemental*/         , 6 => Earth
-CLERIC_EARTHQUAKE                      , 7 => Earth
-WIZARD_IRON_BODY                       , 7 => Earth  // need to add for non-IWD
-
-//  AIR
-CLERIC_ZONE_OF_SWEET_AIR               , 1 => Air
-WIZARD_BLINDNESS                       , 1 => Air // SR obscuring mist
-WIZARD_STINKING_CLOUD                  , 2 => Air
-//CLERIC_STORM_SHELL                     , 3 => Air // use new SR version instead
-sppr322 /*SR storm shield*/            , 3 => Air
-CLERIC_CLOUDBURST                      , 3 => Air
-b_c401 /*stormwall*/                   , 4 => Air
-CLERIC_CALL_LIGHTNING                  , 4 => Air
-sppr522 /*SR pro. lightning*/          , 5 => Air
-CLERIC_STATIC_CHARGE                   , 5 => Air
-CLERIC_WHIRLWIND                       , 5 => Air
-sppr621 /*SR air elemental*/           , 6 => Air
-CLERIC_ENTROPY_SHIELD                  , 6 => Air
-WIZARD_CHAIN_LIGHTNING                 , 6 => Air
-WIZARD_DEATH_FOG                       , 7 => Air
-CLERIC_AERIAL_SERVANT                  , 7 => Air
-
-//  WATER
-b_c103 /*frost fingers*/               , 1 => Water
-CLERIC_WATERY_FIST                     , 2 => Water
-b_c203 /*ice blade*/                   , 2 => Water
-//WIZARD_MELF_ACID_ARROW                 , 2 => Water
-WIZARD_ICELANCE                        , 3 => Water
-CLERIC_SMASHING_WAVE                   , 4 => Water
-//WIZARD_VITRIOLIC_SPHERE                , 4 => Water
-WIZARD_CONE_OF_COLD                    , 4 => Water
-sppr520 /*SR pro. acid*/               , 5 => Water
-sppr521 /*SR pro. cold*/               , 5 => Water
-WIZARD_ICE_STORM                       , 5 => Water
-CLERIC_MIST_OF_ELDATH                  , 6 => Water
-b_pr602 /*water elemental*/            , 6 => Water
-WIZARD_ACID_STORM                      , 7 => Water
-
-//  FIRE
-WIZARD_BURNING_HANDS                   , 1 => Fire
-CLERIC_RESIST_FIRE                     , 1 => Fire
-CLERIC_RESIST_FIRE_AND_COLD            , 1 => Fire // universal
-CLERIC_FLAME_BLADE                     , 2 => Fire
-WIZARD_AGANNAZAR_SCORCHER              , 2 => Fire
-sppr216 /*SR Fire trap*/               , 3 => Fire
-CLERIC_PROTECTION_FROM_FIRE            , 3 => Fire
-WIZARD_FLAME_ARROW                     , 4 => Fire
-CLERIC_PRODUCE_FIRE                    , 4 => Fire
-sppr523 /*SR pro. Fire*/               , 5 => Fire
-WIZARD_FIRE_SHIELD_RED                 , 5 => Fire
-CLERIC_FLAME_STRIKE                    , 5 => Fire
-CLERIC_CONJURE_FIRE_ELEMENTAL          , 6 => Fire
-CLERIC_FIRE_SEEDS                      , 6 => Fire
-CLERIC_FIRE_STORM                      , 7 => Fire
-
-//  LIGHT
-sppr114 /*SR faerie fire*/             , 1 => Light
-CLERIC_SUNSCORCH                       , 1 => Light
-WIZARD_GLITTERDUST                     , 2 => Light
-CLERIC_ALICORN_LANCE                   , 2 => Light 
-CLERIC_MOONBLADE                       , 3 => Light
-CLERIC_WALL_OF_MOONLIGHT               , 4 => Light
-CLERIC_FALSE_DAWN                      , 5 => Light
-CLERIC_SOL_SEARING_ORB                 , 6 => Light
-CLERIC_SUNRAY                          , 7 => Light
-
-//  SHADOW
-CLERIC_SANCTUARY                       , 1 => Shadow
-//WIZARD_BLINDNESS                       , 1 => Shadow // SR obscuring mist
-// add enhanced Chameleon here          , 2 => Shadow
-b_c302 /*cloak of darkness*/           , 3 => Shadow
-WIZARD_DEMI_SHADOW_MONSTERS            , 4 => Shadow
-WIZARD_PHANTOM_BLADE                   , 4 => Shadow
-WIZARD_SHADOW_DOOR                     , 4 => Shadow
-d5sh501 /*SR summon shadows*/          , 5 => Shadow
-spsd02 /*shadowstep*/                  , 5 => Shadow
-WIZARD_SHADES                          , 6 => Shadow
-WIZARD_WRAITH_FORM                     , 6 => Shadow
-WIZARD_POWER_WORD_BLIND                , 7 => Shadow 
-
-//  MAGIC
-CLERIC_SILENCE_15_FOOT                 , 1 => Magic
-CLERIC_MISCAST_MAGIC                   , 2 => Magic
-CLERIC_DISPEL_MAGIC                    , 3 => Magic
-WIZARD_MINOR_SPELL_DEFLECTION          , 3 => Magic
-WIZARD_SECRET_WORD                     , 4 => Magic
-WIZARD_MINOR_SPELL_TURNING             , 5 => Magic
-WIZARD_BREACH                          , 5 => Magic
-//CLERIC_WONDROUS_RECALL                 , 6 => Magic // universal
-CLERIC_MAGIC_RESISTANCE                , 6 => Magic
-WIZARD_GLOBE_OF_INVULNERABILITY        , 6 => Magic
-WIZARD_PIERCE_SHIELD                   , 7 => Magic
-
-//  PERDITION
-CLERIC_SPIRIT_WARD                     , 1 => Perdition // modify to work against all planar creatures, maybe undead too?
-CLERIC_WRITHING_FOG                    , 2 => Perdition
-CLERIC_SPIRIT_FIRE                     , 3 => Perdition
-WIZARD_BELTYNS_BURNING_BLOOD           , 4 => Perdition // need to add for non-IWDEE
-CLERIC_SPIRITUAL_LOCK                  , 5 => Perdition // modify to work against all planar creatures
-WIZARD_CACOFIEND                       , 6 => Perdition
-WIZARD_MALAVONS_RAGE                   , 7 => Perdition // need to add for non-IWDEE
-WIZARD_SUMMON_FIEND                    , 7 => Perdition
-
-//  DAMNATION/FIENDISH
-// ...nothing yet...
-
-END
 
 
 
@@ -426,7 +384,7 @@ DEFINE_ACTION_FUNCTION ur_priest_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ur_priest_spheres_array BEGIN
 	Life		 		=> x
 	Death		 		=> major
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> major
 	War		 			=> major
@@ -462,7 +420,7 @@ DEFINE_ACTION_FUNCTION auril_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY auril_spheres_array BEGIN
 	Life 				=> minor
 	Death 				=> minor
-	Benediction 		=> major
+	Creation 			=> x
 	Destruction 		=> major
 	Protection 			=> major
 	War 				=> minor
@@ -495,7 +453,7 @@ DEFINE_ACTION_FUNCTION azuth_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY azuth_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 		=> major
+	Creation 			=> major
 	Destruction 		=> major
 	Protection 			=> major
 	War 				=> x
@@ -528,7 +486,7 @@ DEFINE_ACTION_FUNCTION bane_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY bane_spheres_array BEGIN
 	Life				=> minor
 	Death 				=> major
-	Benediction 		=> x
+	Creation 			=> x
 	Destruction 		=> major
 	Protection 			=> minor
 	War 				=> major
@@ -561,7 +519,7 @@ DEFINE_ACTION_FUNCTION beshaba_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY beshaba_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> major
-	Benediction			=> major
+	Creation			=> x
 	Destruction		 	=> minor
 	Protection		 	=> major
 	War		 			=> x
@@ -594,7 +552,7 @@ DEFINE_ACTION_FUNCTION cyric_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY cyric_spheres_array BEGIN
 	Life		 		=> minor
 	Death		 		=> major
-	Benediction			=> minor
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> x
 	War		 			=> x
@@ -627,7 +585,7 @@ DEFINE_ACTION_FUNCTION deneir_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY deneir_spheres_array BEGIN
 	Life		 		=> minor
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> minor
 	Destruction		 	=> x
 	Protection		 	=> major
 	War		 			=> x
@@ -660,7 +618,7 @@ DEFINE_ACTION_FUNCTION garagos_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY garagos_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 	=> major
+	Creation 		=> x
 	Destruction 	=> major
 	Protection 		=> minor
 	War 			=> major
@@ -692,7 +650,7 @@ DEFINE_ACTION_FUNCTION helm_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY helm_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> minor
-	Benediction			=> major
+	Creation			=> major
 	Destruction		 	=> major
 	Protection		 	=> major
 	War		 			=> major
@@ -725,15 +683,15 @@ DEFINE_ACTION_FUNCTION ilmater_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ilmater_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> x
 	Destruction		 	=> minor
 	Protection		 	=> major
 	War		 			=> x
-	Exploration		  	=> x
+	Exploration		  	=> minor
 	Knowledge		 	=> major
 	Deception	 		=> x
 	Thought		 		=> minor
-	Dread		 		=> minor
+	Dread		 		=> major
 	Vigor		 		=> major
 	Affliction		 	=> major
 	Animal		 		=> x
@@ -758,7 +716,7 @@ DEFINE_ACTION_FUNCTION kelemvor_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY kelemvor_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> major
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> x
 	Protection		 	=> major
 	War		 			=> major
@@ -791,7 +749,7 @@ DEFINE_ACTION_FUNCTION kossuth_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY kossuth_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> minor
-	Benediction 		=> minor
+	Creation 			=> x
 	Destruction 		=> major
 	Protection 			=> major
 	War 				=> minor
@@ -824,7 +782,7 @@ DEFINE_ACTION_FUNCTION lathander_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY lathander_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> minor
 	Destruction		 	=> x
 	Protection		 	=> major
 	War		 			=> minor
@@ -857,7 +815,7 @@ DEFINE_ACTION_FUNCTION leira_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY leira_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> x
 	Destruction		 	=> x
 	Protection		 	=> minor
 	War		 			=> x
@@ -875,7 +833,7 @@ DEFINE_ACTION_FUNCTION leira_spheres
 	Air		 			=> x
 	Fire		 		=> x
 	Light	 			=> major
-	Shadow		 		=> minor
+	Shadow		 		=> major
 	Magic		 		=> minor
 	Perdition		    => x
  END
@@ -890,7 +848,7 @@ DEFINE_ACTION_FUNCTION loviatar_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY loviatar_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> major
-	Benediction			=> minor
+	Creation			=> minor
 	Destruction		 	=> minor
 	Protection		 	=> x
 	War		 			=> minor
@@ -923,7 +881,7 @@ DEFINE_ACTION_FUNCTION mask_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mask_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> minor
-	Benediction			=> minor
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> minor
 	War		 			=> x
@@ -932,7 +890,7 @@ DEFINE_ACTION_FUNCTION mask_spheres
 	Deception	 		=> major
 	Thought		 		=> minor
 	Dread		 		=> major
-	Vigor		 		=> x
+	Vigor		 		=> minor
 	Affliction		 	=> minor
 	Animal		 		=> x
 	Plant		 		=> x
@@ -956,7 +914,7 @@ DEFINE_ACTION_FUNCTION mielikki_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mielikki_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 		=> major
+	Creation 			=> minor
 	Destruction 		=> x
 	Protection 			=> minor
 	War 				=> x
@@ -989,7 +947,7 @@ DEFINE_ACTION_FUNCTION moander_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY moander_spheres_array BEGIN
 	Life		 		=> x
 	Death		 		=> major
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> x
 	War		 			=> x
@@ -1022,7 +980,7 @@ DEFINE_ACTION_FUNCTION mystra_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystra_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> major
 	Destruction		 	=> major
 	Protection		 	=> major
 	War		 			=> x
@@ -1055,7 +1013,7 @@ DEFINE_ACTION_FUNCTION oghma_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY oghma_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> minor
-	Benediction 		=> major
+	Creation 			=> major
 	Destruction 		=> minor
 	Protection 			=> major
 	War 				=> x
@@ -1088,7 +1046,7 @@ DEFINE_ACTION_FUNCTION redknight_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY redknight_spheres_array BEGIN
 	Life 				=> minor
 	Death 				=> minor
-	Benediction 		=> major
+	Creation 			=> minor
 	Destruction 		=> major
 	Protection 			=> major
 	War 				=> major
@@ -1121,16 +1079,16 @@ DEFINE_ACTION_FUNCTION selune_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY selune_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 		=> major
+	Creation 			=> x
 	Destruction 		=> x
 	Protection 			=> major
 	War 				=> minor
-	Exploration 		=> minor
+	Exploration 		=> major
 	Knowledge 			=> major
 	Deception 			=> minor
 	Thought 			=> major
 	Dread 				=> x
-	Vigor 				=> minor
+	Vigor 				=> major
 	Affliction 			=> minor
 	Animal 				=> x
 	Plant 				=> x
@@ -1154,7 +1112,7 @@ DEFINE_ACTION_FUNCTION shar_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY shar_spheres_array BEGIN
 	Life		 		=> minor
 	Death		 		=> major
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> minor
 	War		 			=> x
@@ -1187,7 +1145,7 @@ DEFINE_ACTION_FUNCTION shaundakul_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY shaundakul_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 		=> minor
+	Creation 			=> minor
 	Destruction 		=> x
 	Protection 			=> major
 	War 				=> x
@@ -1220,7 +1178,7 @@ DEFINE_ACTION_FUNCTION sune_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY sune_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> x
 	Destruction		 	=> x
 	Protection		 	=> minor
 	War		 			=> x
@@ -1253,7 +1211,7 @@ DEFINE_ACTION_FUNCTION talos_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY talos_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> major
 	War		 			=> minor
@@ -1262,7 +1220,7 @@ DEFINE_ACTION_FUNCTION talos_spheres
 	Deception	 		=> x
 	Thought		 		=> x
 	Dread		 		=> minor
-	Vigor		 		=> minor
+	Vigor		 		=> major
 	Affliction		 	=> minor
 	Animal		 		=> x
 	Plant		 		=> x
@@ -1286,7 +1244,7 @@ DEFINE_ACTION_FUNCTION tempus_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY tempus_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> major
 	Destruction		 	=> major
 	Protection		 	=> major
 	War		 			=> major
@@ -1319,7 +1277,7 @@ DEFINE_ACTION_FUNCTION torm_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY torm_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> major
-	Benediction			=> major
+	Creation			=> major
 	Destruction		 	=> minor
 	Protection		 	=> focus
 	War		 			=> major
@@ -1352,7 +1310,7 @@ DEFINE_ACTION_FUNCTION tymora_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY tymora_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> x
 	Destruction		 	=> minor
 	Protection		 	=> major
 	War		 			=> x
@@ -1361,7 +1319,7 @@ DEFINE_ACTION_FUNCTION tymora_spheres
 	Deception	 		=> minor
 	Thought		 		=> major
 	Dread		 		=> minor
-	Vigor		 		=> minor
+	Vigor		 		=> major
 	Affliction		 	=> x
 	Animal		 		=> x
 	Plant		 		=> x
@@ -1385,7 +1343,7 @@ DEFINE_ACTION_FUNCTION tyr_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY tyr_spheres_array BEGIN
 	Life				=> major
 	Death				=> minor
-	Benediction			=> major
+	Creation			=> major
 	Destruction			=> minor
 	Protection			=> major
 	War					=> major
@@ -1418,7 +1376,7 @@ DEFINE_ACTION_FUNCTION ulutiu_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ulutiu_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 		=> major
+	Creation 			=> x
 	Destruction 		=> x
 	Protection 			=> major
 	War 				=> minor
@@ -1432,7 +1390,7 @@ DEFINE_ACTION_FUNCTION ulutiu_spheres
 	Animal 				=> major
 	Plant 				=> x
 	Earth 				=> x
-	Water 				=> focus
+	Water 				=> major
 	Air 				=> minor
 	Fire 				=> x
 	Light 				=> minor
@@ -1451,7 +1409,7 @@ DEFINE_ACTION_FUNCTION umberlee_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY umberlee_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> major
 	War		 			=> minor
@@ -1484,7 +1442,7 @@ DEFINE_ACTION_FUNCTION xvim_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY xvim_spheres_array BEGIN
 	Life 				=> minor
 	Death 				=> major
-	Benediction 		=> major
+	Creation 			=> minor
 	Destruction 		=> major
 	Protection 			=> x
 	War 				=> major
@@ -1520,7 +1478,7 @@ DEFINE_ACTION_FUNCTION corellon_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY corellon_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 		=> major
+	Creation 			=> major
 	Destruction 		=> minor
 	Protection 			=> major
 	War 				=> major
@@ -1553,7 +1511,7 @@ DEFINE_ACTION_FUNCTION eilistraee_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY eilistraee_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 		=> major
+	Creation 			=> major
 	Destruction 		=> x
 	Protection 			=> major
 	War 				=> x
@@ -1586,11 +1544,11 @@ DEFINE_ACTION_FUNCTION baervan_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY baervan_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> x
 	Destruction		 	=> x
 	Protection		 	=> major
 	War		 			=> x
-	Exploration		  	=> minor
+	Exploration		  	=> major
 	Knowledge		 	=> minor
 	Deception	 		=> x
 	Thought		 		=> minor
@@ -1619,7 +1577,7 @@ DEFINE_ACTION_FUNCTION baravar_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY baravar_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> x
 	Destruction		 	=> x
 	Protection		 	=> minor
 	War		 			=> x
@@ -1652,8 +1610,8 @@ DEFINE_ACTION_FUNCTION clangeddin_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY clangeddin_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 		=> major
-	Destruction 		=> minor
+	Creation 			=> minor
+	Destruction 		=> major
 	Protection 			=> major
 	War 				=> major
 	Exploration 		=> x
@@ -1685,7 +1643,7 @@ DEFINE_ACTION_FUNCTION moradin_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY moradin_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 		=> major
+	Creation 			=> major
 	Destruction 		=> major
 	Protection 			=> major
 	War 				=> minor
@@ -1704,7 +1662,7 @@ DEFINE_ACTION_FUNCTION moradin_spheres
 	Fire 				=> x
 	Light 				=> minor
 	Shadow 				=> x
-	Magic 				=> x
+	Magic 				=> minor
 	Perdition  			=> x
  END
 END
@@ -1718,7 +1676,7 @@ DEFINE_ACTION_FUNCTION gruumsh_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY gruumsh_spheres_array BEGIN
 	Life 				=> minor
 	Death 				=> minor
-	Benediction 		=> minor
+	Creation 			=> minor
 	Destruction 		=> major
 	Protection 			=> minor
 	War 				=> major
@@ -1751,7 +1709,7 @@ DEFINE_ACTION_FUNCTION luthic_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY luthic_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> major
-	Benediction 		=> minor
+	Creation 			=> minor
 	Destruction 		=> major
 	Protection 			=> major
 	War 				=> minor
@@ -1787,7 +1745,7 @@ DEFINE_ACTION_FUNCTION druid_forest_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_forest_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -1820,7 +1778,7 @@ DEFINE_ACTION_FUNCTION druid_totemic_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_totemic_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -1853,7 +1811,7 @@ DEFINE_ACTION_FUNCTION druid_hivekeeper_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_hivekeeper_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -1886,7 +1844,7 @@ DEFINE_ACTION_FUNCTION druid_northern_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_northern_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -1919,7 +1877,7 @@ DEFINE_ACTION_FUNCTION druid_shadow_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_shadow_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -1952,7 +1910,7 @@ DEFINE_ACTION_FUNCTION druid_gray_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_gray_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -1985,7 +1943,7 @@ DEFINE_ACTION_FUNCTION druid_lost_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_lost_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> major
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2018,7 +1976,7 @@ DEFINE_ACTION_FUNCTION mystic_earth_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystic_earth_spheres_array BEGIN
 	Life 			=> major
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> major
 	War 			=> x
@@ -2051,7 +2009,7 @@ DEFINE_ACTION_FUNCTION mystic_water_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystic_water_spheres_array BEGIN
 	Life 			=> major
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2084,7 +2042,7 @@ DEFINE_ACTION_FUNCTION mystic_air_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystic_air_spheres_array BEGIN
 	Life 			=> major
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> minor
 	War 			=> x
@@ -2117,7 +2075,7 @@ DEFINE_ACTION_FUNCTION mystic_fire_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystic_fire_spheres_array BEGIN
 	Life 			=> major
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> minor
 	Protection 		=> major
 	War 			=> x
@@ -2150,7 +2108,7 @@ DEFINE_ACTION_FUNCTION mystic_light_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystic_light_spheres_array BEGIN
 	Life 			=> major
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> major
 	War 			=> x
@@ -2183,7 +2141,7 @@ DEFINE_ACTION_FUNCTION mystic_shadow_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystic_shadow_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2216,7 +2174,7 @@ DEFINE_ACTION_FUNCTION beast_lord_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY beast_lord_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> minor
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2249,7 +2207,7 @@ DEFINE_ACTION_FUNCTION elementalist_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY elementalist_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> minor
 	Protection 		=> minor
 	War 			=> x
@@ -2282,7 +2240,7 @@ DEFINE_ACTION_FUNCTION ranger_forest_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ranger_forest_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2315,7 +2273,7 @@ DEFINE_ACTION_FUNCTION ranger_mountain_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ranger_mountain_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2348,7 +2306,7 @@ DEFINE_ACTION_FUNCTION ranger_desert_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ranger_desert_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2381,7 +2339,7 @@ DEFINE_ACTION_FUNCTION ranger_jungle_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ranger_jungle_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2414,7 +2372,7 @@ DEFINE_ACTION_FUNCTION ranger_arctic_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ranger_arctic_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2448,7 +2406,7 @@ DEFINE_ACTION_FUNCTION ranger_beastmaster_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ranger_beastmaster_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2481,7 +2439,7 @@ DEFINE_ACTION_FUNCTION barbarian_ranger_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY barbarian_ranger_spheres_array BEGIN
 	Life 			=> x
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2514,7 +2472,7 @@ DEFINE_ACTION_FUNCTION mage_hunter_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mage_hunter_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2547,7 +2505,7 @@ DEFINE_ACTION_FUNCTION elven_archer_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY elven_archer_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2583,16 +2541,16 @@ DEFINE_ACTION_FUNCTION vanilla_shaman_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_shaman_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
-	Protection 		=> ranger
+	Protection 		=> major
 	War 			=> x
-	Exploration  	=> ranger
-	Knowledge 		=> ranger
+	Exploration  	=> x
+	Knowledge 		=> major
 	Deception 		=> x
 	Thought 		=> x
 	Dread 			=> x
-	Vigor 			=> x
+	Vigor 			=> major
 	Affliction 		=> x
 	Animal 			=> major
 	Plant 			=> major
@@ -2601,9 +2559,9 @@ DEFINE_ACTION_FUNCTION vanilla_shaman_spheres
 	Air 			=> x
 	Fire 			=> x
 	Light 			=> x
-	Shadow 			=> major
-	Magic 			=> x
-	Perdition     => major
+	Shadow 			=> x
+	Magic 			=> minor
+	Perdition   	=> major
  END
 END
 //___________________________________________________________________________________
@@ -2631,7 +2589,7 @@ DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
   ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
 	Life 			=> x
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2658,11 +2616,11 @@ DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
   ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
 	Life 			=> major
 	Death 			=> minor
-	Benediction 	=> major
+	Creation 		=> minor
 	Destruction 	=> major
 	Protection 		=> major
-	War 			=> minor
-	Exploration  	=> minor
+	War 			=> major
+	Exploration  	=> major
 	Knowledge 		=> major
 	Deception 		=> x
 	Thought 		=> minor
@@ -2692,7 +2650,7 @@ DEFINE_ACTION_FUNCTION vanilla_avenger_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_avenger_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2725,7 +2683,7 @@ DEFINE_ACTION_FUNCTION vanilla_paladin_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_paladin_spheres_array BEGIN
 	Life 			=> paladin
 	Death 			=> x
-	Benediction 	=> paladin
+	Creation 		=> paladin
 	Destruction 	=> paladin
 	Protection 		=> paladin
 	War 			=> paladin
@@ -2758,7 +2716,7 @@ DEFINE_ACTION_FUNCTION vanilla_cavalier_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_cavalier_spheres_array BEGIN
 	Life 			=> paladin
 	Death 			=> x
-	Benediction 	=> paladin
+	Creation 		=> paladin
 	Destruction 	=> paladin
 	Protection 		=> paladin
 	War 			=> paladin
@@ -2791,7 +2749,7 @@ DEFINE_ACTION_FUNCTION vanilla_inquisitor_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_inquisitor_spheres_array BEGIN
 	Life 			=> paladin
 	Death 			=> x
-	Benediction 	=> paladin
+	Creation 		=> paladin
 	Destruction 	=> x
 	Protection 		=> paladin
 	War 			=> x
@@ -2824,7 +2782,7 @@ DEFINE_ACTION_FUNCTION vanilla_undead_hunter_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_undead_hunter_spheres_array BEGIN
 	Life 			=> paladin
 	Death 			=> paladin
-	Benediction 	=> paladin
+	Creation 		=> paladin
 	Destruction 	=> x
 	Protection 		=> paladin
 	War 			=> paladin
@@ -2857,7 +2815,7 @@ DEFINE_ACTION_FUNCTION vanilla_blackguard_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_blackguard_spheres_array BEGIN
 	Life 			=> x
 	Death 			=> paladin
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> paladin
 	Protection 		=> x
 	War 			=> paladin
@@ -2891,7 +2849,7 @@ DEFINE_ACTION_MACRO DR_oozemaster_spheres BEGIN
  ACTION_DEFINE_ASSOCIATIVE_ARRAY a#ooze_spheres BEGIN
 	Life 			=> major
 	Death 			=> minor
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2922,7 +2880,7 @@ DEFINE_ACTION_MACRO DR_justifier_spheres BEGIN
  ACTION_DEFINE_ASSOCIATIVE_ARRAY a#justif_spheres BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 	=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x

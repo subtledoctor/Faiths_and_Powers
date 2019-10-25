@@ -2,7 +2,7 @@
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							MAGE HUNTER
+//								MAGE HUNTER
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -104,8 +104,6 @@ COPY ~faiths_and_powers/kits/scouts/953_mage_hunter/d5_mghs2.eff~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF mage_hunter_spheres RET_ARRAY ~d5_mageh_spheres~ = mage_hunter_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -131,6 +129,7 @@ COPY ~faiths_and_powers/kits/scouts/953_mage_hunter/d5_mghs2.eff~ ~override~
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~d5_mageh~
+	sphere_list		= ~mage_hunter_spheres~
 	class 			= ~scout~
  END
 
@@ -233,8 +232,6 @@ COPY ~faiths_and_powers/kits/scouts/954_barbarian_ranger/d5_rback.spl~ ~override
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF barbarian_ranger_spheres RET_ARRAY ~d5_rbarb_spheres~ = barbarian_ranger_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -260,6 +257,7 @@ COPY ~faiths_and_powers/kits/scouts/954_barbarian_ranger/d5_rback.spl~ ~override
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~d5_rbarb~
+	sphere_list		= ~barbarian_ranger_spheres~
 	class 			= ~scout~
  END
 
@@ -372,8 +370,6 @@ COPY ~faiths_and_powers/kits/scouts/955_elven_archer/d5_earch.2da~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF elven_archer_spheres RET_ARRAY ~d5_earch_spheres~ = elven_archer_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -399,6 +395,7 @@ COPY ~faiths_and_powers/kits/scouts/955_elven_archer/d5_earch.2da~ ~override~
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~d5_earch~
+	sphere_list		= ~elven_archer_spheres~
 	class 			= ~scout~
  END
 
@@ -584,8 +581,6 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF ranger_forest_spheres RET_ARRAY ~d5_sling_spheres~ = ranger_forest_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -611,6 +606,7 @@ END
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~d5_sling~
+	sphere_list		= ~ranger_forest_spheres~
 	class 			= ~scout~
  END
 

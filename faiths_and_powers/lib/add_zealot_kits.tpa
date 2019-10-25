@@ -2,7 +2,7 @@
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							ZEALOT OF GRUUMSH
+//								ZEALOT OF GRUUMSH
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -126,9 +126,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF gruumsh_spheres RET_ARRAY ~b_ze02_spheres~ = gruumsh_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -152,7 +150,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ze02~
+    clab_name 		= ~b_ze02~
+	sphere_list		= ~gruumsh_spheres~
 	class 			= ~zealot~
  END
 
@@ -256,9 +255,7 @@ COPY ~faiths_and_powers/kits/zealots/862_Gruumsh/component_2/b_gruu.spl~ ~overri
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF gruumsh_spheres RET_ARRAY ~b_zgruu_spheres~ = gruumsh_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -282,7 +279,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_zgruu~
+    clab_name 		= ~b_zgruu~
+	sphere_list		= ~gruumsh_spheres~
 	class 			= ~zealot~
  END
 
@@ -294,7 +292,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							ZEALOT OF TALOS
+//								ZEALOT OF TALOS
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -429,9 +427,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF talos_spheres RET_ARRAY ~b_ze03_spheres~ = talos_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -455,7 +451,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ze03~
+    clab_name 		= ~b_ze03~
+	sphere_list		= ~talos_spheres~
 	class 			= ~zealot~
  END
 
@@ -560,9 +557,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF talos_spheres RET_ARRAY ~b_ztal_spheres~ = talos_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -586,7 +581,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ztal~
+    clab_name 		= ~b_ztal~
+	sphere_list		= ~talos_spheres~
 	class 			= ~zealot~
  END
 
@@ -598,7 +594,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							ZEALOT OF KOSSUTH
+//								ZEALOT OF KOSSUTH
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -736,9 +732,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF kossuth_spheres RET_ARRAY ~b_ze04_spheres~ = kossuth_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -762,7 +756,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ze04~
+    clab_name 		= ~b_ze04~
+	sphere_list		= ~kossuth_spheres~
 	class 			= ~zealot~
  END
 
@@ -866,9 +861,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF kossuth_spheres RET_ARRAY ~b_koss_spheres~ = kossuth_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -892,7 +885,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_koss~
+    clab_name 		= ~b_koss~
+	sphere_list		= ~kossuth_spheres~
 	class 			= ~zealot~
  END
 
@@ -904,7 +898,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							ZEALOT OF ILMATER
+//								ZEALOT OF ILMATER
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -1026,9 +1020,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF ilmater_spheres RET_ARRAY ~b_ze05_spheres~ = ilmater_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -1052,7 +1044,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ze05~
+    clab_name 		= ~b_ze05~
+	sphere_list		= ~ilmater_spheres~
 	class 			= ~zealot~
  END
 
@@ -1156,9 +1149,7 @@ COPY ~faiths_and_powers/kits/zealots/865_ilmater/component_2/b_zilm.spl~ ~overri
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF ilmater_spheres RET_ARRAY ~b_zilm_spheres~ = ilmater_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -1182,7 +1173,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_zilm~
+    clab_name 		= ~b_zilm~
+	sphere_list		= ~ilmater_spheres~
 	class 			= ~zealot~
  END
 
@@ -1194,7 +1186,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							ZEALOT OF GARAGOS
+//								ZEALOT OF GARAGOS
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -1318,9 +1310,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF garagos_spheres RET_ARRAY ~b_ze06_spheres~ = garagos_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -1344,7 +1334,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ze06~
+    clab_name 		= ~b_ze06~
+	sphere_list		= ~garagos_spheres~
 	class 			= ~zealot~
  END
 
@@ -1450,9 +1441,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF garagos_spheres RET_ARRAY ~b_gara_spheres~ = garagos_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -1476,7 +1465,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_gara~
+    clab_name 		= ~b_gara~
+	sphere_list		= ~garagos_spheres~
 	class 			= ~zealot~
  END
 
@@ -1488,7 +1478,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							ZEALOT OF CORELLON
+//								ZEALOT OF CORELLON
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -1610,9 +1600,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF corellon_spheres RET_ARRAY ~b_ze07_spheres~ = corellon_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -1636,7 +1624,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ze07~
+    clab_name 		=  ~b_ze07~
+	sphere_list		= ~corellon_spheres~
 	class 			= ~zealot~
  END
 
@@ -1740,9 +1729,7 @@ COPY ~faiths_and_powers/kits/zealots/867_corellon/component_2/b_zcor.spl~ ~overr
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF corellon_spheres RET_ARRAY ~b_zcor_spheres~ = corellon_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -1766,7 +1753,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_zcor~
+    clab_name 		= ~b_zcor~
+	sphere_list		= ~corellon_spheres~
 	class 			= ~zealot~
  END
 
@@ -1778,7 +1766,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							ZEALOT OF SUNE
+//									ZEALOT OF SUNE
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -1902,9 +1890,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF sune_spheres RET_ARRAY ~b_ze08_spheres~ = sune_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -1928,7 +1914,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ze08~
+    clab_name 		= ~b_ze08~
+	sphere_list		= ~sune_spheres~
 	class 			= ~zealot~
  END
 
@@ -2030,9 +2017,7 @@ COPY ~faiths_and_powers/kits/zealots/868_sune/component_2/b_zsun.spl~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF sune_spheres RET_ARRAY ~b_zsun_spheres~ = sune_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -2056,7 +2041,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_zsun~
+    clab_name 		= ~b_zsun~
+	sphere_list		= ~sune_spheres~
 	class 			= ~zealot~
  END
 
@@ -2208,9 +2194,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF mystra_spheres RET_ARRAY ~b_ze09_spheres~ = mystra_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -2234,7 +2218,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ze09~
+    clab_name 		= ~b_ze09~
+	sphere_list		= ~mystra_spheres~
 	class 			= ~zealot~
  END
 
@@ -2336,9 +2321,7 @@ COPY ~faiths_and_powers/kits/zealots/869_mystra/component_2/b_zmys.spl~ ~overrid
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF mystra_spheres RET_ARRAY ~b_zmys_spheres~ = mystra_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -2362,7 +2345,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_zmys~
+    clab_name 		= ~b_zmys~
+	sphere_list		= ~mystra_spheres~
 	class 			= ~zealot~
  END
 
@@ -2496,9 +2480,7 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF eilistraee_spheres RET_ARRAY ~b_ze10_spheres~ = eilistraee_spheres_array END
-
-LAF ~DEFINE_FNP_KIT_INFO~
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -2522,7 +2504,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_ze10~
+    clab_name 		= ~b_ze10~
+	sphere_list		= ~eilistraee_spheres~
 	class 			= ~zealot~
  END
 
@@ -2624,8 +2607,6 @@ COPY ~faiths_and_powers/kits/zealots/870_eilistraee/component_2/b_zeil.spl~ ~ove
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF eilistraee_spheres RET_ARRAY ~b_zeil_spheres~ = eilistraee_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -2650,7 +2631,8 @@ COPY ~faiths_and_powers/kits/zealots/870_eilistraee/component_2/b_zeil.spl~ ~ove
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name = EVAL ~b_zeil~
+    clab_name 		= ~b_zeil~
+	sphere_list		= ~eilistraee_spheres~
 	class 			= ~zealot~
  END
 

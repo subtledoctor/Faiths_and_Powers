@@ -93,8 +93,6 @@ COPY ~faiths_and_powers/kits/incarnates/405_mystra/d5incmys.2da~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
- LAF mystra_spheres RET_ARRAY ~d5incmys_spheres~ = mystra_spheres_array END
-
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 0
@@ -120,6 +118,7 @@ COPY ~faiths_and_powers/kits/incarnates/405_mystra/d5incmys.2da~ ~override~
 	u_crossbows 		= 1  
   STR_VAR
     clab_name 		= ~d5incmys~
+	sphere_list		= ~mystra_spheres~
 	class 			= ~cleric~
 /*
 	s_Life 			= ~major~
