@@ -418,7 +418,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5crmi.2da~ BEGIN
   LAF qd_multiclass
 	STR_VAR
 		kit_name = ~D5_CR_MIELI~ 
-		kit_clab = ~d5crmi~
+		kit_clab = ~d5crmie~
 		base_class = ~P~
   END
 END 
@@ -449,7 +449,7 @@ END
 	u_bows 				= 3
 	u_crossbows 		= 0
   STR_VAR
-    clab_name 		= ~d5crmi~
+    clab_name 		= ~d5crmie~
 	sphere_list		= ~mielikki_spheres~
 	class 			= ~ranger_cleric~
  END
@@ -559,7 +559,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5crsh.2da~ BEGIN
   LAF qd_multiclass
 	STR_VAR
 		kit_name = ~D5_CR_SHAUNDAKUL~ 
-		kit_clab = ~d5crsh~
+		kit_clab = ~d5crshn~
 		base_class = ~P~
   END
 END 
@@ -590,7 +590,7 @@ END
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name 		= ~d5crsh~
+    clab_name 		= ~d5crshn~
 	sphere_list		= ~shaundakul_spheres~
 	class 			= ~ranger_cleric~
  END
@@ -711,7 +711,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5crsh.2da~ BEGIN
   LAF qd_multiclass
 	STR_VAR
 		kit_name = ~D5_CT_MASK~ 
-		kit_clab = ~d5amas~
+		kit_clab = ~d5ctmas~
 		base_class = ~P~
   END
 END 
@@ -728,8 +728,8 @@ END
 	u_maces 	 		= 0
 	u_flails 			= 0
 	u_axes 				= 0
-	u_daggers 			= 1
-	u_short_swords		= 1
+	u_daggers 			= 2
+	u_short_swords		= 2
 	u_long_swords		= 0
 	u_scimitars 		= 0
 	u_katanas 			= 0
@@ -742,7 +742,7 @@ END
 	u_bows 				= 0
 	u_crossbows 		= 1
   STR_VAR
-    clab_name 		= ~d5amas~
+    clab_name 		= ~d5ctmas~
 	sphere_list		= ~mask_spheres~
 	class 			= ~cleric_thief~
  END
@@ -753,7 +753,6 @@ END
 
 
 
-// ***** MAKE DRUIDS CONTINGENT ON FNP DRUIDS HAVNG BEEN INSTALLED
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
@@ -1117,7 +1116,7 @@ ADD_KIT ~D5_DR_RANGER~
 //CHARACTER CREATION KIT DESCRIPTION________________________________________________
 SAY @74500
 SAY @74102
-SAY @74102
+SAY @74103
 
 //EE KIT EXTRAS______________________________________________________________________
 // 
@@ -1350,48 +1349,6 @@ END
 
 DEFINE_ACTION_FUNCTION multiclass_kit_clones BEGIN
 
-/*
-COPY_EXISTING ~d5_class.2da~ ~override~
-  READ_2DA_ENTRIES_NOW ~r2en_d5_class~ 4
-  FOR (row = 0; row < r2en_d5_class; row += 1) BEGIN
-	READ_2DA_ENTRY_FORMER ~r2en_d5_class~ row 0 sc_kit_clab
-	READ_2DA_ENTRY_FORMER ~r2en_d5_class~ row 3 sc_kit_multi
-	PATCH_IF !(~%sc_kit_multi%~ STRING_EQUAL_CASE ~z~) BEGIN
-	  INNER_ACTION BEGIN
-		COPY_EXISTING ~kitlist.2da~ ~override~
-		  READ_2DA_ENTRIES_NOW ~r2en_kitlist~ 10
-		  FOR (row = 0; row < r2en_kitlist; row += 1) BEGIN
-			READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 5 kitlist_clab
-			PATCH_IF (~%kitlist_clab%~ STRING_EQUAL_CASE ~%kit_clab%~) BEGIN
-			  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 3 sc_mixed_string
-			  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 8 sc_kitlist_class
-			  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 9 sc_kitids_code
-			END
-		  END
-		BUT_ONLY
-		COPY_EXISTING ~kit.ids~ ~override~
-		  READ_2DA_ENTRIES_NOW ~r2en_kitids~ 2
-		  FOR (row = 0; row < r2en_kitids; row += 1) BEGIN
-			READ_2DA_ENTRY_FORMER ~r2en_kitids~ row 0 sc_kitids_ind
-			PATCH_IF (~%sc_kitids_ind%~ STRING_EQUAL_CASE ~%sc_kitids_code%~) BEGIN
-			  READ_2DA_ENTRY_FORMER ~r2en_kitids~ row 1 sc_kit_name
-			END
-		  END
-		BUT_ONLY
-	  END
-	  PATCH_IF (VARIABLE_IS_SET %sc_kit_name%) && (VARIABLE_IS_SET %sc_kit_clab%) && (VARIABLE_IS_SET %sc_kitlist_class%) && (VARIABLE_IS_SET %sc_mixed_string%) && (VARIABLE_IS_SET %sc_kit_multi%) BEGIN
-		TEXT_SPRINT $d5_fnp_multiclass_info(~%sc_kit_name%~ ~%sc_kit_clab%~ ~%sc_kitlist_class%~ ~%sc_mixed_string%~) ~%sc_kit_multi%~
-	  END
-	END
-  END
-BUT_ONLY
-*/
-
-// or make the below simpler: just use kitlist to find the ids#, then find the ids name, 
-// ...then make an array with just ids name and sc_kit_multi
-// then get the rest via GET_KIT_EX inside the action_php_each
-// (might need to do that to get the kittable anyway, so...)
-
 COPY_EXISTING ~d5_class.2da~ ~override~
   READ_2DA_ENTRIES_NOW r2en_d5_class 4
   FOR (row = 0; row < r2en_d5_class; row += 1) BEGIN
@@ -1414,6 +1371,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_clabs AS sc_kit_clab => sc_kit_multi BEGIN
 	END
   BUT_ONLY
 END
+OUTER_SET multi_ind = 1
 ACTION_PHP_EACH d5_fnp_multiclass_ids AS sc_kitids_code => sc_kit_multi BEGIN
   COPY_EXISTING ~kit.ids~ ~override~
 	READ_2DA_ENTRIES_NOW r2en_kitids 2
@@ -1421,7 +1379,22 @@ ACTION_PHP_EACH d5_fnp_multiclass_ids AS sc_kitids_code => sc_kit_multi BEGIN
 	  READ_2DA_ENTRY_FORMER ~r2en_kitids~ row 0 sc_kitids_ind
 	  READ_2DA_ENTRY_FORMER ~r2en_kitids~ row 1 sc_kit_name
 	  PATCH_IF (%sc_kitids_ind% = %sc_kitids_code%) BEGIN
-		TEXT_SPRINT $d5_fnp_multiclass_kits(~%sc_kit_name%~) ~%sc_kit_multi%~
+		PATCH_IF (~%sc_kit_multi%~ STRING_CONTAINS_REGEXP ~f~ = 0) BEGIN
+		  TEXT_SPRINT $d5_fnp_multiclass_kits(~%multi_ind%~ ~%sc_kit_name%~) ~f~
+		  SET multi_ind = (multi_ind + 1)
+		END
+		PATCH_IF (~%sc_kit_multi%~ STRING_CONTAINS_REGEXP ~r~ = 0) BEGIN
+		  TEXT_SPRINT $d5_fnp_multiclass_kits(~%multi_ind%~ ~%sc_kit_name%~) ~r~
+		  SET multi_ind = (multi_ind + 1)
+		END
+		PATCH_IF (~%sc_kit_multi%~ STRING_CONTAINS_REGEXP ~m~ = 0) BEGIN
+		  TEXT_SPRINT $d5_fnp_multiclass_kits(~%multi_ind%~ ~%sc_kit_name%~) ~m~
+		  SET multi_ind = (multi_ind + 1)
+		END
+		PATCH_IF (~%sc_kit_multi%~ STRING_CONTAINS_REGEXP ~t~ = 0) BEGIN
+		  TEXT_SPRINT $d5_fnp_multiclass_kits(~%multi_ind%~ ~%sc_kit_name%~) ~t~
+		  SET multi_ind = (multi_ind + 1)
+		END
 	  END
 	END
   BUT_ONLY
@@ -1435,15 +1408,6 @@ COPY_EXISTING ~thiefskl.2da~ ~override~
 	READ_2DA_ENTRY 0 2 3 level_thiefskl
 BUT_ONLY
 OUTER_SPRINT orig_thiefskl ~%start_thiefskl%	%level_thiefskl%~
-/*
-COPY_EXISTING ~backstab.2da~ ~override~
-  COUNT_2DA_COLS cols
-  READ_2DA_ENTRIES_NOW rows cols
-  FOR (col = 1; col < cols; ++col) BEGIN
-	READ_2DA_ENTRY_FORMER rows 0 col ~backstab_%col%~
-  END
-BUT_ONLY
-*/
 OUTER_SET skill_2da_cols = 40
 COPY_EXISTING ~backstab.2da~ ~override~
   COUNT_2DA_COLS cols
@@ -1638,10 +1602,8 @@ COPY_EXISTING ~crippstr.2da~ ~override~
 	END
   END
 BUT_ONLY
-ACTION_PHP_EACH d5_fnp_multiclass_kits AS sc_kit => mc_kits BEGIN
-//  OUTER_SPRINT orig_clab ~%sc_kit_1%~
-//  OUTER_SET orig_class = %sc_kit_2%
-//  OUTER_SPRINT orig_mixed ~%sc_kit_3%~  
+ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
+  OUTER_SPRINT sc_kit ~%ind_1%~  
   LAF GET_KIT_EX
    STR_VAR
 	kit_name = EVAL ~%sc_kit%~
@@ -1651,6 +1613,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS sc_kit => mc_kits BEGIN
 	kit_class
 	kittable
   END
+  ACTION_GET_STRREF %mixed% orig_mixed
   COPY_EXISTING ~d5_class.2da~ ~override~
 	READ_2DA_ENTRIES_NOW r2en_d5_class 4
 	FOR (row = 0; row < r2en_d5_class; row += 1) BEGIN
@@ -1722,7 +1685,44 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS sc_kit => mc_kits BEGIN
 	  END
 	END
   BUT_ONLY
-  ACTION_IF (%kit_class% = 11) BEGIN // && (~%mc_kits%~ STRING_CONTAINS_REGEXP ~f~ = 0) BEGIN
+  COPY_EXISTING ~kitlist.2da~ ~override~
+	READ_2DA_ENTRIES_NOW ~r2en_kitlist~ 10
+	FOR (row = 2; row < r2en_kitlist; row += 1) BEGIN
+      READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 5 kitlist_clab
+	  PATCH_IF (~%kitlist_clab%~ STRING_EQUAL_CASE ~%clab_res%~) BEGIN
+		READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 6 prof_col
+      END
+	END
+  BUT_ONLY
+  COPY_EXISTING ~weapprof.2da~ ~override~
+    COUNT_2DA_COLS weapprof_cols
+	READ_2DA_ENTRIES_NOW r2en_weapprof weapprof_cols
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 8 (prof_col + 1) wp_bastardsword
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 9 (prof_col + 1) wp_longsword
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 10 (prof_col + 1) wp_shortsword
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 11 (prof_col + 1) wp_axe
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 12 (prof_col + 1) wp_2handsword
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 13 (prof_col + 1) wp_katana
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 14 (prof_col + 1) wp_scimitar
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 15 (prof_col + 1) wp_dagger
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 16 (prof_col + 1) wp_hammer
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 17 (prof_col + 1) wp_club
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 18 (prof_col + 1) wp_spear
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 19 (prof_col + 1) wp_halberd
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 20 (prof_col + 1) wp_flail
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 21 (prof_col + 1) wp_mace
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 22 (prof_col + 1) wp_staff
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 23 (prof_col + 1) wp_xbow
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 24 (prof_col + 1) wp_longbow
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 25 (prof_col + 1) wp_shortbow
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 26 (prof_col + 1) wp_dart
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 27 (prof_col + 1) wp_sling
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 28 (prof_col + 1) wp_2handed
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 29 (prof_col + 1) wp_swordandshield
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 30 (prof_col + 1) wp_singleweapon
+	READ_2DA_ENTRY_FORMER ~r2en_weapprof~ 31 (prof_col + 1) wp_2weapon
+  BUT_ONLY
+  ACTION_IF (%kit_class% = 11) BEGIN
    ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~f~ = 0) BEGIN
 	OUTER_SPRINT fnp_spheres_class ~fighter_mystic~
 	OUTER_SPRINT new_base_class ~D~
@@ -1731,117 +1731,224 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS sc_kit => mc_kits BEGIN
 	OUTER_SPRINT new_clab ~%clab_res%f~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
 	OUTER_SET new_class = 16
-	OUTER_SPRINT new_mixed ~%mixed% Warrior~
+	OUTER_SPRINT new_mixed ~%orig_mixed% Warrior~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%kittable%~ BEGIN
 	  REPLACE_TEXTUALLY ~_D_~ ~_FD_~
 	END
-	OUTER_SET new_leather = orig_leather
-	OUTER_SET new_chain = orig_chain
-	OUTER_SET new_plate = orig_plate
-	ACTION_IF (%orig_clubstaff% > 0) && (%orig_clubstaff% < 5) BEGIN
-	  OUTER_SET new_clubstaff = (%orig_clubstaff% + 1)
+	ACTION_IF (%wp_staff% > 0) && (%wp_staff% < 5) BEGIN
+	  OUTER_SET new_wp_staff = (%wp_staff% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_clubstaff = (%orig_clubstaff%)
+	  OUTER_SET new_wp_staff = (%wp_staff%)
+	END
+	ACTION_IF (%wp_club% > 0) && (%wp_club% < 5) BEGIN
+	  OUTER_SET new_wp_club = (%wp_club% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_club = (%wp_club%)
+	END
+	ACTION_IF (%wp_hammer% > 0) && (%wp_hammer% < 5) BEGIN
+	  OUTER_SET new_wp_hammer = (%wp_hammer% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_hammer = (%wp_hammer%)
+	END
+	ACTION_IF (%wp_mace% > 0) && (%wp_mace% < 5) BEGIN
+	  OUTER_SET new_wp_mace = (%wp_mace% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_mace = (%wp_mace%)
+	END
+	ACTION_IF (%wp_flail% > 0) && (%wp_flail% < 5) BEGIN
+	  OUTER_SET new_wp_flail = (%wp_flail% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_flail = (%wp_flail%)
+	END
+	ACTION_IF (%wp_axe% > 0) && (%wp_axe% < 5) BEGIN
+	  OUTER_SET new_wp_axe = (%wp_axe% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_axe = (%wp_axe%)
+	END
+	ACTION_IF (%wp_dagger% > 0) && (%wp_dagger% < 5) BEGIN
+	  OUTER_SET new_wp_dagger = (%wp_dagger% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_dagger = (%wp_dagger%)
+	END
+	ACTION_IF (%wp_shortsword% > 0) && (%wp_shortsword% < 5) BEGIN
+	  OUTER_SET new_wp_shortsword = (%wp_shortsword% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_shortsword = (%wp_shortsword%)
+	END
+	ACTION_IF (%wp_longsword% > 0) && (%wp_longsword% < 5) BEGIN
+	  OUTER_SET new_wp_longsword = (%wp_longsword% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_longsword = (%wp_longsword%)
+	END
+	ACTION_IF (%wp_scimitar% > 0) && (%wp_scimitar% < 5) BEGIN
+	  OUTER_SET new_wp_scimitar = (%wp_scimitar% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_scimitar = (%wp_scimitar%)
+	END
+	ACTION_IF (%wp_katana% > 0) && (%wp_katana% < 5) BEGIN
+	  OUTER_SET new_wp_katana = (%wp_katana% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_katana = (%wp_katana%)
+	END
+	ACTION_IF (%wp_bastardsword% > 0) && (%wp_bastardsword% < 5) BEGIN
+	  OUTER_SET new_wp_bastardsword = (%wp_bastardsword% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_bastardsword = (%wp_bastardsword%)
+	END
+	ACTION_IF (%wp_2handsword% > 0) && (%wp_2handsword% < 5) BEGIN
+	  OUTER_SET new_wp_2handsword = (%wp_2handsword% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_2handsword = (%wp_2handsword%)
+	END
+	ACTION_IF (%wp_halberd% > 0) && (%wp_halberd% < 5) BEGIN
+	  OUTER_SET new_wp_halberd = (%wp_halberd% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_halberd = (%wp_halberd%)
+	END
+	ACTION_IF (%wp_spear% > 0) && (%wp_spear% < 5) BEGIN
+	  OUTER_SET new_wp_spear = (%wp_spear% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_spear = (%wp_spear%)
+	END
+	ACTION_IF (%wp_dart% > 0) && (%wp_dart% < 5) BEGIN
+	  OUTER_SET new_wp_dart = (%wp_dart% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_dart = (%wp_dart%)
+	END
+	ACTION_IF (%wp_sling% > 0) && (%wp_sling% < 5) BEGIN
+	  OUTER_SET new_wp_sling = (%wp_sling% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_sling = (%wp_sling%)
+	END
+	ACTION_IF (%wp_longbow% > 0) && (%wp_longbow% < 5) BEGIN
+	  OUTER_SET new_wp_longbow = (%wp_longbow% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_longbow = (%wp_longbow%)
+	END
+	ACTION_IF (%wp_shortbow% > 0) && (%wp_shortbow% < 5) BEGIN
+	  OUTER_SET new_wp_shortbow = (%wp_shortbow% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_shortbow = (%wp_shortbow%)
+	END
+	ACTION_IF (%wp_xbow% > 0) && (%wp_xbow% < 5) BEGIN
+	  OUTER_SET new_wp_xbow = (%wp_xbow% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_xbow = (%wp_xbow%)
+	END
+	ACTION_IF (%wp_2handed% > 0) && (%wp_2handed% < 2) BEGIN
+	  OUTER_SET new_wp_2handed = (%wp_2handed% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_2handed = (%wp_2handed%)
+	END
+	ACTION_IF (%wp_swordandshield% > 0) && (%wp_swordandshield% < 2) BEGIN
+	  OUTER_SET new_wp_swordandshield = (%wp_swordandshield% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_swordandshield = (%wp_swordandshield%)
+	END
+	ACTION_IF (%wp_singleweapon% > 0) && (%wp_singleweapon% < 2) BEGIN
+	  OUTER_SET new_wp_singleweapon = (%wp_singleweapon% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_singleweapon = (%wp_singleweapon%)
+	END
+	ACTION_IF (%wp_2weapon% > 0) && (%wp_2weapon% < 3) BEGIN
+	  OUTER_SET new_wp_2weapon = (%wp_2weapon% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_2weapon = (%wp_2weapon%)
+	END
+	OUTER_SPRINT new_weapprof ~0 0 0 0 0 0 0 0 %new_wp_bastardsword% %new_wp_longsword% %new_wp_shortsword% %new_wp_axe% %new_wp_2handsword% %new_wp_katana% %new_wp_scimitar% %new_wp_dagger% %new_wp_hammer% %new_wp_club% %new_wp_spear% %new_wp_halberd% %new_wp_flail% %new_wp_mace% %new_wp_staff% %new_wp_xbow% %new_wp_longbow% %new_wp_shortbow% %new_wp_dart% %new_wp_sling% %new_wp_2handed% %new_wp_swordandshield% %new_wp_singleweapon% %new_wp_2weapon% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+	OUTER_SET new_fnp_leather = orig_leather
+	OUTER_SET new_fnp_chain = orig_chain
+	OUTER_SET new_fnp_plate = orig_plate
+	ACTION_IF (%orig_clubstaff% > 0) && (%orig_clubstaff% < 5) BEGIN
+	  OUTER_SET new_fnp_clubstaff = (%orig_clubstaff% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_fnp_clubstaff = (%orig_clubstaff%)
 	END
 	ACTION_IF (%orig_hammer% > 0) && (%orig_hammer% < 5) BEGIN
-	  OUTER_SET new_hammer = (%orig_hammer% + 1)
+	  OUTER_SET new_fnp_hammer = (%orig_hammer% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_hammer = (%orig_hammer%)
+	  OUTER_SET new_fnp_hammer = (%orig_hammer%)
 	END
 	ACTION_IF (%orig_mace% > 0) && (%orig_mace% < 5) BEGIN
-	  OUTER_SET new_mace = (%orig_mace% + 1)
+	  OUTER_SET new_fnp_mace = (%orig_mace% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_mace = (%orig_mace%)
+	  OUTER_SET new_fnp_mace = (%orig_mace%)
 	END
 	ACTION_IF (%orig_flail% > 0) && (%orig_flail% < 5) BEGIN
-	  OUTER_SET new_flail = (%orig_flail% + 1)
+	  OUTER_SET new_fnp_flail = (%orig_flail% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_flail = (%orig_flail%)
+	  OUTER_SET new_fnp_flail = (%orig_flail%)
 	END
 	ACTION_IF (%orig_axe% > 0) && (%orig_axe% < 5) BEGIN
-	  OUTER_SET new_axe = (%orig_axe% + 1)
+	  OUTER_SET new_fnp_axe = (%orig_axe% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_axe = (%orig_axe%)
+	  OUTER_SET new_fnp_axe = (%orig_axe%)
 	END
 	ACTION_IF (%orig_dagger% > 0) && (%orig_dagger% < 5) BEGIN
-	  OUTER_SET new_dagger = (%orig_dagger% + 1)
+	  OUTER_SET new_fnp_dagger = (%orig_dagger% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_dagger = (%orig_dagger%)
+	  OUTER_SET new_fnp_dagger = (%orig_dagger%)
 	END
 	ACTION_IF (%orig_shortsword% > 0) && (%orig_shortsword% < 5) BEGIN
-	  OUTER_SET new_shortsword = (%orig_shortsword% + 1)
+	  OUTER_SET new_fnp_shortsword = (%orig_shortsword% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_shortsword = (%orig_shortsword%)
+	  OUTER_SET new_fnp_shortsword = (%orig_shortsword%)
 	END
 	ACTION_IF (%orig_longsword% > 0) && (%orig_longsword% < 5) BEGIN
-	  OUTER_SET new_longsword = (%orig_longsword% + 1)
+	  OUTER_SET new_fnp_longsword = (%orig_longsword% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_longsword = (%orig_longsword%)
+	  OUTER_SET new_fnp_longsword = (%orig_longsword%)
 	END
 	ACTION_IF (%orig_scimitar% > 0) && (%orig_scimitar% < 5) BEGIN
-	  OUTER_SET new_scimitar = (%orig_scimitar% + 1)
+	  OUTER_SET new_fnp_scimitar = (%orig_scimitar% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_scimitar = (%orig_scimitar%)
+	  OUTER_SET new_fnp_scimitar = (%orig_scimitar%)
 	END
 	ACTION_IF (%orig_katana% > 0) && (%orig_katana% < 5) BEGIN
-	  OUTER_SET new_katana = (%orig_katana% + 1)
+	  OUTER_SET new_fnp_katana = (%orig_katana% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_katana = (%orig_katana%)
+	  OUTER_SET new_fnp_katana = (%orig_katana%)
 	END
 	ACTION_IF (%orig_bastardsword% > 0) && (%orig_bastardsword% < 5) BEGIN
-	  OUTER_SET new_bastardsword = (%orig_bastardsword% + 1)
+	  OUTER_SET new_fnp_bastardsword = (%orig_bastardsword% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_bastardsword = (%orig_bastardsword%)
+	  OUTER_SET new_fnp_bastardsword = (%orig_bastardsword%)
 	END
 	ACTION_IF (%orig_2handsword% > 0) && (%orig_2handsword% < 5) BEGIN
-	  OUTER_SET new_2handsword = (%orig_2handsword% + 1)
+	  OUTER_SET new_fnp_2handsword = (%orig_2handsword% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_2handsword = (%orig_2handsword%)
+	  OUTER_SET new_fnp_2handsword = (%orig_2handsword%)
 	END
 	ACTION_IF (%orig_halberd% > 0) && (%orig_halberd% < 5) BEGIN
-	  OUTER_SET new_halberd = (%orig_halberd% + 1)
+	  OUTER_SET new_fnp_halberd = (%orig_halberd% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_halberd = (%orig_halberd%)
+	  OUTER_SET new_fnp_halberd = (%orig_halberd%)
 	END
 	ACTION_IF (%orig_spear% > 0) && (%orig_spear% < 5) BEGIN
-	  OUTER_SET new_spear = (%orig_spear% + 1)
+	  OUTER_SET new_fnp_spear = (%orig_spear% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_spear = (%orig_spear%)
+	  OUTER_SET new_fnp_spear = (%orig_spear%)
 	END
 	ACTION_IF (%orig_dart% > 0) && (%orig_dart% < 5) BEGIN
-	  OUTER_SET new_dart = (%orig_dart% + 1)
+	  OUTER_SET new_fnp_dart = (%orig_dart% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_dart = (%orig_dart%)
+	  OUTER_SET new_fnp_dart = (%orig_dart%)
 	END
 	ACTION_IF (%orig_sling% > 0) && (%orig_sling% < 5) BEGIN
-	  OUTER_SET new_sling = (%orig_sling% + 1)
+	  OUTER_SET new_fnp_sling = (%orig_sling% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_sling = (%orig_sling%)
+	  OUTER_SET new_fnp_sling = (%orig_sling%)
 	END
 	ACTION_IF (%orig_bow% > 0) && (%orig_bow% < 5) BEGIN
-	  OUTER_SET new_bow = (%orig_bow% + 1)
+	  OUTER_SET new_fnp_bow = (%orig_bow% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_bow = (%orig_bow%)
+	  OUTER_SET new_fnp_bow = (%orig_bow%)
 	END
 	ACTION_IF (%orig_xbow% > 0) && (%orig_xbow% < 5) BEGIN
-	  OUTER_SET new_xbow = (%orig_xbow% + 1)
+	  OUTER_SET new_fnp_xbow = (%orig_xbow% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_xbow = (%orig_xbow%)
+	  OUTER_SET new_fnp_xbow = (%orig_xbow%)
 	END
-/*
-	OUTER_SPRINT new_traplimt ~1~
-	OUTER_SPRINT new_thiefscl ~0 0 0 0 0 0 0 0~
-	OUTER_SPRINT new_thiefskl ~0	0~
-	ACTION_IF (skill_2da_cols = 50) BEGIN
-	  OUTER_SPRINT new_backstab ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_sneakatt ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_crippstr ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	END ELSE BEGIN
-	  OUTER_SPRINT new_backstab ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_sneakatt ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_crippstr ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	END
-*/
    END
   END
   ACTION_IF (%kit_class% = 3) BEGIN
@@ -1853,117 +1960,225 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS sc_kit => mc_kits BEGIN
 	OUTER_SPRINT new_clab ~%clab_res%f~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
 	OUTER_SET new_class = 8
-	OUTER_SPRINT new_mixed ~Fighter/%mixed%~
+	OUTER_SPRINT new_mixed ~Fighter/%orig_mixed%~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%kittable%~ BEGIN
 	  REPLACE_TEXTUALLY ~_C_~ ~_FC_~
 	END
-	OUTER_SET new_leather = 1
-	OUTER_SET new_chain = 1
-	OUTER_SET new_plate = 1
-	ACTION_IF (%orig_clubstaff% > 0) && (%orig_clubstaff% < 5) BEGIN
-	  OUTER_SET new_clubstaff = (%orig_clubstaff% + 1)
+	ACTION_IF (%wp_staff% > 0) && (%wp_staff% < 5) BEGIN
+	  OUTER_SET new_wp_staff = (%wp_staff% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_clubstaff = (%orig_clubstaff%)
+	  OUTER_SET new_wp_staff = (%wp_staff%)
+	END
+	ACTION_IF (%wp_club% > 0) && (%wp_club% < 5) BEGIN
+	  OUTER_SET new_wp_club = (%wp_club% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_club = (%wp_club%)
+	END
+	ACTION_IF (%wp_hammer% > 0) && (%wp_hammer% < 5) BEGIN
+	  OUTER_SET new_wp_hammer = (%wp_hammer% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_hammer = (%wp_hammer%)
+	END
+	ACTION_IF (%wp_mace% > 0) && (%wp_mace% < 5) BEGIN
+	  OUTER_SET new_wp_mace = (%wp_mace% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_mace = (%wp_mace%)
+	END
+	ACTION_IF (%wp_flail% > 0) && (%wp_flail% < 5) BEGIN
+	  OUTER_SET new_wp_flail = (%wp_flail% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_flail = (%wp_flail%)
+	END
+	ACTION_IF (%wp_axe% > 0) && (%wp_axe% < 5) BEGIN
+	  OUTER_SET new_wp_axe = (%wp_axe% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_axe = (%wp_axe%)
+	END
+	ACTION_IF (%wp_dagger% > 0) && (%wp_dagger% < 5) BEGIN
+	  OUTER_SET new_wp_dagger = (%wp_dagger% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_dagger = (%wp_dagger%)
+	END
+	ACTION_IF (%wp_shortsword% > 0) && (%wp_shortsword% < 5) BEGIN
+	  OUTER_SET new_wp_shortsword = (%wp_shortsword% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_shortsword = (%wp_shortsword%)
+	END
+	ACTION_IF (%wp_longsword% > 0) && (%wp_longsword% < 5) BEGIN
+	  OUTER_SET new_wp_longsword = (%wp_longsword% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_longsword = (%wp_longsword%)
+	END
+	ACTION_IF (%wp_scimitar% > 0) && (%wp_scimitar% < 5) BEGIN
+	  OUTER_SET new_wp_scimitar = (%wp_scimitar% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_scimitar = (%wp_scimitar%)
+	END
+	ACTION_IF (%wp_katana% > 0) && (%wp_katana% < 5) BEGIN
+	  OUTER_SET new_wp_katana = (%wp_katana% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_katana = (%wp_katana%)
+	END
+	ACTION_IF (%wp_bastardsword% > 0) && (%wp_bastardsword% < 5) BEGIN
+	  OUTER_SET new_wp_bastardsword = (%wp_bastardsword% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_bastardsword = (%wp_bastardsword%)
+	END
+	ACTION_IF (%wp_2handsword% > 0) && (%wp_2handsword% < 5) BEGIN
+	  OUTER_SET new_wp_2handsword = (%wp_2handsword% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_2handsword = (%wp_2handsword%)
+	END
+	ACTION_IF (%wp_halberd% > 0) && (%wp_halberd% < 5) BEGIN
+	  OUTER_SET new_wp_halberd = (%wp_halberd% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_halberd = (%wp_halberd%)
+	END
+	ACTION_IF (%wp_spear% > 0) && (%wp_spear% < 5) BEGIN
+	  OUTER_SET new_wp_spear = (%wp_spear% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_spear = (%wp_spear%)
+	END
+	ACTION_IF (%wp_dart% > 0) && (%wp_dart% < 5) BEGIN
+	  OUTER_SET new_wp_dart = (%wp_dart% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_dart = (%wp_dart%)
+	END
+	ACTION_IF (%wp_sling% > 0) && (%wp_sling% < 5) BEGIN
+	  OUTER_SET new_wp_sling = (%wp_sling% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_sling = (%wp_sling%)
+	END
+	ACTION_IF (%wp_longbow% > 0) && (%wp_longbow% < 5) BEGIN
+	  OUTER_SET new_wp_longbow = (%wp_longbow% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_longbow = (%wp_longbow%)
+	END
+	ACTION_IF (%wp_shortbow% > 0) && (%wp_shortbow% < 5) BEGIN
+	  OUTER_SET new_wp_shortbow = (%wp_shortbow% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_shortbow = (%wp_shortbow%)
+	END
+	ACTION_IF (%wp_xbow% > 0) && (%wp_xbow% < 5) BEGIN
+	  OUTER_SET new_wp_xbow = (%wp_xbow% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_xbow = (%wp_xbow%)
+	END
+	ACTION_IF (%wp_2handed% > 0) && (%wp_2handed% < 2) BEGIN
+	  OUTER_SET new_wp_2handed = (%wp_2handed% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_2handed = (%wp_2handed%)
+	END
+	ACTION_IF (%wp_swordandshield% > 0) && (%wp_swordandshield% < 2) BEGIN
+	  OUTER_SET new_wp_swordandshield = (%wp_swordandshield% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_swordandshield = (%wp_swordandshield%)
+	END
+	ACTION_IF (%wp_singleweapon% > 0) && (%wp_singleweapon% < 2) BEGIN
+	  OUTER_SET new_wp_singleweapon = (%wp_singleweapon% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_singleweapon = (%wp_singleweapon%)
+	END
+	ACTION_IF (%wp_2weapon% > 0) && (%wp_2weapon% < 3) BEGIN
+	  OUTER_SET new_wp_2weapon = (%wp_2weapon% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_2weapon = (%wp_2weapon%)
+	END
+	PRINT ~%wp_hammer% --> %new_wp_hammer%~
+	OUTER_SPRINT new_weapprof ~0 0 0 0 0 0 0 0 %new_wp_bastardsword% %new_wp_longsword% %new_wp_shortsword% %new_wp_axe% %new_wp_2handsword% %new_wp_katana% %new_wp_scimitar% %new_wp_dagger% %new_wp_hammer% %new_wp_club% %new_wp_spear% %new_wp_halberd% %new_wp_flail% %new_wp_mace% %new_wp_staff% %new_wp_xbow% %new_wp_longbow% %new_wp_shortbow% %new_wp_dart% %new_wp_sling% %new_wp_2handed% %new_wp_swordandshield% %new_wp_singleweapon% %new_wp_2weapon% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+	OUTER_SET new_fnp_leather = 1
+	OUTER_SET new_fnp_chain = 1
+	OUTER_SET new_fnp_plate = 1
+	ACTION_IF (%orig_clubstaff% > 0) && (%orig_clubstaff% < 5) BEGIN
+	  OUTER_SET new_fnp_clubstaff = (%orig_clubstaff% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_fnp_clubstaff = (%orig_clubstaff%)
 	END
 	ACTION_IF (%orig_hammer% > 0) && (%orig_hammer% < 5) BEGIN
-	  OUTER_SET new_hammer = (%orig_hammer% + 1)
+	  OUTER_SET new_fnp_hammer = (%orig_hammer% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_hammer = (%orig_hammer%)
+	  OUTER_SET new_fnp_hammer = (%orig_hammer%)
 	END
 	ACTION_IF (%orig_mace% > 0) && (%orig_mace% < 5) BEGIN
-	  OUTER_SET new_mace = (%orig_mace% + 1)
+	  OUTER_SET new_fnp_mace = (%orig_mace% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_mace = (%orig_mace%)
+	  OUTER_SET new_fnp_mace = (%orig_mace%)
 	END
 	ACTION_IF (%orig_flail% > 0) && (%orig_flail% < 5) BEGIN
-	  OUTER_SET new_flail = (%orig_flail% + 1)
+	  OUTER_SET new_fnp_flail = (%orig_flail% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_flail = (%orig_flail%)
+	  OUTER_SET new_fnp_flail = (%orig_flail%)
 	END
 	ACTION_IF (%orig_axe% > 0) && (%orig_axe% < 5) BEGIN
-	  OUTER_SET new_axe = (%orig_axe% + 1)
+	  OUTER_SET new_fnp_axe = (%orig_axe% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_axe = (%orig_axe%)
+	  OUTER_SET new_fnp_axe = (%orig_axe%)
 	END
 	ACTION_IF (%orig_dagger% > 0) && (%orig_dagger% < 5) BEGIN
-	  OUTER_SET new_dagger = (%orig_dagger% + 1)
+	  OUTER_SET new_fnp_dagger = (%orig_dagger% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_dagger = (%orig_dagger%)
+	  OUTER_SET new_fnp_dagger = (%orig_dagger%)
 	END
 	ACTION_IF (%orig_shortsword% > 0) && (%orig_shortsword% < 5) BEGIN
-	  OUTER_SET new_shortsword = (%orig_shortsword% + 1)
+	  OUTER_SET new_fnp_shortsword = (%orig_shortsword% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_shortsword = (%orig_shortsword%)
+	  OUTER_SET new_fnp_shortsword = (%orig_shortsword%)
 	END
 	ACTION_IF (%orig_longsword% > 0) && (%orig_longsword% < 5) BEGIN
-	  OUTER_SET new_longsword = (%orig_longsword% + 1)
+	  OUTER_SET new_fnp_longsword = (%orig_longsword% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_longsword = (%orig_longsword%)
+	  OUTER_SET new_fnp_longsword = (%orig_longsword%)
 	END
 	ACTION_IF (%orig_scimitar% > 0) && (%orig_scimitar% < 5) BEGIN
-	  OUTER_SET new_scimitar = (%orig_scimitar% + 1)
+	  OUTER_SET new_fnp_scimitar = (%orig_scimitar% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_scimitar = (%orig_scimitar%)
+	  OUTER_SET new_fnp_scimitar = (%orig_scimitar%)
 	END
 	ACTION_IF (%orig_katana% > 0) && (%orig_katana% < 5) BEGIN
-	  OUTER_SET new_katana = (%orig_katana% + 1)
+	  OUTER_SET new_fnp_katana = (%orig_katana% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_katana = (%orig_katana%)
+	  OUTER_SET new_fnp_katana = (%orig_katana%)
 	END
 	ACTION_IF (%orig_bastardsword% > 0) && (%orig_bastardsword% < 5) BEGIN
-	  OUTER_SET new_bastardsword = (%orig_bastardsword% + 1)
+	  OUTER_SET new_fnp_bastardsword = (%orig_bastardsword% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_bastardsword = (%orig_bastardsword%)
+	  OUTER_SET new_fnp_bastardsword = (%orig_bastardsword%)
 	END
 	ACTION_IF (%orig_2handsword% > 0) && (%orig_2handsword% < 5) BEGIN
-	  OUTER_SET new_2handsword = (%orig_2handsword% + 1)
+	  OUTER_SET new_fnp_2handsword = (%orig_2handsword% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_2handsword = (%orig_2handsword%)
+	  OUTER_SET new_fnp_2handsword = (%orig_2handsword%)
 	END
 	ACTION_IF (%orig_halberd% > 0) && (%orig_halberd% < 5) BEGIN
-	  OUTER_SET new_halberd = (%orig_halberd% + 1)
+	  OUTER_SET new_fnp_halberd = (%orig_halberd% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_halberd = (%orig_halberd%)
+	  OUTER_SET new_fnp_halberd = (%orig_halberd%)
 	END
 	ACTION_IF (%orig_spear% > 0) && (%orig_spear% < 5) BEGIN
-	  OUTER_SET new_spear = (%orig_spear% + 1)
+	  OUTER_SET new_fnp_spear = (%orig_spear% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_spear = (%orig_spear%)
+	  OUTER_SET new_fnp_spear = (%orig_spear%)
 	END
 	ACTION_IF (%orig_dart% > 0) && (%orig_dart% < 5) BEGIN
-	  OUTER_SET new_dart = (%orig_dart% + 1)
+	  OUTER_SET new_fnp_dart = (%orig_dart% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_dart = (%orig_dart%)
+	  OUTER_SET new_fnp_dart = (%orig_dart%)
 	END
 	ACTION_IF (%orig_sling% > 0) && (%orig_sling% < 5) BEGIN
-	  OUTER_SET new_sling = (%orig_sling% + 1)
+	  OUTER_SET new_fnp_sling = (%orig_sling% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_sling = (%orig_sling%)
+	  OUTER_SET new_fnp_sling = (%orig_sling%)
 	END
 	ACTION_IF (%orig_bow% > 0) && (%orig_bow% < 5) BEGIN
-	  OUTER_SET new_bow = (%orig_bow% + 1)
+	  OUTER_SET new_fnp_bow = (%orig_bow% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_bow = (%orig_bow%)
+	  OUTER_SET new_fnp_bow = (%orig_bow%)
 	END
 	ACTION_IF (%orig_xbow% > 0) && (%orig_xbow% < 5) BEGIN
-	  OUTER_SET new_xbow = (%orig_xbow% + 1)
+	  OUTER_SET new_fnp_xbow = (%orig_xbow% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_xbow = (%orig_xbow%)
+	  OUTER_SET new_fnp_xbow = (%orig_xbow%)
 	END
-/*
-	OUTER_SPRINT new_traplimt ~1~
-	OUTER_SPRINT new_thiefscl ~0 0 0 0 0 0 0 0~
-	OUTER_SPRINT new_thiefskl ~0	0~
-	ACTION_IF (skill_2da_cols = 50) BEGIN
-	  OUTER_SPRINT new_backstab ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_sneakatt ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_crippstr ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	END ELSE BEGIN
-	  OUTER_SPRINT new_backstab ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_sneakatt ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_crippstr ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	END
-*/
    END
    ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~r~ = 0) BEGIN
 	OUTER_SPRINT fnp_spheres_class ~ranger_cleric~
@@ -1973,117 +2188,224 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS sc_kit => mc_kits BEGIN
 	OUTER_SPRINT new_clab ~%clab_res%r~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
 	OUTER_SET new_class = 18
-	OUTER_SPRINT new_mixed ~Ranger/%mixed%~
+	OUTER_SPRINT new_mixed ~Ranger/%orig_mixed%~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%kittable%~ BEGIN
 	  REPLACE_TEXTUALLY ~_C_~ ~_CR_~
 	END
-	OUTER_SET new_leather = orig_leather
-	OUTER_SET new_chain = orig_chain
-	OUTER_SET new_plate = orig_plate
-	ACTION_IF (%orig_clubstaff% > 0) && (%orig_clubstaff% < 5) BEGIN
-	  OUTER_SET new_clubstaff = (%orig_clubstaff% + 1)
+	ACTION_IF (%wp_staff% > 0) && (%wp_staff% < 5) BEGIN
+	  OUTER_SET new_wp_staff = (%wp_staff% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_clubstaff = (%orig_clubstaff%)
+	  OUTER_SET new_wp_staff = (%wp_staff%)
+	END
+	ACTION_IF (%wp_club% > 0) && (%wp_club% < 5) BEGIN
+	  OUTER_SET new_wp_club = (%wp_club% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_club = (%wp_club%)
+	END
+	ACTION_IF (%wp_hammer% > 0) && (%wp_hammer% < 5) BEGIN
+	  OUTER_SET new_wp_hammer = (%wp_hammer% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_hammer = (%wp_hammer%)
+	END
+	ACTION_IF (%wp_mace% > 0) && (%wp_mace% < 5) BEGIN
+	  OUTER_SET new_wp_mace = (%wp_mace% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_mace = (%wp_mace%)
+	END
+	ACTION_IF (%wp_flail% > 0) && (%wp_flail% < 5) BEGIN
+	  OUTER_SET new_wp_flail = (%wp_flail% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_flail = (%wp_flail%)
+	END
+	ACTION_IF (%wp_axe% > 0) && (%wp_axe% < 5) BEGIN
+	  OUTER_SET new_wp_axe = (%wp_axe% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_axe = (%wp_axe%)
+	END
+	ACTION_IF (%wp_dagger% > 0) && (%wp_dagger% < 5) BEGIN
+	  OUTER_SET new_wp_dagger = (%wp_dagger% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_dagger = (%wp_dagger%)
+	END
+	ACTION_IF (%wp_shortsword% > 0) && (%wp_shortsword% < 5) BEGIN
+	  OUTER_SET new_wp_shortsword = (%wp_shortsword% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_shortsword = (%wp_shortsword%)
+	END
+	ACTION_IF (%wp_longsword% > 0) && (%wp_longsword% < 5) BEGIN
+	  OUTER_SET new_wp_longsword = (%wp_longsword% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_longsword = (%wp_longsword%)
+	END
+	ACTION_IF (%wp_scimitar% > 0) && (%wp_scimitar% < 5) BEGIN
+	  OUTER_SET new_wp_scimitar = (%wp_scimitar% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_scimitar = (%wp_scimitar%)
+	END
+	ACTION_IF (%wp_katana% > 0) && (%wp_katana% < 5) BEGIN
+	  OUTER_SET new_wp_katana = (%wp_katana% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_katana = (%wp_katana%)
+	END
+	ACTION_IF (%wp_bastardsword% > 0) && (%wp_bastardsword% < 5) BEGIN
+	  OUTER_SET new_wp_bastardsword = (%wp_bastardsword% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_bastardsword = (%wp_bastardsword%)
+	END
+	ACTION_IF (%wp_2handsword% > 0) && (%wp_2handsword% < 5) BEGIN
+	  OUTER_SET new_wp_2handsword = (%wp_2handsword% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_2handsword = (%wp_2handsword%)
+	END
+	ACTION_IF (%wp_halberd% > 0) && (%wp_halberd% < 5) BEGIN
+	  OUTER_SET new_wp_halberd = (%wp_halberd% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_halberd = (%wp_halberd%)
+	END
+	ACTION_IF (%wp_spear% > 0) && (%wp_spear% < 5) BEGIN
+	  OUTER_SET new_wp_spear = (%wp_spear% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_spear = (%wp_spear%)
+	END
+	ACTION_IF (%wp_dart% > 0) && (%wp_dart% < 5) BEGIN
+	  OUTER_SET new_wp_dart = (%wp_dart% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_dart = (%wp_dart%)
+	END
+	ACTION_IF (%wp_sling% > 0) && (%wp_sling% < 5) BEGIN
+	  OUTER_SET new_wp_sling = (%wp_sling% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_sling = (%wp_sling%)
+	END
+	ACTION_IF (%wp_longbow% > 0) && (%wp_longbow% < 5) BEGIN
+	  OUTER_SET new_wp_longbow = (%wp_longbow% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_longbow = (%wp_longbow%)
+	END
+	ACTION_IF (%wp_shortbow% > 0) && (%wp_shortbow% < 5) BEGIN
+	  OUTER_SET new_wp_shortbow = (%wp_shortbow% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_shortbow = (%wp_shortbow%)
+	END
+	ACTION_IF (%wp_xbow% > 0) && (%wp_xbow% < 5) BEGIN
+	  OUTER_SET new_wp_xbow = (%wp_xbow% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_xbow = (%wp_xbow%)
+	END
+	ACTION_IF (%wp_2handed% > 0) && (%wp_2handed% < 2) BEGIN
+	  OUTER_SET new_wp_2handed = (%wp_2handed% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_2handed = (%wp_2handed%)
+	END
+	ACTION_IF (%wp_swordandshield% > 0) && (%wp_swordandshield% < 2) BEGIN
+	  OUTER_SET new_wp_swordandshield = (%wp_swordandshield% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_swordandshield = (%wp_swordandshield%)
+	END
+	ACTION_IF (%wp_singleweapon% > 0) && (%wp_singleweapon% < 2) BEGIN
+	  OUTER_SET new_wp_singleweapon = (%wp_singleweapon% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_singleweapon = (%wp_singleweapon%)
+	END
+	ACTION_IF (%wp_2weapon% > 0) && (%wp_2weapon% < 3) BEGIN
+	  OUTER_SET new_wp_2weapon = (%wp_2weapon% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_wp_2weapon = (%wp_2weapon%)
+	END
+	OUTER_SPRINT new_weapprof ~0 0 0 0 0 0 0 0 %new_wp_bastardsword% %new_wp_longsword% %new_wp_shortsword% %new_wp_axe% %new_wp_2handsword% %new_wp_katana% %new_wp_scimitar% %new_wp_dagger% %new_wp_hammer% %new_wp_club% %new_wp_spear% %new_wp_halberd% %new_wp_flail% %new_wp_mace% %new_wp_staff% %new_wp_xbow% %new_wp_longbow% %new_wp_shortbow% %new_wp_dart% %new_wp_sling% %new_wp_2handed% %new_wp_swordandshield% %new_wp_singleweapon% %new_wp_2weapon% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+	OUTER_SET new_fnp_leather = orig_leather
+	OUTER_SET new_fnp_chain = orig_chain
+	OUTER_SET new_fnp_plate = orig_plate
+	ACTION_IF (%orig_clubstaff% > 0) && (%orig_clubstaff% < 5) BEGIN
+	  OUTER_SET new_fnp_clubstaff = (%orig_clubstaff% + 1)
+	END ELSE BEGIN
+	  OUTER_SET new_fnp_clubstaff = (%orig_clubstaff%)
 	END
 	ACTION_IF (%orig_hammer% > 0) && (%orig_hammer% < 5) BEGIN
-	  OUTER_SET new_hammer = (%orig_hammer% + 1)
+	  OUTER_SET new_fnp_hammer = (%orig_hammer% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_hammer = (%orig_hammer%)
+	  OUTER_SET new_fnp_hammer = (%orig_hammer%)
 	END
 	ACTION_IF (%orig_mace% > 0) && (%orig_mace% < 5) BEGIN
-	  OUTER_SET new_mace = (%orig_mace% + 1)
+	  OUTER_SET new_fnp_mace = (%orig_mace% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_mace = (%orig_mace%)
+	  OUTER_SET new_fnp_mace = (%orig_mace%)
 	END
 	ACTION_IF (%orig_flail% > 0) && (%orig_flail% < 5) BEGIN
-	  OUTER_SET new_flail = (%orig_flail% + 1)
+	  OUTER_SET new_fnp_flail = (%orig_flail% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_flail = (%orig_flail%)
+	  OUTER_SET new_fnp_flail = (%orig_flail%)
 	END
 	ACTION_IF (%orig_axe% > 0) && (%orig_axe% < 5) BEGIN
-	  OUTER_SET new_axe = (%orig_axe% + 1)
+	  OUTER_SET new_fnp_axe = (%orig_axe% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_axe = (%orig_axe%)
+	  OUTER_SET new_fnp_axe = (%orig_axe%)
 	END
 	ACTION_IF (%orig_dagger% > 0) && (%orig_dagger% < 5) BEGIN
-	  OUTER_SET new_dagger = (%orig_dagger% + 1)
+	  OUTER_SET new_fnp_dagger = (%orig_dagger% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_dagger = (%orig_dagger%)
+	  OUTER_SET new_fnp_dagger = (%orig_dagger%)
 	END
 	ACTION_IF (%orig_shortsword% > 0) && (%orig_shortsword% < 5) BEGIN
-	  OUTER_SET new_shortsword = (%orig_shortsword% + 1)
+	  OUTER_SET new_fnp_shortsword = (%orig_shortsword% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_shortsword = (%orig_shortsword%)
+	  OUTER_SET new_fnp_shortsword = (%orig_shortsword%)
 	END
 	ACTION_IF (%orig_longsword% > 0) && (%orig_longsword% < 5) BEGIN
-	  OUTER_SET new_longsword = (%orig_longsword% + 1)
+	  OUTER_SET new_fnp_longsword = (%orig_longsword% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_longsword = (%orig_longsword%)
+	  OUTER_SET new_fnp_longsword = (%orig_longsword%)
 	END
 	ACTION_IF (%orig_scimitar% > 0) && (%orig_scimitar% < 5) BEGIN
-	  OUTER_SET new_scimitar = (%orig_scimitar% + 1)
+	  OUTER_SET new_fnp_scimitar = (%orig_scimitar% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_scimitar = (%orig_scimitar%)
+	  OUTER_SET new_fnp_scimitar = (%orig_scimitar%)
 	END
 	ACTION_IF (%orig_katana% > 0) && (%orig_katana% < 5) BEGIN
-	  OUTER_SET new_katana = (%orig_katana% + 1)
+	  OUTER_SET new_fnp_katana = (%orig_katana% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_katana = (%orig_katana%)
+	  OUTER_SET new_fnp_katana = (%orig_katana%)
 	END
 	ACTION_IF (%orig_bastardsword% > 0) && (%orig_bastardsword% < 5) BEGIN
-	  OUTER_SET new_bastardsword = (%orig_bastardsword% + 1)
+	  OUTER_SET new_fnp_bastardsword = (%orig_bastardsword% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_bastardsword = (%orig_bastardsword%)
+	  OUTER_SET new_fnp_bastardsword = (%orig_bastardsword%)
 	END
 	ACTION_IF (%orig_2handsword% > 0) && (%orig_2handsword% < 5) BEGIN
-	  OUTER_SET new_2handsword = (%orig_2handsword% + 1)
+	  OUTER_SET new_fnp_2handsword = (%orig_2handsword% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_2handsword = (%orig_2handsword%)
+	  OUTER_SET new_fnp_2handsword = (%orig_2handsword%)
 	END
 	ACTION_IF (%orig_halberd% > 0) && (%orig_halberd% < 5) BEGIN
-	  OUTER_SET new_halberd = (%orig_halberd% + 1)
+	  OUTER_SET new_fnp_halberd = (%orig_halberd% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_halberd = (%orig_halberd%)
+	  OUTER_SET new_fnp_halberd = (%orig_halberd%)
 	END
 	ACTION_IF (%orig_spear% > 0) && (%orig_spear% < 5) BEGIN
-	  OUTER_SET new_spear = (%orig_spear% + 1)
+	  OUTER_SET new_fnp_spear = (%orig_spear% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_spear = (%orig_spear%)
+	  OUTER_SET new_fnp_spear = (%orig_spear%)
 	END
 	ACTION_IF (%orig_dart% > 0) && (%orig_dart% < 5) BEGIN
-	  OUTER_SET new_dart = (%orig_dart% + 1)
+	  OUTER_SET new_fnp_dart = (%orig_dart% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_dart = (%orig_dart%)
+	  OUTER_SET new_fnp_dart = (%orig_dart%)
 	END
 	ACTION_IF (%orig_sling% > 0) && (%orig_sling% < 5) BEGIN
-	  OUTER_SET new_sling = (%orig_sling% + 1)
+	  OUTER_SET new_fnp_sling = (%orig_sling% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_sling = (%orig_sling%)
+	  OUTER_SET new_fnp_sling = (%orig_sling%)
 	END
 	ACTION_IF (%orig_bow% > 0) && (%orig_bow% < 5) BEGIN
-	  OUTER_SET new_bow = (%orig_bow% + 1)
+	  OUTER_SET new_fnp_bow = (%orig_bow% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_bow = (%orig_bow%)
+	  OUTER_SET new_fnp_bow = (%orig_bow%)
 	END
 	ACTION_IF (%orig_xbow% > 0) && (%orig_xbow% < 5) BEGIN
-	  OUTER_SET new_xbow = (%orig_xbow% + 1)
+	  OUTER_SET new_fnp_xbow = (%orig_xbow% + 1)
 	END ELSE BEGIN
-	  OUTER_SET new_xbow = (%orig_xbow%)
+	  OUTER_SET new_fnp_xbow = (%orig_xbow%)
 	END
-/*
-	OUTER_SPRINT new_traplimt ~1~
-	OUTER_SPRINT new_thiefscl ~0 0 0 100 100 0 0 0~
-	OUTER_SPRINT new_thiefskl ~0	0~
-	ACTION_IF (skill_2da_cols = 50) BEGIN
-	  OUTER_SPRINT new_backstab ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_sneakatt ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_crippstr ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	END ELSE BEGIN
-	  OUTER_SPRINT new_backstab ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_sneakatt ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_crippstr ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	END
-*/
    END
    ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~m~ = 0) BEGIN
 	OUTER_SPRINT fnp_spheres_class ~cleric_mage~
@@ -2093,45 +2415,56 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS sc_kit => mc_kits BEGIN
 	OUTER_SPRINT new_clab ~%clab_res%m~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
 	OUTER_SET new_class = 14
-	OUTER_SPRINT new_mixed ~Mage/%mixed%~
+	OUTER_SPRINT new_mixed ~Mage/%orig_mixed%~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%kittable%~ BEGIN
 	  REPLACE_TEXTUALLY ~_C_~ ~_CM_~
 	END
-	OUTER_SET new_leather = 0
-	OUTER_SET new_chain = 0
-	OUTER_SET new_plate = 0
-	OUTER_SET new_clubstaff = %orig_clubstaff%
-	OUTER_SET new_hammer = %orig_hammer%
-	OUTER_SET new_mace = %orig_mace%
-	OUTER_SET new_flail = %orig_flail%
-	OUTER_SET new_axe = %orig_axe%
-	OUTER_SET new_dagger = %orig_dagger%
-	OUTER_SET new_shortsword = %orig_shortsword%
-	OUTER_SET new_longsword = %orig_longsword%
-	OUTER_SET new_scimitar = %orig_scimitar%
-	OUTER_SET new_katana = %orig_katana%
-	OUTER_SET new_bastardsword = 0
-	OUTER_SET new_2handsword = 0
-	OUTER_SET new_halberd = 0
-	OUTER_SET new_spear = 0
-	OUTER_SET new_dart = %orig_dart%
-	OUTER_SET new_sling = %orig_sling%
-	OUTER_SET new_bow = %orig_bow%
-	OUTER_SET new_xbow = %orig_xbow%
-/*
-	OUTER_SPRINT new_traplimt ~1~
-	OUTER_SPRINT new_thiefscl ~0 0 0 0 0 0 0 0~
-	OUTER_SPRINT new_thiefskl ~0	0~
-	ACTION_IF (skill_2da_cols = 50) BEGIN
-	  OUTER_SPRINT new_backstab ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_sneakatt ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_crippstr ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	END ELSE BEGIN
-	  OUTER_SPRINT new_backstab ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_sneakatt ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	  OUTER_SPRINT new_crippstr ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	END
-*/
+	OUTER_SET new_wp_staff = %wp_staff%
+	OUTER_SET new_wp_club = %wp_club%
+	OUTER_SET new_wp_hammer = %wp_hammer%
+	OUTER_SET new_wp_mace = %wp_mace%
+	OUTER_SET new_wp_flail = %wp_flail%
+	OUTER_SET new_wp_axe = %wp_axe%
+	OUTER_SET new_wp_dagger = %wp_dagger%
+	OUTER_SET new_wp_shortsword = %wp_shortsword%
+	OUTER_SET new_wp_longsword = %wp_longsword%
+	OUTER_SET new_wp_scimitar = %wp_scimitar%
+	OUTER_SET new_wp_katana = %wp_katana%
+	OUTER_SET new_wp_bastardsword = 0
+	OUTER_SET new_wp_2handsword = 0
+	OUTER_SET new_wp_halberd = 0
+	OUTER_SET new_wp_spear = 0
+	OUTER_SET new_wp_dart = %wp_dart%
+	OUTER_SET new_wp_sling = %wp_sling%
+	OUTER_SET new_wp_longbow = %wp_longbow%
+	OUTER_SET new_wp_shortbow = %wp_shortbow%
+	OUTER_SET new_wp_xbow = %wp_xbow%
+	OUTER_SET new_wp_2handed = %wp_2handed%
+	OUTER_SET new_wp_swordandshield = %wp_swordandshield%
+	OUTER_SET new_wp_singleweapon = %wp_singleweapon%
+	OUTER_SET new_wp_2weapon = %wp_2weapon%
+	OUTER_SPRINT new_weapprof ~0 0 0 0 0 0 0 0 %new_wp_bastardsword% %new_wp_longsword% %new_wp_shortsword% %new_wp_axe% %new_wp_2handsword% %new_wp_katana% %new_wp_scimitar% %new_wp_dagger% %new_wp_hammer% %new_wp_club% %new_wp_spear% %new_wp_halberd% %new_wp_flail% %new_wp_mace% %new_wp_staff% %new_wp_xbow% %new_wp_longbow% %new_wp_shortbow% %new_wp_dart% %new_wp_sling% %new_wp_2handed% %new_wp_swordandshield% %new_wp_singleweapon% %new_wp_2weapon% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+	OUTER_SET new_fnp_leather = 0
+	OUTER_SET new_fnp_chain = 0
+	OUTER_SET new_fnp_plate = 0
+	OUTER_SET new_fnp_clubstaff = %orig_clubstaff%
+	OUTER_SET new_fnp_hammer = %orig_hammer%
+	OUTER_SET new_fnp_mace = %orig_mace%
+	OUTER_SET new_fnp_flail = %orig_flail%
+	OUTER_SET new_fnp_axe = %orig_axe%
+	OUTER_SET new_fnp_dagger = %orig_dagger%
+	OUTER_SET new_fnp_shortsword = %orig_shortsword%
+	OUTER_SET new_fnp_longsword = %orig_longsword%
+	OUTER_SET new_fnp_scimitar = %orig_scimitar%
+	OUTER_SET new_fnp_katana = %orig_katana%
+	OUTER_SET new_fnp_bastardsword = 0
+	OUTER_SET new_fnp_2handsword = 0
+	OUTER_SET new_fnp_halberd = 0
+	OUTER_SET new_fnp_spear = 0
+	OUTER_SET new_fnp_dart = %orig_dart%
+	OUTER_SET new_fnp_sling = %orig_sling%
+	OUTER_SET new_fnp_bow = %orig_bow%
+	OUTER_SET new_fnp_xbow = %orig_xbow%
    END
    ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~t~ = 0) BEGIN
 	OUTER_SPRINT fnp_spheres_class ~cleric_thief~
@@ -2141,43 +2474,68 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS sc_kit => mc_kits BEGIN
 	OUTER_SPRINT new_clab ~%clab_res%t~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
 	OUTER_SET new_class = 15
-	OUTER_SPRINT new_mixed ~Thief/%mixed%~
+	OUTER_SPRINT new_mixed ~Thief/%orig_mixed%~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%kittable%~ BEGIN
 	  REPLACE_TEXTUALLY ~_C_~ ~_CT_~
 	END
-	OUTER_SET new_leather = 1
-	OUTER_SET new_chain = 0
-	OUTER_SET new_plate = 0
-	OUTER_SET new_clubstaff = %orig_clubstaff%
-	OUTER_SET new_hammer = %orig_hammer%
-	OUTER_SET new_mace = %orig_mace%
-	OUTER_SET new_flail = %orig_flail%
-	OUTER_SET new_axe = %orig_axe%
-	OUTER_SET new_dagger = %orig_dagger%
-	OUTER_SET new_shortsword = %orig_shortsword%
-	OUTER_SET new_longsword = %orig_longsword%
-	OUTER_SET new_scimitar = %orig_scimitar%
-	OUTER_SET new_katana = %orig_katana%
-	OUTER_SET new_bastardsword = 0
-	OUTER_SET new_2handsword = 0
-	OUTER_SET new_halberd = 0
-	OUTER_SET new_spear = 0
-	OUTER_SET new_dart = %orig_dart%
-	OUTER_SET new_sling = %orig_sling%
-	OUTER_SET new_bow = %orig_bow%
-	OUTER_SET new_xbow = %orig_xbow%
-	OUTER_SPRINT /*new_*/thiefscl ~100 100 100 100 100 100 100 0~
-	OUTER_SPRINT /*new_*/traplimt ~%orig_traplimt%~
-	OUTER_SPRINT /*new_*/thiefskl ~%orig_thiefskl%~
-	OUTER_SPRINT /*new_*/backstab ~%orig_backstab%~
-	OUTER_SPRINT /*new_*/sneakatt ~%orig_sneakatt%~
-	OUTER_SPRINT /*new_*/crippstr ~%orig_crippstr%~
+	OUTER_SET new_wp_staff = %wp_staff%
+	OUTER_SET new_wp_club = %wp_club%
+	OUTER_SET new_wp_hammer = %wp_hammer%
+	OUTER_SET new_wp_mace = %wp_mace%
+	OUTER_SET new_wp_flail = %wp_flail%
+	OUTER_SET new_wp_axe = %wp_axe%
+	OUTER_SET new_wp_dagger = %wp_dagger%
+	OUTER_SET new_wp_shortsword = %wp_shortsword%
+	OUTER_SET new_wp_longsword = %wp_longsword%
+	OUTER_SET new_wp_scimitar = %wp_scimitar%
+	OUTER_SET new_wp_katana = %wp_katana%
+	OUTER_SET new_wp_bastardsword = 0
+	OUTER_SET new_wp_2handsword = 0
+	OUTER_SET new_wp_halberd = 0
+	OUTER_SET new_wp_spear = 0
+	OUTER_SET new_wp_dart = %wp_dart%
+	OUTER_SET new_wp_sling = %wp_sling%
+	OUTER_SET new_wp_longbow = %wp_longbow%
+	OUTER_SET new_wp_shortbow = %wp_shortbow%
+	OUTER_SET new_wp_xbow = %wp_xbow%
+	OUTER_SET new_wp_2handed = %wp_2handed%
+	OUTER_SET new_wp_swordandshield = %wp_swordandshield%
+	OUTER_SET new_wp_singleweapon = %wp_singleweapon%
+	OUTER_SET new_wp_2weapon = %wp_2weapon%
+	OUTER_SPRINT new_weapprof ~0 0 0 0 0 0 0 0 %new_wp_bastardsword% %new_wp_longsword% %new_wp_shortsword% %new_wp_axe% %new_wp_2handsword% %new_wp_katana% %new_wp_scimitar% %new_wp_dagger% %new_wp_hammer% %new_wp_club% %new_wp_spear% %new_wp_halberd% %new_wp_flail% %new_wp_mace% %new_wp_staff% %new_wp_xbow% %new_wp_longbow% %new_wp_shortbow% %new_wp_dart% %new_wp_sling% %new_wp_2handed% %new_wp_swordandshield% %new_wp_singleweapon% %new_wp_2weapon% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+	OUTER_SET new_fnp_leather = 1
+	OUTER_SET new_fnp_chain = 0
+	OUTER_SET new_fnp_plate = 0
+	OUTER_SET new_fnp_clubstaff = %orig_clubstaff%
+	OUTER_SET new_fnp_hammer = %orig_hammer%
+	OUTER_SET new_fnp_mace = %orig_mace%
+	OUTER_SET new_fnp_flail = %orig_flail%
+	OUTER_SET new_fnp_axe = %orig_axe%
+	OUTER_SET new_fnp_dagger = %orig_dagger%
+	OUTER_SET new_fnp_shortsword = %orig_shortsword%
+	OUTER_SET new_fnp_longsword = %orig_longsword%
+	OUTER_SET new_fnp_scimitar = %orig_scimitar%
+	OUTER_SET new_fnp_katana = %orig_katana%
+	OUTER_SET new_fnp_bastardsword = 0
+	OUTER_SET new_fnp_2handsword = 0
+	OUTER_SET new_fnp_halberd = 0
+	OUTER_SET new_fnp_spear = 0
+	OUTER_SET new_fnp_dart = %orig_dart%
+	OUTER_SET new_fnp_sling = %orig_sling%
+	OUTER_SET new_fnp_bow = %orig_bow%
+	OUTER_SET new_fnp_xbow = %orig_xbow%
+	OUTER_SPRINT thiefscl ~100 100 100 100 100 100 100 0~
+	OUTER_SPRINT traplimt ~%orig_traplimt%~
+	OUTER_SPRINT thiefskl ~%orig_thiefskl%~
+	OUTER_SPRINT backstab ~%orig_backstab%~
+	OUTER_SPRINT sneakatt ~%orig_sneakatt%~
+	OUTER_SPRINT crippstr ~%orig_crippstr%~
    END
   END
   LAF ADD_KIT_EX
    INT_VAR
     kit_class   = %new_class%
-	mixed       = RESOLVE_STR_REF(~%new_mixed%~) // %new_mixed% string *****
+	mixed       = RESOLVE_STR_REF (~%new_mixed%~)
    STR_VAR
 	source_kit  = EVAL ~%sc_kit%~
 	kit_name    = EVAL ~%new_name%~
@@ -2186,41 +2544,32 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS sc_kit => mc_kits BEGIN
 	dualclas    = ~0 0 0 0 0 0~
 	kittable    = EVAL ~%new_kittable%~
 	hpclass		= EVAL ~%hit_dice%~
-	clasiskl	= ~0 0 0 0 0 0 0~
-/*
-	thiefscl	= EVAL ~%new_thiefscl%~
-	traplimt	= EVAL ~%new_traplimt%~
-	thiefskl	= EVAL ~%new_thiefskl%~
-	backstab	= EVAL ~%new_backstab%~
-	sneakatt	= EVAL ~%new_sneakatt%~
-	crippstr	= EVAL ~%new_crippstr%~
-*/
+	weapprof    = EVAL ~%new_weapprof%~
 //   RET kit_id
   END
-
   LAF DEFINE_FNP_KIT_INFO
    INT_VAR
-	u_leather_armor 	= %new_leather%
-	u_chain_armor 		= %new_chain%
-	u_plate_armor 		= %new_plate%
-	u_club_staff	 	= %new_clubstaff%
-	u_hammers	 		= %new_hammer%
-	u_maces 	 		= %new_mace%
-	u_flails 			= %new_flail%
-	u_axes 				= %new_axe%
-	u_daggers 			= %new_dagger%
-	u_short_swords		= %new_shortsword%
-	u_long_swords		= %new_longsword%
-	u_scimitars 		= %new_scimitar%
-	u_katanas 			= %new_katana%
-	u_bastard_swords 	= %new_bastardsword%
-	u_2hand_swords 		= %new_2handsword%
-	u_halberds 			= %new_halberd%
-	u_spears 	 		= %new_spear%
-	u_darts 			= %new_dart%
-	u_slings	 		= %new_sling%
-	u_bows 				= %new_bow%
-	u_crossbows 		= %new_xbow%
+	u_leather_armor 	= %new_fnp_leather%
+	u_chain_armor 		= %new_fnp_chain%
+	u_plate_armor 		= %new_fnp_plate%
+	u_club_staff	 	= %new_fnp_clubstaff%
+	u_hammers	 		= %new_fnp_hammer%
+	u_maces 	 		= %new_fnp_mace%
+	u_flails 			= %new_fnp_flail%
+	u_axes 				= %new_fnp_axe%
+	u_daggers 			= %new_fnp_dagger%
+	u_short_swords		= %new_fnp_shortsword%
+	u_long_swords		= %new_fnp_longsword%
+	u_scimitars 		= %new_fnp_scimitar%
+	u_katanas 			= %new_fnp_katana%
+	u_bastard_swords 	= %new_fnp_bastardsword%
+	u_2hand_swords 		= %new_fnp_2handsword%
+	u_halberds 			= %new_fnp_halberd%
+	u_spears 	 		= %new_fnp_spear%
+	u_darts 			= %new_fnp_dart%
+	u_slings	 		= %new_fnp_sling%
+	u_bows 				= %new_fnp_bow%
+	u_crossbows 		= %new_fnp_xbow%
    STR_VAR
     clab_name 		= EVAL ~%new_clab%~
 	sphere_list		= EVAL ~%orig_sphere_list%~
@@ -2254,11 +2603,9 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS sc_kit => mc_kits BEGIN
 	LAM apply_fnp_spheres_to_kit
   END
 
-/*
   ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~91~) BEGIN
 	LAM apply_fnp_usability_to_kit
   END
-*/
 
 END
 

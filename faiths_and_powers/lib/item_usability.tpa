@@ -893,7 +893,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 		  SET_2DA_ENTRY row 7 10 ~0x%hex_shapeshifter%~ 
 		END
 		PATCH_IF (~%class%~ STRING_EQUAL_CASE ~OCCULTIST~) BEGIN
-		  SET_2DA_ENTRY row 7 10 ~0x%hex_avenger%~ 
+		  SET_2DA_ENTRY row 7 10 ~0x%hex_shapeshifter%~ 
 		END
 	  END
 	END

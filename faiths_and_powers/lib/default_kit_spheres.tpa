@@ -79,30 +79,30 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-ACTION_IF FILE_EXISTS_IN_GAME ~clabpr01.2da~ BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~clabpr01.2da~) && (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
  LAM vanilla_cleric_spheres
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 1
-	u_plate_armor 		= 0
+	u_plate_armor 		= 1
 	u_club_staff	 	= 1
 	u_hammers	 		= 1
 	u_maces 	 		= 1
 	u_flails 			= 1
-	u_axes 				= 0
+	u_axes 				= 1
 	u_daggers 			= 1
 	u_short_swords		= 1
-	u_long_swords		= 0
-	u_scimitars 		= 0
-	u_katanas 			= 0
-	u_bastard_swords 	= 0
-	u_2hand_swords 		= 0
-	u_halberds 			= 0
+	u_long_swords		= 1
+	u_scimitars 		= 1
+	u_katanas 			= 1
+	u_bastard_swords 	= 1
+	u_2hand_swords 		= 1
+	u_halberds 			= 1
 	u_spears 	 		= 1
-	u_darts 			= 0
+	u_darts 			= 1
 	u_slings		 	= 1
-	u_bows 				= 0
+	u_bows 				= 1
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= ~clabpr01~
@@ -158,13 +158,13 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpr03.2da~ BEGIN
 	u_hammers	 		= 1
 	u_maces 	 		= 1
 	u_flails 			= 1
-	u_axes 				= 0
+	u_axes 				= 1
 	u_daggers 			= 0
 	u_short_swords		= 1
 	u_long_swords		= 1
 	u_scimitars 		= 0
 	u_katanas 			= 0
-	u_bastard_swords 	= 1
+	u_bastard_swords 	= 2
 	u_2hand_swords 		= 0
 	u_halberds 			= 0
 	u_spears 	 		= 1
@@ -228,13 +228,13 @@ ACTION_IF FILE_EXISTS_IN_GAME ~ohtyr.2da~ BEGIN
 	u_hammers	 		= 1
 	u_maces 	 		= 1
 	u_flails 			= 1
-	u_axes 				= 0
+	u_axes 				= 1
 	u_daggers 			= 0
 	u_short_swords		= 1
-	u_long_swords		= 1
+	u_long_swords		= 2
 	u_scimitars 		= 0
 	u_katanas 			= 0
-	u_bastard_swords 	= 0
+	u_bastard_swords 	= 1
 	u_2hand_swords 		= 0
 	u_halberds 			= 0
 	u_spears 	 		= 1
@@ -263,16 +263,16 @@ ACTION_IF FILE_EXISTS_IN_GAME ~ohtempus.2da~ BEGIN
 	u_hammers	 		= 1
 	u_maces 	 		= 1
 	u_flails 			= 1
-	u_axes 				= 0
+	u_axes 				= 2
 	u_daggers 			= 0
 	u_short_swords		= 1
 	u_long_swords		= 1
 	u_scimitars 		= 0
 	u_katanas 			= 0
 	u_bastard_swords 	= 0
-	u_2hand_swords 		= 0
-	u_halberds 			= 0
-	u_spears 	 		= 1
+	u_2hand_swords 		= 2
+	u_halberds 			= 1
+	u_spears 	 		= 2
 	u_darts 			= 0
 	u_slings		 	= 1
 	u_bows 				= 0
@@ -932,7 +932,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
   STR_VAR
     clab_name 		= EVAL ~a#koss~
 	sphere_list		= ~kossuth_spheres~
-	class 			= ~acolyte~
+	class 			= ~priest~
 	multiclass 		= ~fc~
 END
 //__________________________________________________________________________________
@@ -973,7 +973,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
   STR_VAR
     clab_name 		= EVAL ~a#ogma~
 	sphere_list		= ~oghma_spheres~
-	class 			= ~acolyte~
+	class 			= ~priest~
 	multiclass 		= ~ct_cm~
 END
 //__________________________________________________________________________________
@@ -1010,8 +1010,9 @@ ACTION_IF FILE_EXISTS_IN_GAME ~a#ooze.2da~ BEGIN
   END
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM DR_oozemaster_spheres
-LAF ~DEFINE_FNP_KIT_INFO~
+ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
+ LAM DR_oozemaster_spheres
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 0
@@ -1037,6 +1038,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
   STR_VAR
     clab_name 		= EVAL ~a#ooze~
 	class 			= ~occultist~
+ END
 END
 //__________________________________________________________________________________
 END
@@ -1317,7 +1319,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
   STR_VAR
     clab_name 		= EVAL ~nmsune~
 	sphere_list		= ~sune_spheres~
-	class 			= ~acolyte~
+	class 			= ~priest~
 	multiclass 		= ~ct_cm~
 END
 //__________________________________________________________________________________
@@ -1440,8 +1442,9 @@ ACTION_IF FILE_EXISTS_IN_GAME ~nmrnfrrn.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM DR_justifier_spheres
-LAF ~DEFINE_FNP_KIT_INFO~
+ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
+ LAM DR_justifier_spheres
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 1
@@ -1468,6 +1471,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
     clab_name 		= EVAL ~nmrnfrrn~
 //	sphere_list		= ~ranger_forest_spheres~
 	class 			= ~scout~
+ END
 END
 //__________________________________________________________________________________
 END
@@ -1478,8 +1482,9 @@ ACTION_IF FILE_EXISTS_IN_GAME ~a#justif.2da~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-LAM DR_justifier_spheres
-LAF ~DEFINE_FNP_KIT_INFO~
+ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
+ LAM DR_justifier_spheres
+ LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
 	u_chain_armor 		= 1
@@ -1505,6 +1510,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
   STR_VAR
     clab_name 		= EVAL ~a#justif~
 	class 			= ~scout~
+ END
 END
 //__________________________________________________________________________________
 END
@@ -1614,7 +1620,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
   STR_VAR
     clab_name 		= EVAL ~clabeart~
 	sphere_list		= ~grumbar_spheres~
-	class 			= ~acolyte~
+	class 			= ~priest~
 	multiclass 		= ~fc~
 END
 //__________________________________________________________________________________
@@ -1958,7 +1964,7 @@ END // end function
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//					SPHERE ASSIGNMENTS FOR OTHER KITS
+//						SPHERE ASSIGNMENTS FOR OTHER KITS
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 

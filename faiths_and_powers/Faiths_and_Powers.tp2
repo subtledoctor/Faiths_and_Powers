@@ -2,13 +2,13 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.78sd2~
+VERSION ~0.78sd3~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
 
 
-ASK_EVERY_COMPONENT
+//ASK_EVERY_COMPONENT
 
 
 ALWAYS
@@ -120,54 +120,17 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   DELETE ~override/fnp_sphere_list.tpa~
 END
 
-//change shaman known spells________________________________________________________
-//
-LAF shaman_spells END
-//__________________________________________________________________________________
-
-//Add IWD spells if not already in game_____________________________________________
-//
-ACTION_CLEAR_ARRAY aoe_spell
-INCLUDE ~faiths_and_powers/lib/added_spells_v75.tpa~      //install spells from the 0.75 series  
- LAM v75_add_fnP_b_spells
- LAM v75_add_iwd_arcane_spells
- LAM v75_add_iwd_divine_spells
-ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
-	LAM v75_apply_sr_aoe_deflection
-END  
-//INCLUDE ~%mod_folder%/lib/immunities.tpa~			//	DO AT THE VERY END OF ALL SPELL INSTALLS
-//__________________________________________________________________________________
-
 //prep sphere system________________________________________________________________
 //
-ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
-//	INCLUDE ~faiths_and_powers/lib/sphere_list_base.tpa~
-	COPY ~faiths_and_powers/lib/sphere_list_base.tpa~ ~override/fnp_sphere_list.tpa~
-
-END
-ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
-  ACTION_IF GAME_IS ~iwdee~ BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) && (GAME_IS ~iwdee~) BEGIN
 //	INCLUDE ~faiths_and_powers/lib/sphere_list_iwd_sr.tpa~
 	COPY ~faiths_and_powers/lib/sphere_list_iwd_sr.tpa~ ~override/fnp_sphere_list.tpa~
 
-  END
-  ELSE BEGIN
-//	INCLUDE ~faiths_and_powers/lib/sphere_list_sr.tpa~
-	COPY ~faiths_and_powers/lib/sphere_list_sr.tpa~ ~override/fnp_sphere_list.tpa~
-  END
 END
-//__________________________________________________________________________________
-
-//create sphere system______________________________________________________________
-//
-INCLUDE ~override/fnp_sphere_list.tpa~
-LAM d5_define_sphere_names
-LAM d5_define_sphere_spells
-LAM d5_deity_kit_sphere_lists
-
-INCLUDE ~faiths_and_powers/lib/sphere_system.tpa~
-
-LAF create_spheres END
+ELSE BEGIN
+//	INCLUDE ~faiths_and_powers/lib/sphere_list_sr.tpa~
+	COPY ~faiths_and_powers/lib/sphere_list_fnp.tpa~ ~override/fnp_sphere_list.tpa~
+END
 //__________________________________________________________________________________
 
 
@@ -185,41 +148,11 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   DELETE ~override/fnp_sphere_list.tpa~
 END
 
-//change shaman known spells________________________________________________________
-//
-LAF shaman_spells END
-//__________________________________________________________________________________
-
-//Add IWD spells if not already in game_____________________________________________
-//
-ACTION_CLEAR_ARRAY aoe_spell
-INCLUDE ~faiths_and_powers/lib/added_spells_v75.tpa~      //install spells from the 0.75 series  
- LAM v75_add_fnP_b_spells
- LAM v75_add_iwd_arcane_spells
- ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells..from any source
-	LAM v75_add_iwd_divine_spells
- END
-ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
-	LAM v75_apply_sr_aoe_deflection
-END  
-INCLUDE ~%mod_folder%/lib/immunities.tpa~			//	DO AT THE VERY END OF ALL SPELL INSTALLS
-//__________________________________________________________________________________
-
 //prep sphere system________________________________________________________________
 //
 COPY ~faiths_and_powers/lib/sphere_list_2E.tpa~ ~override/fnp_sphere_list.tpa~
 
 INCLUDE ~override/fnp_sphere_list.tpa~
-//__________________________________________________________________________________
-
-//create sphere system______________________________________________________________
-//
-INCLUDE ~faiths_and_powers/lib/sphere_system.tpa~
-LAM d5_define_sphere_names
-LAM d5_define_sphere_spells
-LAM d5_deity_kit_sphere_lists
-
-LAF create_spheres END
 //__________________________________________________________________________________
 
 
@@ -233,43 +166,12 @@ SUBCOMPONENT @20 (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~)
 COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_spheres.d5~
 COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_custom_spheres.d5~
 
-ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
-
-//change shaman known spells________________________________________________________
-//
-  LAF shaman_spells END
-//__________________________________________________________________________________
-
-//Add IWD spells if not already in game_____________________________________________
-//
-ACTION_CLEAR_ARRAY aoe_spell
-INCLUDE ~faiths_and_powers/lib/added_spells_v75.tpa~      //install spells from the 0.75 series  
- LAM v75_add_fnP_b_spells
- LAM v75_add_iwd_arcane_spells
- LAM v75_add_iwd_divine_spells
-ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
-	LAM v75_apply_sr_aoe_deflection
-END  
-INCLUDE ~%mod_folder%/lib/immunities.tpa~			//	DO AT THE VERY END OF ALL SPELL INSTALLS
-//__________________________________________________________________________________
-
-//create sphere system______________________________________________________________
-//
-  INCLUDE ~override/fnp_sphere_list.tpa~
-  INCLUDE ~faiths_and_powers/lib/sphere_system.tpa~
-  LAM d5_define_sphere_names
-  LAM d5_define_sphere_spells
-  LAM d5_deity_kit_sphere_lists
-  LAF create_spheres END
-//__________________________________________________________________________________
-
-END
-ELSE BEGIN
+ACTION_IF !(FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   PRINT ~There is no sphere system defined! Please put a version of "fnp_sphere_list.tpa" into the override directory and try again.~
 END
-
-
 //__________________________________________________________________________________
+
+
 //__________________________________________________________________________________
 //
 BEGIN @24 // no sphere system at all
@@ -277,7 +179,6 @@ DESIGNATED 24
 SUBCOMPONENT @20
 
 COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_no_spheres.d5~
-
 //__________________________________________________________________________________
 
 
@@ -301,11 +202,21 @@ END
 INCLUDE ~faiths_and_powers/lib/add_cleric_kits.tpa~
 INCLUDE ~faiths_and_powers/lib/add_incarnate_kits.tpa~
 
+ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~21~) && !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~22~) &&! (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~23~) && !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~24~) BEGIN
+  COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_no_spheres.d5~
+END
+
 LAM d5_kit_choices
 
 ACTION_IF (GAME_IS ~iwdee~) BEGIN
    OUTER_SET d5_cleric_kelemvor =	0
    OUTER_SET d5_cleric_cyric 	=	0
+END
+
+ACTION_IF (ENGINE_IS ~tob bgt~) BEGIN
+   OUTER_SET d5_cleric_azuth	=	0
+   OUTER_SET d5_cleric_baervan 	=	0
+   OUTER_SET d5_ur_priest	 	=	0
 END
 
 // (clerics)
@@ -391,12 +302,19 @@ END
 OUTER_SPRINT class ~C~
 LAF remove_sc_menu_kits END
 
+ACTION_IF	(ENGINE_IS ~tob bgt~) &&
+			(MOD_IS_INSTALLED ~DIVINE_REMIX/SETUP-DIVINE_REMIX.TP2~ ~1000~) &&
+			(FILE_EXISTS ~divine_remix/lib/macros.tph~) BEGIN
+  INCLUDE ~faiths_and_powers/lib/dr_compat.tpa~
+  LAF cleric_dr_spheres END
+END
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
 BEGIN @33 // install druid kits
 DESIGNATED 33
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 
 ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   INCLUDE ~override/fnp_sphere_list.tpa~
@@ -423,8 +341,6 @@ END
 //__________________________________________________________________________________
 
 LAM d5_kit_choices
-
-/*
 
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5_no_spheres.d5~) BEGIN
    OUTER_SET d5_earth_mystic 	=	0
@@ -456,9 +372,6 @@ ACTION_IF (%d5_forest_druid% + %d5_totemic_druid% + %d5_hivekeeper_druid% + %d5_
  LAF druid_shapeshifting END
 END
 //
-
-*/
-
 // (mystics)
 ACTION_IF (%d5_earth_mystic% = 1) BEGIN
  LAF earth_mystic END
@@ -510,7 +423,7 @@ LAF paladin_spell_tables END
 
 LAM d5_kit_choices
 
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5_no_spheres.d5~) BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5_no_spheres.d5~) || (ENGINE_IS ~tob bgt~) BEGIN
    OUTER_SET d5_zealot_ilmater 		=	0
    OUTER_SET d5_zealot_arvoreen 	=	0
    OUTER_SET d5_zealot_sune 		=	0
@@ -665,6 +578,7 @@ LAF remove_sc_menu_kits END
 //
 BEGIN @37 // install ranger kits
 DESIGNATED 37
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 
 ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   INCLUDE ~override/fnp_sphere_list.tpa~
@@ -714,10 +628,13 @@ ACTION_IF (%d5_halfling_slinger% = 1) BEGIN
 END
 */
 
-LAF more_ranger_alignments END
-
 OUTER_SPRINT class ~R~
 LAF remove_sc_menu_kits END
+
+//more scout alignments_____________________________________________________________
+//
+LAF more_ranger_alignments END
+//__________________________________________________________________________________
 
 
 
@@ -730,64 +647,9 @@ LAF remove_sc_menu_kits END
 
 BEGIN @91 // item usability
 DESIGNATED 91
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 
 COPY ~faiths_and_powers/lib/markers/d5_fnp_usability.d5~ ~override~
-
-//__________________________________________________________________________________
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//							APPLY SPHERE SYSTEM
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-BEGIN @95 // apply sphere systen
-DESIGNATED 95
-//INSTALL_BY_DEFAULT
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) @8
-FORBID_COMPONENT ~faiths_and_powers.tp2~ ~24~ @8
-
-//get ready for sphere system_______________________________________________________
-//
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_no_spheres.d5~) BEGIN
-  INCLUDE ~faiths_and_powers/lib/sphere_system.tpa~
-END	
-ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
-  INCLUDE ~override/fnp_sphere_list.tpa~
-  LAM d5_define_sphere_names
-  LAM d5_define_sphere_spells
-  LAM d5_deity_kit_sphere_lists
-END
-//__________________________________________________________________________________
-
-/*
-//read in sphere system______________________________________________________________
-//
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5_fnp_spheres.d5~) BEGIN
- ACTION_IF !(FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
-	INCLUDE ~faiths_and_powers/lib/sphere_list_base.tpa~
- END
- ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
-  ACTION_IF GAME_IS ~iwdee~ BEGIN
-	INCLUDE ~faiths_and_powers/lib/sphere_list_iwd_sr.tpa~
-  END
-  ELSE BEGIN
-	INCLUDE ~faiths_and_powers/lib/sphere_list_sr.tpa~
-  END
- END
-END
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5_2e_spheres.d5~) || (FILE_EXISTS_IN_GAME ~d5_custom_spheres.d5~) BEGIN
-  INCLUDE ~override/fnp_sphere_list.tpa~
-END
-//__________________________________________________________________________________
-*/
 
 //read in kit functions_____________________________________________________________
 //
@@ -814,12 +676,101 @@ LAM ~READ_FNP_KIT_INFO~
 
 //alter item usability______________________________________________________________
 //
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5_fnp_usability.d5~) BEGIN
-  INCLUDE ~faiths_and_powers/lib/item_usability.tpa~
-  LAF change_usability END
-  LAF apply_usability END
-END
+INCLUDE ~faiths_and_powers/lib/item_usability.tpa~
+LAF change_usability END
+LAF apply_usability END
 //__________________________________________________________________________________
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//							APPLY SPHERE SYSTEM
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @95 // apply sphere systen
+DESIGNATED 95
+INSTALL_BY_DEFAULT
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) @8
+FORBID_COMPONENT ~faiths_and_powers.tp2~ ~24~ @8
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+
+//change shaman known spells________________________________________________________
+//
+LAF shaman_spells END
+//__________________________________________________________________________________
+
+//Add IWD spells if not already in game_____________________________________________
+//
+ACTION_CLEAR_ARRAY aoe_spell
+INCLUDE ~faiths_and_powers/lib/add_spells_v75.tpa~      //install spells from the 0.75 series  
+ LAM v75_add_fnP_b_spells
+ LAM v75_add_iwd_arcane_spells
+ LAM v75_add_iwd_divine_spells
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  LAM v75_apply_sr_aoe_deflection
+END  
+//INCLUDE ~%mod_folder%/lib/immunities.tpa~			//	DO AT THE VERY END OF ALL SPELL INSTALLS
+//__________________________________________________________________________________
+
+//create sphere system______________________________________________________________
+//
+INCLUDE ~override/fnp_sphere_list.tpa~
+LAM d5_define_sphere_names
+LAM d5_define_sphere_spells
+LAM d5_deity_kit_sphere_lists
+
+INCLUDE ~faiths_and_powers/lib/sphere_system.tpa~
+
+LAF create_spheres END
+//__________________________________________________________________________________
+
+END
+
+//read in kit functions_____________________________________________________________
+//
+INCLUDE ~faiths_and_powers/lib/add_cleric_kits.tpa~
+INCLUDE ~faiths_and_powers/lib/add_incarnate_kits.tpa~
+INCLUDE ~faiths_and_powers/lib/add_druid_kits.tpa~
+INCLUDE ~faiths_and_powers/lib/add_mystic_kits.tpa~
+INCLUDE ~faiths_and_powers/lib/add_occultist_kits.tpa~
+INCLUDE ~faiths_and_powers/lib/add_champion_kits.tpa~
+INCLUDE ~faiths_and_powers/lib/add_zealot_kits.tpa~
+INCLUDE ~faiths_and_powers/lib/add_ranger_kits.tpa~
+INCLUDE ~faiths_and_powers/lib/add_scout_kits.tpa~
+
+INCLUDE ~faiths_and_powers/lib/default_kit_spheres.tpa~
+LAF vanilla_kit_spheres END
+LAF mod_kit_spheres END
+LAF default_kit_spheres END
+//__________________________________________________________________________________
+
+//read fnp_system info in order to apply sphere system/item usability_______________
+//
+LAM ~READ_FNP_KIT_INFO~
+//__________________________________________________________________________________
+
+/*
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5_fnp_usability.d5~) BEGIN
+
+//alter item usability______________________________________________________________
+//
+INCLUDE ~faiths_and_powers/lib/item_usability.tpa~
+LAF change_usability END
+LAF apply_usability END
+//__________________________________________________________________________________
+
+END
+*/
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
 
 //Apply Sphere System_______________________________________________________________
 //
@@ -837,6 +788,8 @@ LAF npc_sc_kits END
 LAF universal_spells END
 //__________________________________________________________________________________
 
+END
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -851,6 +804,7 @@ LAF universal_spells END
 
 BEGIN @99 // install multiclass kits
 DESIGNATED 99
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 
 INCLUDE ~faiths_and_powers/lib/qd_multiclass.tpa~
 INCLUDE ~faiths_and_powers/lib/a7#add_kit_ex.tpa~
@@ -862,9 +816,23 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   LAM d5_deity_kit_sphere_lists
 END
 
+//multiclass text____________________________________________________________________
+//
+LAF multiclass_text END
+//__________________________________________________________________________________
+
+//enable lots of multiclasses_______________________________________________________
+//
+LAF enable_multiclasses END
+//___________________________________________________________________________________
+
 LAM d5_kit_choices
 
 INCLUDE ~faiths_and_powers/lib/add_multiclass_kits.tpa~
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5_no_spheres.d5~) BEGIN
+   OUTER_SET d5_multiclass_druids 	=	0
+END
 
 ACTION_IF (%d5_cm_mystra% = 1) BEGIN
   LAF cm_mystra END

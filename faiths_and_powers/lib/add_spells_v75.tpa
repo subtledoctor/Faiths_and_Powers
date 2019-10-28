@@ -467,6 +467,51 @@ COPY ~faiths_and_powers/spheres/spells/air/b_c401.spl~ ~override~ //spell
 	SAY DESC @51602
 	WRITE_SHORT 0x098 ~%b_storm1%~
 
+/*
+//CREATION
+
+// *****need BAMs for these!
+
+//animate clay construct
+// copy/make the actual spell
+COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.eff~ ~override~ 
+COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.cre~ ~override~ 
+  SAY etc.
+COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.itm~ ~override~ 
+  SAY etc.
+ACTION_IF !(FILE_EXISTS_IN_GAME ~golcly01.bcs~) BEGIN
+  COPY ~faiths_and_powers/spheres/spells/creation/golcly01.bcs~ ~override~ 
+END
+
+//animate stone construct
+// copy/make the actual spell
+ACTION_IF !(FILE_EXISTS_IN_GAME ~golstone.itm~) BEGIN
+  COPY ~faiths_and_powers/spheres/spells/creation/golstone.itm~ ~override~ 
+END
+COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.eff~ ~override~ 
+COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.cre~ ~override~ 
+  SAY etc.
+COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.itm~ ~override~ 
+  SAY etc.
+ACTION_IF !(FILE_EXISTS_IN_GAME ~golsto01.bcs~) BEGIN
+  COPY ~faiths_and_powers/spheres/spells/creation/golsto01.bcs~ ~override~ 
+END
+
+//animate iron construct
+// copy/make the actual spell
+ACTION_IF !(FILE_EXISTS_IN_GAME ~irongol.itm~) BEGIN
+  COPY ~faiths_and_powers/spheres/spells/creation/irongol.itm~ ~override~ 
+END
+COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.eff~ ~override~ 
+COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.cre~ ~override~ 
+  SAY etc.
+COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.itm~ ~override~ 
+  SAY etc.
+ACTION_IF !(FILE_EXISTS_IN_GAME ~goliro01.bcs~) BEGIN
+  COPY ~faiths_and_powers/spheres/spells/creation/goliro01.bcs~ ~override~ 
+END
+
+*/
 
 END	//	end add new spells macro
 

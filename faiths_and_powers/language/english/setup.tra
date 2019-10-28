@@ -16,7 +16,7 @@
 @37  = ~Install Ranger kits~
 @91  = ~Alter weapon usability and proficiency?~
 @95  = ~Apply sphere system~
-@99  = ~Install multiclass kits~
+@99  = ~Multiclass clerics (install this AFTER all other kit mods!!)~
 //
 @100  = ~Select an installation method below:~
 @101  = ~ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')~
@@ -163,7 +163,7 @@
 @1000  = ~install Sphere System~
 @1001  = ~install Sphere System alone~
 @1002  = ~- Access to the spheres of:~
-@1003  = ~- Focus access to the spheres of:~
+@1003  = ~- Focus access to the sphere of~
 @1004  = ~- Major access to the spheres of: All,~
 @1005  = ~- Minor access to the spheres of:~
 @1006  = ~Advantages:~
@@ -315,7 +315,6 @@ BOON OF LATHANDER: This spell lasts 1 round per level of the caster. It gives th
 
 Restrictions:
 - Alignment: Any good, or lawful neutral.
-- Multiclass: Fighter/Clerics, and Fighter/Mage/Clerics can all be Dawnbringers.
 ~
 @20104 = ~Hold Undead
 (Necromancy)
@@ -356,7 +355,6 @@ Advantages:
 
 Restrictions:
 - Alignment: Lawful good, lawful neutral, or neutral good only.
-- Multiclass: Fighter/Clerics can be Hands of Torm.
 ~
 
 @20501  = ~cleric of tymora~
@@ -373,7 +371,6 @@ The allies of this spellcaster gain extraordinary luck for the next 1 turn, rece
 
 Restrictions:
 - Alignment: may not Lawful or Evil.
-- Multiclass: Cleric/Thieves can be Luckriders
 ~
 @20504  = ~LUCKRIDER OF TYMORA: Also known as Lady Luck, Tymora is the goddess of good fortune. The sect of her clerics known as Luckriders eat, drink, and sleep luck. Confident to the point of cockiness, they enter battle recklessly, throwing caution to the wind and trusting in fate. Considering how many adventurers perish despite crafting meticulous strategies and plans, this is not a ridiculous position.
 ~
@@ -428,7 +425,7 @@ Advantages:
 
 Restrictions:
 - Alignment: May not be evil or chaotic.
-- Multiclass: Cleric/Fighters, and Cleric/Mages can be Doomguides.~
+~
 //
 // ... cleric of tempus:
 //
@@ -443,7 +440,6 @@ Advantages:
 
 Restrictions:
 - Alignment: No alignment restrictions.
-- Multiclass: Cleric/Fighters can be Battleguards
 ~
 @21004 = ~Incite Rage~
 @21005 = ~~
@@ -540,7 +536,8 @@ NATUREWALK: This spell grants one person protection from ground and nature based
 
 Restrictions:
 - Race restricted to gnome.
-- Alignment restricted to good.~
+- Alignment restricted to good.
+~
 @22304 = ~PRIEST OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
 ~
 @22305  = ~~
@@ -589,9 +586,7 @@ Advantages:
 - At 10th level, the Sworn can cast Feeblemind once per day as the wizard spell.  They gain an additional use of this ability at 20th and 30th level.
 Restrictions:
 - Alignment: any evil or chaotic neutral
-- Sworn of Cyric may be cleric/thieves
 ~
-
 //
 // ... cleric of Umberlee:
 //
@@ -607,7 +602,6 @@ Disadvantages:
 Restrictions:
 - Alignment: any evil or chaotic neutral
 ~
-
 //
 // ... priest of ilmater:
 //
@@ -624,7 +618,6 @@ ENDURANCE OF ILMATER: When the priest casts this spell, <PRO_HESHE> doubles the 
 
 Restrictions:
 - Alignment: May not be Evil
-- Multiclass: Multiclass characters may not become painbearers
 ~
 @31405  = ~~
 @31411  = ~Remove Fear~
@@ -651,7 +644,6 @@ Advantages:
 
 Restrictions:
 - Alignment: May not be Evil
-- Multiclass: Cleric/Mages, or Cleric/Thieves can become glyphscribes
 ~
 //
 // ... priest of sune:
@@ -663,12 +655,11 @@ Restrictions:
 Advantages:
 - Heartwarders are especially resistant to the influence of mind altering magic.  They recieve a +2 bonus to their save vs. spell.
 - Heartwarders may charm person as a special ability once per day.  This ability is especially potent, and opponents suffer a -2 to their save.  Otherwise, this ability functions as the wizard spell of the same name.  The Heartwarder can use this ability an additional time per day at levels 3, 6, 9, 12, 15, 18 and 20.  
-- Hartwarders may cast emotion: Hope as a special ability once per day at level 5.  The heartwarder can use this ability an additional time at levels 10, 15 and 20.  This spell functions as the wizard spell of the same name.  
+- Heartwarders may cast emotion: Hope as a special ability once per day at level 5.  The heartwarder can use this ability an additional time at levels 10, 15 and 20.  This spell functions as the wizard spell of the same name.  
 - At 11th level, the Heartwarder gains a permenant +1 bonus to charisma.
 
 Restrictions:
 - Alignment: May not be Lawful or Evil
-- Multiclass: Cleric/Mages, or Cleric/Thieves can become hartwarders
 ~
 @31606 = ~Charm Person
 
@@ -682,16 +673,14 @@ If the caster harms, or attempts to harm, the charmed person by some overt actio
 //
 @32201 = ~priest of tempus~
 @32202 = ~Broken Blade of Tempus~
-@32203 = ~BROKEN BLADE OF TEMPUS:  Broken Blades honor Tempus by treating those wounded in battle.  Unlike Battleguards and Glorybloods, who are most frequently found on the front lines, it is more common to find a Broken Blades at the rear, treating and protecting the wounded.  Broken Blades are particulary millitant for priests, wearing chain armor, and often weilding battle axes, and will be found defending any of Tempus's holy sites.
+@32203 = ~BROKEN BLADE OF TEMPUS:  Broken Blades honor Tempus by treating those wounded in battle.  Unlike Battleguards and Glorybloods, who are most frequently found on the front lines, it is more common to find a Broken Blades at the rear, treating and protecting the wounded.  Broken Blades are particulary millitant for priests, often weilding battle axes, and will be found defending any of Tempus's holy sites.
 
 Advantages:
-- Unlike most priests, Broken Blades can wear chain armor.
 - Broken Blades automatically gain proficiency with the axe.  
 - Can cast Chant as a spell like ability one time per day but with a casting time of 1 at first level.  The Battleguard gains an additional use every 5 levels.
 
 Restrictions:
 - Alignment: No alignment restrictions
-- Multiclass: None
 ~
 @32205  = ~~
 @32206 = ~Chant
@@ -723,7 +712,8 @@ Advantages:
 
 Restrictions:
 - May not be Evil.
-- May not dual-class.~
+- May not dual-class.
+~
 //
 // ... priest of mask:
 //
@@ -738,7 +728,6 @@ Advantages:
 
 Restrictions:
 - Alignment: may not Lawful or Good.
-- Multiclass: Cleric/Thieves can be Nightrunners
 ~
 @32904  = ~NIGHTRUNNER OF MASK: Mask is the god of shadow and intrigue. His goals are always hidden, and his actions are motivated by many layers of schemes and plans. His sect of Nightrunners includes both priests and cleric/thieves who travel the land advancing Mask's agenda.~
 @32905  = ~~
@@ -765,7 +754,6 @@ Advantages:
 Restrictions:
 - May not dual-class to fighter.
 - Alignment: may not be Chaotic or Good
-- Multiclass: Cleric/Mages and Cleric/Thieves can be Darkcloaks
 ~
 @33004  = ~DARKCLOAK OF SHAR: Shar is known as the Mistress of the Night. She is the goddess of darkness, presiding over caverns, darkness, dungeons, forgetfulness, loss, night, and secrets. The Darkcloaks are an unusual sect, who use Shar's influence to give care and comfort to those who are lost or emotionally damaged. While some other followers of Shar spurn these priests for failing to be militant enough, Darkcloaks still possess powerful abilities to strive against their enemies.~
 @33005  = ~~
@@ -782,11 +770,7 @@ Advantages:
 -  At 11th level, the Minion can cast assassin vines once per day.  <PRO_HESHE> can cast the spell an additional time per day at levels 20 and 30.
 
 Restrictions:
-- Alignment: Any evil or chaotic neutral- Multiclass: Cleric/Mages and Cleric/Thieves can be Darkcloaks
-
-Restrictions:
 - Alignment: Any evil or chaotic neutral
-- Multiclass: Cleric/Mages and Cleric/Thieves can be Minions
 ~
 //
 // ... priest of besheba:
@@ -823,7 +807,8 @@ Advantages:
 
 Restrictions:
 - Race restricted to gnome.
-- Alignment restricted to good.~
+- Alignment restricted to good.
+~
 @34204 = ~PRIEST OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
 ~
 //
@@ -1835,8 +1820,8 @@ After the effects end, the character becomes winded, suffering a -2 penalty to A
 Disadvantages:
 - May only wear leather or studded leather armor.
 Restrictions:
-- Alignment: Cannot be evil~
-
+- Alignment: Cannot be evil
+~
 //CHAMPION KITS
 //Paladin of Tyr
 @80101  = ~champion of tyr~
@@ -1851,8 +1836,6 @@ Advantages:
 Restrictions:
 - Alignment: must be Lawful Good. 
 - The Paladin of Tyr must maintain a reputation of 8 or fall.~
-
-
 
 @80104  = ~Smite Evil~
 @80105  = ~Smite Evil
@@ -1874,8 +1857,8 @@ Abilities:
  20% resistance to fire and acid.
 
 Restrictions:
- May not use ranged weapons (both missile and thrown).~
-
+ May not use ranged weapons (both missile and thrown).
+~
 @80109  = ~undead hunter of tyr~
 @80110  = ~Undead Hunter of Tyr~
 @80111  = ~UNDEAD HUNTER OF TYR: This holy avenger has honed <PRO_HISHER> abilities toward the destruction of the undead and other unnatural creatures and is immune to many of their most devastating abilities.
@@ -1886,8 +1869,8 @@ Abilities:
 
 Restrictions:
  May not use Lay On Hands ability.
- May not use Cure Disease ability.~
-
+ May not use Cure Disease ability.
+~
 @80201  = ~champion of kelemvor~
 @80202  = ~Knight of Eternal Order~
 @80203  = ~KNIGHT OF ETERNAL ORDER: Undead creatures are anathema to Kelemvor.  Death is a natural part of life, and undead creatures try to escape that cycle.  They are abominations, and must be put to rest.
@@ -1900,8 +1883,8 @@ Advantages:
 - Knights of Eternal Order turn undead as a priest of their champion level once they reach level 3.
 
 Restrictions:
-- Alignment: Cannot be Neutral Evil or Chaotic Evil.~
-
+- Alignment: Cannot be Neutral Evil or Chaotic Evil.
+~
 @80204  = ~Disrupting Smite~
 @80205  = ~Disrupting Smite
 
@@ -1922,9 +1905,8 @@ Advantages:
 - Harvesters of Myrkul control undead as a priest of their champion level once they reach level 3.
 
 Restrictions:
-- Alignment: Any Evil.~
-
-
+- Alignment: Any Evil
+~
 @80301  = ~champion of tempus~
 @80302  = ~Gloryblood of Tempus~
 @80303  = ~GLORYBLOOD OF TEMPUS: The lord of battles has a special fondness for his champions, who are sponsored no matter what cause they fight for.
@@ -1940,8 +1922,8 @@ Disadvantages:
 - Glorybloods cannot turn undead.
 
 Restrictions:
-- Alignment: any~
-
+- Alignment: any
+~
 @80304  = ~Smite Foe~
 @80305  = ~Smite Foe
 
@@ -1958,8 +1940,8 @@ Advantages:
 - Knights of the Black Gauntlet are completely fearless.  Or rather, they fear only Bane's wrath.  As such, they are not affected either by magical fear nor moral failure.
 
 Restrictions:
-- Alignment: can be any Evil or Lawful Neutral~
-
+- Alignment: can be any Evil or Lawful Neutral
+~
 @80404  = ~Smite of Dread~
 @80405  = ~Smite of Dread
 
@@ -1976,8 +1958,8 @@ Advantages:
 - Knights of the Black Gauntlet are completely fearless.  Or rather, they fear only Bane's wrath.  As such, they are not affected either by magical fear nor moral failure.
 
 Restrictions:
-- Alignment: can be any Evil~
-
+- Alignment: can be any Evil
+~
 @80501 = ~champion of helm~
 @80502 = ~Everwatch Knight~
 @80503 = ~EVERWATCH KNIGHT: Everwatch knights act as the elite shock troops for the church of Helm.  Also, they are often sent on the most difficult missions for the church.  
@@ -1994,8 +1976,8 @@ Disadvantages:
 - Everwatch Knights do not have a special smite ability.
 
 Restrictions:
-- Alignment: May be Lawful Good, Lawful Neutral, or True Neutral.~
-
+- Alignment: May be Lawful Good, Lawful Neutral, or True Neutral.
+~
 @80504 = ~Everwatch Sword~
 @80505 = ~Everwatch Sword
 This spell creates a sword in the Champion's hand that cannot be dropped or unequipped. The sword is enchanted as a +4 weapon and provides a +4 THAC0 bonus, and does an additional 4 points of magic damage. It deals 2d4 damage to any target it hits. This ability lasts for 1 round per level. While it is equipped, the wielder cannot cast further spells.
@@ -2016,8 +1998,8 @@ Disadvantages:
 
 Restrictions:
 - Alignment: May be Lawful Good, Lawful Neutral, or True Neutral.
-- The Everwatch Knight of Helm must maintain a reputation of 8 or fall.~
-
+- The Everwatch Knight of Helm must maintain a reputation of 8 or fall.
+~
 @80601  = ~champion of talos~
 @80602  = ~Stormward of Talos~
 @80603  = ~STORMWARD OF TALOS: Stormwards are the elite guard of Talos.  They exist to spread destruction through the world, and thus, the fear of Talos.
@@ -2027,8 +2009,8 @@ Advantages:
 - Talos' Favor: Stormbringers are 50% resistant to electricity damage.
 
 Restrictions:
-- Alignment: Can only be Evil or Chaotic Neutral alignment~
-
+- Alignment: Can only be Evil or Chaotic Neutral alignment
+~
 @80604  = ~Storm Smite~
 @80605  = ~Storm Smite
 
@@ -2043,8 +2025,8 @@ Advantages:
 - Talos' Favor: Stormbringers are 50% resistant to electricity damage.
 
 Restrictions:
-- Alignment: Can only be Evil~
-
+- Alignment: Can only be Evil
+~
 @80701  = ~champion of moradin~
 @80702  = ~Hammer of Moradin~
 @80703  = ~HAMMER OF MORADIN:
@@ -2062,8 +2044,8 @@ Disadvantages:
 
 Restrictions:
 - Alignment: Lawful Good or Lawful Neutral only
-- The Hammer of Moradin must maintain a reputation of 8 or fall.~
-
+- The Hammer of Moradin must maintain a reputation of 8 or fall.
+~
 @80704  = ~Hammer of Moradin~
 @80705  = ~Hammer of Moradin
 The hammer is enchanted as a +4 weapon and deals 1d6 points of blunt damage as well as 1d6 magic damage.~
@@ -2081,8 +2063,8 @@ Disadvantages:
 
 Restrictions:
 - Alignment: May not be evil, nor chaotic
-- The Inquisitor of Azuth must maintain a reputation of 8 or fall.~
-
+- The Inquisitor of Azuth must maintain a reputation of 8 or fall.
+~
 @80804  = ~Wizard's Bane~
 @80805  = ~Wizard's Bane
 
@@ -2105,8 +2087,8 @@ Disadvantages:
 - Everwatch Knights do not have a special smite ability.
 
 Restrictions:
-- Alignment: Any non-chaotic.~
-
+- Alignment: Any non-chaotic.
+~
 @80904  = ~Knight's Move~
 @80905  = ~Knight's Move
 
@@ -2133,8 +2115,8 @@ At first level, when entering a frenzy, the Eye detects any invisible creature a
 
 Restrictions:
 - Alignment: Neutral Evil, Chaotic Evil, and Chaotic Neutral
-- Race: Half-Orc only.~
-
+- Race: Half-Orc only
+~
 @86204  = ~Sight of Gruumsh~
 @86205  = ~Sight of Gruumsh
 
@@ -2160,8 +2142,8 @@ Eye of the Storm: Initiates channel electrical energy when they frenzy.
 In addition to the normal effects of frenzy, the Initiate channels the raw destructive power of the storm while in frenzy.  At 1st level, they can cast lightning bolt as an innate ability.  At 4th level, <PRO_HESHE> is immune to electricty and gains 50% resistance to fire.  At 8th level, <PRO_HISHER> body crackles with electrical energy.  Any opponent that hits <PRO_HIMHER> in melee suffers 1d8+2 electrical damage.
 
 Restrictions:
-- Alignment: Any Evil or Chaotic Neutral~
-
+- Alignment: Any Evil or Chaotic Neutral
+~
 @86304  = ~Eye of the Storm~
 @86305  = ~Eye of the Storm
 
@@ -2187,8 +2169,8 @@ Burning Frenzy: Disciples channel the Elemental Plane of Fire when they frenzy.
 In addition to the normal effects of frenzy, the Disciple channels the raw power of fire while in frenzy.  At 1st level, they become immune to fire damage.  At 4th level, <PRO_HESHE> can cast Agannazar's Scorcher as an innate ability once per frenzy.  At 8th level, <PRO_HESHE> is under the effects of Fireshield (red) for the duration.
 
 Restrictions:
-- Alignment: Any~
-
+- Alignment: Any
+~
 @86404  = ~Burning Frenzy~
 @86405  = ~Burning Frenzy
 
@@ -2215,8 +2197,8 @@ At 1st level, <PRO_HESHE> gains 20% damage reduction against all forms of physic
 
 Restrictions:
 - Alignment: Any good or Lawful Neutral
-- The Companion of the Noble Heart must maintain a reputation of 8 or fall.~
-
+- The Companion of the Noble Heart must maintain a reputation of 8 or fall.
+~
 @86504  = ~Martyr's Acceptance~
 @86505  = ~Martyr's Acceptance
 
@@ -2242,7 +2224,8 @@ Frenzy does not stack with haste or similar effects
 Fury:  At 1st level, <PRO_HESHE> gains a +2 bonus to Strength and Constitution while under the effects of Frenzy.  This ability does not increase in potency at level 4, but they gain an additional use at level 4.  The bonus increases to +4 at 8th level.
 
 Restrictions:
-- Alignment: Any chaotic, True Neutral or Neutral Evil~
+- Alignment: Any chaotic, True Neutral or Neutral Evil
+~
 @86604  = ~Fury~
 @86605  = ~Fury
 
@@ -2270,8 +2253,8 @@ At 1st level, <PRO_HESHE> gains the same bonuses with ranged weapons as with mel
 Restrictions:
 - Alignment: Any good or Lawful Neutral
 - The Vassal of the Reverend One must maintain a reputation of 8 or fall.
-- Race: Elf or Half-Elf only~
-
+- Race: Elf or Half-Elf only
+~
 @86704  = ~Corellon's Arrow~
 @86705  = ~Corellon's Arrow
 
@@ -2298,8 +2281,8 @@ At 1st level, all enemies are affected by Charm Person if they fail a save vs. s
 
 Restrictions:
 - Alignment: Any Non-Evil
-- The Cherub of the Ruby Rose must maintain a reputation of 8 or fall.~
-
+- The Cherub of the Ruby Rose must maintain a reputation of 8 or fall.
+~
 @86804  = ~Passionate Resonance~
 @86805  = ~Passionate Resonance
 
@@ -2326,8 +2309,8 @@ At 1st level, <PRO_HESHE> gains 20% magic resistance while in frenzy.  At 4th le
 
 Restrictions:
 - Alignment: Any non-evil
-- The Zealot of Mystra must maintain a reputation of 8 or fall.~
-
+- The Zealot of Mystra must maintain a reputation of 8 or fall.
+~
 @86904  = ~Weaverage~
 @86905  = ~Weaverage
 
@@ -2354,8 +2337,8 @@ The Darksong Knight gains an additional attack per melee while in frenzy.
 
 Restrictions:
 - Alignment: Any non-evil
-- The Darksong Knight must maintain a reputation of 8 or fall.~
-
+- The Darksong Knight must maintain a reputation of 8 or fall.
+~
 @87004  = ~Bladesong~
 @87005  = ~Bladesong
 

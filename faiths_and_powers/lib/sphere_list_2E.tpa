@@ -1,16 +1,17 @@
-
 // SPHERE NAMES___________________________________________________________________
 //
 // You can define the names of your spheres in the right-hand column
 // There can be 23 spheres at most; they must correspond to the FnP spheres
 // So DO NOT change anything in the left column.
 
+DEFINE_ACTION_MACRO d5_define_sphere_names BEGIN
+
 <<<<<<<< d5/d5altsph.2da
 2DA
 Life 			Healing
 Death 			Necromantic
 Benediction 	Creation
-Destruction 	Harm
+Destruction 	Decay
 Protection 		Protection
 War 			Combat
 Exploration     Travelers
@@ -32,20 +33,27 @@ Magic 			Weather
 Perdition 		Astral
 >>>>>>>> 
 
+END	//	end sphere names macro
 //____________________________________________________________________________________
 
-// NEW SPHERE DEFINITIONS_____________________________________________________________
-//
-// The right-hand column defines which sphere a spell belongs to.  
-// Use the names in the right column above.
-//
-// The left-hand column can include filenames (e.g. "sppr101") *OR* IDS names (e.g. "CLERIC_BLESS").
+// spell spheres
+
+// First item: spell IDS name *or* RES filename
+// numeric value in the middle: desired spell level, can be 0 (no change) or 1-7
+// Item after equals sign: sphere
+
+// To change which sphere a spell belongs to, 
+// simply change the entry in the right-most column to the new sphere.
+// You don't have to actually move the spell, though you can if you want to.
 
 //  UNIVERSAL
 // 	universal spells will be available to every kit, regardless of their defined sphere assignments
+//	this is basically the "All" sphere
 // 	this "sphere" MUST MUST MUST have at least one spell of each spell level
-// 	and their spell level MUST NOT be changed from the vanilla game
-// 	those are the rules you MUST abide by if you want to change which spells are universal
+// 	and their spell level MUST NOT be changed from the vanilla game (use 0)
+// 	those are the rules you MUST abide by if you want to change which spells are uiniversal
+
+DEFINE_ACTION_MACRO d5_define_sphere_spells BEGIN
 
 <<<<<<<< d5/d5spsph.2da
 2DA V1.0 
@@ -143,7 +151,7 @@ CLERIC_REMOVE_PARALYSIS                	2	=	Travelers
 CLERIC_FREE_ACTION                     	3	=	Travelers
 WIZARD_KNOCK                           	3	=	Travelers
 CLERIC_UNFAILING_ENDURANCE             	4	=	Travelers
-WIZARD_TELEPORT_FIELD                  	6	=	Travelers //appropriate???
+WIZARD_TELEPORT_FIELD                  	6	=	Travelers // appropriate???
 WIZARD_INFRAVISION                     	1	=	Divination // SR true strike no need to change
 CLERIC_DETECT_EVIL                     	1	=	Divination
 CLERIC_FIND_TRAPS                      	2	=	Divination
@@ -186,7 +194,7 @@ CLERIC_NATURE_BEAUTY                   	7	=	Charm
 CLERIC_COMMAND                         	1	=	Law
 CLERIC_CASTIGATE                       	2	=	Law    // NEW SPELL http://www.d20pfsrd.com/magic/all-spells/c/castigate single target fear
 CLERIC_STRENGTH_OF_ONE                 	3	=	Law
-CLERIC_RIGID_THINKING                  	3	=	Law  //sr accounted for
+CLERIC_RIGID_THINKING                  	3	=	Law  // sr accounted for
 CLERIC_DEFENSIVE_HARMONY               	4	=	Law
 CLERIC_CHAMPIONS_STRENGTH              	5	=	Law
 CLERIC_PHYSICAL_MIRROR                 	6	=	Law
@@ -301,6 +309,8 @@ SR_WIZARD_DEATH_SPELL                  	6	=	Astral // sr banishment
 CLERIC_GATE                             7	=	Astral
 >>>>>>>>
 
+END	//	end sphere spells macro
+
 /*
 
 NOTES:
@@ -372,7 +382,10 @@ ADD:
 
 
 
+
 // FnP DEITY/KIT SPHERE ASSIGNMENTS___________________________________________________
+
+DEFINE_ACTION_MACRO d5_deity_kit_sphere_lists BEGIN
 
 // UR-PRIEST__________________________________________________________________________
 //
@@ -383,7 +396,7 @@ DEFINE_ACTION_FUNCTION ur_priest_spheres
 	Healing		 		=> x
 	Necromantic		 	=> major
 	Creation			=> x
-	Harm			 	=> major
+	Decay			 	=> major
 	Protection		 	=> major
 	Combat		 		=> major
 	Travelers			=> major
@@ -419,7 +432,7 @@ DEFINE_ACTION_FUNCTION auril_spheres
 	Healing 			=> minor
 	Necromantic			=> minor
 	Creation	 		=> major
-	Harm				=> major
+	Decay				=> major
 	Protection 			=> major
 	Combat 				=> minor
 	Travelers	 		=> major
@@ -452,7 +465,7 @@ DEFINE_ACTION_FUNCTION azuth_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> major
-	Harm		 		=> major
+	Decay		 		=> major
 	Protection 			=> major
 	Combat 				=> x
 	Travelers	  		=> minor
@@ -485,7 +498,7 @@ DEFINE_ACTION_FUNCTION bane_spheres
 	Healing				=> major
 	Necromantic			=> major
 	Creation	 		=> minor
-	Harm		 		=> major
+	Decay		 		=> major
 	Protection 			=> major
 	Combat 				=> major
 	Travelers			=> minor
@@ -518,7 +531,7 @@ DEFINE_ACTION_FUNCTION beshaba_spheres
 	Healing		 		=> major
 	Necromantic		 	=> minor
 	Creation			=> minor
-	Harm			 	=> minor
+	Decay			 	=> minor
 	Protection		 	=> major
 	Combat		 		=> major
 	Travelers		  	=> x
@@ -551,7 +564,7 @@ DEFINE_ACTION_FUNCTION cyric_spheres
 	Healing		 		=> major
 	Necromantic		 	=> major
 	Creation			=> x
-	Harm				=> major
+	Decay				=> major
 	Protection		 	=> minor
 	Combat		 		=> major
 	Travelers		  	=> x
@@ -584,7 +597,7 @@ DEFINE_ACTION_FUNCTION deneir_spheres
 	Healing		 		=> major
 	Necromantic		 	=> x
 	Creation			=> major
-	Harm				=> x
+	Decay				=> x
 	Protection		 	=> major
 	Combat		 		=> x
 	Travelers		  	=> minor
@@ -617,7 +630,7 @@ DEFINE_ACTION_FUNCTION eldath_spheres
 	Healing 			=> major
 	Necromantic			=> minor
 	Creation	 		=> major
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> major
 	Combat 				=> x
 	Travelers	 		=> minor
@@ -650,7 +663,7 @@ DEFINE_ACTION_FUNCTION garagos_spheres
 	Healing 			=> minor
 	Necromantic			=> x
 	Creation	 		=> major
-	Harm		 		=> major
+	Decay		 		=> major
 	Protection 			=> minor
 	Combat 				=> major
 	Travelers	 		=> minor
@@ -683,7 +696,7 @@ DEFINE_ACTION_FUNCTION grumbar_spheres
 	Healing 			=> major
 	Necromantic			=> minor
 	Creation	 		=> x
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> major
 	Combat 				=> major
 	Travelers	 		=> x
@@ -716,7 +729,7 @@ DEFINE_ACTION_FUNCTION helm_spheres
 	Healing		 		=> minor
 	Necromantic		 	=> x
 	Creation			=> minor
-	Harm				=> x
+	Decay				=> x
 	Protection		 	=> major
 	Combat		 		=> major
 	Travelers		 	=> minor
@@ -749,7 +762,7 @@ DEFINE_ACTION_FUNCTION ilmater_spheres
 	Healing		 		=> major
 	Necromantic		 	=> minor
 	Creation			=> major
-	Harm				=> x
+	Decay				=> x
 	Protection		 	=> major
 	Combat		 		=> x
 	Travelers		 	=> major
@@ -782,7 +795,7 @@ DEFINE_ACTION_FUNCTION kelemvor_spheres
 	Healing		 		=> major
 	Necromantic		 	=> major
 	Creation			=> x
-	Harm				=> x
+	Decay				=> x
 	Protection		 	=> minor
 	Combat		 		=> major
 	Travelers		  	=> minor
@@ -815,7 +828,7 @@ DEFINE_ACTION_FUNCTION kossuth_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> x
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> minor
 	Combat 				=> major
 	Travelers	 		=> x
@@ -848,7 +861,7 @@ DEFINE_ACTION_FUNCTION lathander_spheres
 	Healing		 		=> major
 	Necromantic		 	=> x
 	Creation			=> major
-	Harm				=> x
+	Decay				=> x
 	Protection		 	=> minor
 	Combat		 		=> minor
 	Travelers		  	=> minor
@@ -881,7 +894,7 @@ DEFINE_ACTION_FUNCTION leira_spheres
 	Healing		 		=> major
 	Necromantic		 	=> x
 	Creation			=> major
-	Harm			 	=> x
+	Decay			 	=> x
 	Protection		 	=> minor
 	Combat		 		=> x
 	Travelers		  	=> major
@@ -914,7 +927,7 @@ DEFINE_ACTION_FUNCTION loviatar_spheres
 	Healing		 		=> major
 	Necromantic		 	=> major
 	Creation			=> x
-	Harm				=> major
+	Decay				=> major
 	Protection		 	=> x
 	Combat		 		=> major
 	Travelers		  	=> x
@@ -947,7 +960,7 @@ DEFINE_ACTION_FUNCTION mask_spheres
 	Healing		 		=> minor
 	Necromantic		 	=> minor
 	Creation			=> minor
-	Harm				=> major
+	Decay				=> major
 	Protection		 	=> major
 	Combat		 		=> minor
 	Travelers		  	=> x
@@ -980,7 +993,7 @@ DEFINE_ACTION_FUNCTION mielikki_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> x
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> major
 	Combat 				=> major
 	Travelers	 		=> major
@@ -1013,7 +1026,7 @@ DEFINE_ACTION_FUNCTION moander_spheres
 	Healing		 		=> minor
 	Necromantic		 	=> major
 	Creation			=> x
-	Harm				=> major
+	Decay				=> major
 	Protection		 	=> x
 	Combat		 		=> x
 	Travelers		  	=> minor
@@ -1046,7 +1059,7 @@ DEFINE_ACTION_FUNCTION mystra_spheres
 	Healing		 		=> major
 	Necromantic		 	=> x
 	Creation			=> major
-	Harm				=> major
+	Decay				=> major
 	Protection		 	=> major
 	Combat		 		=> x
 	Travelers		  	=> minor
@@ -1079,7 +1092,7 @@ DEFINE_ACTION_FUNCTION oghma_spheres
 	Healing 			=> major
 	Necromantic			=> minor
 	Creation	 		=> minor
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> major
 	Combat 				=> x
 	Travelers	 		=> major
@@ -1112,7 +1125,7 @@ DEFINE_ACTION_FUNCTION redknight_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> major
-	Harm		 		=> minor
+	Decay		 		=> minor
 	Protection 			=> major
 	Combat 				=> major
 	Travelers	 		=> major
@@ -1145,7 +1158,7 @@ DEFINE_ACTION_FUNCTION selune_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> x
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> major
 	Combat 				=> x
 	Travelers	 		=> minor
@@ -1178,7 +1191,7 @@ DEFINE_ACTION_FUNCTION shar_spheres
 	Healing		 		=> minor
 	Necromantic		 	=> major
 	Creation			=> minor
-	Harm				=> major
+	Decay				=> major
 	Protection		 	=> major
 	Combat		 		=> major
 	Travelers		 	=> x
@@ -1211,7 +1224,7 @@ DEFINE_ACTION_FUNCTION shaundakul_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> minor
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> major
 	Combat 				=> major
 	Travelers	 		=> major
@@ -1244,7 +1257,7 @@ DEFINE_ACTION_FUNCTION sune_spheres
 	Healing		 		=> major
 	Necromantic		 	=> x
 	Creation			=> minor
-	Harm				=> x
+	Decay				=> x
 	Protection		 	=> major
 	Combat		 		=> x
 	Travelers			=> minor
@@ -1277,7 +1290,7 @@ DEFINE_ACTION_FUNCTION talos_spheres
 	Healing		 		=> major
 	Necromantic		 	=> x
 	Creation			=> x
-	Harm				=> major
+	Decay				=> major
 	Protection		 	=> major
 	Combat		 		=> minor
 	Travelers			=> minor
@@ -1310,7 +1323,7 @@ DEFINE_ACTION_FUNCTION tempus_spheres
 	Healing		 		=> major
 	Necromantic		 	=> x
 	Creation			=> major
-	Harm				=> major
+	Decay				=> major
 	Protection		 	=> major
 	Combat		 		=> major
 	Travelers			=> minor
@@ -1343,7 +1356,7 @@ DEFINE_ACTION_FUNCTION torm_spheres
 	Healing		 		=> major
 	Necromantic		 	=> x
 	Creation			=> major
-	Harm				=> minor
+	Decay				=> minor
 	Protection		 	=> major
 	Combat		 		=> major
 	Travelers			=> minor
@@ -1376,7 +1389,7 @@ DEFINE_ACTION_FUNCTION tymora_spheres
 	Healing		 		=> major
 	Necromantic		 	=> x
 	Creation			=> minor
-	Harm				=> minor
+	Decay				=> minor
 	Protection		 	=> major
 	Combat		 		=> x
 	Travelers			=> major
@@ -1409,7 +1422,7 @@ DEFINE_ACTION_FUNCTION tyr_spheres
 	Healing				=> major
 	Necromantic			=> x
 	Creation			=> major
-	Harm				=> minor
+	Decay				=> minor
 	Protection			=> major
 	Combat				=> major
 	Travelers			=> minor
@@ -1442,7 +1455,7 @@ DEFINE_ACTION_FUNCTION ulutiu_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> x
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> major
 	Combat 				=> minor
 	Travelers	 		=> major
@@ -1475,7 +1488,7 @@ DEFINE_ACTION_FUNCTION umberlee_spheres
 	Healing		 		=> major
 	Necromantic		 	=> x
 	Creation			=> x
-	Harm				=> x
+	Decay				=> x
 	Protection		 	=> minor
 	Combat		 		=> major
 	Travelers			=> major
@@ -1508,7 +1521,7 @@ DEFINE_ACTION_FUNCTION xvim_spheres
 	Healing				=> minor
 	Necromantic			=> major
 	Creation	 		=> minor
-	Harm		 		=> major
+	Decay		 		=> major
 	Protection 			=> major
 	Combat 				=> major
 	Travelers			=> minor
@@ -1544,7 +1557,7 @@ DEFINE_ACTION_FUNCTION corellon_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> major
-	Harm		 		=> minor
+	Decay		 		=> minor
 	Protection 			=> major
 	Combat 				=> major
 	Travelers	 		=> major
@@ -1577,7 +1590,7 @@ DEFINE_ACTION_FUNCTION eilistraee_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> minor
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> major
 	Combat 				=> x
 	Travelers	  		=> major
@@ -1610,7 +1623,7 @@ DEFINE_ACTION_FUNCTION baervan_spheres
 	Healing		 		=> major
 	Necromantic		 	=> x
 	Creation			=> minor
-	Harm				=> x
+	Decay				=> x
 	Protection		 	=> major
 	Combat		 		=> x
 	Travelers			=> major
@@ -1643,7 +1656,7 @@ DEFINE_ACTION_FUNCTION baravar_spheres
 	Healing		 		=> major
 	Necromantic		 	=> x
 	Creation			=> minor
-	Harm				=> x
+	Decay				=> x
 	Protection		 	=> major
 	Combat		 		=> x
 	Travelers			=> major
@@ -1676,7 +1689,7 @@ DEFINE_ACTION_FUNCTION clangeddin_spheres
 	Healing				=> major
 	Necromantic			=> x
 	Creation	 		=> major
-	Harm		 		=> major
+	Decay		 		=> major
 	Protection 			=> major
 	Combat 				=> major
 	Travelers	 		=> minor
@@ -1709,7 +1722,7 @@ DEFINE_ACTION_FUNCTION moradin_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> major
-	Harm		 		=> major
+	Decay		 		=> major
 	Protection 			=> major
 	Combat 				=> minor
 	Travelers	 		=> minor
@@ -1742,7 +1755,7 @@ DEFINE_ACTION_FUNCTION gruumsh_spheres
 	Healing 			=> minor
 	Necromantic			=> minor
 	Creation	 		=> minor
-	Harm		 		=> major
+	Decay		 		=> major
 	Protection 			=> minor
 	Combat 				=> major
 	Travelers	 		=> x
@@ -1775,7 +1788,7 @@ DEFINE_ACTION_FUNCTION luthic_spheres
 	Healing 			=> major
 	Necromantic			=> major
 	Creation	 		=> minor
-	Harm		 		=> major
+	Decay		 		=> major
 	Protection 			=> major
 	Combat 				=> minor
 	Travelers	 		=> x
@@ -1811,7 +1824,7 @@ DEFINE_ACTION_FUNCTION druid_forest_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> x
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> x
 	Combat 				=> x
 	Travelers	  		=> minor
@@ -1844,7 +1857,7 @@ DEFINE_ACTION_FUNCTION druid_totemic_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> x
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> x
 	Combat 				=> x
 	Travelers	  		=> minor
@@ -1877,7 +1890,7 @@ DEFINE_ACTION_FUNCTION druid_hivekeeper_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> x
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> x
 	Combat 				=> x
 	Travelers	  		=> minor
@@ -1910,7 +1923,7 @@ DEFINE_ACTION_FUNCTION druid_northern_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> x
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> x
 	Combat 				=> x
 	Travelers	  		=> minor
@@ -1943,7 +1956,7 @@ DEFINE_ACTION_FUNCTION druid_shadow_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> x
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> x
 	Combat 				=> x
 	Travelers	  		=> minor
@@ -1976,7 +1989,7 @@ DEFINE_ACTION_FUNCTION druid_gray_spheres
 	Healing 			=> major
 	Necromantic			=> x
 	Creation	 		=> x
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> x
 	Combat 				=> x
 	Travelers	  		=> major
@@ -2009,7 +2022,7 @@ DEFINE_ACTION_FUNCTION druid_lost_spheres
 	Healing 			=> minor
 	Necromantic			=> major
 	Creation	 		=> x
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> x
 	Combat 				=> x
 	Travelers	  		=> minor
@@ -2042,7 +2055,7 @@ DEFINE_ACTION_FUNCTION mystic_earth_spheres
 	Healing 		=> major
 	Necromantic		=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> major
 	Combat 			=> x
 	Travelers	 	=> minor
@@ -2075,7 +2088,7 @@ DEFINE_ACTION_FUNCTION mystic_water_spheres
 	Healing 		=> major
 	Necromantic		=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> x
 	Combat 			=> x
 	Travelers	 	=> major
@@ -2108,7 +2121,7 @@ DEFINE_ACTION_FUNCTION mystic_air_spheres
 	Healing 		=> major
 	Necromantic		=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> minor
 	Combat 			=> x
 	Travelers	 	=> major
@@ -2141,7 +2154,7 @@ DEFINE_ACTION_FUNCTION mystic_fire_spheres
 	Healing 		=> major
 	Necromantic		=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> major
 	Combat 			=> x
 	Travelers	 	=> minor
@@ -2174,7 +2187,7 @@ DEFINE_ACTION_FUNCTION mystic_light_spheres
 	Healing 		=> major
 	Necromantic		=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> major
 	Combat 			=> x
 	Travelers	 	=> minor
@@ -2207,7 +2220,7 @@ DEFINE_ACTION_FUNCTION mystic_shadow_spheres
 	Healing 		=> minor
 	Necromantic		=> x
 	Creation	 	=> x
-	Harm		 	=> major
+	Decay		 	=> major
 	Protection 		=> x
 	Combat 			=> x
 	Travelers	 	=> minor
@@ -2240,7 +2253,7 @@ DEFINE_ACTION_FUNCTION beast_lord_spheres
 	Healing 		=> minor
 	Necromantic		=> minor
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> x
 	Combat 			=> major
 	Travelers	 	=> major
@@ -2273,7 +2286,7 @@ DEFINE_ACTION_FUNCTION elementalist_spheres
 	Healing 		=> minor
 	Necromantic		=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> minor
 	Combat 			=> x
 	Travelers	 	=> minor
@@ -2306,7 +2319,7 @@ DEFINE_ACTION_FUNCTION ranger_forest_spheres
 	Healing 		=> ranger
 	Necromantic		=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> ranger
 	Combat 			=> x
 	Travelers	 	=> ranger
@@ -2339,7 +2352,7 @@ DEFINE_ACTION_FUNCTION ranger_mountain_spheres
 	Healing 		=> ranger
 	Necromantic		=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> ranger
 	Combat 			=> x
 	Travelers	  	=> ranger
@@ -2372,7 +2385,7 @@ DEFINE_ACTION_FUNCTION ranger_desert_spheres
 	Healing 		=> ranger
 	Necromantic		=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> ranger
 	Combat 			=> x
 	Travelers	  	=> ranger
@@ -2405,7 +2418,7 @@ DEFINE_ACTION_FUNCTION ranger_jungle_spheres
 	Healing 		=> ranger
 	Necromantic		=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> ranger
 	Combat 			=> x
 	Travelers	  	=> ranger
@@ -2438,7 +2451,7 @@ DEFINE_ACTION_FUNCTION ranger_arctic_spheres
 	Healing 		=> ranger
 	Necromantic		=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> ranger
 	Combat 			=> x
 	Travelers	  	=> ranger
@@ -2472,7 +2485,7 @@ DEFINE_ACTION_FUNCTION ranger_beastmaster_spheres
 	Healing 			=> ranger
 	Necromantic			=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> ranger
 	Combat 			=> x
 	Travelers	  	=> ranger
@@ -2505,7 +2518,7 @@ DEFINE_ACTION_FUNCTION barbarian_ranger_spheres
 	Healing 			=> x
 	Necromantic			=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> ranger
 	Combat 			=> x
 	Travelers	  	=> ranger
@@ -2538,7 +2551,7 @@ DEFINE_ACTION_FUNCTION mage_hunter_spheres
 	Healing 			=> ranger
 	Necromantic			=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> ranger
 	Combat 			=> x
 	Travelers	  	=> ranger
@@ -2571,7 +2584,7 @@ DEFINE_ACTION_FUNCTION elven_archer_spheres
 	Healing 			=> ranger
 	Necromantic			=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> ranger
 	Combat 			=> x
 	Travelers	  	=> ranger
@@ -2607,7 +2620,7 @@ DEFINE_ACTION_FUNCTION vanilla_shaman_spheres
 	Healing 			=> minor
 	Necromantic			=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> ranger
 	Combat 			=> x
 	Travelers	  	=> major
@@ -2655,7 +2668,7 @@ DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
 	Healing 			=> x
 	Necromantic			=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> x
 	Combat 			=> x
 	Travelers	 	=> x
@@ -2682,7 +2695,7 @@ DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
 	Healing 			=> major
 	Necromantic			=> minor
 	Creation	 	=> major
-	Harm		 	=> major
+	Decay		 	=> major
 	Protection 		=> major
 	Combat 			=> minor
 	Travelers	  	=> minor
@@ -2716,7 +2729,7 @@ DEFINE_ACTION_FUNCTION vanilla_avenger_spheres
 	Healing 			=> minor
 	Necromantic			=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> x
 	Combat 			=> x
 	Travelers	  	=> minor
@@ -2749,7 +2762,7 @@ DEFINE_ACTION_FUNCTION vanilla_paladin_spheres
 	Healing 			=> paladin
 	Necromantic			=> x
 	Creation	 	=> paladin
-	Harm		 	=> paladin
+	Decay		 	=> paladin
 	Protection 		=> paladin
 	Combat 			=> paladin
 	Travelers	 	=> x
@@ -2782,7 +2795,7 @@ DEFINE_ACTION_FUNCTION vanilla_cavalier_spheres
 	Healing 			=> paladin
 	Necromantic			=> x
 	Creation	 	=> paladin
-	Harm		 	=> paladin
+	Decay		 	=> paladin
 	Protection 		=> paladin
 	Combat 			=> paladin
 	Travelers	  	=> x
@@ -2815,7 +2828,7 @@ DEFINE_ACTION_FUNCTION vanilla_inquisitor_spheres
 	Healing 			=> paladin
 	Necromantic			=> x
 	Creation	 	=> paladin
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> paladin
 	Combat 			=> x
 	Travelers	 	=> x
@@ -2848,7 +2861,7 @@ DEFINE_ACTION_FUNCTION vanilla_undead_hunter_spheres
 	Healing 			=> paladin
 	Necromantic			=> paladin
 	Creation	 	=> paladin
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> paladin
 	Combat 			=> paladin
 	Travelers	 	=> x
@@ -2881,7 +2894,7 @@ DEFINE_ACTION_FUNCTION vanilla_blackguard_spheres
 	Healing 			=> x
 	Necromantic			=> paladin
 	Creation	 	=> x
-	Harm		 	=> paladin
+	Decay		 	=> paladin
 	Protection 		=> x
 	Combat 			=> paladin
 	Travelers	 	=> x
@@ -2915,7 +2928,7 @@ DEFINE_ACTION_MACRO DR_oozemaster_spheres BEGIN
 	Healing 			=> major
 	Necromantic			=> minor
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> x
 	Combat 			=> x
 	Travelers	 	=> minor
@@ -2946,7 +2959,7 @@ DEFINE_ACTION_MACRO DR_justifier_spheres BEGIN
 	Healing 			=> ranger
 	Necromantic			=> x
 	Creation	 	=> x
-	Harm		 	=> x
+	Decay		 	=> x
 	Protection 		=> x
 	Combat 			=> ranger
 	Travelers	 	=> x
@@ -2970,6 +2983,8 @@ DEFINE_ACTION_MACRO DR_justifier_spheres BEGIN
 END
 //___________________________________________________________________________________
 
+END	// end define sphere lists macro
+
 /*
 // extra_____________________________________________________________________________
 //
@@ -2980,7 +2995,7 @@ DEFINE_ACTION_FUNCTION _spheres
 	Healing 			=> x
 	Necromantic			=> x
 	Creation	 		=> x
-	Harm		 		=> x
+	Decay		 		=> x
 	Protection 			=> x
 	Combat 				=> x
 	Travelers	 		=> x
