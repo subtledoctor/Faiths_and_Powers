@@ -10,7 +10,7 @@ DEFINE_ACTION_MACRO d5_define_sphere_names BEGIN
 2DA
 Life 				Life
 Death 				Death
-Benediction 		Benediction
+Benediction 		Creation
 Destruction 		Destruction
 Protection 			Protection
 War 				War
@@ -30,7 +30,7 @@ Fire 				Fire
 Light 				Light
 Shadow 				Shadow
 Magic 				Magic
-Perdition 			Perdition
+Perdition 			Astral
 >>>>>>>> 
 
 END	//	end sphere names macro
@@ -60,18 +60,22 @@ DEFINE_ACTION_MACRO d5_define_sphere_spells BEGIN
 SPELL
 			LEVEL		FnP_SPHERE		DESC_SPHERE
 CLERIC_CURE_LIGHT_WOUNDS                0	=	Universal // can do notes!
-CLERIC_HOLD_PERSON                      0	=	Universal // but only like this
+CLERIC_BLESS                            0	=	Universal // but only like this
+CLERIC_CHANT                            0	=	Universal // level 2
+CLERIC_PRAYER                           0	=	Universal // level 3
 CLERIC_DISPEL_MAGIC                     0	=	Universal // level 3
 CLERIC_REMOVE_CURSE                     0	=	Universal // level 3
+CLERIC_RECITATION                       0	=	Universal // level 4
 CLERIC_LESSER_RESTORATION               0	=	Universal // level 4
-CLERIC_CURE_CRITICAL_WOUNDS             0	=	Universal // level 5
+CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL  0	=	Universal // level 5
 CLERIC_WONDROUS_RECALL                  0	=	Universal // level 6
 CLERIC_HOLY_WORD                        0	=	Universal // level 7
-CLERIC_UNHOLY_WORD                      0	=	Universal // level 7
+NOSR_CLERIC_UNHOLY_WORD                 0	=	Universal // level 7
 CLERIC_SLOW_POISON                      1	=	Life
 CLERIC_CURE_MODERATE_WOUNDS             2	=	Life
 CLERIC_CURE_MEDIUM_WOUNDS               3	=	Life
 CLERIC_CURE_SERIOUS_WOUNDS              4	=	Life
+CLERIC_CURE_CRITICAL_WOUNDS             5	=	Life // level 5
 CLERIC_MASS_CURE                        5	=	Life
 CLERIC_RAISE_DEAD                       6	=	Life
 CLERIC_HEAL                             6	=	Life
@@ -89,19 +93,17 @@ CLERIC_RECALL_SPIRIT                    6	=	Death
 B_W631                                  6	=	Death // Soul Eater
 CLERIC_SYMBOL_DEATH                     7	=	Death
 CLERIC_FINGER_OF_DEATH                  7	=	Death
-CLERIC_AID                              1	=	Benediction
-CLERIC_BLESS                            1	=	Benediction
-CLERIC_CHANT                            2	=	Benediction
-CLERIC_PRAYER                           3	=	Benediction
-CLERIC_SPIRITUAL_CLARITY                3	=	Benediction
-CLERIC_RECITATION                       4	=	Benediction
-b_w429                                  4	=	Benediction // Emotion: Hope
-WIZARD_EMOTION_HOPE                     4	=	Benediction
-b_w427                                  5	=	Benediction // Emotion: Courage
-WIZARD_EMOTION_COURAGE                  5	=	Benediction
-SR_WIZARD_DEATH_SPELL                   6	=	Benediction // sr banishment
-CLERIC_RIGHTEOUS_WRATH_OF_THE_FAITHFUL  6	=	Benediction
-CLERIC_IMPERVIOUS_SANCTITY_OF_MIND      7	=	Benediction
+CLERIC_ABUNDANT_AMMO                    1	=	Creation
+WIZARD_GREASE                           1	=	Creation 
+CLERIC_MAGIC_STONE                      1	=	Creation
+WIZARD_GLITTERDUST                      2	=	Creation 
+WIZARD_WEB                              3	=	Creation
+CLERIC_STAR_METAL_CUDGEL                4	=	Creation
+d5clgol                                 5	=	Creation
+CLERIC_BLADE_BARRIER                    6	=	Creation
+d5stgol                                 6	=	Creation
+WIZARD_PRISMATIC_SPRAY                  7	=	Creation
+d5jugol                                 7	=	Creation
 CLERIC_HAND_OF_CARNAGE                  1	=	Destruction
 CLERIC_CAUSE_LIGHT_WOUNDS               1	=	Destruction
 SR_WIZARD_KNOCK                         1	=	Destruction // sr battering ram... make level 2?
@@ -118,6 +120,7 @@ CLERIC_MASS_CAUSE_LIGHT_WOUNDS          5	=	Destruction
 CLERIC_HARM                             6	=	Destruction
 WIZARD_DISINTEGRATE                     6	=	Destruction
 CLERIC_DESTRUCTION                      7	=	Destruction
+CLERIC_SANCTUARY                        1	=	Protection
 CLERIC_PROTECT_FROM_EVIL                1	=	Protection
 CLERIC_ARMOR_OF_FAITH                   1	=	Protection
 WIZARD_SHIELD                           2	=	Protection
@@ -130,9 +133,10 @@ CLERIC_SHIELD_OF_LATHANDER              5	=	Protection
 CLERIC_PHYSICAL_MIRROR                  6	=	Protection
 CLERIC_SHIELD_OF_THE_ARCHONS            7	=	Protection
 CLERIC_GREATER_SHIELD_OF_LATHANDER      7	=	Protection
-CLERIC_REMOVE_FEAR                      1	=	War
+CLERIC_AID                              1	=	War
 CLERIC_ABUNDANT_AMMO                    1	=	War
 CLERIC_MAGIC_WEAPON                     1	=	War
+CLERIC_REMOVE_FEAR                      2	=	War
 CLERIC_SPIRITUAL_HAMMER                 2	=	War
 CLERIC_STRENGTH_OF_ONE                  3	=	War
 CLERIC_HOLY_POWER                       3	=	War
@@ -140,7 +144,6 @@ CLERIC_DEFENSIVE_HARMONY                4	=	War
 CLERIC_STAR_METAL_CUDGEL                4	=	War
 CLERIC_CHAMPIONS_STRENGTH               5	=	War
 CLERIC_RIGHTEOUS_MAGIC                  5	=	War
-CLERIC_BOLT_OF_GLORY                    6	=	War
 CLERIC_BLADE_BARRIER                    6	=	War
 CLERIC_SYMBOL_FEAR                      7	=	War
 WIZARD_PROTECTION_FROM_PETRIFICATION    1	=	Exploration // SR exped. retreat
@@ -166,6 +169,7 @@ WIZARD_DETECT_ILLUSION                  4	=	Knowledge
 WIZARD_ORACLE                           5	=	Knowledge
 CLERIC_TRUE_SIGHT                       6	=	Knowledge
 WIZARD_CONTINGENCY                      7	=	Knowledge
+CLERIC_SANCTUARY                        1	=	Deception
 WIZARD_REFLECTED_IMAGE                  1	=	Deception
 WIZARD_BLUR                             2	=	Deception
 WIZARD_INVISIBILITY                     3	=	Deception
@@ -176,9 +180,9 @@ WIZARD_MISLEAD                          6	=	Deception
 CLERIC_PIXIE_DUST                       6	=	Deception
 WIZARD_SIMULACRUM                       7	=	Deception
 CLERIC_COMMAND                          1	=	Thought
+CLERIC_CHARM_PERSON                     1	=	Thought
 CLERIC_ENTHRALL                         2	=	Thought
 CLERIC_FORBID 						    2	=	Thought
-CLERIC_CHARM_PERSON                     2	=	Thought
 CLERIC_MURDEROUS_COMMAND                3	=	Thought
 CLERIC_DICTATE                          3	=	Thought
 CLERIC_EXALTATION                       3	=	Thought
@@ -187,12 +191,18 @@ CLERIC_MENTAL_DOMINATION                4	=	Thought
 CLERIC_BLOOD_RAGE                       4	=	Thought
 b_w428                                  4	=	Thought // Emotion: Fear
 WIZARD_EMOTION_FEAR                     4	=	Thought
+b_w429                                  4	=	Thought // Emotion: Hope
+WIZARD_EMOTION_HOPE                     4	=	Thought
+b_w427                                  5	=	Thought // Emotion: Courage
+WIZARD_EMOTION_COURAGE                  5	=	Thought
 CLERIC_CHAOTIC_COMMANDS                 5	=	Thought
 CLERIC_GREATER_COMMAND                  5	=	Thought
 CLERIC_CONFUSION                        6	=	Thought
 CLERIC_NATURE_BEAUTY                    7	=	Thought
+CLERIC_IMPERVIOUS_SANCTITY_OF_MIND      7	=	Thought
 CLERIC_CURSE                            1	=	Dread
 CLERIC_DOOM                             1	=	Dread
+CLERIC_HOLD_PERSON                      0	=	Dread
 CLERIC_FORBID                           2	=	Dread
 CLERIC_CLOAK_OF_FEAR                    3	=	Dread
 WIZARD_GREATER_MALISON                  4	=	Dread
@@ -202,6 +212,7 @@ CLERIC_MISFIRE                          5	=	Dread
 WIZARD_EMOTION_HOPELESSNESS             5	=	Dread
 CLERIC_SPIRITUAL_WRATH                  6	=	Dread
 CLERIC_SYMBOL_OF_HOPELESSNESS           7	=	Dread
+CLERIC_AID                              1	=	Vigor
 CLERIC_UNFAILING_ENDURANCE              1	=	Vigor
 CLERIC_SLOW_POISON                      1	=	Vigor
 CLERIC_CURE_DISEASE                     2	=	Vigor
@@ -216,8 +227,9 @@ CLERIC_CAUSE_DISEASE                    1	=	Affliction
 WIZARD_BLINDNESS                        2	=	Affliction
 WIZARD_RAY_OF_ENFEEBLEMENT              2	=	Affliction
 CLERIC_MOLD_TOUCH                       3	=	Affliction
+WIZARD_CONTAGION                        3	=	Affliction
+WIZARD_BELTYNS_BURNING_BLOOD            4	=	Affliction // need to add for non-IWDEE
 CLERIC_POISON                           4	=	Affliction
-WIZARD_CONTAGION                        4	=	Affliction
 CLERIC_WAVES_OF_AGONY                   5	=	Affliction
 CLERIC_CLOUD_OF_PESTILENCE              5	=	Affliction
 CLERIC_DOLOROUS_DECAY                   6	=	Affliction
@@ -350,15 +362,15 @@ WIZARD_BREACH                           5	=	Magic
 CLERIC_MAGIC_RESISTANCE                 6	=	Magic
 WIZARD_GLOBE_OF_INVULNERABILITY         6	=	Magic
 WIZARD_PIERCE_SHIELD                    7	=	Magic
-CLERIC_SPIRIT_WARD                      1	=	Perdition // modify to work against all planar creatures, maybe undead too?
-CLERIC_WRITHING_FOG                     2	=	Perdition
-CLERIC_SPIRIT_FIRE                      3	=	Perdition
-WIZARD_BELTYNS_BURNING_BLOOD            4	=	Perdition // need to add for non-IWDEE
-CLERIC_SPIRITUAL_LOCK                   5	=	Perdition // modify to work against all planar creatures
-WIZARD_CACOFIEND                        5	=	Perdition
-WIZARD_SUMMON_FIEND                     6	=	Perdition
-WIZARD_MALAVONS_RAGE                    7	=	Perdition // need to add for non-IWDEE
-CLERIC_GATE                             7	=	Perdition
+CLERIC_SPIRIT_WARD                      1	=	Astral // modify to work against all planar creatures
+CLERIC_WRITHING_FOG                     2	=	Astral
+CLERIC_SPIRITUAL_CLARITY                3	=	Astral
+CLERIC_SPIRIT_FIRE                      4	=	Astral // modify to work against all planar creatures
+CLERIC_SPIRITUAL_LOCK                   5	=	Astral // modify to work against all planar creatures
+SR_WIZARD_DEATH_SPELL                   6	=	Astral // sr banishment
+CLERIC_BOLT_OF_GLORY                    6	=	Astral
+WIZARD_MALAVONS_RAGE                    7	=	Astral // need to add for non-IWDEE
+WIZARD_SUMMON_FIEND                     7	=	Astral
 >>>>>>>>
 
 END	//	end sphere spells macro
@@ -377,11 +389,9 @@ need to add non-b_spells versions of the IWD stuff
 
 ADD:
 
-//d5clgol /*clay golem*/                  5
-//d5stgol /*stone golem*/                 6
-//d5jugol /*juggernaut golem*/            7 // or make this the HLA...?
 //WIZARD_MORDENKAINENS_SWORD              7 // or 6
 //WIZARD_IDENTIFY                         1	Knowledge // make cleric version
+CLERIC_GATE                             7	=	Astral // ....??
 
 */
 //___________________________________________________________________________________
@@ -401,7 +411,7 @@ DEFINE_ACTION_FUNCTION ur_priest_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ur_priest_spheres_array BEGIN
 	Life		 		=> x
 	Death		 		=> major
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> major
 	War		 			=> major
@@ -421,7 +431,7 @@ DEFINE_ACTION_FUNCTION ur_priest_spheres
 	Light	 			=> major
 	Shadow		 		=> major
 	Magic		 		=> major
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -437,7 +447,7 @@ DEFINE_ACTION_FUNCTION auril_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY auril_spheres_array BEGIN
 	Life 				=> minor
 	Death 				=> minor
-	Benediction 			=> x
+	Creation 			=> x
 	Destruction 		=> major
 	Protection 			=> major
 	War 				=> minor
@@ -457,7 +467,7 @@ DEFINE_ACTION_FUNCTION auril_spheres
 	Light 				=> x
 	Shadow 				=> minor
 	Magic 				=> minor
-	Perdition 			=> x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -470,7 +480,7 @@ DEFINE_ACTION_FUNCTION azuth_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY azuth_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 			=> major
+	Creation 			=> major
 	Destruction 		=> major
 	Protection 			=> major
 	War 				=> x
@@ -490,7 +500,7 @@ DEFINE_ACTION_FUNCTION azuth_spheres
 	Light 				=> major
 	Shadow 				=> minor
 	Magic 				=> major
-	Perdition   		=> x
+	Astral		 		=> x
  END
 END
 //___________________________________________________________________________________
@@ -503,7 +513,7 @@ DEFINE_ACTION_FUNCTION bane_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY bane_spheres_array BEGIN
 	Life				=> minor
 	Death 				=> major
-	Benediction 			=> x
+	Creation 			=> x
 	Destruction 		=> major
 	Protection 			=> minor
 	War 				=> major
@@ -523,7 +533,7 @@ DEFINE_ACTION_FUNCTION bane_spheres
 	Light 				=> x
 	Shadow 				=> minor
 	Magic 				=> x
-	Perdition			=> major
+	Astral				=> major
  END
 END
 //___________________________________________________________________________________
@@ -536,7 +546,7 @@ DEFINE_ACTION_FUNCTION beshaba_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY beshaba_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> major
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> minor
 	Protection		 	=> major
 	War		 			=> x
@@ -556,7 +566,7 @@ DEFINE_ACTION_FUNCTION beshaba_spheres
 	Light	 			=> x
 	Shadow		 		=> x
 	Magic		 		=> minor
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -569,7 +579,7 @@ DEFINE_ACTION_FUNCTION cyric_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY cyric_spheres_array BEGIN
 	Life		 		=> minor
 	Death		 		=> major
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> x
 	War		 			=> x
@@ -589,7 +599,7 @@ DEFINE_ACTION_FUNCTION cyric_spheres
 	Light	 			=> x
 	Shadow		 		=> major
 	Magic		 		=> minor
-	Perdition		    => major
+	Astral			    => major
  END
 END
 //___________________________________________________________________________________
@@ -602,7 +612,7 @@ DEFINE_ACTION_FUNCTION deneir_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY deneir_spheres_array BEGIN
 	Life		 		=> minor
 	Death		 		=> x
-	Benediction			=> minor
+	Creation			=> minor
 	Destruction		 	=> x
 	Protection		 	=> major
 	War		 			=> x
@@ -622,7 +632,7 @@ DEFINE_ACTION_FUNCTION deneir_spheres
 	Light	 			=> major
 	Shadow		 		=> x
 	Magic		 		=> major
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -633,29 +643,29 @@ DEFINE_ACTION_FUNCTION garagos_spheres
   RET_ARRAY garagos_spheres_array
  BEGIN
   ACTION_DEFINE_ASSOCIATIVE_ARRAY garagos_spheres_array BEGIN
-	Life 			=> minor
-	Death 			=> x
-	Benediction 		=> x
-	Destruction 	=> major
-	Protection 		=> minor
-	War 			=> major
-	Exploration 	=> minor
-	Knowledge 		=> minor
-	Deception 		=> x
-	Thought 		=> x
-	Dread 			=> major
-	Vigor 			=> major
-	Affliction 		=> minor
-	Animal 			=> x
-	Plant 			=> x
-	Earth 			=> x
-	Water 			=> x
-	Air 			=> x
-	Fire 			=> major
-	Light 			=> x
-	Shadow 			=> x
-	Magic 			=> x
-	Perdition   	=> x
+	Life 				=> minor
+	Death 				=> x
+	Creation 			=> x
+	Destruction 		=> major
+	Protection 			=> minor
+	War 				=> major
+	Exploration 		=> minor
+	Knowledge 			=> minor
+	Deception 			=> x
+	Thought 			=> x
+	Dread 				=> major
+	Vigor 				=> major
+	Affliction 			=> minor
+	Animal 				=> x
+	Plant 				=> x
+	Earth 				=> x
+	Water 				=> x
+	Air 				=> x
+	Fire 				=> major
+	Light 				=> x
+	Shadow 				=> x
+	Magic 				=> x
+	Astral    			=> x
  END
 END
 //___________________________________________________________________________________
@@ -667,7 +677,7 @@ DEFINE_ACTION_FUNCTION helm_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY helm_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> minor
-	Benediction			=> major
+	Creation			=> major
 	Destruction		 	=> major
 	Protection		 	=> major
 	War		 			=> major
@@ -687,7 +697,7 @@ DEFINE_ACTION_FUNCTION helm_spheres
 	Light	 			=> minor
 	Shadow		 		=> x
 	Magic		 		=> minor
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -700,7 +710,7 @@ DEFINE_ACTION_FUNCTION ilmater_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ilmater_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> minor
 	Protection		 	=> major
 	War		 			=> x
@@ -720,7 +730,7 @@ DEFINE_ACTION_FUNCTION ilmater_spheres
 	Light	 			=> minor
 	Shadow		 		=> x
 	Magic		 		=> minor
-	Perdition		    => x
+	Astral		    	=> major
  END
 END
 //___________________________________________________________________________________
@@ -733,7 +743,7 @@ DEFINE_ACTION_FUNCTION kelemvor_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY kelemvor_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> major
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> x
 	Protection		 	=> major
 	War		 			=> major
@@ -753,7 +763,7 @@ DEFINE_ACTION_FUNCTION kelemvor_spheres
 	Light	 			=> x
 	Shadow		 		=> x
 	Magic		 		=> minor
-	Perdition		    => major
+	Astral			    => major
  END
 END
 //___________________________________________________________________________________
@@ -766,7 +776,7 @@ DEFINE_ACTION_FUNCTION kossuth_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY kossuth_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> minor
-	Benediction 			=> x
+	Creation 			=> x
 	Destruction 		=> major
 	Protection 			=> major
 	War 				=> minor
@@ -786,7 +796,7 @@ DEFINE_ACTION_FUNCTION kossuth_spheres
 	Light 				=> major
 	Shadow 				=> x
 	Magic 				=> minor
-	Perdition 			=> x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -799,7 +809,7 @@ DEFINE_ACTION_FUNCTION lathander_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY lathander_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> minor
+	Creation			=> minor
 	Destruction		 	=> x
 	Protection		 	=> major
 	War		 			=> minor
@@ -819,7 +829,7 @@ DEFINE_ACTION_FUNCTION lathander_spheres
 	Light	 			=> major
 	Shadow		 		=> x
 	Magic		 		=> minor
-	Perdition		    => x
+	Astral		    	=> x
   END
 END
 //___________________________________________________________________________________
@@ -832,7 +842,7 @@ DEFINE_ACTION_FUNCTION leira_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY leira_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> x
 	Protection		 	=> minor
 	War		 			=> x
@@ -852,7 +862,7 @@ DEFINE_ACTION_FUNCTION leira_spheres
 	Light	 			=> major
 	Shadow		 		=> major
 	Magic		 		=> minor
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -865,7 +875,7 @@ DEFINE_ACTION_FUNCTION loviatar_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY loviatar_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> major
-	Benediction			=> minor
+	Creation			=> minor
 	Destruction		 	=> minor
 	Protection		 	=> x
 	War		 			=> minor
@@ -885,7 +895,7 @@ DEFINE_ACTION_FUNCTION loviatar_spheres
 	Light	 			=> x
 	Shadow		 		=> minor
 	Magic		 		=> x
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -898,7 +908,7 @@ DEFINE_ACTION_FUNCTION mask_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mask_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> minor
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> minor
 	War		 			=> x
@@ -918,7 +928,7 @@ DEFINE_ACTION_FUNCTION mask_spheres
 	Light	 			=> x
 	Shadow		 		=> major
 	Magic		 		=> minor
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -931,7 +941,7 @@ DEFINE_ACTION_FUNCTION mielikki_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mielikki_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 			=> minor
+	Creation 			=> minor
 	Destruction 		=> x
 	Protection 			=> minor
 	War 				=> x
@@ -951,7 +961,7 @@ DEFINE_ACTION_FUNCTION mielikki_spheres
 	Light 				=> minor
 	Shadow 				=> x
 	Magic 				=> x
-	Perdition   		=> x
+	Astral   			=> x
  END
 END
 //___________________________________________________________________________________
@@ -964,7 +974,7 @@ DEFINE_ACTION_FUNCTION moander_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY moander_spheres_array BEGIN
 	Life		 		=> x
 	Death		 		=> major
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> x
 	War		 			=> x
@@ -984,7 +994,7 @@ DEFINE_ACTION_FUNCTION moander_spheres
 	Light	 			=> x
 	Shadow		 		=> major
 	Magic		 		=> x
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -997,7 +1007,7 @@ DEFINE_ACTION_FUNCTION mystra_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystra_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> major
 	Destruction		 	=> major
 	Protection		 	=> major
 	War		 			=> x
@@ -1016,8 +1026,8 @@ DEFINE_ACTION_FUNCTION mystra_spheres
 	Fire		 		=> minor
 	Light	 			=> major
 	Shadow		 		=> minor
-	Magic		 		=> focus
-	Perdition		    => x
+	Magic		 		=> major
+	Astral		    	=> major
  END
 END
 //___________________________________________________________________________________
@@ -1030,7 +1040,7 @@ DEFINE_ACTION_FUNCTION oghma_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY oghma_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> minor
-	Benediction 			=> major
+	Creation 			=> major
 	Destruction 		=> minor
 	Protection 			=> major
 	War 				=> x
@@ -1050,7 +1060,7 @@ DEFINE_ACTION_FUNCTION oghma_spheres
 	Light 				=> minor
 	Shadow 				=> minor
 	Magic 				=> major
-	Perdition 			=> x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1063,7 +1073,7 @@ DEFINE_ACTION_FUNCTION redknight_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY redknight_spheres_array BEGIN
 	Life 				=> minor
 	Death 				=> minor
-	Benediction 			=> minor
+	Creation 			=> minor
 	Destruction 		=> major
 	Protection 			=> major
 	War 				=> major
@@ -1083,7 +1093,7 @@ DEFINE_ACTION_FUNCTION redknight_spheres
 	Light 				=> minor
 	Shadow 				=> x
 	Magic 				=> x
-	Perdition 			=> x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1096,7 +1106,7 @@ DEFINE_ACTION_FUNCTION selune_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY selune_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 			=> x
+	Creation 			=> x
 	Destruction 		=> x
 	Protection 			=> major
 	War 				=> minor
@@ -1116,7 +1126,7 @@ DEFINE_ACTION_FUNCTION selune_spheres
 	Light 				=> major
 	Shadow 				=> minor
 	Magic 				=> minor
-	Perdition 			=> x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1129,7 +1139,7 @@ DEFINE_ACTION_FUNCTION shar_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY shar_spheres_array BEGIN
 	Life		 		=> minor
 	Death		 		=> major
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> minor
 	War		 			=> x
@@ -1149,7 +1159,7 @@ DEFINE_ACTION_FUNCTION shar_spheres
 	Light	 			=> x
 	Shadow		 		=> major
 	Magic		 		=> major
-	Perdition		    => major
+	Astral		 	   => major
  END
 END
 //___________________________________________________________________________________
@@ -1162,7 +1172,7 @@ DEFINE_ACTION_FUNCTION shaundakul_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY shaundakul_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 			=> minor
+	Creation 			=> minor
 	Destruction 		=> x
 	Protection 			=> major
 	War 				=> x
@@ -1182,7 +1192,7 @@ DEFINE_ACTION_FUNCTION shaundakul_spheres
 	Light 				=> major
 	Shadow 				=> x
 	Magic 				=> minor
-	Perdition   		=> x
+	Astral   			=> x
  END
 END
 //___________________________________________________________________________________
@@ -1195,7 +1205,7 @@ DEFINE_ACTION_FUNCTION sune_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY sune_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> x
 	Protection		 	=> minor
 	War		 			=> x
@@ -1215,7 +1225,7 @@ DEFINE_ACTION_FUNCTION sune_spheres
 	Light	 			=> minor
 	Shadow		 		=> minor
 	Magic		 		=> minor
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1228,7 +1238,7 @@ DEFINE_ACTION_FUNCTION talos_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY talos_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> major
 	War		 			=> minor
@@ -1248,7 +1258,7 @@ DEFINE_ACTION_FUNCTION talos_spheres
 	Light	 			=> minor
 	Shadow		 		=> x
 	Magic		 		=> minor
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1261,7 +1271,7 @@ DEFINE_ACTION_FUNCTION tempus_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY tempus_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> major
+	Creation			=> major
 	Destruction		 	=> major
 	Protection		 	=> major
 	War		 			=> major
@@ -1281,7 +1291,7 @@ DEFINE_ACTION_FUNCTION tempus_spheres
 	Light	 			=> minor
 	Shadow		 		=> x
 	Magic		 		=> minor
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1294,7 +1304,7 @@ DEFINE_ACTION_FUNCTION torm_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY torm_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> major
-	Benediction			=> major
+	Creation			=> major
 	Destruction		 	=> minor
 	Protection		 	=> focus
 	War		 			=> major
@@ -1314,7 +1324,7 @@ DEFINE_ACTION_FUNCTION torm_spheres
 	Light	 			=> minor
 	Shadow		 		=> x
 	Magic		 		=> x
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1327,7 +1337,7 @@ DEFINE_ACTION_FUNCTION tymora_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY tymora_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> minor
 	Protection		 	=> major
 	War		 			=> x
@@ -1347,7 +1357,7 @@ DEFINE_ACTION_FUNCTION tymora_spheres
 	Light	 			=> major
 	Shadow		 		=> x
 	Magic				=> minor
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1360,7 +1370,7 @@ DEFINE_ACTION_FUNCTION tyr_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY tyr_spheres_array BEGIN
 	Life				=> major
 	Death				=> minor
-	Benediction			=> major
+	Creation			=> major
 	Destruction			=> minor
 	Protection			=> major
 	War					=> major
@@ -1380,7 +1390,7 @@ DEFINE_ACTION_FUNCTION tyr_spheres
 	Light				=> minor
 	Shadow				=> x
 	Magic				=> minor
-	Perdition			=> x
+	Astral				=> x
  END
 END
 //___________________________________________________________________________________
@@ -1393,7 +1403,7 @@ DEFINE_ACTION_FUNCTION ulutiu_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ulutiu_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 			=> x
+	Creation 			=> x
 	Destruction 		=> x
 	Protection 			=> major
 	War 				=> minor
@@ -1413,7 +1423,7 @@ DEFINE_ACTION_FUNCTION ulutiu_spheres
 	Light 				=> minor
 	Shadow 				=> minor
 	Magic 				=> x
-	Perdition 			=> x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1426,7 +1436,7 @@ DEFINE_ACTION_FUNCTION umberlee_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY umberlee_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
-	Benediction			=> x
+	Creation			=> x
 	Destruction		 	=> major
 	Protection		 	=> major
 	War		 			=> minor
@@ -1446,7 +1456,7 @@ DEFINE_ACTION_FUNCTION umberlee_spheres
 	Light	 			=> x
 	Shadow		 		=> x
 	Magic		 		=> minor
-	Perdition		    => x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1459,7 +1469,7 @@ DEFINE_ACTION_FUNCTION xvim_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY xvim_spheres_array BEGIN
 	Life 				=> minor
 	Death 				=> major
-	Benediction 			=> minor
+	Creation 			=> minor
 	Destruction 		=> major
 	Protection 			=> x
 	War 				=> major
@@ -1479,7 +1489,7 @@ DEFINE_ACTION_FUNCTION xvim_spheres
 	Light 				=> x
 	Shadow 				=> minor
 	Magic 				=> minor
-	Perdition 			=> major
+	Astral 				=> major
  END
 END
 //___________________________________________________________________________________
@@ -1495,7 +1505,7 @@ DEFINE_ACTION_FUNCTION corellon_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY corellon_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 			=> major
+	Creation 			=> major
 	Destruction 		=> minor
 	Protection 			=> major
 	War 				=> major
@@ -1515,7 +1525,7 @@ DEFINE_ACTION_FUNCTION corellon_spheres
 	Light 				=> major
 	Shadow 				=> x
 	Magic 				=> minor
-	Perdition 			=> x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1528,7 +1538,7 @@ DEFINE_ACTION_FUNCTION eilistraee_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY eilistraee_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 			=> major
+	Creation 			=> major
 	Destruction 		=> x
 	Protection 			=> major
 	War 				=> x
@@ -1548,73 +1558,7 @@ DEFINE_ACTION_FUNCTION eilistraee_spheres
 	Light 				=> major
 	Shadow 				=> major
 	Magic 				=> x
-	Perdition   		=> x
- END
-END
-//___________________________________________________________________________________
-
-//___________________________________________________________________________________
-//
-DEFINE_ACTION_FUNCTION baervan_spheres 
-  RET_ARRAY baervan_spheres_array
- BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY baervan_spheres_array BEGIN
-	Life		 		=> major
-	Death		 		=> x
-	Benediction			=> x
-	Destruction		 	=> x
-	Protection		 	=> major
-	War		 			=> x
-	Exploration		  	=> major
-	Knowledge		 	=> minor
-	Deception	 		=> x
-	Thought		 		=> minor
-	Dread		 		=> x
-	Vigor		 		=> minor
-	Affliction		 	=> x
-	Animal		 		=> major
-	Plant		 		=> major
-	Earth		 		=> major
-	Water		 		=> minor
-	Air		 			=> x
-	Fire		 		=> x
-	Light	 			=> minor
-	Shadow		 		=> x
-	Magic		 		=> x
-	Perdition		    => x
- END
-END
-//___________________________________________________________________________________
-
-//___________________________________________________________________________________
-//
-DEFINE_ACTION_FUNCTION baravar_spheres 
-  RET_ARRAY baravar_spheres_array
- BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY baravar_spheres_array BEGIN
-	Life		 		=> major
-	Death		 		=> x
-	Benediction			=> x
-	Destruction		 	=> x
-	Protection		 	=> minor
-	War		 			=> x
-	Exploration		  	=> major
-	Knowledge		 	=> major
-	Deception	 		=> major
-	Thought		 		=> major
-	Dread		 		=> minor
-	Vigor		 		=> minor
-	Affliction		 	=> x
-	Animal		 		=> x
-	Plant		 		=> x
-	Earth		 		=> x
-	Water		 		=> minor
-	Air		 			=> x
-	Fire		 		=> x
-	Light	 			=> major
-	Shadow		 		=> minor
-	Magic		 		=> minor
-	Perdition		    => x
+	Astral   			=> x
  END
 END
 //___________________________________________________________________________________
@@ -1627,7 +1571,7 @@ DEFINE_ACTION_FUNCTION clangeddin_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY clangeddin_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 			=> minor
+	Creation 			=> minor
 	Destruction 		=> major
 	Protection 			=> major
 	War 				=> major
@@ -1647,7 +1591,7 @@ DEFINE_ACTION_FUNCTION clangeddin_spheres
 	Light 				=> minor
 	Shadow 				=> x
 	Magic 				=> minor
-	Perdition   		=> x
+	Astral   			=> x
  END
 END
 //___________________________________________________________________________________
@@ -1660,7 +1604,7 @@ DEFINE_ACTION_FUNCTION moradin_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY moradin_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> x
-	Benediction 			=> major
+	Creation 			=> major
 	Destruction 		=> major
 	Protection 			=> major
 	War 				=> minor
@@ -1675,12 +1619,78 @@ DEFINE_ACTION_FUNCTION moradin_spheres
 	Plant 				=> x
 	Earth 				=> major
 	Water 				=> x
-	Air 				=> x
+	Air 				=> major
 	Fire 				=> x
 	Light 				=> minor
 	Shadow 				=> x
 	Magic 				=> minor
-	Perdition  			=> x
+	Astral  			=> major
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION baervan_spheres 
+  RET_ARRAY baervan_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY baervan_spheres_array BEGIN
+	Life		 		=> major
+	Death		 		=> x
+	Creation			=> x
+	Destruction		 	=> x
+	Protection		 	=> major
+	War		 			=> x
+	Exploration		  	=> major
+	Knowledge		 	=> minor
+	Deception	 		=> x
+	Thought		 		=> minor
+	Dread		 		=> x
+	Vigor		 		=> minor
+	Affliction		 	=> x
+	Animal		 		=> major
+	Plant		 		=> major
+	Earth		 		=> major
+	Water		 		=> minor
+	Air		 			=> x
+	Fire		 		=> x
+	Light	 			=> minor
+	Shadow		 		=> x
+	Magic		 		=> x
+	Astral		    	=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION baravar_spheres 
+  RET_ARRAY baravar_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY baravar_spheres_array BEGIN
+	Life		 		=> major
+	Death		 		=> x
+	Creation			=> x
+	Destruction		 	=> x
+	Protection		 	=> minor
+	War		 			=> x
+	Exploration		  	=> major
+	Knowledge		 	=> major
+	Deception	 		=> major
+	Thought		 		=> major
+	Dread		 		=> minor
+	Vigor		 		=> minor
+	Affliction		 	=> x
+	Animal		 		=> x
+	Plant		 		=> x
+	Earth		 		=> x
+	Water		 		=> minor
+	Air		 			=> x
+	Fire		 		=> x
+	Light	 			=> major
+	Shadow		 		=> minor
+	Magic		 		=> minor
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1693,7 +1703,7 @@ DEFINE_ACTION_FUNCTION gruumsh_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY gruumsh_spheres_array BEGIN
 	Life 				=> minor
 	Death 				=> minor
-	Benediction 			=> minor
+	Creation 			=> minor
 	Destruction 		=> major
 	Protection 			=> minor
 	War 				=> major
@@ -1713,7 +1723,7 @@ DEFINE_ACTION_FUNCTION gruumsh_spheres
 	Light 				=> x
 	Shadow 				=> x
 	Magic 				=> x
-	Perdition 			=> major
+	Astral 				=> major
  END
 END
 //___________________________________________________________________________________
@@ -1726,7 +1736,7 @@ DEFINE_ACTION_FUNCTION luthic_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY luthic_spheres_array BEGIN
 	Life 				=> major
 	Death 				=> major
-	Benediction 			=> minor
+	Creation 			=> minor
 	Destruction 		=> major
 	Protection 			=> major
 	War 				=> minor
@@ -1746,7 +1756,7 @@ DEFINE_ACTION_FUNCTION luthic_spheres
 	Light 				=> x
 	Shadow 				=> x
 	Magic 				=> minor
-	Perdition 			=> x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1762,7 +1772,7 @@ DEFINE_ACTION_FUNCTION druid_forest_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_forest_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -1782,7 +1792,7 @@ DEFINE_ACTION_FUNCTION druid_forest_spheres
 	Light 			=> major
 	Shadow 			=> minor
 	Magic 			=> x
-	Perdition    	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -1795,7 +1805,7 @@ DEFINE_ACTION_FUNCTION druid_totemic_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_totemic_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -1815,7 +1825,7 @@ DEFINE_ACTION_FUNCTION druid_totemic_spheres
 	Light 			=> major
 	Shadow 			=> minor
 	Magic 			=> x
-	Perdition     	=> x
+	Astral		 	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1828,7 +1838,7 @@ DEFINE_ACTION_FUNCTION druid_hivekeeper_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_hivekeeper_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -1848,7 +1858,7 @@ DEFINE_ACTION_FUNCTION druid_hivekeeper_spheres
 	Light 			=> major
 	Shadow 			=> minor
 	Magic 			=> minor
-	Perdition     	=> x
+	Astral			=> x
  END
 END
 //___________________________________________________________________________________
@@ -1861,7 +1871,7 @@ DEFINE_ACTION_FUNCTION druid_northern_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_northern_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -1881,7 +1891,7 @@ DEFINE_ACTION_FUNCTION druid_northern_spheres
 	Light 			=> major
 	Shadow 			=> minor
 	Magic 			=> x
-	Perdition     	=> x
+	Astral		  	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1894,7 +1904,7 @@ DEFINE_ACTION_FUNCTION druid_shadow_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_shadow_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -1914,7 +1924,7 @@ DEFINE_ACTION_FUNCTION druid_shadow_spheres
 	Light 			=> x
 	Shadow 			=> major
 	Magic 			=> x
-	Perdition     	=> x
+	Astral		 	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1927,7 +1937,7 @@ DEFINE_ACTION_FUNCTION druid_gray_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_gray_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -1947,7 +1957,7 @@ DEFINE_ACTION_FUNCTION druid_gray_spheres
 	Light 			=> x
 	Shadow 			=> major
 	Magic 			=> x
-	Perdition     	=> x
+	Astral		 	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1960,7 +1970,7 @@ DEFINE_ACTION_FUNCTION druid_lost_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY druid_lost_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> major
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -1980,7 +1990,7 @@ DEFINE_ACTION_FUNCTION druid_lost_spheres
 	Light 			=> x
 	Shadow 			=> minor
 	Magic 			=> x
-	Perdition     	=> x
+	Astral		 	=> x
  END
 END
 //___________________________________________________________________________________
@@ -1993,7 +2003,7 @@ DEFINE_ACTION_FUNCTION mystic_earth_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystic_earth_spheres_array BEGIN
 	Life 			=> major
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> major
 	War 			=> x
@@ -2013,7 +2023,7 @@ DEFINE_ACTION_FUNCTION mystic_earth_spheres
 	Light 			=> x
 	Shadow 			=> x
 	Magic 			=> major
-	Perdition    	=> minor
+	Astral			=> minor
  END
 END
 //___________________________________________________________________________________
@@ -2026,7 +2036,7 @@ DEFINE_ACTION_FUNCTION mystic_water_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystic_water_spheres_array BEGIN
 	Life 			=> major
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2046,7 +2056,7 @@ DEFINE_ACTION_FUNCTION mystic_water_spheres
 	Light 			=> x
 	Shadow 			=> x
 	Magic 			=> major
-	Perdition    	=> minor
+	Astral			=> minor
  END
 END
 //___________________________________________________________________________________
@@ -2059,7 +2069,7 @@ DEFINE_ACTION_FUNCTION mystic_air_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystic_air_spheres_array BEGIN
 	Life 			=> major
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> minor
 	War 			=> x
@@ -2079,7 +2089,7 @@ DEFINE_ACTION_FUNCTION mystic_air_spheres
 	Light 			=> minor
 	Shadow 			=> x
 	Magic 			=> major
-	Perdition    	=> minor
+	Astral			=> minor
  END
 END
 //___________________________________________________________________________________
@@ -2092,7 +2102,7 @@ DEFINE_ACTION_FUNCTION mystic_fire_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystic_fire_spheres_array BEGIN
 	Life 			=> major
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> minor
 	Protection 		=> major
 	War 			=> x
@@ -2112,7 +2122,7 @@ DEFINE_ACTION_FUNCTION mystic_fire_spheres
 	Light 			=> major
 	Shadow 			=> x
 	Magic 			=> major
-	Perdition    	=> minor
+	Astral			=> minor
  END
 END
 //___________________________________________________________________________________
@@ -2125,7 +2135,7 @@ DEFINE_ACTION_FUNCTION mystic_light_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystic_light_spheres_array BEGIN
 	Life 			=> major
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> major
 	War 			=> x
@@ -2145,7 +2155,7 @@ DEFINE_ACTION_FUNCTION mystic_light_spheres
 	Light 			=> focus
 	Shadow 			=> x
 	Magic 			=> major
-	Perdition    	=> minor
+	Astral			=> minor
  END
 END
 //___________________________________________________________________________________
@@ -2158,7 +2168,7 @@ DEFINE_ACTION_FUNCTION mystic_shadow_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mystic_shadow_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2178,7 +2188,7 @@ DEFINE_ACTION_FUNCTION mystic_shadow_spheres
 	Light 			=> x
 	Shadow 			=> focus
 	Magic 			=> major
-	Perdition    	=> minor
+	Astral			=> minor
  END
 END
 //___________________________________________________________________________________
@@ -2191,7 +2201,7 @@ DEFINE_ACTION_FUNCTION beast_lord_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY beast_lord_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> minor
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2211,7 +2221,7 @@ DEFINE_ACTION_FUNCTION beast_lord_spheres
 	Light 			=> x
 	Shadow 			=> minor
 	Magic 			=> x
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2224,7 +2234,7 @@ DEFINE_ACTION_FUNCTION elementalist_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY elementalist_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> minor
 	Protection 		=> minor
 	War 			=> x
@@ -2244,7 +2254,7 @@ DEFINE_ACTION_FUNCTION elementalist_spheres
 	Light 			=> major
 	Shadow 			=> minor
 	Magic 			=> minor
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2257,7 +2267,7 @@ DEFINE_ACTION_FUNCTION ranger_forest_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ranger_forest_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2277,7 +2287,7 @@ DEFINE_ACTION_FUNCTION ranger_forest_spheres
 	Light 			=> ranger
 	Shadow 			=> x
 	Magic 			=> x
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2290,7 +2300,7 @@ DEFINE_ACTION_FUNCTION ranger_mountain_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ranger_mountain_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2310,7 +2320,7 @@ DEFINE_ACTION_FUNCTION ranger_mountain_spheres
 	Light 			=> x
 	Shadow 			=> ranger
 	Magic 			=> x
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2323,7 +2333,7 @@ DEFINE_ACTION_FUNCTION ranger_desert_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ranger_desert_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2343,7 +2353,7 @@ DEFINE_ACTION_FUNCTION ranger_desert_spheres
 	Light 			=> ranger
 	Shadow 			=> x
 	Magic 			=> x
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2356,7 +2366,7 @@ DEFINE_ACTION_FUNCTION ranger_jungle_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ranger_jungle_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2376,7 +2386,7 @@ DEFINE_ACTION_FUNCTION ranger_jungle_spheres
 	Light 			=> x
 	Shadow 			=> ranger
 	Magic 			=> x
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2389,7 +2399,7 @@ DEFINE_ACTION_FUNCTION ranger_arctic_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ranger_arctic_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2409,7 +2419,7 @@ DEFINE_ACTION_FUNCTION ranger_arctic_spheres
 	Light 			=> x
 	Shadow 			=> x
 	Magic 			=> x
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2423,7 +2433,7 @@ DEFINE_ACTION_FUNCTION ranger_beastmaster_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY ranger_beastmaster_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2443,7 +2453,7 @@ DEFINE_ACTION_FUNCTION ranger_beastmaster_spheres
 	Light 			=> x
 	Shadow 			=> x
 	Magic 			=> x
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2456,7 +2466,7 @@ DEFINE_ACTION_FUNCTION barbarian_ranger_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY barbarian_ranger_spheres_array BEGIN
 	Life 			=> x
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2476,7 +2486,7 @@ DEFINE_ACTION_FUNCTION barbarian_ranger_spheres
 	Light 			=> x
 	Shadow 			=> x
 	Magic 			=> x
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2489,7 +2499,7 @@ DEFINE_ACTION_FUNCTION mage_hunter_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY mage_hunter_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2509,7 +2519,7 @@ DEFINE_ACTION_FUNCTION mage_hunter_spheres
 	Light 			=> ranger
 	Shadow 			=> x
 	Magic 			=> ranger
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2522,7 +2532,7 @@ DEFINE_ACTION_FUNCTION elven_archer_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY elven_archer_spheres_array BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> ranger
 	War 			=> x
@@ -2542,7 +2552,7 @@ DEFINE_ACTION_FUNCTION elven_archer_spheres
 	Light 			=> ranger
 	Shadow 			=> x
 	Magic 			=> ranger
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2558,7 +2568,7 @@ DEFINE_ACTION_FUNCTION vanilla_shaman_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_shaman_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> major
 	War 			=> x
@@ -2578,7 +2588,7 @@ DEFINE_ACTION_FUNCTION vanilla_shaman_spheres
 	Light 			=> x
 	Shadow 			=> x
 	Magic 			=> minor
-	Perdition   	=> major
+	Astral			=> major
  END
 END
 //___________________________________________________________________________________
@@ -2606,7 +2616,7 @@ DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
   ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
 	Life 			=> x
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2626,14 +2636,14 @@ DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
 	Light 			=> x
 	Shadow 			=> x
 	Magic 			=> x
-	Perdition 		=> x
+	Astral			=> x
   END
  END
  ACTION_IF !(FILE_EXISTS_IN_GAME ~QD_MCP01.spl~) BEGIN
   ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
 	Life 			=> major
 	Death 			=> minor
-	Benediction 		=> minor
+	Creation 		=> minor
 	Destruction 	=> major
 	Protection 		=> major
 	War 			=> major
@@ -2653,7 +2663,7 @@ DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
 	Light 			=> major
 	Shadow 			=> x
 	Magic 			=> minor
-	Perdition   	=> x
+	Astral    		=> x
   END
  END
 END
@@ -2667,7 +2677,7 @@ DEFINE_ACTION_FUNCTION vanilla_avenger_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_avenger_spheres_array BEGIN
 	Life 			=> minor
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2687,7 +2697,7 @@ DEFINE_ACTION_FUNCTION vanilla_avenger_spheres
 	Light 			=> major
 	Shadow 			=> minor
 	Magic 			=> minor
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2700,7 +2710,7 @@ DEFINE_ACTION_FUNCTION vanilla_paladin_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_paladin_spheres_array BEGIN
 	Life 			=> paladin
 	Death 			=> x
-	Benediction 		=> paladin
+	Creation 		=> paladin
 	Destruction 	=> paladin
 	Protection 		=> paladin
 	War 			=> paladin
@@ -2720,7 +2730,7 @@ DEFINE_ACTION_FUNCTION vanilla_paladin_spheres
 	Light 			=> paladin
 	Shadow 			=> x
 	Magic 			=> x
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2733,7 +2743,7 @@ DEFINE_ACTION_FUNCTION vanilla_cavalier_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_cavalier_spheres_array BEGIN
 	Life 			=> paladin
 	Death 			=> x
-	Benediction 		=> paladin
+	Creation 		=> paladin
 	Destruction 	=> paladin
 	Protection 		=> paladin
 	War 			=> paladin
@@ -2753,7 +2763,7 @@ DEFINE_ACTION_FUNCTION vanilla_cavalier_spheres
 	Light 			=> paladin
 	Shadow 			=> x
 	Magic 			=> x
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2766,7 +2776,7 @@ DEFINE_ACTION_FUNCTION vanilla_inquisitor_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_inquisitor_spheres_array BEGIN
 	Life 			=> paladin
 	Death 			=> x
-	Benediction 		=> paladin
+	Creation 		=> paladin
 	Destruction 	=> x
 	Protection 		=> paladin
 	War 			=> x
@@ -2786,7 +2796,7 @@ DEFINE_ACTION_FUNCTION vanilla_inquisitor_spheres
 	Light 			=> x
 	Shadow 			=> x
 	Magic 			=> paladin
-	Perdition    	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2799,7 +2809,7 @@ DEFINE_ACTION_FUNCTION vanilla_undead_hunter_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_undead_hunter_spheres_array BEGIN
 	Life 			=> paladin
 	Death 			=> paladin
-	Benediction 		=> paladin
+	Creation 		=> paladin
 	Destruction 	=> x
 	Protection 		=> paladin
 	War 			=> paladin
@@ -2819,7 +2829,7 @@ DEFINE_ACTION_FUNCTION vanilla_undead_hunter_spheres
 	Light 			=> paladin
 	Shadow 			=> x
 	Magic 			=> x
-	Perdition   	=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2832,7 +2842,7 @@ DEFINE_ACTION_FUNCTION vanilla_blackguard_spheres
   ACTION_DEFINE_ASSOCIATIVE_ARRAY vanilla_blackguard_spheres_array BEGIN
 	Life 			=> x
 	Death 			=> paladin
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> paladin
 	Protection 		=> x
 	War 			=> paladin
@@ -2852,7 +2862,7 @@ DEFINE_ACTION_FUNCTION vanilla_blackguard_spheres
 	Light 			=> x
 	Shadow 			=> paladin
 	Magic 			=> x
-	Perdition   	=> paladin
+	Astral			=> paladin
  END
 END
 //___________________________________________________________________________________
@@ -2866,7 +2876,7 @@ DEFINE_ACTION_MACRO DR_oozemaster_spheres BEGIN
  ACTION_DEFINE_ASSOCIATIVE_ARRAY a#ooze_spheres BEGIN
 	Life 			=> major
 	Death 			=> minor
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2886,7 +2896,7 @@ DEFINE_ACTION_MACRO DR_oozemaster_spheres BEGIN
 	Light 			=> x
 	Shadow 			=> minor
 	Magic 			=> x
-	Perdition 		=> x
+	Astral			=> x
  END
 END
 //___________________________________________________________________________________
@@ -2897,7 +2907,7 @@ DEFINE_ACTION_MACRO DR_justifier_spheres BEGIN
  ACTION_DEFINE_ASSOCIATIVE_ARRAY a#justif_spheres BEGIN
 	Life 			=> ranger
 	Death 			=> x
-	Benediction 		=> x
+	Creation 		=> x
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
@@ -2917,7 +2927,7 @@ DEFINE_ACTION_MACRO DR_justifier_spheres BEGIN
 	Light 			=> ranger
 	Shadow 			=> x
 	Magic 			=> x
-	Perdition 		=> x
+	Astral			=> x
  END
 END
 //___________________________________________________________________________________

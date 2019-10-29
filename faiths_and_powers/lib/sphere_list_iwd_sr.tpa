@@ -1530,6 +1530,72 @@ END
 
 //___________________________________________________________________________________
 //
+DEFINE_ACTION_FUNCTION clangeddin_spheres 
+  RET_ARRAY clangeddin_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY clangeddin_spheres_array BEGIN
+	Life 				=> major
+	Death 				=> x
+	Creation 			=> minor
+	Destruction 		=> major
+	Protection 			=> major
+	War 				=> major
+	Exploration 		=> x
+	Knowledge 			=> minor
+	Deception 			=> x
+	Thought 			=> x
+	Dread 				=> minor
+	Vigor 				=> major
+	Affliction 			=> x
+	Animal 				=> x
+	Plant 				=> x
+	Earth 				=> major
+	Water 				=> x
+	Air 				=> x
+	Fire 				=> x
+	Light 				=> minor
+	Shadow 				=> x
+	Magic 				=> minor
+	Perdition   		=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION moradin_spheres 
+  RET_ARRAY moradin_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY moradin_spheres_array BEGIN
+	Life 				=> major
+	Death 				=> x
+	Creation 			=> major
+	Destruction 		=> major
+	Protection 			=> major
+	War 				=> minor
+	Exploration 		=> x
+	Knowledge 			=> minor
+	Deception 			=> x
+	Thought 			=> x
+	Dread 				=> major
+	Vigor 				=> minor
+	Affliction 			=> x
+	Animal 				=> x
+	Plant 				=> x
+	Earth 				=> major
+	Water 				=> x
+	Air 				=> major
+	Fire 				=> x
+	Light 				=> minor
+	Shadow 				=> x
+	Magic 				=> minor
+	Perdition  			=> major
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
 DEFINE_ACTION_FUNCTION baervan_spheres 
   RET_ARRAY baervan_spheres_array
  BEGIN
@@ -1590,72 +1656,6 @@ DEFINE_ACTION_FUNCTION baravar_spheres
 	Shadow		 		=> minor
 	Magic		 		=> minor
 	Perdition		    => x
- END
-END
-//___________________________________________________________________________________
-
-//___________________________________________________________________________________
-//
-DEFINE_ACTION_FUNCTION clangeddin_spheres 
-  RET_ARRAY clangeddin_spheres_array
- BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY clangeddin_spheres_array BEGIN
-	Life 				=> major
-	Death 				=> x
-	Creation 			=> minor
-	Destruction 		=> major
-	Protection 			=> major
-	War 				=> major
-	Exploration 		=> x
-	Knowledge 			=> minor
-	Deception 			=> x
-	Thought 			=> x
-	Dread 				=> minor
-	Vigor 				=> major
-	Affliction 			=> x
-	Animal 				=> x
-	Plant 				=> x
-	Earth 				=> major
-	Water 				=> x
-	Air 				=> x
-	Fire 				=> x
-	Light 				=> minor
-	Shadow 				=> x
-	Magic 				=> minor
-	Perdition   		=> x
- END
-END
-//___________________________________________________________________________________
-
-//___________________________________________________________________________________
-//
-DEFINE_ACTION_FUNCTION moradin_spheres 
-  RET_ARRAY moradin_spheres_array
- BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY moradin_spheres_array BEGIN
-	Life 				=> major
-	Death 				=> x
-	Creation 			=> major
-	Destruction 		=> major
-	Protection 			=> major
-	War 				=> minor
-	Exploration 		=> x
-	Knowledge 			=> minor
-	Deception 			=> x
-	Thought 			=> x
-	Dread 				=> major
-	Vigor 				=> minor
-	Affliction 			=> x
-	Animal 				=> x
-	Plant 				=> x
-	Earth 				=> major
-	Water 				=> x
-	Air 				=> x
-	Fire 				=> x
-	Light 				=> minor
-	Shadow 				=> x
-	Magic 				=> minor
-	Perdition  			=> x
  END
 END
 //___________________________________________________________________________________

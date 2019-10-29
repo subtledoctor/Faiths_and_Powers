@@ -313,6 +313,13 @@ ACTION_IF (spell_exists) BEGIN
 	BUT_ONLY
   END
 END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~sppr314.spl~ THEN BEGIN
+  COPY_EXISTING ~sppr314.spl~ ~override~
+	WRITE_ASCII 0x3a ~sppr313c~ #8
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~sppr313b~ END
+  BUT_ONLY
+END
 //__________________________________________________________________________________
 
 
@@ -840,12 +847,16 @@ DEFINE_ACTION_FUNCTION apply_spheres BEGIN
 INCLUDE ~faiths_and_powers/lib/hla_actions.tpa~
 
 COPY ~faiths_and_powers/spheres/d5spmem.spl~ ~override~
-	SAY NAME1 @6
-COPY ~faiths_and_powers/spheres/d5spmem.itm~ ~override~
 	SAY NAME1 @1100
 	SAY UNIDENTIFIED_DESC @1101
-COPY ~faiths_and_powers/spheres/d5spmema.bam~ ~override~
-COPY ~faiths_and_powers/spheres/d5spmemb.bam~ ~override~
+	WRITE_ASCII 0x3a ~d5spm3mb~ #8
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5spm3mb~ END
+COPY ~faiths_and_powers/spheres/d5spm3m.spl~ ~override~
+	SAY NAME1 @1100
+	SAY UNIDENTIFIED_DESC @1101
+	WRITE_ASCII 0x3a ~d5spm3mb~ #8
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5spm3mb~ END
+COPY ~faiths_and_powers/spheres/d5spm3mb.bam~ ~override~
 
 OUTER_SPRINT sphere_access @1002
 OUTER_SPRINT focus_access @1003
@@ -923,11 +934,14 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~clastext.2da~) BEGIN
   END
 */
 END
+ACTION_FOR_EACH base_kit IN ~clabpr01~ ~clabdr01~ BEGIN
+  APPEND ~%base_kit%.2da~ ~SPHERES     AP_D5SPMEM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
+	UNLESS ~AP_D5SPMEM~
+END
 ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 //OUTER_TEXT_SPRINT focus_sphere_list ~~
 //OUTER_TEXT_SPRINT major_sphere_list ~~
 //OUTER_TEXT_SPRINT minor_sphere_list ~~
-//	APPEND ~%goo%.2da~ ~SPHERES     GA_D5SPMEM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 	ACTION_IF (%roo% = 3) OR  
  			(%roo% = 11) OR  
  			(%roo% = 8) OR  
@@ -1032,6 +1046,13 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 	OUTER_TEXT_SPRINT major_sphere_list ~~
 	OUTER_TEXT_SPRINT minor_sphere_list ~~
 	OUTER_TEXT_SPRINT total_sphere_list ~~
+	ACTION_IF (%roo% = 3) OR  
+ 			(%roo% = 11) OR  
+ 			(%roo% = 6) OR  
+ 			(%roo% = 12) BEGIN
+	  APPEND ~%goo%.2da~ ~SPHERES     AP_D5SPMEM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+	    UNLESS ~AP_D5SPMEM~
+ 	END
 	ACTION_IF (%roo% = 8) OR  
  			(%roo% = 14) OR  
  			(%roo% = 15) OR  
@@ -1096,6 +1117,10 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 		BUT_ONLY
 	  END
 	END
+END
+ACTION_FOR_EACH base_kit IN ~clabpr01~ ~clabdr01~ BEGIN
+  APPEND ~%base_kit%.2da~ ~SPHERES     AP_D5SPMEM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
+	UNLESS ~AP_D5SPMEM~
 END
 COPY_EXISTING ~QD_MCP01.spl~ ~override~
   LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = EVAL ~QD#MCP01~ END

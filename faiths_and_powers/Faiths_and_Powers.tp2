@@ -2,13 +2,13 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.78sd3~
+VERSION ~0.78sd4~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
 
 
-//ASK_EVERY_COMPONENT
+ASK_EVERY_COMPONENT
 
 
 ALWAYS
@@ -33,8 +33,6 @@ ALWAYS
 
 //	INCLUDE ~faiths_and_powers/lib/spell_clone_effects.tpa~
 	
-	INCLUDE ~faiths_and_powers/lib/joinable_npcs.tpa~
-
 	INCLUDE ~faiths_and_powers/lib/fnp_system.tpa~
 	
 	ACTION_IF FILE_EXISTS_IN_GAME ~a#ooze.2da~ BEGIN
@@ -222,6 +220,7 @@ END
 // (clerics)
 ACTION_IF (%d5_cleric_azuth% = 1) BEGIN
  LAF cleric_azuth END
+ OUTER_SET cleric_umd = 1
 END
 ACTION_IF (%d5_cleric_beshaba% = 1) BEGIN
  LAF cleric_beshaba END
@@ -308,6 +307,12 @@ ACTION_IF	(ENGINE_IS ~tob bgt~) &&
   INCLUDE ~faiths_and_powers/lib/dr_compat.tpa~
   LAF cleric_dr_spheres END
 END
+
+ACTION_IF (cleric_umd = 1) BEGIN
+  LAF use_magical_devices END
+  LAF cleric_clabs_umd END
+END
+
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
@@ -689,13 +694,13 @@ LAF apply_usability END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							APPLY SPHERE SYSTEM
+//								SPHERE SYSTEM
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
 BEGIN @95 // apply sphere systen
 DESIGNATED 95
-INSTALL_BY_DEFAULT
+//INSTALL_BY_DEFAULT
 REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) @8
 FORBID_COMPONENT ~faiths_and_powers.tp2~ ~24~ @8
@@ -794,6 +799,7 @@ END
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
+/*
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
@@ -862,3 +868,4 @@ END
 
 //__________________________________________________________________________________
 
+*/

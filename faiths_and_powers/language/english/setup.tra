@@ -15,7 +15,7 @@
 @35  = ~Install Paladin kits~
 @37  = ~Install Ranger kits~
 @91  = ~Alter weapon usability and proficiency?~
-@95  = ~Apply sphere system~
+@95  = ~Install sphere system~
 @99  = ~Multiclass clerics (install this AFTER all other kit mods!!)~
 //
 @100  = ~Select an installation method below:~
@@ -36,13 +36,12 @@
 @209  = ~Add Cleric of Kelemvor~
 @210  = ~Add Cleric of Tempus~
 @212  = ~Add Cleric of Leira~
-@213  = ~Add Cleric of Baravar Cloakshadow~
 @219  = ~Add Cleric of Loviatar~
 @224  = ~Add Cleric of Talos~
 @225  = ~Add Cleric of Cyric~
 @226  = ~Add Cleric of Umberlee~
 //
-// ... Priest kits = 301-399
+// ... Priest kits = 301-350
 //
 @314  = ~Add Priest of Ilmater~
 @315  = ~Add Priest of Deneir~
@@ -53,7 +52,23 @@
 @330  = ~Add Priest of Shar~
 @331  = ~Add Priest of Moander~
 @332  = ~Add Priest of Beshaba~
-@342  = ~Add Priest of Baervan Wildwanderer~
+//
+// ... Demihuman kits = 351-399
+//
+@351  = ~Add Cleric of Corellon Larethian~
+@352  = ~Add Cleric of Sehanine Moonbow~
+@353  = ~Add Cleric of Erevan Ilesere~
+@354  = ~Add Cleric of Hanali Celanil~
+@371  = ~Add Cleric of Moradin~
+@372  = ~Add Cleric of Clangeddin~
+@373  = ~Add Cleric of Marthammor Duin~
+@381  = ~Add Cleric of Garl Glitterlode~
+@382  = ~Add Cleric of Baervan Wildwanderer~
+@383  = ~Add Cleric of Baravar Cloakshadow~
+@384  = ~Add Cleric of Gaerdal Ironhand~
+@391  = ~Add Cleric of Yondalla~
+@392  = ~Add Cleric of Arvoreen~
+@393  = ~Add Cleric of Brandobaris~
 //
 // ... Incarnate kits = 401-449
 //
@@ -466,23 +481,6 @@ Restrictions:
 @21205  = ~~
 @21211  = ~Leira's Double~
 @21212  = ~Leira's Double~
-
-@21301  = ~cleric of baravar~
-@21302  = ~Hoodwinker of Baravar Cloakshadow~
-@21303  = ~HOODWINKER OF BARAVAR CLOAKSHADOW: 
-
-Advantages:
-- May use Shadowstep at 1st level.  The Hoodwinker gains an additional use at levels 5, 10, 15 and 20.
-SHADOWSTEP: 
-The character steps into the Shadow Plane and may move for 7 seconds while others are frozen in time. The caster cannot attack or cast spells while in the Shadow Plane.
-
-Restrictions:
-- Alignment: may not be Lawful.
-~
-@21304  = ~CLOAKED ONE OF BARAVAR: ~
-
-@21311  = ~Baravar's Double~
-@21312  = ~Baravar's Double: Often used in emergencies, this causes an illusionary double of the cleric to spring into existence. If the cleric is being attacked, the double will absorb the first blow that lands, and disappear. At 6th level two doubles are created, and at 12th level one of the two doubles can actually wander away from the cleric to distract enemies. Hoodwinkers may use this ability once per turn.~
 //
 // ... cleric of loviatar:
 //
@@ -521,29 +519,6 @@ Paingivers have have this touch indefinitely, but they can suppress it as needed
 
 When the cleric uses this ability, <PRO_HISHER> hands become instruments of Lovitar for four rounds.  <PRO_HESHE> can strike with uncanny accuracy with <PRO_HISHER> hands (+10 to hit) and <PRO_HESHE> inflicts an additional +2 points of damage per level to a maximum of +20 points at 10th level.  This spell stacks with other unarmed attacks, such as the priest's pain touch.~
 @21916  = ~Suppress Pain Touch~
-//
-// ... cleric of baervan:
-//
-@22301 = ~cleric of baervan~ //Lower Case Kit Name: No Divine Remix
-@22302 = ~Priest of Baervan~ //Mixed Case Kit Name: No Divine Remix
-@22303 = ~PRIEST OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
-
-Advantages:
-- May cast Call Woodland Beings once per day every 5 levels of the caster (starts at 1st level with one use).
-- May cast Naturewalk once per day every 10 levels of the caster (starts at 1st level with one use).
-
-NATUREWALK: This spell grants one person protection from ground and nature based movement impairing effects such as webs, entangling, and grease. This spell lasts 1 round per level of the caster.
-
-Restrictions:
-- Race restricted to gnome.
-- Alignment restricted to good.
-~
-@22304 = ~PRIEST OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
-~
-@22305  = ~~
-@22311 = ~Naturewalk~
-@22312 = ~Naturewalk
-This spell grants one person protection from ground and nature based movement impairing effects such as webs, entangling, and grease. This spell lasts 1 round per level of the caster.~
 //
 // ... cleric of Talos:
 //
@@ -703,17 +678,25 @@ Multiple chants are not cumulative.
 //
 @32501  = ~priest of azuth~
 @32502  = ~Magistrati of Azuth~
-@32503  = ~MAGISTRATI OF AZUTH: Azuth is a lesser deity who assists Mystra, the Mother of Magic, in tending to 'the Weave' that enables all magic in Faerun to exist.  
+@32503  = ~MAGISTRATI OF AZUTH: Azuth is a lesser deity who assists Mystra, the Mother of Magic, in tending to 'the Weave' that enables all magic in Faerun to exist. Azuthan clergy tend to love magic for its own sake. They have a natural familiarity with and access to wizard spells. Specialty priests of Azuth are known as Magistrati.
 
 Advantages:
 - May use the 'Arcane Weaving' abilities in place of memorizing priest spells. This ability allows the priest to spontaneously cast one of several wizard spells of one level lower than the sacrificed priest spell. 
-- Once per day, a Magistrati can concentrate and briefly increase <PRO_HISHER> ability to understand and identify the workings of magical items.
+- From 5th level, once per day, a Magistrati can concentrate and use the Legend Lore ability, briefly increasing <PRO_HISHER> ability to understand and identify the workings of magical items.
 - Magistrati can use scrolls and wands normally restricted to wizards.
 
 Restrictions:
 - May not be Evil.
 - May not dual-class.
 ~
+@32505  = ~Legend Lore~
+@32506  = ~Legend Lore
+
+School: Divination
+Duration: 3 rounds
+Casting Time: 2
+
+The caster of this spell gains a temporary insight into the history and nature of magical objects. This translates into a temporary Lore bonus of 20 points, plus an additional 20 points for each five levels of experience the caster has attained. If the resulting score is high enough, the spell can identify the name, nature, and function of any magical items in the caster's possession.~
 //
 // ... priest of mask:
 //
@@ -796,11 +779,62 @@ Restrictions:
 This abilty curses the target, causing them a penalty of -10 penalty to THAC0, saves and AC for one round/level if they fail a save vs. spell.
 ~
 //
+// ... hammer of moradin 
+//
+@37101  = ~cleric of moradin~
+@37102  = ~Hammer of Moradin~
+@37103  = ~HAMMER OF MORADIN:
+
+Advantages: 
+- Once per day, an Alaghor may use the Stout Reisstance power, gaining 35% resistance to physical attacks for one round per two levels of experience.
+- Alaghors may create a Spiritual Hammer of Clangeddin at will. This weapon of magical force does d4+1 blunt damage and d4 magic damage to foes, and has a chance to briefly Hold undead struck by it. The damage and expertise with which the hammer is wielded increases as the Alaghor gains experience.
+
+Restrictions:
+- Must be a dwarf.
+- May not be evil or chaotic.
+~
+@37111  = ~Stout Resistance~
+@37112  = ~Calling upon hidden reserves of strength during times of danger, a Hammer of Moradin can use this ability to gain 35% resistance to all forms of physical damage. The effect lasts for 5 rounds.~
+@37113  = ~Hammer of Moradin~
+@37114  = ~This weapon of magical force does d4+1 blunt damage and d4 magic damage to foes, and has a chance to briefly Hold undead struck by it. It is wielded as if the bearer is specialized (2 stars) in its use.  These abilities increase as the caster rises in level.~
+//
+// ... alaghor of clangeddin 
+//
+@37201  = ~cleric of clangeddin~
+@37202  = ~Alaghor of Clangeddin~
+@37203  = ~ALAGHOR OF CLANGEDDIN: Alaghors are an elite order of fighter/clerics devoted to the dwarven god of war, Clangeddin. They are powerful warriors as well as wise ministers, protecting dwarven communities from threats both physical and spiritual. 
+
+Advantages: 
+
+Restrictions:
+- Must be a dwarf.
+- May not be evil or chaotic.
+~
+//
+// ... priest of baravar:
+//
+@38201  = ~cleric of baravar~
+@38202  = ~Hoodwinker of Baravar Cloakshadow~
+@38203  = ~HOODWINKER OF BARAVAR CLOAKSHADOW: 
+
+Advantages:
+- May use Shadowstep at 1st level.  The Hoodwinker gains an additional use at levels 5, 10, 15 and 20.
+SHADOWSTEP: 
+The character steps into the Shadow Plane and may move for 7 seconds while others are frozen in time. The caster cannot attack or cast spells while in the Shadow Plane.
+
+Restrictions:
+- Alignment: may not be Lawful.
+~
+@38204  = ~CLOAKED ONE OF BARAVAR: ~
+
+@38211  = ~Baravar's Double~
+@38212  = ~Baravar's Double: Often used in emergencies, this causes an illusionary double of the cleric to spring into existence. If the cleric is being attacked, the double will absorb the first blow that lands, and disappear. At 6th level two doubles are created, and at 12th level one of the two doubles can actually wander away from the cleric to distract enemies. Hoodwinkers may use this ability once per turn.~
+//
 // ... priest of baervan:
 //
-@34201 = ~priest of baervan~ 
-@34202 = ~Fastpaws of Baervan~ 
-@34203 = ~FASTPAWS OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
+@38301 = ~cleric of baervan~ 
+@38302 = ~Fastpaws of Baervan~ 
+@38303 = ~FASTPAWS OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
 
 Advantages:
 - May summon a spirit animal ally for protection once per day. This being is similar to a bear, and increases in power at 3rd, 5th, 7th, and 10th levels.
@@ -809,8 +843,31 @@ Restrictions:
 - Race restricted to gnome.
 - Alignment restricted to good.
 ~
-@34204 = ~PRIEST OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
+@38304 = ~PRIEST OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
 ~
+//
+// ... cleric of baervan:
+//
+@22301 = ~cleric of baervan~ //Lower Case Kit Name: No Divine Remix
+@22302 = ~Priest of Baervan~ //Mixed Case Kit Name: No Divine Remix
+@22303 = ~PRIEST OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
+
+Advantages:
+- May cast Call Woodland Beings once per day every 5 levels of the caster (starts at 1st level with one use).
+- May cast Naturewalk once per day every 10 levels of the caster (starts at 1st level with one use).
+
+NATUREWALK: This spell grants one person protection from ground and nature based movement impairing effects such as webs, entangling, and grease. This spell lasts 1 round per level of the caster.
+
+Restrictions:
+- Race restricted to gnome.
+- Alignment restricted to good.
+~
+@22304 = ~PRIEST OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
+~
+@22305  = ~~
+@22311 = ~Naturewalk~
+@22312 = ~Naturewalk
+This spell grants one person protection from ground and nature based movement impairing effects such as webs, entangling, and grease. This spell lasts 1 round per level of the caster.~
 //
 // ... incarnate of mystra 
 //
@@ -1096,25 +1153,6 @@ This magic will allow the Spellbender to cast one of the following spells:
 - Sol's Searing Orb
 - False Dawn
 - Bolt of Glory~
-//
-// ... alaghor of clangeddin 
-//
-@47101  = ~alaghor of clangeddin~
-@47102  = ~Alaghor of Clangeddin~
-@47103  = ~ALAGHOR OF CLANGEDDIN: Alaghors are an elite order of fighter/clerics devoted to the dwarven god of war, Clangeddin. They are powerful warriors as well as wise ministers, protecting dwarven communities from threats both physical and spiritual. Alaghors share some abilities with the famed Dwarven Defenders, with whom they often fight side-by-side.
-
-Advantages: 
-- Once per day, an Alaghor may use the Hardiness power, gaining 35% resistance to physical attacks for one round per two levels of experience.
-- Alaghors may create a Spiritual Hammer of Clangeddin at will. This weapon of magical force does d4+1 blunt damage and d4 magic damage to foes, and has a chance to briefly Hold undead struck by it. The damage and expertise with which the hammer is wielded increases as the Alaghor gains experience.
-
-Restrictions:
-- Must be a dwarf.
-- May not be evil or chaotic.
-~
-@47111  = ~Stout Resistance~
-@47112  = ~Calling upon hidden reserves of strength during times of danger, an Alaghor can use this ability to gain 35% resistance to all forms of physical damage. The effect lasts for 5 rounds.~
-@47113  = ~Hammer of Clangeddin~
-@47114  = ~This weapon of magical force does d4+1 blunt damage and d4 magic damage to foes, and has a chance to briefly Hold undead struck by it. It is wielded as if the bearer is specialized (2 stars) in its use.  These abilities increase as the Alaghor rises in level.~
 //
 // ... woodscout of mielikki 
 //
@@ -3111,6 +3149,48 @@ When casting this spell, the priest must picture the faces of his fellow party m
 
 @50107 = ~Mass Cure~
 
+@50201 = ~Animate Clay Construct~
+@50202 = ~Animate Clay Construct
+(Alteration)
+
+Level: 6
+Sphere: Creation
+Range: Visual range of the caster
+Duration: 1 turn
+Casting Time: 5
+Area of Effect: n/a
+Saving Throw: None.
+
+Upon casting this spell, a mass of material is drawn from the environment, shaped into roughly humanoid form, and imbued with a modicum of sentience.  The resulting construct is similar to a clay golem: able to follow rudimentary directions and attack the caster's foes, but lacking complex thought and reflection.  After ten rounds, the magic holding the construct together fades, and the construct dissipates into dirt.~
+@50203 = ~Clay Construct~
+@50204 = ~Animate Stone Construct~
+@50205 = ~Animate Stone Construct
+(Alteration)
+
+Level: 7
+Sphere: Creation
+Range: Visual range of the caster
+Duration: 1 turn
+Casting Time: 5
+Area of Effect: n/a
+Saving Throw: None.
+
+Upon casting this spell, a mass of rocky material is drawn from the environment, shaped into roughly humanoid form, and imbued with a modicum of sentience.  The resulting construct is similar to a stone golem: able to follow rudimentary directions and attack the caster's foes, but lacking complex thought and reflection.  After ten rounds, the magic holding the construct together fades, and the construct dissipates into rocks and gravel.~
+@50206 = ~Stone Construct~
+@50207 = ~Animate Juggernaut Construct~
+@50208 = ~Animate Juggernaut Construct
+(Alteration)
+
+Level: Quest
+Sphere: Creation
+Range: Visual range of the caster
+Duration: 1 turn
+Casting Time: 5
+Area of Effect: n/a
+Saving Throw: None.
+
+Upon casting this spell, a mass of stony ands metallic material is drawn from the environment, shaped into a massive humanoid form, and imbued with a modicum of sentience.  The resulting construct is similar to an iron golem: able to follow rudimentary directions and attack the caster's foes, but lacking complex thought and reflection.  After ten rounds, the magic holding the construct together fades, and the construct dissipates into loose rock and metal.~
+@50209 = ~Juggernaut Construct~
 
 @50301 = ~Pacify the Dead~
 

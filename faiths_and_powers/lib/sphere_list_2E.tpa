@@ -1616,6 +1616,72 @@ END
 
 //___________________________________________________________________________________
 //
+DEFINE_ACTION_FUNCTION clangeddin_spheres 
+  RET_ARRAY clangeddin_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY clangeddin_spheres_array BEGIN
+	Healing				=> major
+	Necromantic			=> x
+	Creation	 		=> major
+	Decay		 		=> major
+	Protection 			=> major
+	Combat 				=> major
+	Travelers	 		=> minor
+	Divination 			=> minor
+	Wards	 			=> minor
+	Thought 			=> x
+	Charm 				=> x
+	Law	 				=> major
+	Chaos	 			=> x
+	Animal 				=> x
+	Plant 				=> x
+	Earth 				=> major
+	Water 				=> x
+	Air 				=> x
+	Fire 				=> x
+	Sun	 				=> minor
+	Shadow 				=> x
+	Weather 			=> x
+	Astral	   			=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION moradin_spheres 
+  RET_ARRAY moradin_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY moradin_spheres_array BEGIN
+	Healing 			=> major
+	Necromantic			=> x
+	Creation	 		=> major
+	Decay		 		=> major
+	Protection 			=> major
+	Combat 				=> minor
+	Travelers	 		=> minor
+	Divination 			=> major
+	Wards	 			=> major
+	Thought 			=> minor
+	Charm 				=> x
+	Law	 				=> major
+	Chaos	 			=> x
+	Animal 				=> x
+	Plant 				=> x
+	Earth 				=> major
+	Water 				=> minor
+	Air 				=> x
+	Fire 				=> x
+	Sun	 				=> x
+	Shadow 				=> x
+	Weather 			=> x
+	Astral	  			=> minor
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
 DEFINE_ACTION_FUNCTION baervan_spheres 
   RET_ARRAY baervan_spheres_array
  BEGIN
@@ -1676,72 +1742,6 @@ DEFINE_ACTION_FUNCTION baravar_spheres
 	Shadow		 		=> minor
 	Weather		 		=> x
 	Astral			    => x
- END
-END
-//___________________________________________________________________________________
-
-//___________________________________________________________________________________
-//
-DEFINE_ACTION_FUNCTION clangeddin_spheres 
-  RET_ARRAY clangeddin_spheres_array
- BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY clangeddin_spheres_array BEGIN
-	Healing				=> major
-	Necromantic			=> x
-	Creation	 		=> major
-	Decay		 		=> major
-	Protection 			=> major
-	Combat 				=> major
-	Travelers	 		=> minor
-	Divination 			=> minor
-	Wards	 			=> minor
-	Thought 			=> x
-	Charm 				=> x
-	Law	 				=> major
-	Chaos	 			=> x
-	Animal 				=> x
-	Plant 				=> x
-	Earth 				=> major
-	Water 				=> x
-	Air 				=> x
-	Fire 				=> x
-	Sun	 				=> minor
-	Shadow 				=> x
-	Weather 			=> x
-	Astral	   			=> x
- END
-END
-//___________________________________________________________________________________
-
-//___________________________________________________________________________________
-//
-DEFINE_ACTION_FUNCTION moradin_spheres 
-  RET_ARRAY moradin_spheres_array
- BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY moradin_spheres_array BEGIN
-	Healing 			=> major
-	Necromantic			=> x
-	Creation	 		=> major
-	Decay		 		=> major
-	Protection 			=> major
-	Combat 				=> minor
-	Travelers	 		=> minor
-	Divination 			=> major
-	Wards	 			=> major
-	Thought 			=> minor
-	Charm 				=> x
-	Law	 				=> major
-	Chaos	 			=> x
-	Animal 				=> x
-	Plant 				=> x
-	Earth 				=> major
-	Water 				=> minor
-	Air 				=> x
-	Fire 				=> x
-	Sun	 				=> x
-	Shadow 				=> x
-	Weather 			=> x
-	Astral	  			=> x
  END
 END
 //___________________________________________________________________________________

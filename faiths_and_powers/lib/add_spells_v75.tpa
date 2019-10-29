@@ -470,43 +470,58 @@ COPY ~faiths_and_powers/spheres/spells/air/b_c401.spl~ ~override~ //spell
 /*
 //CREATION
 
-// *****need BAMs for these!
+// ***** need new BAMs for these!
 
 //animate clay construct
 // copy/make the actual spell
+COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.spl~ ~override~ 
+	SAY NAME1 @50201
+	SAY UNIDENTIFIED_DESC @50202
+	WRITE_ASCII 0x3a ~d5clgolc~ #8
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clgolb~ END
+COPY ~faiths_and_powers/spheres/spells/creation/d5clgolc.bam~ ~override~ 
+COPY ~faiths_and_powers/spheres/spells/creation/d5clgolb.bam~ ~override~ 
 COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.eff~ ~override~ 
 COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.cre~ ~override~ 
-  SAY etc.
+  SAY NAME1 50203
+  SAY NAME2 50203
 COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.itm~ ~override~ 
-  SAY etc.
 ACTION_IF !(FILE_EXISTS_IN_GAME ~golcly01.bcs~) BEGIN
   COPY ~faiths_and_powers/spheres/spells/creation/golcly01.bcs~ ~override~ 
 END
 
 //animate stone construct
-// copy/make the actual spell
+COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.spl~ ~override~ 
+	SAY NAME1 @50204
+	SAY UNIDENTIFIED_DESC @50205
+	WRITE_ASCII 0x3a ~d5clgolc~ #8
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clgolb~ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~golstone.itm~) BEGIN
   COPY ~faiths_and_powers/spheres/spells/creation/golstone.itm~ ~override~ 
 END
 COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.eff~ ~override~ 
 COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.cre~ ~override~ 
-  SAY etc.
+  SAY NAME1 50206
+  SAY NAME2 50206
 COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.itm~ ~override~ 
-  SAY etc.
 ACTION_IF !(FILE_EXISTS_IN_GAME ~golsto01.bcs~) BEGIN
   COPY ~faiths_and_powers/spheres/spells/creation/golsto01.bcs~ ~override~ 
 END
 
 //animate iron construct
-// copy/make the actual spell
+COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.spl~ ~override~ 
+	SAY NAME1 @50207
+	SAY UNIDENTIFIED_DESC @50208
+	WRITE_ASCII 0x3a ~d5clgolc~ #8
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clgolb~ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~irongol.itm~) BEGIN
   COPY ~faiths_and_powers/spheres/spells/creation/irongol.itm~ ~override~ 
 END
 COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.eff~ ~override~ 
 COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.cre~ ~override~ 
-  SAY etc.
+  SAY NAME1 50209
+  SAY NAME2 50209
 COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.itm~ ~override~ 
-  SAY etc.
 ACTION_IF !(FILE_EXISTS_IN_GAME ~goliro01.bcs~) BEGIN
   COPY ~faiths_and_powers/spheres/spells/creation/goliro01.bcs~ ~override~ 
 END
