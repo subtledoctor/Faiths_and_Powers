@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.78sd4~
+VERSION ~0.78sd5~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -252,6 +252,14 @@ END
 ACTION_IF (%d5_cleric_moander% = 1) BEGIN
  LAF cleric_moander END
 END
+ACTION_IF (%d5_cleric_mystra% = 1) BEGIN
+ LAF cleric_mystra END
+ OUTER_SET cleric_umd = 1
+END
+ACTION_IF (%d5_cleric_oghma% = 1) BEGIN
+ LAF cleric_oghma END
+ OUTER_SET cleric_umd = 1
+END
 ACTION_IF (%d5_cleric_shar% = 1) BEGIN
  LAF cleric_shar END
 END
@@ -414,6 +422,7 @@ LAF remove_sc_menu_kits END
 //
 BEGIN @35 // install paladin kits
 DESIGNATED 35
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 
 ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   INCLUDE ~override/fnp_sphere_list.tpa~

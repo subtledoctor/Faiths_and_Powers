@@ -264,11 +264,11 @@ END
 //MYSTRA ABILITY FILES___________________________________________________________
 //
 COPY ~faiths_and_powers/kits/clerics/325_azuth/d5clazu.2da~ ~override~
-COPY ~faiths_and_powers/kits/clerics/325_azuth/d5llore.spl~ ~override~
+COPY ~faiths_and_powers/kits/misc/d5llore.spl~ ~override~
 	SAY NAME1 @32505
 	SAY UNIDENTIFIED_DESC @32506
 	LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = ~d5llore~ END
-APPEND ~d5clazu.2da~ ~UMD         AP_D5_UMD   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+//APPEND ~d5clazu.2da~ ~UMD         AP_D5_UMD   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 COPY ~faiths_and_powers/kits/misc/d5_cllv1.spl~ ~override~
 //	SAY NAME1 @6
 //	SAY UNIDENTIFIED_DESC @6
@@ -1980,6 +1980,302 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
+//								PRIEST OF MYSTRA
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION cleric_mystra BEGIN
+
+ADD_KIT ~D5_CLERIC_MYSTRA~
+
+//WEAPON PROFICIENCIES________________________________________________________________
+//11             	                               T   S           F   Q             S S
+//10           			L S                     W   C           L   U             W I
+//9            			A M             B L S   O   I   W       A   A             O N
+//8            			R A             A O H   H   M   A       I   R C   S       R G
+//7            			G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6            			E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5            			S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4            			W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3            			O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2            			R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1            			D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+~D5_CLERIC_MYSTRA	  	0 0 0 0 0 0 0 0~
+~D5_CLERIC_MYSTRA      	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+
+//MINIMUM KIT STATS_________________________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_CLERIC_MYSTRA  	0   0   0   0   12  0~
+
+//KIT STAT MODIFIERS________________________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_CLERIC_MYSTRA  	0   0   0   0   0   0~
+
+//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_CLERIC_MYSTRA  	0   0   0   0   15  0~
+
+//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_CLERIC_MYSTRA  	0   0   0   0   15  0~
+
+//ALIGNMENT RESTRICTIONS____________________________________________________________
+//                 LG LN LE NG TN NE CG CN CE
+~D5_CLERIC_MYSTRA  	1  1  0  1  1  0  1  1  0~
+
+//DUAL CLASS OPTIONS________________________________________________________________
+//                 FT CL MA TH DR RA
+~D5_CLERIC_MYSTRA  	0  0  1  1  0  0~
+
+//KIT ABILITIES 2DA FILE______________________________________________________________
+~faiths_and_powers/kits/clerics/324_mystra/d5clmys.2da~
+
+//RACIAL KIT AVAILABILITY_____________________________________________________________
+~K_C_E K_C_H K_C_HE K_C_G K_C_D K_C_HL K_C_HO~
+
+//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
+//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
+//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
+//         Monk = 20
+~0x00004000 3~
+
+//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
+~Cl0~
+
+//TOB STARTING EQUIPMENT_____________________________________________________________
+~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
+
+//CHARACTER CREATION KIT DESCRIPTION________________________________________________
+SAY @32401
+SAY @32402
+SAY @32403
+
+//EE KIT EXTRAS_____________________________________________________________________
+// 
+ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
+	LAF fl#add_kit_ee
+		INT_VAR
+			briefdesc = RESOLVE_STR_REF (@32403)
+		STR_VAR
+			kit_name = D5_CLERIC_MYSTRA
+			clswpbon = ~0 0 3~
+			hpclass = ~HPPRS~
+	END
+END
+
+// ABILITY FILES_______________________________________________________________
+//
+COPY ~faiths_and_powers/kits/clerics/324_mystra/d5clmys.2da~ ~override~
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5myst1.spl~ // wild/dead magic immunity
+  SAY NAME1 @32411
+  SAY UNIDENTIFIED_DESC @32411
+  PATCH_FOR_EACH immunity IN ~3645~ ~3646~ ~3778~ ~3779~ ~3550~ ~3992~ ~3137~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = 0 parameter2 = (0 - 1) STR_VAR resource = EVAL ~%immunity%~ END
+  END
+COPY ~faiths_and_powers/kits/misc/d5_cstbo.spl~ ~override~ // casting speed bonus
+//APPEND ~d5clmys.2da~ ~UMD         AP_D5_UMD   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+
+// add TnB innate cantrips - uh, I mean, cantrip wand
+COPY ~faiths_and_powers/kits/clerics/324_mystra/cantrip_wand/d5myscw.itm~ ~override~
+	SAY NAME2 @32413
+	SAY IDENTIFIED_DESC @32414
+	LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 power = 1 parameter1 = (0x4000 + %D5_CLERIC_MYSTRA%) parameter2 = 9 timing = 2 END
+COPY ~faiths_and_powers/kits/clerics/324_mystra/cantrip_wand/d5cantab.bam~ ~override~
+COPY ~faiths_and_powers/kits/clerics/324_mystra/cantrip_wand/d5cantco.bam~ ~override~
+COPY ~faiths_and_powers/kits/clerics/324_mystra/cantrip_wand/d5cantdi.bam~ ~override~
+COPY ~faiths_and_powers/kits/clerics/324_mystra/cantrip_wand/d5canten.bam~ ~override~
+COPY ~faiths_and_powers/kits/clerics/324_mystra/cantrip_wand/d5cantil.bam~ ~override~
+COPY ~faiths_and_powers/kits/clerics/324_mystra/cantrip_wand/d5cantne.bam~ ~override~
+COPY ~faiths_and_powers/kits/clerics/324_mystra/cantrip_wand/d5canttr.bam~ ~override~
+COPY ~faiths_and_powers/kits/clerics/324_mystra/cantrip_wand/d5_rabb.cre~ ~override~
+	SAY NAME1 @32415
+	WRITE_BYTE 0x270 5
+//shield spell protects against cantrip wand
+COPY_EXISTING ~spwi114.spl~ ~override~
+	LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 206 STR_VAR resource = ~d5myscw~ END
+BUT_ONLY
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5myscw.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 122 target = 1 parameter1 = 1 timing = 9 STR_VAR resource = ~d5myscw~ END
+
+//DEFINE SPHERE ACCESS______________________________________________________________
+//
+ LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 0
+	u_plate_armor 		= 0
+	u_club_staff	 	= 1
+	u_hammers	 		= 1
+	u_maces 	 		= 1
+	u_flails 			= 0
+	u_axes 				= 0
+	u_daggers 			= 1
+	u_short_swords		= 1
+	u_long_swords		= 0
+	u_scimitars 		= 0
+	u_katanas 			= 0
+	u_bastard_swords 	= 0
+	u_2hand_swords 		= 0
+	u_halberds 			= 0
+	u_spears 			= 0
+	u_darts 			= 1
+	u_slings 			= 1
+	u_bows 				= 0
+	u_crossbows 		= 1
+  STR_VAR
+    clab_name 		= ~d5clmys~
+	sphere_list		= ~mystra_spheres~
+	class 			= ~cleric~
+ END
+
+END
+
+//__________________________________________________________________________________
+
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//								PRIEST OF OGHMA
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION cleric_oghma BEGIN
+
+ADD_KIT ~D5_CLERIC_OGHMA~
+
+//WEAPON PROFICIENCIES________________________________________________________________
+//11             	                               T   S           F   Q             S S
+//10           			L S                     W   C           L   U             W I
+//9            			A M             B L S   O   I   W       A   A             O N
+//8            			R A             A O H   H   M   A       I   R C   S       R G
+//7            			G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6            			E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5            			S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4            			W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3            			O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2            			R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1            			D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+~D5_CLERIC_OGHMA	  	0 0 0 0 0 0 0 0~
+~D5_CLERIC_OGHMA      	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+
+//MINIMUM KIT STATS_________________________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_CLERIC_OGHMA  	0   0   0   0   12  0~
+
+//KIT STAT MODIFIERS________________________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_CLERIC_OGHMA  	0   0   0   0   0   0~
+
+//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_CLERIC_OGHMA  	0   0   0   0   15  0~
+
+//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_CLERIC_OGHMA  	0   0   0   0   15  0~
+
+//ALIGNMENT RESTRICTIONS____________________________________________________________
+//                 LG LN LE NG TN NE CG CN CE
+~D5_CLERIC_OGHMA  	1  1  0  1  1  0  1  1  0~
+
+//DUAL CLASS OPTIONS________________________________________________________________
+//                 FT CL MA TH DR RA
+~D5_CLERIC_OGHMA  	0  0  1  1  0  0~
+
+//KIT ABILITIES 2DA FILE______________________________________________________________
+~faiths_and_powers/kits/clerics/310_oghma/d5clogh.2da~
+
+//RACIAL KIT AVAILABILITY_____________________________________________________________
+~K_C_E K_C_H K_C_HE K_C_G K_C_D K_C_HL K_C_HO~
+
+//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
+//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
+//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
+//         Monk = 20
+~0x00004000 3~
+
+//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
+~Cl0~
+
+//TOB STARTING EQUIPMENT_____________________________________________________________
+~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
+
+//CHARACTER CREATION KIT DESCRIPTION________________________________________________
+SAY @31001
+SAY @31002
+SAY @31003
+
+//EE KIT EXTRAS_____________________________________________________________________
+// 
+ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
+	LAF fl#add_kit_ee
+		INT_VAR
+			briefdesc = RESOLVE_STR_REF (@31003)
+		STR_VAR
+			kit_name = D5_CLERIC_OGHMA
+			clswpbon = ~0 0 3~
+			hpclass = ~HPPRS~
+	END
+END
+
+// ABILITY FILES_______________________________________________________________
+//
+COPY ~faiths_and_powers/kits/clerics/310_oghma/d5clogh.2da~ ~override~
+COPY ~faiths_and_powers/kits/clerics/310_oghma/d5oghm1.spl~ ~override~
+  SAY NAME1 @31011
+  SAY UNIDENTIFIED_DESC @31012
+COPY ~faiths_and_powers/kits/misc/d5llore.spl~ ~override~
+	SAY NAME1 @32505
+	SAY UNIDENTIFIED_DESC @32506
+	LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = ~d5llore~ END
+//APPEND ~d5clogh.2da~ ~UMD         AP_D5_UMD   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+COPY_EXISTING ~spwi509.spl~ ~override/d5oghm2.spl~
+	LPM spell_to_innate
+
+
+//DEFINE SPHERE ACCESS______________________________________________________________
+//
+ LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 1
+	u_plate_armor 		= 0
+	u_club_staff	 	= 1
+	u_hammers	 		= 1
+	u_maces 	 		= 1
+	u_flails 			= 0
+	u_axes 				= 0
+	u_daggers 			= 1
+	u_short_swords		= 1
+	u_long_swords		= 0
+	u_scimitars 		= 0
+	u_katanas 			= 0
+	u_bastard_swords 	= 0
+	u_2hand_swords 		= 0
+	u_halberds 			= 0
+	u_spears 			= 0
+	u_darts 			= 0
+	u_slings 			= 1
+	u_bows 				= 0
+	u_crossbows 		= 1
+  STR_VAR
+    clab_name 		= ~d5clogh~
+	sphere_list		= ~oghma_spheres~
+	class 			= ~cleric~
+	multiclass 		= ~cm~
+ END
+
+END
+
+//__________________________________________________________________________________
+
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
 //								PRIEST OF SHAR
 //__________________________________________________________________________________
 //__________________________________________________________________________________
@@ -3078,10 +3374,10 @@ COPY ~faiths_and_powers/kits/clerics/226_umberlee/b_umb.2da~ ~override~
 
 //Smashing Wave______________________________________________________________________//
 //Install it if it isn't already installed
-ACTION_IF (GAME_IS ~bgee bg2ee eet~) AND (NOT FILE_EXISTS_IN_GAME ~b_IWD.itm~) THEN BEGIN   //
+//ACTION_IF (GAME_IS ~bgee bg2ee eet~) AND (NOT FILE_EXISTS_IN_GAME ~b_IWD.itm~) THEN BEGIN   //
 //Go over this spell head to toe first...
 
- END//end smashing wave
+// END//end smashing wave
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
@@ -3220,16 +3516,43 @@ COPY ~faiths_and_powers/kits/clerics/371_moradin/d5morh2.itm~ ~override~
 COPY ~faiths_and_powers/kits/clerics/371_moradin/d5morh3.itm~ ~override~
 	SAY NAME1 @37113
 	SAY NAME2 @37113
-COPY ~faiths_and_powers/kits/clerics/371_moradin/d5morh2.spl~ ~override~
-	SAY NAME1 @37111
-	SAY UNIDENTIFIED_DESC @37112
-	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5morh2~ END
-COPY ~faiths_and_powers/kits/clerics/371_moradin/d5morh2.bam~ ~override~
+COPY_EXISTING ~sppr203.spl~ ~override/d5morh2.spl~
+	LPM spell_to_innate
 COPY_EXISTING ~sppr203.spl~ ~override/d5morh3.spl~
 	LPM spell_to_innate
 	LPF ALTER_SPELL_HEADER INT_VAR speed = 2 END
 	LPF DELETE_EFFECT END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~sppr203~ END
+ACTION_IF (GAME_IS ~bgee bg2ee eet iwdee~) BEGIN
+  OUTER_SET cl_moradin_code = (0x4000 + %D5_CL_MORADIN%)
+  COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+	PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
+	  READ_BYTE 0x31 prof
+	  READ_SHORT 0x1c type
+	  PATCH_IF (%prof% = 97) BEGIN // hammers
+		LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 177 target = 1 parameter1 = %cl_moradin_code% parameter2 = 9 timing = 2 STR_VAR resource = ~d5morh4~ END
+		LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 177 target = 1 parameter1 = %cl_moradin_code% parameter2 = 9 timing = 2 STR_VAR resource = ~d5morh5~ END
+	  END
+	END
+  BUT_ONLY
+  CREATE EFF ~d5morh4~
+	WRITE_LONG 0x10 278
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x1c 2
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 2
+	WRITE_LONG 0x28 0
+	WRITE_SHORT 0x2c 100
+  CREATE EFF ~d5morh5~
+	WRITE_LONG 0x10 345
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x1c 3
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 2
+	WRITE_LONG 0x28 0
+	WRITE_SHORT 0x2c 100
+	WRITE_LONG 0x48 0
+END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
@@ -3355,6 +3678,18 @@ END
 //ALAGHOR ABILITY FILES_______________________________________________________________
 //
 COPY ~faiths_and_powers/kits/clerics/372_clangeddin/d5clcla.2da~ ~override~
+COPY ~faiths_and_powers/kits/clerics/372_clangeddin/d5clan1.spl~ ~override~
+	SAY NAME1 @37211
+	SAY UNIDENTIFIED_DESC @37212
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clan1b~ END
+COPY ~faiths_and_powers/kits/clerics/372_clangeddin/d5clan1b.bam~ ~override~
+COPY_EXISTING ~sppr214.spl~ ~override/d5clan2.spl~
+	LPM spell_to_innate
+COPY ~faiths_and_powers/kits/clerics/372_clangeddin/d5clan3.spl~ ~override~
+	SAY NAME1 @37215
+	SAY UNIDENTIFIED_DESC @37216
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clan3b~ END
+COPY ~faiths_and_powers/kits/clerics/372_clangeddin/d5clan3b.bam~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //

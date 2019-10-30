@@ -26,6 +26,8 @@
 @110  = ~Change item usability for priests~
 //
 @200  = ~new and revised cleric kits~
+// 
+// INDEX:
 //
 // ... Cleric kits = 201-299
 //
@@ -43,6 +45,7 @@
 //
 // ... Priest kits = 301-350
 //
+@310  = ~Add Priest of Oghma~
 @314  = ~Add Priest of Ilmater~
 @315  = ~Add Priest of Deneir~
 @316  = ~Add Priest of Sune~
@@ -578,6 +581,29 @@ Restrictions:
 - Alignment: any evil or chaotic neutral
 ~
 //
+// ... priest of oghma:
+//
+
+@31001  = ~priest of oghma~
+@31002  = ~Seeker of Oghma~
+@31003  = ~SEEKER OF OGHMA:  Oghma is a greater god of knowledge, sagecraft, learning, and wisdom. He is venerated by those seeking information - particularly lost or hidden information. When a Seeker demonstrates solid service or true loyalty in Oghma's cause, <PRO_HESHE> is bestowed with the title of Loremaster. This is a great honor; while outsiders may perceive the god of sages as belonging in dusty libraries, the fact is that many Oghmanite priests are of an adventuresome bent.
+
+Advantages:
+- Once per day, a Seeker can concentrate and briefly increase <PRO_HISHER> ability to understand and identify the workings of magical items.
+- From 3rd level, a Seeker can innately cast Know Opponent, making it easier for <PRO_HIMHER>self and <PRO_HISHER> allies to strike the target creature.
+- From 9th level, a Seeker can innately cast Feeblemind.
+- Seekers can understand and use scrolls and wands normally restricted to wizards.
+
+
+Restrictions:
+- Alignment: May not be Evil
+~
+@31011  = ~Know Opponent~
+@31012  = ~Know Opponent
+
+When this spell is cast, the caster is enabled to read the aura of a target creature, and determine that creature's strengths and weaknesses. For the duration of the spell, the target's physical resistances are lowered by 10% and all attacks against the target creature are made with a +2 bonus to the attack roll. Certain magical devices negate the power of the Know Opponent spell, and the spell has no effect on creatures who don't emanate auras, such as constructs. Magic resistance does not affect this spell.
+~
+//
 // ... priest of ilmater:
 //
 @31401  = ~priest of ilmater~
@@ -674,6 +700,34 @@ By means of the Chant spell, the priest brings special favor upon <PRO_HISHER>se
 Multiple chants are not cumulative.
 ~
 //
+// ... priest of mystra:
+//
+@32401  = ~priest of mystra~
+@32402  = ~Weavekeeper of Mystra~
+@32403  = ~WEAVEKEEPR OF MYSTRA: Mystra is known as the Lady of Spells and the Mother of Magic. She tends to the Weave, which enables mortals to cast spells. All wielders of magic and seekers after arcane lore are welcome in the service of Mystra. One sect of Mystra's clerics, known as Weavekeepers, is focused on investigating and controlling sources of powerful magic which, in the wrong hands, might harm the reputation and perception of magic use.
+
+Advantages:
+- Weavekeepers have a small amount of magic flowing through them constantly, regardless whether they have spells memorized. They may cast small cantrips from the various schools of magic at any time, without limit.
+- From 3rd level, Weavekeepers can cast spells slightly faster than most priests, gaining a 1-point reduction in casting speed.
+- From 5th level, once per day, Weavekeepers can cast an innate form of Dispel Magic which is as effective as that of an Inquisitor.
+- Weavekeepers can use scrolls and wands normally restricted to wizards.
+- Weavekeepers are unaffected by wild magic and dead magic fields.
+
+Restrictions:
+- May not dual-class.
+~
+@32411  = ~~
+@32413  = ~Magic Wand~
+@32414  = ~A Magic Wand may be used as a ranged weapon, casting a Magic Bolt at an enemy once per round, which does 1d4+1 magic damage. (Note, while doing so the wizard will be at a tactical disadvantage against nearby attackers using melee weapons.) Alternatively, the wizard can use the wand to cast one of the following cantrips:
+- Deflective Shell: blocks one 1st- through 3rd level spell targeting the wizard. The Shell last 3 rounds.
+- Conjure Rabbit: conjures a small rodent near the wizard, which lasts for 3 rounds.
+- Glimpse: gives the wizard a brief (2-second) look at another area of the map.
+- Drowse: the target will fall asleep for 1 round on a failed save vs. Spells.
+- Bedazzle: the target suffers a -1 penalty to thac0 and AC for 1 round; on a failed save vs. Breath, the penalties are doubled and last for 2 rounds, and the target is blinded for the first round.
+- Stiffen Bones: the target suffers from painful stiffness, suffering a -1 penalty to thac0 and damage for 1 round; on a failed save vs. Death, the penalties are doubled and last for 2 rounds, and the target is Slowed for the first round.
+- Earthen Grasp: the target will be entangled, unable to move, for 2 rounds on a failed save vs. Petrification.~
+@32415  = ~Rabbit~
+//
 // ... priest of azuth:
 //
 @32501  = ~priest of azuth~
@@ -682,7 +736,7 @@ Multiple chants are not cumulative.
 
 Advantages:
 - May use the 'Arcane Weaving' abilities in place of memorizing priest spells. This ability allows the priest to spontaneously cast one of several wizard spells of one level lower than the sacrificed priest spell. 
-- From 5th level, once per day, a Magistrati can concentrate and use the Legend Lore ability, briefly increasing <PRO_HISHER> ability to understand and identify the workings of magical items.
+- From 5th level, once per day, a Magistrati can concentrate and briefly increase <PRO_HISHER> ability to understand and identify the workings of magical items.
 - Magistrati can use scrolls and wands normally restricted to wizards.
 
 Restrictions:
@@ -786,17 +840,18 @@ This abilty curses the target, causing them a penalty of -10 penalty to THAC0, s
 @37103  = ~HAMMER OF MORADIN:
 
 Advantages: 
-- Once per day, an Alaghor may use the Stout Reisstance power, gaining 35% resistance to physical attacks for one round per two levels of experience.
-- Alaghors may create a Spiritual Hammer of Clangeddin at will. This weapon of magical force does d4+1 blunt damage and d4 magic damage to foes, and has a chance to briefly Hold undead struck by it. The damage and expertise with which the hammer is wielded increases as the Alaghor gains experience.
+- Priests of Moradin are unparalleled in the use and maintenance of war hammers. They have a +2 bonus to hit when attacking with a war hammer, and any war hammer they wield is considered to be of +3 enchantment for purposes of what enemies it can strike.
+- From 1st level, priests of Moradin may cast an innate form of the Command spell once per day.
+- From 3rd level, priests of Moradin may cast an innate form of the Chant spells once per day.
+- From 5th level, priests of Moradin may create a Spiritual Hammer of Moradin once every five turns. This weapon of magical force does 1d4+1 blunt damage and 1d4 magic damage to foes, and has a chance to briefly Hold any undead struck by it. The damage and expertise with which the hammer is wielded increases as the Alaghor gains experience. The hammer remains in existence for ten rounds.
+- From 7th level, priests of Moradin may innately cast Command twice per day.
 
 Restrictions:
 - Must be a dwarf.
 - May not be evil or chaotic.
 ~
-@37111  = ~Stout Resistance~
-@37112  = ~Calling upon hidden reserves of strength during times of danger, a Hammer of Moradin can use this ability to gain 35% resistance to all forms of physical damage. The effect lasts for 5 rounds.~
 @37113  = ~Hammer of Moradin~
-@37114  = ~This weapon of magical force does d4+1 blunt damage and d4 magic damage to foes, and has a chance to briefly Hold undead struck by it. It is wielded as if the bearer is specialized (2 stars) in its use.  These abilities increase as the caster rises in level.~
+@37114  = ~This weapon of magical force does d4+1 blunt damage and d4 magic damage to foes, and has a chance to briefly Hold undead struck by it. It is wielded as if the bearer is specialized (2 stars) in its use.  These values increase as the caster rises in level.~
 //
 // ... alaghor of clangeddin 
 //
@@ -805,11 +860,22 @@ Restrictions:
 @37203  = ~ALAGHOR OF CLANGEDDIN: Alaghors are an elite order of fighter/clerics devoted to the dwarven god of war, Clangeddin. They are powerful warriors as well as wise ministers, protecting dwarven communities from threats both physical and spiritual. 
 
 Advantages: 
+- Once per day, an Alaghor may use the Stout Resistance power, gaining 35% resistance to physical attacks.  The protection lasts for one round per two levels of experience.
+- From 5th level, an Alaghor may cast an innate form of Draw Upon Holy Might once per day.
+- From 9th level, an Alaghor may use the Critical Strike ability once per day. Upon activating this ability, every attack roll in the next round will result in a natural 20, causing a critical hit.
 
 Restrictions:
 - Must be a dwarf.
 - May not be evil or chaotic.
 ~
+@37211  = ~Stout Resistance~
+@37212  = ~Calling upon hidden reserves of strength during times of danger, a Hammer of Moradin can use this ability to gain 35% resistance to all forms of physical damage. The effect lasts for 5 rounds.~
+@37213  = ~~
+@37214  = ~~
+@37215  = ~Critical Strike~
+@37216  = ~Critical Strike
+
+A warrior's intimate knowledge of vital spots on opponents allows <PRO_HIMHER> to, once per day, concentrate all of the attacks in one round to strike a vital area every time. With this ability, every attack roll made in the next round is a natural 20, resulting in a critical hit.~
 //
 // ... priest of baravar:
 //

@@ -1954,7 +1954,183 @@ END
 //__________________________________________________________________________________
 END
 
-END // end function
+// I HATE UNDEAD - UNDED PREDATOR (RANGER)
+
+ACTION_IF FILE_EXISTS_IN_GAME ~rahuup.2da~ BEGIN
+//DEFINE SPHERE ACCESS______________________________________________________________
+//
+LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 1
+	u_plate_armor 		= 1
+	u_club_staff	 	= 2
+	u_hammers	 		= 2
+	u_maces 	 		= 2
+	u_flails 			= 2
+	u_axes 				= 2
+	u_daggers 			= 2
+	u_short_swords		= 2
+	u_long_swords		= 2
+	u_scimitars 		= 2
+	u_katanas 			= 2
+	u_bastard_swords 	= 2
+	u_2hand_swords 		= 2
+	u_halberds 			= 2
+	u_spears 	 		= 2
+	u_darts 			= 2
+	u_slings	 		= 2
+	u_bows 				= 2
+	u_crossbows 		= 2
+  STR_VAR
+    clab_name 		= ~rahuup~
+	class 			= ~ranger~
+	s_Life 			= ~minor~
+	s_Death 		= ~x~
+	s_Benediction 	= ~x~
+	s_Destruction 	= ~x~
+	s_Protection 	= ~x~
+	s_War 			= ~x~
+	s_Exploration   = ~minor~
+	s_Knowledge 	= ~x~
+	s_Deception 	= ~x~
+	s_Thought 		= ~x~
+	s_Dread 		= ~x~
+	s_Vigor 		= ~major~
+	s_Affliction 	= ~x~
+	s_Animal 		= ~minor~
+	s_Plant 		= ~minro~
+	s_Earth 		= ~major~
+	s_Water 		= ~x~
+	s_Air 			= ~x~
+	s_Fire 			= ~x~
+	s_Light 		= ~major~
+	s_Shadow 		= ~x~
+	s_Magic 		= ~x~
+	s_Perdition     = ~x~
+END
+//__________________________________________________________________________________
+END
+
+// I HATE UNDEAD - HOLY REDEEMER (CLERIC)
+
+ACTION_IF FILE_EXISTS_IN_GAME ~rahuhr.2da~ BEGIN
+//DEFINE SPHERE ACCESS______________________________________________________________
+//
+LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 1
+	u_plate_armor 		= 1
+	u_club_staff	 	= 1
+	u_hammers	 		= 1
+	u_maces 	 		= 1
+	u_flails 			= 1
+	u_axes 				= 1
+	u_daggers 			= 1
+	u_short_swords		= 1
+	u_long_swords		= 1
+	u_scimitars 		= 0
+	u_katanas 			= 0
+	u_bastard_swords 	= 0
+	u_2hand_swords 		= 0
+	u_halberds 			= 0
+	u_spears 	 		= 1
+	u_darts 			= 1
+	u_slings	 		= 1
+	u_bows 				= 0
+	u_crossbows 		= 1
+  STR_VAR
+    clab_name 		= ~rahuhr~
+	class 			= ~cleric~
+	multiclass 		= ~fc~
+	s_Life 			= ~major~
+	s_Death 		= ~x~
+	s_Benediction 	= ~minor~
+	s_Destruction 	= ~major~
+	s_Protection 	= ~major~
+	s_War 			= ~major~
+	s_Exploration   = ~minor~
+	s_Knowledge 	= ~minor~
+	s_Deception 	= ~x~
+	s_Thought 		= ~x~
+	s_Dread 		= ~minor~
+	s_Vigor 		= ~major~
+	s_Affliction 	= ~x~
+	s_Animal 		= ~x~
+	s_Plant 		= ~x~
+	s_Earth 		= ~x~
+	s_Water 		= ~x~
+	s_Air 			= ~x~
+	s_Fire 			= ~minor~
+	s_Light 		= ~major~
+	s_Shadow 		= ~x~
+	s_Magic 		= ~minor~
+	s_Perdition     = ~major~
+END
+//__________________________________________________________________________________
+END
+
+// I HATE UNDEAD - CIRCLE ENFORCER (DRUID)
+
+ACTION_IF FILE_EXISTS_IN_GAME ~rahuce.2da~ BEGIN
+//DEFINE SPHERE ACCESS______________________________________________________________
+//
+LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 0
+	u_plate_armor 		= 0
+	u_club_staff	 	= 1
+	u_hammers	 		= 1
+	u_maces 	 		= 0
+	u_flails 			= 1
+	u_axes 				= 0
+	u_daggers 			= 1
+	u_short_swords		= 0
+	u_long_swords		= 0
+	u_scimitars 		= 0
+	u_katanas 			= 0
+	u_bastard_swords 	= 0
+	u_2hand_swords 		= 0
+	u_halberds 			= 0
+	u_spears 	 		= 1
+	u_darts 			= 1
+	u_slings	 		= 1
+	u_bows 				= 1
+	u_crossbows 		= 0
+  STR_VAR
+    clab_name 		= ~rahuce~
+	class 			= ~druid~
+	s_Life 			= ~minor~
+	s_Death 		= ~x~
+	s_Benediction 	= ~x~
+	s_Destruction 	= ~major~
+	s_Protection 	= ~x~
+	s_War 			= ~x~
+	s_Exploration   = ~major~
+	s_Knowledge 	= ~minor~
+	s_Deception 	= ~x~
+	s_Thought 		= ~x~
+	s_Dread 		= ~x~
+	s_Vigor 		= ~major~
+	s_Affliction 	= ~x~
+	s_Animal 		= ~x~
+	s_Plant 		= ~major~
+	s_Earth 		= ~major~
+	s_Water 		= ~minor~
+	s_Air 			= ~minor~
+	s_Fire 			= ~major~
+	s_Light 		= ~major~
+	s_Shadow 		= ~minor~
+	s_Magic 		= ~x~
+	s_Perdition     = ~x~
+END
+//__________________________________________________________________________________
+END
+
+
+END // end mod_kit_spheres function
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
