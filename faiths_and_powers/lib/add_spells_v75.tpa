@@ -467,7 +467,7 @@ COPY ~faiths_and_powers/spheres/spells/air/b_c401.spl~ ~override~ //spell
 	SAY DESC @51602
 	WRITE_SHORT 0x098 ~%b_storm1%~
 
-/*
+
 //CREATION
 
 // ***** need new BAMs for these!
@@ -526,7 +526,15 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~goliro01.bcs~) BEGIN
   COPY ~faiths_and_powers/spheres/spells/creation/goliro01.bcs~ ~override~ 
 END
 
-*/
+
+// EXPLORATION
+
+//mazzy haste
+COPY ~faiths_and_powers/spheres/spells/exploration/d5mhast.spl~ ~override~ 
+  SAY NAME1 @50211
+  SAY UNIDENTIFIED_DESC @50212
+  LPF CLONE_EFFECT INT_VAR match_opcode = 142 match_parameter2 = 38 opcode = 278 parameter1 = (0 - 1) parameter2 = 0 END
+  LPF ALTER_EFFECT INT_VAR power = 2 resist_dispel = 3 END
 
 END	//	end add new spells macro
 

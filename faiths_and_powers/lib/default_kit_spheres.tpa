@@ -831,7 +831,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_club_staff	 	= 1
 	u_hammers	 		= 1
 	u_maces 	 		= 1
-	u_flails 			= 0
+	u_flails 			= 1
 	u_axes 				= 0
 	u_daggers 			= 1
 	u_short_swords		= 1
@@ -872,17 +872,17 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_plate_armor 		= 0
 	u_club_staff	 	= 1
 	u_hammers	 		= 1
-	u_maces 	 		= 0
-	u_flails 			= 0
+	u_maces 	 		= 1
+	u_flails 			= 1
 	u_axes 				= 0
 	u_daggers 			= 1
 	u_short_swords		= 2
 	u_long_swords		= 2
-	u_scimitars 		= 0
-	u_katanas 			= 0
+	u_scimitars 		= 1
+	u_katanas 			= 1
 	u_bastard_swords 	= 0
 	u_2hand_swords 		= 0
-	u_halberds 			= 0
+	u_halberds 			= 1
 	u_spears 	 		= 1
 	u_darts 			= 0
 	u_slings	 		= 0
@@ -918,8 +918,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_axes 				= 0
 	u_daggers 			= 1
 	u_short_swords		= 1
-	u_long_swords		= 0
-	u_scimitars 		= 0
+	u_long_swords		= 1
+	u_scimitars 		= 1
 	u_katanas 			= 0
 	u_bastard_swords 	= 0
 	u_2hand_swords 		= 0
@@ -959,8 +959,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_axes 				= 0
 	u_daggers 			= 1
 	u_short_swords		= 1
-	u_long_swords		= 0
-	u_scimitars 		= 0
+	u_long_swords		= 1
+	u_scimitars 		= 1
 	u_katanas 			= 0
 	u_bastard_swords 	= 0
 	u_2hand_swords 		= 0
@@ -1020,10 +1020,10 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
 	u_club_staff	 	= 1
 	u_hammers	 		= 1
 	u_maces 	 		= 1
-	u_flails 			= 0
+	u_flails 			= 1
 	u_axes 				= 0
 	u_daggers 			= 1
-	u_short_swords		= 1
+	u_short_swords		= 0
 	u_long_swords		= 0
 	u_scimitars 		= 0
 	u_katanas 			= 0
@@ -1034,7 +1034,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
 	u_darts 			= 0
 	u_slings	 		= 1
 	u_bows 				= 0
-	u_crossbows 		= 1
+	u_crossbows 		= 0
   STR_VAR
     clab_name 		= EVAL ~a#ooze~
 	class 			= ~occultist~
@@ -1061,7 +1061,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_hammers	 		= 2
 	u_maces 	 		= 2
 	u_flails 			= 2
-	u_axes 				= 0
+	u_axes 				= 2
 	u_daggers 			= 0
 	u_short_swords		= 2
 	u_long_swords		= 2
@@ -1152,9 +1152,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_long_swords		= 2
 	u_scimitars 		= 0
 	u_katanas 			= 0
-	u_bastard_swords 	= 0
-	u_2hand_swords 		= 0
-	u_halberds 			= 0
+	u_bastard_swords 	= 2
+	u_2hand_swords 		= 2
+	u_halberds 			= 2
 	u_spears 	 		= 2
 	u_darts 			= 0
 	u_slings	 		= 1
@@ -2125,6 +2125,42 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Shadow 		= ~minor~
 	s_Magic 		= ~x~
 	s_Perdition     = ~x~
+END
+//__________________________________________________________________________________
+END
+
+// NEPHELE - CLERIC OF YONDALLA
+
+ACTION_IF FILE_EXISTS_IN_GAME ~lkneph.2da~ BEGIN
+//DEFINE SPHERE ACCESS______________________________________________________________
+//
+LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 1
+	u_plate_armor 		= 0
+	u_club_staff	 	= 1
+	u_hammers	 		= 1
+	u_maces 	 		= 1
+	u_flails 			= 1
+	u_axes 				= 0
+	u_daggers 			= 1
+	u_short_swords		= 1
+	u_long_swords		= 0
+	u_scimitars 		= 0
+	u_katanas 			= 0
+	u_bastard_swords 	= 0
+	u_2hand_swords 		= 0
+	u_halberds 			= 0
+	u_spears 	 		= 1
+	u_darts 			= 1
+	u_slings	 		= 2
+	u_bows 				= 0
+	u_crossbows 		= 1
+  STR_VAR
+    clab_name 		= ~lkneph~
+	class 			= ~cleric~
+	sphere_list		= ~yondalla_spheres~
 END
 //__________________________________________________________________________________
 END

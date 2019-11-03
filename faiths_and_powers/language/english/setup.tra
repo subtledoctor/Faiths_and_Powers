@@ -16,9 +16,11 @@
 @37  = ~Install Ranger kits~
 @91  = ~Alter weapon usability and proficiency?~
 @95  = ~Install sphere system~
+@97  = ~Apply FnP kits to NPCs~
 @99  = ~Multiclass clerics (install this AFTER all other kit mods!!)~
+@100  = ~Apply FnP multiclass kits to NPCs~
 //
-@100  = ~Select an installation method below:~
+//@100  = ~Select an installation method below:~
 @101  = ~ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')~
 @102  = ~install everything (as designated in settings.ini)~
 @103  = ~choose components individually~
@@ -51,7 +53,6 @@
 @316  = ~Add Priest of Sune~
 @322  = ~Add Priest of Tempus~
 @325  = ~Add Priest of Azuth~
-@329  = ~Add Priest of Mask~
 @330  = ~Add Priest of Shar~
 @331  = ~Add Priest of Moander~
 @332  = ~Add Priest of Beshaba~
@@ -82,6 +83,8 @@
 @451  = ~Add Fighter/Sorcerer~
 @452  = ~Add Ranger/Sorcerer~
 @453  = ~Add Sorcerer/Thief~
+@469  = ~Add Priest of Mask~
+@477  = ~Add Cleric of Brandobaris~
 //
 @499  = ~install multiclass kits~
 //
@@ -752,30 +755,6 @@ Casting Time: 2
 
 The caster of this spell gains a temporary insight into the history and nature of magical objects. This translates into a temporary Lore bonus of 20 points, plus an additional 20 points for each five levels of experience the caster has attained. If the resulting score is high enough, the spell can identify the name, nature, and function of any magical items in the caster's possession.~
 //
-// ... priest of mask:
-//
-@32901  = ~priest of mask~
-@32902  = ~Nightrunner of Mask~
-@32903  = ~NIGHTRUNNER OF MASK: Mask is the god of shadow and intrigue. His goals are always hidden, and his actions are motivated by many layers of schemes and plans. His sect of Nightrunners includes both priests and cleric/thieves who travel the land advancing Mask's agenda.
-
-Advantages:
-- May create a Shadow Eye, an invisible floating eye through which the Nightrunner can scout distant locations.  The Nightrunner gains an extra use of this ability at levels, 6, 12, and 18.
-- From 4th level, Nightrunners can suddenly disappear from sight via a magical Shadow Door.  The nightrunner gains an extra use of this ability at levels 10 and 16.
-- At 8th level, Nightrunners gain the ability to conjure a creature of pure shadow to fight on their behalf. They gains an extra use of this ability at levels 14 and 20.
-
-Restrictions:
-- Alignment: may not Lawful or Good.
-~
-@32904  = ~NIGHTRUNNER OF MASK: Mask is the god of shadow and intrigue. His goals are always hidden, and his actions are motivated by many layers of schemes and plans. His sect of Nightrunners includes both priests and cleric/thieves who travel the land advancing Mask's agenda.~
-@32905  = ~~
-@32911  = ~Shadow Eye~
-@32912  = ~The Nightrunner creates an shadowy sensory organ that can move away and sends back visual information to the Nightrunner's mind. The Shadow Eye eye can see with normal vision up to 60 feet away in brightly lit areas, and travel in any direction as long as the spell lasts.~
-@32913  = ~Shadow Door~
-@32914  = ~By means of this spell, the Nightrunner creates the illusion of a door and steps through it, becoming totally invisible for the spell duration. Opponents within 5 feet of the caster must save vs. spell at -4 or be fooled into following the caster through the door, becoming trapped in an extradimensional room for up to 4 rounds.~
-@32915  = ~Summon Shadow~
-@32916  = ~This spell summons a shadow, an undead monster which will serve the Nightrunner under any conditions.~
-@32917  = ~Shadow~
-//
 // ... priest of shar:
 //
 @33001  = ~priest of shar~
@@ -884,9 +863,12 @@ A warrior's intimate knowledge of vital spots on opponents allows <PRO_HIMHER> t
 @38203  = ~HOODWINKER OF BARAVAR CLOAKSHADOW: 
 
 Advantages:
-- May use Shadowstep at 1st level.  The Hoodwinker gains an additional use at levels 5, 10, 15 and 20.
+- Hoodwinkers can innately cast Mirror Image once per day.
+- From 4th level, Hoodwinkers can innately cast Improved Invisibility once per day.
+- May use the Shadowstep ability at 6th level. The Hoodwinker gains an additional use at levels 12 and 18.
 SHADOWSTEP: 
 The character steps into the Shadow Plane and may move for 7 seconds while others are frozen in time. The caster cannot attack or cast spells while in the Shadow Plane.
+- From 9th level, Hoodwinkers can invoke wild and confusing images in the minds of <PRO_HISHER> enemies, mimicking the effect of the Confusion spell.
 
 Restrictions:
 - Alignment: may not be Lawful.
@@ -900,10 +882,14 @@ Restrictions:
 //
 @38301 = ~cleric of baervan~ 
 @38302 = ~Fastpaws of Baervan~ 
-@38303 = ~FASTPAWS OF BAERVAN: Usually found far abreast from heavily urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures, especially raccoons.
+@38303 = ~FASTPAWS OF BAERVAN: Usually found far afield from urban areas, followers of Baervan Wildwanderer seek to protect nature from evil creatures. They have a particular affinity for forest plants and creatures - especially raccoons!
 
 Advantages:
 - May summon a spirit animal ally for protection once per day. This being is similar to a bear, and increases in power at 3rd, 5th, 7th, and 10th levels.
+- Any time a Fastpaws casts Animal Summoning, the summoned animals are affected by the Magic Fang spell, enabling their natural attacks to strike beings which can only be struck by enchanted weapons.
+- From 3rd level, Fastpaws can innately cast Sanctuary once per day.
+- At 5th level, Fastpaws become immune to all sources Grease, Entangle, and Web effects.
+- From 7th level, Fastpaws can cast Sanctuary twice per day.
 
 Restrictions:
 - Race restricted to gnome.
@@ -934,6 +920,49 @@ Restrictions:
 @22311 = ~Naturewalk~
 @22312 = ~Naturewalk
 This spell grants one person protection from ground and nature based movement impairing effects such as webs, entangling, and grease. This spell lasts 1 round per level of the caster.~
+//
+// ... priest of yondalla:
+//
+@39101  = ~cleric of yondalla~
+@39102  = ~Horn Guard of Yondalla~
+@39103  = ~HORN GUARD OF YONDALLA: Yondalla is the leader of the halfling pantheon, protector and provider for both the deities in her fold and the halfling race in general.  She represents life, creativity, fertility, community.  Her priests generally play important roles in halfling affairs; they officiate over weddings, births, funerals, and other civil ceremonies, and trusted advisors to community leaders.  In times of crisis and when under attack, they generally hang back, supporting the defenders in front of them and establishing the last line of defense for the weak and helpless.
+
+Advantages:
+- From 1st level, a Horn Guard can cast an innate version of the Shield spell; unlike the normal version, this may be cast upon others, not just <PRO_HIMHER>self.
+- At 5th level, Horn Guards become permanently immune to fear and morale failure.
+- From 7th level, a Horn Guard can innately cast Defensive Harmony once per day.
+- At 9th level, Horn Guards become permanently immune to effects and spells that cause level drain.
+
+Restrictions:
+- Alignment: neutral and/or good
+~
+//
+// ... priest of arvoreen:
+//
+@39201  = ~cleric of arvoreen~
+@39202  = ~Defender of Arvoreen~
+@39203  = ~DEFENDER OF ARVOREEN: Arvoreen represents the military might of the halfling race.  His followers general focus on reaction and defense.  They cultivate tactical skills, supporting fighting prowess with stealth and guerilla maneuvering, advanced signalling systems, and the use of traps and wards to control enemy movement.
+
+Advantages:
+- From 1st level, a Defender can increase <PRO_HISHER> Strength to 18/00 (or higher, if it is 18 already) once per day.
+- From 5th level, a Defender can heal with touch, similar to the Lay On Hands Power of paladins.
+- From 9th level, a Defender can use a personal version of the Haste spell, increasing movement and physical attacks per round for one round/level.
+
+Restrictions:
+- Alignment: 
+~
+@39211  = ~Defender's Strength~
+@39212  = ~Defender's Strength
+
+When necessary, a Defender can draw upon a great well of strength for brief periods of time. Using this ability sets <PRO_HISHER> Strength to 18/00, plus a +2 THAC0 bonus to all attacks. If the Defender's Strength is already 18 or higher, it increases by one point, to  a maximum of 25. Such might cannot be sustained indefinitely, alas; the effect lasts for 3 turns.~
+@39213  = ~Swiftness of Action~
+@39214  = ~Swiftness of Action
+
+When circumstances demand it, a Defender can move at incredible speeds for brief periods of time. Using this ability, <PRO_HESHE> resembles nothing so much as a body imbued with a Haste spell; <PRO_HESHE> can run twice her normal distance in the same amount of time and receives an additional attack in each round of combat. Such a pace cannot be maintained indefinitely, however; the effect lasts for 3 rounds + 1 round per level.~
+@38204  = ~CLOAKED ONE OF BARAVAR: ~
+
+@38211  = ~Baravar's Double~
+@38212  = ~Baravar's Double: Often used in emergencies, this causes an illusionary double of the cleric to spring into existence. If the cleric is being attacked, the double will absorb the first blow that lands, and disappear. At 6th level two doubles are created, and at 12th level one of the two doubles can actually wander away from the cleric to distract enemies. Hoodwinkers may use this ability once per turn.~
 //
 // ... incarnate of mystra 
 //
@@ -1219,6 +1248,46 @@ This magic will allow the Spellbender to cast one of the following spells:
 - Sol's Searing Orb
 - False Dawn
 - Bolt of Glory~
+//
+// ... cleric/thief of mask:
+//
+@46901  = ~priest of mask~
+@46902  = ~Nightrunner of Mask~
+@46903  = ~NIGHTRUNNER OF MASK: Mask is the god of shadow and intrigue. His goals are always hidden, and his actions are motivated by many layers of schemes and plans. His sect of Nightrunners includes both priests and cleric/thieves who travel the land advancing Mask's agenda.
+
+Advantages:
+- May create a Shadow Eye, an invisible floating eye through which the Nightrunner can scout distant locations.  The Nightrunner gains an extra use of this ability at levels, 6, 12, and 18.
+- From 4th level, Nightrunners can suddenly disappear from sight via a magical Shadow Door.  The nightrunner gains an extra use of this ability at levels 10 and 16.
+- At 8th level, Nightrunners gain the ability to conjure a creature of pure shadow to fight on their behalf. They gains an extra use of this ability at levels 14 and 20.
+
+Restrictions:
+- Alignment: may not Lawful or Good.
+~
+@46904  = ~NIGHTRUNNER OF MASK: Mask is the god of shadow and intrigue. His goals are always hidden, and his actions are motivated by many layers of schemes and plans. His sect of Nightrunners includes both priests and cleric/thieves who travel the land advancing Mask's agenda.~
+@46905  = ~~
+@46911  = ~Shadow Eye~
+@46912  = ~The Nightrunner creates an shadowy sensory organ that can move away and sends back visual information to the Nightrunner's mind. The Shadow Eye eye can see with normal vision up to 60 feet away in brightly lit areas, and travel in any direction as long as the spell lasts.~
+@46913  = ~Shadow Door~
+@46914  = ~By means of this spell, the Nightrunner creates the illusion of a door and steps through it, becoming totally invisible for the spell duration. Opponents within 5 feet of the caster must save vs. spell at -4 or be fooled into following the caster through the door, becoming trapped in an extradimensional room for up to 4 rounds.~
+@46915  = ~Summon Shadow~
+@46916  = ~This spell summons a shadow, an undead monster which will serve the Nightrunner under any conditions.~
+@46917  = ~Shadow~
+//
+// ... cleric/thief of brandobaris:
+//
+@47701  = ~cleric of brandobaris~
+@47702  = ~Misadventurer of Brandobaris~
+@47703  = ~MISADVENTURER OF BRANDOBARIS: generally portrayed as a friendly rascal, Brandobaris is the halfling embodiment of adventure and mischief. Fond of novel risks and challenges, he pairs a tendency to fall into trouble with an uncanny knack for escaping it in daring and dramatic ways. His priests spend a substantial portion of their time cultivating roguish talents.
+
+Advantages:
+- Blessing of Tymora: due to Brandobaris' close friendship with Tymora, Misadventurers have a permanent +1 bonus to Luck.
+- Escape Artist: Misadventurers have an uncanny knack for avoiding capture and bondage. They have a 50% chance to avoid any spells or effects involving Hold, Stun, Web and Entanglement.
+- From 3rd level, Misadventurers can innately cast Silence 15' once per day.
+- From 5th level, Misadventurers can innately cast Invisibility once per day.
+
+Restrictions:
+- Alignment: 
+~
 //
 // ... woodscout of mielikki 
 //
@@ -2451,6 +2520,40 @@ The character is frenzied for 1 turn.  While in this state, the character gains 
 Bladesong does not stack with haste or similar effects
 
 After the effect ends, the character becomes winded, suffering a -2 penalty to Armor Class, to-hit rolls, and damage rolls.~
+//
+// ... priest of arvoreen:
+//
+@87701  = ~cleric of arvoreen~
+@87702  = ~Truesword of Arvoreen~
+@87703  = ~TRUESWORD OF ARVOREEN: blah fluff
+
+Advantages:
+- Trueswords can use the Move Silently and Hide In Shadows abilities, as a ranger of the same level.
+- From 1st level, a Truesword can increase <PRO_HISHER> Strength to 18/00 (or higher, if it is 18 already) once per day.
+- From 5th level, a Truesword can heal with a touch, similar to the Lay On Hands Power of paladins.
+- From 9th level, a Truesword can use a personal version of the Haste spell, increasing movement and physical attacks per round for one round/level.
+
+Restrictions:
+- Cannot Turn undead.
+- Alignment: Good and/or Neutral.
+~
+@87711  = ~Change Class~
+@87712  = ~Change Class
+
+Use this scroll to change Mazzy to a Truesword - a Champion of Arvoreen.
+
+TRUESWORD OF ARVOREEN: blah fluff
+
+Advantages:
+- Trueswords can use the Move Silently and Hide In Shadows abilities, as a ranger of the same level.
+- From 1st level, a Truesword can increase <PRO_HISHER> Strength to 18/00 (or higher, if it is 18 already) once per day.
+- From 5th level, a Truesword can heal with a touch, similar to the Lay On Hands Power of paladins.
+- From 9th level, a Truesword can use a personal version of the Haste spell, increasing movement and physical attacks per round for one round/level.
+
+Restrictions:
+- Cannot Turn undead.
+- Alignment: Good and/or Neutral.
+~
 
 //
 // ... rangers:
@@ -3257,9 +3360,21 @@ Saving Throw: None.
 
 Upon casting this spell, a mass of stony ands metallic material is drawn from the environment, shaped into a massive humanoid form, and imbued with a modicum of sentience.  The resulting construct is similar to an iron golem: able to follow rudimentary directions and attack the caster's foes, but lacking complex thought and reflection.  After ten rounds, the magic holding the construct together fades, and the construct dissipates into loose rock and metal.~
 @50209 = ~Juggernaut Construct~
+@50211 = ~Incautious Rapidity~
+@50212 = ~Incautious Rapidity
+(Alteration)
 
+Level: 2
+Sphere: Exploration
+Range: caster
+Duration: 1 round/level
+Casting Time: 3
+Area of Effect: one creature
+Saving Throw: None.
+
+Upon casting this spell, the caster becomes able to move and act at a greatly increased rate.  <PRO_HISHER> overland movement rate is doubled, and <PRO_HESHE> can make an additional weapon attack each round.  (Spellcasting speed does not increase; this spell does not reduce the amount of mental concentration necessary for it.)  The spell does not make the caster any more adept at moving so fast, however, so <PRO_HESHE> suffers a -2 penalty to attack rolls while the effect is active.
+~
 @50301 = ~Pacify the Dead~
-
 @50302 = ~Pacify the Dead
 (Alteration)
 
@@ -3271,8 +3386,8 @@ Casting Time: 3
 Area of Effect: one creature
 Saving Throw: None.
 
-Upon casting this spell, the priest causes one undead within range to be slowed to be slowed.  This effect negates Haste, but does not otherwise affect magically sped-up or slowed creatures. Slowed creatures suffer -4 penalties to attack and Armor Class. To make matters worse, creatures save at -4 against this spell.~
-
+Upon casting this spell, the priest causes one undead within range to be Slowed.  This effect negates Haste, but does not otherwise affect magically sped-up or slowed creatures. Slowed creatures suffer -4 penalties to attack and Armor Class. To make matters worse, creatures save at -4 against this spell.
+~
 @50303 = ~Pacify the Dead (focus)
 (Alteration)
 

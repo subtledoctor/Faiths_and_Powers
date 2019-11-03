@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.78sd5~
+VERSION ~0.78sd6~
 
 
 ALWAYS
@@ -16,6 +16,8 @@ ALWAYS
 	INCLUDE ~faiths_and_powers/lib/fl#add_kit_ee.tpa~
 
 	INCLUDE ~faiths_and_powers/lib/misc_functions.tpa~
+
+	INCLUDE ~faiths_and_powers/lib/spell_evasion.tpa~
 	
 	INCLUDE ~faiths_and_powers/lib/fnp_system.tpa~
 
@@ -91,6 +93,9 @@ END
 ACTION_IF (%d5_ct_mask% =1) BEGIN
   LAF ct_mask END
 END
+ACTION_IF (%d5_ct_brandobaris% =1) BEGIN
+  LAF ct_brandobaris END
+END
 ACTION_IF (%d5_multiclass_druids% = 1) && (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   LAF fighter_druid END
   LAF druid_ranger END
@@ -102,5 +107,29 @@ ACTION_IF (%d5_multiclass_clerics% = 1) BEGIN
   LAF multiclass_kit_clones END
 END
 
+//__________________________________________________________________________________
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//						CHOOSE WHETHER TO CHANGE NPC KITS
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @100 // item usability
+DESIGNATED 100
+
+
+//read in kit functions_____________________________________________________________
+//
+INCLUDE ~faiths_and_powers/lib/npc_kits.tpa~
+
+LAF npc_sc_kits END
 //__________________________________________________________________________________
 

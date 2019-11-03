@@ -150,9 +150,10 @@ WIZARD_PROTECTION_FROM_PETRIFICATION    1	=	Exploration // SR exped. retreat
 NOSR_b_w101                             1	=	Exploration // Expeditious Retreat
 CLERIC_FIND_TRAPS                       1	=	Exploration
 CLERIC_REMOVE_PARALYSIS                 2	=	Exploration
-CLERIC_FAR_SIGHT                        2	=	Exploration
-WIZARD_HASTE                            3	=	Exploration
+d5mhast                                 2	=	Exploration  // mazzy haste (self-only)
+CLERIC_FAR_SIGHT                        3	=	Exploration
 CLERIC_FREE_ACTION                      3	=	Exploration
+WIZARD_HASTE                            4	=	Exploration
 WIZARD_EYE                              4	=	Exploration
 WIZARD_DIMENSION_DOOR                   5	=	Exploration
 WIZARD_TELEPORT_FIELD                   6	=	Exploration
@@ -170,7 +171,8 @@ WIZARD_ORACLE                           5	=	Knowledge
 CLERIC_TRUE_SIGHT                       6	=	Knowledge
 WIZARD_CONTINGENCY                      7	=	Knowledge
 CLERIC_SANCTUARY                        1	=	Deception
-WIZARD_REFLECTED_IMAGE                  1	=	Deception
+NOSR_WIZARD_REFLECTED_IMAGE             1	=	Deception
+SR_WIZARD_REFLECTED_IMAGE               2	=	Deception
 WIZARD_BLUR                             2	=	Deception
 WIZARD_INVISIBILITY                     3	=	Deception
 WIZARD_NON_DETECTION                    3	=	Deception
@@ -1509,22 +1511,22 @@ DEFINE_ACTION_FUNCTION corellon_spheres
 	Destruction 		=> minor
 	Protection 			=> major
 	War 				=> major
-	Exploration 		=> major
+	Exploration 		=> minor
 	Knowledge 			=> major
 	Deception 			=> x
 	Thought 			=> minor
 	Dread 				=> x
-	Vigor 				=> minor
+	Vigor 				=> major
 	Affliction 			=> x
 	Animal 				=> x
-	Plant 				=> major
+	Plant 				=> minor
 	Earth 				=> x
 	Water 				=> minor
 	Air 				=> minor
 	Fire 				=> x
 	Light 				=> major
 	Shadow 				=> x
-	Magic 				=> minor
+	Magic 				=> major
 	Astral		    	=> x
  END
 END
@@ -1631,6 +1633,39 @@ END
 
 //___________________________________________________________________________________
 //
+DEFINE_ACTION_FUNCTION baravar_spheres 
+  RET_ARRAY baravar_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY baravar_spheres_array BEGIN
+	Life		 		=> major
+	Death		 		=> x
+	Creation			=> x
+	Destruction		 	=> x
+	Protection		 	=> minor
+	War		 			=> x
+	Exploration		  	=> major
+	Knowledge		 	=> major
+	Deception	 		=> major
+	Thought		 		=> major
+	Dread		 		=> minor
+	Vigor		 		=> minor
+	Affliction		 	=> x
+	Animal		 		=> x
+	Plant		 		=> x
+	Earth		 		=> x
+	Water		 		=> minor
+	Air		 			=> x
+	Fire		 		=> x
+	Light	 			=> major
+	Shadow		 		=> minor
+	Magic		 		=> minor
+	Astral		    	=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
 DEFINE_ACTION_FUNCTION baervan_spheres 
   RET_ARRAY baervan_spheres_array
  BEGIN
@@ -1664,32 +1699,98 @@ END
 
 //___________________________________________________________________________________
 //
-DEFINE_ACTION_FUNCTION baravar_spheres 
-  RET_ARRAY baravar_spheres_array
+DEFINE_ACTION_FUNCTION yondalla_spheres 
+  RET_ARRAY yondalla_spheres_array
  BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY baravar_spheres_array BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY yondalla_spheres_array BEGIN
+	Life		 		=> major
+	Death		 		=> x
+	Creation			=> minor
+	Destruction		 	=> major
+	Protection		 	=> major
+	War		 			=> x
+	Exploration		  	=> minor
+	Knowledge		 	=> major
+	Deception	 		=> x
+	Thought		 		=> major
+	Dread		 		=> x
+	Vigor		 		=> minor
+	Affliction		 	=> x
+	Animal		 		=> minor
+	Plant		 		=> minor
+	Earth		 		=> major
+	Water		 		=> x
+	Air		 			=> x
+	Fire		 		=> x
+	Light	 			=> major
+	Shadow		 		=> x
+	Magic		 		=> x
+	Astral		    	=> minor
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION arvoreen_spheres 
+  RET_ARRAY arvoreen_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY arvoreen_spheres_array BEGIN
+	Life		 		=> minor
+	Death		 		=> x
+	Creation			=> x
+	Destruction		 	=> major
+	Protection		 	=> major
+	War		 			=> major
+	Exploration		  	=> major
+	Knowledge		 	=> minor
+	Deception	 		=> x
+	Thought		 		=> x
+	Dread		 		=> minor
+	Vigor		 		=> major
+	Affliction		 	=> x
+	Animal		 		=> minor
+	Plant		 		=> minor
+	Earth		 		=> major
+	Water		 		=> x
+	Air		 			=> x
+	Fire		 		=> x
+	Light	 			=> major
+	Shadow		 		=> x
+	Magic		 		=> x
+	Astral		    	=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION brandobaris_spheres 
+  RET_ARRAY brandobaris_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY brandobaris_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
 	Creation			=> x
 	Destruction		 	=> x
-	Protection		 	=> minor
-	War		 			=> x
+	Protection		 	=> major
+	War		 			=> minor
 	Exploration		  	=> major
-	Knowledge		 	=> major
-	Deception	 		=> major
+	Knowledge		 	=> minor
+	Deception	 		=> minor
 	Thought		 		=> major
-	Dread		 		=> minor
-	Vigor		 		=> minor
+	Dread		 		=> x
+	Vigor		 		=> major
 	Affliction		 	=> x
-	Animal		 		=> x
-	Plant		 		=> x
+	Animal		 		=> minor
+	Plant		 		=> major
 	Earth		 		=> x
-	Water		 		=> minor
-	Air		 			=> x
+	Water		 		=> x
+	Air		 			=> major
 	Fire		 		=> x
-	Light	 			=> major
+	Light	 			=> x
 	Shadow		 		=> minor
-	Magic		 		=> minor
+	Magic		 		=> x
 	Astral		    	=> x
  END
 END
@@ -2933,3 +3034,41 @@ END
 //___________________________________________________________________________________
 
 END	// end define sphere lists macro
+
+/* extra
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION _spheres 
+  RET_ARRAY _spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY _spheres_array BEGIN
+	Life		 		=> x
+	Death		 		=> x
+	Creation			=> x
+	Destruction		 	=> x
+	Protection		 	=> x
+	War		 			=> x
+	Exploration		  	=> x
+	Knowledge		 	=> x
+	Deception	 		=> x
+	Thought		 		=> x
+	Dread		 		=> x
+	Vigor		 		=> x
+	Affliction		 	=> x
+	Animal		 		=> x
+	Plant		 		=> x
+	Earth		 		=> x
+	Water		 		=> x
+	Air		 			=> x
+	Fire		 		=> x
+	Light	 			=> x
+	Shadow		 		=> x
+	Magic		 		=> x
+	Astral		    	=> x
+ END
+END
+//___________________________________________________________________________________
+
+*/
+ 

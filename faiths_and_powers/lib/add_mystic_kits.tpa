@@ -622,18 +622,9 @@ COPY ~faiths_and_powers/kits/misc/d5disp6.spl~ ~override~
 COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 	SAY NAME1 @6
 	SAY UNIDENTIFIED_DESC @6
-ACTION_IF MOD_IS_INSTALLED "TOBEX.TP2" "100" THEN BEGIN
-	COPY ~faiths_and_powers/kits/mystics/706_fire_mystic/d5purit.spl~ ~override~
-		SAY NAME1 @6
-		SAY UNIDENTIFIED_DESC @6
-	APPEND ~d5mfir.2da~ ~ABILITY     AP_D5PURIT  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
-END
-ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
-	COPY ~faiths_and_powers/kits/mystics/706_fire_mystic/d5purie.spl~ ~override~
-		SAY NAME1 @6
-		SAY UNIDENTIFIED_DESC @6
-	APPEND ~d5mfir.2da~ ~ABILITY     AP_D5PURIE  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
-END	
+COPY ~faiths_and_powers/kits/mystics/706_fire_mystic/d5myfi2.spl~ ~override~
+	SAY NAME1 @6
+	SAY UNIDENTIFIED_DESC @6
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //

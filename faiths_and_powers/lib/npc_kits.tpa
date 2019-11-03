@@ -81,28 +81,6 @@ ACTION_IF VARIABLE_IS_SET %b_ch05% BEGIN
   END
 END 
 
-ACTION_IF VARIABLE_IS_SET %d5asha% BEGIN
-ACTION_FOR_EACH char IN ~viconi~
-					~viconi4~ 
-					~viconi6~ 
-                    ~%viconi6_var%~
-					~viconi7~
-					~viconi8~ 
-					~viconi9~ 
-					~viconi11~ 
-					~viconi13~ 
-					~viconi16~  BEGIN
-	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
-	  COPY_EXISTING ~%char%.cre~ ~override~
-		WRITE_SHORT 0x244 0
-		WRITE_SHORT 0x246 0x4000 + %d5asha% // changes kit
-		REMOVE_MEMORIZED_SPELLS
-		REMOVE_KNOWN_SPELLS
-	  BUT_ONLY
-	END
-  END
-END 
-
 ACTION_IF VARIABLE_IS_SET %b_chel% BEGIN
   ACTION_FOR_EACH char IN ~anomen6.cre~
 					~anomen7.cre~
@@ -114,19 +92,6 @@ ACTION_IF VARIABLE_IS_SET %b_chel% BEGIN
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
 		WRITE_SHORT 0x246 0x4000 + %b_chel% // changes kit
-		REMOVE_MEMORIZED_SPELLS
-		REMOVE_KNOWN_SPELLS
-	  BUT_ONLY
-	END
-  END
-END
-
-ACTION_IF VARIABLE_IS_SET %b_umb% BEGIN
-  ACTION_FOR_EACH char IN ~tenya.cre~   BEGIN
-	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
-	  COPY_EXISTING ~%char%.cre~ ~override~
-		WRITE_SHORT 0x244 0
-		WRITE_SHORT 0x246 0x4000 + %b_umb% // changes kit
 		REMOVE_MEMORIZED_SPELLS
 		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY
@@ -148,6 +113,51 @@ ACTION_IF VARIABLE_IS_SET %b_aden% BEGIN
 	END
   END
 END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5zarvo.itm~) BEGIN
+  ACTION_FOR_EACH char IN ~mazzy8~ ~mazzy9~ ~mazzy11~ ~mazzy12~ ~mazzy15~ BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
+	  COPY_EXISTING ~%char%.cre~ ~override~
+		ADD_CRE_ITEM ~d5zarvo~ #1 #0 #0 ~IDENTIFIED~ ~Inv~
+	  BUT_ONLY
+	END
+  END
+END
+
+ACTION_IF VARIABLE_IS_SET %b_umb% BEGIN
+  ACTION_FOR_EACH char IN ~tenya.cre~   BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
+	  COPY_EXISTING ~%char%.cre~ ~override~
+		WRITE_SHORT 0x244 0
+		WRITE_SHORT 0x246 0x4000 + %b_umb% // changes kit
+		REMOVE_MEMORIZED_SPELLS
+		REMOVE_KNOWN_SPELLS
+	  BUT_ONLY
+	END
+  END
+END
+
+ACTION_IF VARIABLE_IS_SET %d5asha% BEGIN
+ACTION_FOR_EACH char IN ~viconi~
+					~viconi4~ 
+					~viconi6~ 
+                    ~%viconi6_var%~
+					~viconi7~
+					~viconi8~ 
+					~viconi9~ 
+					~viconi11~ 
+					~viconi13~ 
+					~viconi16~  BEGIN
+	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
+	  COPY_EXISTING ~%char%.cre~ ~override~
+		WRITE_SHORT 0x244 0
+		WRITE_SHORT 0x246 0x4000 + %d5asha% // changes kit
+		REMOVE_MEMORIZED_SPELLS
+		REMOVE_KNOWN_SPELLS
+	  BUT_ONLY
+	END
+  END
+END 
 //___________________________________________________________________________________
 
 
@@ -190,23 +200,23 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 		PATCH_IF ("%clab%" STRING_EQUAL_CASE "d5drfi" = 1) BEGIN
 			SET "d5drfi" = ("%index%" - 1)
 		END
-		PATCH_IF ("%clab%" STRING_EQUAL_CASE "b_2tem" = 1) BEGIN
-			SET b_2tem = (%index% - 1)
+		PATCH_IF ("%clab%" STRING_EQUAL_CASE "b_ctemf" = 1) BEGIN
+			SET b_ctemf = (%index% - 1)
 		END
-		PATCH_IF ("%clab%" STRING_EQUAL_CASE "b_bart" = 1) BEGIN
-			SET b_bart = (%index% - 1)
+		PATCH_IF ("%clab%" STRING_EQUAL_CASE "b_barat" = 1) BEGIN
+			SET b_barat = (%index% - 1)
 		END
-		PATCH_IF ("%clab%" STRING_EQUAL_CASE "b_ctcyr" = 1) BEGIN
-			SET b_ctcyr = (%index% - 1)
+		PATCH_IF ("%clab%" STRING_EQUAL_CASE "b_ccyrt" = 1) BEGIN
+			SET b_ccyrt = (%index% - 1)
 		END
-		PATCH_IF ("%clab%" STRING_EQUAL_CASE "d5cfcla" = 1) BEGIN
-			SET d5cfcla = (%index% - 1)
+		PATCH_IF ("%clab%" STRING_EQUAL_CASE "d5clclaf" = 1) BEGIN
+			SET d5clclaf = (%index% - 1)
 		END
-		PATCH_IF ("%clab%" STRING_EQUAL_CASE "d5baerv" = 1) BEGIN
-			SET d5baerv = (%index% - 1)
+		PATCH_IF ("%clab%" STRING_EQUAL_CASE "d5clbaem" = 1) BEGIN
+			SET d5clbaem = (%index% - 1)
 		END
-		PATCH_IF ("%clab%" STRING_EQUAL_CASE "b_cfhe" = 1) BEGIN
-			SET b_cfhe = (%index% - 1)
+		PATCH_IF ("%clab%" STRING_EQUAL_CASE "b_chelf" = 1) BEGIN
+			SET b_chelf = (%index% - 1)
 		END
 	END
 BUT_ONLY
@@ -235,7 +245,7 @@ ACTION_IF VARIABLE_IS_SET %d5drfi% BEGIN
   END
 END
 
-ACTION_IF VARIABLE_IS_SET %b_ctem% BEGIN
+ACTION_IF VARIABLE_IS_SET %b_ctemf% BEGIN
   ACTION_FOR_EACH char IN ~branwe~ 
 					~branwe5~ 
 					~o#bran~ 
@@ -245,13 +255,13 @@ ACTION_IF VARIABLE_IS_SET %b_ctem% BEGIN
 	    READ_BYTE 0x273 class
 	    PATCH_IF %class% = 3 BEGIN
 		  WRITE_SHORT 0x244 0
-		  WRITE_SHORT 0x246 0x4000 + %b_ctem% // changes kit
+		  WRITE_SHORT 0x246 0x4000 + %b_ctemf% // changes kit
 		  REMOVE_MEMORIZED_SPELLS
 		  REMOVE_KNOWN_SPELLS
 		END
 	    PATCH_IF %class% = 8 BEGIN
 		  WRITE_SHORT 0x244 0
-		  WRITE_SHORT 0x246 0x4000 + %b_2tem% // changes kit
+		  WRITE_SHORT 0x246 0x4000 + %b_ctemf% // changes kit
 		  REMOVE_MEMORIZED_SPELLS
 		  REMOVE_KNOWN_SPELLS
 		END
@@ -260,7 +270,7 @@ ACTION_IF VARIABLE_IS_SET %b_ctem% BEGIN
   END
 END
 
-ACTION_IF VARIABLE_IS_SET %b_bart% BEGIN
+ACTION_IF VARIABLE_IS_SET %b_barat% BEGIN
   ACTION_FOR_EACH char IN ~glint7~ 
 					~%quayle_var%~ 
 					~quayle4~ 
@@ -268,7 +278,7 @@ ACTION_IF VARIABLE_IS_SET %b_bart% BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
-		WRITE_SHORT 0x246 0x4000 + %b_bart% // changes kit
+		WRITE_SHORT 0x246 0x4000 + %b_barat% // changes kit
 		REMOVE_MEMORIZED_SPELLS
 		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY
@@ -276,7 +286,7 @@ ACTION_IF VARIABLE_IS_SET %b_bart% BEGIN
   END
 END
 
-ACTION_IF VARIABLE_IS_SET %b_ctcyr% BEGIN
+ACTION_IF VARIABLE_IS_SET %b_ccyrt% BEGIN
   ACTION_FOR_EACH char IN ~bdtiax~ 
 					~tiax~ 
 					~tiax4~ 
@@ -285,7 +295,7 @@ ACTION_IF VARIABLE_IS_SET %b_ctcyr% BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
-		WRITE_SHORT 0x246 0x4000 + %b_ctcyr% // changes kit
+		WRITE_SHORT 0x246 0x4000 + %b_ccyrt% // changes kit
 		REMOVE_MEMORIZED_SPELLS
 		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY
@@ -293,14 +303,14 @@ ACTION_IF VARIABLE_IS_SET %b_ctcyr% BEGIN
   END
 END 
 
-ACTION_IF VARIABLE_IS_SET %d5cfcla% BEGIN
+ACTION_IF VARIABLE_IS_SET %d5clclaf% BEGIN
   ACTION_FOR_EACH char IN ~yeslic~
 					~yeslic5~  
                     ~yeslid~ BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
-		WRITE_SHORT 0x246 0x4000 + %d5cfcla% // changes kit
+		WRITE_SHORT 0x246 0x4000 + %d5clclaf% // changes kit
 		REMOVE_MEMORIZED_SPELLS
 		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY
@@ -308,7 +318,7 @@ ACTION_IF VARIABLE_IS_SET %d5cfcla% BEGIN
   END
 END
 
-ACTION_IF VARIABLE_IS_SET %d5baerv% BEGIN
+ACTION_IF VARIABLE_IS_SET %d5clbaem% BEGIN
   ACTION_FOR_EACH char IN ~aerie6.cre~
 					~aerie7.cre~
 					~aerie9.cre~
@@ -318,7 +328,7 @@ ACTION_IF VARIABLE_IS_SET %d5baerv% BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
-		WRITE_SHORT 0x246 0x4000 + %d5baerv% // changes kit
+		WRITE_SHORT 0x246 0x4000 + %d5clbaem% // changes kit
 		REMOVE_MEMORIZED_SPELLS
 		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY
@@ -326,7 +336,7 @@ ACTION_IF VARIABLE_IS_SET %d5baerv% BEGIN
   END
 END
 
-ACTION_IF VARIABLE_IS_SET %b_cfhe% BEGIN
+ACTION_IF VARIABLE_IS_SET %b_chelf% BEGIN
   ACTION_FOR_EACH char IN ~anomen6.cre~
 					~anomen7.cre~
 					~anomen8.cre~
@@ -336,7 +346,7 @@ ACTION_IF VARIABLE_IS_SET %b_cfhe% BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME ~%char%.cre~ BEGIN
 	  COPY_EXISTING ~%char%.cre~ ~override~
 		WRITE_SHORT 0x244 0
-		WRITE_SHORT 0x246 0x4000 + %b_cfhe% // changes kit
+		WRITE_SHORT 0x246 0x4000 + %b_chelf% // changes kit
 		REMOVE_MEMORIZED_SPELLS
 		REMOVE_KNOWN_SPELLS
 	  BUT_ONLY

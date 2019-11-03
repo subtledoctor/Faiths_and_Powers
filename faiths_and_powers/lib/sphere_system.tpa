@@ -856,6 +856,7 @@ COPY ~faiths_and_powers/spheres/d5spm3m.spl~ ~override~
 	SAY UNIDENTIFIED_DESC @1101
 	WRITE_ASCII 0x3a ~d5spm3mb~ #8
 	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5spm3mb~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5spm3m~ END
 COPY ~faiths_and_powers/spheres/d5spm3mb.bam~ ~override~
 
 OUTER_SPRINT sphere_access @1002

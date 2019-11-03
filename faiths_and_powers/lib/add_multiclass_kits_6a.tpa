@@ -2146,6 +2146,21 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	END ELSE BEGIN
 	  OUTER_SET new_fnp_xbow = (%orig_xbow%)
 	END
+	LAF ADD_KIT_EX
+	 INT_VAR
+      kit_class   = %new_class%
+	  mixed       = RESOLVE_STR_REF (~%new_mixed%~)
+	 STR_VAR
+	  source_kit  = EVAL ~%sc_kit%~
+	  kit_name    = EVAL ~%new_name%~
+	  base_class  = EVAL ~%new_base_class%~
+	  clab_path   = EVAL ~override/%new_clab%.2da~
+	  dualclas    = ~0 0 0 0 0 0~
+	  kittable    = EVAL ~%new_kittable%~
+	  hpclass	  = EVAL ~%hit_dice%~
+	  weapprof    = EVAL ~%new_weapprof%~
+//   RET kit_id
+	END
    END
   END
   ACTION_IF (%kit_class% = 3) BEGIN
@@ -2376,6 +2391,21 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	END ELSE BEGIN
 	  OUTER_SET new_fnp_xbow = (%orig_xbow%)
 	END
+	LAF ADD_KIT_EX
+	 INT_VAR
+      kit_class   = %new_class%
+	  mixed       = RESOLVE_STR_REF (~%new_mixed%~)
+	 STR_VAR
+	  source_kit  = EVAL ~%sc_kit%~
+	  kit_name    = EVAL ~%new_name%~
+	  base_class  = EVAL ~%new_base_class%~
+	  clab_path   = EVAL ~override/%new_clab%.2da~
+	  dualclas    = ~0 0 0 0 0 0~
+	  kittable    = EVAL ~%new_kittable%~
+	  hpclass	  = EVAL ~%hit_dice%~
+	  weapprof    = EVAL ~%new_weapprof%~
+//   RET kit_id
+	END
    END
    ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~r~ = 0) BEGIN
 	OUTER_SPRINT fnp_spheres_class ~ranger_cleric~
@@ -2603,6 +2633,21 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	END ELSE BEGIN
 	  OUTER_SET new_fnp_xbow = (%orig_xbow%)
 	END
+	LAF ADD_KIT_EX
+	 INT_VAR
+      kit_class   = %new_class%
+	  mixed       = RESOLVE_STR_REF (~%new_mixed%~)
+	 STR_VAR
+	  source_kit  = EVAL ~%sc_kit%~
+	  kit_name    = EVAL ~%new_name%~
+	  base_class  = EVAL ~%new_base_class%~
+	  clab_path   = EVAL ~override/%new_clab%.2da~
+	  dualclas    = ~0 0 0 0 0 0~
+	  kittable    = EVAL ~%new_kittable%~
+	  hpclass	  = EVAL ~%hit_dice%~
+	  weapprof    = EVAL ~%new_weapprof%~
+//   RET kit_id
+	END
    END
    ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~m~ = 0) BEGIN
 	OUTER_SPRINT fnp_spheres_class ~cleric_mage~
@@ -2662,6 +2707,21 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	OUTER_SET new_fnp_sling = %orig_sling%
 	OUTER_SET new_fnp_bow = %orig_bow%
 	OUTER_SET new_fnp_xbow = %orig_xbow%
+	LAF ADD_KIT_EX
+	 INT_VAR
+      kit_class   = %new_class%
+	  mixed       = RESOLVE_STR_REF (~%new_mixed%~)
+	 STR_VAR
+	  source_kit  = EVAL ~%sc_kit%~
+	  kit_name    = EVAL ~%new_name%~
+	  base_class  = EVAL ~%new_base_class%~
+	  clab_path   = EVAL ~override/%new_clab%.2da~
+	  dualclas    = ~0 0 0 0 0 0~
+	  kittable    = EVAL ~%new_kittable%~
+	  hpclass	  = EVAL ~%hit_dice%~
+	  weapprof    = EVAL ~%new_weapprof%~
+//   RET kit_id
+	END
    END
    ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~t~ = 0) BEGIN
 	OUTER_SPRINT fnp_spheres_class ~cleric_thief~
@@ -2721,34 +2781,28 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	OUTER_SET new_fnp_sling = %orig_sling%
 	OUTER_SET new_fnp_bow = %orig_bow%
 	OUTER_SET new_fnp_xbow = %orig_xbow%
-	OUTER_SPRINT thiefscl ~100 100 100 100 100 100 100 0~
-	OUTER_SPRINT traplimt ~%orig_traplimt%~
-	OUTER_SPRINT thiefskl ~%orig_thiefskl%~
-	OUTER_SPRINT backstab ~%orig_backstab%~
-	OUTER_SPRINT sneakatt ~%orig_sneakatt%~
-	OUTER_SPRINT crippstr ~%orig_crippstr%~
-   END
-  END
-  LAF ADD_KIT_EX
-   INT_VAR
-    kit_class   = %new_class%
-	mixed       = RESOLVE_STR_REF (~%new_mixed%~)
-   STR_VAR
-	source_kit  = EVAL ~%sc_kit%~
-	kit_name    = EVAL ~%new_name%~
-	base_class  = EVAL ~%new_base_class%~
-	clab_path   = EVAL ~override/%new_clab%.2da~
-	dualclas    = ~0 0 0 0 0 0~
-	kittable    = EVAL ~%new_kittable%~
-	hpclass		= EVAL ~%hit_dice%~
-	weapprof    = EVAL ~%new_weapprof%~
-	thiefscl
-	traplimt
-	thiefskl
-	backstab
-	sneakatt
-	crippstr
+	LAF ADD_KIT_EX
+	 INT_VAR
+      kit_class   = %new_class%
+	  mixed       = RESOLVE_STR_REF (~%new_mixed%~)
+	 STR_VAR
+	  source_kit  = EVAL ~%sc_kit%~
+	  kit_name    = EVAL ~%new_name%~
+	  base_class  = EVAL ~%new_base_class%~
+	  clab_path   = EVAL ~override/%new_clab%.2da~
+	  dualclas    = ~0 0 0 0 0 0~
+	  kittable    = EVAL ~%new_kittable%~
+	  hpclass	  = EVAL ~%hit_dice%~
+	  weapprof    = EVAL ~%new_weapprof%~
+	  thiefscl	  = ~100 100 100 100 100 100 100 0~
+	  traplimt	  = ~%orig_traplimt%~
+	  thiefskl	  = ~%orig_thiefskl%~
+	  backstab	  = ~%orig_backstab%~
+	  sneakatt	  = ~%orig_sneakatt%~
+	  crippstr	  = ~%orig_crippstr%~
 //   RET kit_id
+	END
+   END
   END
   LAF DEFINE_FNP_KIT_INFO
    INT_VAR
