@@ -84,6 +84,8 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
 //
     clab_name 	= ~[your kit's clab.2da filename]~
 	class 			= ~x~	 
+	multiclass		= ~z~
+	sphere_list		= ~z~
 	s_Life 			= ~x~
 	s_Death 		= ~x~
 	s_Benediction 	= ~x~

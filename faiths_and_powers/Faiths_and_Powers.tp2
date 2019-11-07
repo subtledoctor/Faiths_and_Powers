@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.78sd6~
+VERSION ~0.78sd7~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -225,6 +225,21 @@ ACTION_IF (ENGINE_IS ~tob bgt~) BEGIN
 END
 
 // (clerics)
+ACTION_IF (%d5_cleric_clangeddin% = 1) BEGIN
+ LAF cleric_clangeddin END
+END
+ACTION_IF (%d5_cleric_baravar% = 1) BEGIN
+ LAF cleric_baravar END
+END
+ACTION_IF (%d5_cleric_baervan% = 1) BEGIN
+ LAF cleric_baervan END
+END
+ACTION_IF (%d5_cleric_yondalla% = 1) BEGIN
+ LAF cleric_yondalla END
+END
+ACTION_IF (%d5_cleric_arvoreen% = 1) BEGIN
+ LAF cleric_arvoreen END
+END
 ACTION_IF (%d5_cleric_azuth% = 1) BEGIN
  LAF cleric_azuth END
  OUTER_SET cleric_umd = 1
@@ -290,21 +305,6 @@ ACTION_IF (%d5_cleric_tymora% = 1) BEGIN
 END
 ACTION_IF (%d5_cleric_umberlee% = 1) BEGIN
  LAF cleric_umberlee END
-END
-ACTION_IF (%d5_cleric_clangeddin% = 1) BEGIN
- LAF cleric_clangeddin END
-END
-ACTION_IF (%d5_cleric_baravar% = 1) BEGIN
- LAF cleric_baravar END
-END
-ACTION_IF (%d5_cleric_baervan% = 1) BEGIN
- LAF cleric_baervan END
-END
-ACTION_IF (%d5_cleric_yondalla% = 1) BEGIN
- LAF cleric_yondalla END
-END
-ACTION_IF (%d5_cleric_arvoreen% = 1) BEGIN
- LAF cleric_arvoreen END
 END
 //
 /*
@@ -466,29 +466,14 @@ END
 
 LAF enable_more_paladins END
 
-ACTION_IF (%d5_champion_tyr% = 1) BEGIN
- LAF champion_tyr END
-END
-ACTION_IF (%d5_champion_azuth% = 1) BEGIN
- LAF champion_azuth	 END	//azuth essentially replaces Inquisitor
-END
 ACTION_IF (%d5_champion_moradin% = 1) BEGIN
  LAF champion_moradin END
 END
-ACTION_IF (%d5_champion_kelemvor% = 1) BEGIN
- //champ of Kele effectively replaces UHunter. In IWDEE, the champ of mykrul is merely added (they're different enough conceptually to be seperate)
- ACTION_IF GAME_IS ~iwdee~ THEN BEGIN   //
-  LAF iwdee_champion_kelemvor END
- END
- //kelevmor undead hunter for non-iwdee
- ACTION_IF GAME_IS ~bgee bg2ee eet~ THEN BEGIN   //
-  LAF champion_kelemvor END
- END
+ACTION_IF (%d5_champion_arvoreen% = 1) BEGIN
+ LAF champion_arvoreen END
 END
-ACTION_IF (%d5_champion_tempus% = 1) BEGIN
- ACTION_IF FILE_EXISTS_IN_GAME ~fallen.2da~ BEGIN  //No feasible way to make them not fall in IWDEE as yet
-  LAF champion_tempus END
- END
+ACTION_IF (%d5_champion_azuth% = 1) BEGIN
+ LAF champion_azuth	 END	//azuth essentially replaces Inquisitor
 END
 ACTION_IF (%d5_champion_bane% = 1) BEGIN
  ACTION_IF FILE_EXISTS_IN_GAME ~fallen.2da~ BEGIN  //No Evil nonfallable pallys in IWDEE as yet
@@ -506,6 +491,21 @@ ACTION_IF (%d5_champion_helm% = 1) BEGIN
   LAF iwdee_champion_helm END
  END
 END
+ACTION_IF (%d5_champion_kelemvor% = 1) BEGIN
+ //champ of Kele effectively replaces UHunter. In IWDEE, the champ of mykrul is merely added (they're different enough conceptually to be seperate)
+ ACTION_IF GAME_IS ~iwdee~ THEN BEGIN   //
+  LAF iwdee_champion_kelemvor END
+ END
+ //kelevmor undead hunter for non-iwdee
+ ACTION_IF GAME_IS ~bgee bg2ee eet~ THEN BEGIN   //
+  LAF champion_kelemvor END
+ END
+END
+ACTION_IF (%d5_champion_red% = 1) BEGIN
+ ACTION_IF FILE_EXISTS_IN_GAME ~fallen.2da~ BEGIN  //No feasible way to make them not fall in IWDEE without fallen.2da
+  LAF champion_red END
+ END
+END
 ACTION_IF (%d5_champion_talos% = 1) BEGIN
  ACTION_IF FILE_EXISTS_IN_GAME ~fallen.2da~ BEGIN  //No Evil nonfallable pallys in IWDEE
   LAF champion_talos END
@@ -514,13 +514,13 @@ ACTION_IF (%d5_champion_talos% = 1) BEGIN
   LAF iwdee_champion_talos END
  END
 END
-ACTION_IF (%d5_champion_red% = 1) BEGIN
- ACTION_IF FILE_EXISTS_IN_GAME ~fallen.2da~ BEGIN  //No feasible way to make them not fall in IWDEE without fallen.2da
-  LAF champion_red END
+ACTION_IF (%d5_champion_tempus% = 1) BEGIN
+ ACTION_IF FILE_EXISTS_IN_GAME ~fallen.2da~ BEGIN  //No feasible way to make them not fall in IWDEE as yet
+  LAF champion_tempus END
  END
 END
-ACTION_IF (%d5_champion_arvoreen% = 1) BEGIN
- LAF champion_arvoreen END
+ACTION_IF (%d5_champion_tyr% = 1) BEGIN
+ LAF champion_tyr END
 END
 //
 // (other paladins)
@@ -543,15 +543,6 @@ ACTION_IF (%d5_zealot_ilmater% + %d5_zealot_sune% + %d5_zealot_mystra% + %d5_zea
  COPY ~faiths_and_powers/kits/zealots/b_snk13.spl~ ~override~
 END
 
-ACTION_IF (%d5_zealot_ilmater% = 1) BEGIN
- LAF zealot_ilmater END
-END
-ACTION_IF (%d5_zealot_sune% = 1) BEGIN
- LAF zealot_sune END
-END
-ACTION_IF (%d5_zealot_mystra% = 1) BEGIN
- LAF zealot_mystra END
-END
 ACTION_IF (%d5_zealot_eilistraee% = 1) BEGIN
  LAF zealot_eilistraee END
 END
@@ -564,16 +555,27 @@ ACTION_IF FILE_EXISTS_IN_GAME ~fallen.2da~ BEGIN  //No feasible way to make them
  ACTION_IF (%d5_zealot_gruumsh% = 1) BEGIN
   LAF zealot_gruumsh END
  END
- ACTION_IF (%d5_zealot_talos% = 1) BEGIN
-  LAF zealot_talos END
+END  //End grummsh
+ACTION_IF (%d5_zealot_ilmater% = 1) BEGIN
+ LAF zealot_ilmater END
+END
+ACTION_IF (%d5_zealot_mystra% = 1) BEGIN
+ LAF zealot_mystra END
+END
+ACTION_IF (%d5_zealot_sune% = 1) BEGIN
+ LAF zealot_sune END
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~fallen.2da~ BEGIN  //No feasible way to make them not fall in IWDEE w/o fallen.2da
+ ACTION_IF (%d5_zealot_garagos% = 1) BEGIN
+  LAF zealot_garagos END
  END
  ACTION_IF (%d5_zealot_kossuth% = 1) BEGIN
   LAF zealot_kossuth END
  END
- ACTION_IF (%d5_zealot_garagos% = 1) BEGIN
-  LAF zealot_garagos END
+ ACTION_IF (%d5_zealot_talos% = 1) BEGIN
+  LAF zealot_talos END
  END
-END  //End grummsh/talos/kossuth/garagos
+END  //End talos/kossuth/garagos
 
 OUTER_SPRINT class ~P~
 LAF remove_sc_menu_kits END
@@ -590,7 +592,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   INCLUDE ~override/fnp_sphere_list.tpa~
 END
 INCLUDE ~faiths_and_powers/lib/add_ranger_kits.tpa~
-INCLUDE ~faiths_and_powers/lib/add_scout_kits.tpa~
+//INCLUDE ~faiths_and_powers/lib/add_scout_kits.tpa~
 
 //ranger/paladin spell tables_______________________________________________________
 //
@@ -651,11 +653,11 @@ LAF more_ranger_alignments END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
-BEGIN @91 // item usability
-DESIGNATED 91
+BEGIN @75 // item usability
+DESIGNATED 75
 REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 
-COPY ~faiths_and_powers/lib/markers/d5_fnp_usability.d5~ ~override~
+COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_fnp_usability.d5~
 
 //read in kit functions_____________________________________________________________
 //
@@ -667,12 +669,12 @@ INCLUDE ~faiths_and_powers/lib/add_occultist_kits.tpa~
 INCLUDE ~faiths_and_powers/lib/add_champion_kits.tpa~
 INCLUDE ~faiths_and_powers/lib/add_zealot_kits.tpa~
 INCLUDE ~faiths_and_powers/lib/add_ranger_kits.tpa~
-INCLUDE ~faiths_and_powers/lib/add_scout_kits.tpa~
+//INCLUDE ~faiths_and_powers/lib/add_scout_kits.tpa~
 
 INCLUDE ~faiths_and_powers/lib/default_kit_spheres.tpa~
-LAF vanilla_kit_spheres END
-LAF mod_kit_spheres END
-LAF default_kit_spheres END
+ LAF vanilla_kit_spheres END
+ LAF mod_kit_spheres END
+ LAF default_kit_spheres END
 //__________________________________________________________________________________
 
 //read fnp_system info in order to apply sphere system/item usability_______________
@@ -683,14 +685,13 @@ LAM ~READ_FNP_KIT_INFO~
 //alter item usability______________________________________________________________
 //
 INCLUDE ~faiths_and_powers/lib/item_usability.tpa~
-LAF change_usability END
-LAF apply_usability END
+ LAF change_usability END
+ LAF apply_usability END
 //__________________________________________________________________________________
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
-
 
 
 //__________________________________________________________________________________
@@ -700,8 +701,8 @@ LAF apply_usability END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
-BEGIN @95 // apply sphere systen
-DESIGNATED 95
+BEGIN @80 // apply sphere systen
+DESIGNATED 80
 //INSTALL_BY_DEFAULT
 REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) @8
@@ -719,8 +720,10 @@ LAF shaman_spells END
 ACTION_CLEAR_ARRAY aoe_spell
 INCLUDE ~faiths_and_powers/lib/add_spells_v75.tpa~      //install spells from the 0.75 series  
  LAM v75_add_fnP_b_spells
+ACTION_IF !(GAME_IS ~iwdee~) BEGIN
  LAM v75_add_iwd_arcane_spells
  LAM v75_add_iwd_divine_spells
+END
 ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
   LAM v75_apply_sr_aoe_deflection
 END  
@@ -730,9 +733,9 @@ END
 //create sphere system______________________________________________________________
 //
 INCLUDE ~override/fnp_sphere_list.tpa~
-LAM d5_define_sphere_names
-LAM d5_define_sphere_spells
-LAM d5_deity_kit_sphere_lists
+ LAM d5_define_sphere_names
+ LAM d5_define_sphere_spells
+ LAM d5_deity_kit_sphere_lists
 
 INCLUDE ~faiths_and_powers/lib/sphere_system.tpa~
 
@@ -751,12 +754,12 @@ INCLUDE ~faiths_and_powers/lib/add_occultist_kits.tpa~
 INCLUDE ~faiths_and_powers/lib/add_champion_kits.tpa~
 INCLUDE ~faiths_and_powers/lib/add_zealot_kits.tpa~
 INCLUDE ~faiths_and_powers/lib/add_ranger_kits.tpa~
-INCLUDE ~faiths_and_powers/lib/add_scout_kits.tpa~
+//INCLUDE ~faiths_and_powers/lib/add_scout_kits.tpa~
 
 INCLUDE ~faiths_and_powers/lib/default_kit_spheres.tpa~
-LAF vanilla_kit_spheres END
-LAF mod_kit_spheres END
-LAF default_kit_spheres END
+ LAF vanilla_kit_spheres END
+ LAF mod_kit_spheres END
+ LAF default_kit_spheres END
 //__________________________________________________________________________________
 
 //read fnp_system info in order to apply sphere system/item usability_______________
@@ -770,8 +773,8 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_fnp_usability.d5~) BEGIN
 //alter item usability______________________________________________________________
 //
 INCLUDE ~faiths_and_powers/lib/item_usability.tpa~
-LAF change_usability END
-LAF apply_usability END
+ LAF change_usability END
+ LAF apply_usability END
 //__________________________________________________________________________________
 
 END
@@ -788,7 +791,7 @@ LAF apply_spheres END
 //Handle NPCs_______________________________________________________________________
 //
 INCLUDE ~faiths_and_powers/lib/npc_kits.tpa~
-LAF npc_sc_kits END
+ LAF npc_sc_kits END
 //__________________________________________________________________________________
 */
 
@@ -811,14 +814,13 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
-BEGIN @97 // item usability
-DESIGNATED 97
+BEGIN @85 // apply kits to multiclass NPCS
+DESIGNATED 85
 
 
 //read in kit functions_____________________________________________________________
 //
 INCLUDE ~faiths_and_powers/lib/npc_kits.tpa~
-
-LAF npc_sc_kits END
+ LAF npc_sc_kits END
 //__________________________________________________________________________________
 

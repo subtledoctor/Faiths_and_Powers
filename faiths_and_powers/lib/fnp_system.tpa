@@ -107,8 +107,8 @@ DEFINE_ACTION_FUNCTION ~DEFINE_FNP_KIT_INFO~
   STR_VAR
     clab_name = ~d5clab~
 	sphere_list = ~custom~
-    class = ~z~
-    multiclass = ~z~
+    class = ~x~
+    multiclass = ~x~
     s_Life = ~x~
     s_Death = ~x~
     s_Benediction = ~x~

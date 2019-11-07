@@ -2,7 +2,7 @@
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//							 SPHERE SYSTEM
+//								 SPHERE SYSTEM
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -171,7 +171,7 @@ END
 
 //no spells for anyone!______________________________________________________________
 //
-COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 	READ_SHORT 0x1c ~spelltype~
 	PATCH_IF (~spelltype~ = 2) BEGIN
 		WRITE_BYTE 0x21 (THIS | 0b11000000)
@@ -181,7 +181,7 @@ BUT_ONLY
 
 //erase spell alignment restrictions_________________________________________________
 
-COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~ //copies all spl files
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 	PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
 		READ_BYTE 0x1e align
 		WRITE_BYTE 0x1e (align BAND 0b11111001)
@@ -472,7 +472,7 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 					LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
 				END
 				PATCH_IF (%abil_range% < 5) BEGIN
-				  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END	// what the hell??  why did I do this??
+				  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END	
 				END
 			  END
 			END
@@ -525,7 +525,7 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 				  LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
 				END
 				PATCH_IF (%abil_range% < 5) BEGIN
-				  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END	// what the hell??  why did I do this??
+				  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
 				END
 			  END
 			END
@@ -636,7 +636,7 @@ BUT_ONLY
 //add new spells to 206/318/321/324 effects_________________________________________
 //
 PRINT ~*Please be patient, this should take 1-2 minutes...*~
-COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 	LPF SPELL_CLONE_EFFECTS INT_VAR match_opcode=206 STR_VAR resource=~sphere~ END
 	LPF SPELL_CLONE_EFFECTS INT_VAR match_opcode=206 STR_VAR resource=~fsphere~ END
 	LPF SPELL_CLONE_EFFECTS INT_VAR match_opcode=318 STR_VAR resource=~sphere~ END
@@ -646,7 +646,7 @@ COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~
 	LPF SPELL_CLONE_EFFECTS INT_VAR match_opcode=324 STR_VAR resource=~sphere~ END
 	LPF SPELL_CLONE_EFFECTS INT_VAR match_opcode=324 STR_VAR resource=~fsphere~ END
 BUT_ONLY
-COPY_EXISTING_REGEXP GLOB ~.*\.itm~ ~override~
+COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
 	LPF SPELL_CLONE_EFFECTS INT_VAR match_opcode=206 STR_VAR resource=~sphere~ END
 	LPF SPELL_CLONE_EFFECTS INT_VAR match_opcode=206 STR_VAR resource=~fsphere~ END
 	LPF SPELL_CLONE_EFFECTS INT_VAR match_opcode=318 STR_VAR resource=~sphere~ END
@@ -800,42 +800,6 @@ LAM ~BACKFILL_FNP_KIT_INFO~
 
 
 END // end create spheres function
-
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-
-DEFINE_ACTION_FUNCTION universal_spells BEGIN
-
-//finally, make sure universal spells are universal_________________________________
-//
-COPY_EXISTING ~d5spsph.2da~ ~override~
-  READ_2DA_ENTRIES_NOW rows 4
-  FOR (row = 0; row < rows; ++row) BEGIN
-	READ_2DA_ENTRY_FORMER rows row 0 spl
-	READ_2DA_ENTRY_FORMER rows row 2 sph
-	PATCH_IF (~%sph%~ STRING_EQUAL_CASE ~universal~) BEGIN
-	  PATCH_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~%spl%~)) BEGIN
-		LPF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%spl%~ RET spell_res spell_num END
-		TEXT_SPRINT the_spell ~%spell_res%~
-	  END
-	  ELSE BEGIN
-		TEXT_SPRINT the_spell ~%spl%~
-	  END  
-	  PATCH_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ BEGIN
-		INNER_ACTION BEGIN
-		  COPY_EXISTING ~%the_spell%.spl~ ~override~
-			WRITE_BYTE 0x21 (THIS BAND 0b00111111)
-		  BUT_ONLY
-		END
-	 END
-	END
-  END
-BUT_ONLY
-//__________________________________________________________________________________
-
-END // end universal spells function
 
 
 //__________________________________________________________________________________
@@ -1185,4 +1149,40 @@ END // end apply spheres function
 
 //___________________________________________________________________________________
 //___________________________________________________________________________________
+
+
+DEFINE_ACTION_FUNCTION universal_spells BEGIN
+
+//finally, make sure universal spells are universal_________________________________
+//
+COPY_EXISTING ~d5spsph.2da~ ~override~
+  READ_2DA_ENTRIES_NOW rows 4
+  FOR (row = 0; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY_FORMER rows row 0 spl
+	READ_2DA_ENTRY_FORMER rows row 2 sph
+	PATCH_IF (~%sph%~ STRING_EQUAL_CASE ~universal~) BEGIN
+	  PATCH_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~%spl%[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		LPF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%spl%~ RET spell_res spell_num END
+		TEXT_SPRINT the_spell ~%spell_res%~
+	  END
+	  ELSE BEGIN
+		TEXT_SPRINT the_spell ~%spl%~
+	  END  
+	  PATCH_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ BEGIN
+		INNER_ACTION BEGIN
+		  COPY_EXISTING ~%the_spell%.spl~ ~override~
+			WRITE_BYTE 0x21 (THIS BAND 0b00111111)
+		  BUT_ONLY
+		END
+	 END
+	END
+  END
+BUT_ONLY
+//__________________________________________________________________________________
+
+END // end universal spells function
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
 

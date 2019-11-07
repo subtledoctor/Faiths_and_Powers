@@ -167,6 +167,7 @@ COPY_EXISTING ~SPPR605.spl~ ~override/b_pr602.spl~  // Start with C Fire Element
                   LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA1~ match_resource = ~SPFIR1P~  END //
                   LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA2~ match_resource = ~SPFIR2P~  END //
                   LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA3~ match_resource = ~SPFIR3P~  END //
+IF_EXISTS
 /*  //Not addspelling for the time being...
 ADD_SPELL ~override/b_pr602.spl~ 1 6 ~CLERIC_CONJURE_WATER_ELEMENTAL~ //
         SAY NAME1 @51701
@@ -1065,6 +1066,7 @@ COPY ~%mod_folder%/data/iwd_spells/wizard_4/SPWI431c.bam~ ~override/b_w431c.bam~
 COPY_EXISTING ~b_w431.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR projectile = %idpro315% STR_VAR icon = EVAL  ~b_w431B~ END
   WRITE_EVALUATED_ASCII 0x003a ~b_w431C~
+ IF_EXISTS
 //bloodrage immunity list
 //INCLUDE ~%mod_folder%/lib/spell_lists/blood_list.tpa~
 //SR NWN spell deflection
@@ -1933,6 +1935,7 @@ COPY ~faiths_and_powers/spheres/iwd_spells/priest_3/#PRAYERB.SPL~ ~override~   /
 STRING_SET 7160 @31600002
 COPY_EXISTING ~book09.itm~ ~override~
 	SAY NAME2 @31600003
+IF_EXISTS
 COPY ~faiths_and_powers/spheres/iwd_spells/priest_3/#PRAYERG.SPL~ ~override~   //spl
   LPF ALTER_EFFECT
       INT_VAR match_opcode = 139            //
@@ -1941,7 +1944,7 @@ COPY ~faiths_and_powers/spheres/iwd_spells/priest_3/#PRAYERG.SPL~ ~override~   /
 STRING_SET 13086 @31600004
 COPY_EXISTING ~book10.itm~ ~override~
 	SAY NAME2 @31600005
-
+IF_EXISTS
 //Spell itself
 ADD_SPELL ~faiths_and_powers/spheres/iwd_spells/priest_3/b_p316.spl~ 1 3 ~CLERIC_PRAYER~ // Spell
         SAY NAME1 @31600000
@@ -2717,6 +2720,7 @@ COPY ~faiths_and_powers/spheres/iwd_spells/priest_4/b_p420a.eff~ ~override~   //
 STRING_SET 13107 @42000004
 COPY_EXISTING ~book32.itm~ ~override~
 	SAY NAME2 @42000003   */
+IF_EXISTS
 //must add projectile
 COPY_EXISTING ~%spell_res%B.spl~ ~override~
 	WRITE_SHORT 0x098 ~%IDSTATIC%~  //Projectile
@@ -3805,7 +3809,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //BLood Rage immunities
 COPY_EXISTING ~b_p422.spl~ ~override~
   LPF CLONE_EFFECT INT_VAR match_opcode = 6 opcode = 318 STR_VAR resource = EVAL ~%spell_res%~ END
-
+IF_EXISTS
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3858,6 +3862,8 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 COPY_EXISTING ~b_p422.spl~ ~override~
   LPF ALTER_EFFECT
    INT_VAR match_opcode = 6 opcode = 318 STR_VAR resource = EVAL ~%spell_res%~ END
+IF_EXISTS
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4332,7 +4338,10 @@ DEFINE_ACTION_MACRO v75_apply_sr_aoe_deflection BEGIN
 
 //SR NWN-style Deflection
 
+
 ACTION_IF MOD_IS_INSTALLED ~spell_rev.tp2~ ~55~ BEGIN
+
+//ACTION_IF (VARIABLE_IS_SET $aoe_spell(~%%~)) BEGIN
 
  ACTION_PHP_EACH aoe_spell AS spell_name => r2 BEGIN
   

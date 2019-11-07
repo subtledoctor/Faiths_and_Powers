@@ -353,30 +353,92 @@ END // end function
 
 DEFINE_ACTION_FUNCTION shaman_spells BEGIN
 
-// set up spell-learning UI here
-INCLUDE ~faiths_and_powers/lib/sequencer_menu_d5.tpa~
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_splshmkn.2da~) BEGIN
+  COPY_EXISTING ~splshmkn.2da~ ~override/d5_splshmkn.2da~
+END
 
-LAF CREATE_SEQUENCER_MENU 
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shlist.2da~) BEGIN
+<<<<<<<<  d5/d5shlist.2da
+2DA      V1.0
+0
+				SHAMAN
+>>>>>>>>
+ COPY ~d5/d5shlist.2da~ ~override/d5shlist.2da~
+
+ COPY_EXISTING_REGEXP GLOB ~^SPPR[1-7]\(0[1-9]\|[1-4][0-9]\|50\)\.spl$~ ~override~
+  READ_SHORT 0x1c spell_type
+  READ_BYTE 0x21 ok_druid
+  PATCH_IF (spell_type = 2) && ((%ok_druid% BOR 0b01111111) = 0b01111111) BEGIN
+	LPF NAME_NUM_OF_SPELL_RES STR_VAR spell_res = EVAL ~%SOURCE_RES%~ RET spell_name END
+	PATCH_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~%spell_name%~)) && !(FILE_CONTAINS_EVALUATED (~hidespl.2da~ ~%SOURCE_RES%~)) BEGIN
+	  INNER_ACTION BEGIN
+		APPEND ~d5shlist.2da~ ~%SOURCE_RES%	1~
+	  END
+	END
+  END
+ BUT_ONLY
+
+ INCLUDE ~faiths_and_powers/lib/sequencer_menu_d5.tpa~
+
+ LAF CREATE_SEQUENCER_MENU 
   INT_VAR 
 	name = RESOLVE_STR_REF (~Spell Selection~)
 	tip = RESOLVE_STR_REF (~Spell Selection~)
 	desc = RESOLVE_STR_REF (~This ability allows you to learn new spells~)
 	class = 2
 	maxlevel = 7
-	exclude = 0x80000000 
+	column = 1
   STR_VAR 
+	spelltable = ~d5_splshmkn~
+	spelllist = ~d5shlist~
 	resref = ~d5msham~
 	icon = ~spcl919b~
 	title = ~Spell Selection~
 	label = ~Select a spell to learn~
-	subspell = ~N~
+	subspell = ~H~
+ END
+END
+
+//learn spell item___________________________________________________________________
+//
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shmsp.itm~) BEGIN
+ COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmsp.itm~ ~override~			//	learn spells .itm
+  SAY NAME1 @49911
+  SAY NAME2 @49911
+  SAY UNIDENTIFIED_DESC @49912
+  SAY IDENTIFIED_DESC @49912
+  LPF ALTER_ITEM_HEADER INT_VAR target = 7 speed = 0 STR_VAR icon = ~spcl919b~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = ~d5msham~ END
+END
+CREATE EFF ~d5shmsp~
+  WRITE_LONG 0x10 143
+  WRITE_LONG 0x14 1
+  WRITE_LONG 0x1c 14
+  WRITE_LONG 0x24 9
+  WRITE_SHORT 0x2c 100
+  WRITE_EVALUATED_ASCII 0x30 ~D5SHMSP~ #8
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shmv1.spl~) BEGIN
+ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5shba1.spl~
+  SAY NAME1 @49950
+  SAY UNIDENTIFIED_DESC @49950
+  WRITE_SHORT 0x1c 4
+  LPF ALTER_SPELL_HEADER INT_VAR location = 4 STR_VAR icon = ~spcl919b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 21 parameter2 = 5 timing = 9 STR_VAR resource = ~d5shmsp~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmv1~ END
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5shmv1.spl~) BEGIN
+  COPY_EXISTING ~d5shmv1.spl~ ~override~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 21 parameter2 = 5 timing = 9 STR_VAR resource = ~d5shmsp~ END
 END
 
 ACTION_IF (FILE_EXISTS_IN_GAME ~clabsh01.2da~) BEGIN
-  APPEND ~clabsh01.2da~ ~SHMN_LRN    GA_D5MSHAM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+  APPEND ~clabsh01.2da~ ~SPL_REST     GA_D5SPM3M  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+SHAMAN_LRN   GA_D5SHMV1  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 END
 ACTION_IF (FILE_EXISTS_IN_GAME ~clabshgs.2da~) BEGIN
-  APPEND ~clabshgs.2da~ ~SHMN_LRN    GA_D5MSHAM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+  APPEND ~clabshgs.2da~ ~SPL_REST     GA_D5SPM3M  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+SHAMAN_LRN   GA_D5SHMV1  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 END
 
 COPY_EXISTING ~kitlist.2da~ ~override~
@@ -387,7 +449,8 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	PATCH_IF (kitclass = 21) BEGIN
 	  PATCH_IF (FILE_EXISTS_IN_GAME ~%kitclab%.2da~) BEGIN
 		INNER_ACTION BEGIN
-		  APPEND ~%kitclab%.2da~ ~SHMN_LRN    GA_D5MSHAM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+		  APPEND ~%kitclab%.2da~ ~SPL_REST     GA_D5SPM3M  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+SHAMAN_LRN   GA_D5SHMV1  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 		END
 	  END
 	END

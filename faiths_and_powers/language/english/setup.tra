@@ -14,11 +14,13 @@
 @33  = ~Install Druid kits~
 @35  = ~Install Paladin kits~
 @37  = ~Install Ranger kits~
-@91  = ~Alter weapon usability and proficiency?~
-@95  = ~Install sphere system~
-@97  = ~Apply FnP kits to NPCs~
-@99  = ~Multiclass clerics (install this AFTER all other kit mods!!)~
-@100  = ~Apply FnP multiclass kits to NPCs~
+@75  = ~Alter weapon usability and proficiency?~
+@80  = ~Install sphere system~
+@85  = ~Apply FnP kits to NPCs~
+@90  = ~Multiclass kits (install AFTER all other kit mods!!)~
+@91  = ~Multiclass Druids~
+@92  = ~Multiclass Shamans~
+@95  = ~Apply FnP multiclass kits to NPCs~
 //
 //@100  = ~Select an installation method below:~
 @101  = ~ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')~
@@ -208,9 +210,9 @@
 // ... clerics:
 //
 @10001 = ~priest~
-@10002 = ~Priest~
-@10003 = ~PRIEST~
-@10005 = ~PRIEST: The basic Cleric is an adventuring priest who promotes the principles and philosophy dear to <PRO_HISHER> deity. Though <PRO_HESHE> is both protector and healer, <PRO_HESHE> is not purely defensive-when enemies threaten, the Cleric is well suited to challenge them on their own ground and destroy them.
+@10002 = ~Cleric~
+@10003 = ~CLERIC~
+@10005 = ~CLERIC: The basic Cleric is an adventuring priest who promotes the principles and philosophy dear to <PRO_HISHER> deity. Though <PRO_HESHE> is both protector and healer, <PRO_HESHE> is not purely defensive-when enemies threaten, the Cleric is well suited to challenge them on their own ground and destroy them.
 
 CLASS FEATURES:
 - May wear helmets.
@@ -888,7 +890,7 @@ Advantages:
 - May summon a spirit animal ally for protection once per day. This being is similar to a bear, and increases in power at 3rd, 5th, 7th, and 10th levels.
 - Any time a Fastpaws casts Animal Summoning, the summoned animals are affected by the Magic Fang spell, enabling their natural attacks to strike beings which can only be struck by enchanted weapons.
 - From 3rd level, Fastpaws can innately cast Sanctuary once per day.
-- At 5th level, Fastpaws become immune to all sources Grease, Entangle, and Web effects.
+- At 5th level, Fastpaws become immune to all sources of Grease, Entangle, and Web effects.
 - From 7th level, Fastpaws can cast Sanctuary twice per day.
 
 Restrictions:
@@ -978,89 +980,66 @@ Restrictions:
 - May not use divine magic
 ~
 //
-// ... multiclass sorcerers 
+// ... multiclass druids
 //
-@45011  = ~1st-level spells~
-@45012  = ~2nd-level spells~
-@45013  = ~3rd-level spells~
-@45014  = ~4th-level spells~
-@45015  = ~5th-level spells~
-@45016  = ~6th-level spells~
-@45017  = ~7th-level spells~
-@45018  = ~8th-level spells~
-@45019  = ~9th-level spells~
-@45021  = ~Spell Knowledge
+@45101  = ~fighter/druid~
+@45102  = ~Fighter/Druid~
+@45103  = ~DRUID: The Druid serves the cause of nature and neutrality; the wilderness is <PRO_HISHER> community, and <PRO_HESHE> uses <PRO_HISHER> special powers to protect it and to preserve balance in the world.
 
-This ability allows you to select your spells known for each spell level.~
-@45023 = ~Learn this spell.~
-@45024 = ~View other spells of the same level.~
-@45025 = ~Select a different spell level.~
-@45026 = ~End.~
-@45027 = ~Return to level selection.~ 
-@45028 = ~You can learn more spells of the following levels.~
-@45031 = ~First~
-@45032 = ~Second~
-@45033 = ~Third~
-@45034 = ~Fourth~
-@45035 = ~Fifth~
-@45036 = ~Sixth~
-@45037 = ~Seventh~
-@45038 = ~Eighth~
-@45039 = ~Ninth~
-@45041 = ~You can select new 1st level spells from the following list.~
-@45042 = ~You can select new 2nd level spells from the following list.~
-@45043 = ~You can select new 3rd level spells from the following list.~
-@45044 = ~You can select new 4th level spells from the following list.~
-@45045 = ~You can select new 5th level spells from the following list.~
-@45046 = ~You can select new 6th level spells from the following list.~
-@45047 = ~You can select new 7th level spells from the following list.~
-@45048 = ~You can select new 8th level spells from the following list.~
-@45049 = ~You can select new 9th level spells from the following list.~
-@45101 = ~fighter/sorcerer~
-@45102 = ~Fighter/Sorcerer~
-@45103 = ~FIGHTER/SORCERER: Sorcerers are practitioners of magic who were born with the innate ability to cast spells. It is thought that the blood of some powerful creature flows through their veins; perhaps they are the spawn of the gods themselves, or even dragons walking in humanoid form. Regardless, the Sorcerer's magic is intuitive rather than logical. They know fewer spells than Mages, and acquire spells more slowly, but they can cast spells more often and have no need to select and prepare spells ahead of time.
+ABILITIES:
+- May cast druidic spells.
+- 7th level: May Shapeshift into a wolf, black bear, or brown bear once per day.
+- 15th level: Becomes immune to poison.
+- 18th level: Gains 10% resistance to cold, fire, electricity, and acid; gains a further 10% resistance at levels 21 and 24.
+
+RESTRICTIONS:
+- May only wear non-metallic armor.
+- May only equip bucklers and non-metallic shields.
+- May only use the following weapons: scimitar, dagger, club, spear, quarterstaff, dart, sling.
+- May only become Proficient (one slot) in any weapon class.
+- May only become Proficient (one slot) in any fighting style.
+- Alignment restricted to true neutral.
+~
+@45201  = ~druid/ranger~
+@45202  = ~Druid/Ranger~
+@45301  = ~druid/thief~
+@45302  = ~Druid/Thief~
+@45401  = ~druid/mage~
+@45402  = ~Druid/Mage~
+@74100  = ~Fighter/Druid~
+@74300  = ~Druid/Mage~
+@74500  = ~Druid/Ranger~
+@74700  = ~Druid/Thief~
+@74101  = ~druid of silvanus~
+@74102  = ~Druid of Silvanus~
+@74103  = ~DRUID: Most druids reside in the regions where soil is nutritious, plant life is abundant and animals thrive.  These regions are in many ways the epitome of harmonious ecosystems, and druids often charge themselves with nurturing and defending them.  Tall forests are a paradise in many ways: they provide shade from the sun, food and homes for animals and people, and wood for tools.  Forests are incessantly under threat of being torn down and subjugated by careless humans and demihumans. Forest druids therefore often live with a constant low-grade paranoia, which informs the stereotype of druids being hostile to civilization.
 
 Advantages:
-- May cast arcane spells.
-- Sorcerers do not scribe and memorize spells as Mages do. Instead, they learn a small number of spells at each level, and can cast any of those spells without memorization.
+- At 1st level, may summon a Spirit Bear. The HD of the spirit animal increases to match the druid's level at 3rd, 5th, 7th and 10th level.
+- At 3rd level, may shapeshift into the form of a wolf or a ferret at will.
+- At 5th level, may shapeshift into the form of a black bear.
+- At 7th level, may shapeshift into the form of a python or a mountain lion.
+- At 9th level, may shapeshift into a larger dire wolf instead of a wolf.
+- At 9th level, the druid become immune to poison.
+- At 11th level, may shapeshift into a larger grizzly bear instead of a black bear.
+- At 13th level, may shapeshift into a large wyvern.
+- At 15th level, gains 10% resistance to damage from cold, fire, electricity, and acid.  These resistances increase by another 10% at levels 18 and 21.
 
-Disadvantages:
-- May not wear any armor.
-- May only use the following weapons: dagger, quarterstaff, dart, sling.
-- May only become Proficient (one slot) in any weapon class.
-- May not place any slots in any fighting style.
-- Hit Die: d4
-~
-@45201 = ~ranger/sorcerer~
-@45202 = ~Ranger/Sorcerer~
-@45203 = ~RANGER/SORCERER: Sorcerers are practitioners of magic who were born with the innate ability to cast spells. It is thought that the blood of some powerful creature flows through their veins; perhaps they are the spawn of the gods themselves, or even dragons walking in humanoid form. Regardless, the Sorcerer's magic is intuitive rather than logical. They know fewer spells than Mages, and acquire spells more slowly, but they can cast spells more often and have no need to select and prepare spells ahead of time.
+WOLF: in wolf form the druid can detect hidden enemies. He can attack 1.5 times per round for 2d4 piercing damage. Successful attacks have a chance to grapple the target, briefly Slowing them; they must make a saving throw to avoid this.
 
-Advantages:
-- May cast arcane spells.
-- Sorcerers do not scribe and memorize spells as Mages do. Instead, they learn a small number of spells at each level, and can cast any of those spells without memorization.
+FERRET: in ferret form the druid is hidden from view for up to two rounds. <PRO_HESHE> can use this to escape enemies or move undetected, and can attack once per round for 1d2 piercing damage.
 
-Disadvantages:
-- May not wear any armor.
-- May only use the following weapons: dagger, quarterstaff, dart, sling.
-- May only become Proficient (one slot) in any weapon class.
-- May not place any slots in any fighting style.
-- Hit Die: d4
-~
-@45301 = ~sorcerer/thief~
-@45302 = ~Sorcerer/Thief~
-@45303 = ~SORCERER/THIEF: Sorcerers are practitioners of magic who were born with the innate ability to cast spells. It is thought that the blood of some powerful creature flows through their veins; perhaps they are the spawn of the gods themselves, or even dragons walking in humanoid form. Regardless, the Sorcerer's magic is intuitive rather than logical. They know fewer spells than Mages, and acquire spells more slowly, but they can cast spells more often and have no need to select and prepare spells ahead of time.
+BLACK BEAR: in black bear form, the druid has 19 strength. <PRO_HESHE> can attack twice per round with claws that cause 2d6 slashing damage.
 
-Advantages:
-- May cast arcane spells.
-- Sorcerers do not scribe and memorize spells as Mages do. Instead, they learn a small number of spells at each level, and can cast any of those spells without memorization.
+PYTHON: in snake form, the druid can attack with a bite that causes 1d3 damage and poisons the target with similar effects to the Assassin's "Poison Weapon" ability. Additionally, the druid can attempt to constrict around an opponent, briefly paralyzing them if they fail a saving throw.
 
-Disadvantages:
-- May not wear any armor.
-- May only use the following weapons: dagger, quarterstaff, dart, sling.
-- May only become Proficient (one slot) in any weapon class.
-- May not place any slots in any fighting style.
-- Hit Die: d4
-~
+MOUNTAIN LION: in mountain lion form, the druid can attack twice per round for 2d4 slashing damage. Successful attacks can knock the target to the ground if they fail a saving throw. 
+
+DIRE WOLF: in dire wolf form the druid has 19 STR. He can attack 1.5 times per round for 2d6 piercing damage. Successful attacks have a chance to grapple the target, briefly Slowing them; they must make a saving throw to avoid this.
+
+GRIZZLY BEAR: in grizzly bear form, the druid has 20 strength. <PRO_HESHE> can attack twice per round with claws that cause 2d6 slashing damage and, if the target fails a saving throw, and additional 2d4 crushing damage.
+
+WYVERN: in wyvern form the druid can fly over ground-based obstacles like Entangle and Web spells. <PRO_HISHER> powerful claws can rake victims for 2d6 damage and <PRO_HISHER> attacks can poison the target with similar effects to the Assassin's "Poison Weapon" ability. Additionally, the druid can create a powerful gust of wind that acts like a smaller version of a dragon's "Wing Buffet" ability.~
 //
 // ... abjurist of mystra 
 //
@@ -1335,11 +1314,64 @@ Advantages:
 - Can cast Helm's eye as a special ability once per day at 9th level.  The watcher gains an additional use at levels 11, 13, 15, 17 and 19. Helm's eye is equivalent to the wizard spell, wizard eye.
 - Can cast Seeking Sword as a special ablity once per day.  The Watcher gains an additional use at levels 4, 8, 12, 16 and 20.
 SEEKING SWORD: This spell creates a sword in the Cleric's hand that cannot be dropped or unequipped. The sword is enchanted as a +4 weapon and provides a +4 THAC0 bonus, but no damage bonus. It deals 2d4 damage to any target it hits. The weapon sets the Cleric's number of attacks per round to 3 and lasts for 1 round per level. While it is equipped, the wielder cannot cast further spells.
+
 Restrictions:
 - Alignment: May be Lawful Good, Lawful Neutral, or True Neutral.
 ~
+//
+// multi shamans
+//
+@49601  = ~ranger/shaman~
+@49602  = ~Ranger/Shaman~
+@49603  = ~Ranger/SHAMAN: Shamans forge a divine connection with the natural world, similar to the way Druids commune with nature, but Shamans are more spiritual than primal. They directly tap into the energies that flow through the earth and air, through plants and animals, and even through the dead, and shape these energies to obey their will. Nowhere is this more evident than in their ability to summon powerful spirits as guardians and defenders. A being of two worlds, Shamans value balance over dominance. Very rarely, a Shaman will devote time to cultivating other skills - in this case, those of a ranger.
 
+Advantages: 
+- 
 
+Restrictions: 
+- Alignment: must be Neutral
+~
+@49701  = ~shaman/thief~
+@49702  = ~Shaman/thief~
+@49703  = ~SHAMAN/THIEF: Shamans forge a divine connection with the natural world, similar to the way Druids commune with nature, but Shamans are more spiritual than primal. They directly tap into the energies that flow through the earth and air, through plants and animals, and even through the dead, and shape these energies to obey their will. Nowhere is this more evident than in their ability to summon powerful spirits as guardians and defenders. A being of two worlds, Shamans value balance over dominance. Very rarely, a Shaman will devote time to cultivating other skills - in this case, those of a thief.
+
+Advantages: 
+- 
+
+Restrictions: 
+- Alignment: must be Neutral
+~
+@49801  = ~shaman/mage~
+@49802  = ~Shaman/Mage~
+@49803  = ~SHAMAN/MAGE: Shamans forge a divine connection with the natural world, similar to the way Druids commune with nature, but Shamans are more spiritual than primal. They directly tap into the energies that flow through the earth and air, through plants and animals, and even through the dead, and shape these energies to obey their will. Nowhere is this more evident than in their ability to summon powerful spirits as guardians and defenders. A being of two worlds, Shamans value balance over dominance. Very rarely, a Shaman will devote time to cultivating other skills - in this case, those of a wizard.
+
+Advantages: 
+- 
+
+Restrictions: 
+- Alignment: must be Neutral
+~
+@49901  = ~barbarian shaman~
+@49902  = ~Barbarian Shaman~
+@49903  = ~BARBARIAN SHAMAN: Shamans forge a divine connection with the natural world, similar to the way Druids commune with nature, but Shamans are more spiritual than primal. They directly tap into the energies that flow through the earth and air, through plants and animals, and even through the dead, and shape these energies to obey their will. Nowhere is this more evident than in their ability to summon powerful spirits as guardians and defenders. A being of two worlds, Shamans value balance over dominance. Very rarely, a Shaman will devote time to cultivating other skills - in this case, those of a warrior.
+
+Advantages: 
+- 
+
+Restrictions: 
+- Alignment: must be Neutral
+~
+@49911  = ~Spell Knowledge~
+@49912  = ~Spell Knowledge
+
+This ability allows you to select your spells known for each spell level.~
+@49921  = ~Shamanic Dance~
+@49922  = ~Shamanic Dance: ~
+@49923  = ~Stop Shamanic Dance~
+@49924  = ~Detect Illusions~
+@49925  = ~Detect Illusions: ~
+@49926  = ~Stop detecting illusions~
+@49950  = ~Initialize Shamanic spellcasting~
 
 //
 // ... mystics:
@@ -1791,43 +1823,6 @@ Disadvantages:
 - No access to spells from the sphere of Life.
 ~
 @73911  = ~Summon Dread Wolf~
-//
-// ... multiclass druids
-//
-@74100  = ~Fighter/Druid~
-@74300  = ~Druid/Mage~
-@74500  = ~Druid/Ranger~
-@74700  = ~Druid/Thief~
-@74101  = ~druid of silvanus~
-@74102  = ~Druid of Silvanus~
-@74103  = ~DRUID OF SILVANUS: Most druids reside in the regions where soil is nutritious, plant life is abundant and animals thrive.  These regions are in many ways the epitome of harmonious ecosystems, and druids often charge themselves with nurturing and defending them.  Tall forests are a paradise in many ways: they provide shade from the sun, food and homes for animals and people, and wood for tools.  Forests are incessantly under threat of being torn down and subjugated by careless humans and demihumans. Forest druids therefore often live with a constant low-grade paranoia, which informs the stereotype of druids being hostile to civilization.
-
-Advantages:
-- At 1st level, may summon a Spirit Bear. The HD of the spirit animal increases to match the druid's level at 3rd, 5th, 7th and 10th level.
-- At 3rd level, may shapeshift into the form of a wolf or a ferret at will.
-- At 5th level, may shapeshift into the form of a black bear.
-- At 7th level, may shapeshift into the form of a python or a mountain lion.
-- At 9th level, may shapeshift into a larger dire wolf instead of a wolf.
-- At 9th level, the druid become immune to poison.
-- At 11th level, may shapeshift into a larger grizzly bear instead of a black bear.
-- At 13th level, may shapeshift into a large wyvern.
-- At 15th level, gains 10% resistance to damage from cold, fire, electricity, and acid.  These resistances increase by another 10% at levels 18 and 21.
-
-WOLF: in wolf form the druid can detect hidden enemies. He can attack 1.5 times per round for 2d4 piercing damage. Successful attacks have a chance to grapple the target, briefly Slowing them; they must make a saving throw to avoid this.
-
-FERRET: in ferret form the druid is hidden from view for up to two rounds. <PRO_HESHE> can use this to escape enemies or move undetected, and can attack once per round for 1d2 piercing damage.
-
-BLACK BEAR: in black bear form, the druid has 19 strength. <PRO_HESHE> can attack twice per round with claws that cause 2d6 slashing damage.
-
-PYTHON: in snake form, the druid can attack with a bite that causes 1d3 damage and poisons the target with similar effects to the Assassin's "Poison Weapon" ability. Additionally, the druid can attempt to constrict around an opponent, briefly paralyzing them if they fail a saving throw.
-
-MOUNTAIN LION: in mountain lion form, the druid can attack twice per round for 2d4 slashing damage. Successful attacks can knock the target to the ground if they fail a saving throw. 
-
-DIRE WOLF: in dire wolf form the druid has 19 STR. He can attack 1.5 times per round for 2d6 piercing damage. Successful attacks have a chance to grapple the target, briefly Slowing them; they must make a saving throw to avoid this.
-
-GRIZZLY BEAR: in grizzly bear form, the druid has 20 strength. <PRO_HESHE> can attack twice per round with claws that cause 2d6 slashing damage and, if the target fails a saving throw, and additional 2d4 crushing damage.
-
-WYVERN: in wyvern form the druid can fly over ground-based obstacles like Entangle and Web spells. <PRO_HISHER> powerful claws can rake victims for 2d6 damage and <PRO_HISHER> attacks can poison the target with similar effects to the Assassin's "Poison Weapon" ability. Additionally, the druid can create a powerful gust of wind that acts like a smaller version of a dragon's "Wing Buffet" ability.~
 //
 // ... lycanthropic occultist:
 //

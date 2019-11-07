@@ -12,9 +12,9 @@ DEFINE_PATCH_FUNCTION patch_add_hla
     excluded_by = ~*~
     alignment_restrict = ~*~
 BEGIN
-  COUNT_2DA_COLS cols // amount of columns
-  COUNT_2DA_ROWS cols rows // amount of rows
-  READ_2DA_ENTRIES_NOW file cols // read all file into memory  
+  COUNT_2DA_COLS cols 
+  COUNT_2DA_ROWS cols rows 
+  READ_2DA_ENTRIES_NOW file cols  
   first_empty_row = rows // default value to amount of rows in order to skip removal if the table is full
   FOR (i = 0; i < file; ++i) BEGIN // iterate over rows
     SET empty_col_count = 0 // amount of empty columns in the row
