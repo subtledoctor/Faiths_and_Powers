@@ -78,14 +78,25 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
 //
   STR_VAR
 //
-// for class, enter 'cleric' 'priest' 'druid' 'mystic' 'occultist' 'shaman' 'paladin' 'zealot' 'ranger' or 'scout'
-// if multiclass, enter 'fighter_cleric' 'cleric_mage' 'cleric_thief' 'ranger_cleric' or 'fighter_mystic'
-// for selected spheres, enter 'focus' 'major' 'minor' 'paladin' or 'ranger'
+// The "class" variable tells the mod what class or archetype your kit is
+// Enter 'cleric' 'druid' 'mystic' 'shaman' 'paladin' 'zealot' or 'ranger'
+// If multiclass, enter 'fighter_cleric' 'cleric_mage' 'cleric_thief' 'ranger_cleric' or 'fighter_mystic'
+//
+// The "multiclass" variable tells the mod that this kit can be cloned as a multiclass kit
+// If a cleric, you can enter some combination of "fc_cr_ct_cm" (can be just "fc" or "cr_cm" or whatever)
+// If a druid, you can enter "fd" to create a fighter/druid version
+//
+// The "sphere_list" variable lets you link your kit to a particular deity or other kit already in the sphere system
+// See /faiths_and_powers/lib/sphere_list_fnp.tpa for a list
+// If you enter a deity here, e.g. "helm_spheres", then you can omit the rest of the sphere variables.
+// If you also include some sphere variables, they will override that sphere in the deity's sphere list
+// 
+// For selected sphere variables, enter 'focus' 'major' 'minor' 'paladin' or 'ranger'
 //
     clab_name 	= ~[your kit's clab.2da filename]~
 	class 			= ~x~	 
-	multiclass		= ~z~
-	sphere_list		= ~z~
+	multiclass		= ~x~
+	sphere_list		= ~custom~
 	s_Life 			= ~x~
 	s_Death 		= ~x~
 	s_Benediction 	= ~x~

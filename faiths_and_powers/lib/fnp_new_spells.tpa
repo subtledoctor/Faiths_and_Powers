@@ -1,3 +1,364 @@
+
+DEFINE_ACTION_MACRO v78_add_fnP_new_spells BEGIN
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//								SUBTLEDOCTOR'S SPELLS
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+
+//Summon Shadows
+//
+//	taken with permission from Spell Revisions
+//
+COPY ~faiths_and_powers/spheres/spells/shadow/d5fnp01.spl~     ~override~ 
+    SAY NAME1 @52007
+    SAY NAME2 @52007
+    SAY UNIDENTIFIED_DESC @52008
+COPY ~faiths_and_powers/spheres/spells/shadow/shadowsu.cre~     ~override~
+COPY ~faiths_and_powers/spheres/spells/shadow/shadowsu.eff~     ~override~
+COPY ~faiths_and_powers/spheres/spells/shadow/shadowsu.itm~     ~override~
+COPY ~faiths_and_powers/spheres/spells/shadow/dvwraith.cre~     ~override~
+COPY ~faiths_and_powers/spheres/spells/shadow/dvwraith.eff~     ~override~
+COPY ~faiths_and_powers/spheres/spells/shadow/dvwraith.itm~     ~override~
+//__________________________________________________________________________________
+
+
+//mazzy haste
+//
+COPY ~faiths_and_powers/spheres/spells/exploration/d5mhast.spl~ ~override/d5fnp02.spl~ 
+  SAY NAME1 @50211
+  SAY UNIDENTIFIED_DESC @50212
+  WRITE_SHORT 0x1c 2
+  LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 142 match_parameter2 = 38 opcode = 278 parameter1 = (0 - 1) parameter2 = 0 END
+  LPF ALTER_EFFECT INT_VAR power = 2 resist_dispel = 3 END
+//__________________________________________________________________________________
+
+
+//identification
+//
+COPY_EXISTING ~spwi110.spl~ ~override/d5fnp03.spl~
+	WRITE_SHORT 0x1c 2
+INCLUDE ~faiths_and_powers/lib/custom_identify.tpa~
+APPEND ~M_IDENT.LUA~ ~table.insert(identifyCustomList[1], 'd5fnp03')~
+//__________________________________________________________________________________
+
+
+//magic fang
+//
+/* list of summoned animals...
+01 batsu    : race = no_race : class = food_creature
+02 dogwisu  : race = dog     : class = dog_wild
+03 dogwasu  : race = dog     : class = dog_war
+04 wolfsu   : race = wolf    : class = wolf
+05 wolfdisu : race = wolf    : class = wolf_dire
+06 wolfwwsu : race = wolf    : class = wolf_winter
+06 wolfwisu : race = wolf    : class = wolf_winter
+07 catjagsu : race = cat     : class = cat
+07 catliosu : race = cat     : class = cat
+08 snakegsu : race = no_race : class = giant
+09 bearblsu : race = bear    : class = bear_black
+10 bearbrsu : race = bear    : class = bear_brown
+11 bearcasu : race = bear    : class = bear_cave
+12 bearposu : race = bear    : class = bear_polar
+13 gisbomb  : race = beetle  : class = no_class
+*/
+COPY ~faiths_and_powers/spheres/spells/animal/d5fnp04b.bam~ ~override~ 
+COPY ~faiths_and_powers/spheres/spells/animal/d5fnp04c.bam~ ~override~ 
+COPY ~faiths_and_powers/spheres/spells/animal/d5mfang.spl~ ~override/d5fnp04.spl~ 
+  SAY NAME1 @50221
+  SAY UNIDENTIFIED_DESC @50222
+  WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 3
+  WRITE_ASCII 0x3a ~d5fnp04c~ #8
+  LPF ALTER_SPELL_HEADER INT_VAR location = 2 STR_VAR icon = ~d5fnp04b~ END
+  PATCH_FOR_EACH headr IN ~1~ ~2~ ~3~ BEGIN
+	PATCH_FOR_EACH eff IN ~E~ ~T~ ~D~ /*~S~*/ BEGIN
+	  LPF ADD_SPELL_EFFECT INT_VAR header = %headr% opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 4 duration = 2 STR_VAR resource = EVAL ~D5FNG%eff%%headr%~ END
+    END
+  END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 4 duration = 2 STR_VAR resource = EVAL ~D5FNGVI~ END
+ACTION_FOR_EACH headr IN ~1~ ~2~ ~3~ BEGIN
+  CREATE EFF ~D5FNGE%headr%~
+	WRITE_LONG 0x10 345
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c %headr%
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+  CREATE EFF ~D5FNGT%headr%~
+	WRITE_LONG 0x10 22
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c %headr%
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+  CREATE EFF ~D5FNGD%headr%~
+	WRITE_LONG 0x10 73
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c %headr%
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+  CREATE EFF ~D5FNGS%headr%~
+	WRITE_LONG 0x10 325
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c %headr%
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+END
+CREATE EFF ~D5FNGVI~
+	WRITE_LONG 0x10 215
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x20 1
+	WRITE_LONG 0x24 0
+	WRITE_LONG 0x28 2
+	WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~SPHLYBLS~ #8
+ACTION_FOR_EACH animal IN ~BDSHA01A~
+						 ~BDSHA01B~
+						 ~BDSHA01C~
+						 ~BDSHA06A~
+						 ~BDSHA06B~
+						 ~BDSHA06C~
+						 ~DOGWAWP~
+						 ~FIRKRA01~
+						 ~GORCAMB6~
+						 ~GORCAMB7~
+						 ~HELLHO01~
+						 ~HELLIL01~
+						 ~HGFEL01~
+						 ~MOONDOG~
+						 ~OBSFIR05~
+						 ~OHDCDAWG~
+						 ~OHRSCAVE~
+						 ~OHRSGATE~
+						 ~OHRWHEEL~
+						 ~SHADRA01~
+						 ~SPBEAR1~
+						 ~SPBEAR2~
+						 ~SPBEAR3~
+						 ~SPBEAR4~
+						 ~SPBEAR5~
+						 ~SPIRBEAR~
+						 ~SPIRLION~
+						 ~SPIRSNAK~
+						 ~SPIRWOLF~
+						 ~SPLION1~
+						 ~SPLION2~
+						 ~SPLION3~
+						 ~SPLION4~
+						 ~SPLION5~
+						 ~SPSNAK1~
+						 ~SPSNAK2~
+						 ~SPSNAK3~
+						 ~SPSNAK4~
+						 ~SPSNAK5~
+						 ~SPWOLF1~
+						 ~SPWOLF2~
+						 ~SPWOLF3~
+						 ~SPWOLF4~
+						 ~SPWOLF5~
+						 ~WILSON13~
+						 ~WILSON9~
+						 ~WIZEYE~	BEGIN
+  COPY_EXISTING ~%animal%.cre~ ~override~
+	LPF ADD_CRE_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5fnp04~ END
+  BUT_ONLY
+END
+//__________________________________________________________________________________
+
+
+//animal growth
+//
+COPY ~faiths_and_powers/spheres/spells/animal/d5fnp05b.bam~ ~override~ 
+COPY ~faiths_and_powers/spheres/spells/animal/d5fnp05c.bam~ ~override~ 
+COPY ~faiths_and_powers/spheres/spells/animal/d5angro.spl~ ~override/d5fnp05.spl~ 
+  SAY NAME1 @50223
+  SAY UNIDENTIFIED_DESC @50224
+  WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 5
+  WRITE_ASCII 0x3a ~d5fnp05c~ #8
+  LPF ALTER_SPELL_HEADER INT_VAR location = 2 STR_VAR icon = ~d5fnp05b~ END
+  PATCH_FOR_EACH eff IN ~H50~ ~T2~ ~D2~ ~S2~ ~VI~ BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 4 duration = 2 STR_VAR resource = EVAL ~D5GRO%eff%~ END
+  END
+CREATE EFF ~D5GROH50~
+	WRITE_LONG 0x10 18
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c 150
+	WRITE_LONG 0x20 2
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+CREATE EFF ~D5GROT2~
+	WRITE_LONG 0x10 22
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c 2
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+CREATE EFF ~D5GROD2~
+	WRITE_LONG 0x10 73
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c 2
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+CREATE EFF ~D5GROS2~
+	WRITE_LONG 0x10 325
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c 2
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+CREATE EFF ~D5GROAC2~
+	WRITE_LONG 0x10 0
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c 2
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+CREATE EFF ~D5GROVI~
+	WRITE_LONG 0x10 215
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x20 1
+	WRITE_LONG 0x24 0
+	WRITE_LONG 0x28 2
+	WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~ICSTRENI~ #8 
+ACTION_FOR_EACH animal IN ~BDSHA01A~
+						 ~BDSHA01B~
+						 ~BDSHA01C~
+						 ~BDSHA06A~
+						 ~BDSHA06B~
+						 ~BDSHA06C~
+						 ~DOGWAWP~
+						 ~FIRKRA01~
+						 ~GORCAMB6~
+						 ~GORCAMB7~
+						 ~HELLHO01~
+						 ~HELLIL01~
+						 ~HGFEL01~
+						 ~MOONDOG~
+						 ~OBSFIR05~
+						 ~OHDCDAWG~
+						 ~OHRSCAVE~
+						 ~OHRSGATE~
+						 ~OHRWHEEL~
+						 ~SHADRA01~
+						 ~SPBEAR1~
+						 ~SPBEAR2~
+						 ~SPBEAR3~
+						 ~SPBEAR4~
+						 ~SPBEAR5~
+						 ~SPIRBEAR~
+						 ~SPIRLION~
+						 ~SPIRSNAK~
+						 ~SPIRWOLF~
+						 ~SPLION1~
+						 ~SPLION2~
+						 ~SPLION3~
+						 ~SPLION4~
+						 ~SPLION5~
+						 ~SPSNAK1~
+						 ~SPSNAK2~
+						 ~SPSNAK3~
+						 ~SPSNAK4~
+						 ~SPSNAK5~
+						 ~SPWOLF1~
+						 ~SPWOLF2~
+						 ~SPWOLF3~
+						 ~SPWOLF4~
+						 ~SPWOLF5~
+						 ~WILSON13~
+						 ~WILSON9~
+						 ~WIZEYE~	BEGIN
+  COPY_EXISTING ~%animal%.cre~ ~override~
+	LPF ADD_CRE_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5fnp05~ END
+  BUT_ONLY
+END
+//__________________________________________________________________________________
+
+
+//animate clay construct
+// 
+COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.spl~ ~override/d5fnp11.spl~ 
+	SAY NAME1 @50201
+	SAY UNIDENTIFIED_DESC @50202
+	WRITE_ASCII 0x3a ~d5clgolc~ #8
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clgolb~ END
+COPY ~faiths_and_powers/spheres/spells/creation/d5clgolc.bam~ ~override~ 
+COPY ~faiths_and_powers/spheres/spells/creation/d5clgolb.bam~ ~override~ 
+COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.eff~ ~override~ 
+COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.cre~ ~override~ 
+  SAY NAME1 50203
+  SAY NAME2 50203
+COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.itm~ ~override~ 
+ACTION_IF !(FILE_EXISTS_IN_GAME ~golcly01.bcs~) BEGIN
+  COPY ~faiths_and_powers/spheres/spells/creation/golcly01.bcs~ ~override~ 
+END
+
+//animate stone construct
+//
+COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.spl~ ~override/d5fnp12.spl~ 
+	SAY NAME1 @50204
+	SAY UNIDENTIFIED_DESC @50205
+	WRITE_ASCII 0x3a ~d5clgolc~ #8
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clgolb~ END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~golstone.itm~) BEGIN
+  COPY ~faiths_and_powers/spheres/spells/creation/golstone.itm~ ~override~ 
+END
+COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.eff~ ~override~ 
+COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.cre~ ~override~ 
+  SAY NAME1 50206
+  SAY NAME2 50206
+COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.itm~ ~override~ 
+ACTION_IF !(FILE_EXISTS_IN_GAME ~golsto01.bcs~) BEGIN
+  COPY ~faiths_and_powers/spheres/spells/creation/golsto01.bcs~ ~override~ 
+END
+
+//animate iron construct
+//
+COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.spl~ ~override/d5fnp13.spl~ 
+	SAY NAME1 @50207
+	SAY UNIDENTIFIED_DESC @50208
+	WRITE_ASCII 0x3a ~d5clgolc~ #8
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clgolb~ END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~irongol.itm~) BEGIN
+  COPY ~faiths_and_powers/spheres/spells/creation/irongol.itm~ ~override~ 
+END
+COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.eff~ ~override~ 
+COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.cre~ ~override~ 
+  SAY NAME1 50209
+  SAY NAME2 50209
+COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.itm~ ~override~ 
+ACTION_IF !(FILE_EXISTS_IN_GAME ~goliro01.bcs~) BEGIN
+  COPY ~faiths_and_powers/spheres/spells/creation/goliro01.bcs~ ~override~ 
+END
+
+// ***** need new BAMs for these!
+
+//__________________________________________________________________________________
+
+
+// add:
+// 
+
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//								GRAMMARSALAD'S SPELLS
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////                                         //////////////////////////////////////
@@ -1024,6 +1385,21 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////            //////////////////////////
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________________Blindness_________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Spell itself
+COPY ~%mod_folder%/data/iwd_spells/wizard_2/b_w206.spl~ ~override~
+        SAY NAME1 @53027
+        SAY NAME2 @53027
+        SAY UNIDENTIFIED_DESC @53028
+	SAY DESC @53028
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2136,8 +2512,20 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 //ADD FREE ACTION PROTECTION
 //_________________________________________________
+
 //SR NWN spell deflection
+
 OUTER_SET $aoe_spell(~CLERIC_ASSASSIN_VINES~)=1
+
+// change entangle icon
+
+COPY ~faiths_and_powers/spheres/spells/plant/d5pr105b.bam~ ~override~
+COPY ~faiths_and_powers/spheres/spells/plant/d5pr105c.bam~ ~override~
+COPY_EXISTING ~sppr105.spl~ ~override~
+  WRITE_ASCII 0x3a ~d5pr105c~ #8
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5pr105b~ END
+BUT_ONLY
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //____________________________________________________________Summon Water Elemental____________________________________________________________________//
@@ -2307,3 +2695,5 @@ INCLUDE ~%mod_folder%/lib/spell_lists/poly_list.tpa~
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //May add a few, like stone fist
+
+END	//	end v78_add_new function

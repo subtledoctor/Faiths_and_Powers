@@ -867,6 +867,39 @@ END
 
 //___________________________________________________________________________________
 //
+DEFINE_ACTION_FUNCTION malar_spheres 
+  RET_ARRAY malar_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY malar_spheres_array BEGIN
+	Life 			=> minor
+	Death 			=> minor
+	Creation 		=> x
+	Destruction 	=> major
+	Protection 		=> x
+	War 			=> x
+	Exploration 	=> major
+	Knowledge 		=> x
+	Deception 		=> x
+	Thought 		=> major
+	Dread 			=> minor
+	Vigor 			=> major
+	Affliction 		=> major
+	Animal 			=> major
+	Plant 			=> x
+	Earth 			=> minor
+	Water 			=> x
+	Air 			=> minor
+	Fire 			=> x
+	Light 			=> x
+	Shadow 			=> minor
+	Magic 			=> x
+	Astral    		=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
 DEFINE_ACTION_FUNCTION mask_spheres 
   RET_ARRAY mask_spheres_array
  BEGIN
@@ -1530,6 +1563,39 @@ END
 
 //___________________________________________________________________________________
 //
+DEFINE_ACTION_FUNCTION moradin_spheres 
+  RET_ARRAY moradin_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY moradin_spheres_array BEGIN
+	Life 				=> major
+	Death 				=> x
+	Creation 			=> major
+	Destruction 		=> major
+	Protection 			=> major
+	War 				=> minor
+	Exploration 		=> x
+	Knowledge 			=> minor
+	Deception 			=> x
+	Thought 			=> x
+	Dread 				=> major
+	Vigor 				=> minor
+	Affliction 			=> x
+	Animal 				=> x
+	Plant 				=> x
+	Earth 				=> major
+	Water 				=> x
+	Air 				=> major
+	Fire 				=> x
+	Light 				=> minor
+	Shadow 				=> x
+	Magic 				=> minor
+	Perdition  			=> major
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
 DEFINE_ACTION_FUNCTION clangeddin_spheres 
   RET_ARRAY clangeddin_spheres_array
  BEGIN
@@ -1563,33 +1629,33 @@ END
 
 //___________________________________________________________________________________
 //
-DEFINE_ACTION_FUNCTION moradin_spheres 
-  RET_ARRAY moradin_spheres_array
+DEFINE_ACTION_FUNCTION baravar_spheres 
+  RET_ARRAY baravar_spheres_array
  BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY moradin_spheres_array BEGIN
-	Life 				=> major
-	Death 				=> x
-	Creation 			=> major
-	Destruction 		=> major
-	Protection 			=> major
-	War 				=> minor
-	Exploration 		=> x
-	Knowledge 			=> minor
-	Deception 			=> x
-	Thought 			=> x
-	Dread 				=> major
-	Vigor 				=> minor
-	Affliction 			=> x
-	Animal 				=> x
-	Plant 				=> x
-	Earth 				=> major
-	Water 				=> x
-	Air 				=> major
-	Fire 				=> x
-	Light 				=> minor
-	Shadow 				=> x
-	Magic 				=> minor
-	Perdition  			=> major
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY baravar_spheres_array BEGIN
+	Life		 		=> major
+	Death		 		=> x
+	Creation			=> x
+	Destruction		 	=> x
+	Protection		 	=> minor
+	War		 			=> x
+	Exploration		  	=> major
+	Knowledge		 	=> major
+	Deception	 		=> major
+	Thought		 		=> major
+	Dread		 		=> minor
+	Vigor		 		=> minor
+	Affliction		 	=> x
+	Animal		 		=> x
+	Plant		 		=> x
+	Earth		 		=> x
+	Water		 		=> minor
+	Air		 			=> x
+	Fire		 		=> x
+	Light	 			=> major
+	Shadow		 		=> minor
+	Magic		 		=> minor
+	Perdition		    => x
  END
 END
 //___________________________________________________________________________________
@@ -1629,33 +1695,132 @@ END
 
 //___________________________________________________________________________________
 //
-DEFINE_ACTION_FUNCTION baravar_spheres 
-  RET_ARRAY baravar_spheres_array
+DEFINE_ACTION_FUNCTION urdlen_spheres 
+  RET_ARRAY urdlen_spheres_array
  BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY baravar_spheres_array BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY urdlen_spheres_array BEGIN
+	Life		 		=> minor
+	Death		 		=> major
+	Creation			=> x
+	Destruction		 	=> major
+	Protection		 	=> x
+	War		 			=> x
+	Exploration		  	=> minor
+	Knowledge		 	=> minor
+	Deception	 		=> major
+	Thought		 		=> minor
+	Dread		 		=> major
+	Vigor		 		=> x
+	Affliction		 	=> major
+	Animal		 		=> x
+	Plant		 		=> x
+	Earth		 		=> major
+	Water		 		=> x
+	Air		 			=> x
+	Fire		 		=> x
+	Light	 			=> x
+	Shadow		 		=> major
+	Magic		 		=> minor
+	Astral			    => x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION yondalla_spheres 
+  RET_ARRAY yondalla_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY yondalla_spheres_array BEGIN
+	Life		 		=> major
+	Death		 		=> x
+	Creation			=> minor
+	Destruction		 	=> major
+	Protection		 	=> major
+	War		 			=> x
+	Exploration		  	=> minor
+	Knowledge		 	=> major
+	Deception	 		=> x
+	Thought		 		=> major
+	Dread		 		=> x
+	Vigor		 		=> minor
+	Affliction		 	=> x
+	Animal		 		=> minor
+	Plant		 		=> minor
+	Earth		 		=> major
+	Water		 		=> x
+	Air		 			=> x
+	Fire		 		=> x
+	Light	 			=> major
+	Shadow		 		=> x
+	Magic		 		=> x
+	Astral		    	=> minor
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION arvoreen_spheres 
+  RET_ARRAY arvoreen_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY arvoreen_spheres_array BEGIN
+	Life		 		=> minor
+	Death		 		=> x
+	Creation			=> x
+	Destruction		 	=> major
+	Protection		 	=> major
+	War		 			=> major
+	Exploration		  	=> major
+	Knowledge		 	=> minor
+	Deception	 		=> x
+	Thought		 		=> x
+	Dread		 		=> minor
+	Vigor		 		=> major
+	Affliction		 	=> x
+	Animal		 		=> minor
+	Plant		 		=> minor
+	Earth		 		=> major
+	Water		 		=> x
+	Air		 			=> x
+	Fire		 		=> x
+	Light	 			=> major
+	Shadow		 		=> x
+	Magic		 		=> x
+	Astral		    	=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION brandobaris_spheres 
+  RET_ARRAY brandobaris_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY brandobaris_spheres_array BEGIN
 	Life		 		=> major
 	Death		 		=> x
 	Creation			=> x
 	Destruction		 	=> x
-	Protection		 	=> minor
-	War		 			=> x
+	Protection		 	=> major
+	War		 			=> minor
 	Exploration		  	=> major
-	Knowledge		 	=> major
-	Deception	 		=> major
+	Knowledge		 	=> minor
+	Deception	 		=> minor
 	Thought		 		=> major
-	Dread		 		=> minor
-	Vigor		 		=> minor
+	Dread		 		=> x
+	Vigor		 		=> major
 	Affliction		 	=> x
-	Animal		 		=> x
-	Plant		 		=> x
+	Animal		 		=> minor
+	Plant		 		=> major
 	Earth		 		=> x
-	Water		 		=> minor
-	Air		 			=> x
+	Water		 		=> x
+	Air		 			=> major
 	Fire		 		=> x
-	Light	 			=> major
+	Light	 			=> x
 	Shadow		 		=> minor
-	Magic		 		=> minor
-	Perdition		    => x
+	Magic		 		=> x
+	Astral		    	=> x
  END
 END
 //___________________________________________________________________________________

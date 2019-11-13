@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.78sd7~
+VERSION ~0.78sd8~
 
 
 ALWAYS
@@ -17,7 +17,9 @@ ALWAYS
 
 	INCLUDE ~faiths_and_powers/lib/qd_multiclass.tpa~
 
-	INCLUDE ~faiths_and_powers/lib/misc_functions.tpa~
+	INCLUDE ~faiths_and_powers/lib/misc_fnp_functions.tpa~
+
+	INCLUDE ~faiths_and_powers/lib/hla_actions.tpa~
 
 	INCLUDE ~faiths_and_powers/lib/spell_evasion.tpa~
 	
@@ -77,15 +79,11 @@ LAF multiclass_text END
 //enable lots of multiclasses_______________________________________________________
 //
 LAF enable_multiclasses END
-//___________________________________________________________________________________
+//__________________________________________________________________________________
 
 LAM d5_kit_choices
 
 INCLUDE ~faiths_and_powers/lib/add_multiclass_kits.tpa~
-
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5_no_spheres.d5~) BEGIN
-   OUTER_SET d5_multiclass_druids 	=	0
-END
 
 ACTION_IF (%d5_cm_mystra% = 1) BEGIN
   LAF cm_mystra END
@@ -146,6 +144,9 @@ LAM d5_kit_choices
   LAF druid_ranger END
   LAF druid_thief END
   LAF druid_mage END
+  ACTION_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~80~) BEGIN
+	LAF sorcerer_druid END
+  END
   LAF multi_druid_strongholds END
 /*
   ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
@@ -163,6 +164,7 @@ LAM d5_kit_choices
 //END
 
 //__________________________________________________________________________________
+
 
 
 //__________________________________________________________________________________

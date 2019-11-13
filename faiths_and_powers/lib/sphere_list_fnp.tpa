@@ -150,7 +150,7 @@ WIZARD_PROTECTION_FROM_PETRIFICATION    1	=	Exploration // SR exped. retreat
 NOSR_b_w101                             1	=	Exploration // Expeditious Retreat
 CLERIC_FIND_TRAPS                       1	=	Exploration
 CLERIC_REMOVE_PARALYSIS                 2	=	Exploration
-d5mhast                                 2	=	Exploration  // mazzy haste (self-only)
+d5fnp02                                 2	=	Exploration  // mazzy haste (self-only)
 CLERIC_FAR_SIGHT                        3	=	Exploration
 CLERIC_FREE_ACTION                      3	=	Exploration
 WIZARD_HASTE                            4	=	Exploration
@@ -160,9 +160,10 @@ WIZARD_TELEPORT_FIELD                   6	=	Exploration
 WIZARD_IMPROVED_HASTE                   6	=	Exploration
 WIZARD_FREEDOM                          7	=	Exploration
 CLERIC_ETHER_GATE                       7	=	Exploration
-SR_WIZARD_INFRAVISION                   1	=	Knowledge // sr true strike
+d5fnp03                                 0	=	knowledge // identify
 CLERIC_DETECT_EVIL                      1	=	Knowledge
 CLERIC_KNOW_ALIGNMENT                   1	=	Knowledge
+SR_WIZARD_INFRAVISION                   2	=	Knowledge // sr true strike
 WIZARD_CLAIRVOYANCE                     2	=	Knowledge
 CLERIC_INVISIBILITY_PURGE               3	=	Knowledge
 CLERIC_SPIRITUAL_CLARITY                3	=	Knowledge
@@ -204,8 +205,8 @@ CLERIC_NATURE_BEAUTY                    7	=	Thought
 CLERIC_IMPERVIOUS_SANCTITY_OF_MIND      7	=	Thought
 CLERIC_CURSE                            1	=	Dread
 CLERIC_DOOM                             1	=	Dread
-CLERIC_HOLD_PERSON                      0	=	Dread
 CLERIC_FORBID                           2	=	Dread
+CLERIC_HOLD_PERSON                      3	=	Dread
 CLERIC_CLOAK_OF_FEAR                    3	=	Dread
 WIZARD_GREATER_MALISON                  4	=	Dread
 WIZARD_EMOTION_FEAR                     4	=	Dread
@@ -217,6 +218,7 @@ CLERIC_SYMBOL_OF_HOPELESSNESS           7	=	Dread
 CLERIC_AID                              1	=	Vigor
 CLERIC_UNFAILING_ENDURANCE              1	=	Vigor
 CLERIC_SLOW_POISON                      1	=	Vigor
+WIZARD_STRENGTH                         2	=	Vigor
 CLERIC_CURE_DISEASE                     2	=	Vigor
 CLERIC_REMOVE_PARALYSIS                 2	=	Vigor
 CLERIC_DRAW_UPON_HOLY_MIGHT             3	=	Vigor
@@ -246,20 +248,20 @@ SR_sppr220                              2	=	Animal // SR Animal Summon 2
 CLERIC_SUMMON_INSECTS                   3	=	Animal
 CLERIC_FERAL_INSTINCT                   3	=	Animal
 SR_sppr320                              3	=	Animal // SR Animal Summon 3
-SR_sppr324                              3	=	Animal // SR Magic Fang
+d5fnp04                                 3	=	Animal // Magic Fang
 CLERIC_ANIMAL_SUMMONING_1               4	=	Animal
 CLERIC_GIANT_INSECT                     4	=	Animal
 CLERIC_ANIMAL_SUMMONING_2               5	=	Animal
 CLERIC_INSECT_PLAGUE                    5	=	Animal
-SR_sppr525                              5	=	Animal // SR Animal Growth
+d5fnp05                                 5	=	Animal // Animal Growth
 CLERIC_ANIMAL_SUMMONING_3               6	=	Animal
 NOSR_CLERIC_CONJURE_ANIMALS             7	=	Animal
 CLERIC_CREEPING_DOOM                    7	=	Animal
 SR_sppr716                              7	=	Animal // SR Animal Summon 7
 CLERIC_ENTANGLE                         1	=	Plant
-CLERIC_SHILLELAGH                       1	=	Plant
 CLERIC_GOOD_BERRIES                     1	=	Plant
 CLERIC_GOODBERRY                        1	=	Plant
+CLERIC_SHILLELAGH                       1	=	Plant
 CLERIC_BARKSKIN                         2	=	Plant
 CLERIC_THORN_SPRAY                      3	=	Plant
 CLERIC_SNARE                            3	=	Plant
@@ -345,15 +347,15 @@ CLERIC_SANCTUARY                        1	=	Shadow
 NOSR_WIZARD_BLINDNESS                   2	=	Shadow
 b_w206                                  2	=	Shadow // Blindness (and no conflicts with SR)
 CLERIC_CLOAK_DARKNESS                   3	=	Shadow
-WIZARD_SHADOW_MONSTERS                  4	=	Shadow
-b_w426                                  4	=	Shadow // Shadow Monsters
+WIZARD_SHADOW_MONSTERS                  3	=	Shadow
+b_w426                                  3	=	Shadow // Shadow Monsters
 WIZARD_PHANTOM_BLADE                    4	=	Shadow
-WIZARD_SHADOW_DOOR                      4	=	Shadow
-d5sh501                                 5	=	Shadow // summon shadow
-B_SSTEP                                 5	=	Shadow // shadowstep
+B_SSTEP                                 4	=	Shadow // shadowstep
+WIZARD_SHADOW_DOOR                      5	=	Shadow
+d5fnp01                                 5	=	Shadow // summon shadow
 WIZARD_SHADES                           6	=	Shadow
 B_W629                                  6	=	Shadow // Shades
-WIZARD_WRAITH_FORM                      6	=	Shadow
+WIZARD_WRAITH_FORM                      7	=	Shadow
 WIZARD_POWER_WORD_BLIND                 7	=	Shadow
 CLERIC_SILENCE_15_FOOT                  1	=	Magic
 CLERIC_MISCAST_MAGIC                    2	=	Magic
@@ -898,6 +900,39 @@ DEFINE_ACTION_FUNCTION loviatar_spheres
 	Shadow		 		=> minor
 	Magic		 		=> x
 	Astral		    	=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION malar_spheres 
+  RET_ARRAY malar_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY malar_spheres_array BEGIN
+	Life 			=> minor
+	Death 			=> minor
+	Creation 		=> x
+	Destruction 	=> major
+	Protection 		=> x
+	War 			=> x
+	Exploration 	=> major
+	Knowledge 		=> x
+	Deception 		=> x
+	Thought 		=> major
+	Dread 			=> minor
+	Vigor 			=> major
+	Affliction 		=> major
+	Animal 			=> major
+	Plant 			=> x
+	Earth 			=> minor
+	Water 			=> x
+	Air 			=> minor
+	Fire 			=> x
+	Light 			=> x
+	Shadow 			=> minor
+	Magic 			=> x
+	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -1567,39 +1602,6 @@ END
 
 //___________________________________________________________________________________
 //
-DEFINE_ACTION_FUNCTION clangeddin_spheres 
-  RET_ARRAY clangeddin_spheres_array
- BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY clangeddin_spheres_array BEGIN
-	Life 				=> major
-	Death 				=> x
-	Creation 			=> minor
-	Destruction 		=> major
-	Protection 			=> major
-	War 				=> major
-	Exploration 		=> x
-	Knowledge 			=> minor
-	Deception 			=> x
-	Thought 			=> x
-	Dread 				=> minor
-	Vigor 				=> major
-	Affliction 			=> x
-	Animal 				=> x
-	Plant 				=> x
-	Earth 				=> major
-	Water 				=> x
-	Air 				=> x
-	Fire 				=> x
-	Light 				=> minor
-	Shadow 				=> x
-	Magic 				=> minor
-	Astral   			=> x
- END
-END
-//___________________________________________________________________________________
-
-//___________________________________________________________________________________
-//
 DEFINE_ACTION_FUNCTION moradin_spheres 
   RET_ARRAY moradin_spheres_array
  BEGIN
@@ -1627,6 +1629,39 @@ DEFINE_ACTION_FUNCTION moradin_spheres
 	Shadow 				=> x
 	Magic 				=> minor
 	Astral  			=> major
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION clangeddin_spheres 
+  RET_ARRAY clangeddin_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY clangeddin_spheres_array BEGIN
+	Life 				=> major
+	Death 				=> x
+	Creation 			=> minor
+	Destruction 		=> major
+	Protection 			=> major
+	War 				=> major
+	Exploration 		=> x
+	Knowledge 			=> minor
+	Deception 			=> x
+	Thought 			=> x
+	Dread 				=> minor
+	Vigor 				=> major
+	Affliction 			=> x
+	Animal 				=> x
+	Plant 				=> x
+	Earth 				=> major
+	Water 				=> x
+	Air 				=> x
+	Fire 				=> x
+	Light 				=> minor
+	Shadow 				=> x
+	Magic 				=> minor
+	Astral   			=> x
  END
 END
 //___________________________________________________________________________________
@@ -1693,6 +1728,39 @@ DEFINE_ACTION_FUNCTION baervan_spheres
 	Shadow		 		=> x
 	Magic		 		=> x
 	Astral		    	=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION urdlen_spheres 
+  RET_ARRAY urdlen_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY urdlen_spheres_array BEGIN
+	Life		 		=> minor
+	Death		 		=> major
+	Creation			=> x
+	Destruction		 	=> major
+	Protection		 	=> x
+	War		 			=> x
+	Exploration		  	=> minor
+	Knowledge		 	=> minor
+	Deception	 		=> major
+	Thought		 		=> minor
+	Dread		 		=> major
+	Vigor		 		=> x
+	Affliction		 	=> major
+	Animal		 		=> x
+	Plant		 		=> x
+	Earth		 		=> major
+	Water		 		=> x
+	Air		 			=> x
+	Fire		 		=> x
+	Light	 			=> x
+	Shadow		 		=> major
+	Magic		 		=> minor
+	Astral			    => x
  END
 END
 //___________________________________________________________________________________
@@ -2098,6 +2166,72 @@ END
 
 //___________________________________________________________________________________
 //
+DEFINE_ACTION_FUNCTION beast_lord_spheres 
+  RET_ARRAY beast_lord_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY beast_lord_spheres_array BEGIN
+	Life 			=> minor
+	Death 			=> minor
+	Creation 		=> x
+	Destruction 	=> x
+	Protection 		=> x
+	War 			=> x
+	Exploration 	=> major
+	Knowledge 		=> x
+	Deception 		=> x
+	Thought 		=> major
+	Dread 			=> minor
+	Vigor 			=> major
+	Affliction 		=> major
+	Animal 			=> focus
+	Plant 			=> x
+	Earth 			=> x
+	Water 			=> minor
+	Air 			=> x
+	Fire 			=> x
+	Light 			=> x
+	Shadow 			=> minor
+	Magic 			=> x
+	Astral    		=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION elementalist_spheres 
+  RET_ARRAY elementalist_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY elementalist_spheres_array BEGIN
+	Life 			=> minor
+	Death 			=> x
+	Creation 		=> x
+	Destruction 	=> minor
+	Protection 		=> minor
+	War 			=> x
+	Exploration 	=> x
+	Knowledge 		=> x
+	Deception 		=> x
+	Thought 		=> x
+	Dread 			=> minor
+	Vigor 			=> minor
+	Affliction 		=> x
+	Animal 			=> x
+	Plant 			=> x
+	Earth 			=> major
+	Water 			=> major
+	Air 			=> major
+	Fire 			=> major
+	Light 			=> major
+	Shadow 			=> minor
+	Magic 			=> minor
+	Astral    		=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
 DEFINE_ACTION_FUNCTION mystic_earth_spheres 
   RET_ARRAY mystic_earth_spheres_array
  BEGIN
@@ -2290,72 +2424,6 @@ DEFINE_ACTION_FUNCTION mystic_shadow_spheres
 	Shadow 			=> focus
 	Magic 			=> major
 	Astral			=> minor
- END
-END
-//___________________________________________________________________________________
-
-//___________________________________________________________________________________
-//
-DEFINE_ACTION_FUNCTION beast_lord_spheres 
-  RET_ARRAY beast_lord_spheres_array
- BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY beast_lord_spheres_array BEGIN
-	Life 			=> minor
-	Death 			=> minor
-	Creation 		=> x
-	Destruction 	=> x
-	Protection 		=> x
-	War 			=> x
-	Exploration 	=> major
-	Knowledge 		=> x
-	Deception 		=> x
-	Thought 		=> major
-	Dread 			=> minor
-	Vigor 			=> major
-	Affliction 		=> major
-	Animal 			=> focus
-	Plant 			=> x
-	Earth 			=> x
-	Water 			=> minor
-	Air 			=> x
-	Fire 			=> x
-	Light 			=> x
-	Shadow 			=> minor
-	Magic 			=> x
-	Astral    		=> x
- END
-END
-//___________________________________________________________________________________
-
-//___________________________________________________________________________________
-//
-DEFINE_ACTION_FUNCTION elementalist_spheres 
-  RET_ARRAY elementalist_spheres_array
- BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY elementalist_spheres_array BEGIN
-	Life 			=> minor
-	Death 			=> x
-	Creation 		=> x
-	Destruction 	=> minor
-	Protection 		=> minor
-	War 			=> x
-	Exploration 	=> x
-	Knowledge 		=> x
-	Deception 		=> x
-	Thought 		=> x
-	Dread 			=> minor
-	Vigor 			=> minor
-	Affliction 		=> x
-	Animal 			=> x
-	Plant 			=> x
-	Earth 			=> major
-	Water 			=> major
-	Air 			=> major
-	Fire 			=> major
-	Light 			=> major
-	Shadow 			=> minor
-	Magic 			=> minor
-	Astral    		=> x
  END
 END
 //___________________________________________________________________________________
@@ -2697,7 +2765,8 @@ END
 //___________________________________________________________________________________
 //
 DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
- ACTION_IF (FILE_EXISTS_IN_GAME ~QD_MCP01.spl~) BEGIN
+  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~P~ END 
+  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~P~ END 
   COPY_EXISTING ~QD_MCP01.spl~ ~override~ // trueclass spheres via .eff
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5splif#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smdea#~ END
@@ -2739,34 +2808,6 @@ DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
 	Magic 			=> x
 	Astral			=> x
   END
- END
- ACTION_IF !(FILE_EXISTS_IN_GAME ~QD_MCP01.spl~) BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
-	Life 			=> major
-	Death 			=> minor
-	Creation 		=> minor
-	Destruction 	=> major
-	Protection 		=> major
-	War 			=> major
-	Exploration  	=> major
-	Knowledge 		=> major
-	Deception 		=> x
-	Thought 		=> minor
-	Dread 			=> major
-	Vigor 			=> minor
-	Affliction 		=> x
-	Animal 			=> x
-	Plant 			=> x
-	Earth 			=> x
-	Water 			=> x
-	Air 			=> x
-	Fire 			=> minor
-	Light 			=> major
-	Shadow 			=> x
-	Magic 			=> minor
-	Astral    		=> x
-  END
- END
 END
 //___________________________________________________________________________________
 

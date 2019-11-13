@@ -953,6 +953,39 @@ END
 
 //___________________________________________________________________________________
 //
+DEFINE_ACTION_FUNCTION malar_spheres 
+  RET_ARRAY malar_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY malar_spheres_array BEGIN
+	Healing 		=> minor
+	Necromantic		=> minor
+	Creation	 	=> x
+	Decay		 	=> x
+	Protection 		=> x
+	Combat 			=> major
+	Travelers	 	=> major
+	Divination 		=> x
+	Wards	 		=> x
+	Thought 		=> major
+	Charm 			=> minor
+	Law	 			=> x
+	Chaos	 		=> major
+	Animal 			=> major
+	Plant 			=> x
+	Earth 			=> minor
+	Water 			=> x
+	Air 			=> minor
+	Fire 			=> x
+	Sun	 			=> x
+	Shadow 			=> minor
+	Weather 		=> x
+	Astral	   		=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
 DEFINE_ACTION_FUNCTION mask_spheres 
   RET_ARRAY mask_spheres_array
  BEGIN
@@ -1616,39 +1649,6 @@ END
 
 //___________________________________________________________________________________
 //
-DEFINE_ACTION_FUNCTION clangeddin_spheres 
-  RET_ARRAY clangeddin_spheres_array
- BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY clangeddin_spheres_array BEGIN
-	Healing				=> major
-	Necromantic			=> x
-	Creation	 		=> major
-	Decay		 		=> major
-	Protection 			=> major
-	Combat 				=> major
-	Travelers	 		=> minor
-	Divination 			=> minor
-	Wards	 			=> minor
-	Thought 			=> x
-	Charm 				=> x
-	Law	 				=> major
-	Chaos	 			=> x
-	Animal 				=> x
-	Plant 				=> x
-	Earth 				=> major
-	Water 				=> x
-	Air 				=> x
-	Fire 				=> x
-	Sun	 				=> minor
-	Shadow 				=> x
-	Weather 			=> x
-	Astral	   			=> x
- END
-END
-//___________________________________________________________________________________
-
-//___________________________________________________________________________________
-//
 DEFINE_ACTION_FUNCTION moradin_spheres 
   RET_ARRAY moradin_spheres_array
  BEGIN
@@ -1676,6 +1676,39 @@ DEFINE_ACTION_FUNCTION moradin_spheres
 	Shadow 				=> x
 	Weather 			=> x
 	Astral	  			=> minor
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION clangeddin_spheres 
+  RET_ARRAY clangeddin_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY clangeddin_spheres_array BEGIN
+	Healing				=> major
+	Necromantic			=> x
+	Creation	 		=> major
+	Decay		 		=> major
+	Protection 			=> major
+	Combat 				=> major
+	Travelers	 		=> minor
+	Divination 			=> minor
+	Wards	 			=> minor
+	Thought 			=> x
+	Charm 				=> x
+	Law	 				=> major
+	Chaos	 			=> x
+	Animal 				=> x
+	Plant 				=> x
+	Earth 				=> major
+	Water 				=> x
+	Air 				=> x
+	Fire 				=> x
+	Sun	 				=> minor
+	Shadow 				=> x
+	Weather 			=> x
+	Astral	   			=> x
  END
 END
 //___________________________________________________________________________________
@@ -1742,6 +1775,39 @@ DEFINE_ACTION_FUNCTION baervan_spheres
 	Shadow		 		=> x
 	Weather		 		=> minor
 	Astral			    => x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION urdlen_spheres 
+  RET_ARRAY urdlen_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY urdlen_spheres_array BEGIN
+	Healing 		=> minor
+	Necromantic		=> major
+	Creation	 	=> x
+	Decay		 	=> major
+	Protection 		=> x
+	Combat 			=> major
+	Travelers	 	=> x
+	Divination 		=> minor
+	Wards	 		=> minor
+	Thought 		=> major
+	Charm 			=> minor
+	Law	 			=> x
+	Chaos	 		=> major
+	Animal 			=> c
+	Plant 			=> x
+	Earth 			=> major
+	Water 			=> x
+	Air 			=> x
+	Fire 			=> minor
+	Sun	 			=> x
+	Shadow 			=> major
+	Weather 		=> x
+	Astral	   		=> x
  END
 END
 //___________________________________________________________________________________

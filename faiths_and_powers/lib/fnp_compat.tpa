@@ -15,7 +15,10 @@ END
 
 //ADD FnP SPHERES TO EXTRA KIT_______________________________________________________
 //
-DEFINE_ACTION_MACRO apply_fnp_spheres_to_kit BEGIN
+DEFINE_ACTION_FUNCTION apply_fnp_spheres_to_kit STR_VAR mod_clab = ~x~ BEGIN
+
+  LAM ~READ_FNP_KIT_INFO~
+
   OUTER_SPRINT sphere_access ~- Access to the spheres of:~
   OUTER_SPRINT focus_access ~- Focus access to the spheres of:~
   OUTER_SPRINT major_access ~- Major access to the spheres of:~
@@ -31,7 +34,10 @@ DEFINE_ACTION_MACRO apply_fnp_spheres_to_kit BEGIN
   OUTER_TEXT_SPRINT ranger_sphere_list ~~
   OUTER_TEXT_SPRINT total_sphere_list ~~
   
-  ACTION_IF (NOT VARIABLE_IS_SET ~mod_clab~) BEGIN
+  OUTER_SPRINT $d5_kit_spheres_array (~0~ ~0~ ~0~ ~0~ ~0~) ~0~
+  
+//  ACTION_IF !(VARIABLE_IS_SET ~mod_clab~) BEGIN
+  ACTION_IF (~%mod_clab%~ STRING_EQUAL_CASE ~x~) BEGIN
 	COPY_EXISTING ~d5_class.2da~ ~override~
 	  COUNT_2DA_ROWS 2 rows
 	  READ_2DA_ENTRY (rows - 1) 0 2 last_clab
@@ -50,40 +56,39 @@ DEFINE_ACTION_MACRO apply_fnp_spheres_to_kit BEGIN
 		READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 4 kit_desc
 		READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 9 kit_code
 		READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 8 kit_class
+		SPRINT $d5_kit_spheres_array (~%kit_clab%~ ~%kit_index%~ ~%kit_label%~ ~%kit_desc%~ ~%kit_code%~) ~%kit_class%~
 	  END
 	END
   BUT_ONLY
-  ACTION_IF (%kit_class% = 3) OR  
- 			(%kit_class% = 11) OR  
- 			(%kit_class% = 8) OR  
- 			(%kit_class% = 14) OR  
- 			(%kit_class% = 15) OR  
- 			(%kit_class% = 18) BEGIN
-	COPY_EXISTING ~luabbr.2da~ ~override~
-	  REPLACE_TEXTUALLY ~^\(%kit_label%[ %TAB%]+\).+$~ ~\1b_%kit_index%~
-	BUT_ONLY
-  END
-  COPY ~faiths_and_powers/spheres/hlas/luclxyz.2da~ ~override/lub_%kit_index%.2da~
-  ACTION_IF (%kit_class% = 11) BEGIN 	// druid
-	COPY ~faiths_and_powers/spheres/hlas/ludrxyz.2da~ ~override/lub_%kit_index%.2da~
-  END
-  ACTION_IF (%kit_class% = 8) BEGIN 	// f/c
-	COPY ~faiths_and_powers/spheres/hlas/lufcxyz.2da~ ~override/lub_%kit_index%.2da~
-  END
-  ACTION_IF (%kit_class% = 18) BEGIN 	// c/r
-	COPY ~faiths_and_powers/spheres/hlas/lucrxyz.2da~ ~override/lub_%kit_index%.2da~
-  END
-  ACTION_IF (%kit_class% = 15) BEGIN 	// c/t
-	COPY ~faiths_and_powers/spheres/hlas/luctxyz.2da~ ~override/lub_%kit_index%.2da~
-  END
-  ACTION_IF (%kit_class% = 14) BEGIN 	// c/m
-	COPY ~faiths_and_powers/spheres/hlas/lucmxyz.2da~ ~override/lub_%kit_index%.2da~
-  END
-  ACTION_PHP_EACH d5_fnp_spheres AS sphere => val BEGIN
-	ACTION_IF !(FILE_EXISTS_IN_GAME ~d5altsph.2da~) BEGIN
-	  OUTER_SPRINT ~text_sphere~ ~%sphere%~
+
+  ACTION_PHP_EACH d5_kit_spheres_array AS goo => roo BEGIN
+	ACTION_IF (%roo% = 3) OR  
+ 			(%roo% = 11) OR  
+ 			(%roo% = 8) OR  
+ 			(%roo% = 14) OR  
+ 			(%roo% = 15) OR  
+ 			(%roo% = 18) BEGIN
+	  COPY_EXISTING ~luabbr.2da~ ~override~
+		REPLACE_TEXTUALLY ~^\(%goo_2%[ %TAB%]+\).+$~ ~\1b_%goo_1%~
+	  BUT_ONLY
 	END
-	ACTION_IF (FILE_EXISTS_IN_GAME ~d5altsph.2da~) BEGIN
+	COPY ~faiths_and_powers/spheres/hlas/luclxyz.2da~ ~override/lub_%goo_1%.2da~
+	ACTION_IF (%roo% = 11) BEGIN 	// druid
+	  COPY ~faiths_and_powers/spheres/hlas/ludrxyz.2da~ ~override/lub_%goo_1%.2da~
+	END
+	ACTION_IF (%roo% = 8) BEGIN 	// f/c
+	  COPY ~faiths_and_powers/spheres/hlas/lufcxyz.2da~ ~override/lub_%goo_1%.2da~
+	END
+	ACTION_IF (%roo% = 18) BEGIN 	// c/r
+	  COPY ~faiths_and_powers/spheres/hlas/lucrxyz.2da~ ~override/lub_%goo_1%.2da~
+	END
+	ACTION_IF (%roo% = 15) BEGIN 	// c/t
+	  COPY ~faiths_and_powers/spheres/hlas/luctxyz.2da~ ~override/lub_%goo_1%.2da~
+	END
+	ACTION_IF (%roo% = 14) BEGIN 	// c/m
+	  COPY ~faiths_and_powers/spheres/hlas/lucmxyz.2da~ ~override/lub_%goo_1%.2da~
+	END
+	ACTION_PHP_EACH d5_fnp_spheres AS sphere => val BEGIN
 	  COPY_EXISTING ~d5altsph.2da~ ~override~
 		READ_2DA_ENTRIES_NOW rows 2
 		FOR (row = 0; row < rows; ++row) BEGIN
@@ -94,138 +99,137 @@ DEFINE_ACTION_MACRO apply_fnp_spheres_to_kit BEGIN
 		  END
 		END
 	  BUT_ONLY
-	END
-	ACTION_IF (VARIABLE_IS_SET $d5_fnp_kit_sphere_access(~%sphere%~ ~%mod_clab%~)) BEGIN
-	  OUTER_TEXT_SPRINT access $d5_fnp_kit_sphere_access(~%sphere%~ ~%mod_clab%~)
-	  OUTER_INNER_PATCH ~%sphere%~ BEGIN
-		SNPRINT 3 ~shortsphere~ ~%sphere%~
-	  END
-	  ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~FOCUS~) BEGIN
-		COPY_EXISTING ~lub_%kit_index%.2da~ ~override~
-		  LPM remove_blank_lines
-		  APPEND_FILE ~faiths_and_powers/spheres/hlas/%sphere%/hlas_%sphere%.txt~
-		BUT_ONLY
-		COPY_EXISTING ~lub_%kit_index%.2da~ ~override~
-		  REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]zzz~ ~~
-		BUT_ONLY
-		APPEND ~%mod_clab%.2da~ ~SPHERES     AP_D5SF%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
-		OUTER_TEXT_SPRINT focus_sphere_list ~%focus_sphere_list% %text_sphere%~
-	  END
-	  ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~MAJOR~) BEGIN
-		COPY_EXISTING ~lub_%kit_index%.2da~ ~override~
-		  LPM remove_blank_lines
-		  APPEND_FILE ~faiths_and_powers/spheres/hlas/%sphere%/hlas_%sphere%.txt~
-		BUT_ONLY
-		COPY_EXISTING ~lub_%kit_index%.2da~ ~override~
-		  REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]zzz~ ~~
-		BUT_ONLY
-		APPEND ~%mod_clab%.2da~ ~SPHERES     AP_D5SP%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
-		OUTER_TEXT_SPRINT major_sphere_list ~%major_sphere_list% %text_sphere%,~
-	  END
-	  ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~MINOR~) BEGIN
-		APPEND ~%mod_clab%.2da~ ~SPHERES     AP_D5SM%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
-		OUTER_TEXT_SPRINT minor_sphere_list ~%minor_sphere_list% %text_sphere%,~
-	  END
-	  ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~PALADIN~) BEGIN
-		APPEND ~%mod_clab%.2da~ ~SPHERES     AP_D5SP%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
-		OUTER_TEXT_SPRINT minor_sphere_list ~%minor_sphere_list% %text_sphere%,~
-	  END
-	  ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~RANGER~) BEGIN
-		APPEND ~%mod_clab%.2da~ ~SPHERES     AP_D5SP%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
-		OUTER_TEXT_SPRINT minor_sphere_list ~%minor_sphere_list% %text_sphere%,~
-	  END
-	END
-  END
-  ACTION_IF NOT (~%focus_sphere_list%~ STRING_EQUAL_CASE ~~) BEGIN
-	OUTER_TEXT_SPRINT focus_sphere_list ~%WNL%%focus_access%%focus_sphere_list%~
-  END
-  OUTER_TEXT_SPRINT total_sphere_list ~%total_sphere_list%%focus_sphere_list%~
-  ACTION_IF NOT (~%major_sphere_list%~ STRING_EQUAL_CASE ~~) BEGIN
-	OUTER_TEXT_SPRINT major_sphere_list ~%WNL%%major_access%%major_sphere_list%~
-  END
-  OUTER_TEXT_SPRINT total_sphere_list ~%total_sphere_list%%major_sphere_list%~
-  ACTION_IF NOT (~%minor_sphere_list%~ STRING_EQUAL_CASE ~~) BEGIN
-	OUTER_TEXT_SPRINT minor_sphere_list ~%WNL%%minor_access%%minor_sphere_list%~
-  END
-  OUTER_TEXT_SPRINT total_sphere_list ~%total_sphere_list%%minor_sphere_list%~
-  OUTER_TEXT_SPRINT kit_sphere_list ~Abilities: %total_sphere_list%~
-  ACTION_IF IS_AN_INT ~%kit_desc%~ BEGIN
-	ACTION_GET_STRREF %kit_desc% kit_description 
-	OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
-		REPLACE_TEXTUALLY ~%disadvantages%~ ~%restrictions%~
-//		REPLACE_TEXTUALLY ~%abilities%~ ~%kit_sphere_list%~
-		REPLACE_TEXTUALLY ~%advantages%~ ~%kit_sphere_list%~
-	END
-	STRING_SET_EVALUATE %kit_desc% ~%kit_description%~
-  END
-  OUTER_TEXT_SPRINT focus_sphere_list ~~
-  OUTER_TEXT_SPRINT major_sphere_list ~~
-  OUTER_TEXT_SPRINT minor_sphere_list ~~
-  OUTER_TEXT_SPRINT total_sphere_list ~~
-  ACTION_IF (%kit_class% = 8) OR  
- 		(%kit_class% = 14) OR  
- 		(%kit_class% = 15) OR  
- 		(%kit_class% = 18) OR
- 		(%kit_class% = 16) BEGIN
-	ACTION_IF (%kit_class% = 8) OR  
- 			(%kit_class% = 14) OR  
- 			(%kit_class% = 15) OR  
- 			(%kit_class% = 18) BEGIN
- 	  OUTER_TEXT_SPRINT class_letter ~P~
-	END
-	ACTION_IF (%kit_class% = 16) BEGIN
- 	  OUTER_TEXT_SPRINT class_letter ~D~
-	END
-	ACTION_IF IS_AN_INT ~%kit_code%~ BEGIN
-	  COPY_EXISTING ~%mod_clab%.2da~ ~override~ 
-		COUNT_2DA_COLS cols 
-		READ_2DA_ENTRIES_NOW rows cols 
-		FOR (row = 3; row < rows; ++row) BEGIN 
-		  READ_2DA_ENTRY_FORMER rows row 0 sphere 
-		  PATCH_IF (~%sphere%~ STRING_EQUAL_CASE ~SPHERES~) BEGIN	
-			FOR (col = 1; col < cols; ++col) BEGIN 
-			  READ_2DA_ENTRY_FORMER rows row col ability
-			  PATCH_IF (NOT ~%ability%~ STRING_EQUAL ~****~) BEGIN 
-				SET string_length = (STRING_LENGTH ~%ability%~) - 3
-				LPF SUBSTRING INT_VAR start = 3 length = EVAL %string_length% STR_VAR string = EVAL ~%ability%~ RET abil_new = substring END
-				INNER_ACTION BEGIN 
-				  ACTION_IF !(FILE_EXISTS_IN_GAME ~QD_MC_AP.eff~) BEGIN
-					CREATE EFF ~QD_MC_AP~ 
-					  WRITE_LONG   0x10 146 //cast spell
-					  WRITE_LONG   0x14 2   //preset target 
-					  WRITE_LONG   0x20 1   //cast instantly (ignore level) 
-					  WRITE_SHORT  0x24 1   //permament until death
-					  WRITE_SHORT  0x2c 100 //probability 100% 
-				  END
-				  COPY_EXISTING ~QD_MC_AP.eff~ ~override/%abil_new%#.eff~
-					WRITE_EVALUATED_ASCII 0x30 ~%abil_new%~
-					SET col_length = STRING_LENGTH ~%col%~
-				  ACTION_IF (%col_length% = 1) BEGIN 
-					ACTION_IF !(FILE_EXISTS_IN_GAME ~QD_MC%class_letter%0%col%.spl~) BEGIN
-					  CREATE SPL ~QD_MC%class_letter%0%col%~
-					  COPY_EXISTING ~QD_MC%class_letter%0%col%.SPL~ ~override~
-						LPF ADD_NEW_EMPTY_SPELL_HEADER END
-					END
-					COPY_EXISTING ~override/QD_MC%class_letter%0%col%.spl~ ~override~ 
-					  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %kit_code% parameter2 = 9 STR_VAR resource = EVAL ~%abil_new%#~ END  
-				  END 
-				  ACTION_IF (%col_length% = 2) BEGIN
-					ACTION_IF !(FILE_EXISTS_IN_GAME ~QD_MC%class_letter%%col%.spl~) BEGIN
-					  CREATE SPL ~QD_MC%class_letter%%col%~
-					  COPY_EXISTING ~QD_MC%class_letter%%col%.SPL~ ~override~
-						LPF ADD_NEW_EMPTY_SPELL_HEADER END
-					END
-					COPY_EXISTING ~override/QD_MC%class_letter%%col%.spl~ ~override~ 
-					  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %kit_code% parameter2 = 9 STR_VAR resource = EVAL ~%abil_new%#~ END  
-				  END 
-				END 
-			  END
-			END 
-		  END 
+	  ACTION_IF (VARIABLE_IS_SET $d5_fnp_kit_sphere_access(~%sphere%~ ~%goo%~)) BEGIN
+		OUTER_TEXT_SPRINT access $d5_fnp_kit_sphere_access(~%sphere%~ ~%goo%~)
+		OUTER_INNER_PATCH ~%sphere%~ BEGIN
+		  SNPRINT 3 ~shortsphere~ ~%sphere%~
 		END
-	  BUT_ONLY
+		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~FOCUS~) BEGIN
+		  COPY_EXISTING ~lub_%goo_1%.2da~ ~override~
+			LPM remove_blank_lines
+			APPEND_FILE ~faiths_and_powers/spheres/hlas/%sphere%/hlas_%sphere%.txt~
+		  BUT_ONLY
+		  COPY_EXISTING ~lub_%goo_1%.2da~ ~override~
+			REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]zzz~ ~~
+		  BUT_ONLY
+		  APPEND ~%goo%.2da~ ~SPHERES     AP_D5SF%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
+		  OUTER_TEXT_SPRINT focus_sphere_list ~%focus_sphere_list% %text_sphere%~
+		END
+		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~MAJOR~) BEGIN
+		  COPY_EXISTING ~lub_%goo_1%.2da~ ~override~
+			LPM remove_blank_lines
+			APPEND_FILE ~faiths_and_powers/spheres/hlas/%sphere%/hlas_%sphere%.txt~
+		  BUT_ONLY
+		  COPY_EXISTING ~lub_%goo_1%.2da~ ~override~
+			REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]zzz~ ~~
+		  BUT_ONLY
+		  APPEND ~%goo%.2da~ ~SPHERES     AP_D5SP%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
+		  OUTER_TEXT_SPRINT major_sphere_list ~%major_sphere_list% %text_sphere%,~
+		END
+		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~MINOR~) BEGIN
+		  APPEND ~%goo%.2da~ ~SPHERES     AP_D5SM%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
+		  OUTER_TEXT_SPRINT minor_sphere_list ~%minor_sphere_list% %text_sphere%,~
+		END
+		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~PALADIN~) BEGIN
+		  APPEND ~%goo%.2da~ ~SPHERES     AP_D5SP%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
+		  OUTER_TEXT_SPRINT minor_sphere_list ~%minor_sphere_list% %text_sphere%,~
+		END
+		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~RANGER~) BEGIN
+		  APPEND ~%goo%.2da~ ~SPHERES     AP_D5SP%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
+		  OUTER_TEXT_SPRINT minor_sphere_list ~%minor_sphere_list% %text_sphere%,~
+		END
+	  END
+	END
+	ACTION_IF NOT (~%focus_sphere_list%~ STRING_EQUAL_CASE ~~) BEGIN
+		OUTER_TEXT_SPRINT focus_sphere_list ~%WNL%%focus_access%%focus_sphere_list%~
+	END
+	OUTER_TEXT_SPRINT total_sphere_list ~%total_sphere_list%%focus_sphere_list%~
+	ACTION_IF NOT (~%major_sphere_list%~ STRING_EQUAL_CASE ~~) BEGIN
+		OUTER_TEXT_SPRINT major_sphere_list ~%WNL%%major_access%%major_sphere_list%~
+	END
+	OUTER_TEXT_SPRINT total_sphere_list ~%total_sphere_list%%major_sphere_list%~
+	ACTION_IF NOT (~%minor_sphere_list%~ STRING_EQUAL_CASE ~~) BEGIN
+		OUTER_TEXT_SPRINT minor_sphere_list ~%WNL%%minor_access%%minor_sphere_list%~
+	END
+	OUTER_TEXT_SPRINT total_sphere_list ~%total_sphere_list%%minor_sphere_list%~
+	OUTER_TEXT_SPRINT kit_sphere_list ~Abilities: %total_sphere_list%~
+	ACTION_IF IS_AN_INT ~%goo_3%~ BEGIN
+		ACTION_GET_STRREF %goo_3% kit_description 
+		OUTER_PATCH_SAVE kit_description ~%kit_description%~ BEGIN
+			REPLACE_TEXTUALLY ~%disadvantages%~ ~%restrictions%~
+//			REPLACE_TEXTUALLY ~%abilities%~ ~%kit_sphere_list%~
+			REPLACE_TEXTUALLY ~%advantages%~ ~%kit_sphere_list%~
+		END
+		STRING_SET_EVALUATE %goo_3% ~%kit_description%~
+	END
+	OUTER_TEXT_SPRINT focus_sphere_list ~~
+	OUTER_TEXT_SPRINT major_sphere_list ~~
+	OUTER_TEXT_SPRINT minor_sphere_list ~~
+	OUTER_TEXT_SPRINT total_sphere_list ~~
+	ACTION_IF (%roo% = 3) OR  
+ 			(%roo% = 11) OR  
+ 			(%roo% = 6) OR  
+ 			(%roo% = 12) BEGIN
+	  APPEND ~%goo%.2da~ ~SPHERES     AP_D5SPMEM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+	    UNLESS ~AP_D5SPMEM~
+ 	END
+	ACTION_IF (%roo% = 8) OR  
+ 			(%roo% = 14) OR  
+ 			(%roo% = 15) OR  
+ 			(%roo% = 18) OR
+ 			(%roo% = 16) BEGIN
+	  ACTION_IF (%roo% = 8) OR  
+ 				(%roo% = 14) OR  
+ 				(%roo% = 15) OR  
+ 				(%roo% = 18) BEGIN
+ 	 	OUTER_TEXT_SPRINT class_letter ~P~
+ 	  END
+	  ACTION_IF (%roo% = 16) BEGIN
+ 	 	OUTER_TEXT_SPRINT class_letter ~D~
+ 	  END
+	  ACTION_IF IS_AN_INT ~%goo_4%~ BEGIN
+		COPY_EXISTING ~%goo%.2da~ ~override~ 
+		  COUNT_2DA_COLS cols 
+		  READ_2DA_ENTRIES_NOW rows cols  
+		  FOR (row = 1; row < rows; ++row) BEGIN 
+			READ_2DA_ENTRY_FORMER rows row 0 sphere
+			PATCH_IF (~%sphere%~ STRING_EQUAL_CASE ~SPHERES~) BEGIN	
+			  FOR (col = 1; col < cols; ++col) BEGIN 
+				READ_2DA_ENTRY_FORMER rows row col ability
+				PATCH_IF (NOT ~%ability%~ STRING_EQUAL ~****~) BEGIN 
+				  SET string_length = (STRING_LENGTH ~%ability%~) - 3
+				  LPF SUBSTRING INT_VAR start = 3 length = EVAL %string_length% STR_VAR string = EVAL ~%ability%~ RET abil_new = substring END
+				  INNER_ACTION BEGIN 
+					ACTION_IF !(FILE_EXISTS_IN_GAME ~QD_MC_AP.eff~) BEGIN
+					  CREATE EFF ~QD_MC_AP~ 
+						WRITE_LONG   0x10 146 //cast spell
+						WRITE_LONG   0x14 2   //preset target 
+						WRITE_LONG   0x20 1   //cast instantly (ignore level) 
+						WRITE_SHORT  0x24 1   //permament until death
+						WRITE_SHORT  0x2c 100 //probability 100% 
+					END
+					COPY_EXISTING ~QD_MC_AP.eff~ ~override/%abil_new%#.eff~
+					  WRITE_EVALUATED_ASCII 0x30 ~%abil_new%~
+					  SET col_length = STRING_LENGTH ~%col%~
+					LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = EVAL ~%class_letter%~ END
+					ACTION_IF (%col_length% = 1) BEGIN 
+					  COPY_EXISTING ~override/QD_MC%class_letter%0%col%.spl~ ~override~ 
+						LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %goo_4% parameter2 = 9 STR_VAR resource = EVAL ~%abil_new%#~ END  
+					END 
+					ACTION_IF (%col_length% = 2) BEGIN
+					  COPY_EXISTING ~override/QD_MC%class_letter%%col%.spl~ ~override~ 
+						LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %goo_4% parameter2 = 9 STR_VAR resource = EVAL ~%abil_new%#~ END  
+					END 
+				  END 
+				END
+			  END 
+			END 
+		  END
+		BUT_ONLY
+	  END
 	END
   END
+/*
   COPY_EXISTING ~QD_MCP01.spl~ ~override~
 	LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = EVAL ~QD#MCP01~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 9 STR_VAR resource = EVAL ~QD#MCP01~ END
@@ -234,14 +238,21 @@ DEFINE_ACTION_MACRO apply_fnp_spheres_to_kit BEGIN
 	LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = EVAL ~QD#MCD01~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 9 STR_VAR resource = EVAL ~QD#MCD01~ END
   IF_EXISTS BUT_ONLY
+*/
   
-END	//	end define apply macro
+  CLEAR_ARRAYS
+  
+END	//	end define apply function
 //___________________________________________________________________________________
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
 
 
 //APPLY FnP USABILITY TO EXTRA KIT___________________________________________________
 //
-DEFINE_ACTION_MACRO apply_fnp_usability_to_kit BEGIN
+DEFINE_ACTION_FUNCTION apply_fnp_usability_to_kit STR_VAR mod_clab = ~x~ BEGIN
 
  OUTER_TEXT_SPRINT hex_lat 			~04000000~
  OUTER_TEXT_SPRINT hex_helm 		~02000000~
@@ -250,7 +261,8 @@ DEFINE_ACTION_MACRO apply_fnp_usability_to_kit BEGIN
  OUTER_TEXT_SPRINT hex_shapeshifter ~10000000~
  OUTER_TEXT_SPRINT hex_avenger		~20000000~
 
- ACTION_IF (NOT VARIABLE_IS_SET ~mod_clab~) BEGIN
+//  ACTION_IF !(VARIABLE_IS_SET ~mod_clab~) BEGIN
+  ACTION_IF (~%mod_clab%~ STRING_EQUAL_CASE ~x~) BEGIN
 	COPY_EXISTING ~d5_class.2da~ ~override~
 	  COUNT_2DA_ROWS 2 rows
 	  READ_2DA_ENTRY (rows - 1) 0 2 last_clab
@@ -724,6 +736,7 @@ DEFINE_ACTION_MACRO apply_fnp_usability_to_kit BEGIN
 			END
 		  END
 		END
+/*
 		INNER_ACTION BEGIN
 		  ACTION_IF FILE_EXISTS_IN_GAME ~%mod_clab%.2da~ BEGIN
 			APPEND ~%mod_clab%.2da~ ~FNP_USABLE   AP_D5_U%kit_index%   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
@@ -744,11 +757,13 @@ DEFINE_ACTION_MACRO apply_fnp_usability_to_kit BEGIN
 			  END
 			  COPY_EXISTING ~QD_MC_AP.eff~ ~override/d5_u%kit_index%#.eff~
 				WRITE_EVALUATED_ASCII 0x30 ~d5_u%kit_index%~
+			  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = EVAL ~%class_letter%~ END
 			  COPY_EXISTING ~QD_MC%class_letter%01.spl~ ~override~ 
-				LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %kit_code% parameter2 = 9 STR_VAR resource = EVAL ~d5_u%kit_index%#~ END  
+				LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %kit_code% parameter2 = 9 STR_VAR resource = EVAL ~d5_u%kit_index%#~ END  
 			END 
 		  END
 		END
+*/
 	  END
 	END
   END

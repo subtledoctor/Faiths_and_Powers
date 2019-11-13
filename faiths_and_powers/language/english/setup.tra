@@ -72,6 +72,7 @@
 @382  = ~Add Cleric of Baervan Wildwanderer~
 @383  = ~Add Cleric of Baravar Cloakshadow~
 @384  = ~Add Cleric of Gaerdal Ironhand~
+@385  = ~Add Cleric of Urdlen~
 @391  = ~Add Cleric of Yondalla~
 @392  = ~Add Cleric of Arvoreen~
 @393  = ~Add Cleric of Brandobaris~
@@ -82,9 +83,11 @@
 //
 // ... multiclass kits = 450-499
 //
-@451  = ~Add Fighter/Sorcerer~
-@452  = ~Add Ranger/Sorcerer~
-@453  = ~Add Sorcerer/Thief~
+@451  = ~Add Fighter/Druid~
+@452  = ~Add Ranger/Druid~
+@453  = ~Add Druid/Thief~
+@454  = ~Add Druid/Mage~
+@455  = ~Add Sorcerer/Druid~
 @469  = ~Add Priest of Mask~
 @477  = ~Add Cleric of Brandobaris~
 //
@@ -814,6 +817,29 @@ Restrictions:
 This abilty curses the target, causing them a penalty of -10 penalty to THAC0, saves and AC for one round/level if they fail a save vs. spell.
 ~
 //
+// ... talon of malar 
+//
+@33401 = ~cleric of malar~
+@33402 = ~Talon of malar~
+@33403 = ~TALON OF MALAR: Malar, god of the savage wild, is not a popular god with many devoted followers. Like Umberlee, he is invoked usually to prevent his intercession (usually heralded by wild beasts) as opposed to beseeching it. Malarite clergy members preach the joys and the bountiful yields of the hunt and work to thwart the expansion of farms and settlements, so as to preserve as much wilderness as possible.
+
+Advantages:
+- Talons may cast "Claws of malar" as an innate ability, at will. 20% of all attacks with the Claws of Malar cause infection upon a failed save vs. Death, weakening the target and causing a 10% chance of spell failure.
+- Talons may use the Tracking ability at will.
+- Whenever a Talon casts an Animal Summoning spell, the creatures so summoned automatically benefit from application of the Animal Growth spell (2-point bonus to hit, damage, armor class and saving throws, and a 50% increase in hit points).
+- At 7th level, Talons may cast the spell Blood Rage once per day as an innate ability.
+- At 11th level, Talons may cast Blood Rage twice per day as an innate ability.
+
+Restrictions:
+- May not be Lawful or Good.
+~
+@33411  = ~Claws of Malar~
+@33412  = ~Dispel Claws~
+@33413  = ~Tracking~
+@33414  = ~Tracking
+
+With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a Talon of Malar can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. Red arrows at the edge of the screen will point in the general direction of the creatures in the area.~
+//
 // ... hammer of moradin 
 //
 @37101  = ~cleric of moradin~
@@ -923,6 +949,22 @@ Restrictions:
 @22312 = ~Naturewalk
 This spell grants one person protection from ground and nature based movement impairing effects such as webs, entangling, and grease. This spell lasts 1 round per level of the caster.~
 //
+// ... priest of urdlen:
+//
+@38501  = ~cleric of urdlen~
+@38502  = ~Bloodstalker of Urdlen~
+@38503  = ~BLOODSTALKER OF URDLEN: Urdlen's priests wage an unending war on communities of the Forgotten Folk, particularly the clergies of the other gnome gods. When not hunting other creatures, members of the priesthood work to steal, deface, or destroy objects of value, particularly gems and works of art. They share their lord's love for evil pranks, especially those directed against other gnomes. Priests must satisfy Urdlen first, so that he does not come for them, but then they may do what they want. Bloodstalkers believe that existence is a cosmic joke before death comes via Urdlen's claws. Sharing the cruel ironies and harsh humor of existence with others is only kind, for it helps to toughen them for what is coming in the end.
+
+Advantages:
+- From 1st level, Bloodstalkers may cast Stinking Cloud as an innate ability once per day.
+- From 3rd level, Bloodstalkers may cast Blindness as an innate ability once per day.
+- From 6th level, Bloodstalkers may cast Skull Trap as an innate ability once per day.
+- From 10th level, Bloodstalkers may cast Cloudkill as an innate ability once per day.
+
+Restrictions:
+- Alignment: may not be Good.
+~
+//
 // ... priest of yondalla:
 //
 @39101  = ~cleric of yondalla~
@@ -1006,6 +1048,8 @@ RESTRICTIONS:
 @45302  = ~Druid/Thief~
 @45401  = ~druid/mage~
 @45402  = ~Druid/Mage~
+@45501  = ~sorcerer/druid~
+@45502  = ~Sorcerer/Druid~
 @74100  = ~Fighter/Druid~
 @74300  = ~Druid/Mage~
 @74500  = ~Druid/Ranger~
@@ -1842,7 +1886,7 @@ Restrictions:
 @76204  = ~BEAST LORD: these individuals have come to understand that within even the most rational and civilized man or woman lies an animal driven by primal needs and desires. (Often, this understanding is developed from horrifying experiments performed on subjects who are very rarely willing.) Through the application of a serum derived from a strain of lycanthropy, the Beast Lord can all forth <PRO_HISHER> own bestial nature, causing <PRO_HISHER> very body to take on lupine qualities. This also gives the Beast Lord a deep insight into magic relating to summoning and controlling animals.
 ~
 @76205  = ~~
-@76211  = ~Beast Claw~
+@76211  = ~Claws of Malar~
 @76212  = ~Dispel Claws~
 @76213  = ~Shapeshift: werewolf~
 @76214  = ~Shapeshift: natural form~
@@ -3369,6 +3413,34 @@ Saving Throw: None.
 
 Upon casting this spell, the caster becomes able to move and act at a greatly increased rate.  <PRO_HISHER> overland movement rate is doubled, and <PRO_HESHE> can make an additional weapon attack each round.  (Spellcasting speed does not increase; this spell does not reduce the amount of mental concentration necessary for it.)  The spell does not make the caster any more adept at moving so fast, however, so <PRO_HESHE> suffers a -2 penalty to attack rolls while the effect is active.
 ~
+@50221 = ~Magic Fang~
+@50222 = ~Magic Fang
+(Alteration)
+
+Level: 3
+Sphere: Animal
+Range: Self
+Duration: special
+Casting Time: 4
+Area of Effect: 30' radius
+Saving Throw: None
+
+This spell turns natural weapons (such as teeth, claws, etc.) of friendly animals within range into magical weapons, effectively granting a +1 enhancement bonus on attack and damage rolls. For every six experience levels of the spellcaster, this bonus increases by one, up to a total of +2 enchantment level, +2 to attack rolls, and +2 to damage for a 7th-level caster, and +3 for a 13th level caster. Multiple castings of this spell are not cumulative.
+~
+@50223 = ~Animal Growth~
+@50224 = ~Animal Growth
+(Alteration)
+
+Level: 5
+Sphere: Animal
+Range: Self
+Duration: special
+Casting Time: 5
+Area of Effect: 30' radius
+Saving Throw: None
+
+When this spell is cast, the caster causes all friendly animals within range to become tougher, stronger and more tenacious. The alteration grants +2 bonus to attack rolls, damage rolls, armor class and saving throws. It also increases the recipient's hit points by 50%, and these bonus hit points are lost first when the recipient animal takes damage. Multiple castings of this spell are not cumulative.
+~
 @50301 = ~Pacify the Dead~
 @50302 = ~Pacify the Dead
 (Alteration)
@@ -4029,8 +4101,18 @@ Speed Factor: 2~
 
 @52001  = ~Shadow Step~
 @52002  = ~Shadow Step
+(Alteration)
 
-The caster steps into the Shadow Plane and may move for 7 seconds while others are frozen in time. The caster cannot attack or cast spells while in the Shadow Plane.~
+Level: 4
+Sphere: Shadow
+Range: 0
+Duration: 1 Round
+Casting Time: 2
+Area of Effect: caster
+Saving Throw: None
+
+This spell enables the caster to slip into the Shadow Plane and move for 7 seconds, before reappearing in the material plane. During that brief period, others will seemingly be frozen in time. However, the caster cannot attack or cast spells while moving through the Shadow Plane.
+~
 @52003 = ~Cloak of Darkness~
 @52004 = ~Cloak of Darkness
 (Abjuration)
@@ -4043,8 +4125,8 @@ Casting Time: 6
 Area of Effect: 1 creature
 Saving Throw: None
 
-This spell shrouds the recipient in darkness, protecting <PRO_HIMHER> from both attacks and spells.  They gain a +1 bonus to AC per four levels (maximum of +5), +2 bonus to save vs. spells, and infravision for the duration of this spell.  Additionally, if the recipeient can hide in shadows, they gain a +15% bonus to that ability.~
-
+This spell shrouds the recipient in darkness, protecting <PRO_HIMHER> from both attacks and spells.  They gain a +1 bonus to AC per four levels (maximum of +5), +2 bonus to save vs. spells, and infravision for the duration of this spell.  Additionally, if the recipeient can hide in shadows, they gain a +15% bonus to that ability.
+~
 @52005 = ~Cloak of Darkness (focus)
 (Abjuration)
 

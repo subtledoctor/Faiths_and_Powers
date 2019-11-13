@@ -292,7 +292,7 @@ ADD_KIT ~D5_DR_FIGHTER~
 ~D5_DR_FIGHTER       0  0  0  0  0  0~
 
 //KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/druids/741_fighter_druid/d5drfi.2da~
+~faiths_and_powers/kits/multiclass/451_fighter_druid/d5drfi.2da~
 
 //RACIAL KIT AVAILABILITY_____________________________________________________________
 ~K_FC_D  K_FC_E  K_FC_G  K_FC_H  K_FC_HE  K_FC_HL  K_FC_HO~
@@ -329,7 +329,9 @@ END
 //MULTICLASS DRUID FILES______________________________________________________________
 //
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5dfor.2da~ ~override/d5drfi.2da~
+  COPY_EXISTING ~d5dfor.2da~ ~override/d5drfi.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
   ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
@@ -351,11 +353,50 @@ END
 	  END
 	END
   BUT_ONLY
+  COPY_EXISTING ~kitlist.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 1 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FIGHTER~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+  COPY_EXISTING ~clastext.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 0 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FIGHTER~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+  COPY_EXISTING ~sodcltxt.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 0 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FIGHTER~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
  END
  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~clabdr01.2da~ ~override/d5drfi.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
  END
- COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
+ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
+ END
  APPEND ~d5drfi.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 //NO SPHERE SYSTEM____________________________________________________________________
@@ -364,6 +405,12 @@ END
   LAF no_spheres_druid_spells STR_VAR clab_table = ~d5drfi~ END
  END
  
+//HLAs_______________________________________________________________________________
+//
+LAF action_remove_hla STR_VAR kit_name = ~D5_DR_FIGHTER~ remove_ability = ~AP_D5PHLA5~ END
+LAF action_add_hla STR_VAR kit_name = ~D5_DR_FIGHTER~ ability = ~AP_D5PHLA4~ num_allowed = ~1~ END
+LAF action_add_hla STR_VAR kit_name = ~D5_DR_FIGHTER~ ability = ~GA_TG#SPIR~ num_allowed = ~1~ END
+
 //MULTICLASS KIT______________________________________________________________________
 //
  ACTION_IF FILE_EXISTS_IN_GAME ~d5drfi.2da~ BEGIN
@@ -445,6 +492,14 @@ END
   END
  BUT_ONLY
 
+// ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+//	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5drfi~ END
+// END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5drfi~ END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -501,7 +556,7 @@ ADD_KIT ~D5_DR_RANGER~
 ~D5_DR_RANGER        0  0  0  0  0  0~
 
 //KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/druids/745_druid_ranger/d5drra.2da~
+~faiths_and_powers/kits/multiclass/452_druid_ranger/d5drra.2da~
 
 //RACIAL KIT AVAILABILITY_____________________________________________________________
 ~K_CR_D  K_CR_E  K_CR_G  K_CR_H  K_CR_HE  K_CR_HL  K_CR_HO~
@@ -538,7 +593,9 @@ END
 //MULTICLASS DRUID FILES______________________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5dfor.2da~ ~override/d5drra.2da~
+  COPY_EXISTING ~d5dfor.2da~ ~override/d5drra.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
   ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
@@ -560,11 +617,50 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	  END
 	END
   BUT_ONLY
+  COPY_EXISTING ~kitlist.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 1 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_RANGER~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+  COPY_EXISTING ~clastext.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 0 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_RANGER~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+  COPY_EXISTING ~sodcltxt.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 0 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_RANGER~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~clabdr01.2da~ ~override/d5drra.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 END
-COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
+END
 APPEND ~d5drra.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 //NO SPHERE SYSTEM____________________________________________________________________
@@ -573,6 +669,12 @@ APPEND ~d5drra.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****       
   LAF no_spheres_druid_spells STR_VAR clab_table = ~d5drra~ END
  END
  
+//HLAs_______________________________________________________________________________
+//
+LAF action_remove_hla STR_VAR kit_name = ~D5_DR_RANGER~ remove_ability = ~AP_D5PHLA5~ END
+LAF action_add_hla STR_VAR kit_name = ~D5_DR_RANGER~ ability = ~AP_D5PHLA4~ num_allowed = ~1~ END
+LAF action_add_hla STR_VAR kit_name = ~D5_DR_RANGER~ ability = ~GA_TG#SPIR~ num_allowed = ~1~ END
+
 //MULTICLASS KIT______________________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~d5drra.2da~ BEGIN
@@ -628,6 +730,14 @@ END
 	END
   END
  BUT_ONLY
+
+// ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+//	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5drra~ END
+// END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5drra~ END
+ END
 
 END
 //__________________________________________________________________________________
@@ -685,7 +795,7 @@ ADD_KIT ~D5_DR_THIEF~
 ~D5_DR_THIEF         0  0  0  0  0  0~
 
 //KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/druids/747_druid_thief/d5drth.2da~
+~faiths_and_powers/kits/multiclass/453_druid_thief/d5drth.2da~
 
 //RACIAL KIT AVAILABILITY_____________________________________________________________
 ~K_CT_D  K_CT_E  K_CT_G  K_CT_H  K_CT_HE  K_CT_HL  K_CT_HO~
@@ -722,7 +832,9 @@ END
 //MULTICLASS DRUID FILES______________________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5dfor.2da~ ~override/d5drth.2da~
+  COPY_EXISTING ~d5dfor.2da~ ~override/d5drth.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
   ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
@@ -744,11 +856,50 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	  END
 	END
   BUT_ONLY
+  COPY_EXISTING ~kitlist.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 1 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_THIEF~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+  COPY_EXISTING ~clastext.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 0 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_THIEF~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+  COPY_EXISTING ~sodcltxt.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 0 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_THIEF~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~clabdr01.2da~ ~override/d5drth.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 END
-COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
+END
 APPEND ~d5drth.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 //NO SPHERE SYSTEM____________________________________________________________________
@@ -757,6 +908,12 @@ APPEND ~d5drth.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****       
   LAF no_spheres_druid_spells STR_VAR clab_table = ~d5drth~ END
  END
  
+//HLAs_______________________________________________________________________________
+//
+LAF action_remove_hla STR_VAR kit_name = ~D5_DR_THIEF~ remove_ability = ~AP_D5PHLA5~ END
+LAF action_add_hla STR_VAR kit_name = ~D5_DR_THIEF~ ability = ~AP_D5PHLA4~ num_allowed = ~1~ END
+LAF action_add_hla STR_VAR kit_name = ~D5_DR_THIEF~ ability = ~GA_TG#SPIR~ num_allowed = ~1~ END
+
 //MULTICLASS KIT______________________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~d5drth.2da~ BEGIN
@@ -825,6 +982,14 @@ END
   END
  BUT_ONLY
 
+// ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+//	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5drth~ END
+// END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5drth~ END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -881,7 +1046,7 @@ ADD_KIT ~D5_DR_MAGE~
 ~D5_DR_MAGE          0  0  0  0  0  0~
 
 //KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/druids/743_druid_mage/d5drma.2da~
+~faiths_and_powers/kits/multiclass/454_druid_mage/d5drma.2da~
 
 //RACIAL KIT AVAILABILITY_____________________________________________________________
 ~K_CM_D  K_CM_E  K_CM_G  K_CM_H  K_CM_HE  K_CM_HL  K_CM_HO~
@@ -918,7 +1083,9 @@ END
 //MULTICLASS DRUID FILES______________________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5dfor.2da~ ~override/d5drma.2da~
+  COPY_EXISTING ~d5dfor.2da~ ~override/d5drma.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
   ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
@@ -940,11 +1107,50 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	  END
 	END
   BUT_ONLY
+  COPY_EXISTING ~kitlist.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 1 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_MAGE~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+  COPY_EXISTING ~clastext.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 0 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_MAGE~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+  COPY_EXISTING ~sodcltxt.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 0 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_MAGE~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~clabdr01.2da~ ~override/d5drma.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 END
-COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
+END
 APPEND ~d5drma.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 //NO SPHERE SYSTEM____________________________________________________________________
@@ -952,6 +1158,12 @@ APPEND ~d5drma.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****       
  ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
   LAF no_spheres_druid_spells STR_VAR clab_table = ~d5drma~ END
  END
+
+//HLAs_______________________________________________________________________________
+//
+LAF action_remove_hla STR_VAR kit_name = ~D5_DR_MAGE~ remove_ability = ~AP_D5PHLA5~ END
+LAF action_add_hla STR_VAR kit_name = ~D5_DR_MAGE~ ability = ~AP_D5PHLA4~ num_allowed = ~1~ END
+LAF action_add_hla STR_VAR kit_name = ~D5_DR_MAGE~ ability = ~GA_TG#SPIR~ num_allowed = ~1~ END
  
 //MULTICLASS KIT______________________________________________________________________
 //
@@ -1008,6 +1220,272 @@ END
 	END
   END
  BUT_ONLY
+
+// ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+//	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = d5drma~~ END
+// END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5drma~ END
+ END
+
+END
+//__________________________________________________________________________________
+
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//									SORCERER/DRUID
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION sorcerer_druid BEGIN
+
+ADD_KIT ~D5_DR_SORC~
+
+//WEAPON PROFICIENCIES_______________________________________________________________
+//11                                     T   S           F   Q             S S
+//10             L S                     W   C           L   U             W I
+//9              A M             B L S   O   I   W       A   A             O N
+//8              R A             A O H   H   M   A       I   R C   S       R G
+//7              G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6              E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5              S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4              W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3              O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2              R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1              D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+~D5_DR_SORC      0 0 0 0 0 0 0 0~
+~D5_DR_SORC      0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 0 1 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+
+//MINIMUM KIT STATS_________________________________________________________________
+//                  STR DEX CON INT WIS CHR
+~D5_DR_SORC          0   0   0   0   11  0~
+
+//KIT STAT MODIFIERS________________________________________________________________
+//                  STR DEX CON INT WIS CHR
+~D5_DR_SORC          0   0   0   0   0   0~
+
+//REQUIREMENTS TO DUAL TO THIS KIT__________________________________________________
+//                  STR DEX CON INT WIS CHR
+~D5_DR_SORC          0   0   0   0   17  0~
+
+//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
+//                  STR DEX CON INT WIS CHR
+~D5_DR_SORC          0   0   0   0   15  0~
+
+//ALIGNMENT RESTRICTIONS____________________________________________________________
+//                  LG LN LE NG TN NE CG CN CE
+~D5_DR_SORC          0  0  0  0  1  0  0  0  0~
+
+//DUAL CLASS OPTIONS________________________________________________________________
+//                  FT CL MA TH DR RA
+~D5_DR_SORC          0  0  0  0  0  0~
+
+//KIT ABILITIES 2DA FILE_____________________________________________________________
+~faiths_and_powers/kits/multiclass/455_sorcerer_druid/d5drsrc.2da~
+
+//RACIAL KIT AVAILABILITY____________________________________________________________
+~K_CM_D  K_CM_E  K_CM_G  K_CM_H  K_CM_HE  K_CM_HL  K_CM_HO~
+
+//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
+//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
+//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
+//         Monk = 20
+~0x08000000 14~ // totemic flag
+
+//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
+~CM0~
+
+//TOB STARTING EQUIPMENT_____________________________________________________________
+~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
+
+//CHARACTER CREATION KIT DESCRIPTION________________________________________________
+SAY @45501
+SAY @45502
+SAY @45103
+
+//EE KIT EXTRAS______________________________________________________________________
+// 
+ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
+	LAF fl#add_kit_ee
+		INT_VAR
+			briefdesc = RESOLVE_STR_REF (@45103)
+		STR_VAR
+			kit_name = D5_DR_SORC
+			clswpbon = ~0 0 3~
+	END
+END
+
+//MULTICLASS DRUID FILES_____________________________________________________________
+//
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+  COPY_EXISTING ~d5dfor.2da~ ~override/d5drsrc.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+  ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
+	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
+	  SAY NAME1 @73111
+	  SAY UNIDENTIFIED_DESC @73112
+	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
+  END
+  COPY_EXISTING ~d5drnf.spl~ ~override~
+	LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = (0x4000 + %D5_DR_SORC%) STR_VAR resource = ~d5drsc1~ END
+  IF_EXISTS BUT_ONLY
+  COPY_EXISTING ~alignmnt.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 0 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_SORC~) BEGIN
+		SET_2DA_ENTRY row 2 10 1
+		SET_2DA_ENTRY row 4 10 1
+		SET_2DA_ENTRY row 6 10 1
+		SET_2DA_ENTRY row 8 10 1
+	  END
+	END
+  BUT_ONLY
+  COPY_EXISTING ~kitlist.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 1 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_SORC~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+  COPY_EXISTING ~clastext.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 0 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_SORC~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+  COPY_EXISTING ~sodcltxt.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 0 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+		READ_2DA_ENTRY row 4 10 nudru_desc
+	  END
+	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_SORC~) BEGIN
+		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+  COPY_EXISTING ~clabdr01.2da~ ~override/d5drsrc.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
+END
+APPEND ~d5drsrc.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+//ACTION_IF (FILE_EXISTS_IN_GAME ~d5sorc.2da~) BEGIN
+//  COPY_EXISTING ~d5drsrc.2da~ ~override~
+//	APPEND_FILE ~override/d5sorc.2da~
+//END
+
+//NO SPHERE SYSTEM___________________________________________________________________
+//
+ ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+  LAF no_spheres_druid_spells STR_VAR clab_table = ~d5drsrc~ END
+ END
+
+//HLAs_______________________________________________________________________________
+//
+LAF action_replace_hla STR_VAR kit_name = ~D5_DR_SORC~ remove_ability = ~GA_SPWI920~ ability = ~GA_D5HL920~ END
+LAF action_replace_hla STR_VAR kit_name = ~D5_DR_SORC~ remove_ability = ~GA_SPWI921~ ability = ~GA_D5HL921~ END
+LAF action_replace_hla STR_VAR kit_name = ~D5_DR_SORC~ remove_ability = ~GA_SPWI922~ ability = ~GA_D5HL922~ END
+LAF action_replace_hla STR_VAR kit_name = ~D5_DR_SORC~ remove_ability = ~GA_SPWI923~ ability = ~GA_D5HL923~ END
+LAF action_replace_hla STR_VAR kit_name = ~D5_DR_SORC~ remove_ability = ~GA_SPWI924~ ability = ~GA_D5HL924~ END
+LAF action_replace_hla STR_VAR kit_name = ~D5_DR_SORC~ remove_ability = ~GA_SPWI925~ ability = ~GA_D5HL925~ END
+LAF action_replace_hla STR_VAR kit_name = ~D5_DR_SORC~ remove_ability = ~AP_SPWI928~ ability = ~AP_D5HL928~ END
+LAF action_replace_hla STR_VAR kit_name = ~D5_DR_SORC~ remove_ability = ~AP_SPWI929~ ability = ~AP_D5HL929~ END
+LAF action_replace_hla STR_VAR kit_name = ~D5_DR_SORC~ remove_ability = ~AP_SPWI930~ ability = ~AP_D5HL930~ END
+LAF action_remove_hla STR_VAR kit_name = ~D5_DR_SORC~ remove_ability = ~AP_D5PHLA5~ END
+LAF action_add_hla STR_VAR kit_name = ~D5_DR_SORC~ ability = ~AP_D5PHLA4~ num_allowed = ~1~ END
+LAF action_add_hla STR_VAR kit_name = ~D5_DR_SORC~ ability = ~GA_TG#SPIR~ num_allowed = ~1~ END
+ 
+//MULTICLASS KIT_____________________________________________________________________
+//
+ACTION_IF FILE_EXISTS_IN_GAME ~d5drsrc.2da~ BEGIN
+  LAF qd_multiclass
+	STR_VAR
+		kit_name = ~D5_DR_SORC~ 
+		kit_clab = ~d5drsrc~
+		base_class = ~P~
+  END
+  LAF qd_multiclass
+	STR_VAR
+		kit_name = ~D5_DR_SORC~ 
+		kit_clab = ~d5fsorc~
+		base_class = ~M~
+  END
+END 
+
+//DEFINE SPHERE ACCESS_______________________________________________________________
+//
+ LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 0
+	u_plate_armor 		= 0
+	u_club_staff	 	= 1
+	u_hammers	 		= 0
+	u_maces 	 		= 0
+	u_flails 			= 0
+	u_axes 				= 0
+	u_daggers 			= 1
+	u_short_swords		= 0
+	u_long_swords		= 0
+	u_scimitars 		= 0
+	u_katanas 			= 0
+	u_bastard_swords 	= 0
+	u_2hand_swords 		= 0
+	u_halberds 			= 0
+	u_spears 	 		= 1
+	u_darts 			= 1
+	u_slings	 		= 1
+	u_bows 				= 1
+	u_crossbows 		= 0
+  STR_VAR
+    clab_name 		= ~d5drsrc~
+	sphere_list		= ~druid_forest_spheres~
+	class 			= ~cleric_mage~
+ END
+
+ COPY_EXISTING ~kitlist.2da~ ~override~
+  COUNT_2DA_ROWS 10 rows
+  FOR (row = 0; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY row 5 10 clab_name
+	PATCH_IF (~%clab_name%~ STRING_EQUAL_CASE ~d5drfor~) BEGIN
+	  SET new_druid_row = row
+	END
+	PATCH_IF (~%clab_name%~ STRING_EQUAL_CASE ~d5drma~) && (VARIABLE_IS_SET %new_druid_row%) BEGIN
+	  READ_2DA_ENTRY new_druid_row 4 10 druid_desc
+	  SET_2DA_ENTRY row 4 10 druid_desc
+	END
+  END
+ BUT_ONLY
+
+// ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+//	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5drsrc~ END
+// END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5drsrc~ END
+ END
 
 END
 //__________________________________________________________________________________
@@ -1228,16 +1706,149 @@ END
 >>>>>>>> 
 COMPILE ~d5/druidad+.d~
 
+<<<<<<<< d5/cechall-.d
+EXTEND_BOTTOM CECHALLE 2
+
+ IF ~LevelGT(Player1,13)
+	Global("GreatDruid","GLOBAL",0)
+	!Global("GaveTitle","LOCALS",1)
+	Kit(Player1,D5_DR_SORC)
+~ THEN REPLY #55515  DO ~ClearAllActions()
+
+StartCutSceneMode()
+
+StartCutSceneEx("Cut63a",FALSE)
+
+~ EXIT
+
+ IF ~LevelLT(Player1,14)
+	Global("GreatDruid","GLOBAL",0)
+	!Global("GaveTitle","LOCALS",1)
+	  Kit(Player1,D5_DR_SORC)
+~ THEN REPLY #58673  EXIT
+END
+
+EXTEND_BOTTOM CECHALLE 4
+  IF ~  Global("CerndChallenge","GLOBAL",0)
+	Global("PlayerHasStronghold","GLOBAL",0)
+	  Kit(Player1,D5_DR_SORC)
+~ THEN DO ~SetGlobal("SPRITE_IS_DEADFaldorn","GLOBAL",1)
+SetGlobal("SPRITE_IS_DEADcefaldor","GLOBAL",1)
+SetNumTimesTalkedTo(1)
+~ GOTO 7
+END
+>>>>>>>> 
+COMPILE ~d5/cechall-.d~
+
+<<<<<<<< d5/cefaldo-.d
+EXTEND_BOTTOM CEFALDOR 2
+
+  IF ~See(Player1)
+	!StateCheck(Player1,STATE_SLEEPING)
+	  Kit(Player1,D5_DR_SORC)
+~ THEN REPLY #9621  GOTO 13
+
+  IF ~ !Name("Jaheira",Player2)
+	!Name("Cernd",Player2)
+	See(Player2)
+	!StateCheck(Player2,STATE_SLEEPING)
+	  Kit(Player2,D5_DR_SORC)
+~ THEN REPLY #9948  GOTO 22
+
+  IF ~ !Name("Jaheira",Player3)
+	!Name("Cernd",Player3)
+	See(Player3)
+	!StateCheck(Player3,STATE_SLEEPING)
+	  Kit(Player3,D5_DR_SORC)
+~ THEN REPLY #9952  GOTO 22
+
+  IF ~ !Name("Jaheira",Player4)
+	!Name("Cernd",Player4)
+	See(Player4)
+	!StateCheck(Player4,STATE_SLEEPING)
+	  Kit(Player4,D5_DR_SORC)
+~ THEN REPLY #9953  GOTO 22
+
+  IF ~ !Name("Jaheira",Player5)
+	!Name("Cernd",Player5)
+	See(Player5)
+	!StateCheck(Player5,STATE_SLEEPING)
+	  Kit(Player5,D5_DR_SORC)
+~ THEN REPLY #9954  GOTO 22
+
+  IF ~ !Name("Jaheira",Player6)
+	!Name("Cernd",Player6)
+	See(Player6)
+	!StateCheck(Player6,STATE_SLEEPING)
+	  Kit(Player6,D5_DR_SORC)
+~ THEN REPLY #9955  GOTO 22
+END
+
+EXTEND_BOTTOM CEFALDOR 5
+
+  IF ~ Kit(Player1,D5_DR_SORC)
+~ THEN REPLY #9866  DO ~SetGlobal("TalkedFaldor1","GLOBAL",1)
+~ GOTO 0
+END
+>>>>>>>> 
+COMPILE ~d5/cefaldo-.d~
+
+<<<<<<<< d5/druidad-.d
+EXTEND_BOTTOM DRUIDAD 0
+
+  IF ~ LevelGT(Player1,13)
+	Global("GreatDruid","GLOBAL",0)
+	  Kit(Player1,D5_DR_SORC)
+~ THEN GOTO 1
+END
+
+EXTEND_BOTTOM DRUIDAD 10
+  IF ~ LevelGT(Player1,13)
+	Global("GreatDruid","GLOBAL",0)
+	  Kit(Player1,D5_DR_SORC)
+~ THEN GOTO 11
+
+  IF ~ False()
+	LevelGT(Player2,13)
+	Global("GreatDruid","GLOBAL",0)
+	  Kit(Player2,D5_DR_SORC)
+~ THEN GOTO 12
+
+  IF ~ False()
+	LevelGT(Player3,13)
+	Global("GreatDruid","GLOBAL",0)
+	  Kit(Player3,D5_DR_SORC)
+~ THEN GOTO 13
+
+  IF ~ False()
+	LevelGT(Player4,13)
+	Global("GreatDruid","GLOBAL",0)
+	  Kit(Player4,D5_DR_SORC)
+~ THEN GOTO 14
+
+  IF ~ False()
+	LevelGT(Player5,13)
+	Global("GreatDruid","GLOBAL",0)
+	  Kit(Player5,D5_DR_SORC)
+~ THEN GOTO 15
+
+  IF ~ False()
+	LevelGT(Player6,13)
+	Global("GreatDruid","GLOBAL",0)
+	  Kit(Player6,D5_DR_SORC)
+~ THEN GOTO 16
+END
+>>>>>>>> 
+COMPILE ~d5/druidad-.d~
+
 END
 
 END // end function
 //__________________________________________________________________________________
 
 
-
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
-
 
 
 //__________________________________________________________________________________
@@ -1263,7 +1874,7 @@ ADD_KIT ~D5_BARB_SHAMAN~
 //3     	       		O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
 //2     	       		R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
 //1     	       		D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_BARB_SHAMAN  		2 2 2 2 2 2 2 2~
+~D5_BARB_SHAMAN  		0 0 0 0 0 0 0 0~
 ~D5_BARB_SHAMAN    		0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
 
 //MINIMUM KIT STATS_________________________________________________________________
@@ -1330,8 +1941,9 @@ END
 //MULTICLASS SHAMAN FILES______________________________________________________________
 //
 COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmbb.2da~ ~override~
-COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
-APPEND ~d5shmbb.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
+END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
@@ -1386,6 +1998,14 @@ APPEND ~d5shmbb.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****      
 	s_Perdition     = ~x~
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmbb~ END
+ END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5shmbb~ END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -1394,7 +2014,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//								SHAMAN/RANGER
+//								  SHAMAN/RANGER
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -1414,8 +2034,8 @@ ADD_KIT ~D5_SHAMAN_RANGER~
 //3         	     O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
 //2         	     R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
 //1         	     D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_SHAMAN_RANGER    0 2 2 0 2 2 0 2~
-~D5_SHAMAN_RANGER    0 2 2 0 2 2 0 2 0 0 0 0 0 0 2 2 0 2 2 0 2 0 2 0 2 2 2 2 2 0 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+~D5_SHAMAN_RANGER    0 0 0 0 0 0 0 0~
+~D5_SHAMAN_RANGER    0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 0 2 2 0 2 0 2 0 2 2 2 2 2 0 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
 
 //MINIMUM KIT STATS_________________________________________________________________
 //                  	STR DEX CON INT WIS CHR
@@ -1483,8 +2103,9 @@ COPY ~faiths_and_powers/kits/multiclass/496_shamranger/d5shmrn.2da~ ~override~
 	APPEND_FILE ~faiths_and_powers/kits/rangers/901_forest_ranger/ranger_goodberry.txt~
 	APPEND_FILE ~faiths_and_powers/kits/rangers/901_forest_ranger/ranger_enemies.txt~
   END
-COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
-APPEND ~d5shmrn.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
+END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
@@ -1539,6 +2160,14 @@ APPEND ~d5shmrn.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****      
 	s_Perdition     = ~x~
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmrn~ END
+ END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5shmrn~ END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -1547,7 +2176,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//								SHAMAN/THIEF
+//									SHAMAN/THIEF
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -1567,8 +2196,8 @@ ADD_KIT ~D5_SHAMAN_THIEF~
 //3              	O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
 //2              	R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
 //1              	D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_SHAMAN_THIEF    0 0 0 0 1 1 0 1~
-~D5_SHAMAN_THIEF    0 1 0 0 1 1 0 1 0 1 1 0 0 0 1 1 0 1 0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+~D5_SHAMAN_THIEF    0 0 0 0 0 0 0 0~
+~D5_SHAMAN_THIEF    0 0 0 0 0 0 0 0 0 1 1 0 0 0 1 1 0 1 0 0 0 0 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
 
 //MINIMUM KIT STATS_________________________________________________________________
 //                  	STR DEX CON INT WIS CHR
@@ -1629,11 +2258,19 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 	END
 END
 
-//MULTICLASS DRUID FILES______________________________________________________________
+//MULTICLASS SHAMAN FILES____________________________________________________________
 //
 COPY ~faiths_and_powers/kits/multiclass/497_shamthief/d5shmth.2da~ ~override~
-COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
-APPEND ~d5shmth.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
+END
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5dil10.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 276 target = 1 parameter1 = 10 parameter2 = 0 timing = 9 END
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5dil04.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 276 target = 1 parameter1 = 4 parameter2 = 0 timing = 9 END
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5tshdi.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5shmdi~ END
+
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
@@ -1648,9 +2285,9 @@ APPEND ~d5shmth.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****      
 	u_flails 			= 0
 	u_axes 				= 0
 	u_daggers 			= 1
-	u_short_swords		= 0
+	u_short_swords		= 1
 	u_long_swords		= 0
-	u_scimitars 		= 0
+	u_scimitars 		= 1
 	u_katanas 			= 0
 	u_bastard_swords 	= 0
 	u_2hand_swords 		= 0
@@ -1688,6 +2325,14 @@ APPEND ~d5shmth.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****      
 	s_Perdition     = ~x~
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmth~ END
+ END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5shmth~ END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -1696,7 +2341,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//								SHAMAN/MAGE
+//									SHAMAN/MAGE
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -1716,8 +2361,8 @@ ADD_KIT ~D5_SHAMAN_MAGE~
 //3              	O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
 //2              	R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
 //1              	D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_SHAMAN_MAGE     0 0 0 0 1 1 0 1~
-~D5_SHAMAN_MAGE     0 1 0 0 1 1 0 1 0 0 1 0 0 0 1 1 0 1 1 0 1 0 1 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+~D5_SHAMAN_MAGE     0 0 0 0 0 0 0 0~
+~D5_SHAMAN_MAGE     0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 1 0 1 1 0 1 0 1 0 0 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
 
 //MINIMUM KIT STATS_________________________________________________________________
 //                  	STR DEX CON INT WIS CHR
@@ -1778,11 +2423,12 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 	END
 END
 
-//MULTICLASS DRUID FILES______________________________________________________________
+//MULTICLASS SHAMAN FILES____________________________________________________________
 //
 COPY ~faiths_and_powers/kits/multiclass/498_shammage/d5shmma.2da~ ~override~
-COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
-APPEND ~d5shmma.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
+END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
@@ -1837,6 +2483,14 @@ APPEND ~d5shmma.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****      
 	s_Perdition     = ~x~
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmma~ END
+ END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5shmma~ END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -1857,8 +2511,6 @@ DEFINE_ACTION_FUNCTION multiclass_shaman_system BEGIN
 
 //get kit identifiers_________________________________________________________________
 //
-// ***** need to do this the old way
-//OUTER_SET barb_shaman_code = (0x4000 + %D5_BARB_SHAMAN%)
 OUTER_SET barb_shaman_code = IDS_OF_SYMBOL (~kit~ ~D5_BARB_SHAMAN~)
 OUTER_SET ranger_shaman_code = IDS_OF_SYMBOL (~kit~ ~D5_SHAMAN_RANGER~)
 OUTER_SET shaman_thief_code = IDS_OF_SYMBOL (~kit~ ~D5_SHAMAN_THIEF~)
@@ -2187,7 +2839,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shlist.2da~) BEGIN
   READ_BYTE 0x21 ok_druid
   PATCH_IF (spell_type = 2) && ((%ok_druid% BOR 0b01111111) = 0b01111111) BEGIN
 	LPF NAME_NUM_OF_SPELL_RES STR_VAR spell_res = EVAL ~%SOURCE_RES%~ RET spell_name END
-	PATCH_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~%spell_name%[ %TAB%%LNL%%MNL%%WNL%]~)) && !(FILE_CONTAINS_EVALUATED (~hidespl.2da~ ~%SOURCE_RES%~)) BEGIN
+	PATCH_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~[ %TAB%]%spell_name%[ %TAB%%LNL%%MNL%%WNL%]~)) && !(FILE_CONTAINS_EVALUATED (~hidespl.2da~ ~%SOURCE_RES%~)) BEGIN
 	  INNER_ACTION BEGIN
 		APPEND ~d5shlist.2da~ ~%SOURCE_RES%	: %spell_name%~
 //		APPEND ~d5shlist.2da~ ~%SOURCE_RES%	1~
@@ -2648,6 +3300,15 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5nshdn.spl~				//	stop
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
 */
+CREATE EFF ~d5shmdn~
+	WRITE_LONG 0x10 171
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 9
+	WRITE_LONG 0x28 0
+	WRITE_SHORT 0x2c 100
+	WRITE_EVALUATED_ASCII 0x30 ~d5shmdn~ #8
+	WRITE_LONG 0x90 1
+	WRITE_EVALUATED_ASCII 0x94 ~D5SHMDN~ #8
 
 
 //recreate detect illusions__________________________________________________________
@@ -2660,8 +3321,8 @@ COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdi.spl~ ~override~		//
 //  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5nshdi~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 9 STR_VAR resource = ~d5shmdn~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 9 STR_VAR resource = ~d5shmdi~ END
 COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdib.eff~ ~override~							//	232 eff triggered by song
 COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdib.spl~ ~override~							//	aura triggered by 232 eff
 COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5nshdi.bam~ ~override~		//	stop detect icon
@@ -2675,6 +3336,15 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5nshdi.spl~				//	stop
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
 */
+CREATE EFF ~d5shmdi~
+	WRITE_LONG 0x10 171
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 9
+	WRITE_LONG 0x28 0
+	WRITE_SHORT 0x2c 100
+	WRITE_EVALUATED_ASCII 0x30 ~d5shmdi~ #8
+	WRITE_LONG 0x90 1
+	WRITE_EVALUATED_ASCII 0x94 ~D5SHMDI~ #8
 
 
 //learn spell item & initialize_______________________________________________________
@@ -2687,11 +3357,12 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shamb.itm~) BEGIN
   SAY IDENTIFIED_DESC @49912
   LPF ALTER_ITEM_HEADER INT_VAR header = 1 target = 7 speed = 0 STR_VAR icon = ~d5nshdn~ END
   LPF ALTER_ITEM_HEADER INT_VAR header = 2 target = 7 speed = 0 STR_VAR icon = ~d5nshdi~ END
+  LPF ADD_ITEM_EFFECT INT_VAR header = 2 insert_point = 0 opcode = 318 target = 1 parameter1 = shaman_thief_code parameter2 = %kit_is_row% timing = 0 duration = 0 STR_VAR resource = EVAL ~%SOURCE_RES%~ END
   LPF ALTER_ITEM_HEADER INT_VAR header = 3 target = 7 speed = 0 STR_VAR icon = ~spcl919b~ END
 END
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shba1.spl~) BEGIN
- COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5shba1.spl~			//	initialize shaman abilities
+ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5shba1.spl~				//	initialize shaman abilities
   SAY NAME1 @49950
   SAY UNIDENTIFIED_DESC @49950
   WRITE_SHORT 0x1c 4
@@ -2699,8 +3370,8 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shba1.spl~) BEGIN
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 143 target = 1 parameter1 = 14 timing = 9 STR_VAR resource = ~d5shamb~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5shotz~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5shfre~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 STR_VAR resource = ~d5shmdn~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 9 STR_VAR resource = ~d5shmdi~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shba1~ END
 END
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5shba1.spl~) BEGIN
@@ -2713,8 +3384,8 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5shba1.spl~) BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 143 target = 1 parameter1 = 14 timing = 9 STR_VAR resource = ~d5shamb~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5shotz~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5shfre~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 9 STR_VAR resource = ~d5shmdn~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 9 STR_VAR resource = ~d5shmdi~ END
 END
 
 APPEND ~d5sham.2da~ ~LEARNSPLS   GA_D5SHBA1  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
@@ -3252,7 +3923,7 @@ DEFINE_ACTION_FUNCTION multi_shaman_strongholds BEGIN
 
 ACTION_IF GAME_IS ~bg2ee eet~ BEGIN
 
-<<<<<<<< d5/cechall+.d
+<<<<<<<< d5/cechall_.d
 EXTEND_BOTTOM CECHALLE 2
 
  IF ~LevelGT(Player1,13)
@@ -3296,9 +3967,9 @@ SetNumTimesTalkedTo(1)
 ~ GOTO 7
 END
 >>>>>>>> 
-COMPILE ~d5/cechall+.d~
+COMPILE ~d5/cechall_.d~
 
-<<<<<<<< d5/cefaldo+.d
+<<<<<<<< d5/cefaldo_.d
 EXTEND_BOTTOM CEFALDOR 2
 
   IF ~See(Player1)
@@ -3377,9 +4048,9 @@ EXTEND_BOTTOM CEFALDOR 5
 ~ GOTO 0
 END
 >>>>>>>> 
-COMPILE ~d5/cefaldo+.d~
+COMPILE ~d5/cefaldo_.d~
 
-<<<<<<<< d5/druidad+.d
+<<<<<<<< d5/druidad_.d
 EXTEND_BOTTOM DRUIDAD 0
 
   IF ~ LevelGT(Player1,13)
@@ -3453,7 +4124,7 @@ EXTEND_BOTTOM DRUIDAD 10
 ~ THEN GOTO 16
 END
 >>>>>>>> 
-COMPILE ~d5/druidad+.d~
+COMPILE ~d5/druidad_.d~
 
 END
 

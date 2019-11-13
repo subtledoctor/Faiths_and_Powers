@@ -141,7 +141,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpr02.2da~ BEGIN
     clab_name 		= ~clabpr02~
 	sphere_list		= ~talos_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~fc_cm~
  END
 END
 //__________________________________________________________________________________
@@ -176,7 +175,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpr03.2da~ BEGIN
     clab_name 		= ~clabpr03~
 	sphere_list		= ~helm_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~fc~
  END
 END
 //__________________________________________________________________________________
@@ -211,7 +209,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpr04.2da~ BEGIN
     clab_name 		= ~clabpr04~
 	sphere_list		= ~lathander_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~fc_cm~
  END
 END
 //__________________________________________________________________________________
@@ -281,7 +278,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~ohtempus.2da~ BEGIN
     clab_name 		= ~ohtempus~
 	sphere_list		= ~tempus_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~fc~
  END
 END
 //__________________________________________________________________________________

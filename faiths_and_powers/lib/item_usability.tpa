@@ -108,7 +108,7 @@ what about shields??
 */ 
 
 
-//ariest bonuses____________________________________________________________________
+//priest bonuses____________________________________________________________________
 //
 COPY ~faiths_and_powers/kits/misc/b_lor.spl~ ~override~
 	SAY NAME1 @6
@@ -919,6 +919,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	PATCH_IF FILE_EXISTS_IN_GAME ~%kit_clab%.2da~ BEGIN
 	  INNER_ACTION BEGIN
 		APPEND ~%kit_clab%.2da~ ~D5_USABLE   AP_D5_U%kit_index%   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+/*
 		ACTION_IF (%kit_class% = 8 || %kit_class% = 14 || %kit_class% = 15 || %kit_class% = 18 || %kit_class% = 16) BEGIN
 		  ACTION_IF (%kit_class% = 8 || %kit_class% = 14 || %kit_class% = 15 || %kit_class% = 18) BEGIN
 			OUTER_TEXT_SPRINT class_letter ~P~
@@ -936,9 +937,11 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 		  END
 		  COPY_EXISTING ~QD_MC_AP.eff~ ~override/d5_u%kit_index%#.eff~
 			WRITE_EVALUATED_ASCII 0x30 ~d5_u%kit_index%~
+		  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = EVAL ~%class_letter%~ END
 		  COPY_EXISTING ~QD_MC%class_letter%01.spl~ ~override~ 
 			LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %kit_code% parameter2 = 9 STR_VAR resource = EVAL ~d5_u%kit_index%#~ END  
-		END 
+		END
+*/
 	  END
 	END
    END
@@ -992,28 +995,28 @@ ACTION_IF FILE_EXISTS_IN_GAME ~enginest.2da~ BEGIN
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 28 10 1
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 29 10 1
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 30 10 1
-// 
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 11 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 12 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 13 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 14 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 15 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 16 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 17 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 18 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 19 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 20 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 21 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 22 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 23 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 24 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 25 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 26 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 27 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 28 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 29 13 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 30 13 1
-// 
+// f/c
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 11 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 12 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 13 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 14 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 15 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 16 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 17 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 18 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 19 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 20 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 21 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 22 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 23 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 24 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 25 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 26 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 27 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 28 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 29 13 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 30 13 2
+// c/m
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 11 17 1
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 12 17 1
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 13 17 1
@@ -1034,7 +1037,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~enginest.2da~ BEGIN
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 28 17 1
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 29 17 1
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 30 17 1
-// 
+// c/t
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 11 18 1
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 12 18 1
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 13 18 1
@@ -1055,69 +1058,69 @@ ACTION_IF FILE_EXISTS_IN_GAME ~enginest.2da~ BEGIN
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 28 18 1
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 29 18 1
 	  SET_2DA_ENTRY_LATER ~#weapprof~ 30 18 1
-// 
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 11 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 12 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 13 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 14 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 15 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 16 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 17 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 18 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 19 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 20 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 21 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 22 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 23 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 24 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 25 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 26 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 27 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 28 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 29 19 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 30 19 1
-// 
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 11 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 12 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 13 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 14 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 15 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 16 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 17 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 18 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 19 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 20 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 21 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 22 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 23 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 24 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 25 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 26 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 27 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 28 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 29 20 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 30 20 1
+// f/d
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 11 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 12 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 13 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 14 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 15 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 16 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 17 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 18 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 19 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 20 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 21 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 22 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 23 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 24 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 25 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 26 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 27 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 28 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 29 19 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 30 19 2
+// f/m/c
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 11 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 12 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 13 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 14 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 15 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 16 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 17 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 18 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 19 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 20 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 21 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 22 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 23 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 24 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 25 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 26 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 27 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 28 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 29 20 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 30 20 2
 // c/r
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 11 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 12 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 13 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 14 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 15 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 16 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 17 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 18 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 19 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 20 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 21 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 22 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 23 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 24 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 25 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 26 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 27 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 28 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 29 21 1
-	  SET_2DA_ENTRY_LATER ~#weapprof~ 30 21 1
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 11 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 12 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 13 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 14 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 15 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 16 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 17 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 18 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 19 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 20 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 21 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 22 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 23 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 24 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 25 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 26 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 27 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 28 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 29 21 2
+	  SET_2DA_ENTRY_LATER ~#weapprof~ 30 21 2
 // go!
 	  SET_2DA_ENTRIES_NOW ~#weapprof~ 1
 	BUT_ONLY

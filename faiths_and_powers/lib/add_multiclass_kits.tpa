@@ -164,6 +164,14 @@ END
 	class 			= ~cleric_mage~
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5cmmys~ END
+ END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5cmmys~ END
+ END
+  
 END
 //__________________________________________________________________________________
 
@@ -318,6 +326,14 @@ END
 	class 			= ~cleric_mage~
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5cmazu~ END
+ END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5cmazu~ END
+ END
+  
 END
 //__________________________________________________________________________________
 
@@ -455,6 +471,14 @@ END
 	class 			= ~ranger_cleric~
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5crmie~ END
+ END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5crmie~ END
+ END
+  
 END
 //__________________________________________________________________________________
 
@@ -596,6 +620,14 @@ END
 	class 			= ~ranger_cleric~
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5crshn~ END
+ END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5crshn~ END
+ END
+  
 END
 //__________________________________________________________________________________
 
@@ -605,7 +637,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//								PRIEST OF MASK
+//									PRIEST OF MASK
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -748,6 +780,14 @@ END
 	class 			= ~cleric_thief~
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5ctmas~ END
+ END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5ctmas~ END
+ END
+  
 END
 //__________________________________________________________________________________
 
@@ -945,6 +985,14 @@ END
 	class 			= ~cleric_thief~
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5ctbra~ END
+ END
+
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5ctbra~ END
+ END
+  
 END
 //__________________________________________________________________________________
 
@@ -963,6 +1011,31 @@ END
 
 DEFINE_ACTION_FUNCTION multiclass_kit_clones BEGIN
 
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5csorc.2da~) BEGIN
+  COPY_EXISTING ~kitlist.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 1 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_SORCERER_CLERIC~) BEGIN
+		READ_2DA_ENTRY row 0 10 sorc_cleric_ind
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+  ACTION_IF (IS_AN_INT %sorc_cleric_ind%) BEGIN
+	ACTION_FOR_EACH race IN ~D~ ~E~ ~G~ ~H~ ~HE~ ~HL~ ~HO~ BEGIN
+	  COPY_EXISTING ~K_CM_%race%.2da~ ~override~
+		COUNT_2DA_ROWS 2 rows
+		FOR (row = 1; row < rows; ++row) BEGIN
+		  READ_2DA_ENTRY row 1 2 kit_ind
+		  PATCH_IF (kit_ind = sorc_cleric_ind) BEGIN
+			REMOVE_2DA_ROW row 2
+		  END
+		END
+	  BUT_ONLY
+	END
+  END
+END
+	  
 COPY_EXISTING ~d5_class.2da~ ~override~
   READ_2DA_ENTRIES_NOW r2en_d5_class 4
   FOR (row = 0; row < r2en_d5_class; row += 1) BEGIN
@@ -1237,6 +1310,7 @@ COPY_EXISTING ~crippstr.2da~ ~override~
 BUT_ONLY
 
 ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
+  OUTER_SET multisorc = 0
   OUTER_SPRINT sc_kit ~%ind_1%~  
   LAF GET_KIT_EX
    STR_VAR
@@ -1374,6 +1448,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	OUTER_SPRINT new_name ~%sc_kit%_FD~
 	OUTER_SPRINT new_clab ~%clab_res%f~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
+	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
 	OUTER_SET new_class = 16
 	OUTER_SPRINT new_mixed ~%orig_mixed% Warrior~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
@@ -1603,6 +1678,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	OUTER_SPRINT new_name ~%sc_kit%_FC~
 	OUTER_SPRINT new_clab ~%clab_res%f~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
+	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
 	OUTER_SET new_class = 8
 	OUTER_SPRINT new_mixed ~Fighter/%orig_mixed%~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
@@ -1830,6 +1906,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	OUTER_SPRINT new_name ~%sc_kit%_CR~
 	OUTER_SPRINT new_clab ~%clab_res%r~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
+	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
 	OUTER_SET new_class = 18
 	OUTER_SPRINT new_mixed ~Ranger/%orig_mixed%~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
@@ -2050,65 +2127,6 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	  OUTER_SET new_fnp_xbow = (%orig_xbow%)
 	END
    END
-   ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~m~ = 0) BEGIN
-	OUTER_SPRINT fnp_spheres_class ~cleric_mage~
-	OUTER_SPRINT new_base_class ~P~
-	OUTER_SPRINT hit_dice ~hpcm~
-	OUTER_SPRINT new_name ~%sc_kit%_CM~
-	OUTER_SPRINT new_clab ~%clab_res%m~
-	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
-	OUTER_SET new_class = 14
-	OUTER_SPRINT new_mixed ~Mage/%orig_mixed%~
-	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
-	  REPLACE_TEXTUALLY ~_C_~ ~_CM_~
-	END
-	OUTER_SET new_wp_staff = %wp_staff%
-	OUTER_SET new_wp_club = %wp_club%
-	OUTER_SET new_wp_hammer = %wp_hammer%
-	OUTER_SET new_wp_mace = %wp_mace%
-	OUTER_SET new_wp_flail = %wp_flail%
-	OUTER_SET new_wp_axe = %wp_axe%
-	OUTER_SET new_wp_dagger = %wp_dagger%
-	OUTER_SET new_wp_shortsword = %wp_shortsword%
-	OUTER_SET new_wp_longsword = %wp_longsword%
-	OUTER_SET new_wp_scimitar = %wp_scimitar%
-	OUTER_SET new_wp_katana = %wp_katana%
-	OUTER_SET new_wp_bastardsword = 0
-	OUTER_SET new_wp_2handsword = 0
-	OUTER_SET new_wp_halberd = 0
-	OUTER_SET new_wp_spear = 0
-	OUTER_SET new_wp_dart = %wp_dart%
-	OUTER_SET new_wp_sling = %wp_sling%
-	OUTER_SET new_wp_longbow = %wp_longbow%
-	OUTER_SET new_wp_shortbow = %wp_shortbow%
-	OUTER_SET new_wp_xbow = %wp_xbow%
-	OUTER_SET new_wp_2handed = %wp_2handed%
-	OUTER_SET new_wp_swordandshield = %wp_swordandshield%
-	OUTER_SET new_wp_singleweapon = %wp_singleweapon%
-	OUTER_SET new_wp_2weapon = %wp_2weapon%
-	OUTER_SPRINT new_weapprof ~0 0 0 0 0 0 0 0 %new_wp_bastardsword% %new_wp_longsword% %new_wp_shortsword% %new_wp_axe% %new_wp_2handsword% %new_wp_katana% %new_wp_scimitar% %new_wp_dagger% %new_wp_hammer% %new_wp_club% %new_wp_spear% %new_wp_halberd% %new_wp_flail% %new_wp_mace% %new_wp_staff% %new_wp_xbow% %new_wp_longbow% %new_wp_shortbow% %new_wp_dart% %new_wp_sling% %new_wp_2handed% %new_wp_swordandshield% %new_wp_singleweapon% %new_wp_2weapon% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-	OUTER_SET new_fnp_leather = 0
-	OUTER_SET new_fnp_chain = 0
-	OUTER_SET new_fnp_plate = 0
-	OUTER_SET new_fnp_clubstaff = %orig_clubstaff%
-	OUTER_SET new_fnp_hammer = %orig_hammer%
-	OUTER_SET new_fnp_mace = %orig_mace%
-	OUTER_SET new_fnp_flail = %orig_flail%
-	OUTER_SET new_fnp_axe = %orig_axe%
-	OUTER_SET new_fnp_dagger = %orig_dagger%
-	OUTER_SET new_fnp_shortsword = %orig_shortsword%
-	OUTER_SET new_fnp_longsword = %orig_longsword%
-	OUTER_SET new_fnp_scimitar = %orig_scimitar%
-	OUTER_SET new_fnp_katana = %orig_katana%
-	OUTER_SET new_fnp_bastardsword = 0
-	OUTER_SET new_fnp_2handsword = 0
-	OUTER_SET new_fnp_halberd = 0
-	OUTER_SET new_fnp_spear = 0
-	OUTER_SET new_fnp_dart = %orig_dart%
-	OUTER_SET new_fnp_sling = %orig_sling%
-	OUTER_SET new_fnp_bow = %orig_bow%
-	OUTER_SET new_fnp_xbow = %orig_xbow%
-   END
    ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~t~ = 0) BEGIN
 	OUTER_SPRINT fnp_spheres_class ~cleric_thief~
 	OUTER_SPRINT new_base_class ~P~
@@ -2116,6 +2134,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	OUTER_SPRINT new_name ~%sc_kit%_CT~
 	OUTER_SPRINT new_clab ~%clab_res%t~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
+	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
 	OUTER_SET new_class = 15
 	OUTER_SPRINT new_mixed ~Thief/%orig_mixed%~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
@@ -2174,28 +2193,107 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	OUTER_SPRINT sneakatt ~%orig_sneakatt%~
 	OUTER_SPRINT crippstr ~%orig_crippstr%~
    END
+   ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~m~ = 0) BEGIN
+	OUTER_SPRINT fnp_spheres_class ~cleric_mage~
+	OUTER_SPRINT new_base_class ~P~
+	OUTER_SPRINT hit_dice ~hpcm~
+	OUTER_SPRINT new_name ~%sc_kit%_CM~
+	OUTER_SPRINT new_clab ~%clab_res%m~
+	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
+	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
+	OUTER_SET new_class = 14
+	OUTER_SPRINT new_mixed ~Mage/%orig_mixed%~
+	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
+	  REPLACE_TEXTUALLY ~_C_~ ~_CM_~
+	END
+	OUTER_SET new_wp_staff = %wp_staff%
+	OUTER_SET new_wp_club = %wp_club%
+	OUTER_SET new_wp_hammer = %wp_hammer%
+	OUTER_SET new_wp_mace = %wp_mace%
+	OUTER_SET new_wp_flail = %wp_flail%
+	OUTER_SET new_wp_axe = %wp_axe%
+	OUTER_SET new_wp_dagger = %wp_dagger%
+	OUTER_SET new_wp_shortsword = %wp_shortsword%
+	OUTER_SET new_wp_longsword = %wp_longsword%
+	OUTER_SET new_wp_scimitar = %wp_scimitar%
+	OUTER_SET new_wp_katana = %wp_katana%
+	OUTER_SET new_wp_bastardsword = 0
+	OUTER_SET new_wp_2handsword = 0
+	OUTER_SET new_wp_halberd = 0
+	OUTER_SET new_wp_spear = 0
+	OUTER_SET new_wp_dart = %wp_dart%
+	OUTER_SET new_wp_sling = %wp_sling%
+	OUTER_SET new_wp_longbow = %wp_longbow%
+	OUTER_SET new_wp_shortbow = %wp_shortbow%
+	OUTER_SET new_wp_xbow = %wp_xbow%
+	OUTER_SET new_wp_2handed = %wp_2handed%
+	OUTER_SET new_wp_swordandshield = %wp_swordandshield%
+	OUTER_SET new_wp_singleweapon = %wp_singleweapon%
+	OUTER_SET new_wp_2weapon = %wp_2weapon%
+	OUTER_SPRINT new_weapprof ~0 0 0 0 0 0 0 0 %new_wp_bastardsword% %new_wp_longsword% %new_wp_shortsword% %new_wp_axe% %new_wp_2handsword% %new_wp_katana% %new_wp_scimitar% %new_wp_dagger% %new_wp_hammer% %new_wp_club% %new_wp_spear% %new_wp_halberd% %new_wp_flail% %new_wp_mace% %new_wp_staff% %new_wp_xbow% %new_wp_longbow% %new_wp_shortbow% %new_wp_dart% %new_wp_sling% %new_wp_2handed% %new_wp_swordandshield% %new_wp_singleweapon% %new_wp_2weapon% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+	OUTER_SET new_fnp_leather = 0
+	OUTER_SET new_fnp_chain = 0
+	OUTER_SET new_fnp_plate = 0
+	OUTER_SET new_fnp_clubstaff = %orig_clubstaff%
+	OUTER_SET new_fnp_hammer = %orig_hammer%
+	OUTER_SET new_fnp_mace = %orig_mace%
+	OUTER_SET new_fnp_flail = %orig_flail%
+	OUTER_SET new_fnp_axe = %orig_axe%
+	OUTER_SET new_fnp_dagger = %orig_dagger%
+	OUTER_SET new_fnp_shortsword = %orig_shortsword%
+	OUTER_SET new_fnp_longsword = %orig_longsword%
+	OUTER_SET new_fnp_scimitar = %orig_scimitar%
+	OUTER_SET new_fnp_katana = %orig_katana%
+	OUTER_SET new_fnp_bastardsword = 0
+	OUTER_SET new_fnp_2handsword = 0
+	OUTER_SET new_fnp_halberd = 0
+	OUTER_SET new_fnp_spear = 0
+	OUTER_SET new_fnp_dart = %orig_dart%
+	OUTER_SET new_fnp_sling = %orig_sling%
+	OUTER_SET new_fnp_bow = %orig_bow%
+	OUTER_SET new_fnp_xbow = %orig_xbow%
+   END
   END
-  LAF ADD_KIT_EX
-   INT_VAR
-    kit_class   = %new_class%
-	mixed       = RESOLVE_STR_REF (~%new_mixed%~)
-   STR_VAR
-	source_kit  = EVAL ~%sc_kit%~
-	kit_name    = EVAL ~%new_name%~
-	base_class  = EVAL ~%new_base_class%~
-	clab_path   = EVAL ~override/%new_clab%.2da~
-	dualclas    = ~0 0 0 0 0 0~
-	kittable    = EVAL ~%new_kittable%~
-	hpclass		= EVAL ~%hit_dice%~
-	weapprof    = EVAL ~%new_weapprof%~
-	thiefscl
-	traplimt
-	thiefskl
-	backstab
-	sneakatt
-	crippstr
+  ACTION_IF (new_class = 15) BEGIN
+   LAF ADD_KIT_EX
+    INT_VAR
+     kit_class   = %new_class%
+	 mixed       = RESOLVE_STR_REF (~%new_mixed%~)
+    STR_VAR
+	 source_kit  = EVAL ~%sc_kit%~
+	 kit_name    = EVAL ~%new_name%~
+	 base_class  = EVAL ~%new_base_class%~
+	 clab_path   = EVAL ~override/%new_clab%.2da~
+	 dualclas    = ~0 0 0 0 0 0~
+	 kittable    = EVAL ~%new_kittable%~
+	 hpclass	 = EVAL ~%hit_dice%~
+	 weapprof    = EVAL ~%new_weapprof%~
+	 thiefscl
+	 traplimt
+	 thiefskl
+	 backstab
+	 sneakatt
+	 crippstr
 //   RET kit_id
+   END
   END
+  ACTION_IF !(new_class = 15) BEGIN
+   LAF ADD_KIT_EX
+    INT_VAR
+     kit_class   = %new_class%
+	 mixed       = RESOLVE_STR_REF (~%new_mixed%~)
+    STR_VAR
+	 source_kit  = EVAL ~%sc_kit%~
+	 kit_name    = EVAL ~%new_name%~
+	 base_class  = EVAL ~%new_base_class%~
+	 clab_path   = EVAL ~override/%new_clab%.2da~
+	 dualclas    = ~0 0 0 0 0 0~
+	 kittable    = EVAL ~%new_kittable%~
+	 hpclass	 = EVAL ~%hit_dice%~
+	 weapprof    = EVAL ~%new_weapprof%~
+//   RET kit_id
+   END
+  END  
   LAF DEFINE_FNP_KIT_INFO
    INT_VAR
 	u_leather_armor 	= %new_fnp_leather%
@@ -2247,14 +2345,97 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	s_Magic 		= EVAL ~%orig_magic%~
 	s_Perdition     = EVAL ~%orig_perdition%~
   END
-
-  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~99~) BEGIN
-	LAM apply_fnp_spheres_to_kit
+//  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+//    LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = EVAL ~%new_clab%~ END
+//  END
+  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = EVAL ~%new_clab%~ END
+  END  
+  ACTION_IF (new_class = 14) && (FILE_EXISTS_IN_GAME ~d5sorc.2da~) BEGIN
+   OUTER_SPRINT sorc_name ~%sc_kit%_SC~
+   OUTER_SPRINT sorc_clab ~%clab_res%s~
+   COPY_EXISTING ~%clab_res%.2da~ ~override/%sorc_clab%.2da~
+//    APPEND_FILE ~override/d5sorc.2da~
+   OUTER_SPRINT sorc_mixed ~Sorcerer/%orig_mixed%~
+   LAF ADD_KIT_EX
+    INT_VAR
+     kit_class   = %new_class%
+	 mixed       = RESOLVE_STR_REF (~%sorc_mixed%~)
+    STR_VAR
+	 source_kit  = EVAL ~%sc_kit%~
+	 kit_name    = EVAL ~%sorc_name%~
+	 base_class  = EVAL ~%new_base_class%~
+	 clab_path   = EVAL ~override/%sorc_clab%.2da~
+	 dualclas    = ~0 0 0 0 0 0~
+	 kittable    = EVAL ~%new_kittable%~
+	 hpclass	 = EVAL ~%hit_dice%~
+	 weapprof    = EVAL ~%new_weapprof%~
+   END
+   LAF DEFINE_FNP_KIT_INFO
+    INT_VAR
+	 u_leather_armor 	= %new_fnp_leather%
+	 u_chain_armor 		= %new_fnp_chain%
+	 u_plate_armor 		= %new_fnp_plate%
+	 u_club_staff	 	= %new_fnp_clubstaff%
+	 u_hammers	 		= %new_fnp_hammer%
+	 u_maces 	 		= %new_fnp_mace%
+	 u_flails 			= %new_fnp_flail%
+	 u_axes 			= %new_fnp_axe%
+	 u_daggers 			= %new_fnp_dagger%
+	 u_short_swords		= %new_fnp_shortsword%
+	 u_long_swords		= %new_fnp_longsword%
+	 u_scimitars 		= %new_fnp_scimitar%
+	 u_katanas 			= %new_fnp_katana%
+	 u_bastard_swords 	= %new_fnp_bastardsword%
+	 u_2hand_swords 	= %new_fnp_2handsword%
+	 u_halberds 		= %new_fnp_halberd%
+	 u_spears 	 		= %new_fnp_spear%
+	 u_darts 			= %new_fnp_dart%
+	 u_slings	 		= %new_fnp_sling%
+	 u_bows 			= %new_fnp_bow%
+	 u_crossbows 		= %new_fnp_xbow%
+    STR_VAR
+     clab_name 			= EVAL ~%sorc_clab%~
+	 sphere_list		= EVAL ~%orig_sphere_list%~
+	 class 				= EVAL ~%fnp_spheres_class%~
+	 s_Life 		    = EVAL ~%orig_life%~
+	 s_Death 			= EVAL ~%orig_death%~
+	 s_Benediction 		= EVAL ~%orig_benediction%~
+	 s_Destruction 		= EVAL ~%orig_destruction%~
+	 s_Protection 		= EVAL ~%orig_protection%~
+	 s_War 				= EVAL ~%orig_war%~
+	 s_Exploration  	= EVAL ~%orig_exploration%~
+	 s_Knowledge 		= EVAL ~%orig_knowledge%~
+	 s_Deception 		= EVAL ~%orig_deception%~
+	 s_Thought 	    	= EVAL ~%orig_thought%~
+	 s_Dread 			= EVAL ~%orig_dread%~
+	 s_Vigor 			= EVAL ~%orig_vigor%~
+	 s_Affliction 		= EVAL ~%orig_affliction%~
+	 s_Animal 			= EVAL ~%orig_animal%~
+	 s_Plant 			= EVAL ~%orig_plant%~
+	 s_Earth 			= EVAL ~%orig_earth%~
+	 s_Water 			= EVAL ~%orig_water%~
+	 s_Air 				= EVAL ~%orig_air%~
+	 s_Fire 			= EVAL ~%orig_fire%~
+	 s_Light 			= EVAL ~%orig_light%~
+	 s_Shadow 			= EVAL ~%orig_shadow%~
+	 s_Magic 			= EVAL ~%orig_magic%~
+	 s_Perdition    	= EVAL ~%orig_perdition%~
+   END
+   ACTION_IF (FILE_EXISTS_IN_GAME ~QD_MCM01.spl~) BEGIN
+	OUTER_SET sorc_cleric_code = IDS_OF_SYMBOL (~kit~ ~D5_SORCERER_CLERIC~)
+	OUTER_SET this_kit_code = IDS_OF_SYMBOL (~kit~ ~%sorc_name%~)
+	COPY_EXISTING ~QD_MCM01.spl~ ~override~
+	  LPF CLONE_EFFECT INT_VAR silent = 1 /*multi_match = 1*/ match_parameter1 = %sorc_cleric_code% match_parameter2 = 9 parameter1 = %this_kit_code% END
+   END
+//   ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+//    LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = EVAL ~%sorc_clab%~ END
+//   END
+   ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = EVAL ~%sorc_clab%~ END
+   END 
   END
 
-  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~91~) BEGIN
-	LAM apply_fnp_usability_to_kit
-  END
 END
 
 END	//	end kit-cloning function

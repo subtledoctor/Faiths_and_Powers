@@ -29,6 +29,14 @@ END
 //___________________________________________________________________________________
 
 
+//handle SR spells___________________________________________________________________
+//
+ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
+   INCLUDE ~faiths_and_powers/lib/add_ids.tpa~
+END
+//___________________________________________________________________________________
+
+
 //create sphere spells______________________________________________________________
 //
 //life
@@ -392,6 +400,7 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 		REPLACE_TEXTUALLY ~^[Ss][Pp][Ii][Nn]~ ~d5mn~
 		REPLACE_TEXTUALLY ~^[Ss][Pp][Ss][Dd]~ ~d5ms~
 		REPLACE_TEXTUALLY ~^[Bb]_[Cc]~ ~d5mb~
+		REPLACE_TEXTUALLY ~^[Bb]_[Ww]~ ~d5mu~
 		REPLACE_TEXTUALLY ~^[Bb]_[Pp][Rr]~ ~d5m8~
 		REPLACE_TEXTUALLY ~^[Dd]5[Ff][Nn][Pp]~ ~d5m5~
 	  END
@@ -402,6 +411,7 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 		REPLACE_TEXTUALLY ~^[Ss][Pp][Ii][Nn]~ ~d5fn~
 		REPLACE_TEXTUALLY ~^[Ss][Pp][Ss][Dd]~ ~d5fs~
 		REPLACE_TEXTUALLY ~^[Bb]_[Cc]~ ~d5fb~
+		REPLACE_TEXTUALLY ~^[Bb]_[Ww]~ ~d5fu~
 		REPLACE_TEXTUALLY ~^[Bb]_[Pp][Rr]~ ~d5f8~
 		REPLACE_TEXTUALLY ~^[Dd]5[Ff][Nn][Pp]~ ~d5f5~
 	  END
@@ -412,6 +422,7 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 		REPLACE_TEXTUALLY ~^[Ss][Pp][Ii][Nn]~ ~d5pn~
 		REPLACE_TEXTUALLY ~^[Ss][Pp][Ss][Dd]~ ~d5ps~
 		REPLACE_TEXTUALLY ~^[Bb]_[Cc]~ ~d5pb~
+		REPLACE_TEXTUALLY ~^[Bb]_[Ww]~ ~d5pu~
 		REPLACE_TEXTUALLY ~^[Bb]_[Pp][Rr]~ ~d5p8~
 		REPLACE_TEXTUALLY ~^[Dd]5[Ff][Nn][Pp]~ ~d5p5~
 	  END
@@ -808,8 +819,6 @@ END // end create spheres function
 
 DEFINE_ACTION_FUNCTION apply_spheres BEGIN
 
-INCLUDE ~faiths_and_powers/lib/hla_actions.tpa~
-
 COPY ~faiths_and_powers/spheres/d5spmem.spl~ ~override~
 	SAY NAME1 @1100
 	SAY UNIDENTIFIED_DESC @1101
@@ -873,9 +882,9 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~clastext.2da~) BEGIN
 	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~RANGER~ BEGIN
 	    READ_2DA_ENTRY_FORMER rows row 4 ~ranger_desc~
 	  END
-	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~SHAMAN~ BEGIN
-	    READ_2DA_ENTRY_FORMER rows row 4 ~shaman_desc~
-	  END
+//	  PATCH_IF ~%text%~ STRING_EQUAL_CASE ~SHAMAN~ BEGIN
+//	    READ_2DA_ENTRY_FORMER rows row 4 ~shaman_desc~
+//	  END
 	END
   BUT_ONLY
   ACTION_IF (FILE_CONTAINS_EVALUATED (~d5_class.2da~ ~CLABPR01~)) BEGIN
@@ -1056,23 +1065,14 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 					COPY_EXISTING ~QD_MC_AP.eff~ ~override/%abil_new%#.eff~
 					  WRITE_EVALUATED_ASCII 0x30 ~%abil_new%~
 					  SET col_length = STRING_LENGTH ~%col%~
+					LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = EVAL ~%class_letter%~ END
 					ACTION_IF (%col_length% = 1) BEGIN 
-					  ACTION_IF !(FILE_EXISTS_IN_GAME ~QD_MC%class_letter%0%col%.spl~) BEGIN
-						CREATE SPL ~QD_MC%class_letter%0%col%~
-						COPY_EXISTING ~QD_MC%class_letter%0%col%.SPL~ ~override~
-						  LPF ADD_NEW_EMPTY_SPELL_HEADER END
-					  END
 					  COPY_EXISTING ~override/QD_MC%class_letter%0%col%.spl~ ~override~ 
-						LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %goo_4% parameter2 = 9 STR_VAR resource = EVAL ~%abil_new%#~ END  
+						LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %goo_4% parameter2 = 9 STR_VAR resource = EVAL ~%abil_new%#~ END  
 					END 
 					ACTION_IF (%col_length% = 2) BEGIN
-					  ACTION_IF !(FILE_EXISTS_IN_GAME ~QD_MC%class_letter%%col%.spl~) BEGIN
-						CREATE SPL ~QD_MC%class_letter%%col%~
-						COPY_EXISTING ~QD_MC%class_letter%%col%.SPL~ ~override~
-						  LPF ADD_NEW_EMPTY_SPELL_HEADER END
-					  END
 					  COPY_EXISTING ~override/QD_MC%class_letter%%col%.spl~ ~override~ 
-						LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %goo_4% parameter2 = 9 STR_VAR resource = EVAL ~%abil_new%#~ END  
+						LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %goo_4% parameter2 = 9 STR_VAR resource = EVAL ~%abil_new%#~ END  
 					END 
 				  END 
 				END
@@ -1104,24 +1104,6 @@ CLEAR_ARRAYS
 ACTION_IF GAME_IS ~tob bg2ee eet~ BEGIN
 	INCLUDE ~faiths_and_powers/lib/hlas.tpa~
 END
-//___________________________________________________________________________________
-
-//multi druid HLAs___________________________________________________________________
-//
-LAF action_remove_hla STR_VAR kit_name = ~D5_DR_FIGHTER~ remove_ability = ~AP_D5PHLA5~ END
-LAF action_remove_hla STR_VAR kit_name = ~D5_DR_RANGER~ remove_ability = ~AP_D5PHLA5~ END
-LAF action_remove_hla STR_VAR kit_name = ~D5_DR_THIEF~ remove_ability = ~AP_D5PHLA5~ END
-LAF action_remove_hla STR_VAR kit_name = ~D5_DR_MAGE~ remove_ability = ~AP_D5PHLA5~ END
-
-LAF action_add_hla STR_VAR kit_name = ~D5_DR_FIGHTER~ ability = ~AP_D5PHLA4~ num_allowed = ~1~ END
-LAF action_add_hla STR_VAR kit_name = ~D5_DR_RANGER~ ability = ~AP_D5PHLA4~ num_allowed = ~1~ END
-LAF action_add_hla STR_VAR kit_name = ~D5_DR_THIEF~ ability = ~AP_D5PHLA4~ num_allowed = ~1~ END
-LAF action_add_hla STR_VAR kit_name = ~D5_DR_MAGE~ ability = ~AP_D5PHLA4~ num_allowed = ~1~ END
-
-LAF action_add_hla STR_VAR kit_name = ~D5_DR_FIGHTER~ ability = ~GA_TG#SPIR~ num_allowed = ~1~ END
-LAF action_add_hla STR_VAR kit_name = ~D5_DR_RANGER~ ability = ~GA_TG#SPIR~ num_allowed = ~1~ END
-LAF action_add_hla STR_VAR kit_name = ~D5_DR_THIEF~ ability = ~GA_TG#SPIR~ num_allowed = ~1~ END
-LAF action_add_hla STR_VAR kit_name = ~D5_DR_MAGE~ ability = ~GA_TG#SPIR~ num_allowed = ~1~ END
 //___________________________________________________________________________________
 
 //fix contingency spells_____________________________________________________________
