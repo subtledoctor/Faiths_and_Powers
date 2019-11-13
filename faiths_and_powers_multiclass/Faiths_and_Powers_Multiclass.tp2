@@ -144,7 +144,7 @@ LAM d5_kit_choices
   LAF druid_ranger END
   LAF druid_thief END
   LAF druid_mage END
-  ACTION_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~80~) BEGIN
+  ACTION_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~180~) BEGIN
 	LAF sorcerer_druid END
   END
   LAF multi_druid_strongholds END

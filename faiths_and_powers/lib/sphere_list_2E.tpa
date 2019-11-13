@@ -1798,7 +1798,7 @@ DEFINE_ACTION_FUNCTION urdlen_spheres
 	Charm 			=> minor
 	Law	 			=> x
 	Chaos	 		=> major
-	Animal 			=> c
+	Animal 			=> x
 	Plant 			=> x
 	Earth 			=> major
 	Water 			=> x

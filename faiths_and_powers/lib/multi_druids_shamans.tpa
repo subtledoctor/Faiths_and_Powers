@@ -1706,6 +1706,9 @@ END
 >>>>>>>> 
 COMPILE ~d5/druidad+.d~
 
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5drsrc.2da~) BEGIN
+
 <<<<<<<< d5/cechall-.d
 EXTEND_BOTTOM CECHALLE 2
 
@@ -1840,6 +1843,8 @@ EXTEND_BOTTOM DRUIDAD 10
 END
 >>>>>>>> 
 COMPILE ~d5/druidad-.d~
+
+END
 
 END
 
@@ -3259,7 +3264,7 @@ LAF action_add_hla STR_VAR kit_name = ~D5_BARB_SHAMAN~ ability = ~GA_SPCL941~ nu
 //disable quickspell buttons and scroll learning______________________________________
 //
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5srcnq.spl~) BEGIN
-  COPY ~tomeandblood/lib/d5_base.spl~ ~override/d5srcnq.spl~
+  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5srcnq.spl~
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 144 target = 1 parameter2 = 3 timing = 9 END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 144 target = 1 parameter2 = 4 timing = 9 END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 144 target = 1 parameter2 = 5 timing = 9 END

@@ -414,7 +414,7 @@ END
 ACTION_IF (%d5_lost_druid% = 1) BEGIN
  LAF lost_druid END
 END
-ACTION_IF (%d5_forest_druid% + %d5_totemic_druid% + %d5_hivekeeper_druid% + %d5_northern_druid% + %d5_lost_druid% + %d5_multiclass_druids% > 0) BEGIN
+ACTION_IF (%d5_forest_druid% + %d5_totemic_druid% + %d5_hivekeeper_druid% + %d5_northern_druid% + %d5_lost_druid% > 0) BEGIN
  LAF druid_shapeshifting END
 END
 ACTION_IF (%d5_beast_lord% = 1) BEGIN
