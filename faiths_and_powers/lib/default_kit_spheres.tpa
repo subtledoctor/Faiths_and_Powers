@@ -1995,7 +1995,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Vigor 		= ~major~
 	s_Affliction 	= ~x~
 	s_Animal 		= ~minor~
-	s_Plant 		= ~minro~
+	s_Plant 		= ~minor~
 	s_Earth 		= ~major~
 	s_Water 		= ~x~
 	s_Air 			= ~x~
