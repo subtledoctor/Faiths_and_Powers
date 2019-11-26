@@ -342,7 +342,7 @@ COPY ~faiths_and_powers/spheres/hlas/earth/li#drear.spl~ ~override~ // Refinemen
 COPY ~faiths_and_powers/spheres/hlas/earth/transformation~ ~override~
 ACTION_IF FILE_EXISTS_IN_GAME ~spinhum.spl~ BEGIN
 	COPY_EXISTING ~spinhum.spl~ ~override~
-	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 target = 1  STR_VAR resource = ~li#druea~ END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 target = 1 timing = 9 STR_VAR resource = ~li#druea~ END
 END
 
 
@@ -365,7 +365,7 @@ COPY ~faiths_and_powers/spheres/hlas/water/li#drwat.spl~ ~override~ // Refinemen
 COPY ~faiths_and_powers/spheres/hlas/water/transformation~ ~override~
 ACTION_IF FILE_EXISTS_IN_GAME ~spinhum.spl~ BEGIN
 	COPY_EXISTING ~spinhum.spl~ ~override~
-	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 target = 1  STR_VAR resource = ~li#druwa~ END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 target = 1 timing = 9 STR_VAR resource = ~li#druwa~ END
 END
 
 COPY ~faiths_and_powers/spheres/hlas/water/d5elsuwa.spl~ ~override~ // Refinements summon water elemental
@@ -387,7 +387,7 @@ COPY ~faiths_and_powers/spheres/hlas/air/li#drair.spl~ ~override~ // Refinements
 COPY ~faiths_and_powers/spheres/hlas/air/transformation~ ~override~
 ACTION_IF FILE_EXISTS_IN_GAME ~spinhum.spl~ BEGIN
 	COPY_EXISTING ~spinhum.spl~ ~override~
-	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 target = 1  STR_VAR resource = ~li#druai~ END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 target = 1 timing = 9 STR_VAR resource = ~li#druai~ END
 END
 
 COPY ~faiths_and_powers/spheres/hlas/air/d5elsuai.spl~ ~override~ // Refinements summon air elemental
@@ -424,7 +424,7 @@ COPY ~faiths_and_powers/spheres/hlas/fire/li#drfir.spl~ ~override~ // Refinement
 COPY ~faiths_and_powers/spheres/hlas/fire/transformation~ ~override~
 ACTION_IF FILE_EXISTS_IN_GAME ~spinhum.spl~ BEGIN
 	COPY_EXISTING ~spinhum.spl~ ~override~
-	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 target = 1  STR_VAR resource = ~li#drufi~ END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 target = 1 timing = 9 STR_VAR resource = ~li#drufi~ END
 END
 
 COPY ~faiths_and_powers/spheres/hlas/fire/d5elsufi.spl~ ~override~ // Refinements summon fire elemental
@@ -472,10 +472,21 @@ COPY_EXISTING ~sppr721.spl~ ~override~ // energy blades
     WRITE_LONG 0x34 1
 	WRITE_BYTE 0x21 (THIS & 0b00111111)
 	LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
+IF_EXISTS
 
 COPY_EXISTING ~spwi903.spl~ ~override/d5hmag1.spl~ // spellstrike
 	WRITE_SHORT 0x1c 4
     WRITE_LONG 0x34 1
 	WRITE_BYTE 0x21 (THIS & 0b00111111)
 	LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
+IF_EXISTS
+
+//astral______________________________________________________________________________
+COPY_EXISTING ~sppr751.spl~ ~override~ // ethereal retribution
+	WRITE_SHORT 0x1c 4
+    WRITE_LONG 0x34 1
+	WRITE_BYTE 0x21 (THIS & 0b00111111)
+	LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
+IF_EXISTS
+
 //___________________________________________________________________________________

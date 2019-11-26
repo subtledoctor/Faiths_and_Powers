@@ -66,9 +66,10 @@ APPEND ~M_IDENT.LUA~ ~table.insert(identifyCustomList[1], 'd5fnp03')~
 12 bearposu : race = bear    : class = bear_polar
 13 gisbomb  : race = beetle  : class = no_class
 */
-COPY ~faiths_and_powers/spheres/spells/animal/d5fnp04b.bam~ ~override~ 
-COPY ~faiths_and_powers/spheres/spells/animal/d5fnp04c.bam~ ~override~ 
-COPY ~faiths_and_powers/spheres/spells/animal/d5mfang.spl~ ~override/d5fnp04.spl~ 
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fnp04.spl~) BEGIN
+ COPY ~faiths_and_powers/spheres/spells/animal/d5fnp04b.bam~ ~override~ 
+ COPY ~faiths_and_powers/spheres/spells/animal/d5fnp04c.bam~ ~override~ 
+ COPY ~faiths_and_powers/spheres/spells/animal/d5mfang.spl~ ~override/d5fnp04.spl~ 
   SAY NAME1 @50221
   SAY UNIDENTIFIED_DESC @50222
   WRITE_SHORT 0x1c 2
@@ -76,12 +77,26 @@ COPY ~faiths_and_powers/spheres/spells/animal/d5mfang.spl~ ~override/d5fnp04.spl
   WRITE_ASCII 0x3a ~d5fnp04c~ #8
   LPF ALTER_SPELL_HEADER INT_VAR location = 2 STR_VAR icon = ~d5fnp04b~ END
   PATCH_FOR_EACH headr IN ~1~ ~2~ ~3~ BEGIN
-	PATCH_FOR_EACH eff IN ~E~ ~T~ ~D~ /*~S~*/ BEGIN
+	PATCH_FOR_EACH eff IN ~I~ /*~E~ ~T~ ~D~ ~S~*/ BEGIN
 	  LPF ADD_SPELL_EFFECT INT_VAR header = %headr% opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 4 duration = 2 STR_VAR resource = EVAL ~D5FNG%eff%%headr%~ END
     END
   END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 4 duration = 2 STR_VAR resource = EVAL ~D5FNGVI~ END
-ACTION_FOR_EACH headr IN ~1~ ~2~ ~3~ BEGIN
+ COPY ~faiths_and_powers/spheres/spells/animal/d5fnp041.itm~ ~override~ 
+  LPF DELETE_EFFECT INT_VAR match_opcode = 325 END
+ COPY ~faiths_and_powers/spheres/spells/animal/d5fnp042.itm~ ~override~ 
+  LPF DELETE_EFFECT INT_VAR match_opcode = 325 END
+ COPY ~faiths_and_powers/spheres/spells/animal/d5fnp043.itm~ ~override~ 
+  LPF DELETE_EFFECT INT_VAR match_opcode = 325 END
+ ACTION_FOR_EACH headr IN ~1~ ~2~ ~3~ BEGIN
+  CREATE EFF ~D5FNGI%headr%~
+	WRITE_LONG 0x10 143
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c 0
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+	WRITE_EVALUATED_ASCII 0x30 ~D5FNP04%headr%~ #8 
+/*
   CREATE EFF ~D5FNGE%headr%~
 	WRITE_LONG 0x10 345
 	WRITE_LONG 0x14 2
@@ -110,8 +125,9 @@ ACTION_FOR_EACH headr IN ~1~ ~2~ ~3~ BEGIN
 	WRITE_LONG 0x20 0
 	WRITE_LONG 0x24 1
 	WRITE_SHORT 0x2c 100
-END
-CREATE EFF ~D5FNGVI~
+*/
+ END
+ CREATE EFF ~D5FNGVI~
 	WRITE_LONG 0x10 215
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x20 1
@@ -119,7 +135,7 @@ CREATE EFF ~D5FNGVI~
 	WRITE_LONG 0x28 2
 	WRITE_SHORT 0x2c 100
 	WRITE_ASCII 0x30 ~SPHLYBLS~ #8
-ACTION_FOR_EACH animal IN ~BDSHA01A~
+ ACTION_FOR_EACH animal IN ~BDSHA01A~
 						 ~BDSHA01B~
 						 ~BDSHA01C~
 						 ~BDSHA06A~
@@ -168,61 +184,73 @@ ACTION_FOR_EACH animal IN ~BDSHA01A~
 						 ~WIZEYE~	BEGIN
   COPY_EXISTING ~%animal%.cre~ ~override~
 	LPF ADD_CRE_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5fnp04~ END
-  BUT_ONLY
+  IF_EXISTS BUT_ONLY
+ END
 END
 //__________________________________________________________________________________
 
 
 //animal growth
 //
-COPY ~faiths_and_powers/spheres/spells/animal/d5fnp05b.bam~ ~override~ 
-COPY ~faiths_and_powers/spheres/spells/animal/d5fnp05c.bam~ ~override~ 
-COPY ~faiths_and_powers/spheres/spells/animal/d5angro.spl~ ~override/d5fnp05.spl~ 
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fnp05.spl~) BEGIN
+ COPY ~faiths_and_powers/spheres/spells/animal/d5fnp05b.bam~ ~override~ 
+ COPY ~faiths_and_powers/spheres/spells/animal/d5fnp05c.bam~ ~override~ 
+ COPY ~faiths_and_powers/spheres/spells/animal/d5angro.spl~ ~override/d5fnp05.spl~ 
   SAY NAME1 @50223
   SAY UNIDENTIFIED_DESC @50224
   WRITE_SHORT 0x1c 2
   WRITE_LONG 0x34 5
   WRITE_ASCII 0x3a ~d5fnp05c~ #8
   LPF ALTER_SPELL_HEADER INT_VAR location = 2 STR_VAR icon = ~d5fnp05b~ END
-  PATCH_FOR_EACH eff IN ~H50~ ~T2~ ~D2~ ~S2~ ~VI~ BEGIN
+  PATCH_FOR_EACH eff IN ~BLT~ ~H50~ ~T2~ ~D2~ ~S2~ ~VI~ BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 4 duration = 2 STR_VAR resource = EVAL ~D5GRO%eff%~ END
   END
-CREATE EFF ~D5GROH50~
+ COPY ~faiths_and_powers/spheres/spells/animal/d5fnp05.itm~ ~override~ 
+ CREATE EFF ~D5GROBLT~
+	WRITE_LONG 0x10 143
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x1c 2
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+	WRITE_EVALUATED_ASCII 0x30 ~D5FNP05~ #8 
+/*
+ CREATE EFF ~D5GROH50~
 	WRITE_LONG 0x10 18
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x1c 150
 	WRITE_LONG 0x20 2
 	WRITE_LONG 0x24 1
 	WRITE_SHORT 0x2c 100
-CREATE EFF ~D5GROT2~
+ CREATE EFF ~D5GROT2~
 	WRITE_LONG 0x10 22
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x1c 2
 	WRITE_LONG 0x20 0
 	WRITE_LONG 0x24 1
 	WRITE_SHORT 0x2c 100
-CREATE EFF ~D5GROD2~
+ CREATE EFF ~D5GROD2~
 	WRITE_LONG 0x10 73
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x1c 2
 	WRITE_LONG 0x20 0
 	WRITE_LONG 0x24 1
 	WRITE_SHORT 0x2c 100
-CREATE EFF ~D5GROS2~
+ CREATE EFF ~D5GROS2~
 	WRITE_LONG 0x10 325
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x1c 2
 	WRITE_LONG 0x20 0
 	WRITE_LONG 0x24 1
 	WRITE_SHORT 0x2c 100
-CREATE EFF ~D5GROAC2~
+ CREATE EFF ~D5GROAC2~
 	WRITE_LONG 0x10 0
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x1c 2
 	WRITE_LONG 0x20 0
 	WRITE_LONG 0x24 1
 	WRITE_SHORT 0x2c 100
-CREATE EFF ~D5GROVI~
+*/
+ CREATE EFF ~D5GROVI~
 	WRITE_LONG 0x10 215
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x20 1
@@ -230,7 +258,7 @@ CREATE EFF ~D5GROVI~
 	WRITE_LONG 0x28 2
 	WRITE_SHORT 0x2c 100
 	WRITE_ASCII 0x30 ~ICSTRENI~ #8 
-ACTION_FOR_EACH animal IN ~BDSHA01A~
+ ACTION_FOR_EACH animal IN ~BDSHA01A~
 						 ~BDSHA01B~
 						 ~BDSHA01C~
 						 ~BDSHA06A~
@@ -279,7 +307,8 @@ ACTION_FOR_EACH animal IN ~BDSHA01A~
 						 ~WIZEYE~	BEGIN
   COPY_EXISTING ~%animal%.cre~ ~override~
 	LPF ADD_CRE_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5fnp05~ END
-  BUT_ONLY
+  IF_EXISTS BUT_ONLY
+ END
 END
 //__________________________________________________________________________________
 
@@ -703,6 +732,17 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   END      //
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/spheres/spells/animal/b_c102c.spl~ ~override~
+CREATE EFF ~B_C102D~
+	WRITE_LONG 0x10 321
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 1
+	WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~b_c102~ #8
+	WRITE_LONG 0x90 1
+	WRITE_ASCII 0x94 ~B_C102D~ #8
+
 COPY ~%mod_folder%/spheres/spells/animal/b_c102a.bam~ ~override/%spell_res%a.bam~
 COPY ~%mod_folder%/spheres/spells/animal/b_c102b.bam~ ~override/%spell_res%b.bam~
 COPY ~%mod_folder%/spheres/spells/animal/b_c102c.bam~ ~override/%spell_res%c.bam~

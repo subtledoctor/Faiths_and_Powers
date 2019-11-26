@@ -28,14 +28,14 @@ ELSE BEGIN
 END
 //___________________________________________________________________________________
 
-
+/* not needed with 4b17+
 //handle SR spells___________________________________________________________________
 //
 ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
    INCLUDE ~faiths_and_powers/lib/add_ids.tpa~
 END
 //___________________________________________________________________________________
-
+*/
 
 //create sphere spells______________________________________________________________
 //
@@ -370,6 +370,12 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 	END
   END
 BUT_ONLY
+
+// ***** change this
+// use increasing ind instead of text replacements
+// make a .2da list to record (or just add new res to d5spsph.2da)
+// if spell being handled is already on the list, skip ahead and just use the already-existing new res 
+// and in that case, 
 
 COPY_EXISTING ~d5spsph.2da~ ~override~
   READ_2DA_ENTRIES_NOW rows 4

@@ -1011,6 +1011,18 @@ END
 
 DEFINE_ACTION_FUNCTION multiclass_kit_clones BEGIN
 
+
+COPY_EXISTING ~d5_class.2da~ ~override~
+  COUNT_2DA_ROWS 4 rows
+  FOR (row = 1; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY row 0 4 kit
+	SET kit_string_length = (STRING_LENGTH ~%kit%~)
+	PATCH_IF (%kit_string_length% > 7) BEGIN
+	  SET_2DA_ENTRY row 3 4 ~X~
+	END
+  END
+IF_EXISTS BUT_ONLY
+
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5csorc.2da~) BEGIN
   COPY_EXISTING ~kitlist.2da~ ~override~
 	COUNT_2DA_ROWS 10 rows
@@ -1028,6 +1040,62 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5csorc.2da~) BEGIN
 		FOR (row = 1; row < rows; ++row) BEGIN
 		  READ_2DA_ENTRY row 1 2 kit_ind
 		  PATCH_IF (kit_ind = sorc_cleric_ind) BEGIN
+			REMOVE_2DA_ROW row 2
+		  END
+		END
+	  BUT_ONLY
+	END
+  END
+END
+ACTION_IF (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONK_C[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+  COPY_EXISTING ~kitlist.2da~ ~override~
+	COUNT_2DA_ROWS 10 rows
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 1 10 kit_name
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~QDMONK_C~) BEGIN
+		READ_2DA_ENTRY row 0 10 monk_cleric_ind
+	  END
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~QDMONKSS_C~) BEGIN
+		READ_2DA_ENTRY row 0 10 monkss_cleric_ind
+	  END
+	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~QDMONKBO_C~) BEGIN
+		READ_2DA_ENTRY row 0 10 monkbo_cleric_ind
+	  END
+	END
+  IF_EXISTS BUT_ONLY
+  ACTION_IF (IS_AN_INT %monk_cleric_ind%) BEGIN
+	ACTION_FOR_EACH race IN ~D~ ~E~ ~G~ ~H~ ~HE~ ~HL~ ~HO~ BEGIN
+	  COPY_EXISTING ~K_CT_%race%.2da~ ~override~
+		COUNT_2DA_ROWS 2 rows
+		FOR (row = 1; row < rows; ++row) BEGIN
+		  READ_2DA_ENTRY row 1 2 kit_ind
+		  PATCH_IF (kit_ind = monk_cleric_ind) BEGIN
+			REMOVE_2DA_ROW row 2
+		  END
+		END
+	  BUT_ONLY
+	END
+  END
+  ACTION_IF (IS_AN_INT %monkss_cleric_ind%) BEGIN
+	ACTION_FOR_EACH race IN ~D~ ~E~ ~G~ ~H~ ~HE~ ~HL~ ~HO~ BEGIN
+	  COPY_EXISTING ~K_CT_%race%.2da~ ~override~
+		COUNT_2DA_ROWS 2 rows
+		FOR (row = 1; row < rows; ++row) BEGIN
+		  READ_2DA_ENTRY row 1 2 kit_ind
+		  PATCH_IF (kit_ind = monkss_cleric_ind) BEGIN
+			REMOVE_2DA_ROW row 2
+		  END
+		END
+	  BUT_ONLY
+	END
+  END
+  ACTION_IF (IS_AN_INT %monkbo_cleric_ind%) BEGIN
+	ACTION_FOR_EACH race IN ~D~ ~E~ ~G~ ~H~ ~HE~ ~HL~ ~HO~ BEGIN
+	  COPY_EXISTING ~K_CT_%race%.2da~ ~override~
+		COUNT_2DA_ROWS 2 rows
+		FOR (row = 1; row < rows; ++row) BEGIN
+		  READ_2DA_ENTRY row 1 2 kit_ind
+		  PATCH_IF (kit_ind = monkbo_cleric_ind) BEGIN
 			REMOVE_2DA_ROW row 2
 		  END
 		END
@@ -1070,6 +1138,27 @@ ACTION_PHP_EACH d5_fnp_multiclass_clabs AS sc_kit_clab => sc_kit_multi BEGIN
 		END
 		PATCH_IF (~%sc_kit_multi%~ STRING_CONTAINS_REGEXP ~t~ = 0) BEGIN
 		  TEXT_SPRINT $d5_fnp_multiclass_kits(~%multi_ind%~ ~%sc_kitlist_name%~) ~t~
+		  SET multi_ind = (multi_ind + 1)
+		END
+	  END
+	END
+  BUT_ONLY
+END
+ACTION_PHP_EACH d5_fnp_multiclass_clabs AS sc_kit_clab => sc_kit_multi BEGIN
+  COPY_EXISTING ~kitlist.2da~ ~override~
+	READ_2DA_ENTRIES_NOW r2en_kitlist 10
+	FOR (row = 0; row < r2en_kitlist; row += 1) BEGIN
+	  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 5 kitlist_clab
+//	  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 9 sc_kitids_code
+	  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 1 sc_kitlist_name
+	  PATCH_IF (~%kitlist_clab%~ STRING_EQUAL_CASE ~%sc_kit_clab%~) BEGIN
+//		TEXT_SPRINT $d5_fnp_multiclass_ids(~%sc_kitids_code%~) ~%sc_kit_multi%~
+		PATCH_IF (~%sc_kit_multi%~ STRING_CONTAINS_REGEXP ~k~ = 0) && (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONK_C[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		  TEXT_SPRINT $d5_fnp_multiclass_kits(~%multi_ind%~ ~%sc_kitlist_name%~) ~k~
+		  SET multi_ind = (multi_ind + 1)
+		END
+		PATCH_IF (~%sc_kit_multi%~ STRING_CONTAINS_REGEXP ~m~ = 0) && (FILE_EXISTS_IN_GAME ~d5sorc.2da~) BEGIN
+		  TEXT_SPRINT $d5_fnp_multiclass_kits(~%multi_ind%~ ~%sc_kitlist_name%~) ~s~
 		  SET multi_ind = (multi_ind + 1)
 		END
 	  END
@@ -1309,8 +1398,7 @@ COPY_EXISTING ~crippstr.2da~ ~override~
   END
 BUT_ONLY
 
-ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
-  OUTER_SET multisorc = 0
+ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
   OUTER_SPRINT sc_kit ~%ind_1%~  
   LAF GET_KIT_EX
    STR_VAR
@@ -1319,6 +1407,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	mixed
 	clab_res
 	kit_class
+//	luabbr
   END
   ACTION_GET_STRREF %mixed% orig_mixed
   COPY_EXISTING ~d5_class.2da~ ~override~
@@ -1440,8 +1529,10 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
       END
 	END
   BUT_ONLY
+  LAF get_hla_table STR_VAR kit_name = EVAL ~%sc_kit%~ RET hla_table END
+//  OUTER_SPRINT hla_table ~%luabbr%~
   ACTION_IF (%kit_class% = 11) BEGIN
-   ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~f~ = 0) BEGIN
+   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~f~ = 0) BEGIN
 	OUTER_SPRINT fnp_spheres_class ~fighter_mystic~
 	OUTER_SPRINT new_base_class ~D~
 	OUTER_SPRINT hit_dice ~hpfc~
@@ -1671,7 +1762,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
    END
   END
   ACTION_IF (%kit_class% = 3) BEGIN
-   ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~f~ = 0) BEGIN
+   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~f~ = 0) BEGIN
   	OUTER_SPRINT fnp_spheres_class ~fighter_cleric~
 	OUTER_SPRINT new_base_class ~P~
 	OUTER_SPRINT hit_dice ~hpfc~
@@ -1899,7 +1990,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	  OUTER_SET new_fnp_xbow = (%orig_xbow%)
 	END
    END
-   ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~r~ = 0) BEGIN
+   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~r~ = 0) BEGIN
 	OUTER_SPRINT fnp_spheres_class ~ranger_cleric~
 	OUTER_SPRINT new_base_class ~P~
 	OUTER_SPRINT hit_dice ~hpfc~
@@ -2127,7 +2218,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	  OUTER_SET new_fnp_xbow = (%orig_xbow%)
 	END
    END
-   ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~t~ = 0) BEGIN
+   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~t~ = 0) BEGIN
 	OUTER_SPRINT fnp_spheres_class ~cleric_thief~
 	OUTER_SPRINT new_base_class ~P~
 	OUTER_SPRINT hit_dice ~hpct~
@@ -2193,7 +2284,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	OUTER_SPRINT sneakatt ~%orig_sneakatt%~
 	OUTER_SPRINT crippstr ~%orig_crippstr%~
    END
-   ACTION_IF (~%mc_kits%~ STRING_CONTAINS_REGEXP ~m~ = 0) BEGIN
+   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~m~ = 0) BEGIN
 	OUTER_SPRINT fnp_spheres_class ~cleric_mage~
 	OUTER_SPRINT new_base_class ~P~
 	OUTER_SPRINT hit_dice ~hpcm~
@@ -2253,6 +2344,132 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	OUTER_SET new_fnp_bow = %orig_bow%
 	OUTER_SET new_fnp_xbow = %orig_xbow%
    END
+   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~s~ = 0) BEGIN
+	OUTER_SPRINT fnp_spheres_class ~cleric_mage~
+	OUTER_SPRINT new_base_class ~P~
+	OUTER_SPRINT hit_dice ~hpcm~
+	OUTER_SPRINT new_name ~%sc_kit%_SC~
+	OUTER_SPRINT new_clab ~%clab_res%s~
+	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
+	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
+	OUTER_SET new_class = 14
+	OUTER_SPRINT new_mixed ~Sorcerer/%orig_mixed%~
+	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
+	  REPLACE_TEXTUALLY ~_C_~ ~_CM_~
+	END
+	OUTER_SET new_wp_staff = %wp_staff%
+	OUTER_SET new_wp_club = %wp_club%
+	OUTER_SET new_wp_hammer = %wp_hammer%
+	OUTER_SET new_wp_mace = %wp_mace%
+	OUTER_SET new_wp_flail = %wp_flail%
+	OUTER_SET new_wp_axe = %wp_axe%
+	OUTER_SET new_wp_dagger = %wp_dagger%
+	OUTER_SET new_wp_shortsword = %wp_shortsword%
+	OUTER_SET new_wp_longsword = %wp_longsword%
+	OUTER_SET new_wp_scimitar = %wp_scimitar%
+	OUTER_SET new_wp_katana = %wp_katana%
+	OUTER_SET new_wp_bastardsword = 0
+	OUTER_SET new_wp_2handsword = 0
+	OUTER_SET new_wp_halberd = 0
+	OUTER_SET new_wp_spear = 0
+	OUTER_SET new_wp_dart = %wp_dart%
+	OUTER_SET new_wp_sling = %wp_sling%
+	OUTER_SET new_wp_longbow = %wp_longbow%
+	OUTER_SET new_wp_shortbow = %wp_shortbow%
+	OUTER_SET new_wp_xbow = %wp_xbow%
+	OUTER_SET new_wp_2handed = %wp_2handed%
+	OUTER_SET new_wp_swordandshield = %wp_swordandshield%
+	OUTER_SET new_wp_singleweapon = %wp_singleweapon%
+	OUTER_SET new_wp_2weapon = %wp_2weapon%
+	OUTER_SPRINT new_weapprof ~0 0 0 0 0 0 0 0 %new_wp_bastardsword% %new_wp_longsword% %new_wp_shortsword% %new_wp_axe% %new_wp_2handsword% %new_wp_katana% %new_wp_scimitar% %new_wp_dagger% %new_wp_hammer% %new_wp_club% %new_wp_spear% %new_wp_halberd% %new_wp_flail% %new_wp_mace% %new_wp_staff% %new_wp_xbow% %new_wp_longbow% %new_wp_shortbow% %new_wp_dart% %new_wp_sling% %new_wp_2handed% %new_wp_swordandshield% %new_wp_singleweapon% %new_wp_2weapon% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+	OUTER_SET new_fnp_leather = 0
+	OUTER_SET new_fnp_chain = 0
+	OUTER_SET new_fnp_plate = 0
+	OUTER_SET new_fnp_clubstaff = %orig_clubstaff%
+	OUTER_SET new_fnp_hammer = %orig_hammer%
+	OUTER_SET new_fnp_mace = %orig_mace%
+	OUTER_SET new_fnp_flail = %orig_flail%
+	OUTER_SET new_fnp_axe = %orig_axe%
+	OUTER_SET new_fnp_dagger = %orig_dagger%
+	OUTER_SET new_fnp_shortsword = %orig_shortsword%
+	OUTER_SET new_fnp_longsword = %orig_longsword%
+	OUTER_SET new_fnp_scimitar = %orig_scimitar%
+	OUTER_SET new_fnp_katana = %orig_katana%
+	OUTER_SET new_fnp_bastardsword = 0
+	OUTER_SET new_fnp_2handsword = 0
+	OUTER_SET new_fnp_halberd = 0
+	OUTER_SET new_fnp_spear = 0
+	OUTER_SET new_fnp_dart = %orig_dart%
+	OUTER_SET new_fnp_sling = %orig_sling%
+	OUTER_SET new_fnp_bow = %orig_bow%
+	OUTER_SET new_fnp_xbow = %orig_xbow%
+   END
+   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~k~ = 0) BEGIN
+	OUTER_SPRINT fnp_spheres_class ~cleric_thief~
+	OUTER_SPRINT new_base_class ~P~
+	OUTER_SPRINT hit_dice ~hpprs~
+	OUTER_SPRINT new_name ~%sc_kit%_CMK~
+	OUTER_SPRINT new_clab ~%clab_res%k~
+	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
+	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
+	OUTER_SET new_class = 15
+	OUTER_SPRINT new_mixed ~Monk/%orig_mixed%~
+	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
+	  REPLACE_TEXTUALLY ~_C_~ ~_CT_~
+	END
+	OUTER_SET new_wp_staff = %wp_staff%
+	OUTER_SET new_wp_club = %wp_club%
+	OUTER_SET new_wp_hammer = %wp_hammer%
+	OUTER_SET new_wp_mace = %wp_mace%
+	OUTER_SET new_wp_flail = %wp_flail%
+	OUTER_SET new_wp_axe = %wp_axe%
+	OUTER_SET new_wp_dagger = %wp_dagger%
+	OUTER_SET new_wp_shortsword = %wp_shortsword%
+	OUTER_SET new_wp_longsword = %wp_longsword%
+	OUTER_SET new_wp_scimitar = %wp_scimitar%
+	OUTER_SET new_wp_katana = %wp_katana%
+	OUTER_SET new_wp_bastardsword = 0
+	OUTER_SET new_wp_2handsword = 0
+	OUTER_SET new_wp_halberd = 0
+	OUTER_SET new_wp_spear = 0
+	OUTER_SET new_wp_dart = %wp_dart%
+	OUTER_SET new_wp_sling = %wp_sling%
+	OUTER_SET new_wp_longbow = %wp_longbow%
+	OUTER_SET new_wp_shortbow = %wp_shortbow%
+	OUTER_SET new_wp_xbow = %wp_xbow%
+	OUTER_SET new_wp_2handed = %wp_2handed%
+	OUTER_SET new_wp_swordandshield = %wp_swordandshield%
+	OUTER_SET new_wp_singleweapon = %wp_singleweapon%
+	OUTER_SET new_wp_2weapon = %wp_2weapon%
+	OUTER_SPRINT new_weapprof ~0 0 0 0 0 0 0 0 %new_wp_bastardsword% %new_wp_longsword% %new_wp_shortsword% %new_wp_axe% %new_wp_2handsword% %new_wp_katana% %new_wp_scimitar% %new_wp_dagger% %new_wp_hammer% %new_wp_club% %new_wp_spear% %new_wp_halberd% %new_wp_flail% %new_wp_mace% %new_wp_staff% %new_wp_xbow% %new_wp_longbow% %new_wp_shortbow% %new_wp_dart% %new_wp_sling% %new_wp_2handed% %new_wp_swordandshield% %new_wp_singleweapon% %new_wp_2weapon% 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+	OUTER_SET new_fnp_leather = 1
+	OUTER_SET new_fnp_chain = 0
+	OUTER_SET new_fnp_plate = 0
+	OUTER_SET new_fnp_clubstaff = %orig_clubstaff%
+	OUTER_SET new_fnp_hammer = %orig_hammer%
+	OUTER_SET new_fnp_mace = %orig_mace%
+	OUTER_SET new_fnp_flail = %orig_flail%
+	OUTER_SET new_fnp_axe = %orig_axe%
+	OUTER_SET new_fnp_dagger = %orig_dagger%
+	OUTER_SET new_fnp_shortsword = %orig_shortsword%
+	OUTER_SET new_fnp_longsword = %orig_longsword%
+	OUTER_SET new_fnp_scimitar = %orig_scimitar%
+	OUTER_SET new_fnp_katana = %orig_katana%
+	OUTER_SET new_fnp_bastardsword = 0
+	OUTER_SET new_fnp_2handsword = 0
+	OUTER_SET new_fnp_halberd = 0
+	OUTER_SET new_fnp_spear = 0
+	OUTER_SET new_fnp_dart = %orig_dart%
+	OUTER_SET new_fnp_sling = %orig_sling%
+	OUTER_SET new_fnp_bow = %orig_bow%
+	OUTER_SET new_fnp_xbow = %orig_xbow%
+	OUTER_SPRINT thiefscl ~100 100 100 100 100 100 100 0~
+	OUTER_SPRINT traplimt ~%orig_traplimt%~
+	OUTER_SPRINT thiefskl ~%orig_thiefskl%~
+	OUTER_SPRINT backstab ~%orig_backstab%~
+	OUTER_SPRINT sneakatt ~%orig_sneakatt%~
+	OUTER_SPRINT crippstr ~%orig_crippstr%~
+   END
   END
   ACTION_IF (new_class = 15) BEGIN
    LAF ADD_KIT_EX
@@ -2268,6 +2485,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	 kittable    = EVAL ~%new_kittable%~
 	 hpclass	 = EVAL ~%hit_dice%~
 	 weapprof    = EVAL ~%new_weapprof%~
+	 luabbr      = EVAL ~%hla_table%~
 	 thiefscl
 	 traplimt
 	 thiefskl
@@ -2276,8 +2494,106 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	 crippstr
 //   RET kit_id
    END
+   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~t~ = 0) BEGIN
+	COPY_EXISTING ~LUTH0.2da~ ~override~
+	  COUNT_2DA_ROWS 10 rows
+	  FOR (row = 0; row < rows; ++row) BEGIN
+		READ_2DA_ENTRY row 1 10 thief_ability
+		PATCH_IF !(~%thief_ability%~ STRING_EQUAL_CASE ~*~) BEGIN
+		  SNPRINT 3 hla_type ~%thief_ability%~
+		  PATCH_IF (~%hla_type%~ STRING_EQUAL_CASE ~GA_~) || (~%hla_type%~ STRING_EQUAL_CASE ~AP_~) BEGIN
+			READ_2DA_ENTRY row 2 10 thief_icon
+			READ_2DA_ENTRY row 3 10 thief_strref
+			READ_2DA_ENTRY row 4 10 thief_min_lev
+			READ_2DA_ENTRY row 5 10 thief_max_level
+			READ_2DA_ENTRY row 6 10 thief_num_allowed
+			READ_2DA_ENTRY row 7 10 thief_prerequisite
+			READ_2DA_ENTRY row 8 10 thief_excluded_by
+			READ_2DA_ENTRY row 9 10 thief_alignment_restrict
+			INNER_ACTION BEGIN
+			  LAF action_add_hla STR_VAR kit_name = EVAL ~%new_name%~ ability = EVAL ~%thief_ability%~ icon = EVAL ~%thief_icon%~ strref = EVAL ~%thief_strref%~ min_lev = EVAL ~%thief_min_lev%~ max_level = EVAL ~%thief_max_level%~ num_allowed = EVAL ~%thief_num_allowed%~ prerequisite = EVAL ~%thief_prerequisite%~ excluded_by = EVAL ~%thief_excluded_by%~ alignment_restrict = EVAL ~%thief_alignment_restrict%~ END
+			END
+		  END
+		END
+	  END
+	IF_EXISTS BUT_ONLY
+   END
+   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~k~ = 0) BEGIN
+	ACTION_IF (FILE_EXISTS_IN_GAME ~QD_MCT01.spl~) BEGIN
+	  ACTION_IF (~%sc_kit%~ STRING_EQUAL_CASE ~B_CLERIC_LATHANDER~) BEGIN
+		ACTION_IF (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONKSS_C[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		  OUTER_SET monk_cleric_code = IDS_OF_SYMBOL (~kit~ ~QDMONKSS_C~)
+		END
+	  END
+	  ACTION_IF (~%sc_kit%~ STRING_EQUAL_CASE ~D5_CLERIC_YONDALLA~) BEGIN
+		ACTION_IF (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONKHF_F[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		  OUTER_SET monk_cleric_code = IDS_OF_SYMBOL (~kit~ ~QDMONKHF_F~)
+		END
+	  END
+	  ACTION_IF (~%sc_kit%~ STRING_EQUAL_CASE ~D5_PRIEST_AZUTH~) BEGIN
+		ACTION_IF (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONKSH_M[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		  OUTER_SET monk_cleric_code = IDS_OF_SYMBOL (~kit~ ~QDMONKSH_M~)
+		END
+	  END
+	  ACTION_IF (~%sc_kit%~ STRING_EQUAL_CASE ~D5_AC_SHAR~) || (~%sc_kit%~ STRING_EQUAL_CASE ~A#SHAR~) BEGIN
+		ACTION_IF (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONKDM_M[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		  OUTER_SET monk_cleric_code = IDS_OF_SYMBOL (~kit~ ~QDMONKDM_M~)
+		END
+	  END
+	  ACTION_IF (~%sc_kit%~ STRING_EQUAL_CASE ~B_PRIEST_ILMATER~) || (~%sc_kit%~ STRING_EQUAL_CASE ~CDILMATR~) BEGIN
+		ACTION_IF (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONKBO_C[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		  OUTER_SET monk_cleric_code = IDS_OF_SYMBOL (~kit~ ~QDMONKBO_C~)
+		END
+	  END
+	  ELSE BEGIN
+		ACTION_IF (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONK_C[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		  OUTER_SET monk_cleric_code = IDS_OF_SYMBOL (~kit~ ~QDMONK_C~)
+		END
+	  END
+/*
+	  ACTION_IF !(IS_AN_INT %monk_cleric_code%) BEGIN
+		OUTER_SET monk_cleric_code = IDS_OF_SYMBOL (~kit~ ~QDMONK_C~)
+	  END
+*/
+	  OUTER_SET this_kit_code = IDS_OF_SYMBOL (~kit~ ~%new_name%~)
+	  ACTION_IF (IS_AN_INT %monk_cleric_code%) BEGIN
+	    OUTER_FOR (num = 1; num < 9; ++num) BEGIN
+		  COPY_EXISTING ~QD_MCT0%num%.spl~ ~override~
+			LPF CLONE_EFFECT INT_VAR silent = 1 /*multi_match = 1*/ match_parameter1 = %monk_cleric_code% match_parameter2 = 9 parameter1 = %this_kit_code% END
+		  IF_EXISTS BUT_ONLY
+		END
+	    OUTER_FOR (num = 10; num < 51; ++num) BEGIN
+		  COPY_EXISTING ~QD_MCT%num%.spl~ ~override~
+			LPF CLONE_EFFECT INT_VAR silent = 1 /*multi_match = 1*/ match_parameter1 = %monk_cleric_code% match_parameter2 = 9 parameter1 = %this_kit_code% END
+		  IF_EXISTS BUT_ONLY
+		END
+	  END
+	END
+	COPY_EXISTING ~LUMO0.2da~ ~override~
+	  COUNT_2DA_ROWS 10 rows
+	  FOR (row = 0; row < rows; ++row) BEGIN
+		READ_2DA_ENTRY row 1 10 monk_ability
+		PATCH_IF !(~%monk_ability%~ STRING_EQUAL_CASE ~*~) BEGIN
+		  SNPRINT 3 hla_type ~%monk_ability%~
+		  PATCH_IF (~%hla_type%~ STRING_EQUAL_CASE ~GA_~) || (~%hla_type%~ STRING_EQUAL_CASE ~AP_~) BEGIN
+			READ_2DA_ENTRY row 2 10 monk_icon
+			READ_2DA_ENTRY row 3 10 monk_strref
+			READ_2DA_ENTRY row 4 10 monk_min_lev
+			READ_2DA_ENTRY row 5 10 monk_max_level
+			READ_2DA_ENTRY row 6 10 monk_num_allowed
+			READ_2DA_ENTRY row 7 10 monk_prerequisite
+			READ_2DA_ENTRY row 8 10 monk_excluded_by
+			READ_2DA_ENTRY row 9 10 monk_alignment_restrict
+			INNER_ACTION BEGIN
+			  LAF action_add_hla STR_VAR kit_name = EVAL ~%new_name%~ ability = EVAL ~%monk_ability%~ icon = EVAL ~%monk_icon%~ strref = EVAL ~%monk_strref%~ min_lev = EVAL ~%monk_min_lev%~ max_level = EVAL ~%monk_max_level%~ num_allowed = EVAL ~%monk_num_allowed%~ prerequisite = EVAL ~%monk_prerequisite%~ excluded_by = EVAL ~%monk_excluded_by%~ alignment_restrict = EVAL ~%monk_alignment_restrict%~ END
+			END
+		  END
+		END
+	  END
+	IF_EXISTS BUT_ONLY
+   END
   END
-  ACTION_IF !(new_class = 15) BEGIN
+  ACTION_IF (new_class = 16) || (new_class = 8) || (new_class = 18) || (new_class = 14) BEGIN
    LAF ADD_KIT_EX
     INT_VAR
      kit_class   = %new_class%
@@ -2291,7 +2607,110 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	 kittable    = EVAL ~%new_kittable%~
 	 hpclass	 = EVAL ~%hit_dice%~
 	 weapprof    = EVAL ~%new_weapprof%~
+	 luabbr      = EVAL ~%hla_table%~
 //   RET kit_id
+   END
+   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~f~ = 0) BEGIN
+	COPY_EXISTING ~LUFI0.2da~ ~override~
+	  COUNT_2DA_ROWS 10 rows
+	  FOR (row = 0; row < rows; ++row) BEGIN
+		READ_2DA_ENTRY row 1 10 fighter_ability
+		PATCH_IF !(~%fighter_ability%~ STRING_EQUAL_CASE ~*~) BEGIN
+		  SNPRINT 3 hla_type ~%fighter_ability%~
+		  PATCH_IF (~%hla_type%~ STRING_EQUAL_CASE ~GA_~) || (~%hla_type%~ STRING_EQUAL_CASE ~AP_~) BEGIN
+			READ_2DA_ENTRY row 2 10 fighter_icon
+			READ_2DA_ENTRY row 3 10 fighter_strref
+			READ_2DA_ENTRY row 4 10 fighter_min_lev
+			READ_2DA_ENTRY row 5 10 fighter_max_level
+			READ_2DA_ENTRY row 6 10 fighter_num_allowed
+			READ_2DA_ENTRY row 7 10 fighter_prerequisite
+			READ_2DA_ENTRY row 8 10 fighter_excluded_by
+			READ_2DA_ENTRY row 9 10 fighter_alignment_restrict
+			INNER_ACTION BEGIN
+			  LAF action_add_hla STR_VAR kit_name = EVAL ~%new_name%~ ability = EVAL ~%fighter_ability%~ icon = EVAL ~%fighter_icon%~ strref = EVAL ~%fighter_strref%~ min_lev = EVAL ~%fighter_min_lev%~ max_level = EVAL ~%fighter_max_level%~ num_allowed = EVAL ~%fighter_num_allowed%~ prerequisite = EVAL ~%fighter_prerequisite%~ excluded_by = EVAL ~%fighter_excluded_by%~ alignment_restrict = EVAL ~%fighter_alignment_restrict%~ END
+			END
+		  END
+		END
+	  END
+	IF_EXISTS BUT_ONLY
+   END
+   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~r~ = 0) BEGIN
+	COPY_EXISTING ~LURA0.2da~ ~override~
+	  COUNT_2DA_ROWS 10 rows
+	  FOR (row = 0; row < rows; ++row) BEGIN
+		READ_2DA_ENTRY row 1 10 ranger_ability
+		PATCH_IF !(~%ranger_ability%~ STRING_EQUAL_CASE ~*~) BEGIN
+		  SNPRINT 3 hla_type ~%ranger_ability%~
+		  PATCH_IF (~%hla_type%~ STRING_EQUAL_CASE ~GA_~) || (~%hla_type%~ STRING_EQUAL_CASE ~AP_~) BEGIN
+			READ_2DA_ENTRY row 2 10 ranger_icon
+			READ_2DA_ENTRY row 3 10 ranger_strref
+			READ_2DA_ENTRY row 4 10 ranger_min_lev
+			READ_2DA_ENTRY row 5 10 ranger_max_level
+			READ_2DA_ENTRY row 6 10 ranger_num_allowed
+			READ_2DA_ENTRY row 7 10 ranger_prerequisite
+			READ_2DA_ENTRY row 8 10 ranger_excluded_by
+			READ_2DA_ENTRY row 9 10 ranger_alignment_restrict
+			INNER_ACTION BEGIN
+			  LAF action_add_hla STR_VAR kit_name = EVAL ~%new_name%~ ability = EVAL ~%ranger_ability%~ icon = EVAL ~%ranger_icon%~ strref = EVAL ~%ranger_strref%~ min_lev = EVAL ~%ranger_min_lev%~ max_level = EVAL ~%ranger_max_level%~ num_allowed = EVAL ~%ranger_num_allowed%~ prerequisite = EVAL ~%ranger_prerequisite%~ excluded_by = EVAL ~%ranger_excluded_by%~ alignment_restrict = EVAL ~%ranger_alignment_restrict%~ END
+			END
+		  END
+		END
+	  END
+	IF_EXISTS BUT_ONLY
+   END
+   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~m~ = 0) BEGIN
+	COPY_EXISTING ~LUMA0.2da~ ~override~
+	  COUNT_2DA_ROWS 10 rows
+	  FOR (row = 0; row < rows; ++row) BEGIN
+		READ_2DA_ENTRY row 1 10 mage_ability
+		PATCH_IF !(~%mage_ability%~ STRING_EQUAL_CASE ~*~) BEGIN
+		  SNPRINT 3 hla_type ~%mage_ability%~
+		  PATCH_IF (~%hla_type%~ STRING_EQUAL_CASE ~GA_~) || (~%hla_type%~ STRING_EQUAL_CASE ~AP_~) BEGIN
+			READ_2DA_ENTRY row 2 10 mage_icon
+			READ_2DA_ENTRY row 3 10 mage_strref
+			READ_2DA_ENTRY row 4 10 mage_min_lev
+			READ_2DA_ENTRY row 5 10 mage_max_level
+			READ_2DA_ENTRY row 6 10 mage_num_allowed
+			READ_2DA_ENTRY row 7 10 mage_prerequisite
+			READ_2DA_ENTRY row 8 10 mage_excluded_by
+			READ_2DA_ENTRY row 9 10 mage_alignment_restrict
+			INNER_ACTION BEGIN
+			  LAF action_add_hla STR_VAR kit_name = EVAL ~%new_name%~ ability = EVAL ~%mage_ability%~ icon = EVAL ~%mage_icon%~ strref = EVAL ~%mage_strref%~ min_lev = EVAL ~%mage_min_lev%~ max_level = EVAL ~%mage_max_level%~ num_allowed = EVAL ~%mage_num_allowed%~ prerequisite = EVAL ~%mage_prerequisite%~ excluded_by = EVAL ~%mage_excluded_by%~ alignment_restrict = EVAL ~%mage_alignment_restrict%~ END
+			END
+		  END
+		END
+	  END
+	IF_EXISTS BUT_ONLY
+   END
+   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~s~ = 0) BEGIN
+	ACTION_IF (FILE_EXISTS_IN_GAME ~QD_MCM01.spl~) BEGIN
+	  OUTER_SET sorc_cleric_code = IDS_OF_SYMBOL (~kit~ ~D5_SORCERER_CLERIC~)
+	  OUTER_SET this_kit_code = IDS_OF_SYMBOL (~kit~ ~%sorc_name%~)
+	  COPY_EXISTING ~QD_MCM01.spl~ ~override~
+		LPF CLONE_EFFECT INT_VAR silent = 1 /*multi_match = 1*/ match_parameter1 = %sorc_cleric_code% match_parameter2 = 9 parameter1 = %this_kit_code% END
+	END
+	COPY_EXISTING ~LUSO0.2da~ ~override~
+	  COUNT_2DA_ROWS 10 rows
+	  FOR (row = 0; row < rows; ++row) BEGIN
+		READ_2DA_ENTRY row 1 10 sorcerer_ability
+		PATCH_IF !(~%sorcerer_ability%~ STRING_EQUAL_CASE ~*~) BEGIN
+		  SNPRINT 3 hla_type ~%sorcerer_ability%~
+		  PATCH_IF (~%hla_type%~ STRING_EQUAL_CASE ~GA_~) || (~%hla_type%~ STRING_EQUAL_CASE ~AP_~) BEGIN
+			READ_2DA_ENTRY row 2 10 sorcerer_icon
+			READ_2DA_ENTRY row 3 10 sorcerer_strref
+			READ_2DA_ENTRY row 4 10 sorcerer_min_lev
+			READ_2DA_ENTRY row 5 10 sorcerer_max_level
+			READ_2DA_ENTRY row 6 10 sorcerer_num_allowed
+			READ_2DA_ENTRY row 7 10 sorcerer_prerequisite
+			READ_2DA_ENTRY row 8 10 sorcerer_excluded_by
+			READ_2DA_ENTRY row 9 10 sorcerer_alignment_restrict
+			INNER_ACTION BEGIN
+			  LAF action_add_hla STR_VAR kit_name = EVAL ~%sorc_name%~ ability = EVAL ~%sorcerer_ability%~ icon = EVAL ~%sorcerer_icon%~ strref = EVAL ~%sorcerer_strref%~ min_lev = EVAL ~%sorcerer_min_lev%~ max_level = EVAL ~%sorcerer_max_level%~ num_allowed = EVAL ~%sorcerer_num_allowed%~ prerequisite = EVAL ~%sorcerer_prerequisite%~ excluded_by = EVAL ~%sorcerer_excluded_by%~ alignment_restrict = EVAL ~%sorcerer_alignment_restrict%~ END
+			END
+		  END
+		END
+	  END
+	IF_EXISTS BUT_ONLY
    END
   END  
   LAF DEFINE_FNP_KIT_INFO
@@ -2351,7 +2770,8 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
   ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
 	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = EVAL ~%new_clab%~ END
   END  
-  ACTION_IF (new_class = 14) && (FILE_EXISTS_IN_GAME ~d5sorc.2da~) BEGIN
+/*
+  ACTION_IF (new_class = 14) && (~%mc_kit%~ STRING_CONTAINS_REGEXP ~s~ = 0) /*&& (FILE_EXISTS_IN_GAME ~d5sorc.2da~)*/ BEGIN
    OUTER_SPRINT sorc_name ~%sc_kit%_SC~
    OUTER_SPRINT sorc_clab ~%clab_res%s~
    COPY_EXISTING ~%clab_res%.2da~ ~override/%sorc_clab%.2da~
@@ -2370,6 +2790,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
 	 kittable    = EVAL ~%new_kittable%~
 	 hpclass	 = EVAL ~%hit_dice%~
 	 weapprof    = EVAL ~%new_weapprof%~
+	 luabbr      = EVAL ~%hla_table%~
    END
    LAF DEFINE_FNP_KIT_INFO
     INT_VAR
@@ -2434,9 +2855,178 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kits BEGIN
    ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
 	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = EVAL ~%sorc_clab%~ END
    END 
+   COPY_EXISTING ~LUSO0.2da~ ~override~
+	  COUNT_2DA_ROWS 10 rows
+	  FOR (row = 0; row < rows; ++row) BEGIN
+		READ_2DA_ENTRY row 1 10 sorcerer_ability
+		PATCH_IF !(~%sorcerer_ability%~ STRING_EQUAL_CASE ~*~) BEGIN
+		  SNPRINT 3 hla_type ~%sorcerer_ability%~
+		  PATCH_IF (~%hla_type%~ STRING_EQUAL_CASE ~GA_~) || (~%hla_type%~ STRING_EQUAL_CASE ~AP_~) BEGIN
+			READ_2DA_ENTRY row 2 10 sorcerer_icon
+			READ_2DA_ENTRY row 3 10 sorcerer_strref
+			READ_2DA_ENTRY row 4 10 sorcerer_min_lev
+			READ_2DA_ENTRY row 5 10 sorcerer_max_level
+			READ_2DA_ENTRY row 6 10 sorcerer_num_allowed
+			READ_2DA_ENTRY row 7 10 sorcerer_prerequisite
+			READ_2DA_ENTRY row 8 10 sorcerer_excluded_by
+			READ_2DA_ENTRY row 9 10 sorcerer_alignment_restrict
+			INNER_ACTION BEGIN
+			  LAF action_add_hla STR_VAR kit_name = EVAL ~%sorc_name%~ ability = EVAL ~%sorcerer_ability%~ icon = EVAL ~%sorcerer_icon%~ strref = EVAL ~%sorcerer_strref%~ min_lev = EVAL ~%sorcerer_min_lev%~ max_level = EVAL ~%sorcerer_max_level%~ num_allowed = EVAL ~%sorcerer_num_allowed%~ prerequisite = EVAL ~%sorcerer_prerequisite%~ excluded_by = EVAL ~%sorcerer_excluded_by%~ alignment_restrict = EVAL ~%sorcerer_alignment_restrict%~ END
+			END
+		  END
+		END
+	  END
+   IF_EXISTS BUT_ONLY
   END
-
+*/
+/*
+  ACTION_IF (new_class = 15) && (~%mc_kit%~ STRING_CONTAINS_REGEXP ~k~ = 0) /*&& (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONK_C[ %TAB%%LNL%%MNL%%WNL%]~))*/ BEGIN
+   LAF ADD_KIT_EX
+    INT_VAR
+     kit_class   = %new_class%
+	 mixed       = RESOLVE_STR_REF (~%new_mixed%~)
+    STR_VAR
+	 source_kit  = EVAL ~%sc_kit%~
+	 kit_name    = EVAL ~%new_name%~
+	 base_class  = EVAL ~%new_base_class%~
+	 clab_path   = EVAL ~override/%new_clab%.2da~
+	 dualclas    = ~0 0 0 0 0 0~
+	 kittable    = EVAL ~%new_kittable%~
+	 hpclass	 = EVAL ~%hit_dice%~
+	 weapprof    = EVAL ~%new_weapprof%~
+	 luabbr      = EVAL ~%hla_table%~
+	 thiefscl
+	 traplimt
+	 thiefskl
+	 backstab
+	 sneakatt
+	 crippstr
+//   RET kit_id
+   END
+   LAF DEFINE_FNP_KIT_INFO
+    INT_VAR
+	 u_leather_armor 	= %new_fnp_leather%
+	 u_chain_armor 		= %new_fnp_chain%
+	 u_plate_armor 		= %new_fnp_plate%
+	 u_club_staff	 	= %new_fnp_clubstaff%
+	 u_hammers	 		= %new_fnp_hammer%
+	 u_maces 	 		= %new_fnp_mace%
+	 u_flails 			= %new_fnp_flail%
+	 u_axes 			= %new_fnp_axe%
+	 u_daggers 			= %new_fnp_dagger%
+	 u_short_swords		= %new_fnp_shortsword%
+	 u_long_swords		= %new_fnp_longsword%
+	 u_scimitars 		= %new_fnp_scimitar%
+	 u_katanas 			= %new_fnp_katana%
+	 u_bastard_swords 	= %new_fnp_bastardsword%
+	 u_2hand_swords 	= %new_fnp_2handsword%
+	 u_halberds 		= %new_fnp_halberd%
+	 u_spears 	 		= %new_fnp_spear%
+	 u_darts 			= %new_fnp_dart%
+	 u_slings	 		= %new_fnp_sling%
+	 u_bows 			= %new_fnp_bow%
+	 u_crossbows 		= %new_fnp_xbow%
+    STR_VAR
+     clab_name 			= EVAL ~%new_clab%~
+	 sphere_list		= EVAL ~%orig_sphere_list%~
+	 class 				= EVAL ~%fnp_spheres_class%~
+	 s_Life 			= EVAL ~%orig_life%~
+	 s_Death 			= EVAL ~%orig_death%~
+	 s_Benediction 		= EVAL ~%orig_benediction%~
+	 s_Destruction 		= EVAL ~%orig_destruction%~
+	 s_Protection 		= EVAL ~%orig_protection%~
+	 s_War 				= EVAL ~%orig_war%~
+	 s_Exploration  	= EVAL ~%orig_exploration%~
+	 s_Knowledge 		= EVAL ~%orig_knowledge%~
+	 s_Deception 		= EVAL ~%orig_deception%~
+	 s_Thought 	    	= EVAL ~%orig_thought%~
+	 s_Dread 			= EVAL ~%orig_dread%~
+	 s_Vigor 			= EVAL ~%orig_vigor%~
+	 s_Affliction 		= EVAL ~%orig_affliction%~
+	 s_Animal 			= EVAL ~%orig_animal%~
+	 s_Plant 			= EVAL ~%orig_plant%~
+	 s_Earth 			= EVAL ~%orig_earth%~
+	 s_Water 			= EVAL ~%orig_water%~
+	 s_Air 				= EVAL ~%orig_air%~
+	 s_Fire 			= EVAL ~%orig_fire%~
+	 s_Light 			= EVAL ~%orig_light%~
+	 s_Shadow 			= EVAL ~%orig_shadow%~
+	 s_Magic 			= EVAL ~%orig_magic%~
+	 s_Perdition    	= EVAL ~%orig_perdition%~
+   END
+//   ACTION_IF (new_class = 15) && (~%mc_kit%~ STRING_CONTAINS_REGEXP ~k~ = 0) BEGIN
+   ACTION_IF (FILE_EXISTS_IN_GAME ~QD_MCT01.spl~) BEGIN
+	  ACTION_IF (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONKSS_C[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		ACTION_IF (~%sc_kit%~ STRING_EQUAL_CASE ~B_CLERIC_LATHANDER~) BEGIN
+		  OUTER_SET monk_cleric_code = IDS_OF_SYMBOL (~kit~ ~QDMONKSS_C~)
+		END
+	  END
+	  ACTION_IF (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONKHF_F[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		ACTION_IF (~%sc_kit%~ STRING_EQUAL_CASE ~D5_CLERIC_YONDALLA~) BEGIN
+		  OUTER_SET monk_cleric_code = IDS_OF_SYMBOL (~kit~ ~QDMONKHF_F~)
+		END
+	  END
+	  ACTION_IF (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONKSH_M[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		ACTION_IF (~%sc_kit%~ STRING_EQUAL_CASE ~D5_PRIEST_AZUTH~) BEGIN
+		  OUTER_SET monk_cleric_code = IDS_OF_SYMBOL (~kit~ ~QDMONKSH_M~)
+		END
+	  END
+	  ACTION_IF (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONKDM_M[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		ACTION_IF (~%sc_kit%~ STRING_EQUAL_CASE ~D5_AC_SHAR~) || (~%sc_kit%~ STRING_EQUAL_CASE ~A#SHAR~) BEGIN
+		  OUTER_SET monk_cleric_code = IDS_OF_SYMBOL (~kit~ ~QDMONKDM_M~)
+		END
+	  END
+	  ACTION_IF (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONKBO_C[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+		ACTION_IF (~%sc_kit%~ STRING_EQUAL_CASE ~B_PRIEST_ILMATER~) || (~%sc_kit%~ STRING_EQUAL_CASE ~CDILMATR~) BEGIN
+		  OUTER_SET monk_cleric_code = IDS_OF_SYMBOL (~kit~ ~QDMONKBO_C~)
+		END
+	  END
+	  ELSE BEGIN
+		OUTER_SET monk_cleric_code = IDS_OF_SYMBOL (~kit~ ~QDMONK_C~)
+	  END
+	  OUTER_SET this_kit_code = IDS_OF_SYMBOL (~kit~ ~%new_name%~)
+	  COPY_EXISTING ~QD_MCT01.spl~ ~override~
+		LPF CLONE_EFFECT INT_VAR silent = 1 /*multi_match = 1*/ match_parameter1 = %monk_cleric_code% match_parameter2 = 9 parameter1 = %this_kit_code% END
+   END
+//   END
+//   ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+//    LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = EVAL ~%new_clab%~ END
+//   END
+   ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = EVAL ~%new_clab%~ END
+   END 
+   COPY_EXISTING ~LUMO0.2da~ ~override~
+	  COUNT_2DA_ROWS 10 rows
+	  FOR (row = 0; row < rows; ++row) BEGIN
+		READ_2DA_ENTRY row 1 10 monk_ability
+		PATCH_IF !(~%monk_ability%~ STRING_EQUAL_CASE ~*~) BEGIN
+		  SNPRINT 3 hla_type ~%monk_ability%~
+		  PATCH_IF (~%hla_type%~ STRING_EQUAL_CASE ~GA_~) || (~%hla_type%~ STRING_EQUAL_CASE ~AP_~) BEGIN
+			READ_2DA_ENTRY row 2 10 monk_icon
+			READ_2DA_ENTRY row 3 10 monk_strref
+			READ_2DA_ENTRY row 4 10 monk_min_lev
+			READ_2DA_ENTRY row 5 10 monk_max_level
+			READ_2DA_ENTRY row 6 10 monk_num_allowed
+			READ_2DA_ENTRY row 7 10 monk_prerequisite
+			READ_2DA_ENTRY row 8 10 monk_excluded_by
+			READ_2DA_ENTRY row 9 10 monk_alignment_restrict
+			INNER_ACTION BEGIN
+			  LAF action_add_hla STR_VAR kit_name = EVAL ~%new_name%~ ability = EVAL ~%monk_ability%~ icon = EVAL ~%monk_icon%~ strref = EVAL ~%monk_strref%~ min_lev = EVAL ~%monk_min_lev%~ max_level = EVAL ~%monk_max_level%~ num_allowed = EVAL ~%monk_num_allowed%~ prerequisite = EVAL ~%monk_prerequisite%~ excluded_by = EVAL ~%monk_excluded_by%~ alignment_restrict = EVAL ~%monk_alignment_restrict%~ END
+			END
+		  END
+		END
+	  END
+   IF_EXISTS BUT_ONLY
+  END
+*/
 END
+
+/*
+ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
+  OUTER_SPRINT sc_kit ~%ind_1%~  
+  PRINT ~%sc_kit% : %mc_kit%~
+END
+*/
 
 END	//	end kit-cloning function
 

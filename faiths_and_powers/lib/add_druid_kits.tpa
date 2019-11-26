@@ -325,13 +325,109 @@ COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drsc4.spl~ ~override~
   SAY UNIDENTIFIED_DESC @73111
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drsc4.eff~ ~override~
 
-APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_SPDR201  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
-//LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_GIANT_INSECT~ RET spell_res spell_num END
-//APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell-res%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
+// make array of any animal summons spells and their FnP variants
+// make a spell with 172 effects for each of them
+// apply that spell to the hivekeeper... once?  every level?
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5hive0.spl~
+ACTION_FOR_EACH animal_summon IN ~CLERIC_ANIMAL_SUMMONING_LEVEL_1~
+								~CLERIC_ANIMAL_SUMMONING_LEVEL_2~
+								~CLERIC_ANIMAL_SUMMONING_LEVEL_3~
+								~CLERIC_ANIMAL_SUMMONING_LEVEL_4~
+								~CLERIC_ANIMAL_SUMMONING_LEVEL_5~
+								~CLERIC_ANIMAL_SUMMONING_LEVEL_6~
+								~CLERIC_ANIMAL_SUMMONING_LEVEL_7~
+								~CLERIC_ANIMAL_SUMMONING_1~
+								~CLERIC_ANIMAL_SUMMONING_2~
+								~CLERIC_ANIMAL_SUMMONING_3~
+								~CLERIC_CONJURE_ANIMALS~
+								~CLERIC_ANIMAL_SUMMONING_4~ 	BEGIN
+  ACTION_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~[ %TAB%]%animal_summon%[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+	LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%animal_summon%~ RET spell_res END
+	COPY_EXISTING ~d5hive0.spl~ ~override~
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 4 duration = 1 STR_VAR resource = EVAL ~%spell_res%~ END
+	BUT_ONLY
+  END
+END
+								
+APPEND ~clabdr04.2da~ ~HIVEKEEPER   AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0 AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0  AP_D5HIVE0 ~
+
+APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_SPDR201  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+/* already get this in Animal sphere
+ACTION_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~[ %TAB%]CLERIC_GIANT_INSECT[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_GIANT_INSECT~ RET spell_res spell_num END
+APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell_res%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+*/
 LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_INSECT_PLAGUE~ RET spell_res spell_num END
-APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell_res%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
+APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell_res%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_CREEPING_DOOM~ RET spell_res spell_num END
-APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell_res%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****~
+APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell_res%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+
+// make beetle swarm spell
+ACTION_IF !(GAME_IS ~iwdee~) BEGIN
+// animations
+  COPY ~faiths_and_powers/spheres/spells/animations/e210_beetle~ ~override~
+  COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5smbtl.cre~ ~override~
+	LPF make_summon END
+END
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5btswm.spl~
+  SAY NAME1 @73421
+  SAY UNIDENTIFIED_DESC @73422
+  WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 2
+  LPF ALTER_SPELL_HEADER INT_VAR target = 4 location = 2 speed = 6 STR_VAR icon = ~*****~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 75 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 50 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 25 STR_VAR resource = ~d5smbtl~ END
+
+// make spider swarm spell
+  COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5smspid.cre~ ~override~
+	LPF make_summon END
+// and give it an appropriate weapon, like spidhu1.itm
+// ***** or make a new weapon for it!
+// ...not too much poison
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5spswm.spl~
+  SAY NAME1 @73423
+  SAY UNIDENTIFIED_DESC @73424
+  WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 3
+  LPF ALTER_SPELL_HEADER INT_VAR target = 4 location = 2 speed = 6 STR_VAR icon = ~*****~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 75 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 50 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 25 STR_VAR resource = ~d5smspid~ END
+// add spider spawn - spwi423 - at spell level 5
+COPY_EXISTING ~spwi423.spl~ ~override/d5spspn.spl~
+  WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 5
+IF_EXISTS
+// add carrion summons - spwi623
+COPY_EXISTING ~spwi623.spl~ ~override/d5carsm.spl~
+  WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 6
+IF_EXISTS
+// make summon rhino beetle spell
+  COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5rhbtl.cre~ ~override~
+	LPF make_summon END
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5rhbtl.spl~
+  SAY NAME1 @73425
+  SAY UNIDENTIFIED_DESC @73426
+  WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 7
+  LPF ALTER_SPELL_HEADER INT_VAR target = 4 location = 2 speed = 6 STR_VAR icon = ~*****~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5rhbtl~ END
+	
+
+APPEND ~clabdr04.2da~ ~
+HIVEKEEPER   GA_D5BTSWM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+HIVEKEEPER   GA_D5SPSWM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+HIVEKEEPER   GA_D5SPSPN  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+HIVEKEEPER   GA_D5CARSM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+HIVEKEEPER   GA_D5RHBTL  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
@@ -1288,6 +1384,16 @@ OUTER_SET shambling_mound_animation = IDS_OF_SYMBOL (animate ~SHAMBLING_MOUND~)
 
 OUTER_SET rat_animation = IDS_OF_SYMBOL (animate ~RAT~)
 OUTER_SET squirrel_animation = IDS_OF_SYMBOL (animate ~SQUIRREL~)
+
+// add missing animations
+ACTION_IF !(GAME_IS ~iwdee~) BEGIN
+// yeti
+  COPY ~faiths_and_powers/spheres/spells/animations/e25d_yeti~ ~override~
+// rhino beetle
+  COPY ~faiths_and_powers/spheres/spells/animations/e230_rhino_beetle~ ~override~
+// remorhaz
+  COPY ~faiths_and_powers/spheres/spells/animations/e253_remorhaz~ ~override~
+END
 
 /* 
 attack icons:

@@ -1629,6 +1629,39 @@ END
 
 //___________________________________________________________________________________
 //
+DEFINE_ACTION_FUNCTION marthammor_spheres 
+  RET_ARRAY marthammor_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY marthammor_spheres_array BEGIN
+	Life 				=> major
+	Death 				=> x
+	Creation 			=> minor
+	Destruction 		=> major
+	Protection 			=> major
+	War 				=> major
+	Exploration 		=> major
+	Knowledge 			=> minor
+	Deception 			=> x
+	Thought 			=> x
+	Dread 				=> x
+	Vigor 				=> major
+	Affliction 			=> x
+	Animal 				=> minor
+	Plant 				=> x
+	Earth 				=> major
+	Water 				=> x
+	Air 				=> x
+	Fire 				=> x
+	Light 				=> minor
+	Shadow 				=> x
+	Magic 				=> minor
+	Astral   			=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
 DEFINE_ACTION_FUNCTION baravar_spheres 
   RET_ARRAY baravar_spheres_array
  BEGIN
@@ -1979,10 +2012,10 @@ DEFINE_ACTION_FUNCTION druid_hivekeeper_spheres
 	Dread 			=> x
 	Vigor 			=> major
 	Affliction 		=> major
-	Animal 			=> minor
+	Animal 			=> major
 	Plant 			=> major
 	Earth 			=> major
-	Water 			=> major
+	Water 			=> minor
 	Air 			=> major
 	Fire 			=> minor
 	Light 			=> major

@@ -970,7 +970,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
     clab_name 		= EVAL ~a#ogma~
 	sphere_list		= ~oghma_spheres~
 	class 			= ~priest~
-	multiclass 		= ~ct_cm~
+	multiclass 		= ~ct_cm_ck~
 END
 //__________________________________________________________________________________
 END
@@ -995,13 +995,20 @@ ACTION_IF FILE_EXISTS_IN_GAME ~a#ooze.2da~ BEGIN
 	APPEND ~a#ooze.2da~ ~OOZE        ****        ****        ****        ****        ****        ****        GA_d5ooze4  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
   END
   ACTION_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ THEN BEGIN
-	COPY_EXISTING ~spwi226.spl~ ~override/d5ooze3.spl~
-	  WRITE_SHORT 0x1c 2
-	  WRITE_LONG 0x34 3
-	  SAY NAME1 @998
-	COPY_EXISTING ~spwi526.spl~ ~override/d5ooze5.spl~
-	  WRITE_SHORT 0x1c 2
-	  SAY NAME1 @999
+	ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_MONSTER_SUMMONING_LEVEL_2[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+      LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~WIZARD_MONSTER_SUMMONING_LEVEL_2~ RET spell_res END
+      COPY_EXISTING ~%spell_res%.spl~ ~override/d5ooze3.spl~
+		WRITE_SHORT 0x1c 2
+		WRITE_LONG 0x34 3
+		SAY NAME1 @998
+	END
+	ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]WIZARD_MESTILS_ACID_SHEATH[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
+      LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~WIZARD_MESTILS_ACID_SHEATH~ RET spell_res END
+      COPY_EXISTING ~%spell_res%.spl~ ~override/d5ooze5.spl~
+		WRITE_SHORT 0x1c 2
+		WRITE_LONG 0x34 5
+		SAY NAME1 @999
+	END
 	APPEND ~a#ooze.2da~ ~OOZE        ****        ****        ****        ****        GA_d5ooze3  ****        ****        ****        GA_d5ooze5  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
   END
 //DEFINE SPHERE ACCESS______________________________________________________________
@@ -1121,7 +1128,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
     clab_name 		= EVAL ~a#shar~
 	sphere_list		= ~shar_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~ct_cm~
+	multiclass 		= ~ct_cm_ck~
 END
 //__________________________________________________________________________________
 END
@@ -1199,7 +1206,6 @@ LAF ~DEFINE_FNP_KIT_INFO~
     clab_name 		= EVAL ~cdilmatr~
 	sphere_list		= ~ilmater_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~ct~
 END
 //__________________________________________________________________________________
 END
@@ -1238,7 +1244,6 @@ LAF ~DEFINE_FNP_KIT_INFO~
     clab_name 		= EVAL ~cdselune~
 	sphere_list		= ~selune_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~ct_cm~
 END
 //__________________________________________________________________________________
 END
@@ -1316,7 +1321,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
     clab_name 		= EVAL ~nmsune~
 	sphere_list		= ~sune_spheres~
 	class 			= ~priest~
-	multiclass 		= ~ct_cm~
+	multiclass 		= ~ct_cm_ck~
 END
 //__________________________________________________________________________________
 END
@@ -1995,7 +2000,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Vigor 		= ~major~
 	s_Affliction 	= ~x~
 	s_Animal 		= ~minor~
-	s_Plant 		= ~minro~
+	s_Plant 		= ~minor~
 	s_Earth 		= ~major~
 	s_Water 		= ~x~
 	s_Air 			= ~x~
@@ -2157,6 +2162,78 @@ LAF ~DEFINE_FNP_KIT_INFO~
     clab_name 		= ~lkneph~
 	class 			= ~cleric~
 	sphere_list		= ~yondalla_spheres~
+END
+//__________________________________________________________________________________
+END
+
+// HELARINE - CLERIC OF KELEMVOR
+
+ACTION_IF FILE_EXISTS_IN_GAME ~clabhlke.2da~ BEGIN
+//DEFINE SPHERE ACCESS______________________________________________________________
+//
+LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 1
+	u_plate_armor 		= 1
+	u_club_staff	 	= 1
+	u_hammers	 		= 1
+	u_maces 	 		= 1
+	u_flails 			= 1
+	u_axes 				= 0
+	u_daggers 			= 1
+	u_short_swords		= 1
+	u_long_swords		= 1
+	u_scimitars 		= 0
+	u_katanas 			= 0
+	u_bastard_swords 	= 0
+	u_2hand_swords 		= 0
+	u_halberds 			= 0
+	u_spears 	 		= 1
+	u_darts 			= 1
+	u_slings	 		= 1
+	u_bows 				= 0
+	u_crossbows 		= 1
+  STR_VAR
+    clab_name 		= ~clabhlke~
+	class 			= ~cleric~
+	sphere_list		= ~kelemvor_spheres~
+END
+//__________________________________________________________________________________
+END
+
+// YVETTE - CLERIC OF SUNE
+
+ACTION_IF FILE_EXISTS_IN_GAME ~yxkit.2da~ BEGIN
+//DEFINE SPHERE ACCESS______________________________________________________________
+//
+LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 1
+	u_plate_armor 		= 0
+	u_club_staff	 	= 1
+	u_hammers	 		= 1
+	u_maces 	 		= 1
+	u_flails 			= 1
+	u_axes 				= 0
+	u_daggers 			= 1
+	u_short_swords		= 1
+	u_long_swords		= 0
+	u_scimitars 		= 0
+	u_katanas 			= 0
+	u_bastard_swords 	= 0
+	u_2hand_swords 		= 0
+	u_halberds 			= 0
+	u_spears 	 		= 0
+	u_darts 			= 1
+	u_slings	 		= 1
+	u_bows 				= 0
+	u_crossbows 		= 1
+  STR_VAR
+    clab_name 		= ~yxkit~
+	class 			= ~cleric~
+	sphere_list		= ~sune_spheres~
 END
 //__________________________________________________________________________________
 END

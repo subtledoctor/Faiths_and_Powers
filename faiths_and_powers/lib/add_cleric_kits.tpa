@@ -2,7 +2,7 @@
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//								UR-Priest
+//									UR-Priest
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -346,6 +346,7 @@ END
     clab_name 		= ~d5clazu~
 	sphere_list		= ~azuth_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~ck~
  END
 
 END
@@ -869,7 +870,7 @@ COPY_EXISTING ~SPPR303.spl~ ~override/b_den04.spl~ // dispel magic
     clab_name 		= ~b_aden~
 	sphere_list		= ~deneir_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~ct_cm~
+	multiclass 		= ~ct_cm_ck~
  END
 
 END
@@ -1035,7 +1036,7 @@ END
     clab_name 		= ~b_chel~
 	sphere_list		= ~helm_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~fc~
+	multiclass 		= ~fc_ck~
  END
 
 END
@@ -1179,7 +1180,7 @@ COPY ~faiths_and_powers/kits/clerics/314_ilmater/b_ilm03.spl~ ~override~  // End
     clab_name 		= ~b_ailm~
 	sphere_list		= ~ilmater_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~ct~
+	multiclass 		= ~ct_ck~
  END
 
 END
@@ -1379,7 +1380,7 @@ COPY_EXISTING ~SPPR413.spl~ ~override/b_kel02.spl~ // Works?
     clab_name 		= ~b_ckel~
 	sphere_list		= ~kelemvor_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~fc_cm~
+	multiclass 		= ~fc_cm_ck~
  END
 
 END
@@ -1547,7 +1548,7 @@ END
     clab_name 		= ~b_clat~
 	sphere_list		= ~lathander_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~fc_cm~
+	multiclass 		= ~fc_cm_ck~
   END
 
 END
@@ -1829,7 +1830,7 @@ COPY ~faiths_and_powers/kits/clerics/219_loviatar/b_lov04.spl~     ~override~  /
     clab_name 		= ~b_clov~
 	sphere_list		= ~loviatar_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~fc_ct_cm~
+	multiclass 		= ~fc_ct_cm_ck~
  END
 
 END
@@ -1956,47 +1957,55 @@ COPY_EXISTING ~splprot.2da~ ~override~
 	  END
 	END
 BUT_ONLY
-COPY ~faiths_and_powers/spheres/spells/animal/d5angro.spl~ ~override/d5mala4.spl~  // automatic animal growth
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fnp05.spl~) BEGIN
+ COPY ~faiths_and_powers/spheres/spells/animal/d5fnp05b.bam~ ~override~ 
+ COPY ~faiths_and_powers/spheres/spells/animal/d5fnp05c.bam~ ~override~ 
+ COPY ~faiths_and_powers/spheres/spells/animal/d5angro.spl~ ~override/d5fnp05.spl~ 
+  SAY NAME1 @50223
+  SAY UNIDENTIFIED_DESC @50224
   WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 5
+  WRITE_ASCII 0x3a ~d5fnp05c~ #8
+  LPF ALTER_SPELL_HEADER INT_VAR location = 2 STR_VAR icon = ~d5fnp05b~ END
   PATCH_FOR_EACH eff IN ~H50~ ~T2~ ~D2~ ~S2~ ~VI~ BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 4 duration = 2 STR_VAR resource = EVAL ~D5GRO%eff%~ END
   END
-CREATE EFF ~D5GROH50~
+ CREATE EFF ~D5GROH50~
 	WRITE_LONG 0x10 18
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x1c 150
 	WRITE_LONG 0x20 2
 	WRITE_LONG 0x24 1
 	WRITE_SHORT 0x2c 100
-CREATE EFF ~D5GROT2~
+ CREATE EFF ~D5GROT2~
 	WRITE_LONG 0x10 22
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x1c 2
 	WRITE_LONG 0x20 0
 	WRITE_LONG 0x24 1
 	WRITE_SHORT 0x2c 100
-CREATE EFF ~D5GROD2~
+ CREATE EFF ~D5GROD2~
 	WRITE_LONG 0x10 73
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x1c 2
 	WRITE_LONG 0x20 0
 	WRITE_LONG 0x24 1
 	WRITE_SHORT 0x2c 100
-CREATE EFF ~D5GROS2~
+ CREATE EFF ~D5GROS2~
 	WRITE_LONG 0x10 325
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x1c 2
 	WRITE_LONG 0x20 0
 	WRITE_LONG 0x24 1
 	WRITE_SHORT 0x2c 100
-CREATE EFF ~D5GROAC2~
+ CREATE EFF ~D5GROAC2~
 	WRITE_LONG 0x10 0
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x1c 2
 	WRITE_LONG 0x20 0
 	WRITE_LONG 0x24 1
 	WRITE_SHORT 0x2c 100
-CREATE EFF ~D5GROVI~
+ CREATE EFF ~D5GROVI~
 	WRITE_LONG 0x10 215
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x20 1
@@ -2004,23 +2013,7 @@ CREATE EFF ~D5GROVI~
 	WRITE_LONG 0x28 2
 	WRITE_SHORT 0x2c 100
 	WRITE_ASCII 0x30 ~ICSTRENI~ #8 
-ACTION_FOR_EACH animal_spell IN ~CLERIC_ANIMAL_SUMMONING_LEVEL_1~ 
-								~CLERIC_ANIMAL_SUMMONING_LEVEL_2~ 
-								~CLERIC_ANIMAL_SUMMONING_LEVEL_3~ 
-								~CLERIC_ANIMAL_SUMMONING_1~ 
-								~CLERIC_ANIMAL_SUMMONING_2~ 
-								~CLERIC_ANIMAL_SUMMONING_3~ 
-								~CLERIC_ANIMAL_SUMMONING_4~ 
-								~CLERIC_ANIMAL_SUMMONING_LEVEL_7~ 
-								~CLERIC_CONJURE_ANIMALS~ 			BEGIN
-  ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]%animal_spell%[ %TAB%%WNL%%LNL%%MNL%]~)) BEGIN
-	LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%animal_spell%~ RET spell_res END
-	COPY_EXISTING ~%spell_res%.spl~ ~override~
-	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (0x4000 + %D5_CLERIC_MALAR%) parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5mala4~ END
-	IF_EXISTS BUT_ONLY
-  END
-END
-ACTION_FOR_EACH animal IN ~BDSHA01A~
+ ACTION_FOR_EACH animal IN ~BDSHA01A~
 						 ~BDSHA01B~
 						 ~BDSHA01C~
 						 ~BDSHA06A~
@@ -2069,7 +2062,24 @@ ACTION_FOR_EACH animal IN ~BDSHA01A~
 						 ~WIZEYE~	BEGIN
   COPY_EXISTING ~%animal%.cre~ ~override~
 	LPF ADD_CRE_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5mala4~ END
-  BUT_ONLY
+  IF_EXISTS BUT_ONLY
+ END
+END
+ACTION_FOR_EACH animal_spell IN ~CLERIC_ANIMAL_SUMMONING_LEVEL_1~ 
+								~CLERIC_ANIMAL_SUMMONING_LEVEL_2~ 
+								~CLERIC_ANIMAL_SUMMONING_LEVEL_3~ 
+								~CLERIC_ANIMAL_SUMMONING_1~ 
+								~CLERIC_ANIMAL_SUMMONING_2~ 
+								~CLERIC_ANIMAL_SUMMONING_3~ 
+								~CLERIC_ANIMAL_SUMMONING_4~ 
+								~CLERIC_ANIMAL_SUMMONING_LEVEL_7~ 
+								~CLERIC_CONJURE_ANIMALS~ 			BEGIN
+  ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]%animal_spell%[ %TAB%%WNL%%LNL%%MNL%]~)) BEGIN
+	LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%animal_spell%~ RET spell_res END
+	COPY_EXISTING ~%spell_res%.spl~ ~override~
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (0x4000 + %D5_CLERIC_MALAR%) parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5fnp05~ END
+	IF_EXISTS BUT_ONLY
+  END
 END
 
 //DEFINE SPHERE ACCESS________________________________________________________________
@@ -2540,7 +2550,7 @@ COPY_EXISTING ~spwi509.spl~ ~override/d5oghm2.spl~
     clab_name 		= ~d5clogh~
 	sphere_list		= ~oghma_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~cm~
+	multiclass 		= ~cm_ck~
  END
 
 END
@@ -2635,7 +2645,7 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 	END
 END
 
-//DARKCLOAK ABILITY FILES______________________________________________________________
+//DARKCLOAK ABILITY FILES_____________________________________________________________
 //
 COPY ~faiths_and_powers/kits/clerics/330_shar/d5asha.2da~ ~override~
 COPY_EXISTING ~spwi220.spl~ ~override/d5shasl.spl~
@@ -2676,7 +2686,7 @@ COPY_EXISTING ~spwi815.spl~ ~override/d5shabl.spl~
     clab_name 		= ~d5asha~
 	sphere_list		= ~shar_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~ct_cm~
+	multiclass 		= ~ct_cm_ck~
  END
 
 END
@@ -2838,7 +2848,7 @@ COPY_EXISTING ~SPWI104.spl~ ~override/b_sun01.spl~ // Charm person
     clab_name 		= ~b_asun~
 	sphere_list		= ~sune_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~ct_cm~
+	multiclass 		= ~ct_cm_ck~
  END
 
 END
@@ -3873,46 +3883,46 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_clangeddin BEGIN
 
-ADD_KIT ~D5_CLANGEDDIN~
+ADD_KIT ~D5_CL_CLANGEDDIN~
 
 //WEAPON PROFICIENCIES________________________________________________________________
-//11                                         T   S           F   Q             S S
-//10                 L S                     W   C           L   U             W I
-//9                  A M             B L S   O   I   W       A   A             O N
-//8                  R A             A O H   H   M   A       I   R C   S       R G
-//7                  G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6                  E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5                  S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4                  W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3                  O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2                  R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1                  D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_CLANGEDDIN       0 0 0 0 0 0 0 0~
-~D5_CLANGEDDIN       0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 1 0 0 1 1 1 0 0 0 0 1 2 2 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+//11                 	                        T   S           F   Q             S S
+//10                 	L S                     W   C           L   U             W I
+//9                  	A M             B L S   O   I   W       A   A             O N
+//8                  	R A             A O H   H   M   A       I   R C   S       R G
+//7                  	G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6                  	E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5                  	S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4                  	W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3                  	O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2                  	R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1                  	D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+~D5_CL_CLANGEDDIN       0 0 0 0 0 0 0 0~
+~D5_CL_CLANGEDDIN       0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 1 0 0 1 1 1 0 0 0 0 1 2 2 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
 
 //MINIMUM KIT STATS_________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_CLANGEDDIN       9   0   12   0   9   0~
+//                  	STR DEX CON INT WIS CHR
+~D5_CL_CLANGEDDIN       9   0   12   0   9   0~
 
 //KIT STAT MODIFIERS________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_CLANGEDDIN       0   0   0   0   0   0~
+//                  	STR DEX CON INT WIS CHR
+~D5_CL_CLANGEDDIN       0   0   0   0   0   0~
 
 //REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_CLANGEDDIN       15  0   0   0   15  0~
+//                  	STR DEX CON INT WIS CHR
+~D5_CL_CLANGEDDIN       15  0   0   0   15  0~
 
 //REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_CLANGEDDIN       15  0   0   0   15  0~
+//                  	STR DEX CON INT WIS CHR
+~D5_CL_CLANGEDDIN       15  0   0   0   15  0~
 
 //ALIGNMENT RESTRICTIONS____________________________________________________________
-//                  LG LN LE NG TN NE CG CN CE
-~D5_CLANGEDDIN       1  1  0  1  1  0  0  0  0~
+//                  	LG LN LE NG TN NE CG CN CE
+~D5_CL_CLANGEDDIN       1  1  0  1  1  0  0  0  0~
 
 //DUAL CLASS OPTIONS________________________________________________________________
-//                  FT CL MA TH DR RA
-~D5_CLANGEDDIN       1  0  0  0  0  0~
+//                  	FT CL MA TH DR RA
+~D5_CL_CLANGEDDIN       1  0  0  0  0  0~
 
 //KIT ABILITIES 2DA FILE______________________________________________________________
 ~faiths_and_powers/kits/clerics/372_clangeddin/d5clcla.2da~
@@ -3943,7 +3953,7 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 		INT_VAR
 			briefdesc = RESOLVE_STR_REF (@37203)
 		STR_VAR
-			kit_name = D5_CLANGEDDIN
+			kit_name = D5_CL_CLANGEDDIN
 			clswpbon = ~0 0 3~
 	END
 END
@@ -3992,6 +4002,141 @@ COPY ~faiths_and_powers/kits/clerics/372_clangeddin/d5clan3b.bam~ ~override~
   STR_VAR
     clab_name 		= ~d5clcla~
 	sphere_list		= ~clangeddin_spheres~
+	class 			= ~cleric~
+	multiclass 		= ~fc~
+ END
+
+END
+//__________________________________________________________________________________
+
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//							CLERIC OF MARTHAMMOR
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION cleric_marthammor BEGIN
+
+ADD_KIT ~D5_CL_MARTHAMMOR~
+
+//WEAPON PROFICIENCIES________________________________________________________________
+//11               	                          T   S           F   Q             S S
+//10               	  L S                     W   C           L   U             W I
+//9                	  A M             B L S   O   I   W       A   A             O N
+//8                	  R A             A O H   H   M   A       I   R C   S       R G
+//7                	  G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6                	  E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5                	  S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4                	  W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3                	  O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2                	  R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1                	  D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+~D5_CL_MARTHAMMOR     0 0 0 0 0 0 0 0~
+~D5_CL_MARTHAMMOR     0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+
+//MINIMUM KIT STATS_________________________________________________________________
+//                  	STR DEX CON INT WIS CHR
+~D5_CL_MARTHAMMOR       9   0   12   0   9   0~
+
+//KIT STAT MODIFIERS________________________________________________________________
+//                  	STR DEX CON INT WIS CHR
+~D5_CL_MARTHAMMOR       0   0   0   0   0   0~
+
+//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
+//                  	STR DEX CON INT WIS CHR
+~D5_CL_MARTHAMMOR       15  0   0   0   15  0~
+
+//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
+//                  	STR DEX CON INT WIS CHR
+~D5_CL_MARTHAMMOR       15  0   0   0   15  0~
+
+//ALIGNMENT RESTRICTIONS____________________________________________________________
+//                  	LG LN LE NG TN NE CG CN CE
+~D5_CL_MARTHAMMOR       1  1  0  1  1  0  1  0  0~
+
+//DUAL CLASS OPTIONS________________________________________________________________
+//                  	FT CL MA TH DR RA
+~D5_CL_MARTHAMMOR       1  0  0  0  0  0~
+
+//KIT ABILITIES 2DA FILE______________________________________________________________
+~faiths_and_powers/kits/clerics/373_marthammor/d5clmar.2da~
+
+//RACIAL KIT AVAILABILITY_____________________________________________________________
+~K_C_D~
+
+//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
+//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
+//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
+//         Monk = 20
+~0x00004000 3~
+
+//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
+~FC0~
+
+//TOB STARTING EQUIPMENT_____________________________________________________________
+~LEAT14	* HELM07 BAG25 RING06 RING31 CLCK02 BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 BOW18 SW1H39 STAF08~
+
+//CHARACTER CREATION KIT DESCRIPTION________________________________________________
+SAY @37301
+SAY @37302
+SAY @37303
+
+//EE KIT EXTRAS_____________________________________________________________________
+ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
+	LAF fl#add_kit_ee
+		INT_VAR
+			briefdesc = RESOLVE_STR_REF (@37303)
+		STR_VAR
+			kit_name = D5_CL_MARTHAMMOR
+			clswpbon = ~0 0 3~
+	END
+END
+
+//ALAGHOR ABILITY FILES_______________________________________________________________
+//
+COPY ~faiths_and_powers/kits/clerics/373_marthammor/d5clmar.2da~ ~override~
+COPY_EXISTING ~spwi301.spl~ ~override/d5mart1.spl~
+	LPM spell_to_innate
+// add ranger tracking
+COPY_EXISTING ~faiths_and_powers/kits/clerics/334_malar/d5mala2.spl~ ~override/d5mart2.spl~
+	SAY NAME1 @33413
+	SAY UNIDENTIFIED_DESC @33414
+COPY_EXISTING ~sppr403.spl~ ~override/d5mart3.spl~
+	LPM spell_to_innate
+COPY_EXISTING ~spwi305.spl~ ~override/d5mart4.spl~
+	LPM spell_to_innate
+
+//DEFINE SPHERE ACCESS______________________________________________________________
+//
+ LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 1
+	u_plate_armor 		= 1
+	u_club_staff	 	= 1
+	u_hammers	 		= 1
+	u_maces 	 		= 1
+	u_flails 			= 1
+	u_axes 				= 1
+	u_daggers 			= 0
+	u_short_swords		= 1
+	u_long_swords		= 0
+	u_scimitars 		= 0
+	u_katanas 			= 0
+	u_bastard_swords 	= 0
+	u_2hand_swords 		= 0
+	u_halberds 			= 0
+	u_spears 	 		= 0
+	u_darts 			= 0
+	u_slings	 		= 1
+	u_bows 				= 0
+	u_crossbows 		= 1
+  STR_VAR
+    clab_name 		= ~d5clmar~
+	sphere_list		= ~marthammor_spheres~
 	class 			= ~cleric~
 	multiclass 		= ~fc~
  END
@@ -4187,10 +4332,10 @@ ADD_KIT ~D5_CLERIC_BAERVAN~
 //              	   FT CL MA TH DR RA
 ~D5_CLERIC_BAERVAN      0  0  1  1  0  0~
 
-//KIT ABILITIES 2DA FILE______________________________________________________________
+//KIT ABILITIES 2DA FILE____________________________________________________________
 ~faiths_and_powers/kits/clerics/383_baervan/d5clbae.2da~
 
-//RACIAL KIT AVAILABILITY_____________________________________________________________
+//RACIAL KIT AVAILABILITY___________________________________________________________
 ~K_C_G~
 
 //UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
@@ -4256,9 +4401,14 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
   END
 BUT_ONLY
 COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5baer2.spl~	// entangle immunity
-  PHP_EACH entangling_array AS res => num BEGIN
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~%res%~ END
-  END
+//  PHP_EACH entangling_array AS res => num BEGIN
+//	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~%res%~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = %spike_proj% timing = 9 END	// spike growth projectile
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 242 timing = 9 END			// entangle proj
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 100 timing = 9 END			// grease proj
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 319 timing = 9 END			// webtrav proj
+//	LPF ADD_SPELL_EFFECT INT_VAR opcode = 83 target = 1 parameter2 = 63 timing = 9 END			// web proj
+//  END
 // and add magic fang effect to summoning spells
 APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
 COPY_EXISTING ~splprot.2da~ ~override~
@@ -4271,15 +4421,23 @@ COPY_EXISTING ~splprot.2da~ ~override~
 	  END
 	END
 BUT_ONLY
-COPY ~faiths_and_powers/spheres/spells/animal/d5mfang.spl~ ~override/d5baer3.spl~ 
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fnp04.spl~) BEGIN
+ COPY ~faiths_and_powers/spheres/spells/animal/d5fnp04b.bam~ ~override~ 
+ COPY ~faiths_and_powers/spheres/spells/animal/d5fnp04c.bam~ ~override~ 
+ COPY ~faiths_and_powers/spheres/spells/animal/d5mfang.spl~ ~override/d5fnp04.spl~ 
+  SAY NAME1 @50221
+  SAY UNIDENTIFIED_DESC @50222
   WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 3
+  WRITE_ASCII 0x3a ~d5fnp04c~ #8
+  LPF ALTER_SPELL_HEADER INT_VAR location = 2 STR_VAR icon = ~d5fnp04b~ END
   PATCH_FOR_EACH headr IN ~1~ ~2~ ~3~ BEGIN
 	PATCH_FOR_EACH eff IN ~E~ ~T~ ~D~ /*~S~*/ BEGIN
 	  LPF ADD_SPELL_EFFECT INT_VAR header = %headr% opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 4 duration = 2 STR_VAR resource = EVAL ~D5FNG%eff%%headr%~ END
     END
   END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 4 duration = 2 STR_VAR resource = EVAL ~D5FNGVI~ END
-ACTION_FOR_EACH headr IN ~1~ ~2~ ~3~ BEGIN
+ ACTION_FOR_EACH headr IN ~1~ ~2~ ~3~ BEGIN
   CREATE EFF ~D5FNGE%headr%~
 	WRITE_LONG 0x10 345
 	WRITE_LONG 0x14 2
@@ -4308,8 +4466,8 @@ ACTION_FOR_EACH headr IN ~1~ ~2~ ~3~ BEGIN
 	WRITE_LONG 0x20 0
 	WRITE_LONG 0x24 1
 	WRITE_SHORT 0x2c 100
-END
-CREATE EFF ~D5FNGVI~
+ END
+ CREATE EFF ~D5FNGVI~
 	WRITE_LONG 0x10 215
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x20 1
@@ -4317,23 +4475,7 @@ CREATE EFF ~D5FNGVI~
 	WRITE_LONG 0x28 2
 	WRITE_SHORT 0x2c 100
 	WRITE_ASCII 0x30 ~SPHLYBLS~ #8
-ACTION_FOR_EACH animal_spell IN ~CLERIC_ANIMAL_SUMMONING_LEVEL_1~ 
-								~CLERIC_ANIMAL_SUMMONING_LEVEL_2~ 
-								~CLERIC_ANIMAL_SUMMONING_LEVEL_3~ 
-								~CLERIC_ANIMAL_SUMMONING_1~ 
-								~CLERIC_ANIMAL_SUMMONING_2~ 
-								~CLERIC_ANIMAL_SUMMONING_3~ 
-								~CLERIC_ANIMAL_SUMMONING_4~ 
-								~CLERIC_ANIMAL_SUMMONING_LEVEL_7~ 
-								~CLERIC_CONJURE_ANIMALS~ 			BEGIN
-  ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]%animal_spell%[ %TAB%%WNL%%LNL%%MNL%]~)) BEGIN
-	LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%animal_spell%~ RET spell_res END
-	COPY_EXISTING ~%spell_res%.spl~ ~override~
-	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (0x4000 + %D5_CLERIC_BAERVAN%) parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5baer3~ END
-	IF_EXISTS BUT_ONLY
-  END
-END
-ACTION_FOR_EACH animal IN ~BDSHA01A~
+ ACTION_FOR_EACH animal IN ~BDSHA01A~
 						 ~BDSHA01B~
 						 ~BDSHA01C~
 						 ~BDSHA06A~
@@ -4381,8 +4523,25 @@ ACTION_FOR_EACH animal IN ~BDSHA01A~
 						 ~WILSON9~
 						 ~WIZEYE~	BEGIN
   COPY_EXISTING ~%animal%.cre~ ~override~
-	LPF ADD_CRE_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5baer4~ END
-  BUT_ONLY
+	LPF ADD_CRE_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5fnp04~ END
+  IF_EXISTS BUT_ONLY
+ END
+END
+ACTION_FOR_EACH animal_spell IN ~CLERIC_ANIMAL_SUMMONING_LEVEL_1~ 
+								~CLERIC_ANIMAL_SUMMONING_LEVEL_2~ 
+								~CLERIC_ANIMAL_SUMMONING_LEVEL_3~ 
+								~CLERIC_ANIMAL_SUMMONING_1~ 
+								~CLERIC_ANIMAL_SUMMONING_2~ 
+								~CLERIC_ANIMAL_SUMMONING_3~ 
+								~CLERIC_ANIMAL_SUMMONING_4~ 
+								~CLERIC_ANIMAL_SUMMONING_LEVEL_7~ 
+								~CLERIC_CONJURE_ANIMALS~ 			BEGIN
+  ACTION_IF (FILE_CONTAINS_EVALUATED (~SPELL.IDS~ ~[ %TAB%]%animal_spell%[ %TAB%%WNL%%LNL%%MNL%]~)) BEGIN
+	LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = EVAL ~%animal_spell%~ RET spell_res END
+	COPY_EXISTING ~%spell_res%.spl~ ~override~
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (0x4000 + %D5_CLERIC_BAERVAN%) parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5fnp04~ END
+	IF_EXISTS BUT_ONLY
+  END
 END
 
 //DEFINE SPHERE ACCESS________________________________________________________________
@@ -4547,7 +4706,7 @@ COPY_EXISTING ~spwi502.spl~ ~override/d5urdl4.spl~
     clab_name 		= ~d5curdl~
 	sphere_list		= ~urdlen_spheres~
 	class 			= ~cleric~
-	multiclass 		= ~ct~
+	multiclass 		= ~ct_cm~
  END
 
 END
@@ -4696,6 +4855,7 @@ COPY_EXISTING ~sppr413.spl~ ~override/d5yond4.spl~
     clab_name 		= ~d5clyon~
 	sphere_list		= ~yondalla_spheres~
 	class 			= ~cleric~
+	multiclass 		= ~fc_ck~
  END
 
 END

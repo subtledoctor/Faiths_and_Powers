@@ -415,6 +415,14 @@ DEFINE_ACTION_MACRO ~BACKFILL_FNP_KIT_INFO~ BEGIN
                && FILE_EXISTS_IN_GAME ~d5_usabl.2da~
                && FILE_EXISTS_IN_GAME ~d5_spher.2da~) BEGIN
 
+	INCLUDE ~override/fnp_sphere_list.tpa~
+	LAM d5_define_sphere_names
+	LAM d5_deity_kit_sphere_lists
+
+	ACTION_IF !(FILE_EXISTS_IN_GAME ~d5altsph.2da~) BEGIN
+	  COPY ~d5/d5altsph.2da~ ~override~
+	END
+	
     COPY_EXISTING ~d5altsph.2da~ ~override~
       READ_2DA_ENTRIES_NOW ~r2en_sphere_names~ 2
       FOR (row = 0; row < r2en_sphere_names; row += 1) BEGIN
@@ -422,11 +430,8 @@ DEFINE_ACTION_MACRO ~BACKFILL_FNP_KIT_INFO~ BEGIN
 		READ_2DA_ENTRY_FORMER ~r2en_sphere_names~ row 1 renamed_sphere
         TEXT_SPRINT $d5_fnp_sphere_names(~%orig_sphere%~) ~%renamed_sphere%~
       END
+    IF_EXISTS BUT_ONLY
     
-	INCLUDE ~override/fnp_sphere_list.tpa~
-	LAM d5_define_sphere_names
-	LAM d5_deity_kit_sphere_lists
-
 	COPY_EXISTING ~d5_class.2da~ ~override~
 	  READ_2DA_ENTRIES_NOW ~r2en_d5_class~ 4
 	  FOR (row = 0; row < r2en_d5_class; row += 1) BEGIN

@@ -2,13 +2,13 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.78sd8~
+VERSION ~0.78sd9~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
 
 
-//ASK_EVERY_COMPONENT
+ASK_EVERY_COMPONENT
 
 
 ALWAYS
@@ -36,8 +36,6 @@ ALWAYS
 
 	INCLUDE ~faiths_and_powers/lib/misc_fnp_functions.tpa~
 
-	INCLUDE ~faiths_and_powers/lib/hla_actions.tpa~
-
 	INCLUDE ~faiths_and_powers/lib/spell_evasion.tpa~
 	
 	INCLUDE ~faiths_and_powers/lib/bg2fp_effect_batches_fnp.tpa~
@@ -48,6 +46,10 @@ ALWAYS
 	
 	INCLUDE ~faiths_and_powers/lib/fnp_system.tpa~
 	
+	COPY_EXISTING ~kitlist.2da~ ~override~
+	  LPF 2DA_MISSING_COLS INT_VAR cols = 10 END
+	BUT_ONLY
+
 	ACTION_IF FILE_EXISTS_IN_GAME ~a#ooze.2da~ BEGIN
 	  COPY_EXISTING ~alignmnt.2da~ ~override~
 		REPLACE_TEXTUALLY ~DRUID.+$~ ~DRUID	0	1	0	1	1	1	0	1	0 ~
@@ -128,20 +130,20 @@ COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_spheres.d5~
 COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_fnp_spheres.d5~
 
 ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
-  MOVE ~override/fnp_sphere_list.tpa~ ~override/fnp_sphere_list_old.tpa~
+  MOVE ~override/fnp_sphere_list.tpa~ ~weidu_external/faiths_and_powers/fnp_sphere_list_old.tpa~
 END
 
 //prep sphere system________________________________________________________________
 //
-ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) && (GAME_IS ~iwdee~) BEGIN
+//ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) && (GAME_IS ~iwdee~) BEGIN
 //	INCLUDE ~faiths_and_powers/lib/sphere_list_iwd_sr.tpa~
-	COPY ~faiths_and_powers/lib/sphere_list_iwd_sr.tpa~ ~override/fnp_sphere_list.tpa~
+//	COPY ~faiths_and_powers/lib/sphere_list_iwd_sr.tpa~ ~override/fnp_sphere_list.tpa~
 
-END
-ELSE BEGIN
+//END
+//ELSE BEGIN
 //	INCLUDE ~faiths_and_powers/lib/sphere_list_sr.tpa~
 	COPY ~faiths_and_powers/lib/sphere_list_fnp.tpa~ ~override/fnp_sphere_list.tpa~
-END
+//END
 //__________________________________________________________________________________
 
 
@@ -241,6 +243,9 @@ ACTION_IF (%d5_cleric_moradin% = 1) BEGIN
 END
 ACTION_IF (%d5_cleric_clangeddin% = 1) BEGIN
  LAF cleric_clangeddin END
+END
+ACTION_IF (%d5_cleric_marthammor% = 1) BEGIN
+ LAF cleric_marthammor END
 END
 ACTION_IF (%d5_cleric_baravar% = 1) BEGIN
  LAF cleric_baravar END

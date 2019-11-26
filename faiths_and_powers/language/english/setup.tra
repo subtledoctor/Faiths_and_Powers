@@ -17,10 +17,10 @@
 @75  = ~Alter weapon usability and proficiency?~
 @80  = ~Install sphere system~
 @85  = ~Apply FnP kits to NPCs~
-@90  = ~Multiclass kits (install AFTER all other kit mods!!)~
 @91  = ~Multiclass Druids~
 @92  = ~Multiclass Shamans~
-@95  = ~Apply FnP multiclass kits to NPCs~
+@95  = ~Multiclass kits (install AFTER all other kit mods!!)~
+@99  = ~Apply FnP multiclass kits to NPCs~
 //
 //@100  = ~Select an installation method below:~
 @101  = ~ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')~
@@ -886,6 +886,26 @@ A warrior's intimate knowledge of vital spots on opponents allows <PRO_HIMHER> t
 //
 // ... priest of baravar:
 //
+@38201  = ~cleric of marthammor~
+@38202  = ~Volamtar of Marthammor Duin~
+@38203  = ~VOLAMTAR OF MARTHAMMOR DUIN: Known as the Finder of Trails, Marthammor is the dwarven patron of exploration, adventurers, and expatriate dwarves traveling outside dwarven lands.  
+
+Advantages:
+- From 1st level, Volamtar can innately use the Tracking ability, similar to a Rangers. They can also observe nearby paths and lands, an effect similar to the Clairvoyance spell.
+- From 3rd level, Volamtar can innately cast Free Action once per day.
+- From 5th Level, Volamtar may innately cast Haste once per day.
+- From 9th level, ...
+
+Restrictions:
+- Alignment: may not be Evil.
+~
+@37323  = ~Tracking~
+@37334  = ~Tracking
+
+With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a Volamtar of Marthammor Duin can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. Red arrows at the edge of the screen will point in the general direction of the creatures in the area.~
+//
+// ... priest of baravar:
+//
 @38201  = ~cleric of baravar~
 @38202  = ~Hoodwinker of Baravar Cloakshadow~
 @38203  = ~HOODWINKER OF BARAVAR CLOAKSHADOW: 
@@ -1050,12 +1070,14 @@ RESTRICTIONS:
 @45402  = ~Druid/Mage~
 @45501  = ~sorcerer/druid~
 @45502  = ~Sorcerer/Druid~
+@45601  = ~druid/monk~
+@45602  = ~Druid/Monk~
 @74100  = ~Fighter/Druid~
 @74300  = ~Druid/Mage~
 @74500  = ~Druid/Ranger~
 @74700  = ~Druid/Thief~
-@74101  = ~druid of silvanus~
-@74102  = ~Druid of Silvanus~
+@74101  = ~druid~
+@74102  = ~Druid~
 @74103  = ~DRUID: Most druids reside in the regions where soil is nutritious, plant life is abundant and animals thrive.  These regions are in many ways the epitome of harmonious ecosystems, and druids often charge themselves with nurturing and defending them.  Tall forests are a paradise in many ways: they provide shade from the sun, food and homes for animals and people, and wood for tools.  Forests are incessantly under threat of being torn down and subjugated by careless humans and demihumans. Forest druids therefore often live with a constant low-grade paranoia, which informs the stereotype of druids being hostile to civilization.
 
 Advantages:
@@ -1365,6 +1387,16 @@ Restrictions:
 //
 // multi shamans
 //
+@49501  = ~shaman/monk~
+@49502  = ~Shaman/Monk~
+@49503  = ~SHAMAN/MONK: Shamans forge a divine connection with the natural world, similar to the way Druids commune with nature, but Shamans are more spiritual than primal. They directly tap into the energies that flow through the earth and air, through plants and animals, and even through the dead, and shape these energies to obey their will. Nowhere is this more evident than in their ability to summon powerful spirits as guardians and defenders. A being of two worlds, Shamans value balance over dominance. Very rarely, a Shaman will devote time to cultivating other skills - in this case, those of a thief.
+
+Advantages: 
+- 
+
+Restrictions: 
+- Alignment: must be Neutral
+~
 @49601  = ~ranger/shaman~
 @49602  = ~Ranger/Shaman~
 @49603  = ~Ranger/SHAMAN: Shamans forge a divine connection with the natural world, similar to the way Druids commune with nature, but Shamans are more spiritual than primal. They directly tap into the energies that flow through the earth and air, through plants and animals, and even through the dead, and shape these energies to obey their will. Nowhere is this more evident than in their ability to summon powerful spirits as guardians and defenders. A being of two worlds, Shamans value balance over dominance. Very rarely, a Shaman will devote time to cultivating other skills - in this case, those of a ranger.
@@ -1420,17 +1452,23 @@ This ability allows you to select your spells known for each spell level.~
 //
 // ... mystics:
 //
-@70001  = ~mystic~
-@70002  = ~Mystic~
-@70003  = ~MYSTICS: Through study and meditation, Mystics form a spiritual connection with some aspect of the natural world, and channel energy through that connection to create magical effects. This art has been practiced in some fashion since the dawn of time, before there were religions or deities; some say Mystics are the original magic-users. 
+@70001  = ~druid~
+@70002  = ~Druid~
+@70003  = ~DRUIDS: Druids form a spiritual connection with an aspect of the natural world, and channel energy through that connection to create magical effects. This art has been practiced in some fashion since the dawn of time, some say since before there were religions or deities. Most druids are organized in ordered hierarchies in which to teach and practice their abilities. 
 
-PURE MYSTICS form a deep, spiritual connection with a fundamental aspect of the universe: one of the prime elements, or light or shadow. The magic that flows through them is raw and powerful, but their ability to shape it is limited to effects closely related to their focus. Some say Mystics are all blessed by Mystra, as practitioners of the purest form of magic. The goddess herself has not deigned to comment on such claims.
+MYSTICS are a wild and independent sort of druid. They tend to remove themelves to remote places, in which they focus on meditating and connecting to one of the fundamental elements of the Prime Material Plane: earth, air, water, fire, light or darkness. The magic that flows through them is raw and powerful, but their ability to shape it is limited to effects closely related to their area of focus. Some people say Mystics are blessed by Mystra, as practitioners of the purest form of magic. The goddess herself has not given a comment on such claims.
 
-DRUIDS are a branch of Mystics focused on the balanced combinations of elemental energies that result in living ecosystems. At the direction of the deities Sylvanus and Chauntea, they have organized themselves into ordered hierarchies in which to teach and practice their abilities. They have mastery over all facets of the natural world.  Some are generalists, while others focus on a particular habitat or aspect of nature.
+OCCULTISTS learn to tap magical power of the universe in exotic, nontraditional ways. Through study and (often) unnatural experiments, they can learn to harness the boiling energies of the inner planes, or infernal powers from the outer planes, or the wild, animal nature seething inside every man and woman. Some have even learned to steal magical energy from the deities themselves - calling into question whether those beings are truly omnipotent.
 
-OCCULTISTS learn to tap magical power in nontraditional ways. Through study and (often) unnatural experiments, they can learn to harness the boiling energies of the inner planes, or infernal powers from the outer planes, or the wild, animal nature seething inside every man and woman. Some have even learned to steal magical energy from the deities themselves - calling into question whether those beings are truly omnipotent.
+CLASS FEATURES:
 
-All of these classes share some common attributes. Creating and maintaining the spiritual connections to perform this type of magic is very demanding. Therefore, they may not spare the time to master the use of complicated or martial weapons; they are excluded from using 2-handed swords, halberds, katanas, bastard swords, long swords, flails, morning stars, maces, and crossbows. 
+– May only wear non-metallic armor.
+– May only equip bucklers and non-metallic shields.
+– May only become Proficient (one slot) in any weapon class.
+– May only become Proficient (one slot) in any fighting style.
+– Hit Die: d8
+
+Prime Requisites For Dual-Classing: Wisdom, Charisma 
 ~
 @70004  = ~MYSTIC: fluff about archetype/class, and choose a kit~
 @70021  = ~druid~ 
@@ -1679,7 +1717,7 @@ Upon using this ability, the Mystic is allowed to choose a spell from his repert
 @73062  = ~Shift into the form of a boring beetle~
 @73063  = ~Shapeshift: fire beetle~
 @73064  = ~Shift into the form of a fire beetle~
-@73065  = ~Shapeshift: bonbardier beetle~
+@73065  = ~Shapeshift: bombardier beetle~
 @73066  = ~Shift into the form of bombardier beetle~
 @73067  = ~Shapeshift: rhinocerous beetle~
 @73068  = ~Shift into the form of a rhinocerous beetle~
@@ -1787,6 +1825,48 @@ RHINOCEROUS BEETLE: in this massive form, the druid has 22 strength. <PRO_HESHE>
 @73411  = ~Sumon Spirit Spider~
 @73412  = ~~
 @73413  = ~Spirit Spider~
+@73421  = ~Beetle Swarm~
+@73422  = ~Beetle Swarm
+(Conjuration)
+
+Level: 2
+Sphere: Animal
+Range: 0
+Duration: 1 Turns
+Casting Time: 6
+Area of Effect: Caster
+Saving Throw: None
+
+With this spell, the caster can summon 3d2 small beetles to come burrowing out of the earth and assail <PRO_HISHER> enemies. The beetles are normal, natural creatures, if large for their species. They are no real threat to any but the most feeble target. But being in a crowd, they can have the tendency to distract and harass.
+~
+@73423  = ~Spider Swarm~
+@73424  = ~Spider Swarm
+(Conjuration)
+
+Level: 3
+Sphere: Animal
+Range: 0
+Duration: 1 Turns
+Casting Time: 6
+Area of Effect: Caster
+Saving Throw: None
+
+With this spell, the caster can summon 3d2 spiders to assail <PRO_HISHER> enemies. The spiders are normal, natural creatures, if large for their species. Inbdividually, they would little threat to any but the most feeble target. But their bites deliver a painful and damaging poison, and in large numbers they could be dangerous for an unprepared foe.
+~
+@73425  = ~Summon Rhinocerous Beetle~
+@73426  = ~Summon Rhinocerous Beetle
+(Conjuration)
+
+Level: 7
+Sphere: Animal
+Range: 0
+Duration: 1 Turn
+Casting Time: 6
+Area of Effect: Caster
+Saving Throw: None
+
+With this spell, the caster can summon a massive rhino beetle to aid <PRO_HIMHER> in combat. The creature is large, incredibly strong, and has tough chitinous armored exterior. It is wholly loyal to the caster; it will use its girth to block enemies and its powerful bite attack to threaten them.
+~
 //
 // ... arctic druid:
 //
