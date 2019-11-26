@@ -886,9 +886,9 @@ A warrior's intimate knowledge of vital spots on opponents allows <PRO_HIMHER> t
 //
 // ... priest of baravar:
 //
-@38201  = ~cleric of marthammor~
-@38202  = ~Volamtar of Marthammor Duin~
-@38203  = ~VOLAMTAR OF MARTHAMMOR DUIN: Known as the Finder of Trails, Marthammor is the dwarven patron of exploration, adventurers, and expatriate dwarves traveling outside dwarven lands.  
+@37301  = ~cleric of marthammor~
+@37302  = ~Volamtar of Marthammor Duin~
+@37303  = ~VOLAMTAR OF MARTHAMMOR DUIN: Known as the Finder of Trails, Marthammor is the dwarven patron of exploration, adventurers, and expatriate dwarves traveling outside dwarven lands.  
 
 Advantages:
 - From 1st level, Volamtar can innately use the Tracking ability, similar to a Rangers. They can also observe nearby paths and lands, an effect similar to the Clairvoyance spell.
