@@ -3923,6 +3923,7 @@ COPY_EXISTING ~d5shmbb.2da~ ~override~
 			  ~d5shmma.2da~ ~override~
 			  ~d5shmnk.2da~ ~override~
   APPEND_FILE ~override/d5sham.2da~
+IF_EXISTS
 
 
 //QD_MULTICLASS______________________________________________________________________
