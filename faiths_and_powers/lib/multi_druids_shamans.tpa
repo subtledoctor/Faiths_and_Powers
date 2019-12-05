@@ -3282,8 +3282,8 @@ SRCSLOTS    ****        ****        ****        AP_D5SRC2C  ****        AP_D5SRC
 ~
 
 
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_splshmkn.2da~) BEGIN
-  COPY_EXISTING ~splshmkn.2da~ ~override/d5_splshmkn.2da~
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_shmkn.2da~) BEGIN
+  COPY_EXISTING ~splshmkn.2da~ ~override/d5_shmkn.2da~
 END
 
 
@@ -3301,7 +3301,7 @@ LAF CREATE_SEQUENCER_MENU
 	maxlevel = 7
 	exclude = 0x80000000 
   STR_VAR 
-	spelltable = ~d5_splshmkn~
+	spelltable = ~d5_shmkn~
 	resref = ~d5shamb~
 	icon = ~spcl919b~
 	title = ~Spell Selection~
@@ -3358,7 +3358,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shlist.2da~) BEGIN
 	maxlevel = 7
 	column = 1
   STR_VAR 
-	spelltable = ~d5_splshmkn~
+	spelltable = ~d5_shmkn~
 	spelllist = ~d5shlist~
 	resref = ~d5msham~
 	icon = ~spcl919b~
@@ -3864,8 +3864,8 @@ CREATE EFF ~d5shmdi~
 
 //learn spell item & initialize_______________________________________________________
 //
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shamb.itm~) BEGIN
- COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shamb.itm~ ~override~		//	learn spells .itm
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5msham.itm~) BEGIN
+ COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5msham.itm~ ~override~		//	learn spells .itm
   SAY NAME1 @49911
   SAY NAME2 @49911
   SAY UNIDENTIFIED_DESC @49912
@@ -3917,12 +3917,17 @@ APPEND ~d5sham.2da~ ~LEARNSPLS   GA_D5SHBA1  ****        ****        ****       
 
 //append it all to clab table________________________________________________________
 //
-COPY_EXISTING ~d5shmbb.2da~ ~override~
-			  ~d5shmrn.2da~ ~override~
-			  ~d5shmth.2da~ ~override~
-			  ~d5shmma.2da~ ~override~
-			  ~d5shmnk.2da~ ~override~
-  APPEND_FILE ~override/d5sham.2da~
+ACTION_FOR_EACH kit IN ~d5shmbb~ ~override~
+			  		~d5shmrn~ ~override~
+			  		~d5shmth~ ~override~
+			  		~d5shmma~ ~override~
+			  		~d5shmnk~ ~override~ BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%kit%.2da~) BEGIN
+	COPY_EXISTING ~%kit%.2da~ ~override~
+	  APPEND_FILE ~override/d5sham.2da~
+  END
+END
+
 
 
 //QD_MULTICLASS______________________________________________________________________
