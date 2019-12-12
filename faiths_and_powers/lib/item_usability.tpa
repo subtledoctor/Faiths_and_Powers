@@ -884,16 +884,18 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 		END
 	  END
     END
-	PHP_EACH d5_fnp_kit_class_access AS kit => class BEGIN
-	  PATCH_IF (~%kit%~ STRING_EQUAL_CASE ~%kit_clab%~) BEGIN
-		PATCH_IF (~%class%~ STRING_EQUAL_CASE ~DRUID~) BEGIN
-		  SET_2DA_ENTRY row 7 10 ~0x%hex_totemic%~ 
-		END
-		PATCH_IF (~%class%~ STRING_EQUAL_CASE ~MYSTIC~) BEGIN
-		  SET_2DA_ENTRY row 7 10 ~0x%hex_shapeshifter%~ 
-		END
-		PATCH_IF (~%class%~ STRING_EQUAL_CASE ~OCCULTIST~) BEGIN
-		  SET_2DA_ENTRY row 7 10 ~0x%hex_shapeshifter%~ 
+    PATCH_IF (kit_class = 11) || (kit_class = 16) BEGIN
+	  PHP_EACH d5_fnp_kit_class_access AS kit => class BEGIN
+		PATCH_IF (~%kit%~ STRING_EQUAL_CASE ~%kit_clab%~) BEGIN
+		  PATCH_IF (~%class%~ STRING_EQUAL_CASE ~DRUID~) BEGIN
+			SET_2DA_ENTRY row 7 10 ~0x%hex_totemic%~ 
+		  END
+		  PATCH_IF (~%class%~ STRING_EQUAL_CASE ~MYSTIC~) BEGIN
+			SET_2DA_ENTRY row 7 10 ~0x%hex_shapeshifter%~ 
+		  END
+		  PATCH_IF (~%class%~ STRING_EQUAL_CASE ~OCCULTIST~) BEGIN
+			SET_2DA_ENTRY row 7 10 ~0x%hex_shapeshifter%~ 
+		  END
 		END
 	  END
 	END
@@ -907,6 +909,9 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  SET_2DA_ENTRY row 7 10 ~0x%hex_totemic%~ // usability
 	END
 	PATCH_IF ~%kit_clab%~ STRING_EQUAL_CASE ~d5drra~ BEGIN
+	  SET_2DA_ENTRY row 7 10 ~0x%hex_totemic%~ // usability
+	END
+	PATCH_IF ~%kit_clab%~ STRING_EQUAL_CASE ~d5drsh~ BEGIN
 	  SET_2DA_ENTRY row 7 10 ~0x%hex_totemic%~ // usability
 	END
 	PATCH_IF (~%kit_clab%~ STRING_EQUAL_CASE ~d5obst~) OR (~%kit_clab%~ STRING_EQUAL_CASE ~clabdr03~) BEGIN

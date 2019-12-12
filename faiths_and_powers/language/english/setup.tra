@@ -4,9 +4,9 @@
 @13 = ~*Please be patient. This will take some time...*~
 @18 = ~Component has been depreciated~
 //
-@20  = ~Choose a sphere system~
+@20  = ~Create a sphere system~
 @21  = ~FnP: the Faiths & Powers original sphere system~
-@22  = ~2E: a more traditional PnP-style sphere system~
+@22  = ~AD&D: a more traditional PnP-style sphere system~
 @23  = ~Custom: a player-supplied custom sphere system~
 @24  = ~None: no sphere system, just vanilla-style kits~
 //
@@ -14,12 +14,12 @@
 @33  = ~Install Druid kits~
 @35  = ~Install Paladin kits~
 @37  = ~Install Ranger kits~
-@75  = ~Alter weapon usability and proficiency?~
-@80  = ~Install sphere system~
+@75  = ~Alter weapon usability and proficiency~
+@80  = ~Apply sphere system~
 @85  = ~Apply FnP kits to NPCs~
 @91  = ~Multiclass Druids~
 @92  = ~Multiclass Shamans~
-@95  = ~Multiclass kits (install AFTER all other kit mods!!)~
+@95  = ~Multiclass Cleric kits (install AFTER all other kit mods!!)~
 @99  = ~Apply FnP multiclass kits to NPCs~
 //
 //@100  = ~Select an installation method below:~
@@ -186,8 +186,8 @@
 @997  = ~Acid Arrow~
 @998  = ~Summon Slimes~
 @999  = ~Acid Sheath~
-@1000  = ~install Sphere System~
-@1001  = ~install Sphere System alone~
+@1000  = ~Spell Selection~
+@1001  = ~This ability allows you to learn new spells~
 @1002  = ~- Access to the spheres of:~
 @1003  = ~- Focus access to the sphere of~
 @1004  = ~- Major access to the spheres of: All,~
@@ -1447,7 +1447,7 @@ This ability allows you to select your spells known for each spell level.~
 @49924  = ~Detect Illusions~
 @49925  = ~Detect Illusions: ~
 @49926  = ~Stop detecting illusions~
-@49950  = ~Initialize Shamanic spellcasting~
+@49950  = ~Initialize Shamanic spell learning~
 
 //
 // ... mystics:

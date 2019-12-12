@@ -8,6 +8,7 @@ DEFINE_ACTION_MACRO d5_define_sphere_names BEGIN
 
 <<<<<<<< d5/d5altsph.2da
 2DA
+Universal		Universal
 Life 			Healing
 Death 			Necromantic
 Benediction 	Creation
@@ -30,7 +31,7 @@ Fire 			Fire
 Light 			Sun
 Shadow 			Shadow
 Magic 			Weather
-Perdition 		Astral
+Astral	 		Astral
 >>>>>>>> 
 
 END	//	end sphere names macro
@@ -2845,7 +2846,8 @@ END
 //___________________________________________________________________________________
 //
 DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
- ACTION_IF (FILE_EXISTS_IN_GAME ~QD_MCP01.spl~) BEGIN
+  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~P~ END 
+  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~P~ END 
   COPY_EXISTING ~QD_MCP01.spl~ ~override~ // trueclass spheres via .eff
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5splif#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smdea#~ END
@@ -2863,8 +2865,8 @@ DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smmag#~ END
   IF_EXISTS BUT_ONLY
   ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
-	Healing 			=> x
-	Necromantic			=> x
+	Healing 		=> x
+	Necromantic		=> x
 	Creation	 	=> x
 	Decay		 	=> x
 	Protection 		=> x
@@ -2884,37 +2886,59 @@ DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
 	Fire 			=> x
 	Sun	 			=> x
 	Shadow 			=> x
-	Weather 			=> x
+	Weather 		=> x
 	Astral	 		=> x
   END
- END
- ACTION_IF !(FILE_EXISTS_IN_GAME ~QD_MCP01.spl~) BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
-	Healing 			=> major
-	Necromantic			=> minor
-	Creation	 	=> major
-	Decay		 	=> major
-	Protection 		=> major
-	Combat 			=> minor
-	Travelers	  	=> minor
-	Divination 		=> major
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_MACRO vanilla_druid_spheres BEGIN
+  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~D~ END 
+  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~D~ END 
+  COPY_EXISTING ~QD_MCD01.spl~ ~override~ // trueclass spheres via .eff
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spexp#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spvig#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spani#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5sppla#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spear#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spwat#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spair#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5splig#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smlif#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smkno#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smtho#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smaff#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smfir#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smsha#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smast#~ END
+  IF_EXISTS BUT_ONLY
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabdr01_spheres BEGIN
+	Healing 		=> x
+	Necromantic		=> x
+	Creation	 	=> x
+	Decay		 	=> x
+	Protection 		=> x
+	Combat 			=> x
+	Travelers	 	=> x
+	Divination 		=> x
 	Wards	 		=> x
-	Thought 		=> minor
-	Charm 			=> major
-	Law	 			=> minor
+	Thought 		=> x
+	Charm 			=> x
+	Law	 			=> x
 	Chaos	 		=> x
 	Animal 			=> x
 	Plant 			=> x
 	Earth 			=> x
 	Water 			=> x
 	Air 			=> x
-	Fire 			=> minor
-	Sun	 			=> major
+	Fire 			=> x
+	Sun	 			=> x
 	Shadow 			=> x
-	Weather 			=> minor
-	Astral	   		=> x
+	Weather 		=> x
+	Astral	 		=> x
   END
- END
 END
 //___________________________________________________________________________________
 

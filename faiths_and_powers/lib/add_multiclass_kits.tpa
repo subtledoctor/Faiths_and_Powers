@@ -122,17 +122,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5_wiz.d5~ THEN BEGIN
 END
 */
 
-//MULTICLASS KIT______________________________________________________________________
-//
-ACTION_IF FILE_EXISTS_IN_GAME ~d5cmmys.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_CM_MYSTRA~
-		kit_clab = ~d5cmmys~
-		base_class = ~P~
-  END
-END 
-
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
  LAF ~DEFINE_FNP_KIT_INFO~
@@ -163,6 +152,21 @@ END
 	sphere_list		= ~mystra_spheres~
 	class 			= ~cleric_mage~
  END
+
+ ACTION_IF (cm_mystra_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5cmmys~ learn_res = ~d5cmmyz~ END
+ END
+
+//MULTICLASS KIT______________________________________________________________________
+//
+ ACTION_IF FILE_EXISTS_IN_GAME ~d5cmmys.2da~ BEGIN
+  LAF qd_multiclass
+	STR_VAR
+		kit_name = ~D5_CM_MYSTRA~
+		kit_clab = ~d5cmmys~
+		base_class = ~P~
+  END
+ END 
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5cmmys~ END
@@ -284,16 +288,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~d5cmazu.2da~ THEN BEGIN
 		APPEND_FILE ~faiths_and_powers/kits/acolytes/325_mystra/mystracant.txt~
 END
 */
-//MULTICLASS KIT______________________________________________________________________
-//
-ACTION_IF FILE_EXISTS_IN_GAME ~d5cmazu.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_CM_AZUTH~
-		kit_clab = ~d5cmazu~
-		base_class = ~P~
-  END
-END 
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
@@ -325,6 +319,21 @@ END
 	sphere_list		= ~azuth_spheres~
 	class 			= ~cleric_mage~
  END
+
+ ACTION_IF (cm_azuth_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5cmazu~ learn_res = ~d5cmazz~ END
+ END
+
+//MULTICLASS KIT______________________________________________________________________
+//
+ ACTION_IF FILE_EXISTS_IN_GAME ~d5cmazu.2da~ BEGIN
+  LAF qd_multiclass
+	STR_VAR
+		kit_name = ~D5_CM_AZUTH~
+		kit_clab = ~d5cmazu~
+		base_class = ~P~
+  END
+ END 
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5cmazu~ END
@@ -429,17 +438,6 @@ END
 //
 COPY ~faiths_and_powers/kits/multiclass/491_cr_mielikki/d5crmie.2da~ ~override~
 
-//MULTICLASS KIT______________________________________________________________________
-//
-ACTION_IF FILE_EXISTS_IN_GAME ~d5crmie.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_CR_MIELI~ 
-		kit_clab = ~d5crmie~
-		base_class = ~P~
-  END
-END 
-
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
  LAF ~DEFINE_FNP_KIT_INFO~
@@ -470,6 +468,21 @@ END
 	sphere_list		= ~mielikki_spheres~
 	class 			= ~ranger_cleric~
  END
+
+ ACTION_IF (cr_mielikki_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5crmie~ learn_res = ~d5crmiz~ END
+ END
+
+//MULTICLASS KIT______________________________________________________________________
+//
+ ACTION_IF FILE_EXISTS_IN_GAME ~d5crmie.2da~ BEGIN
+  LAF qd_multiclass
+	STR_VAR
+		kit_name = ~D5_CR_MIELI~ 
+		kit_clab = ~d5crmie~
+		base_class = ~P~
+  END
+ END 
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5crmie~ END
@@ -578,17 +591,6 @@ COPY_EXISTING ~spwi402.spl~ ~override/d5crsh1.spl~
 	SAY NAME1 @49211
 	SAY UNIDENTIFIED_DESC @49212
 
-//MULTICLASS KIT______________________________________________________________________
-//
-ACTION_IF FILE_EXISTS_IN_GAME ~d5crshn.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_CR_SHAUNDAKUL~ 
-		kit_clab = ~d5crshn~
-		base_class = ~P~
-  END
-END 
-
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
  LAF ~DEFINE_FNP_KIT_INFO~
@@ -619,6 +621,21 @@ END
 	sphere_list		= ~shaundakul_spheres~
 	class 			= ~ranger_cleric~
  END
+
+ ACTION_IF (cr_shaundakul_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5crshn~ learn_res = ~d5crshz~ END
+ END
+
+//MULTICLASS KIT______________________________________________________________________
+//
+ ACTION_IF FILE_EXISTS_IN_GAME ~d5crshn.2da~ BEGIN
+  LAF qd_multiclass
+	STR_VAR
+		kit_name = ~D5_CR_SHAUNDAKUL~ 
+		kit_clab = ~d5crshn~
+		base_class = ~P~
+  END
+ END 
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5crshn~ END
@@ -738,17 +755,6 @@ COPY ~faiths_and_powers/kits/multiclass/469_mask/d5_mask3.cre~ ~override~
 	SAY NAME1 @46917
 //Nightrunner's Summon Shadow ability generously provided by Demivrgvs of Item/Spell/Kit Revisions fame. Big thanks!
 
-//MULTICLASS KIT______________________________________________________________________
-//
-ACTION_IF FILE_EXISTS_IN_GAME ~d5ctmas.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_CT_MASK~ 
-		kit_clab = ~d5ctmas~
-		base_class = ~P~
-  END
-END 
-
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
  LAF ~DEFINE_FNP_KIT_INFO~
@@ -780,6 +786,21 @@ END
 	class 			= ~cleric_thief~
  END
 
+ ACTION_IF (ct_mask_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5ctmas~ learn_res = ~d5ctmaz~ END
+ END
+
+//MULTICLASS KIT______________________________________________________________________
+//
+ ACTION_IF FILE_EXISTS_IN_GAME ~d5ctmas.2da~ BEGIN
+  LAF qd_multiclass
+	STR_VAR
+		kit_name = ~D5_CT_MASK~ 
+		kit_clab = ~d5ctmas~
+		base_class = ~P~
+  END
+ END 
+
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5ctmas~ END
  END
@@ -803,7 +824,7 @@ END
 
 DEFINE_ACTION_FUNCTION ct_brandobaris BEGIN
 
-ADD_KIT ~D5_CT_BRANDONARIS~
+ADD_KIT ~D5_CT_BRANDOBARIS~
 
 //WEAPON PROFICIENCIES________________________________________________________________
 //11             		                        T   S           F   Q             S S
@@ -817,32 +838,32 @@ ADD_KIT ~D5_CT_BRANDONARIS~
 //3              		O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
 //2              		R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
 //1              		D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_CT_BRANDONARIS      0 1 0 0 1 0 0 1~
-~D5_CT_BRANDONARIS      0 1 0 0 1 0 0 1 0 0 1 0 0 0 0 1 1 1 1 0 1 1 1 1 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+~D5_CT_BRANDOBARIS      0 1 0 0 1 0 0 1~
+~D5_CT_BRANDOBARIS      0 1 0 0 1 0 0 1 0 0 1 0 0 0 0 1 1 1 1 0 1 1 1 1 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
 
 //MINIMUM KIT STATS_________________________________________________________________
 //                 		STR DEX CON INT WIS CHR
-~D5_CT_BRANDONARIS       0   12  0   0   10  0~
+~D5_CT_BRANDOBARIS       0   12  0   0   10  0~
 
 //KIT STAT MODIFIERS________________________________________________________________
 //                 		STR DEX CON INT WIS CHR
-~D5_CT_BRANDONARIS       0   0   0   0   0   0~
+~D5_CT_BRANDOBARIS       0   0   0   0   0   0~
 
 //REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
 //                 		STR DEX CON INT WIS CHR
-~D5_CT_BRANDONARIS       0   15  0   0   15  0~
+~D5_CT_BRANDOBARIS       0   15  0   0   15  0~
 
 //REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
 //                 		STR DEX CON INT WIS CHR
-~D5_CT_BRANDONARIS       0   15  0   0   15  0~
+~D5_CT_BRANDOBARIS       0   15  0   0   15  0~
 
 //ALIGNMENT RESTRICTIONS____________________________________________________________
 //                 		LG LN LE NG TN NE CG CN CE
-~D5_CT_BRANDONARIS       0  0  0  0  1  1  0  1  1~
+~D5_CT_BRANDOBARIS       0  0  0  0  1  1  0  1  1~
 
 //DUAL CLASS OPTIONS________________________________________________________________
 //                 		FT CL MA TH DR RA
-~D5_CT_BRANDONARIS       0  0  0  1  0  0~
+~D5_CT_BRANDOBARIS       0  0  0  1  0  0~
 
 //KIT ABILITIES 2DA FILE____________________________________________________________
 ~faiths_and_powers/kits/multiclass/477_brandobaris/d5ctbra.2da~
@@ -874,7 +895,7 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 		INT_VAR
 			briefdesc = RESOLVE_STR_REF (47703)
 		STR_VAR
-			kit_name = D5_CT_BRANDONARIS
+			kit_name = D5_CT_BRANDOBARIS
 			clswpbon = ~0 0 3~
 			hpclass = ~HPPRS~
 	END
@@ -931,28 +952,16 @@ COPY_EXISTING ~d5holdev.2da~ ~override~
 	READ_2DA_ENTRY row 0 cols hold_evade_res
 	PATCH_IF FILE_EXISTS_IN_GAME ~%hold_evade_res%.spl~ BEGIN
 	  INNER_ACTION BEGIN
-		LAF add_evade_spell INT_VAR evasion_kit = (0x4000 + %D5_CT_BRANDONARIS%) evasion_save = 0 evasion_chance = 50 STR_VAR evade_ext = ~spl~ evade_condition = ~kit~ evade_res = EVAL ~%hold_evade_res%~ evade_prefix = ~D5VH~ END
+		LAF add_evade_spell INT_VAR evasion_kit = (0x4000 + %D5_CT_BRANDOBARIS%) evasion_save = 0 evasion_chance = 50 STR_VAR evade_ext = ~spl~ evade_condition = ~kit~ evade_res = EVAL ~%hold_evade_res%~ evade_prefix = ~D5VH~ END
 	  END
 	END
 	PATCH_IF FILE_EXISTS_IN_GAME ~%hold_evade_res%.itm~ BEGIN
 	  INNER_ACTION BEGIN
-		LAF add_evade_spell INT_VAR evasion_kit = (0x4000 + %D5_CT_BRANDONARIS%) evasion_save = 0 evasion_chance = 50 STR_VAR evade_ext = ~itm~ evade_condition = ~kit~ evade_res = EVAL ~%hold_evade_res%~ evade_prefix = ~D5VH~ END
+		LAF add_evade_spell INT_VAR evasion_kit = (0x4000 + %D5_CT_BRANDOBARIS%) evasion_save = 0 evasion_chance = 50 STR_VAR evade_ext = ~itm~ evade_condition = ~kit~ evade_res = EVAL ~%hold_evade_res%~ evade_prefix = ~D5VH~ END
 	  END
 	END
   END
 BUT_ONLY
-
-
-//MULTICLASS KIT_____________________________________________________________________
-//
-ACTION_IF FILE_EXISTS_IN_GAME ~d5ctbra.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_CT_BRANDONARIS~ 
-		kit_clab = ~d5ctbra~
-		base_class = ~P~
-  END
-END 
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
@@ -984,6 +993,21 @@ END
 	sphere_list		= ~brandobaris_spheres~
 	class 			= ~cleric_thief~
  END
+
+ ACTION_IF (ct_brandobaris_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5ctbra~ learn_res = ~d5ctbrz~ END
+ END
+
+//MULTICLASS KIT_____________________________________________________________________
+//
+ ACTION_IF FILE_EXISTS_IN_GAME ~d5ctbra.2da~ BEGIN
+  LAF qd_multiclass
+	STR_VAR
+		kit_name = ~D5_CT_BRANDOBARIS~ 
+		kit_clab = ~d5ctbra~
+		base_class = ~P~
+  END
+ END 
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5ctbra~ END
@@ -1415,6 +1439,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	FOR (row = 0; row < r2en_d5_class; row += 1) BEGIN
 	  READ_2DA_ENTRY_FORMER ~r2en_d5_class~ row 0 this_kit
 	  PATCH_IF (~%this_kit%~ STRING_EQUAL_CASE ~%clab_res%~) BEGIN
+		READ_2DA_ENTRY_FORMER ~r2en_d5_class~ row 1 caster_type
 		READ_2DA_ENTRY_FORMER ~r2en_d5_class~ row 2 orig_sphere_list
 	  END
 	END
@@ -2769,7 +2794,15 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 //  END
   ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
 	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = EVAL ~%new_clab%~ END
-  END  
+  END
+  ACTION_IF (~%caster_type%~ STRING_EQUAL_CASE ~MYSTIC~) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+	COPY_EXISTING ~kitlist.2da~ ~override~
+	  COUNT_2DA_ROWS 10 rows
+	  READ_2DA_ENTRY (rows - 1) 0 10 kit_ind
+	BUT_ONLY
+	LAF fnp_spontaneous STR_VAR kit_clab = EVAL ~%new_clab%~ learn_res = EVAL ~d5mt%kit_ind%~ END
+  END
+
 /*
   ACTION_IF (new_class = 14) && (~%mc_kit%~ STRING_CONTAINS_REGEXP ~s~ = 0) /*&& (FILE_EXISTS_IN_GAME ~d5sorc.2da~)*/ BEGIN
    OUTER_SPRINT sorc_name ~%sc_kit%_SC~

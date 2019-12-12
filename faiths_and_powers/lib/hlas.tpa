@@ -272,23 +272,23 @@ COPY ~faiths_and_powers/spheres/hlas/animal/b_bear1.cre~ ~override~ // bear
 COPY ~faiths_and_powers/spheres/hlas/animal/b_pbear1.cre~ ~override~ // bear
 COPY ~faiths_and_powers/spheres/hlas/animal/b_wlf.cre~ ~override~ // wolf
 
-COPY ~faiths_and_powers/kits/mystics/702_beast_mystic/d5_wwmy.spl~ ~override~
+COPY ~faiths_and_powers/kits/druids/762_beast_lord/d5_wwmy.spl~ ~override~
 	SAY NAME1 @70213
 	SAY UNIDENTIFIED_DESC @70213
-COPY ~faiths_and_powers/kits/mystics/702_beast_mystic/d5_wwnf.spl~ ~override~
+COPY ~faiths_and_powers/kits/druids/762_beast_lord/d5_wwnf.spl~ ~override~
 	SAY NAME1 @70214
 	SAY UNIDENTIFIED_DESC @70214
-COPY ~faiths_and_powers/kits/mystics/702_beast_mystic/d5_wwcl1.itm~ ~override~
+COPY ~faiths_and_powers/kits/druids/762_beast_lord/d5_wwcl1.itm~ ~override~
 	SAY NAME1 @70215
 	SAY UNIDENTIFIED_DESC @70215
-COPY ~faiths_and_powers/kits/mystics/702_beast_mystic/d5_wwcl2.itm~ ~override~
+COPY ~faiths_and_powers/kits/druids/762_beast_lord/d5_wwcl2.itm~ ~override~
 	SAY NAME1 @70215
 	SAY UNIDENTIFIED_DESC @70215
-COPY ~faiths_and_powers/kits/mystics/702_beast_mystic/d5_ww01.cre~ ~override~
+COPY ~faiths_and_powers/kits/druids/762_beast_lord/d5_ww01.cre~ ~override~
 	SAY NAME1 @70216
-COPY ~faiths_and_powers/kits/mystics/702_beast_mystic/d5_ww02.cre~ ~override~
+COPY ~faiths_and_powers/kits/druids/762_beast_lord/d5_ww02.cre~ ~override~
 	SAY NAME1 @70217
-COPY ~faiths_and_powers/kits/mystics/702_beast_mystic/d5_ww03.cre~ ~override~
+COPY ~faiths_and_powers/kits/druids/762_beast_lord/d5_ww03.cre~ ~override~
 	SAY NAME1 @70218
 
 //plant______________________________________________________________________________

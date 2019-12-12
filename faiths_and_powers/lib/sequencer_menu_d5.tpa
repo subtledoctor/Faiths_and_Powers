@@ -1,6 +1,6 @@
 
 	//	UI-based Spell Learning tool for Sorcerers/Shamans
-	//	v0.56
+	//	v0.57
 	
 	//	This function is designed to implement a UI-based Spell selection system, as an alternative to dialog-based Spell Selection, utilizing
 	//		the Sequencer/Contingency spell selection menu to learn arcane or divine spells.  Innate abilities "can" be learned this way as well,
@@ -112,16 +112,16 @@
 	//	Apply (w/ Timing Mode 9) the EFF file to the creature when the spell is gained, to prevent it from counting against their spell limit.
 	//	"SPELL_RES" should be the resref of this "bonus" spell. "%resref%" should	be the same string that was passed to the CREATE_SEQUENCER_MENU function.
 	//	--------------------------------------------------------------------------------------------------------------------------------------------------------------
-	//	APPEND	~BGEE.LUA~	~mageBookStrings['%resref%'].title = mageBookStrings['%resref%X'].title~
-	//	CREATE	EFF	~(anything)~	WRITE_LONG	0x10	256	WRITE_LONG	0x2c	100	WRITE_ASCII	0x30	~SPELL_RES~	WRITE_LONG	0x60	1	WRITE_ASCIIE	0x94	~%resref%~
+	//	APPEND	~M_SQLIST.LUA~	~mageBookStrings['%resref%'].title = mageBookStrings['%resref%X'].title~
+	//	CREATE	EFF	~(unique)~	WRITE_LONG	0x10	256	WRITE_LONG	0x2c	100	WRITE_ASCII	0x30	~SPELL_RES~	WRITE_LONG	0x60	1	WRITE_ASCIIE	0x94	~%resref%~
 	//	--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	DEFINE_ACTION_FUNCTION	SETUP_SEQUENCER_MENU	BEGIN
-		OUTER_SET	version = 55	OUTER_SET	current = 0
+		OUTER_SET	version = 57	OUTER_SET	current = 0
+		PRINT ~Running CREATE_SEQUENCER_MENU version#: 0.%version%~
 		ACTION_IF FILE_EXISTS_IN_GAME ~M_SQTOOL.LUA~	BEGIN
 			COPY_EXISTING ~M_SQTOOL.LUA~ override	REPLACE_EVALUATE ~[%WNL%^]\-\-SEQUENCER_MENU_VERSION:\([0-9]+\)[%WNL%]~	BEGIN	SET	current = MATCH1	END ~%MATCH0%~ BUT_ONLY
 		END	ELSE	BEGIN
-			APPEND ~BGEE.LUA~	~SequencerMenu = {}~
 			COPY_EXISTING	~UI.MENU~	override
 				REPLACE_TEXTUALLY	~function[ %TAB%]+filterContingencyMageSpells()~	~function Redirect_filterContingencyMageSpells()~
 				REPLACE_TEXTUALLY	~function[ %TAB%]+magePageInfo()~	~function Redirect_magePageInfo()~
@@ -141,6 +141,7 @@
 				DELETE_BYTES	0x526 2
 			CREATE	SPL	~M_SQMENU~	WRITE_ASCII	0x3a	~M_SQMENU~
 			COPY_EXISTING	~BGEE.LUA~	~override\M_SQMENU.LUA~	DELETE_BYTES	0	SOURCE_SIZE
+			COPY_EXISTING	~BGEE.LUA~	~override\M_SQLIST.LUA~	DELETE_BYTES	0	SOURCE_SIZE	APPEND ~M_SQLIST.LUA~	~SequencerMenu = {}~
 		END
 		ACTION_IF (!FILE_EXISTS_IN_GAME ~M_SQTOOL.LUA~)	OR (current < version) BEGIN
 			COPY_EXISTING	~BGEE.LUA~	~override\M_SQTOOL.LUA~	DELETE_BYTES	0	SOURCE_SIZE
@@ -412,7 +413,6 @@
 		STR_VAR	resref = ~~	icon = ~~	title = ~~	action = ~~	spelltable = ~~	spelllist = ~~	attribute = ~~	attrtable = ~~	custom = ~~	subspell = ~L~	blacklist = ~~
 	BEGIN
 		OUTER_SPRINT $ EVAL ~%blacklist%~(~-1~) ~DEFAULT~
-		PRINT ~Running CREATE_SEQUENCER_MENU version#: 0.%version%~
 		ACTION_TO_UPPER resref	ACTION_TO_UPPER spelltable	ACTION_TO_UPPER spelllist	ACTION_TO_UPPER attribute	ACTION_TO_UPPER attrtable	ACTION_TO_UPPER subspell
 		LAF	SETUP_SEQUENCER_MENU	END
 		ACTION_IF	! (~%custom%~ STRING_EQUAL ~~)	BEGIN
@@ -424,7 +424,7 @@
 ****
             	     ResRef   Type>>>>>>>>
 			ACTION_IF	STRING_LENGTH ~%resref%~ > 7	BEGIN	FAIL	~Resource filename (%resref%) cannot be more than 7 characters long.~	END
-			APPEND	~BGEE.LUA~	~mageBookStrings['%resref%X'] = {tip = %tip%, title = '%resref%_SEQUENCER_TITLE', action = "%resref%_SEQUENCER_LABEL"}~
+			APPEND	~M_SQLIST.LUA~	~mageBookStrings['%resref%X'] = {tip = %tip%, title = '%resref%_SEQUENCER_TITLE', action = "%resref%_SEQUENCER_LABEL"}~
 			APPEND	~L_%EE_LANGUAGE%.LUA~	~uiStrings['%resref%_SEQUENCER_TITLE'] = "%title%"~
 			APPEND	~L_%EE_LANGUAGE%.LUA~	~uiStrings['%resref%_SEQUENCER_LABEL'] = "%action%"~
 			ACTION_IF FILE_EXISTS_IN_GAME ~%spelltable%.2da~ AND maxlevel = ~-1~ BEGIN	OUTER_SET maxlevel = 9 END

@@ -22,7 +22,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY d5_fnp_spheres BEGIN
   Light => 0
   Shadow => 0
   Magic => 0
-  Perdition => 0
+  Astral => 0
 END
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY d5_fnp_usable BEGIN
@@ -131,7 +131,7 @@ DEFINE_ACTION_FUNCTION ~DEFINE_FNP_KIT_INFO~
     s_Light = ~x~
     s_Shadow = ~x~
     s_Magic = ~x~
-	s_Perdition = ~x~
+	s_Astral = ~x~
 BEGIN
   PRINT ~Defining Faiths and Powers info for kit %clab_name% ...~ 
   
@@ -187,13 +187,13 @@ ALL
 <<<<<<<< d5/d5_spher.2da
 2DA V1.0
 0
-            Life        Death       Benediction Destruction Protection  War         Exploration Knowledge   Deception   Thought     Dread       Vigor       Affliction  Animal      Plant       Earth       Water       Air         Fire        Light       Shadow      Magic     Perdition
+            Life        Death       Benediction Destruction Protection  War         Exploration Knowledge   Deception   Thought     Dread       Vigor       Affliction  Animal      Plant       Earth       Water       Air         Fire        Light       Shadow      Magic     Astral
 >>>>>>>> 
 	COPY ~d5/d5_spher.2da~ ~override/d5_spher.2da~ 
   END
 
   ACTION_IF !(FILE_CONTAINS_EVALUATED (~d5_class.2da~ ~%clab_name%~)) BEGIN
-	ACTION_IF !(~%sphere_list%~ STRING_EQUAL_CASE ~custom~) BEGIN
+//	ACTION_IF !(~%sphere_list%~ STRING_EQUAL_CASE ~custom~) BEGIN
 	  ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) && (FILE_CONTAINS_EVALUATED (~fnp_sphere_list.tpa~ ~%sphere_list%~)) BEGIN
 		INCLUDE ~override/fnp_sphere_list.tpa~
 		LAM d5_define_sphere_names
@@ -325,19 +325,19 @@ ALL
 			  OUTER_SPRINT s_Magic ~%kit_access%~
 			END
 		  END
-		  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Perdition~) BEGIN
-		    ACTION_IF (~%s_Perdition%~ STRING_EQUAL_CASE ~x~) BEGIN
-			  OUTER_SPRINT s_Perdition ~%kit_access%~
+		  ACTION_IF (~%new_variable%~ STRING_EQUAL_CASE ~Astral~) BEGIN
+		    ACTION_IF (~%s_Astral%~ STRING_EQUAL_CASE ~x~) BEGIN
+			  OUTER_SPRINT s_Astral ~%kit_access%~
 			END
 		  END
 		END
 	  END
-	END
+//	END
 
   // define the text that will be added to the 2da files
     OUTER_TEXT_SPRINT class_text ~%clab_name%	%class%	%sphere_list%	%multiclass%~
     OUTER_TEXT_SPRINT usable_text ~%clab_name% 	%u_leather_armor% %u_chain_armor% %u_plate_armor% %u_club_staff% %u_hammers% %u_maces% %u_flails% %u_axes% %u_daggers% %u_short_swords% %u_long_swords% %u_scimitars% %u_katanas% %u_bastard_swords% %u_2hand_swords% %u_halberds% %u_spears% %u_darts% %u_slings% %u_bows% %u_crossbows%~
-    OUTER_TEXT_SPRINT sphere_text ~%clab_name% %s_Life% %s_Death% %s_Benediction% %s_Destruction% %s_Protection% %s_War% %s_Exploration% %s_Knowledge% %s_Deception% %s_Thought% %s_Dread% %s_Vigor% %s_Affliction% %s_Animal% %s_Plant% %s_Earth% %s_Water% %s_Air% %s_Fire% %s_Light% %s_Shadow% %s_Magic% %s_Perdition%~
+    OUTER_TEXT_SPRINT sphere_text ~%clab_name% %s_Life% %s_Death% %s_Benediction% %s_Destruction% %s_Protection% %s_War% %s_Exploration% %s_Knowledge% %s_Deception% %s_Thought% %s_Dread% %s_Vigor% %s_Affliction% %s_Animal% %s_Plant% %s_Earth% %s_Water% %s_Air% %s_Fire% %s_Light% %s_Shadow% %s_Magic% %s_Astral%~
 
   // uppercase text
     ACTION_TO_UPPER class_text
@@ -538,9 +538,9 @@ DEFINE_ACTION_MACRO ~BACKFILL_FNP_KIT_INFO~ BEGIN
 					OUTER_SPRINT access_Magic ~%deity_access%~
 					ACTION_TO_UPPER %access_Magic%
 				  END
-				  ACTION_IF (~%fnp_sphere%~ STRING_EQUAL_CASE ~Perdition~) BEGIN
-					OUTER_SPRINT access_Perdition ~%deity_access%~
-					ACTION_TO_UPPER %access_Perdition%
+				  ACTION_IF (~%fnp_sphere%~ STRING_EQUAL_CASE ~Astral~) BEGIN
+					OUTER_SPRINT access_Astral ~%deity_access%~
+					ACTION_TO_UPPER %access_Astral%
 				  END
 			  END
 			END
@@ -572,7 +572,7 @@ DEFINE_ACTION_MACRO ~BACKFILL_FNP_KIT_INFO~ BEGIN
 			  READ_2DA_ENTRY_FORMER rows row 20 already_light
 			  READ_2DA_ENTRY_FORMER rows row 21 already_shadow
 			  READ_2DA_ENTRY_FORMER rows row 22 already_magic
-			  READ_2DA_ENTRY_FORMER rows row 23 already_perdition
+			  READ_2DA_ENTRY_FORMER rows row 23 already_astral
 			  PATCH_IF (~%line%~ STRING_EQUAL_CASE ~%kit%~) BEGIN
 				PATCH_IF (~%already_life%~ STRING_EQUAL_CASE ~x~) BEGIN
 				  SET_2DA_ENTRY row 1 cols ~%access_Life%~
@@ -640,8 +640,8 @@ DEFINE_ACTION_MACRO ~BACKFILL_FNP_KIT_INFO~ BEGIN
 				PATCH_IF (~%already_magic%~ STRING_EQUAL_CASE ~x~) BEGIN
 				  SET_2DA_ENTRY row 22 cols ~%access_Magic%~
 				END
-				PATCH_IF (~%already_perdition%~ STRING_EQUAL_CASE ~x~) BEGIN
-				  SET_2DA_ENTRY row 23 cols ~%access_Perdition%~
+				PATCH_IF (~%already_astral%~ STRING_EQUAL_CASE ~x~) BEGIN
+				  SET_2DA_ENTRY row 23 cols ~%access_Astral%~
 				END
 			  END
 			END

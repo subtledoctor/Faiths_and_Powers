@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.78sd9.2~
+VERSION ~0.79~
 
 
 ALWAYS
@@ -21,11 +21,11 @@ ALWAYS
 
 	INCLUDE ~faiths_and_powers/lib/spell_evasion.tpa~
 	
+	INCLUDE ~faiths_and_powers/lib/fnp_spontaneous.tpa~
+
 	INCLUDE ~faiths_and_powers/lib/fnp_system.tpa~
 	
-	COPY_EXISTING ~kitlist.2da~ ~override~
-	  LPF 2DA_MISSING_COLS INT_VAR cols = 10 END
-	BUT_ONLY
+	LAF fix_kitlist_missing_ids END
 
 END
 	
@@ -139,7 +139,7 @@ LAM d5_kit_choices
   ACTION_IF (FILE_EXISTS_IN_GAME ~qd_monk_multi.qd~) BEGIN
 	LAF shaman_monk END
   END  
-  LAF multiclass_shaman_system END
+//  LAF multiclass_shaman_system END
   LAF multi_shaman_strongholds END
   ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
    ACTION_IF !(FILE_EXISTS_IN_GAME ~d5drth.2da~) BEGIN

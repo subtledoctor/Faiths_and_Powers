@@ -451,8 +451,8 @@ END // end function
 
 DEFINE_ACTION_FUNCTION shaman_spells BEGIN
 
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_splshmkn.2da~) BEGIN
-  COPY_EXISTING ~splshmkn.2da~ ~override/d5_splshmkn.2da~
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_shmkn.2da~) BEGIN
+  COPY_EXISTING ~splshmkn.2da~ ~override/d5_shmkn.2da~
 END
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shlist.2da~) BEGIN
@@ -487,7 +487,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shlist.2da~) BEGIN
 	maxlevel = 7
 	column = 1
   STR_VAR 
-	spelltable = ~d5_splshmkn~
+	spelltable = ~d5_shmkn~
 	spelllist = ~d5shlist~
 	resref = ~d5msham~
 	icon = ~spcl919b~
@@ -556,17 +556,15 @@ SHAMAN_LRN   GA_D5SHMV1  ****        ****        ****        ****        ****   
   END
 BUT_ONLY
 
-// need to give d5msham to shamans (isn't that being done just above?)
-// ...and the shambarb!
-// ...erm, need to *make* the shambarb...
-
 COPY ~faiths_and_powers/kits/incarnates/splshmkn.2da~ ~override~
+
+// ***** need to handle +slot items
 
 END // end function
 
 
-//___________________________________________________________________________________
-//___________________________________________________________________________________
+//__________________________________________________________________________________
+//__________________________________________________________________________________
 
 
 //REMOVE BLANK LINES MACRO_____________________________________________________________
@@ -650,31 +648,20 @@ END
 //__________________________________________________________________________________
 
 
-DEFINE_ACTION_FUNCTION 2DA_MISSING_COLS
-	INT_VAR
-	cols = 0 //minimum amount of columns that should have values (if not set function will automatically read max number of columns in file)
-	STR_VAR
-	2da = ~~ //2da file that should be patched, e.g. kitlist
-	entry = ~~ //what entry should be set in missing columns (if not set function will automatically read default entry from loaded 2da, e.g. *)
-BEGIN
-	ACTION_IF ~%2da%~ STR_EQ ~~ BEGIN
-		FAIL ~2DA_MISSING_COLS: %2da% STR_VAR not set~
-	END
-	COPY_EXISTING ~%2da%.2da~ ~override~
+DEFINE_ACTION_FUNCTION fix_kitlist_missing_ids BEGIN
+	COPY_EXISTING ~kitlist.2da~ ~override~
 		PRETTY_PRINT_2DA
 		PATCH_IF ~%entry%~ STR_EQ ~~ BEGIN
 			READ_2DA_ENTRY 1 0 1 "entry"
 		END
-		PATCH_IF cols = 0 BEGIN
-			COUNT_2DA_COLS "cols"
-		END
+		COUNT_2DA_COLS "cols"
 		SET cnt = 0
 		REPLACE_EVALUATE ~^\(.+\)$~ BEGIN
 			PATCH_IF cnt >= 3 BEGIN
 				INNER_PATCH_SAVE MATCH1 ~%MATCH1%~ BEGIN
 					COUNT_REGEXP_INSTANCES ~ +~ num_matches
 					WHILE (num_matches < (cols - 1)) BEGIN
-						REPLACE_TEXTUALLY ~$~ ~ %entry%~
+						REPLACE_TEXTUALLY ~$~ ~ ZZZZZ~
 						SET num_matches = num_matches + 1
 					END
 				END
@@ -684,36 +671,17 @@ BEGIN
 		END ~%MATCH1%~
 		PRETTY_PRINT_2DA
 	BUT_ONLY
-END
-
-DEFINE_PATCH_FUNCTION 2DA_MISSING_COLS
-	INT_VAR
-	cols = 0 //minimum amount of columns that should have values (if not set function will automatically read max number of columns in file)
-	STR_VAR
-	entry = ~~ //what entry should be used in missing columns (if not set function will automatically read default entry from loaded 2da, e.g. *)
-BEGIN
-	PRETTY_PRINT_2DA
-	PATCH_IF ~%entry%~ STR_EQ ~~ BEGIN
-		READ_2DA_ENTRY 1 0 1 "entry"
-	END
-	PATCH_IF cols = 0 BEGIN
-		COUNT_2DA_COLS "cols"
-	END
-	SET cnt = 0
-	REPLACE_EVALUATE ~^\(.+\)$~ BEGIN
-		PATCH_IF cnt >= 3 BEGIN
-			INNER_PATCH_SAVE MATCH1 ~%MATCH1%~ BEGIN
-				COUNT_REGEXP_INSTANCES ~ +~ num_matches
-				WHILE (num_matches < (cols - 1)) BEGIN
-					REPLACE_TEXTUALLY ~$~ ~ %entry%~
-					SET num_matches = num_matches + 1
-				END
+	COPY_EXISTING ~kitlist.2da~ ~override~
+		COUNT_2DA_ROWS 10 rows
+		FOR (row = 1; row < rows; ++row) BEGIN
+			SET val = (row - 12)
+			TEXT_SPRINT new_ids ~000040%val%~
+			READ_2DA_ENTRY row 9 10 ids_val
+			PATCH_IF (~%ids_val%~ STRING_EQUAL_CASE ~ZZZZZ~) BEGIN
+				SET_2DA_ENTRY row 9 10 ~0x%new_ids%~
 			END
-		END ELSE BEGIN
-			SET cnt = cnt + 1
 		END
-	END ~%MATCH1%~
-	PRETTY_PRINT_2DA
+	BUT_ONLY
 END
 
 

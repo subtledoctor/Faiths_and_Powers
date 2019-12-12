@@ -38,6 +38,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabshgs.2da~ BEGIN
 	sphere_list		= ~vanilla_shaman_spheres~
 	class 			= ~shaman~
  END
+// LAF fnp_spontaneous STR_VAR kit_clab = ~clabshgs~ learn_res = ~d5shgsz~ free_universal = ~no~ END
 END
 //__________________________________________________________________________________
 
@@ -72,6 +73,7 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabsh01.2da~ BEGIN
 	sphere_list		= ~vanilla_shaman_spheres~
 	class 			= ~shaman~
  END
+ LAF fnp_spontaneous STR_VAR kit_clab = ~clabsh01~ learn_res = ~d5sh01z~ free_universal = ~no~ END
 END
 //__________________________________________________________________________________
 
@@ -284,7 +286,8 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-ACTION_IF FILE_EXISTS_IN_GAME ~clabdr01.2da~ BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~clabdr01.2da~) && (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
+ LAM vanilla_druid_spheres
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -310,7 +313,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabdr01.2da~ BEGIN
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~clabdr01~
-	sphere_list		= ~druid_forest_spheres~
 	class 			= ~druid~
  END
 END
@@ -2008,7 +2010,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Light 		= ~major~
 	s_Shadow 		= ~x~
 	s_Magic 		= ~x~
-	s_Perdition     = ~x~
+	s_Astral	     = ~x~
 END
 //__________________________________________________________________________________
 END
@@ -2067,7 +2069,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Light 		= ~major~
 	s_Shadow 		= ~x~
 	s_Magic 		= ~minor~
-	s_Perdition     = ~major~
+	s_Astral	     = ~major~
 END
 //__________________________________________________________________________________
 END
@@ -2125,7 +2127,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Light 		= ~major~
 	s_Shadow 		= ~minor~
 	s_Magic 		= ~x~
-	s_Perdition     = ~x~
+	s_Astral	     = ~x~
 END
 //__________________________________________________________________________________
 END
@@ -2317,7 +2319,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Light 		= ~major~
 	s_Shadow 		= ~x~
 	s_Magic 		= ~minor~
-	s_Perdition     = ~x~
+	s_Astral	     = ~x~
    END
   END
   ACTION_IF (%eggs% = 11) BEGIN //..................................................druids
@@ -2369,7 +2371,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Light 		= ~x~
 	s_Shadow 		= ~minor~
 	s_Magic 		= ~x~
-	s_Perdition     = ~x~
+	s_Astral	     = ~x~
    END
   END
   ACTION_IF (%eggs% = 21) BEGIN //..................................................shamans
@@ -2421,7 +2423,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Light 		= ~x~
 	s_Shadow 		= ~major~
 	s_Magic 		= ~x~
-	s_Perdition     = ~major~
+	s_Astral	     = ~major~
    END
   END
   ACTION_IF (%eggs% = 6) BEGIN //.................................................paladins
@@ -2473,7 +2475,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Light 		= ~paladin~
 	s_Shadow 		= ~x~
 	s_Magic 		= ~x~
-	s_Perdition     = ~x~
+	s_Astral	     = ~x~
    END
   END
   ACTION_IF (%eggs% = 12) BEGIN //.................................................rangers
@@ -2525,7 +2527,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Light 		= ~ranger~
 	s_Shadow 		= ~x~
 	s_Magic 		= ~x~
-	s_Perdition     = ~x~
+	s_Astral	     = ~x~
    END
   END
  END

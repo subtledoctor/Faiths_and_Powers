@@ -144,6 +144,10 @@ COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
 	class 			= ~druid~
  END
 
+ ACTION_IF (forest_druid_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5dfor~ learn_res = ~d5dforz~ END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -236,6 +240,12 @@ COPY ~faiths_and_powers/kits/druids/732_totemic/totemic.2da~ ~override/clabdr02.
 	sphere_list		= ~druid_forest_spheres~
 	class 			= ~druid~
  END
+
+/* can't do this for clabs w/ 8 characters!
+ ACTION_IF (totemic_druid_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~clabdr02~ learn_res = ~d5dr02z~ END
+ END
+*/
 
 END
 //__________________________________________________________________________________
@@ -460,6 +470,12 @@ HIVEKEEPER   GA_D5RHBTL  ****        ****        ****        ****        ****   
 	class 			= ~druid~
  END
 
+/* can't do this for clabs w/ 8 characters!
+ ACTION_IF (hivekeeper_druid_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~clabdr04~ learn_res = ~d5dr04z~ END
+ END
+*/
+
 END
 //__________________________________________________________________________________
 
@@ -589,6 +605,10 @@ COPY ~faiths_and_powers/kits/druids/735_arctic_druid/d5drsc5.eff~ ~override~
     clab_name 		= ~d5darc~
 	sphere_list		= ~druid_northern_spheres~
 	class 			= ~druid~
+ END
+
+ ACTION_IF (northern_druid_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5darc~ learn_res = ~d5darcz~ END
  END
 
 END
@@ -770,6 +790,10 @@ END
 	class 			= ~druid~
  END
 
+ ACTION_IF (shadow_druid_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5dshad~ learn_res = ~d5dshdz~ END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -919,6 +943,10 @@ COPY ~faiths_and_powers/kits/druids/737_gray_druid/d5drss8.eff~ ~override~
     clab_name 		= ~d5dgray~
 	sphere_list		= ~druid_gray_spheres~
 	class 			= ~druid~
+ END
+
+ ACTION_IF (gray_druid_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5dgray~ learn_res = ~d5dgraz~ END
  END
 
 END
@@ -1270,6 +1298,10 @@ END
 COMPILE ~d5/amaran+.d~
 
 END
+
+ ACTION_IF (lost_druid_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5dlost~ learn_res = ~d5dlstz~ END
+ END
 
 END // end lost druid macro
 //__________________________________________________________________________________
@@ -2761,6 +2793,8 @@ END
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
+// ***** need to add spontaneous system
+// in a way that is compatible with multisham code later
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
@@ -2923,12 +2957,16 @@ END
 	u_bows 				= 0
 	u_crossbows 		= 0
   STR_VAR
-    clab_name 		= ~d5mear~
-	sphere_list		= ~mystic_earth_spheres~
-	class 			= ~mystic~
-	multiclass		= ~fd~
- END
+    clab_name 			= ~d5mear~
+	sphere_list			= ~mystic_earth_spheres~
+	class 				= ~druid~
+	multiclass			= ~fd~
+END
 
+ ACTION_IF (earth_mystic_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5mear~ learn_res = ~d5myeaz~ END
+ END
+ 
 END
 
 //___________________________________________________________________________________
@@ -3093,6 +3131,10 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 	multiclass		= ~fd~
  END
 
+ ACTION_IF (water_mystic_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5mwat~ learn_res = ~d5mywaz~ END
+ END
+ 
 END
 
 //__________________________________________________________________________________
@@ -3257,6 +3299,10 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 	multiclass		= ~fd~
  END
 
+ ACTION_IF (air_mystic_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5mair~ learn_res = ~d5mairz~ END
+ END
+
 END
 
 //__________________________________________________________________________________
@@ -3419,6 +3465,10 @@ COPY ~faiths_and_powers/kits/druids/706_fire_mystic/d5myfi2.spl~ ~override~
 	sphere_list		= ~mystic_fire_spheres~
 	class 			= ~mystic~
 	multiclass		= ~fd~
+ END
+
+ ACTION_IF (fire_mystic_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5mfir~ learn_res = ~d5mfirz~ END
  END
 
 END
@@ -3588,6 +3638,10 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 	multiclass		= ~fd~
  END
 
+ ACTION_IF (light_mystic_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5mlig~ learn_res = ~d5mligz~ END
+ END
+
 END
 
 //__________________________________________________________________________________
@@ -3749,6 +3803,10 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 	sphere_list		= ~mystic_shadow_spheres~
 	class 			= ~mystic~
 	multiclass		= ~fd~
+ END
+
+ ACTION_IF (shadow_mystic_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5mshd~ learn_res = ~d5mshdz~ END
  END
 
 END

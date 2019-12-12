@@ -234,6 +234,10 @@ END
 	class 			= ~ranger~
  END
 
+ ACTION_IF (forest_ranger_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5rfor~ learn_res = ~d5rforz~ END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -381,6 +385,10 @@ COPY ~faiths_and_powers/kits/rangers/902_mountain_ranger/d5enemmp.eff~ ~override
 	class 			= ~ranger~
  END
 
+ ACTION_IF (mountain_ranger_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5rmou~ learn_res = ~d5rmouz~ END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -525,6 +533,10 @@ COPY ~faiths_and_powers/kits/rangers/904_desert_ranger/d5enemdl.eff~ ~override~
 	class 			= ~ranger~
  END
 
+ ACTION_IF (desert_ranger_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5rdes~ learn_res = ~d5rdesz~ END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -666,6 +678,10 @@ COPY ~faiths_and_powers/kits/rangers/903_jungle_ranger/d5enemjj.eff~ ~override~
 	class 			= ~ranger~
  END
 
+ ACTION_IF (jungle_ranger_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5rjun~ learn_res = ~d5rjunz~ END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -805,6 +821,10 @@ COPY ~faiths_and_powers/kits/rangers/905_arctic_ranger/d5enemaj.eff~ ~override~
     clab_name 		= ~d5rarc~
 	sphere_list		= ~ranger_arctic_spheres~
 	class 			= ~ranger~
+ END
+
+ ACTION_IF (arctic_ranger_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5rarc~ learn_res = ~d5rarcz~ END
  END
 
 END
@@ -1025,6 +1045,12 @@ END
 	class 			= ~ranger~
  END
 
+/* can't do spontaneous with 8-character CLAB
+ ACTION_IF (beast_master_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~CLABRN04~ learn_res = ~d5rn04~ END
+ END
+*/
+
 END
 //__________________________________________________________________________________
 
@@ -1081,7 +1107,7 @@ ADD_KIT ~D5RBARB~
 ~D5RBARB           0  0  0  0  0  0~
 
 //KIT ABILITIES 2DA FILE_____________________________________________________________
-~faiths_and_powers/kits/rangers/954_barbarian_ranger/d5_rbarb.2da~
+~faiths_and_powers/kits/rangers/954_barbarian_ranger/d5rbarb.2da~
 
 //RACIAL KIT AVAILABILITY____________________________________________________________
 ~K_R_H   K_R_HO~
@@ -1117,7 +1143,7 @@ END
 
 //BARBARIAN RANGER ABILITY FILES_____________________________________________________
 //
-COPY ~faiths_and_powers/kits/rangers/954_barbarian_ranger/d5_rbarb.2da~ ~override~
+COPY ~faiths_and_powers/kits/rangers/954_barbarian_ranger/d5rbarb.2da~ ~override~
 COPY ~faiths_and_powers/kits/rangers/954_barbarian_ranger/d5_rbaab.spl~ ~override~
 COPY ~faiths_and_powers/kits/rangers/954_barbarian_ranger/d5_rback.spl~ ~override~
 
@@ -1147,9 +1173,13 @@ COPY ~faiths_and_powers/kits/rangers/954_barbarian_ranger/d5_rback.spl~ ~overrid
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name 		= ~d5_rbarb~
+    clab_name 		= ~d5rbarb~
 	sphere_list		= ~barbarian_ranger_spheres~
 	class 			= ~scout~
+ END
+
+ ACTION_IF (barbarian_ranger_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5rbarb~ learn_res = ~d5rbarz~ END
  END
 
 //FIX BARB USABILITY__________________________________________________________________
@@ -1223,7 +1253,7 @@ ADD_KIT ~D5MAGEH~
 ~D5MAGEH           0  1  0  0  0  0~
 
 //KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/rangers/953_mage_hunter/d5_mageh.2da~
+~faiths_and_powers/kits/rangers/953_mage_hunter/d5mageh.2da~
 
 //RACIAL KIT AVAILABILITY_____________________________________________________________
 ~K_R_H    K_R_D   K_R_E   K_R_HE~
@@ -1259,7 +1289,7 @@ END
 
 //MAGE HUNTER ABILITY FILES_________________________________________________________
 //
-COPY ~faiths_and_powers/kits/rangers/953_mage_hunter/d5_mageh.2da~ ~override~
+COPY ~faiths_and_powers/kits/rangers/953_mage_hunter/d5mageh.2da~ ~override~
 
 COPY_EXISTING ~spwi318.spl~ ~override/d5_radfl.spl~
 	LPM spell_to_innate
@@ -1301,9 +1331,13 @@ COPY ~faiths_and_powers/kits/rangers/953_mage_hunter/d5_mghs2.eff~ ~override~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name 		= ~d5_mageh~
+    clab_name 		= ~d5mageh~
 	sphere_list		= ~mage_hunter_spheres~
 	class 			= ~scout~
+ END
+
+ ACTION_IF (mage_hunter_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5mageh~ learn_res = ~d5magez~ END
  END
 
 END
@@ -1362,7 +1396,7 @@ ADD_KIT ~D5EARCH~
 ~D5EARCH           0  1  0  0  0  0~
 
 //KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/rangers/955_elven_archer/d5_earch.2da~
+~faiths_and_powers/kits/rangers/955_elven_archer/d5earch.2da~
 
 //RACIAL KIT AVAILABILITY_____________________________________________________________
 ~K_R_E~
@@ -1398,7 +1432,7 @@ END
 
 //ELVEN ARCHER ABILITY FILES_________________________________________________________
 //
-COPY ~faiths_and_powers/kits/rangers/955_elven_archer/d5_earch.2da~ ~override~
+COPY ~faiths_and_powers/kits/rangers/955_elven_archer/d5earch.2da~ ~override~
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
@@ -1426,9 +1460,13 @@ COPY ~faiths_and_powers/kits/rangers/955_elven_archer/d5_earch.2da~ ~override~
 	u_bows 				= 2
 	u_crossbows 		= 2
   STR_VAR
-    clab_name 		= ~d5_earch~
+    clab_name 		= ~d5earch~
 	sphere_list		= ~elven_archer_spheres~
 	class 			= ~scout~
+ END
+
+ ACTION_IF (elven_archer_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5earch~ learn_res = ~d5earcz~ END
  END
 
 //ADD ELVEN ARCHER TO MENUS__________________________________________________________
@@ -1533,7 +1571,7 @@ DEFINE_ACTION_FUNCTION halfling_slinger BEGIN
 
 ADD_KIT ~D5SLING~
 
-//WEAPON PROFICIENCIES________________________________________________________________
+//WEAPON PROFICIENCIES_______________________________________________________________
 //11                                   T   S           F   Q             S S
 //10           L S                     W   C           L   U             W I
 //9            A M             B L S   O   I   W       A   A             O N

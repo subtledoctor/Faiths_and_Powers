@@ -8,6 +8,7 @@ DEFINE_ACTION_MACRO d5_define_sphere_names BEGIN
 
 <<<<<<<< d5/d5altsph.2da
 2DA
+Universal			Universal
 Life 				Life
 Death 				Death
 Benediction 		Creation
@@ -30,7 +31,7 @@ Fire 				Fire
 Light 				Light
 Shadow 				Shadow
 Magic 				Magic
-Perdition 			Astral
+Astral	 			Astral
 >>>>>>>> 
 
 END	//	end sphere names macro
@@ -63,7 +64,6 @@ CLERIC_CURE_LIGHT_WOUNDS                0	=	Universal // can do notes!
 CLERIC_BLESS                            0	=	Universal // but only like this
 CLERIC_CHANT                            0	=	Universal // level 2
 CLERIC_PRAYER                           0	=	Universal // level 3
-CLERIC_DISPEL_MAGIC                     0	=	Universal // level 3
 CLERIC_REMOVE_CURSE                     0	=	Universal // level 3
 CLERIC_RECITATION                       0	=	Universal // level 4
 CLERIC_LESSER_RESTORATION               0	=	Universal // level 4
@@ -157,7 +157,7 @@ WIZARD_DIMENSION_DOOR                   5	=	Exploration
 WIZARD_TELEPORT_FIELD                   6	=	Exploration
 WIZARD_IMPROVED_HASTE                   6	=	Exploration
 WIZARD_FREEDOM                          7	=	Exploration
-CLERIC_ETHER_GATE                       7	=	Exploration
+WIZARD_MAZE                             7	=	Exploration
 d5fnp03                                 0	=	knowledge // identify
 CLERIC_DETECT_EVIL                      1	=	Knowledge
 CLERIC_KNOW_ALIGNMENT                   1	=	Knowledge
@@ -170,6 +170,7 @@ WIZARD_DETECT_ILLUSION                  4	=	Knowledge
 WIZARD_ORACLE                           5	=	Knowledge
 CLERIC_TRUE_SIGHT                       6	=	Knowledge
 WIZARD_CONTINGENCY                      7	=	Knowledge
+CLERIC_CAMOUFLAGE                       1	=	Deception
 NOSR_WIZARD_REFLECTED_IMAGE             1	=	Deception
 SR_WIZARD_REFLECTED_IMAGE               2	=	Deception
 WIZARD_BLUR                             2	=	Deception
@@ -221,7 +222,7 @@ CLERIC_REMOVE_PARALYSIS                 2	=	Vigor
 CLERIC_DRAW_UPON_HOLY_MIGHT             3	=	Vigor
 CLERIC_FAVOR_OF_ILMATER                 3	=	Vigor
 CLERIC_NEUTRALIZE_POISON                3	=	Vigor
-CLERIC_CHAMPIONS_STRENGTH               4	=	War
+CLERIC_CHAMPIONS_STRENGTH               4	=	Vigor
 CLERIC_ANIMAL_RAGE                      5	=	Vigor
 CLERIC_REGENERATE                       6	=	Vigor
 CLERIC_RESTORATION                      7	=	Vigor
@@ -272,7 +273,6 @@ CLERIC_NATURES_WRATH                    6	=	Plant
 CLERIC_ASSASSIN_VINES                   6	=	Plant
 CLERIC_STALKER                          7	=	Plant
 CLERIC_MAGIC_STONE                      1	=	Earth
-CLERIC_CAMOUFLAGE                       1	=	Earth
 CLERIC_PROTECTION_FROM_LIGHTNING        2	=	Earth
 CLERIC_STONE_FIST                       3	=	Earth
 CLERIC_SPIKE_STONES                     4	=	Earth
@@ -357,6 +357,7 @@ WIZARD_WRAITH_FORM                      7	=	Shadow
 WIZARD_POWER_WORD_BLIND                 7	=	Shadow
 CLERIC_SILENCE_15_FOOT                  1	=	Magic
 CLERIC_MISCAST_MAGIC                    2	=	Magic
+CLERIC_DISPEL_MAGIC                     3	=	Magic
 WIZARD_MINOR_SPELL_DEFLECTION           3	=	Magic
 WIZARD_SECRET_WORD                      4	=	Magic
 WIZARD_MINOR_SPELL_TURNING              5	=	Magic
@@ -370,8 +371,9 @@ CLERIC_SPIRITUAL_CLARITY                3	=	Astral
 CLERIC_SPIRIT_FIRE                      4	=	Astral // modify to work against all planar creatures
 CLERIC_SPIRITUAL_LOCK                   5	=	Astral // modify to work against all planar creatures
 WIZARD_BANISHMENT                       5	=	Astral // sr banishment
+CLERIC_RECALL_SPIRIT                    6	=	Astral
 CLERIC_BOLT_OF_GLORY                    6	=	Astral
-WIZARD_MALAVONS_RAGE                    7	=	Astral // need to add for non-IWDEE
+CLERIC_ETHER_GATE                       7	=	Astral
 WIZARD_SUMMON_FIEND                     7	=	Astral
 >>>>>>>>
 
@@ -1976,7 +1978,7 @@ DEFINE_ACTION_FUNCTION druid_forest_spheres
 	Destruction 	=> x
 	Protection 		=> x
 	War 			=> x
-	Exploration  	=> minor
+	Exploration  	=> major
 	Knowledge 		=> minor
 	Deception 		=> x
 	Thought 		=> minor
@@ -1992,7 +1994,7 @@ DEFINE_ACTION_FUNCTION druid_forest_spheres
 	Light 			=> major
 	Shadow 			=> minor
 	Magic 			=> x
-	Astral    		=> x
+	Astral    		=> minor
  END
 END
 //___________________________________________________________________________________
@@ -2025,7 +2027,7 @@ DEFINE_ACTION_FUNCTION druid_totemic_spheres
 	Light 			=> major
 	Shadow 			=> minor
 	Magic 			=> x
-	Astral		 	=> x
+	Astral		 	=> major
  END
 END
 //___________________________________________________________________________________
@@ -2091,7 +2093,7 @@ DEFINE_ACTION_FUNCTION druid_northern_spheres
 	Light 			=> major
 	Shadow 			=> minor
 	Magic 			=> x
-	Astral		  	=> x
+	Astral		  	=> minor
  END
 END
 //___________________________________________________________________________________
@@ -2190,7 +2192,7 @@ DEFINE_ACTION_FUNCTION druid_lost_spheres
 	Light 			=> x
 	Shadow 			=> minor
 	Magic 			=> x
-	Astral		 	=> x
+	Astral		 	=> major
  END
 END
 //___________________________________________________________________________________
@@ -2788,7 +2790,7 @@ DEFINE_ACTION_FUNCTION vanilla_shaman_spheres
 	Light 			=> x
 	Shadow 			=> x
 	Magic 			=> minor
-	Astral			=> major
+	Astral			=> focus
  END
 END
 //___________________________________________________________________________________
@@ -2799,22 +2801,101 @@ DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
   LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~P~ END 
   LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~P~ END 
   COPY_EXISTING ~QD_MCP01.spl~ ~override~ // trueclass spheres via .eff
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5splif#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5splif#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smdea#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smdea#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spben#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spben#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spdes#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spdes#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5sppro#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5sppro#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smwar#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smwar#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smexp#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smexp#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spkno#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spkno#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smtho#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smtho#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spdre#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spdre#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smvig#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smvig#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smfir#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smfir#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5splig#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5splig#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smmag#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smmag#~ END
   IF_EXISTS BUT_ONLY
   ACTION_DEFINE_ASSOCIATIVE_ARRAY clabpr01_spheres BEGIN
+	Life 			=> x
+	Death 			=> x
+	Creation 		=> x
+	Destruction 	=> x
+	Protection 		=> x
+	War 			=> x
+	Exploration 	=> x
+	Knowledge 		=> x
+	Deception 		=> x
+	Thought 		=> x
+	Dread 			=> x
+	Vigor 			=> x
+	Affliction 		=> x
+	Animal 			=> x
+	Plant 			=> x
+	Earth 			=> x
+	Water 			=> x
+	Air 			=> x
+	Fire 			=> x
+	Light 			=> x
+	Shadow 			=> x
+	Magic 			=> x
+	Astral			=> x
+  END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_MACRO vanilla_druid_spheres BEGIN
+  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~D~ END 
+  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~D~ END 
+  COPY_EXISTING ~QD_MCD01.spl~ ~override~ // trueclass spheres via .eff
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spexp#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spexp#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spvig#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spvig#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spani#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spani#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5sppla#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5sppla#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spear#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spear#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spwat#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spwat#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spair#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spair#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5splig#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5splig#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smlif#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smlif#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smkno#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smkno#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smtho#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smtho#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smaff#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smaff#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smfir#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smfir#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smsha#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smsha#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smast#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smast#~ END
+  IF_EXISTS BUT_ONLY
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabdr01_spheres BEGIN
 	Life 			=> x
 	Death 			=> x
 	Creation 		=> x
