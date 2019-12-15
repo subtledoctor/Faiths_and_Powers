@@ -2302,9 +2302,12 @@ END
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5shmbb~
-	class 			= ~mystic~
+	class 			= ~fighter_cleric~
+//	class 			= ~mystic~
 	sphere_list		= ~vanilla_shaman_spheres~
  END
+
+ LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmbb~ learn_res = ~d5shmbz~ END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmbb~ END
@@ -2313,8 +2316,6 @@ END
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
 	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5shmbb~ END
  END
-
- LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmbb~ learn_res = ~d5shmbz~ END
 
  LAF qd_multiclass
 	STR_VAR
@@ -2410,6 +2411,7 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 		STR_VAR
 			kit_name = D5_SHAMAN_RANGER
 			clswpbon = ~1 0 2~
+			clsrcreq = ~1 0 1 0 0 0 1~
 	END
 END
 
@@ -2452,30 +2454,11 @@ END
   STR_VAR
     clab_name 		= ~d5shmrn~
 	class 			= ~ranger_cleric~
-	s_Life 			= ~x~
-	s_Death 		= ~x~
-	s_Benediction 	= ~x~
-	s_Destruction 	= ~x~
-	s_Protection 	= ~x~
-	s_War 			= ~x~
-	s_Exploration   = ~x~
-	s_Knowledge 	= ~x~
-	s_Deception 	= ~x~
-	s_Thought 		= ~x~
-	s_Dread 		= ~x~
-	s_Vigor 		= ~x~
-	s_Affliction 	= ~x~
-	s_Animal 		= ~x~
-	s_Plant 		= ~x~
-	s_Earth 		= ~x~
-	s_Water 		= ~x~
-	s_Air 			= ~x~
-	s_Fire 			= ~x~
-	s_Light 		= ~x~
-	s_Shadow 		= ~x~
-	s_Magic 		= ~x~
-	s_Astral	     = ~x~
+//	class 			= ~mystic~
+	sphere_list		= ~vanilla_shaman_spheres~
  END
+
+ LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmrn~ learn_res = ~d5shrnz~ END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmrn~ END
@@ -2484,8 +2467,6 @@ END
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
 	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5shmrn~ END
  END
-
- LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmrn~ learn_res = ~d5shrnz~ END
 
  LAF qd_multiclass
 	STR_VAR
@@ -2581,6 +2562,7 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 		STR_VAR
 			kit_name = D5_SHAMAN_THIEF
 			clswpbon = ~0 0 3~
+			clsrcreq = ~1 0 1 0 0 0 1~
 	END
 END
 
@@ -2626,30 +2608,11 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5tshdi.spl~
   STR_VAR
     clab_name 		= ~d5shmth~
 	class 			= ~cleric_thief~
-	s_Life 			= ~x~
-	s_Death 		= ~x~
-	s_Benediction 	= ~x~
-	s_Destruction 	= ~x~
-	s_Protection 	= ~x~
-	s_War 			= ~x~
-	s_Exploration   = ~x~
-	s_Knowledge 	= ~x~
-	s_Deception 	= ~x~
-	s_Thought 		= ~x~
-	s_Dread 		= ~x~
-	s_Vigor 		= ~x~
-	s_Affliction 	= ~x~
-	s_Animal 		= ~x~
-	s_Plant 		= ~x~
-	s_Earth 		= ~x~
-	s_Water 		= ~x~
-	s_Air 			= ~x~
-	s_Fire 			= ~x~
-	s_Light 		= ~x~
-	s_Shadow 		= ~x~
-	s_Magic 		= ~x~
-	s_Astral  		= ~x~
- END
+//	class 			= ~mystic~
+	sphere_list		= ~vanilla_shaman_spheres~
+  END
+
+ LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmth~ learn_res = ~d5shthz~ END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmth~ END
@@ -2755,6 +2718,7 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 		STR_VAR
 			kit_name = D5_SHAMAN_MAGE
 			clswpbon = ~0 0 3~
+			clsrcreq = ~1 0 1 0 0 0 1~
 	END
 END
 
@@ -2793,30 +2757,11 @@ END
   STR_VAR
     clab_name 		= ~d5shmma~
 	class 			= ~cleric_mage~
-	s_Life 			= ~x~
-	s_Death 		= ~x~
-	s_Benediction 	= ~x~
-	s_Destruction 	= ~x~
-	s_Protection 	= ~x~
-	s_War 			= ~x~
-	s_Exploration   = ~x~
-	s_Knowledge 	= ~x~
-	s_Deception 	= ~x~
-	s_Thought 		= ~x~
-	s_Dread 		= ~x~
-	s_Vigor 		= ~x~
-	s_Affliction 	= ~x~
-	s_Animal 		= ~x~
-	s_Plant 		= ~x~
-	s_Earth 		= ~x~
-	s_Water 		= ~x~
-	s_Air 			= ~x~
-	s_Fire 			= ~x~
-	s_Light 		= ~x~
-	s_Shadow 		= ~x~
-	s_Magic 		= ~x~
-	s_Astral	     = ~x~
- END
+//	class 			= ~mystic~
+	sphere_list		= ~vanilla_shaman_spheres~
+  END
+
+ LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmma~ learn_res = ~d5shmaz~ END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmma~ END
@@ -2825,8 +2770,6 @@ END
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
 	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5shmma~ END
  END
-
- LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmma~ learn_res = ~d5shmaz~ END
 
  LAF qd_multiclass
 	STR_VAR
@@ -2922,6 +2865,7 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 		STR_VAR
 			kit_name = D5_SHAMAN_MONK
 			clswpbon = ~0 0 3~
+			clsrcreq = ~1 0 1 0 0 0 1~
 	END
 END
 
@@ -2967,30 +2911,11 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5tshdi.spl~
   STR_VAR
     clab_name 		= ~d5shmnk~
 	class 			= ~cleric_thief~
-	s_Life 			= ~x~
-	s_Death 		= ~x~
-	s_Benediction 	= ~x~
-	s_Destruction 	= ~x~
-	s_Protection 	= ~x~
-	s_War 			= ~x~
-	s_Exploration   = ~x~
-	s_Knowledge 	= ~x~
-	s_Deception 	= ~x~
-	s_Thought 		= ~x~
-	s_Dread 		= ~x~
-	s_Vigor 		= ~x~
-	s_Affliction 	= ~x~
-	s_Animal 		= ~x~
-	s_Plant 		= ~x~
-	s_Earth 		= ~x~
-	s_Water 		= ~x~
-	s_Air 			= ~x~
-	s_Fire 			= ~x~
-	s_Light 		= ~x~
-	s_Shadow 		= ~x~
-	s_Magic 		= ~x~
-	s_Astral	     = ~x~
- END
+//	class 			= ~mystic~
+	sphere_list		= ~vanilla_shaman_spheres~
+  END
+
+ LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmnk~ learn_res = ~d5shmkz~ END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmnk~ END
@@ -3029,8 +2954,6 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5tshdi.spl~
   END
  IF_EXISTS BUT_ONLY
 
- LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmnk~ learn_res = ~d5shmkz~ END
-
  LAF qd_multiclass
 	STR_VAR
 		kit_name = ~D5_SHAMAN_MONK~ 
@@ -3053,6 +2976,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
+// Deprecated - already! They just use the FnP_Spontaneous function now, like everyone else
 
 DEFINE_ACTION_FUNCTION multiclass_shaman_system BEGIN
 

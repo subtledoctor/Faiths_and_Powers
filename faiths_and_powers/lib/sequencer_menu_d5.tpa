@@ -1,6 +1,6 @@
 
 	//	UI-based Spell Learning tool for Sorcerers/Shamans
-	//	v0.57
+	//	v0.58
 	
 	//	This function is designed to implement a UI-based Spell selection system, as an alternative to dialog-based Spell Selection, utilizing
 	//		the Sequencer/Contingency spell selection menu to learn arcane or divine spells.  Innate abilities "can" be learned this way as well,
@@ -117,8 +117,11 @@
 	//	--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	DEFINE_ACTION_FUNCTION	SETUP_SEQUENCER_MENU	BEGIN
-		OUTER_SET	version = 57	OUTER_SET	current = 0
+		OUTER_SET	version = 58	OUTER_SET	current = 0
 		PRINT ~Running CREATE_SEQUENCER_MENU version#: 0.%version%~
+		ACTION_IF	!FILE_EXISTS_IN_GAME ~M_SQLIST.LUA~	BEGIN
+			COPY_EXISTING	~BGEE.LUA~	~override\M_SQLIST.LUA~	DELETE_BYTES	0	SOURCE_SIZE	APPEND ~M_SQLIST.LUA~	~SequencerMenu = {}~
+		END
 		ACTION_IF FILE_EXISTS_IN_GAME ~M_SQTOOL.LUA~	BEGIN
 			COPY_EXISTING ~M_SQTOOL.LUA~ override	REPLACE_EVALUATE ~[%WNL%^]\-\-SEQUENCER_MENU_VERSION:\([0-9]+\)[%WNL%]~	BEGIN	SET	current = MATCH1	END ~%MATCH0%~ BUT_ONLY
 		END	ELSE	BEGIN
@@ -141,7 +144,6 @@
 				DELETE_BYTES	0x526 2
 			CREATE	SPL	~M_SQMENU~	WRITE_ASCII	0x3a	~M_SQMENU~
 			COPY_EXISTING	~BGEE.LUA~	~override\M_SQMENU.LUA~	DELETE_BYTES	0	SOURCE_SIZE
-			COPY_EXISTING	~BGEE.LUA~	~override\M_SQLIST.LUA~	DELETE_BYTES	0	SOURCE_SIZE	APPEND ~M_SQLIST.LUA~	~SequencerMenu = {}~
 		END
 		ACTION_IF (!FILE_EXISTS_IN_GAME ~M_SQTOOL.LUA~)	OR (current < version) BEGIN
 			COPY_EXISTING	~BGEE.LUA~	~override\M_SQTOOL.LUA~	DELETE_BYTES	0	SOURCE_SIZE
@@ -597,6 +599,10 @@
 										END
 									END
 								BUT_ONLY
+							END	ELSE	BEGIN
+								ACTION_IF	multilist = 1	BEGIN
+									APPEND	~%resref%X.2DA~	~2DALIST			%spell_res%	3~
+								END
 							END
 						END
 					END

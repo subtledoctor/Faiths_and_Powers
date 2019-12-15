@@ -2519,7 +2519,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	 crippstr
 //   RET kit_id
    END
-   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~t~ = 0) BEGIN
+   ACTION_IF ((~%mc_kit%~ STRING_CONTAINS_REGEXP ~t~) = 0) BEGIN
 	COPY_EXISTING ~LUTH0.2da~ ~override~
 	  COUNT_2DA_ROWS 10 rows
 	  FOR (row = 0; row < rows; ++row) BEGIN
@@ -2543,7 +2543,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	  END
 	IF_EXISTS BUT_ONLY
    END
-   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~k~ = 0) BEGIN
+   ACTION_IF ((~%mc_kit%~ STRING_CONTAINS_REGEXP ~k~) = 0) BEGIN
 	ACTION_IF (FILE_EXISTS_IN_GAME ~QD_MCT01.spl~) BEGIN
 	  ACTION_IF (~%sc_kit%~ STRING_EQUAL_CASE ~B_CLERIC_LATHANDER~) BEGIN
 		ACTION_IF (FILE_CONTAINS_EVALUATED (~kit.ids~ ~[ %TAB%]QDMONKSS_C[ %TAB%%LNL%%MNL%%WNL%]~)) BEGIN
@@ -2635,7 +2635,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	 luabbr      = EVAL ~%hla_table%~
 //   RET kit_id
    END
-   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~f~ = 0) BEGIN
+   ACTION_IF ((~%mc_kit%~ STRING_CONTAINS_REGEXP ~f~) = 0) BEGIN
 	COPY_EXISTING ~LUFI0.2da~ ~override~
 	  COUNT_2DA_ROWS 10 rows
 	  FOR (row = 0; row < rows; ++row) BEGIN
@@ -2659,7 +2659,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	  END
 	IF_EXISTS BUT_ONLY
    END
-   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~r~ = 0) BEGIN
+   ACTION_IF ((~%mc_kit%~ STRING_CONTAINS_REGEXP ~r~) = 0) BEGIN
 	COPY_EXISTING ~LURA0.2da~ ~override~
 	  COUNT_2DA_ROWS 10 rows
 	  FOR (row = 0; row < rows; ++row) BEGIN
@@ -2683,7 +2683,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	  END
 	IF_EXISTS BUT_ONLY
    END
-   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~m~ = 0) BEGIN
+   ACTION_IF ((~%mc_kit%~ STRING_CONTAINS_REGEXP ~m~) = 0) BEGIN
 	COPY_EXISTING ~LUMA0.2da~ ~override~
 	  COUNT_2DA_ROWS 10 rows
 	  FOR (row = 0; row < rows; ++row) BEGIN
@@ -2707,13 +2707,21 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	  END
 	IF_EXISTS BUT_ONLY
    END
-   ACTION_IF (~%mc_kit%~ STRING_CONTAINS_REGEXP ~s~ = 0) BEGIN
+   ACTION_IF ((~%mc_kit%~ STRING_CONTAINS_REGEXP ~s~) = 0) BEGIN
+	LAF qd_multiclass
+	  STR_VAR
+		kit_name = EVAL ~%new_name%~ 
+		kit_clab = ~d5fsorc~
+		base_class = ~M~
+	END
+/*
 	ACTION_IF (FILE_EXISTS_IN_GAME ~QD_MCM01.spl~) BEGIN
 	  OUTER_SET sorc_cleric_code = IDS_OF_SYMBOL (~kit~ ~D5_SORCERER_CLERIC~)
-	  OUTER_SET this_kit_code = IDS_OF_SYMBOL (~kit~ ~%sorc_name%~)
+	  OUTER_SET this_kit_code = IDS_OF_SYMBOL (~kit~ ~%new_name%~)
 	  COPY_EXISTING ~QD_MCM01.spl~ ~override~
 		LPF CLONE_EFFECT INT_VAR silent = 1 /*multi_match = 1*/ match_parameter1 = %sorc_cleric_code% match_parameter2 = 9 parameter1 = %this_kit_code% END
 	END
+*/
 	COPY_EXISTING ~LUSO0.2da~ ~override~
 	  COUNT_2DA_ROWS 10 rows
 	  FOR (row = 0; row < rows; ++row) BEGIN
@@ -2730,7 +2738,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 			READ_2DA_ENTRY row 8 10 sorcerer_excluded_by
 			READ_2DA_ENTRY row 9 10 sorcerer_alignment_restrict
 			INNER_ACTION BEGIN
-			  LAF action_add_hla STR_VAR kit_name = EVAL ~%sorc_name%~ ability = EVAL ~%sorcerer_ability%~ icon = EVAL ~%sorcerer_icon%~ strref = EVAL ~%sorcerer_strref%~ min_lev = EVAL ~%sorcerer_min_lev%~ max_level = EVAL ~%sorcerer_max_level%~ num_allowed = EVAL ~%sorcerer_num_allowed%~ prerequisite = EVAL ~%sorcerer_prerequisite%~ excluded_by = EVAL ~%sorcerer_excluded_by%~ alignment_restrict = EVAL ~%sorcerer_alignment_restrict%~ END
+			  LAF action_add_hla STR_VAR kit_name = EVAL ~%new_name%~ ability = EVAL ~%sorcerer_ability%~ icon = EVAL ~%sorcerer_icon%~ strref = EVAL ~%sorcerer_strref%~ min_lev = EVAL ~%sorcerer_min_lev%~ max_level = EVAL ~%sorcerer_max_level%~ num_allowed = EVAL ~%sorcerer_num_allowed%~ prerequisite = EVAL ~%sorcerer_prerequisite%~ excluded_by = EVAL ~%sorcerer_excluded_by%~ alignment_restrict = EVAL ~%sorcerer_alignment_restrict%~ END
 			END
 		  END
 		END
@@ -2876,12 +2884,14 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	 s_Magic 			= EVAL ~%orig_magic%~
 	 s_Perdition    	= EVAL ~%orig_perdition%~
    END
+/*
    ACTION_IF (FILE_EXISTS_IN_GAME ~QD_MCM01.spl~) BEGIN
 	OUTER_SET sorc_cleric_code = IDS_OF_SYMBOL (~kit~ ~D5_SORCERER_CLERIC~)
 	OUTER_SET this_kit_code = IDS_OF_SYMBOL (~kit~ ~%sorc_name%~)
 	COPY_EXISTING ~QD_MCM01.spl~ ~override~
 	  LPF CLONE_EFFECT INT_VAR silent = 1 /*multi_match = 1*/ match_parameter1 = %sorc_cleric_code% match_parameter2 = 9 parameter1 = %this_kit_code% END
    END
+*/
 //   ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 //    LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = EVAL ~%sorc_clab%~ END
 //   END

@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79~
+VERSION ~0.79.1~
 
 
 ALWAYS
@@ -60,13 +60,13 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   LAM d5_deity_kit_sphere_lists
 END
 
-ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers_multiclass.tp2~ ~90~) BEGIN
-  LAF multiclass_text END
-END
+LAF multiclass_text END
 
-INCLUDE ~faiths_and_powers/lib/multi_druids_shamans.tpa~
+LAF enable_multiclasses END
 
 LAM d5_kit_choices
+
+INCLUDE ~faiths_and_powers/lib/multi_druids_shamans.tpa~
 
 //ACTION_IF (%d5_multiclass_druids% = 1) BEGIN
   LAF fighter_druid END
@@ -95,6 +95,8 @@ LAM d5_kit_choices
   END
 //END
 
+LAF remove_mc_menu_kits END
+
 //__________________________________________________________________________________
 
 
@@ -121,15 +123,13 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   LAM d5_deity_kit_sphere_lists
 END
 
-ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers_multiclass.tp2~ ~90~) BEGIN
- ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers_multiclass.tp2~ ~91~) BEGIN
-  LAF multiclass_text END
- END
-END
+LAF multiclass_text END
 
-INCLUDE ~faiths_and_powers/lib/multi_druids_shamans.tpa~
+LAF enable_multiclasses END
 
 LAM d5_kit_choices
+
+INCLUDE ~faiths_and_powers/lib/multi_druids_shamans.tpa~
 
 //ACTION_IF (%d5_multiclass_shamans% = 1) BEGIN
   LAF sham_barb END
@@ -147,6 +147,8 @@ LAM d5_kit_choices
    END
   END
 //END
+
+LAF remove_mc_menu_kits END
 
 //__________________________________________________________________________________
 
@@ -175,23 +177,14 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
    LAM d5_deity_kit_sphere_lists
 END
 
-//read in kit functions_____________________________________________________________
-//
 INCLUDE ~faiths_and_powers/lib/default_kit_spheres.tpa~
  LAF vanilla_kit_spheres END
  LAF mod_kit_spheres END
  LAF default_kit_spheres END
-//__________________________________________________________________________________
 
-//multiclass text____________________________________________________________________
-//
 LAF multiclass_text END
-//__________________________________________________________________________________
 
-//enable lots of multiclasses_______________________________________________________
-//
 LAF enable_multiclasses END
-//__________________________________________________________________________________
 
 LAM d5_kit_choices
 
@@ -219,6 +212,8 @@ END
 ACTION_IF (%d5_multiclass_clerics% = 1) BEGIN
   LAF multiclass_kit_clones END
 END
+
+LAF remove_mc_menu_kits END
 
 //__________________________________________________________________________________
 

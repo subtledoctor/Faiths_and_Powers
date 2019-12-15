@@ -75,7 +75,7 @@ CLERIC_SLOW_POISON                      1	=	Life
 CLERIC_CURE_MODERATE_WOUNDS             2	=	Life
 CLERIC_CURE_MEDIUM_WOUNDS               3	=	Life
 CLERIC_CURE_SERIOUS_WOUNDS              4	=	Life
-CLERIC_CURE_CRITICAL_WOUNDS             5	=	Life // level 5
+NOSR_CLERIC_CURE_CRITICAL_WOUNDS        5	=	Life
 CLERIC_MASS_CURE                        5	=	Life
 CLERIC_RAISE_DEAD                       6	=	Life
 CLERIC_HEAL                             6	=	Life
@@ -2896,6 +2896,57 @@ DEFINE_ACTION_MACRO vanilla_druid_spheres BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smast#~ END
   IF_EXISTS BUT_ONLY
   ACTION_DEFINE_ASSOCIATIVE_ARRAY clabdr01_spheres BEGIN
+	Life 			=> x
+	Death 			=> x
+	Creation 		=> x
+	Destruction 	=> x
+	Protection 		=> x
+	War 			=> x
+	Exploration 	=> x
+	Knowledge 		=> x
+	Deception 		=> x
+	Thought 		=> x
+	Dread 			=> x
+	Vigor 			=> x
+	Affliction 		=> x
+	Animal 			=> x
+	Plant 			=> x
+	Earth 			=> x
+	Water 			=> x
+	Air 			=> x
+	Fire 			=> x
+	Light 			=> x
+	Shadow 			=> x
+	Magic 			=> x
+	Astral			=> x
+  END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_MACRO vanilla_ranger_spheres BEGIN
+  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~R~ END 
+  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~R~ END 
+  COPY_EXISTING ~QD_MCR01.spl~ ~override~ // trueclass spheres via .eff
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spexp#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spexp#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spvig#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spvig#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spani#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spani#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5sppla#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5sppla#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5sppro#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5sppro#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5splig#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5splig#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5splif#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smlif#~ END
+    LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spkno#~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smkno#~ END
+  IF_EXISTS BUT_ONLY
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabrn01_spheres BEGIN
 	Life 			=> x
 	Death 			=> x
 	Creation 		=> x

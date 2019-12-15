@@ -628,7 +628,8 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
-ACTION_IF FILE_EXISTS_IN_GAME ~clabrn01.2da~ BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~clabrn01.2da~ && (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
+ LAM vanilla_ranger_spheres
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -654,7 +655,6 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabrn01.2da~ BEGIN
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= ~clabrn01~
-	sphere_list		= ~ranger_forest_spheres~
 	class 			= ~ranger~
  END
 END
