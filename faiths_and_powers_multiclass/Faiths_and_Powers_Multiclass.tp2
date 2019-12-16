@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.1~
+VERSION ~0.79.2~
 
 
 ALWAYS
@@ -139,7 +139,9 @@ INCLUDE ~faiths_and_powers/lib/multi_druids_shamans.tpa~
   ACTION_IF (FILE_EXISTS_IN_GAME ~qd_monk_multi.qd~) BEGIN
 	LAF shaman_monk END
   END  
-//  LAF multiclass_shaman_system END
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+	LAF multiclass_shaman_system END
+  END
   LAF multi_shaman_strongholds END
   ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
    ACTION_IF !(FILE_EXISTS_IN_GAME ~d5drth.2da~) BEGIN

@@ -2179,6 +2179,150 @@ END // end function
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
+DEFINE_ACTION_FUNCTION multiclass_shaman_item STR_VAR kit_clab = ~x~ learn_res = ~d5msham~ BEGIN
+
+COPY_EXISTING ~kitlist.2da~ ~override~
+  COUNT_2DA_ROWS 10 rows
+  FOR (row = 1; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY row 5 10 clab
+	PATCH_IF (~%clab%~ STRING_EQUAL_CASE ~%kit_clab%~) BEGIN
+	  READ_2DA_ENTRY row 8 10 kit_class
+	  READ_2DA_ENTRY row 9 10 kit_ids
+	END
+  END
+BUT_ONLY
+
+APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_KIT_IS~ BEGIN
+	    SET kit_is_row = %row%
+	  END
+	END
+BUT_ONLY
+
+//recreate shamanic dance_____________________________________________________________
+//
+// leave out the movement check... just stop movement and reenable it upon canceling dance
+// patch to 50% movement if the 'improved shamanic dance' mod is installed
+
+COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdn.bam~ ~override~		//	dance icon
+COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdn.spl~ ~override~		//	dance ability
+  SAY NAME1 @49921// Shamanic Dance
+  SAY UNIDENTIFIED_DESC @49921 
+  LPF ALTER_SPELL_HEADER INT_VAR location = 4 STR_VAR icon = ~d5shmdn~ END
+//  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5nshdn~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+  PATCH_IF (MOD_IS_INSTALLED ~A7#ImprovedShamanicDance.tp2~ ~0~) BEGIN
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 176 match_parameter1 = 0 parameter1 = 50 parameter2 = 2 END
+  END
+COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdnb.eff~ ~override~		//	232 eff triggered by song
+COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdnb.spl~ ~override~		//	aura triggered by 232 eff
+COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5nshdn.bam~ ~override~		//	stop dance icon
+/*
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5nshdn.spl~				//	stop dance abil
+  SAY NAME1 @49923 // Stop Shamanic Dance
+  SAY UNIDENTIFIED_DESC @49923 
+  LPF ALTER_SPELL_HEADER INT_VAR target = 7 STR_VAR icon = ~d5nshdn~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5nshdn~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+*/
+CREATE EFF ~d5shmdn~
+	WRITE_LONG 0x10 171
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 9
+	WRITE_LONG 0x28 0
+	WRITE_SHORT 0x2c 100
+	WRITE_EVALUATED_ASCII 0x30 ~d5shmdn~ #8
+	WRITE_LONG 0x90 1
+	WRITE_EVALUATED_ASCII 0x94 ~D5SHMDN~ #8
+
+
+//recreate detect illusions__________________________________________________________
+//
+COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdi.bam~ ~override~		//	detect icon
+COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdi.spl~ ~override~		//	dance ability
+  SAY NAME1 @49924 // Detect Illusions
+  SAY UNIDENTIFIED_DESC @49924 
+  LPF ALTER_SPELL_HEADER INT_VAR location = 4 STR_VAR icon = ~d5shmdi~ END
+//  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5nshdi~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 9 STR_VAR resource = ~d5shmdn~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 9 STR_VAR resource = ~d5shmdi~ END
+COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdib.eff~ ~override~							//	232 eff triggered by song
+COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdib.spl~ ~override~							//	aura triggered by 232 eff
+COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5nshdi.bam~ ~override~		//	stop detect icon
+/*
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5nshdi.spl~				//	stop detect abil
+  SAY NAME1 @49926 // Stop detecting illusions
+  SAY UNIDENTIFIED_DESC @49926 
+  LPF ALTER_SPELL_HEADER INT_VAR target = 7 STR_VAR icon = ~d5nshdi~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5nshdi~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+*/
+CREATE EFF ~d5shmdi~
+	WRITE_LONG 0x10 171
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x24 9
+	WRITE_LONG 0x28 0
+	WRITE_SHORT 0x2c 100
+	WRITE_EVALUATED_ASCII 0x30 ~d5shmdi~ #8
+	WRITE_LONG 0x90 1
+	WRITE_EVALUATED_ASCII 0x94 ~D5SHMDI~ #8
+
+
+//learn spell item & initialize_______________________________________________________
+//
+ACTION_IF (FILE_EXISTS_IN_GAME ~%learn_res%b.spl~) BEGIN
+  COPY_EXISTING ~%learn_res%b.spl~ ~override~
+	LPF ALTER_EFFECT INT_VAR match_opcode = 143 STR_VAR resource = ~d5shamb~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 9 STR_VAR resource = ~d5shmdn~ END
+	PATCH_IF !(%kit_class% = 15) BEGIN
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 9 STR_VAR resource = ~d5shmdi~ END
+	END
+  BUT_ONLY
+END
+ 
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5shamb.itm~) BEGIN
+ COPY_EXISTING ~d5shamb.itm~ ~override~												//	learn spells .itm
+  LPF ADD_ITEM_EFFECT INT_VAR header = 3 opcode = 326 target = 1 parameter1 = %kit_ids% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = EVAL ~%learn_res%~ END
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shamb.itm~) BEGIN
+ COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shamb.itm~ ~override~		//	learn spells .itm
+  SAY NAME1 @49911
+  SAY NAME2 @49911
+  SAY UNIDENTIFIED_DESC @49912
+  SAY IDENTIFIED_DESC @49912
+  LPF ALTER_ITEM_HEADER INT_VAR header = 1 target = 7 speed = 0 STR_VAR icon = ~d5nshdn~ END
+  LPF ALTER_ITEM_HEADER INT_VAR header = 2 target = 7 speed = 0 STR_VAR icon = ~d5nshdi~ END
+  LPF ADD_ITEM_EFFECT INT_VAR header = 2 insert_point = 0 opcode = 318 target = 1 parameter1 = 15 parameter2 = 105 timing = 0 duration = 0 STR_VAR resource = EVAL ~%SOURCE_RES%~ END
+  LPF ALTER_ITEM_HEADER INT_VAR header = 3 target = 7 speed = 0 STR_VAR icon = ~spcl919b~ END
+  LPF DELETE_EFFECT INT_VAR silent = 1 match_opcode = 146 END
+  LPF ADD_ITEM_EFFECT INT_VAR header = 3 opcode = 326 target = 1 parameter1 = %kit_ids% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = EVAL ~%learn_res%~ END
+END
+
+OUTER_INNER_PATCH ~1~ BEGIN
+  WRITE_BYTE 0 0x09
+  READ_ASCII 0 tab (1)  // 0x09, tab
+  WRITE_BYTE 0 0x0d
+  READ_ASCII 0 mnl (1)  // 0x0d, Mac
+END
+LAF ~ADD_ITEM_TOOLTIPS~ STR_VAR item = ~d5shamb~ tooltips = ~@49921 @49924 @49911~ END
+
+END	//	end item function
+
+
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
@@ -2307,7 +2451,10 @@ END
 	sphere_list		= ~vanilla_shaman_spheres~
  END
 
- LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmbb~ learn_res = ~d5shmbz~ END
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmbb~ learn_res = ~d5shmbz~ END
+	LAF multiclass_shaman_item STR_VAR kit_clab = ~d5shmbb~ learn_res = ~d5shmbz~ END
+ END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmbb~ END
@@ -2458,7 +2605,10 @@ END
 	sphere_list		= ~vanilla_shaman_spheres~
  END
 
- LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmrn~ learn_res = ~d5shrnz~ END
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmrn~ learn_res = ~d5shrnz~ END
+	LAF multiclass_shaman_item STR_VAR kit_clab = ~d5shmrn~ learn_res = ~d5shrnz~ END
+ END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmrn~ END
@@ -2612,7 +2762,10 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5tshdi.spl~
 	sphere_list		= ~vanilla_shaman_spheres~
   END
 
- LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmth~ learn_res = ~d5shthz~ END
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmth~ learn_res = ~d5shthz~ END
+	LAF multiclass_shaman_item STR_VAR kit_clab = ~d5shmth~ learn_res = ~d5shthz~ END
+ END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmth~ END
@@ -2621,8 +2774,6 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5tshdi.spl~
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
 	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5shmth~ END
  END
-
- LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmth~ learn_res = ~d5shthz~ END
 
  LAF qd_multiclass
 	STR_VAR
@@ -2761,8 +2912,11 @@ END
 	sphere_list		= ~vanilla_shaman_spheres~
   END
 
- LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmma~ learn_res = ~d5shmaz~ END
-
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmma~ learn_res = ~d5shmaz~ END
+	LAF multiclass_shaman_item STR_VAR kit_clab = ~d5shmma~ learn_res = ~d5shmaz~ END
+ END
+ 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmma~ END
  END
@@ -2915,7 +3069,10 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5tshdi.spl~
 	sphere_list		= ~vanilla_shaman_spheres~
   END
 
- LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmnk~ learn_res = ~d5shmkz~ END
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+	LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmnk~ learn_res = ~d5shmkz~ END
+	LAF multiclass_shaman_item STR_VAR kit_clab = ~d5shmnk~ learn_res = ~d5shmkz~ END
+ END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
 	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5shmnk~ END
@@ -2976,7 +3133,7 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
-// Deprecated - already! They just use the FnP_Spontaneous function now, like everyone else
+// use this if no sphere system; if spheres, use regular fnp_spontaneous
 
 DEFINE_ACTION_FUNCTION multiclass_shaman_system BEGIN
 
@@ -3298,13 +3455,13 @@ SPLRES
 
 COPY ~d5/d5shclon.2da~ ~override/d5shclon.2da~ 
 
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shlist.2da~) BEGIN
-<<<<<<<<  d5/d5shlist.2da
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5msham.2da~) BEGIN
+<<<<<<<<  d5/d5msham.2da
 2DA      V1.0
 0
 				SHAMAN
 >>>>>>>>
- COPY ~d5/d5shlist.2da~ ~override/d5shlist.2da~
+ COPY ~d5/d5msham.2da~ ~override/d5msham.2da~
 
  COPY_EXISTING_REGEXP GLOB ~^SPPR[1-7]\(0[1-9]\|[1-4][0-9]\|50\)\.spl$~ ~override~
   READ_SHORT 0x1c spell_type
@@ -3313,8 +3470,8 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shlist.2da~) BEGIN
 	LPF NAME_NUM_OF_SPELL_RES STR_VAR spell_res = EVAL ~%SOURCE_RES%~ RET spell_name END
 	PATCH_IF (FILE_CONTAINS_EVALUATED (~spell.ids~ ~[ %TAB%]%spell_name%[ %TAB%%LNL%%MNL%%WNL%]~)) && !(FILE_CONTAINS_EVALUATED (~hidespl.2da~ ~%SOURCE_RES%~)) BEGIN
 	  INNER_ACTION BEGIN
-		APPEND ~d5shlist.2da~ ~%SOURCE_RES%	: %spell_name%~
-//		APPEND ~d5shlist.2da~ ~%SOURCE_RES%	1~
+//		APPEND ~d5msham.2da~ ~%SOURCE_RES%	: %spell_name%~
+		APPEND ~d5msham.2da~ ~Shaman	%SOURCE_RES%	3~
 	  END
 	END
   END
@@ -3327,12 +3484,12 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shlist.2da~) BEGIN
 	name = RESOLVE_STR_REF (~Spell Selection~)
 	tip = RESOLVE_STR_REF (~Spell Selection~)
 	desc = RESOLVE_STR_REF (~This ability allows you to learn new spells~)
-	class = 2
-	maxlevel = 7
-	column = 1
+//	class = 2
+//	maxlevel = 7
+//	column = 1
   STR_VAR 
 	spelltable = ~d5_shmkn~
-	spelllist = ~d5shlist~
+	spelllist = ~d5msham~
 	resref = ~d5msham~
 	icon = ~spcl919b~
 	title = ~Spell Selection~
@@ -3341,14 +3498,16 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shlist.2da~) BEGIN
  END
 END
 
+COPY_EXISTING ~d5msham.2da~ ~override/d5mshamX.2da~
+
 OUTER_SET sham_spell_ind = 1
 
-COPY_EXISTING ~d5shlist.2da~ ~override~
+COPY_EXISTING ~d5msham.2da~ ~override~
   COUNT_2DA_COLS cols
   READ_2DA_ENTRIES_NOW ~r2en_shlist~ cols
   FOR (row = 0; row < r2en_shlist; ++row) BEGIN
-	READ_2DA_ENTRY_FORMER ~r2en_shlist~ row 0 lstspl
-	READ_2DA_ENTRY_FORMER ~r2en_shlist~ row 1 bool
+	READ_2DA_ENTRY_FORMER ~r2en_shlist~ row 1 lstspl
+//	READ_2DA_ENTRY_FORMER ~r2en_shlist~ row 2 bool
 	PATCH_IF (FILE_EXISTS_IN_GAME ~%lstspl%.spl~) BEGIN
 	  INNER_ACTION BEGIN
 		COPY_EXISTING ~%lstspl%.spl~ ~override~
@@ -3371,7 +3530,7 @@ COPY_EXISTING ~d5shlist.2da~ ~override~
 				TEXT_SPRINT spell_to_cast ~%the_spell%~
 			  END
 			  TEXT_SPRINT 206_spell ~d5c6%sham_spell_ind%~
-			  TEXT_SPRINT learn_spell ~d5cx%sham_spell_ind%~
+			  TEXT_SPRINT learn_spell ~%the_spell%H~
 			  TEXT_SPRINT spell_eff ~D5CV%sham_spell_ind%~
 			  TEXT_SPRINT innate_spell ~d5c4%sham_spell_ind%~
 			  PATCH_IF !(FILE_CONTAINS_EVALUATED (~d5shclon.2da~ ~%spell_to_cast%~)) BEGIN
@@ -3520,6 +3679,7 @@ COPY_EXISTING ~d5shclon.2da~ ~override~
 			LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 9 STR_VAR resource = EVAL ~%spl_eff%~ END
 			LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 9 STR_VAR resource = EVAL ~%spl_eff%~ END
 			LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 9 STR_VAR resource = EVAL ~%spl_eff%~ END
+/*
 		COPY_EXISTING ~%book_spl%h.spl~ ~override~
 			LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = barb_shaman_code parameter2 = %kit_is_row% timing = 1 STR_VAR resource = EVAL ~%learn_spl%~ END
 			LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = ranger_shaman_code parameter2 = %kit_is_row% timing = 1 STR_VAR resource = EVAL ~%learn_spl%~ END
@@ -3527,6 +3687,7 @@ COPY_EXISTING ~d5shclon.2da~ ~override~
 			LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = shaman_mage_code parameter2 = %kit_is_row% timing = 1 STR_VAR resource = EVAL ~%learn_spl%~ END
 			LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = shaman_monk_code parameter2 = %kit_is_row% timing = 1 STR_VAR resource = EVAL ~%learn_spl%~ END
 		IF_EXISTS
+*/
 //	  END
 	END
   END
