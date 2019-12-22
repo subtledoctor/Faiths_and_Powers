@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.2~
+VERSION ~0.79.3~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -805,6 +805,16 @@ REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) @8
 FORBID_COMPONENT ~faiths_and_powers.tp2~ ~24~ @8
 
+
+//check sphere system_______________________________________________________________
+//
+ACTION_IF (FILE_EXISTS_IN_GAME ~clabpr01.2da~) && (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
+ INCLUDE ~override/fnp_sphere_list.tpa~
+  LAM d5_define_sphere_names
+  LAM d5_define_sphere_spells
+  LAM d5_deity_kit_sphere_lists
+END
+//__________________________________________________________________________________
 
 //read in kit functions_____________________________________________________________
 //
