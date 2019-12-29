@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.3~
+VERSION ~0.79.4~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -530,6 +530,8 @@ ACTION_IF (%d5_shadow_mystic% = 1) BEGIN
 END
 
 LAF remove_sc_menu_kits STR_VAR class = ~D~ END
+
+LAF clear_druid_clab END
 
 
 //__________________________________________________________________________________

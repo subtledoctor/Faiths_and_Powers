@@ -224,6 +224,23 @@ COPY_EXISTING ~mxsplprs.2da~ ~override/mxspldru.2da~
 
 END // end function
 
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+
+DEFINE_ACTION_FUNCTION clear_druid_clab BEGIN
+
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_no_shapeshift.d5~) BEGIN
+	COPY_EXISTING ~clabdr01.2da~ ~override~
+	  REMOVE_2DA_ROW 1 39
+	  REMOVE_2DA_ROW 1 39
+	  REMOVE_2DA_ROW 1 39
+	IF_EXISTS BUT_ONLY
+	COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_no_shapeshift.d5~
+  END
+  
+END
+
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
