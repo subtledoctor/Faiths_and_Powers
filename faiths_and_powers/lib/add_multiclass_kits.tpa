@@ -1423,6 +1423,7 @@ COPY_EXISTING ~crippstr.2da~ ~override~
 BUT_ONLY
 
 ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
+ ACTION_TRY
   OUTER_SPRINT sc_kit ~%ind_1%~  
   LAF GET_KIT_EX
    STR_VAR
@@ -3062,6 +3063,10 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
    IF_EXISTS BUT_ONLY
   END
 */
+ WITH
+  DEFAULT
+    PRINT ~kit skipped~
+ END
 END
 
 /*
