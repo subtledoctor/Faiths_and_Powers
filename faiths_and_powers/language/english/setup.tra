@@ -391,9 +391,7 @@ Advantages:
 - Luckriders are innately lucky, receiving the effects of the Luck spell permanently.
 - May cast an area-of-effect "Tymora's Luck" spell innately once per day, and once more for each 5 levels of experience gained.
 
-TYMORA'S LUCK:
-
-The allies of this spellcaster gain extraordinary luck for the next 1 turn, receiving a +1 bonus to their saving throws, attack rolls, and minimum damage/healing rolls as well as +5% to all thieving skills. Furthermore, damage dice for all effects outside a weapon's base damage is reduced by 1. Finally, spells that offer saving throws to enemies are more likely to be effective: a spell that usually offers a saving throw with no penalty will instead offer a saving throw with a -2 penalty.
+TYMORA'S LUCK:  The allies of this spellcaster gain extraordinary luck for the next 1 turn, receiving a +1 bonus to their saving throws, attack rolls, and minimum damage/healing rolls as well as +5% to all thieving skills. Furthermore, damage dice for all effects outside a weapon's base damage is reduced by 1. Finally, spells that offer saving throws to enemies are more likely to be effective: a spell that usually offers a saving throw with no penalty will instead offer a saving throw with a -2 penalty.
 
 Restrictions:
 - Alignment: may not Lawful or Evil.
@@ -413,6 +411,7 @@ The allies of this spellcaster gain extraordinary luck for the next 1 turn, rece
 @20801 = ~cleric of helm~
 @20802 = ~Watcher of Helm~
 @20803 = ~WATCHER OF HELM: Like their deity, Watchers of Helm are stern, dedicated, and loyal, perhaps to a fault.  Helm teaches that the right path is not always obvious, but the surest way to the right path is through the execution of duty.  As such, watchers of helm strive to do what they must despite the consequences, to themselves or even to others.  While othes may suggest that this supposed 'dedication' is nothing more than a fetish, the watcher has no time for such nonsense. They do not have the idle time to question; it is their duty to be ever alert for possible threats to cosmic order.   
+
 Advantages:
 - Watchers automatically gain a proficiency point in bastard , Helm's favored weapon.  Fighter clerics do not get this bonus, but they are able to gain mastery with the bastard sword.
 - Heightened Awareness: +1 bonus to AC and +2 bonus to save vs breath
@@ -462,10 +461,11 @@ Restrictions:
 Advantages:
 - Battleguards can be proficient with any weapon
 - Battleguards gain a +1 bonus to damage with any melee weapon.
-- Incite Rage: Battleguards can incite a berserker rage beginning at level 5, and again at levels 10, 15 and 20.  This ability is like the berserkers enrage, except that <PRO_HESHE> can incite this rage in <PRO_HIMHER>self or in others.
+- Incite Rage: Battleguards can incite a berserker rage beginning at level 5, and again at levels 10, 15 and 20.  
 
-Restrictions:
-- Alignment: No alignment restrictions.
+INCITE RAGE: This ability is like the berserkers enrage, except that <PRO_HESHE> can incite this rage in <PRO_HIMHER>self or in others. While enraged, the character gains a bonus of +2 to <PRO_HISHER> attack and damage rolls as well as to <PRO_HISHER> Armor Class, and becomes immune to charm, confusion, fear, feeblemind, hold, imprisonment, level drain, maze, stun, and sleep. The character also gains 15 temporary Hit Points, which are taken away at the end of the berserk spree (possibly knocking the character unconscious).
+
+After the effects end, the character becomes winded, suffering a -2 penalty to Armor Class, to-hit rolls, and damage rolls.
 ~
 @21004 = ~Incite Rage~
 @21005 = ~~
@@ -479,10 +479,12 @@ After the effects end, the character becomes winded, suffering a -2 penalty to A
 //
 @21201  = ~cleric of leira~
 @21202  = ~Mistwalker of Leira~
-@21203  = ~MISTWALKER OF LEIRA: Leira is the goddess of deception and illusion. She was supposedly slain under mysterious circumstances during the Avatar crisis, but at least one sect of her worshippers, the Mistwalkers, continue to receive divine power. Lies are their currency, illusion is their tool.
- 
+@21203  = ~MISTWALKER OF LEIRA: Leira is the goddess of deception and illusion. She was supposedly slain under mysterious circumstances during the Avatar crisis, but at least one sect of her worshipers, the Mistwalkers, continue to receive divine power. Lies are their currency, illusion is their tool.  
+
 Advantages:
-- May use the "Leira's Double" ability once every 5 rounds. Often used in emergencies, this causes an illusionary double of the cleric to spring into existence. If the cleric is being attacked, the double will absorb the first blow that lands, and disappear. At 6th level two doubles are created, and at 12th level one of the two doubles can actually wander away from the cleric to distract enemies. Mistwalkers may use this ability once per turn.
+- May use the "Leira's Double" ability once every 5 rounds. 
+
+LEIRA'S DOUBLE:  Often used in emergencies, this causes an illusory double of the cleric to spring into existence. If the cleric is being attacked, the double will absorb the first blow that lands, and disappear. At 6th level two doubles are created, and at 12th level one of the two doubles can actually wander away from the cleric to distract enemies. Mistwalkers may use this ability once per turn.
 
 Restrictions:
 - May not dual-class to fighter.
@@ -497,7 +499,7 @@ Restrictions:
 //
 @21901  = ~cleric of loviatar~
 @21902  = ~Paingiver of Loviatar~
-@21903  = ~PAINGIVER OF LOVIATAR: Known as The Maiden of Pain and The Willing Whip, loviatar is the evil goddess of agony. She is often seen as a cold-hearted bully, calculating and despotic; she revels in inflicting physical and psychological suffering. Her priests, known simply as "Paingivers" find freedom and power in such pain, and they seek to spread that gospel to others... regardless whether their victims are actually seeking such enlightenment.
+@21903  = ~PAINGIVER OF LOVIATAR: Known as The Maiden of Pain and The Willing Whip, Loviatar is the evil goddess of agony. She is often seen as a cold-hearted bully, calculating and despotic; she revels in inflicting physical and psychological suffering. Her priests, known simply as "Paingivers" find freedom and power in such pain, and they seek to spread that gospel to others... regardless whether their victims are actually seeking such enlightenment.
 
 Advantages:
 - Can use the Pain Touch ability at will.
@@ -506,9 +508,7 @@ When the priest of Lovitar activates this ability, her mere touch creates waves 
 The penalties and damage occurs over an excruciating period of 10 rounds.
 Paingivers have have this touch indefinitely, but they can suppress it as needed.
 - At 3rd level, Paingivers can use Loviatar's Caress once per day.  <PRO_HESHE> can use this ability one more time at levels 6, 9, 12, 15 and 18.
-LOVIATAR'S CARESS:
-
-When the cleric uses this ability, <PRO_HISHER> hands become instruments of Lovitar for four rounds.  <PRO_HESHE> can strike with uncanny accuracy with <PRO_HISHER> hands (+10 to hit) and <PRO_HESHE> inflicts an additional +2 points of damage per level to a maximum of +20 points at 10th level.  This spell stacks with other unarmed attacks, such as the priest's pain touch.
+LOVIATAR'S CARESS:  When the cleric uses this ability, <PRO_HISHER> hands become instruments of Lovitar for four rounds.  <PRO_HESHE> can strike with uncanny accuracy with <PRO_HISHER> hands (+10 to hit) and <PRO_HESHE> inflicts an additional +2 points of damage per level to a maximum of +20 points at 10th level.  This spell stacks with other unarmed attacks, such as the priest's pain touch.
 
 Restrictions:
 - May not be Good.
@@ -535,13 +535,16 @@ When the cleric uses this ability, <PRO_HISHER> hands become instruments of Lovi
 //
 @22401 = ~cleric of talos~
 @22402 = ~Stormbringer of Talos~
-@22403 = ~STORMBRINGER OF TALOS: Stormbringers are clerics of Talos, the Destroyer, the Raging One, the Stormstar, the Storm Lord.  fluff text
+@22403 = ~STORMBRINGER OF TALOS: Talos is the evil god of storms, destruction, and rebellion. Clerics of the Stormlord warn that Talos must be appeased or he will rain destruction upon the land.
 
 Advantages:
 - Talos' Favor: Stormbringers are 50% resistant to electricity damage.
-- Can cast Storm Shield as a special ablity once per day.  The Stormbringer gains an additional use at levels 4, 8, 12, 16 and 20.
+- Can cast Storm Shield as a special ability once per day.  The Stormbringer gains an additional use at levels 4, 8, 12, 16 and 20.
+
 STORM SHIELD: This spell lasts 1 round per level of the caster. It protects the caster completely from lightning, fire, cold, and normal missiles.
-- Can cast Lightning Bolt as a special ability once per day at 9th level.  The stormbringer gains an additional use at levels 20 and 30.  The abilty functions as the wizard spell of the same name.
+
+- Can cast Lightning Bolt as a special ability once per day at 9th level.  The Stormbringer gains an additional use at levels 20 and 30.  The ability functions as the wizard spell of the same name.
+
 Restrictions:
 - Alignment: any evil or chaotic neutral
 ~
@@ -581,10 +584,11 @@ Restrictions:
 @22603 = ~WAVESERVANT OF UMBERLEE: Umberlee is a fickle goddess who claims the sea as her sole domain.  Like many evil gods, she is more often feared than revered, though there are notable exceptions.  Umberlee has something of an...affection for lost souls, and so she has been known to take them under her wing from time to time.  
 
 Advantages:
-- Mistress of the Waves: Unlike most clerics, waveservants have focus access in the elemental water sphere.
+
 - Can cast Smashing Wave as the cleric spell as a special ability once per day.  The Waveservant can use this ability an additional time per day at levels 4, 8, 12, 16 and 20.
-Disadvantages: 
+Disadvantages:
 - The Waveservant cannot turn undead.
+
 Restrictions:
 - Alignment: any evil or chaotic neutral
 ~
@@ -616,13 +620,14 @@ When this spell is cast, the caster is enabled to read the aura of a target crea
 //
 @31401  = ~priest of ilmater~
 @31402  = ~Painbearer of Ilmater~
-@31403  = ~PAINBEARER OF ILMATER:  Priests of Ilmater are often itinerant, traveling the land looking to assuage suffering wherever it may exist. Painbearers
+@31403  = ~PAINBEARER OF ILMATER:  Priests of Ilmater are often itinerant, traveling the land looking to assuage suffering wherever it may exist. Painbearers believe that there is a finite amount of pain in the world.  As such, they seek to take on as much of that pain as possible in order to spare the innocent.  They will also take up arms as needed, and even bring pain to those who would hurt others.
 
 Advantages:
 - Can cast remove fear at will.
 - +4 to saves against death
 - Painbearers gain a 20% resistance to cold and fire damage
 - At 3rd level, the priest of Ilmater can use Endurance of Ilmater once per day as a special ability. <PRO_HESHE> can use this ability an additional time at levels 7, 10, 13, 16 and 19.
+
 ENDURANCE OF ILMATER: When the priest casts this spell, <PRO_HESHE> doubles the hit points of any creature that <PRO_HESHE> touches (including <PRO_HIMHER>self). In addition, the recipient of the spell gains a +2 to all saves.  This ability lasts for 1 turn.
 
 Restrictions:
@@ -664,7 +669,7 @@ Restrictions:
 Advantages:
 - Heartwarders are especially resistant to the influence of mind altering magic.  They recieve a +2 bonus to their save vs. spell.
 - Heartwarders may charm person as a special ability once per day.  This ability is especially potent, and opponents suffer a -2 to their save.  Otherwise, this ability functions as the wizard spell of the same name.  The Heartwarder can use this ability an additional time per day at levels 3, 6, 9, 12, 15, 18 and 20.  
-- Heartwarders may cast emotion: Hope as a special ability once per day at level 5.  The heartwarder can use this ability an additional time at levels 10, 15 and 20.  This spell functions as the wizard spell of the same name.  
+- Heartwarders may cast emotion: Hope as a special ability once per day at level 5.  The heartwarder can use this ability an additional time at levels 10, 15 and 20.  This spell functions as the wizard spell of the same name.
 - At 11th level, the Heartwarder gains a permenant +1 bonus to charisma.
 
 Restrictions:
@@ -682,11 +687,11 @@ If the caster harms, or attempts to harm, the charmed person by some overt actio
 //
 @32201 = ~priest of tempus~
 @32202 = ~Broken Blade of Tempus~
-@32203 = ~BROKEN BLADE OF TEMPUS:  Broken Blades honor Tempus by treating those wounded in battle.  Unlike Battleguards and Glorybloods, who are most frequently found on the front lines, it is more common to find a Broken Blades at the rear, treating and protecting the wounded.  Broken Blades are particulary millitant for priests, often weilding battle axes, and will be found defending any of Tempus's holy sites.
+@32203 = ~BROKEN BLADE OF TEMPUS:  Broken Blades honor Tempus by treating those wounded in battle.  Unlike Battleguards and Glorybloods, who are most frequently found on the front lines, it is more common to find a Broken Blades at the rear, treating and protecting the wounded.  Broken Blades are particularly militant for priests, often wielding battle axes, and will be found defending any of Tempus's holy sites. 
 
 Advantages:
 - Broken Blades automatically gain proficiency with the axe.  
-- Can cast Chant as a spell like ability one time per day but with a casting time of 1 at first level.  The Battleguard gains an additional use every 5 levels.
+- Can cast Chant as a spell like ability one time per day but with a casting time of 1 at first level.  The Broken BLade gains an additional use every 5 levels.
 
 Restrictions:
 - Alignment: No alignment restrictions
@@ -798,7 +803,7 @@ Restrictions:
 //
 @33201 = ~priest of beshaba~
 @33202 = ~Doommaster of Beshaba~
-@33203 = ~DOOM<PRO_MASTERMISTRESS> OF BESHABA:  Beshaba, the maid of misfortune, is the jealous goddess of ill-fate.  Not worshiped so much as feared, she demands tribute, or at least lip service, else she is likey to doom those that offend her to a life of failure.  Her priests work to ensure that she her ego is adequately sated.
+@33203 = ~DOOMMASTER OF BESHABA:  Beshaba, the maid of misfortune, is the jealous goddess of ill-fate.  Not worshiped so much as feared, she demands tribute, or at least lip service, else she is likey to doom those that offend her to a life of failure.  Her priests work to ensure that she her ego is adequately sated.
 
 Advantages:
 -  Doommasters can cast a special version of the doom spell at will.  It can be used once, and only once, on a given opponent.
@@ -824,7 +829,10 @@ This abilty curses the target, causing them a penalty of -10 penalty to THAC0, s
 @33403 = ~TALON OF MALAR: Malar, god of the savage wild, is not a popular god with many devoted followers. Like Umberlee, he is invoked usually to prevent his intercession (usually heralded by wild beasts) as opposed to beseeching it. Malarite clergy members preach the joys and the bountiful yields of the hunt and work to thwart the expansion of farms and settlements, so as to preserve as much wilderness as possible.
 
 Advantages:
-- Talons may cast "Claws of malar" as an innate ability, at will. 20% of all attacks with the Claws of Malar cause infection upon a failed save vs. Death, weakening the target and causing a 10% chance of spell failure.
+- Talons may cast Claws of Malar as an innate ability, at will. 
+
+CLAWS OF MALAR:  When this ability is active, 20% of all attacks with the cause infection upon a failed save vs. Death, weakening the target and causing a 10% chance of spell failure.  
+  
 - Talons may use the Tracking ability at will.
 - Whenever a Talon casts an Animal Summoning spell, the creatures so summoned automatically benefit from application of the Animal Growth spell (2-point bonus to hit, damage, armor class and saving throws, and a 50% increase in hit points).
 - At 7th level, Talons may cast the spell Blood Rage once per day as an innate ability.
@@ -843,8 +851,8 @@ With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that l
 // ... hammer of moradin 
 //
 @37101  = ~cleric of moradin~
-@37102  = ~Hammer of Moradin~
-@37103  = ~HAMMER OF MORADIN:
+@37102  = ~Sonnlinor of Moradin~
+@37103  = ~SONNLINOR OF MORADIN: Sonnlinors of Moradin seek to emulate the all-father in word and deed, seeking to become masters of both battle and craft.  Sonnlinors can be found wherever dwarves can be found in any substantial numbers.  Like their deity, they seek to instill stern, but benevolent discipline in their flock and promote harmony with other races, where possible.
 
 Advantages: 
 - Priests of Moradin are unparalleled in the use and maintenance of war hammers. They have a +2 bonus to hit when attacking with a war hammer, and any war hammer they wield is considered to be of +3 enchantment for purposes of what enemies it can strike.
@@ -894,7 +902,6 @@ Advantages:
 - From 1st level, Volamtar can innately use the Tracking ability, similar to a Rangers. They can also observe nearby paths and lands, an effect similar to the Clairvoyance spell.
 - From 3rd level, Volamtar can innately cast Free Action once per day.
 - From 5th Level, Volamtar may innately cast Haste once per day.
-- From 9th level, ...
 
 Restrictions:
 - Alignment: may not be Evil.
@@ -1023,10 +1030,7 @@ When necessary, a Defender can draw upon a great well of strength for brief peri
 @39214  = ~Swiftness of Action
 
 When circumstances demand it, a Defender can move at incredible speeds for brief periods of time. Using this ability, <PRO_HESHE> resembles nothing so much as a body imbued with a Haste spell; <PRO_HESHE> can run twice her normal distance in the same amount of time and receives an additional attack in each round of combat. Such a pace cannot be maintained indefinitely, however; the effect lasts for 3 rounds + 1 round per level.~
-@38204  = ~CLOAKED ONE OF BARAVAR: ~
 
-@38211  = ~Baravar's Double~
-@38212  = ~Baravar's Double: Often used in emergencies, this causes an illusionary double of the cleric to spring into existence. If the cleric is being attacked, the double will absorb the first blow that lands, and disappear. At 6th level two doubles are created, and at 12th level one of the two doubles can actually wander away from the cleric to distract enemies. Hoodwinkers may use this ability once per turn.~
 //
 // ... incarnate of mystra 
 //
@@ -2156,12 +2160,12 @@ Restrictions:
 @80111  = ~UNDEAD HUNTER OF TYR: This holy avenger has honed <PRO_HISHER> abilities toward the destruction of the undead and other unnatural creatures and is immune to many of their most devastating abilities.
 
 Abilities: 
-Â– +3 bonus to hit and damage rolls against undead creatures.
-Â– Immune to hold and level drain.
+– +3 bonus to hit and damage rolls against undead creatures.
+– Immune to hold and level drain.
 
 Restrictions:
-Â– May not use Lay On Hands ability.
-Â– May not use Cure Disease ability.
+– May not use Lay On Hands ability.
+– May not use Cure Disease ability.
 ~
 @80201  = ~champion of kelemvor~
 @80202  = ~Knight of Eternal Order~
@@ -2170,19 +2174,26 @@ Restrictions:
 Thus, Kelemvor created the Knights of Eternal Order.
 
 Advantages:
-- Disrupting Smite: As smite, but does double damage to undead.  In addition, weaker undead can be destroyed outright if they fail a save vs. death, much like a mace of disruption.
 - Knights of Eternal Order are immune to hold and level drain effects.
 - Knights of Eternal Order turn undead as a priest of their champion level once they reach level 3.
+- May use the final rest ability at 1st level, level 4, and every four levels after that. 
+
+FINAL REST
+When the Champion uses this ability, <PRO_HISHER> melee attacks inflict an additional 1d6 points of magic damage, (+1d6 points of damage at levels 4, 10 and 18) levels over the next 2 rounds.  This ability lasts an additional round at level 2, 8 and 14.
+
+Additionally, undead creatures take double damage, and undead with fewer than 15 hit die must save vs. death or be instantly destroyed.  This save receives a -1 penalty at levels 4, 10 and 18
+
+An opponent can only be affected by Final Rest once per round.
 
 Restrictions:
 - Alignment: Cannot be Neutral Evil or Chaotic Evil.
 ~
-@80204  = ~Disrupting Smite~
-@80205  = ~Disrupting Smite
+@80204  = ~Final Rest~
+@80205  = ~Final Rest
 
 When the Champion uses this ability, <PRO_HISHER> melee attacks inflict an additional 1d6 points of magic damage, (+1d6 points of damage at levels 4, 10 and 18) levels over the next 2 rounds.  This ability lasts an additional round at level 2, 8 and 14.
 
-Additionally, undead creatures take double damage, and undead with fewer than 15 hit die must save vs. death or be instantly destroyed.  This save recieves a -1 penalty at levels 4, 10 and 18
+Additionally, undead creatures take double damage, and undead with fewer than 15 hit die must save vs. death or be instantly destroyed.  This save receives a -1 penalty at levels 4, 10 and 18
 
 An opponent can only be affected by Disrupting Smite once per round.~
 
@@ -2228,27 +2239,39 @@ An opponent can only be affected by Smite Foe once per round.~
 @80403  = ~KNIGHT OF THE BLACK GAUNTLET: Bane's knights are quintessential black knights, a twisted mockery of the shining example of what a knight should be.  They spread fear in the name of their god, and silence anybody that suggests that Bane is dead.
 
 Advantages:
-- Smite of Dread: The smite of a Black Gauntlet instills fear in any opponent for one round if they do not save vs. death.
-- Knights of the Black Gauntlet are completely fearless.  Or rather, they fear only Bane's wrath.  As such, they are not affected either by magical fear nor moral failure.
+- Knights of the Black Gauntlet are completely fearless.  As such, they are not affected either by magical fear nor moral failure.
+- May use the tyrant's rule ability at 1st level, level 4, and every four levels after that.
 
+TYRANT'S RULE    
+When the Champion uses this ability, <PRO_HISHER> melee attacks inflict an additional 1d6 points of magic damage, (+1d6 points of damage at levels 4, 10 and 18) levels over the next 2 rounds.  This ability lasts an additional round at level 2, 8 and 14.
+
+Additionally, creatures are struck with fear for 1 round if they do not save vs. death.  This save receives a -1 penalty at levels 4, 10 and 18
+
+An opponent can only be affected by tyrant's rule once per round.
 Restrictions:
 - Alignment: can be any Evil or Lawful Neutral
 ~
-@80404  = ~Smite of Dread~
-@80405  = ~Smite of Dread
+@80404  = ~Tyrant's Rule~
+@80405  = ~Tyrant's Rule
 
 When the Champion uses this ability, <PRO_HISHER> melee attacks inflict an additional 1d6 points of magic damage, (+1d6 points of damage at levels 4, 10 and 18) levels over the next 2 rounds.  This ability lasts an additional round at level 2, 8 and 14.
 
-Additionally, creatures are struck with fear for 1 round if they do not save vs. death.  This save recieves a -1 penalty at levels 4, 10 and 18
+Additionally, creatures are struck with fear for 1 round if they do not save vs. death.  This save receives a -1 penalty at levels 4, 10 and 18
 
-An opponent can only be affected by smite of dread once per round.~
+An opponent can only be affected by tyrant's rule once per round.~
 
 @80406  = ~KNIGHT OF THE BLACK GAUNTLET: Bane's knights are quintessential black knights, a twisted mockery of the shining example of what a knight should be.  They spread fear in the name of their god, and silence anybody that dares to oppose the Dread Lord.
 
 Advantages:
-- Smite of Dread: The smite of a Black Gauntlet instills fear in any opponent for one round if they do not save vs. death.
-- Knights of the Black Gauntlet are completely fearless.  Or rather, they fear only Bane's wrath.  As such, they are not affected either by magical fear nor moral failure.
+- Knights of the Black Gauntlet are completely fearless.  As such, they are not affected either by magical fear nor moral failure.
+- May use the tyrant's rule ability at 1st level, level 4, and every four levels after that.
 
+TYRANT'S RULE    
+When the Champion uses this ability, <PRO_HISHER> melee attacks inflict an additional 1d6 points of magic damage, (+1d6 points of damage at levels 4, 10 and 18) levels over the next 2 rounds.  This ability lasts an additional round at level 2, 8 and 14.
+
+Additionally, creatures are struck with fear for 1 round if they do not save vs. death.  This save receives a -1 penalty at levels 4, 10 and 18
+
+An opponent can only be affected by tyrant's rule once per round.
 Restrictions:
 - Alignment: can be any Evil
 ~
@@ -2348,7 +2371,14 @@ The hammer is enchanted as a +4 weapon and deals 1d6 points of blunt damage as w
 
 Advantages:
 - Immune to Hold and Charm spells
-- Wizard's Bane: The Inquisitor's smite does double damage to wizards, and any wizards hit by the Inquisitor's smite are affected by an dispel magic effect of a caster level equal to twice the Inquisitor's class level.
+- May use the wizard bane ability at 1st level, level 4, and every four levels after that. 
+
+WIZARD'S BANE  
+When the Champion uses this ability, <PRO_HISHER> melee attacks inflict an additional 1d6 points of magic damage, (+1d6 points of damage at levels 4, 10 and 18) levels over the next 2 rounds.  This ability lasts an additional round at level 2, 8 and 14.
+
+In addition, arcane spellcasters suffer double damage, and are affected by a double strength dispel magic.
+
+An opponent can only be affected by Wizard's Bane once per round. 
 
 Disadvantages:
 - Inquisitors do not turn undead
@@ -2877,7 +2907,7 @@ Advantages:
 - May use a special vocalization that can deafen anyone nearby and impose a 40% chance of spell failure upon a failed a saving throw vs. Petrification.
 - Can cast Minor Spell Deflection and Breach as innate abilities once per day at 1st level, and one additional time each five levels after that.
 
-Restrictions:
+Disadvantages:
 - Suffers a -1 penalty to Strength and Constitution.
 ~
 @95311  = ~Vocal Disruption~
@@ -2895,10 +2925,12 @@ Advantages:
 - May Charm animals once per day per five levels.
 - Gains 5% physical damage resistance at 11th level, and again at 15th and 19th levels.
 
-Restrictions:
+Disadvantages*:
 - -2 penalty to Charisma.
 - May not wear armor heavier than studded leather or hide armor
-- May not dual-class.~
+
+**Restrictions**:
+- May not dual-class~
 //
 @95501  = ~elven archer~
 @95502  = ~Elven Archer~
@@ -2915,10 +2947,15 @@ CALLED SHOT: All successful ranged attacks within the next 10 seconds have the f
  12th level: -1 penalty to the target's Strength score.
  16th level: +2 bonus to damage roll.
 
-Restrictions:
+Disadvantages:
 - May only wear leather, studded leather, and hide armor.
 - May only become Proficient (one slot) with melee weapons.
-- May not use the Charm Animal ability.~
+- May not use the Charm Animal ability.
+
+Restrictions:
+- Race: Only Elves can become Elven Archers~
+
+
 //
 @95601  = ~halfling slinger~
 @95602  = ~Halfling Slinger~
@@ -2935,10 +2972,14 @@ CALLED SHOT: All successful ranged attacks within the next 10 seconds have the f
  12th level: -1 penalty to the target's Strength score.
  16th level: +2 bonus to damage roll.
 
-Restrictions:
+Disadvantages
 - May only wear leather, studded leather, and hide armor.
 - May only become Proficient (one slot) with melee weapons.
-- May not use the Charm Animal ability.~
+- May not use the Charm Animal ability.
+
+Restrictions:
+- Race: Only halflings can be halfling slingers  
+~
 //
 
 
@@ -3625,18 +3666,6 @@ Saving Throw: Special
 
 Shout grants the priest tremendous vocal powers, allowing <PRO_HIMHER> to emit an earsplitting roar from <PRO_HISHER> mouth in a cone-shaped area of effect. Any creature within this area is deafened for 9 rounds and suffers 4d6 points of magic damage. A successful Save vs. Spell negates the deafness and reduces the damage by half.~
 
-@50406  = ~Shout
-(Invocation)
-
-Level: 4
-Sphere: Destruction
-Range: 0
-Duration: Instant
-Casting Time: 1
-Area of Effect: 35-ft. cone with 15-deg. arc
-Saving Throw: Special
-
-Shout grants the priest tremendous vocal powers, allowing <PRO_HIMHER> to emit an earsplitting roar from <PRO_HISHER> mouth in a cone-shaped area of effect. Any creature within this area is deafened for 9 rounds and suffers 4d6 points of magic damage. A successful Save vs. Spell negates the deafness and reduces the damage by half.~
 
 @50407  = ~Shout (Focus)
 (Invocation)
@@ -3856,7 +3885,7 @@ Area of Effect: The caster
 
 With this spell, the priest draws on the power of nature to transform <PRO_HIMHER>self into a terrible plant-like creature known as a Shambling Mound.
 
-<PRO_HISHER> body becomes incredibly resistant to damage.  <PRO_HEHER> AC is set at 0, and <PRO_HESHE> is 50% resistant to all physical damage.  <PRO_HESHE> also becomes completely immune to fire and electricity, and only suffers half damage from cold.  Additionally, <PRO_HESHE> regenerates 6 hit points per round.
+<PRO_HISHER> body becomes incredibly resistant to damage.  <PRO_HISHER> AC is set at 0, and <PRO_HESHE> is 50% resistant to all physical damage.  <PRO_HESHE> also becomes completely immune to fire and electricity, and only suffers half damage from cold.  Additionally, <PRO_HESHE> regenerates 6 hit points per round.
 
 Additionally, <PRO_HESHE> is infused with the raw power of nature, gaining a strength of 20, and <PRO_HESHE> can make two unarmed attacks per round inflicting 2d8 (+8 from strength) damage, and those struck must make a save vs. breath or be entangled for two rounds.
 
@@ -3878,7 +3907,7 @@ Area of Effect: The caster
 
 With this spell, the priest draws on the power of nature to transform <PRO_HIMHER>self into a terrible plant-like creature known as a Shambling Mound.
 
-<PRO_HISHER> body becomes incredibly resistant to damage.  <PRO_HEHER> AC is set at 0, and <PRO_HESHE> is 50% resistant to all physical damage.  <PRO_HESHE> also becomes completely immune to fire and electricity, and only suffers half damage from cold.  Additionally, <PRO_HESHE> regenerates 6 hit points per round.
+<PRO_HISHER> body becomes incredibly resistant to damage.  <PRO_HISHER> AC is set at 0, and <PRO_HESHE> is 50% resistant to all physical damage.  <PRO_HESHE> also becomes completely immune to fire and electricity, and only suffers half damage from cold.  Additionally, <PRO_HESHE> regenerates 6 hit points per round.
 
 Additionally, <PRO_HESHE> is infused with the raw power of nature, gaining a strength of 20, and <PRO_HESHE> can make two unarmed attacks per round inflicting 2d8 (+8 from strength) damage, and those struck must make a save vs. breath or be entangled for two rounds.
 
