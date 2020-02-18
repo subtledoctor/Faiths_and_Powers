@@ -2994,7 +2994,7 @@ DEFINE_ACTION_MACRO vanilla_ranger_spheres BEGIN
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spkno#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5smkno#~ END
   IF_EXISTS BUT_ONLY
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabdr01_spheres BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY clabrn01_spheres BEGIN
 	Healing 		=> x
 	Necromantic		=> x
 	Creation	 	=> x

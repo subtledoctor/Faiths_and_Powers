@@ -153,8 +153,10 @@ END
 	class 			= ~cleric_mage~
  END
 
- ACTION_IF (cm_mystra_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (cm_mystra_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5cmmys~ learn_res = ~d5cmmyz~ END
+ END
  END
 
 //MULTICLASS KIT______________________________________________________________________
@@ -320,8 +322,10 @@ END
 	class 			= ~cleric_mage~
  END
 
- ACTION_IF (cm_azuth_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (cm_azuth_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5cmazu~ learn_res = ~d5cmazz~ END
+ END
  END
 
 //MULTICLASS KIT______________________________________________________________________
@@ -469,8 +473,10 @@ COPY ~faiths_and_powers/kits/multiclass/491_cr_mielikki/d5crmie.2da~ ~override~
 	class 			= ~ranger_cleric~
  END
 
- ACTION_IF (cr_mielikki_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (cr_mielikki_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5crmie~ learn_res = ~d5crmiz~ END
+ END
  END
 
 //MULTICLASS KIT______________________________________________________________________
@@ -622,8 +628,10 @@ COPY_EXISTING ~spwi402.spl~ ~override/d5crsh1.spl~
 	class 			= ~ranger_cleric~
  END
 
- ACTION_IF (cr_shaundakul_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (cr_shaundakul_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5crshn~ learn_res = ~d5crshz~ END
+ END
  END
 
 //MULTICLASS KIT______________________________________________________________________
@@ -786,8 +794,10 @@ COPY ~faiths_and_powers/kits/multiclass/469_mask/d5_mask3.cre~ ~override~
 	class 			= ~cleric_thief~
  END
 
- ACTION_IF (ct_mask_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (ct_mask_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5ctmas~ learn_res = ~d5ctmaz~ END
+ END
  END
 
 //MULTICLASS KIT______________________________________________________________________
@@ -1003,8 +1013,10 @@ BUT_ONLY
 	class 			= ~cleric_thief~
  END
 
- ACTION_IF (ct_brandobaris_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (ct_brandobaris_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5ctbra~ learn_res = ~d5ctbrz~ END
+ END
  END
 
 //MULTICLASS KIT_____________________________________________________________________
@@ -2813,12 +2825,14 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
   ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
 	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = EVAL ~%new_clab%~ END
   END
-  ACTION_IF (~%caster_type%~ STRING_EQUAL_CASE ~MYSTIC~) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+   ACTION_IF (~%caster_type%~ STRING_EQUAL_CASE ~MYSTIC~) OR (d5_spell_spontaneous > 0) BEGIN
 	COPY_EXISTING ~kitlist.2da~ ~override~
 	  COUNT_2DA_ROWS 10 rows
 	  READ_2DA_ENTRY (rows - 1) 0 10 kit_ind
 	BUT_ONLY
 	LAF fnp_spontaneous STR_VAR kit_clab = EVAL ~%new_clab%~ learn_res = EVAL ~d5mt%kit_ind%~ END
+   END
   END
 
 /*

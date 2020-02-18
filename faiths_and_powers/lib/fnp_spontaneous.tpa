@@ -9,6 +9,23 @@
 
 DEFINE_ACTION_FUNCTION fnp_spontaneous STR_VAR kit_clab = ~x~ learn_res = ~d5msham~ free_universal = ~yes~ BEGIN
 
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fpspt.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5fpspt.spl~
+//	LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+END
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fpsp2.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5fpsp2.spl~
+	LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~spcl919b~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 0 duration = 7 STR_VAR resource = ~d5fpsp2~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5fpsp2~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = ~d5fpsp2~ END
+  COPY ~faiths_and_powers/kits/misc/d5fpsp2.eff~ ~override~
+  COPY ~faiths_and_powers/kits/misc/d5fpsp2.cre~ ~override~
+  COMPILE ~faiths_and_powers/kits/misc/d5fpsp2.baf~
+  COMPILE ~faiths_and_powers/kits/misc/d5fpsp2.d~
+END
+
 // ***** the free_universal variable won't quite work yet if you set it to 'no'
 // in that case, need to add those spells to the kit's learnable list, and remove them from the spellbook
 
@@ -29,15 +46,17 @@ ACTION_IF !(IS_AN_INT %kit_class%) BEGIN
   OUTER_SET kit_class = 21
 END
 
-COPY_EXISTING ~d5_class.2da~ ~override~
-  COUNT_2DA_ROWS 4 rows
-  FOR (row = 0; row < rows; row += 1) BEGIN
-	READ_2DA_ENTRY row 0 4 kit
-	PATCH_IF (~%kit%~ STRING_EQUAL_CASE ~%kit_clab%~) BEGIN
-	  SET_2DA_ENTRY row 1 4 ~MYSTIC~
+ACTION_IF (d5_spell_spontaneous = 0) BEGIN
+  COPY_EXISTING ~d5_class.2da~ ~override~
+	COUNT_2DA_ROWS 4 rows
+	FOR (row = 0; row < rows; row += 1) BEGIN
+	  READ_2DA_ENTRY row 0 4 kit
+	  PATCH_IF (~%kit%~ STRING_EQUAL_CASE ~%kit_clab%~) BEGIN
+		SET_2DA_ENTRY row 1 4 ~MYSTIC~
+	  END
 	END
-  END
-BUT_ONLY
+  BUT_ONLY
+END
 
 ACTION_IF (VARIABLE_IS_SET %kit_ids%) BEGIN
   APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
@@ -383,19 +402,21 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
 	OUTER_SPRINT known_table ~d5_shmkn~
   END
 
-  LAF CREATE_SEQUENCER_MENU 
-   INT_VAR 
-	name = RESOLVE_STR_REF (@1000)
-	tip = RESOLVE_STR_REF (@1000)
-	desc = RESOLVE_STR_REF (@1001)
-   STR_VAR 
-	resref = EVAL ~%learn_res%~
-	spelltable = EVAL ~%known_table%~
-	spelllist = EVAL ~%learn_res%~
-	icon = ~spcl919b~
-	title = EVAL ~%seq_title%~
-	label = EVAL ~%seq_label%~
-	subspell = ~H~
+  ACTION_IF (VARIABLE_IS_SET %learn_res%) BEGIN
+   LAF CREATE_SEQUENCER_MENU 
+	INT_VAR 
+	  name = RESOLVE_STR_REF (@1000)
+	  tip = RESOLVE_STR_REF (@1000)
+	  desc = RESOLVE_STR_REF (@1001)
+	STR_VAR 
+	  resref = EVAL ~%learn_res%~
+	  spelltable = EVAL ~%known_table%~
+	  spelllist = EVAL ~%learn_res%~
+	  icon = ~spcl919b~
+	  title = EVAL ~%seq_title%~
+	  label = EVAL ~%seq_label%~
+	  subspell = ~H~
+   END
   END
 
   COPY_EXISTING ~%learn_res%.2da~ ~override/%learn_res%X.2da~
@@ -752,6 +773,10 @@ BUT_ONLY
 //
 APPEND ~d5sham.2da~ ~NO_SPLS     AP_D5SH206 ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
+COPY_EXISTING ~d5fpspt.spl~ ~override~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5sh206~ END
+IF_EXISTS BUT_ONLY
+
 /*
 ACTION_IF FILE_EXISTS_IN_GAME ~d5t0uni.spl~ BEGIN
   ACTION_PHP_EACH fnp_spont_unispls AS fnp_spl => spt_spl BEGIN
@@ -788,6 +813,24 @@ NOSLOTS     AP_D50CSLT  ****        ****        ****        ****        ****    
 NOSLOTS     AP_D50CSLT  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
 NOSLOTS     AP_D50CSLT  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
 ~
+
+COPY_EXISTING ~d5fpspt.spl~ ~override~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 62 target = 1 parameter1 = (0 - 1) parameter2 = 127 timing = 9 END
+IF_EXISTS BUT_ONLY
 
 //daily spell slot refresh____________________________________________________________
 //
@@ -890,6 +933,24 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
 
  APPEND ~d5sham.2da~ ~NO_SPELLS   AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL ~
 
+/* 
+// for spell-based spontaneous, apply this^^ to every cleric kit
+// ... starting at 2nd level
+// ... apply a 206 spell at 1st level (hopefully that works with high-level starts)
+// ... remove the 206 spell and apply d5xpall upon choosing to go spontaneous
+
+ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5xp206.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5xpall~ END
+
+ ACTION_IF (%kit_class% != 21) BEGIN
+  APPEND ~%kit_clab%.2da~ ~NO_SPELLS   AP_D5XP206  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL  AP_D5XPALL ~
+
+ COPY_EXISTING ~d5fpspt.spl~ ~override~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = ~d5xp206~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5xpall~ END
+ IF_EXISTS BUT_ONLY
+*/
+
 END
 
 //disable quickspell buttons and scroll learning______________________________________
@@ -903,6 +964,41 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5srcnq.spl~) BEGIN
 END
 
 APPEND ~d5sham.2da~ ~NO_QUICK    AP_D5SRCNQ  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+
+COPY_EXISTING ~d5fpspt.spl~ ~override~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 144 target = 1 parameter2 = 3 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 144 target = 1 parameter2 = 4 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 144 target = 1 parameter2 = 5 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 target = 1 parameter2 = 147 timing = 9 END
+IF_EXISTS BUT_ONLY
+
+COPY_EXISTING ~d5fnplst.2da~ ~override~
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  FOR (row = 0; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY row 1 cols major
+	READ_2DA_ENTRY row 2 cols minor
+	READ_2DA_ENTRY row 3 cols focus
+	READ_2DA_ENTRY row 4 cols sphe
+	PATCH_IF !(~%sphe%~ STRING_EQUAL_CASE ~universal~) BEGIN
+	  PATCH_IF !(~%major%~ STRING_EQUAL_CASE ~****~) BEGIN
+		TEXT_SPRINT $divine_spont_remove_spells(~%major%~) ~1~
+	  END
+	  PATCH_IF !(~%minor%~ STRING_EQUAL_CASE ~****~) BEGIN
+		TEXT_SPRINT $divine_spont_remove_spells(~%minor%~) ~1~
+	  END
+	  PATCH_IF !(~%focus%~ STRING_EQUAL_CASE ~****~) BEGIN
+		TEXT_SPRINT $divine_spont_remove_spells(~%focus%~) ~1~
+	  END
+	END
+  END
+IF_EXISTS BUT_ONLY
+  
+COPY_EXISTING ~d5fpspt.spl~ ~override~
+  PHP_EACH divine_spont_remove_spells AS rem_spl => ind BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = EVAL ~%rem_spl%~ END
+  END
+IF_EXISTS BUT_ONLY
 
 END	//	end if d5sham.2da doesn't exist
 
@@ -927,7 +1023,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
 	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5spmem~ END
 	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 4 duration = 1 STR_VAR resource = ~d5spm3m~ END
   END
-  ACTION_IF !(%kit_class% = 21) BEGIN
+  ACTION_IF !(%kit_class% = 21) && (d5_spell_spontaneous = 0) BEGIN
 	APPEND ~%kit_clab%.2da~ ~NO_SLEEP     AP_D5SPMXM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
   END
 END
@@ -935,11 +1031,10 @@ ACTION_IF (%kit_class% = 21) BEGIN
   APPEND ~%kit_clab%.2da~ ~SPL_REST     GA_D5SPM3M  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 END
 
-ACTION_IF /*(%kit_class% != 6) && (%kit_class% != 12) &&*/ (%kit_class% != 21) BEGIN
-  COPY_EXISTING ~%kit_clab%.2da~ ~override~
-	APPEND_FILE ~override/d5sham.2da~
-  IF_EXISTS
-END
+COPY_EXISTING ~d5fpspt.spl~ ~override~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = ~d5spm3m~ END
+IF_EXISTS BUT_ONLY
+
 
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5shmsp.itm~) BEGIN
  COPY_EXISTING ~d5shmsp.itm~ ~override~
@@ -1001,7 +1096,35 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~%learn_res%b.spl~) BEGIN
 //	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5shfre~ END // apply in sham clabs, only if no spheres (?)
 END
 
-APPEND ~%kit_clab%.2da~ ~LEARNSPLS   GA_D5SHNIT  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+COPY_EXISTING ~d5fpspt.spl~ ~override~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %kit_ids% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = EVAL ~%learn_res%b~ END
+	PATCH_IF (FILE_EXISTS_IN_GAME ~d5t0uni.spl~) && !(~%free_universal%~ STRING_EQUAL_CASE ~no~) BEGIN
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %kit_ids% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5t0uni~ END
+	END
+	PHP_EACH kit_focus_list AS sphr => foc BEGIN
+	  PATCH_IF (FILE_EXISTS_IN_GAME ~d5t0%sphr%.spl~) BEGIN
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %kit_ids% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = EVAL ~d5t0%sphr%~ END
+	  END
+	END
+IF_EXISTS BUT_ONLY
+
+ACTION_IF /*(%kit_class% != 6) && (%kit_class% != 12) &&*/ (%kit_class% != 21) BEGIN
+ ACTION_IF (d5_spell_spontaneous = 0) || (~%%~ STRING_EQUAL_CASE ~d5shmbb~) || (~%%~ STRING_EQUAL_CASE ~d5shmrn~) || (~%%~ STRING_EQUAL_CASE ~d5shmth~) || (~%%~ STRING_EQUAL_CASE ~d5shmma~) || (~%%~ STRING_EQUAL_CASE ~d5shmnk~) BEGIN
+  COPY_EXISTING ~%kit_clab%.2da~ ~override~
+	APPEND_FILE ~override/d5sham.2da~
+  IF_EXISTS
+ END
+ ACTION_IF (d5_spell_spontaneous > 0) BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%kit_clab%.2da~) && !(~%%~ STRING_EQUAL_CASE ~d5shmbb~) && !(~%%~ STRING_EQUAL_CASE ~d5shmrn~) && !(~%%~ STRING_EQUAL_CASE ~d5shmth~) && !(~%%~ STRING_EQUAL_CASE ~d5shmma~) && !(~%%~ STRING_EQUAL_CASE ~d5shmnk~) BEGIN
+	APPEND ~%kit_clab%.2da~ ~SPNT_SPLS    GA_D5FPSP2  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+  END
+ END
+END
+
+ACTION_IF (d5_spell_spontaneous = 0) BEGIN
+  APPEND ~%kit_clab%.2da~ ~LEARNSPLS   GA_D5SHNIT  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+END
+
 
 //MAKE +SPELL SLOT ITEMS WORK________________________________________________________
 //

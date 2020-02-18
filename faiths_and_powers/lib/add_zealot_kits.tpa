@@ -153,8 +153,10 @@ END
 	class 			= ~zealot~
  END
 
- ACTION_IF (zealot_corellon_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (zealot_corellon_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ze07~ learn_res = ~b_ze07z~ END
+ END
  END
 
 //___________________________________________________________________________________
@@ -445,8 +447,10 @@ END
 	class 			= ~zealot~
  END
 
- ACTION_IF (zealot_eilistraee_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (zealot_eilistraee_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ze10~ learn_res = ~b_ze10z~ END
+ END
  END
 
 //___________________________________________________________________________________
@@ -737,8 +741,10 @@ END
 	class 			= ~zealot~
  END
 
- ACTION_IF (zealot_garagos_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (zealot_garagos_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ze06~ learn_res = ~b_ze06z~ END
+ END
  END
 
 //___________________________________________________________________________________
@@ -1033,8 +1039,10 @@ END
 	class 			= ~zealot~
  END
 
- ACTION_IF (zealot_gruumsh_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (zealot_gruumsh_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ze02~ learn_res = ~b_ze02z~ END
+ END
  END
 
 //___________________________________________________________________________________
@@ -1325,8 +1333,10 @@ END
 	class 			= ~zealot~
  END
 
- ACTION_IF (zealot_ilmater_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (zealot_ilmater_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ze05~ learn_res = ~b_ze05z~ END
+ END
  END
 
 //___________________________________________________________________________________
@@ -1633,8 +1643,10 @@ END
 	class 			= ~zealot~
  END
 
- ACTION_IF (zealot_kossuth_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (zealot_kossuth_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ze04~ learn_res = ~b_ze04z~ END
+ END
  END
 
 //___________________________________________________________________________________
@@ -1943,8 +1955,10 @@ END
 	class 			= ~zealot~
  END
  
- ACTION_IF (zealot_mystra_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (zealot_mystra_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ze09~ learn_res = ~b_ze09z~ END
+ END
  END
 
 //___________________________________________________________________________________
@@ -2235,8 +2249,10 @@ END
 	class 			= ~zealot~
  END
 
- ACTION_IF (zealot_sune_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (zealot_sune_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ze08~ learn_res = ~b_ze08z~ END
+ END
  END
 
 //___________________________________________________________________________________
@@ -2538,8 +2554,10 @@ END
 	class 			= ~zealot~
  END
 
- ACTION_IF (zealot_talos_spontaneous > 0) && (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (zealot_talos_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ze03~ learn_res = ~b_ze03z~ END
+ END
  END
 
 //___________________________________________________________________________________

@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.7~
+VERSION ~0.79.8~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -29,6 +29,8 @@ ALWAYS
 	END
  
   	INCLUDE ~override/d5_fnp_settings.ini~
+  	
+  	LAM d5_spont_option
 
 	INCLUDE ~faiths_and_powers/lib/nu_alter_effect.tpa~
 
