@@ -12,6 +12,7 @@ ALWAYS
 	END
  
   	INCLUDE ~override/d5_fnp_settings.ini~
+	LAM d5_spont_option
 
 	INCLUDE ~faiths_and_powers/lib/fl#add_kit_ee.tpa~
 
