@@ -804,7 +804,7 @@ INCLUDE ~faiths_and_powers/lib/item_usability.tpa~
 
 BEGIN @80 // apply sphere systen
 DESIGNATED 80
-//INSTALL_BY_DEFAULT
+INSTALL_BY_DEFAULT
 REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) @8
 FORBID_COMPONENT ~faiths_and_powers.tp2~ ~24~ @8
