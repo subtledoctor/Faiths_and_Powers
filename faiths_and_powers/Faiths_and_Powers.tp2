@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.8~
+VERSION ~0.79.9~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -435,7 +435,7 @@ ACTION_IF	(ENGINE_IS ~tob bgt~) &&
 END
 
 ACTION_IF (cleric_umd = 1) BEGIN
-  LAF use_magical_devices END
+  LAF clerics_use_magical_devices END
   LAF cleric_clabs_umd END
 END
 
@@ -804,7 +804,7 @@ INCLUDE ~faiths_and_powers/lib/item_usability.tpa~
 
 BEGIN @80 // apply sphere systen
 DESIGNATED 80
-INSTALL_BY_DEFAULT
+//INSTALL_BY_DEFAULT
 REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) @8
 FORBID_COMPONENT ~faiths_and_powers.tp2~ ~24~ @8

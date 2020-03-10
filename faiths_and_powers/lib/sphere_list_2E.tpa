@@ -1053,6 +1053,39 @@ END
 
 //___________________________________________________________________________________
 //
+DEFINE_ACTION_FUNCTION milil_spheres 
+  RET_ARRAY milil_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY milil_spheres_array BEGIN
+	Healing 			=> major
+	Necromantic 		=> x
+	Creation 			=> minor
+	Decay 				=> minor
+	Protection 			=> major
+	Combat 				=> x
+	Travelers 			=> minor
+	Divination 			=> major
+	Wards 				=> minor
+	Thought 			=> major
+	Charm 				=> major
+	Law 				=> minor
+	Chaos 				=> x
+	Animal 				=> x
+	Plant 				=> x
+	Earth 				=> x
+	Water 				=> x
+	Air 				=> major
+	Fire 				=> x
+	Sun 				=> major
+	Shadow 				=> x
+	Weather 			=> x
+	Astral   			=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
 DEFINE_ACTION_FUNCTION moander_spheres 
   RET_ARRAY moander_spheres_array
  BEGIN

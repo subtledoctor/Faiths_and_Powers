@@ -912,11 +912,16 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_CAMO.cre~ ~override~
 //itm
 COPY ~%mod_folder%/data/new_spells/ranger_1/B_INVIS.itm~ ~override~
 
+COPY ~%mod_folder%/data/new_spells/ranger_1/d5camob.bam~ ~override~
+COPY ~%mod_folder%/data/new_spells/ranger_1/d5camoc.bam~ ~override~
+
 ADD_SPELL ~%mod_folder%/data/new_spells/ranger_1/B_R102.spl~ 1 1 ~CLERIC_CAMOUFLAGE~ //
-        SAY NAME1 @53022
-        SAY NAME2 @53022
-        SAY UNIDENTIFIED_DESC @53023
+    SAY NAME1 @53022
+    SAY NAME2 @53022
+    SAY UNIDENTIFIED_DESC @53023
 	SAY DESC @53023
+	WRITE_ASCII 0x3a ~d5camoc~ #8
+	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5camob~ END
 
 //to clear earlier versions of the spell
 LAF RES_NUM_OF_SPELL_NAME

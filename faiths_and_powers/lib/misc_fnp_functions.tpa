@@ -1269,7 +1269,7 @@ END
 
 //UMD FOR CLERICS___________________________________________________________________
 //
-DEFINE_ACTION_FUNCTION use_magical_devices BEGIN
+DEFINE_ACTION_FUNCTION clerics_use_magical_devices BEGIN
 
  LAF d5_resolve_specific STR_VAR new_specific_id = ~D5_NO_UMD~ RET new_specific_ind END
 
@@ -1363,7 +1363,7 @@ DEFINE_ACTION_FUNCTION use_magical_devices BEGIN
    READ_SHORT	0x1c item_type
    PATCH_IF (item_type = 35) BEGIN
 	READ_BYTE 0x1e cleric_use
-	READ_BYTE 0x1e mcleric_use
+	READ_BYTE 0x1f mcleric_use
 	PATCH_IF (%cleric_use% BAND 0b10000000) = 0b10000000 BEGIN
 	  WRITE_BYTE 0x1e (THIS BAND 0b01111111)
 	  WRITE_BYTE 0x1f (THIS BAND 0b10111001)

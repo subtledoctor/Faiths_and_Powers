@@ -6,32 +6,34 @@
 
 DEFINE_ACTION_MACRO d5_define_sphere_names BEGIN
 
+// system designation.....sphere name
+
 <<<<<<<< d5/d5altsph.2da
 2DA
-Universal			Universal
-Life 				Life
-Death 				Death
-Benediction 		Creation
-Destruction 		Destruction
-Protection 			Protection
-War 				War
-Exploration     	Exploration
-Knowledge 			Knowledge
-Deception 			Deception
-Thought 			Thought
-Dread 				Dread
-Vigor 				Vigor
-Affliction 			Affliction
-Animal 				Animal
-Plant 				Plant
-Earth 				Earth
-Air 				Air
-Water 				Water
-Fire 				Fire
-Light 				Light
-Shadow 				Shadow
-Magic 				Magic
-Astral	 			Astral
+Universal				Universal
+Life 					Life
+Death 					Death
+Benediction 			Creation
+Destruction 			Destruction
+Protection 				Protection
+War 					War
+Exploration     		Exploration
+Knowledge 				Knowledge
+Deception 				Deception
+Thought 				Thought
+Dread 					Dread
+Vigor 					Vigor
+Affliction 				Affliction
+Animal 					Animal
+Plant 					Plant
+Earth 					Earth
+Air 					Air
+Water 					Water
+Fire 					Fire
+Light 					Light
+Shadow 					Shadow
+Magic 					Magic
+Astral	 				Astral
 >>>>>>>> 
 
 END	//	end sphere names macro
@@ -998,6 +1000,39 @@ DEFINE_ACTION_FUNCTION mielikki_spheres
 	Light 				=> minor
 	Shadow 				=> x
 	Magic 				=> x
+	Astral   			=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION milil_spheres 
+  RET_ARRAY milil_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY milil_spheres_array BEGIN
+	Life 				=> major
+	Death 				=> x
+	Creation 			=> minor
+	Destruction 		=> minor
+	Protection 			=> major
+	War 				=> x
+	Exploration 		=> major
+	Knowledge 			=> major
+	Deception 			=> x
+	Thought 			=> major
+	Dread 				=> minor
+	Vigor 				=> minor
+	Affliction 			=> x
+	Animal 				=> x
+	Plant 				=> x
+	Earth 				=> x
+	Water 				=> x
+	Air 				=> major
+	Fire 				=> x
+	Light 				=> major
+	Shadow 				=> x
+	Magic 				=> minor
 	Astral   			=> x
  END
 END

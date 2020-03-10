@@ -28,6 +28,14 @@
 @103  = ~choose components individually~
 @105  = ~no new kits - JUST install the sphere system~
 @110  = ~Change item usability for priests~
+@121  = ~Choose how to learn and cast spells~
+@122  = ~Cast priest spells spontaneously~
+@123  = ~No change, cast priest spells normally~
+@124  = ~Cast priest spells spontaneously?~
+@125  = ~Confirmed, cast spontaneously.~
+@126  = ~Cast priest spells normally?~
+@127  = ~Confirmed, no change, cast spells normally.~
+@128  = ~Reconsider~
 //
 @200  = ~new and revised cleric kits~
 // 
@@ -1433,10 +1441,22 @@ Advantages:
 Restrictions: 
 - Alignment: must be Neutral
 ~
-@49911  = ~Spell Knowledge~
-@49912  = ~Spell Knowledge
+@49911  = ~Divine Spell Knowledge~
+@49912  = ~Divine Spell Knowledge
+
+This ability allows you to select your priest spells known for each spell level.~
+@49913  = ~Arcane Spell Knowledge~
+@49914  = ~Arcane Spell Knowledge
+
+This ability allows you to select your wizard spells known for each spell level.~
+@49915  = ~Spell Knowledge~
+@49916  = ~Spell Knowledge
 
 This ability allows you to select your spells known for each spell level.~
+@49917  = ~Choose divine spellcasting style~
+@49918  = ~Choose divine spellcasting style
+
+This ability allows you to choose whether to learn and cast spells intuitively, like a sorcerer/shaman, or by the normal mechanism.~
 @49921  = ~Shamanic Dance~
 @49922  = ~Shamanic Dance: ~
 @49923  = ~Stop Shamanic Dance~

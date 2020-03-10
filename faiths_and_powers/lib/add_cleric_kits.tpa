@@ -268,7 +268,7 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 	END
 END
 
-//MYSTRA ABILITY FILES___________________________________________________________
+//AZUTH ABILITY FILES_______________________________________________________________
 //
 COPY ~faiths_and_powers/kits/clerics/325_azuth/d5clazu.2da~ ~override~
 COPY ~faiths_and_powers/kits/misc/d5llore.spl~ ~override~
@@ -3196,6 +3196,8 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 END
 
 //TEMPUS ABILITY FILES______________________________________________________________
+//
+COPY ~faiths_and_powers/kits/clerics/210_tempus/b_ctem.2da~ ~override~
 // Incite Rage
 ACTION_IF FILE_EXISTS_IN_GAME ~spcl321.spl~ BEGIN
 COPY_EXISTING ~spcl321.spl~ ~override/B_TEM03.spl~ // Incite Rage
@@ -3357,6 +3359,7 @@ END
 
 //TEMPUS ABILITY FILES_______________________________________________________________
 //
+COPY ~faiths_and_powers/kits/clerics/322_tempus/b_atem.2da~ ~override~
 COPY_EXISTING ~SPPR203.spl~ ~override/B_TEM01.spl~ // Chant
   WRITE_LONG 0x34 1 //level
   WRITE_BYTE 0x1c 4//Innate
@@ -3821,7 +3824,7 @@ COPY ~faiths_and_powers/kits/clerics/226_umberlee/b_umb.2da~ ~override~
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
  ACTION_IF (cleric_umberlee_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_umb~ learn_res = ~b_umb~ END
+  LAF fnp_spontaneous STR_VAR kit_clab = ~b_umb~ learn_res = ~b_umbz~ END
  END
  END
  
@@ -3916,6 +3919,7 @@ END
 
 //MORADIN ABILITY FILES_______________________________________________________________
 //
+COPY ~faiths_and_powers/kits/clerics/371_moradin/d5clmor.2da~ ~override~
 COPY ~faiths_and_powers/kits/clerics/371_moradin/d5morh1.spl~ ~override~
 	SAY NAME1 @37113
 	SAY UNIDENTIFIED_DESC @37114

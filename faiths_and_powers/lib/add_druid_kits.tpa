@@ -1605,7 +1605,7 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drnf.spl~ ~override~
   END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drbask~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drwwlf~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drwwf~ END
 
 /* already done with individual kits above
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc1.spl~ ~override~
@@ -1738,6 +1738,7 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drwlf3.
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drwwf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drwlf3.itm~
   LPF ALTER_EFFECT INT_VAR match_opcode = 53 parameter1 = %winter_wolf_animation% END 
   LPF ALTER_EFFECT INT_VAR match_opcode = 1 parameter1 = 7 END 	//	set base APR
@@ -1751,8 +1752,11 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drwlf3.
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 126 target = 1 parameter1 = 4 parameter2 = 0 timing = 2 END 
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 28 target = 1 parameter1 = 75 parameter2 = 1 timing = 2 END 
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = ~d5drwwn~ END 
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drwwlf.spl~ ~override~ // add 146 effect casting d5drwwn.spl on self
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drwwn.spl~ ~override~ // removes winter wolf breath... make this
+COPY ~faiths_and_powers/kits/druids/shapechange/d5drwwlf.spl~ ~override/d5drwwf.spl~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 171 STR_VAR resource = ~d5drwwf~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = ~d5drwwf~ END
+COPY ~faiths_and_powers/kits/druids/shapechange/d5drwwn.spl~ ~override~ // removes winter wolf breath... 
+  LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR resource = ~d5drwwf~ END
 
 // dread wolf
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drwlf4.spl~
@@ -2229,9 +2233,15 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drremz.
   LPF ALTER_EFFECT INT_VAR match_opcode = 15 parameter1 = 15 END 	//	set DEX
   LPF ALTER_EFFECT INT_VAR match_opcode = 10 parameter1 = 20 END 	//	set CON
   LPF ALTER_ITEM_HEADER INT_VAR header_type = 1 header = 1 damage_type = 1 dicenumber = 2 dicesize = 6 thac0_bonus = 2 damage_bonus = 2 speed = 5 STR_VAR icon = ~pincers~  END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 1 timing = 2 END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 2 timing = 2 END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 0 target = 1 parameter1 = 4 parameter2 = 8 timing = 2 END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 86 target = 1 parameter1 = 50 parameter2 = 1 timing = 2 END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 87 target = 1 parameter1 = 50 parameter2 = 1 timing = 2 END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 88 target = 1 parameter1 = 50 parameter2 = 1 timing = 2 END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 89 target = 1 parameter1 = 50 parameter2 = 1 timing = 2 END 
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 28 target = 1 parameter1 = 100 parameter2 = 1 timing = 2 END 
 // add something special to the attack...? or just lots of attacks?
-// chitin-based defensive bonus?
 
 /*
  // basilisk
@@ -3141,7 +3151,7 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
   STR_VAR
     clab_name 		= ~d5mwat~
 	sphere_list		= ~mystic_water_spheres~
-	class 			= ~mystic~
+	class 			= ~druid~
 	multiclass		= ~fd~
  END
 
@@ -3311,7 +3321,7 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
   STR_VAR
     clab_name 		= ~d5mair~
 	sphere_list		= ~mystic_air_spheres~
-	class 			= ~mystic~
+	class 			= ~druid~
 	multiclass		= ~fd~
  END
 
@@ -3481,7 +3491,7 @@ COPY ~faiths_and_powers/kits/druids/706_fire_mystic/d5myfi2.spl~ ~override~
   STR_VAR
     clab_name 		= ~d5mfir~
 	sphere_list		= ~mystic_fire_spheres~
-	class 			= ~mystic~
+	class 			= ~druid~
 	multiclass		= ~fd~
  END
 
@@ -3654,7 +3664,7 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
   STR_VAR
     clab_name 		= ~d5mlig~
 	sphere_list		= ~mystic_light_spheres~
-	class 			= ~mystic~
+	class 			= ~druid~
 	multiclass		= ~fd~
  END
 
@@ -3823,7 +3833,7 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
   STR_VAR
     clab_name 		= ~d5mshd~
 	sphere_list		= ~mystic_shadow_spheres~
-	class 			= ~mystic~
+	class 			= ~druid~
 	multiclass		= ~fd~
  END
 

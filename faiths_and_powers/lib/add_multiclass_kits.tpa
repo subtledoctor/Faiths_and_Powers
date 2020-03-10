@@ -159,6 +159,10 @@ END
  END
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability STR_VAR clab_name = ~d5cmmys~ END
+ END
+  
 //MULTICLASS KIT______________________________________________________________________
 //
  ACTION_IF FILE_EXISTS_IN_GAME ~d5cmmys.2da~ BEGIN
@@ -171,13 +175,9 @@ END
  END 
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
-	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5cmmys~ END
+	LAF apply_fnp_spheres_to_kit STR_VAR clab_name = ~d5cmmys~ END
  END
 
- ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
-	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5cmmys~ END
- END
-  
 END
 //__________________________________________________________________________________
 
@@ -328,6 +328,10 @@ END
  END
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability STR_VAR clab_name = ~d5cmazu~ END
+ END
+  
 //MULTICLASS KIT______________________________________________________________________
 //
  ACTION_IF FILE_EXISTS_IN_GAME ~d5cmazu.2da~ BEGIN
@@ -340,13 +344,9 @@ END
  END 
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
-	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5cmazu~ END
+	LAF apply_fnp_spheres_to_kit STR_VAR clab_name = ~d5cmazu~ END
  END
 
- ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
-	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5cmazu~ END
- END
-  
 END
 //__________________________________________________________________________________
 
@@ -479,6 +479,10 @@ COPY ~faiths_and_powers/kits/multiclass/491_cr_mielikki/d5crmie.2da~ ~override~
  END
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability STR_VAR clab_name = ~d5crmie~ END
+ END
+  
 //MULTICLASS KIT______________________________________________________________________
 //
  ACTION_IF FILE_EXISTS_IN_GAME ~d5crmie.2da~ BEGIN
@@ -491,13 +495,9 @@ COPY ~faiths_and_powers/kits/multiclass/491_cr_mielikki/d5crmie.2da~ ~override~
  END 
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
-	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5crmie~ END
+	LAF apply_fnp_spheres_to_kit STR_VAR clab_name = ~d5crmie~ END
  END
 
- ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
-	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5crmie~ END
- END
-  
 END
 //__________________________________________________________________________________
 
@@ -634,6 +634,10 @@ COPY_EXISTING ~spwi402.spl~ ~override/d5crsh1.spl~
  END
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability STR_VAR clab_name = ~d5crshn~ END
+ END
+  
 //MULTICLASS KIT______________________________________________________________________
 //
  ACTION_IF FILE_EXISTS_IN_GAME ~d5crshn.2da~ BEGIN
@@ -646,13 +650,9 @@ COPY_EXISTING ~spwi402.spl~ ~override/d5crsh1.spl~
  END 
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
-	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5crshn~ END
+	LAF apply_fnp_spheres_to_kit STR_VAR clab_name = ~d5crshn~ END
  END
 
- ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
-	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5crshn~ END
- END
-  
 END
 //__________________________________________________________________________________
 
@@ -800,6 +800,10 @@ COPY ~faiths_and_powers/kits/multiclass/469_mask/d5_mask3.cre~ ~override~
  END
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability STR_VAR clab_name = ~d5ctmas~ END
+ END
+  
 //MULTICLASS KIT______________________________________________________________________
 //
  ACTION_IF FILE_EXISTS_IN_GAME ~d5ctmas.2da~ BEGIN
@@ -812,13 +816,9 @@ COPY ~faiths_and_powers/kits/multiclass/469_mask/d5_mask3.cre~ ~override~
  END 
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
-	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5ctmas~ END
+	LAF apply_fnp_spheres_to_kit STR_VAR clab_name = ~d5ctmas~ END
  END
 
- ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
-	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5ctmas~ END
- END
-  
 END
 //__________________________________________________________________________________
 
@@ -1019,6 +1019,10 @@ BUT_ONLY
  END
  END
 
+ ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
+	LAF apply_fnp_usability STR_VAR clab_name = ~d5ctbra~ END
+ END
+  
 //MULTICLASS KIT_____________________________________________________________________
 //
  ACTION_IF FILE_EXISTS_IN_GAME ~d5ctbra.2da~ BEGIN
@@ -1031,13 +1035,9 @@ BUT_ONLY
  END 
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
-	LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = ~d5ctbra~ END
+	LAF apply_fnp_spheres_to_kit STR_VAR clab_name = ~d5ctbra~ END
  END
 
- ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
-	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = ~d5ctbra~ END
- END
-  
 END
 //__________________________________________________________________________________
 
@@ -2820,10 +2820,10 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	s_Perdition     = EVAL ~%orig_perdition%~
   END
 //  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
-//    LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = EVAL ~%new_clab%~ END
+//    LAF apply_fnp_spheres_to_kit STR_VAR clab_name = EVAL ~%new_clab%~ END
 //  END
   ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
-	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = EVAL ~%new_clab%~ END
+	LAF apply_fnp_usability STR_VAR clab_name = EVAL ~%new_clab%~ END
   END
   ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
    ACTION_IF (~%caster_type%~ STRING_EQUAL_CASE ~MYSTIC~) OR (d5_spell_spontaneous > 0) BEGIN
@@ -2917,10 +2917,10 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
    END
 */
 //   ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
-//    LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = EVAL ~%sorc_clab%~ END
+//    LAF apply_fnp_spheres_to_kit STR_VAR clab_name = EVAL ~%sorc_clab%~ END
 //   END
    ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
-	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = EVAL ~%sorc_clab%~ END
+	LAF apply_fnp_usability STR_VAR clab_name = EVAL ~%sorc_clab%~ END
    END 
    COPY_EXISTING ~LUSO0.2da~ ~override~
 	  COUNT_2DA_ROWS 10 rows
@@ -3057,10 +3057,10 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
    END
 //   END
 //   ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
-//    LAF apply_fnp_spheres_to_kit STR_VAR mod_clab = EVAL ~%new_clab%~ END
+//    LAF apply_fnp_spheres_to_kit STR_VAR clab_name = EVAL ~%new_clab%~ END
 //   END
    ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
-	LAF apply_fnp_usability_to_kit STR_VAR mod_clab = EVAL ~%new_clab%~ END
+	LAF apply_fnp_usability STR_VAR clab_name = EVAL ~%new_clab%~ END
    END 
    COPY_EXISTING ~LUMO0.2da~ ~override~
 	  COUNT_2DA_ROWS 10 rows

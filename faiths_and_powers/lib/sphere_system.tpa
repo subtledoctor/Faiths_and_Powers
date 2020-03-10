@@ -1329,7 +1329,7 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 		OUTER_INNER_PATCH ~%sphere%~ BEGIN
 		  SNPRINT 3 ~shortsphere~ ~%sphere%~
 		END
-		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~FOCUS~) BEGIN
+		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~)) && (~%access%~ STRING_EQUAL_CASE ~FOCUS~) BEGIN
 		  COPY_EXISTING ~lub_%goo_1%.2da~ ~override~
 			LPM remove_blank_lines
 			APPEND_FILE ~faiths_and_powers/spheres/hlas/%sphere%/hlas_%sphere%.txt~
@@ -1349,7 +1349,7 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 		  END
 		  OUTER_TEXT_SPRINT focus_sphere_list ~%focus_sphere_list% %text_sphere%~
 		END
-		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~MAJOR~) BEGIN
+		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~)) && (~%access%~ STRING_EQUAL_CASE ~MAJOR~) BEGIN
 		  COPY_EXISTING ~lub_%goo_1%.2da~ ~override~
 			LPM remove_blank_lines
 			APPEND_FILE ~faiths_and_powers/spheres/hlas/%sphere%/hlas_%sphere%.txt~
@@ -1364,7 +1364,7 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 		  END
 		  OUTER_TEXT_SPRINT major_sphere_list ~%major_sphere_list% %text_sphere%,~
 		END
-		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~MINOR~) BEGIN
+		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~)) && (~%access%~ STRING_EQUAL_CASE ~MINOR~) BEGIN
 		  ACTION_PHP_EACH d5_fnp_kit_caster_type AS this_kit => caster_type BEGIN
 			ACTION_IF (~%this_kit%~ STRING_EQUAL_CASE ~%goo%~) && !(~%caster_type%~ STRING_EQUAL_CASE ~mystic~) BEGIN
 			  APPEND ~%goo%.2da~ ~SPHERES     AP_D5SM%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
@@ -1372,7 +1372,7 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 		  END
 		  OUTER_TEXT_SPRINT minor_sphere_list ~%minor_sphere_list% %text_sphere%,~
 		END
-		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~PALADIN~) BEGIN
+		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~)) && (~%access%~ STRING_EQUAL_CASE ~PALADIN~) BEGIN
 		  ACTION_PHP_EACH d5_fnp_kit_caster_type AS this_kit => caster_type BEGIN
 			ACTION_IF (~%this_kit%~ STRING_EQUAL_CASE ~%goo%~) && !(~%caster_type%~ STRING_EQUAL_CASE ~mystic~) BEGIN
 			  APPEND ~%goo%.2da~ ~SPHERES     AP_D5SP%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
@@ -1380,7 +1380,7 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 		  END
 		  OUTER_TEXT_SPRINT minor_sphere_list ~%minor_sphere_list% %text_sphere%,~
 		END
-		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~) && ~%access%~ STRING_EQUAL_CASE ~RANGER~) BEGIN
+		ACTION_IF (VARIABLE_IS_SET $d5_fnp_sphere_access(~%access%~)) && (~%access%~ STRING_EQUAL_CASE ~RANGER~) BEGIN
 		  ACTION_PHP_EACH d5_fnp_kit_caster_type AS this_kit => caster_type BEGIN
 			ACTION_IF (~%this_kit%~ STRING_EQUAL_CASE ~%goo%~) && !(~%caster_type%~ STRING_EQUAL_CASE ~mystic~) BEGIN
 			  APPEND ~%goo%.2da~ ~SPHERES     AP_D5SP%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 

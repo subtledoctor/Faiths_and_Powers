@@ -361,9 +361,6 @@ END
 //___________________________________________________________________________________
 
 DEFINE_ACTION_MACRO ~READ_FNP_KIT_INFO~ BEGIN
-
-//  CLEAR_ARRAYS
-
   ACTION_IF (FILE_EXISTS_IN_GAME ~d5_class.2da~
                && FILE_EXISTS_IN_GAME ~d5_usabl.2da~
                && FILE_EXISTS_IN_GAME ~d5_spher.2da~) BEGIN
