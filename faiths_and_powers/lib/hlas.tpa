@@ -204,6 +204,7 @@ COPY ~faiths_and_powers/spheres/hlas/deception/li#micl.spl~ ~override~ // Refine
     WRITE_SHORT 0x1c 4
     WRITE_LONG 0x34 1
     WRITE_BYTE 0x21 (THIS & 0b00111111)
+    LPF ALTER_SPELL_HEADER INT_VAR min_level = 1 END
 COPY ~faiths_and_powers/spheres/hlas/deception/li#miclb.bam~ ~override~
 COPY ~faiths_and_powers/spheres/hlas/deception/li#miclc.bam~ ~override~
 COPY ~faiths_and_powers/spheres/hlas/deception/li#micl.vvc~ ~override~
