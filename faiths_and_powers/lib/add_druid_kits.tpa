@@ -315,24 +315,31 @@ END
 
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/hivekeep.2da~ ~override/clabdr04.2da~
 
+COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drss4.bam~ ~override~
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drss4.spl~ ~override~
   SAY NAME1 @73411
   SAY UNIDENTIFIED_DESC @73411
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drss4~ END  
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drssp1.eff~ ~override~
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drssp1.cre~ ~override~
   SAY NAME1 @73413
+  SAY NAME2 @73411
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drssp2.eff~ ~override~
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drssp2.cre~ ~override~
   SAY NAME1 @73413
+  SAY NAME2 @73411
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drssp3.eff~ ~override~
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drssp3.cre~ ~override~
   SAY NAME1 @73413
+  SAY NAME2 @73411
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drssp4.eff~ ~override~
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drssp4.cre~ ~override~
   SAY NAME1 @73413
+  SAY NAME2 @73411
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drssp5.eff~ ~override~
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drssp5.cre~ ~override~
   SAY NAME1 @73413
+  SAY NAME2 @73411
 
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5drsc4.spl~ ~override~
   SAY NAME1 @73111
@@ -389,12 +396,12 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5btswm.spl~
   WRITE_SHORT 0x1c 2
   WRITE_LONG 0x34 2
   LPF ALTER_SPELL_HEADER INT_VAR target = 4 location = 2 speed = 6 STR_VAR icon = ~*****~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smbtl~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smbtl~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smbtl~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 75 STR_VAR resource = ~d5smbtl~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 50 STR_VAR resource = ~d5smbtl~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 25 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 75 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 50 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 25 STR_VAR resource = ~d5smbtl~ END
 
 // make spider swarm spell
   COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5smspid.cre~ ~override~
@@ -408,12 +415,12 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5spswm.spl~
   WRITE_SHORT 0x1c 2
   WRITE_LONG 0x34 3
   LPF ALTER_SPELL_HEADER INT_VAR target = 4 location = 2 speed = 6 STR_VAR icon = ~*****~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smspid~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smspid~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smspid~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 75 STR_VAR resource = ~d5smspid~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 50 STR_VAR resource = ~d5smspid~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 25 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 75 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 50 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 25 STR_VAR resource = ~d5smspid~ END
 // add spider spawn - spwi423 - at spell level 5
 COPY_EXISTING ~spwi423.spl~ ~override/d5spspn.spl~
   WRITE_SHORT 0x1c 2
@@ -433,7 +440,7 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5rhbtl.spl~
   WRITE_SHORT 0x1c 2
   WRITE_LONG 0x34 7
   LPF ALTER_SPELL_HEADER INT_VAR target = 4 location = 2 speed = 6 STR_VAR icon = ~*****~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5rhbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5rhbtl~ END
 	
 
 APPEND ~clabdr04.2da~ ~

@@ -94,7 +94,7 @@ COPY ~faiths_and_powers/kits/clerics/200_Ur_Priest/b_ur01.spl~     ~override~  /
 	SAY DESC @20005
 
 COPY ~faiths_and_powers/kits/clerics/200_Ur_Priest/b_ur01a.spl~     ~override~  // sap the spirit
-    LPF ALTER_EFFECT INT_VAR match_opcode = 177 STR_VAR resource = ~b_ur01a~ END //+1 casting level notifier
+    LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 177 STR_VAR resource = ~b_ur01a~ END //+1 casting level notifier
 
 COPY ~faiths_and_powers/kits/clerics/200_Ur_Priest/b_ur01a.eff~     ~override~  // +1 casting level notifier
   SAY 0x1c @20006    //+1 casting level notifier
@@ -274,7 +274,7 @@ COPY ~faiths_and_powers/kits/clerics/325_azuth/d5clazu.2da~ ~override~
 COPY ~faiths_and_powers/kits/misc/d5llore.spl~ ~override~
 	SAY NAME1 @32505
 	SAY UNIDENTIFIED_DESC @32506
-	LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = ~d5llore~ END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 206 STR_VAR resource = ~d5llore~ END
 //APPEND ~d5clazu.2da~ ~UMD         AP_D5_UMD   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 COPY ~faiths_and_powers/kits/misc/d5_cllv1.spl~ ~override~
 //	SAY NAME1 @6
@@ -538,7 +538,7 @@ COPY ~faiths_and_powers/spheres/spells/dread/b_c501.spl~ ~override/b_bes03.spl~ 
   WRITE_BYTE 0x22C 4//Location  +28
   WRITE_BYTE 0x254 4//Location  +28
              LPF ALTER_EFFECT
-              INT_VAR match_opcode = 321
+              INT_VAR silent = 1 match_opcode = 321
               STR_VAR resource = EVAL ~b_bes03~
              END
 COPY ~faiths_and_powers/kits/clerics/332_beshaba/b_bes04.spl~ ~override~
@@ -699,18 +699,18 @@ COPY_EXISTING ~SPWI509.spl~ ~override/B_CYR04.spl~ // feeblemind
 //protection from fear  (using the tempus spl.  It's basically the same...)
 ACTION_IF GAME_IS ~bgee~ THEN BEGIN   //other text
   COPY ~faiths_and_powers/kits/champions/803_tempus/B_TEM10.spl~ ~override/B_CYR01.spl~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 267 STR_VAR resource = EVAL ~20568~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 267 STR_VAR resource = EVAL ~25818~ END     //text block
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 267 STR_VAR resource = EVAL ~20568~ END
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 267 STR_VAR resource = EVAL ~25818~ END     //text block
 END
 ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //other text
   COPY ~faiths_and_powers/kits/champions/803_tempus/B_TEM10.spl~ ~override/B_CYR01.spl~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 267 STR_VAR resource = EVAL ~17427~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 267 STR_VAR resource = EVAL ~14007~ END     //text block
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 267 STR_VAR resource = EVAL ~17427~ END
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 267 STR_VAR resource = EVAL ~14007~ END     //text block
 END
 ACTION_IF GAME_IS ~iwdee~ THEN BEGIN   //other text
   COPY ~faiths_and_powers/kits/champions/803_tempus/B_TEM10.spl~ ~override/B_CYR01.spl~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 267 STR_VAR resource = EVAL ~20568~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 267 STR_VAR resource = EVAL ~35484~ END     //text block
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 267 STR_VAR resource = EVAL ~20568~ END
+  LPF CLONE_EFFECT INT_VAR silent = 1 match_opcode = 267 STR_VAR resource = EVAL ~35484~ END     //text block
 END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
@@ -1328,37 +1328,37 @@ COPY_EXISTING ~SPPR409.spl~ ~override/b_kel01.spl~ // Works?
 //  WRITE_BYTE 0x1c 4//Innate
 //  WRITE_BYTE 0x74 4//Location
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 206
+      INT_VAR silent = 1 match_opcode = 206
       timing = 9
       resist_dispel = 0
   END
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 169
+      INT_VAR silent = 1 match_opcode = 169
       timing = 9
       resist_dispel = 0
   END
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 267
+      INT_VAR silent = 1 match_opcode = 267
       timing = 9
       resist_dispel = 0
   END
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 101
+      INT_VAR silent = 1 match_opcode = 101
       timing = 9
       resist_dispel = 0
   END
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 142
+      INT_VAR silent = 1 match_opcode = 142
       timing = 9
       resist_dispel = 0
   END
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 328
+      INT_VAR silent = 1 match_opcode = 328
       timing = 9
       resist_dispel = 0
   END
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 282
+      INT_VAR silent = 1 match_opcode = 282
       timing = 9
       resist_dispel = 0
   END
@@ -1369,27 +1369,27 @@ COPY_EXISTING ~SPPR413.spl~ ~override/b_kel02.spl~ // Works?
 //  WRITE_BYTE 0x1c 4//Innate
 //  WRITE_BYTE 0x74 4//Location
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 267
+      INT_VAR silent = 1 match_opcode = 267
       timing = 9
       resist_dispel = 0
   END
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 169
+      INT_VAR silent = 1 match_opcode = 169
       timing = 9
       resist_dispel = 0
   END
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 101
+      INT_VAR silent = 1 match_opcode = 101
       timing = 9
       resist_dispel = 0
   END
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 142
+      INT_VAR silent = 1 match_opcode = 142
       timing = 9
       resist_dispel = 0
   END
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 282
+      INT_VAR silent = 1 match_opcode = 282
       timing = 9
       resist_dispel = 0
   END
@@ -2285,7 +2285,7 @@ COPY_EXISTING ~sppr105.spl~ ~override/B_moa1.spl~ // innate
 //  WRITE_SHORT 0x1c 4//Innate
 //  WRITE_SHORT 0x74 4//Innate
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 324            //
+      INT_VAR silent = 1 match_opcode = 324            //
       STR_VAR resource = EVAL ~B_moa1~
   END
 COPY ~faiths_and_powers/kits/clerics/331_moander/b_moa2.spl~ ~override~    //Assassin vines
@@ -2596,7 +2596,7 @@ COPY ~faiths_and_powers/kits/clerics/310_oghma/d5oghm1.spl~ ~override~
 COPY ~faiths_and_powers/kits/misc/d5llore.spl~ ~override~
 	SAY NAME1 @32505
 	SAY UNIDENTIFIED_DESC @32506
-	LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR resource = ~d5llore~ END
+	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 206 STR_VAR resource = ~d5llore~ END
 //APPEND ~d5clogh.2da~ ~UMD         AP_D5_UMD   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 COPY_EXISTING ~spwi509.spl~ ~override/d5oghm2.spl~
 	LPM spell_to_innate
@@ -2888,7 +2888,7 @@ COPY_EXISTING ~SPWI429.spl~ ~override/b_sun03.spl~ // Emotion: hope
   WRITE_BYTE 0x1c 4//Innate
   WRITE_BYTE 0x74 4//Location
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 321
+      INT_VAR silent = 1 match_opcode = 321
       STR_VAR resource = EVAL ~b_sun03~
      END
 END
@@ -2901,11 +2901,11 @@ COPY_EXISTING ~SPWI104.spl~ ~override/b_sun01.spl~ // Charm person
   WRITE_BYTE 0x1c 4//Innate
   WRITE_BYTE 0x74 4//Location
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 324
+      INT_VAR silent = 1 match_opcode = 324
       STR_VAR resource = EVAL ~b_sun01~
      END
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 5
+      INT_VAR silent = 1 match_opcode = 5
       savebonus = 0
      END
 */
@@ -3505,7 +3505,7 @@ COPY_EXISTING ~SPPR102.spl~ ~override/b_tor01.spl~ // dispel magic
   WRITE_BYTE 0x1c 4//Innate
   WRITE_BYTE 0x74 4//Location
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 324
+      INT_VAR silent = 1 match_opcode = 324
       STR_VAR resource = EVAL ~b_tor01~
   END
 
@@ -4976,25 +4976,25 @@ COPY ~faiths_and_powers/kits/clerics/391_yondalla/d5clyon.2da~ ~override~
 //COPY ~faiths_and_powers/kits/clerics/391_yondalla/d5yond1.spl~ ~override~	// shield
 COPY_EXISTING ~spwi114.spl~ ~override/d5yond1.spl~
   LPF ALTER_SPELL_HEADER INT_VAR target = 1 END
-  LPF ALTER_EFFECT INT_VAR target = 2 END  
+  LPF ALTER_EFFECT INT_VAR silent = 1 target = 2 END  
   LPM spell_to_innate
 COPY_EXISTING ~sppr108.spl~ ~override/d5yond2.spl~
   LPF ALTER_SPELL_HEADER INT_VAR target = 1 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 296 timing = 9 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 101 timing = 9 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 142 timing = 9 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 267 timing = 9 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 169 timing = 9 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 106 timing = 9 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 296 timing = 9 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 101 timing = 9 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 142 timing = 9 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 267 timing = 9 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 169 timing = 9 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 106 timing = 9 END
 COPY_EXISTING ~sppr406.spl~ ~override/d5yond3.spl~
   LPM spell_to_innate
 //COPY ~faiths_and_powers/kits/clerics/391_yondalla/d5yond4.spl~ ~override~	// NPP
 COPY_EXISTING ~sppr413.spl~ ~override/d5yond4.spl~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 169 timing = 9 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 101 timing = 9 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 142 timing = 9 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 267 timing = 9 END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 282 timing = 9 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 169 timing = 9 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 101 timing = 9 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 142 timing = 9 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 267 timing = 9 END
+  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 282 timing = 9 END
   LPM spell_to_innate
 
 //DEFINE SPHERE ACCESS________________________________________________________________
