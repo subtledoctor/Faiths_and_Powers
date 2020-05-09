@@ -433,16 +433,23 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
 	LPF DELETE_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = EVAL ~%learn_res%~ END
   IF_EXISTS
 
-  ACTION_FOR_EACH shortsphere IN ~uni~ ~lif~ ~dea~ ~ben~ ~des~ ~pro~ ~war~ ~exp~ ~kno~ ~dec~ ~tho~ ~dre~ ~vig~ ~aff~ ~ani~ ~pla~ ~ear~ ~air~ ~wat~ ~fir~ ~lig~ ~sha~ ~mag~ ~ast~ BEGIN
+ END	//	end if kit is valid
+
+END	//	end if sphere system
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5sham.2da~) BEGIN
+
+ ACTION_FOR_EACH shortsphere IN ~uni~ ~lif~ ~dea~ ~ben~ ~des~ ~pro~ ~war~ ~exp~ ~kno~ ~dec~ ~tho~ ~dre~ ~vig~ ~aff~ ~ani~ ~pla~ ~ear~ ~air~ ~wat~ ~fir~ ~lig~ ~sha~ ~mag~ ~ast~ BEGIN
 	ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t0%shortsphere%.spl~) BEGIN
 	  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5t0%shortsphere%.spl~
 	END
-  END
+ END
 
-  COPY_EXISTING ~d5fnplst.2da~ ~override~
+ COPY_EXISTING ~d5fnplst.2da~ ~override~
 	COUNT_2DA_COLS cols
 	COUNT_2DA_ROWS cols rows
 	FOR (row = 0; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY row 1 cols spel
 	  READ_2DA_ENTRY row 5 cols spher
 	  READ_2DA_ENTRY row 7 cols 206
 	  SNPRINT 3 shrtsphr ~%spher%~
@@ -450,16 +457,13 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
 		COPY_EXISTING ~d5t0%shrtsphr%.spl~ ~override~
 		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~%206%P~ END
 		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~%206%P~ END
+		  PATCH_IF (~%shrtsphr%~ STRING_EQUAL_CASE ~uni~) BEGIN
+			LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%spel%~ END
+		  END
 		IF_EXISTS BUT_ONLY
 	  END
 	END
-  IF_EXISTS BUT_ONLY
-  
- END	//	end if kit is valid
-
-END	//	end if sphere system
-
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5sham.2da~) BEGIN
+ IF_EXISTS BUT_ONLY
 
 <<<<<<<< d5/d5sham.2da
 ABILITY     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
@@ -483,6 +487,12 @@ COPY_EXISTING ~splprot.2da~ ~override~
 	END
 	PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_FATIGUE_IS~ BEGIN
 	  SET fatigue_value = %row%
+	END
+	PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_115_FEATS~ BEGIN
+	  SET 115_bit_row = %row%
+	END
+	PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_115_NFEATS~ BEGIN
+	  SET 115_not_row = %row%
 	END
   END
 BUT_ONLY
@@ -972,6 +982,11 @@ COPY_EXISTING ~d5fpspt.spl~ ~override~
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 144 target = 1 parameter2 = 4 timing = 9 END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 144 target = 1 parameter2 = 5 timing = 9 END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 target = 1 parameter2 = 147 timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 24) parameter2 = %115_not_row% timing = 9 STR_VAR resource = ~d5shmsp~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 24) parameter2 = %115_bit_row% timing = 9 STR_VAR resource = ~d5shmsw~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 target = 1 timing = 9 STR_VAR resource = ~d5msorc~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = ~d5spm3m~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = ~d5fpspt~ END
 IF_EXISTS BUT_ONLY
 
 COPY_EXISTING ~d5fnplst.2da~ ~override~
@@ -1031,9 +1046,9 @@ SPLSLOTS    ****        ****        ****        ****        ****        ****    
 END
 ACTION_IF (%kit_class% != 6) && (%kit_class% != 12) && (%kit_class% != 21) BEGIN
   APPEND ~%kit_clab%.2da~ ~SPLSLOTS    AP_D5SHM1A  AP_D5SHM1D  AP_D5SHM1E  AP_D5SHM1F  AP_D5SHM2D  AP_D5SHM2E  AP_D5SHM2F  AP_D5SHM3E  AP_D5SHM3F  AP_D5SHM4E  AP_D5SHM4F  AP_D5SHM5E  AP_D5SHM5F  AP_D5SHM6E  AP_D5SHM6F  AP_D5SHM7E  AP_D5SHM7F  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
-SPLSLOTS    AP_D5SHM1B  ****        ****        AP_D5SHM2A  ****        AP_D5SHM3A  AP_D5SHM3D  AP_D5SHM4A  AP_D5SHM4D  AP_D5SHM5A  AP_D5SHM5D  AP_D5SHM6A  AP_D5SHM6D  AP_D5SHM7A  AP_D5SHM7D  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
-SPLSLOTS    AP_D5SHM1C  ****        ****        AP_D5SHM2B  ****        AP_D5SHM3B  ****        AP_D5SHM4B  ****        AP_D5SHM5B  ****        AP_D5SHM6B  ****        AP_D5SHM7B  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
-SPLSLOTS    ****        ****        ****        AP_D5SHM2C  ****        AP_D5SHM3C  ****        AP_D5SHM4C  ****        AP_D5SHM5C  ****        AP_D5SHM6C  ****        AP_D5SHM7C  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+SPLSLOTS    AP_D5SHM1B  AP_D5SHM1A  ****        AP_D5SHM2A  ****        AP_D5SHM3A  AP_D5SHM3D  AP_D5SHM4A  AP_D5SHM4D  AP_D5SHM5A  AP_D5SHM5D  AP_D5SHM6A  AP_D5SHM6D  AP_D5SHM7A  AP_D5SHM7D  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+SPLSLOTS    AP_D5SHM1C  AP_D5SHM1B  ****        AP_D5SHM2B  ****        AP_D5SHM3B  ****        AP_D5SHM4B  ****        AP_D5SHM5B  ****        AP_D5SHM6B  ****        AP_D5SHM7B  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+SPLSLOTS    ****        AP_D5SHM1C  ****        AP_D5SHM2C  ****        AP_D5SHM3C  ****        AP_D5SHM4C  ****        AP_D5SHM5C  ****        AP_D5SHM6C  ****        AP_D5SHM7C  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
 ~
 END
 
@@ -1052,10 +1067,6 @@ END
 ACTION_IF (%kit_class% = 21) BEGIN
   APPEND ~%kit_clab%.2da~ ~SPL_REST     GA_D5SPM3M  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 END
-
-COPY_EXISTING ~d5fpspt.spl~ ~override~
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = ~d5spm3m~ END
-IF_EXISTS BUT_ONLY
 
 COPY ~faiths_and_powers/kits/misc/d5lernpr.bam~ ~override~
 COPY ~faiths_and_powers/kits/misc/d5lernwi.bam~ ~override~
@@ -1156,9 +1167,6 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shmsw.spl~) BEGIN
 END
 
 COPY_EXISTING ~d5fpspt.spl~ ~override~
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 target = 1 timing = 9 STR_VAR resource = ~d5msorc~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 24) parameter2 = %115_not_row% timing = 9 STR_VAR resource = ~d5shmsp~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 24) parameter2 = %115_bit_row% timing = 9 STR_VAR resource = ~d5shmsw~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %kit_ids% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = EVAL ~%learn_res%b~ END
 	PATCH_IF (FILE_EXISTS_IN_GAME ~d5t0uni.spl~) && !(~%free_universal%~ STRING_EQUAL_CASE ~no~) BEGIN
 	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %kit_ids% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5t0uni~ END
@@ -1186,13 +1194,6 @@ END
 ACTION_IF (d5_spell_spontaneous = 0) BEGIN
   APPEND ~%kit_clab%.2da~ ~LEARNSPLS   GA_D5SHNIT  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 END
-
-
-//finish spontaneous choice spell____________________________________________________
-//
-COPY_EXISTING ~d5fpspt.spl~ ~override~
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = ~d5fpspt~ END
-IF_EXISTS BUT_ONLY
 
 
 //MAKE +SPELL SLOT ITEMS WORK________________________________________________________

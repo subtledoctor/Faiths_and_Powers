@@ -271,14 +271,37 @@ END
 //AZUTH ABILITY FILES_______________________________________________________________
 //
 COPY ~faiths_and_powers/kits/clerics/325_azuth/d5clazu.2da~ ~override~
+/*
 COPY ~faiths_and_powers/kits/misc/d5llore.spl~ ~override~
 	SAY NAME1 @32505
 	SAY UNIDENTIFIED_DESC @32506
 	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 206 STR_VAR resource = ~d5llore~ END
+*/
 //APPEND ~d5clazu.2da~ ~UMD         AP_D5_UMD   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 COPY ~faiths_and_powers/kits/misc/d5_cllv1.spl~ ~override~
 //	SAY NAME1 @6
 //	SAY UNIDENTIFIED_DESC @6
+
+INCLUDE ~faiths_and_powers/lib/b3identify.tph~
+LAF B3_IDENTIFY_INSTALL END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5tb110a.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/clerics/325_azuth/d5tb110a.spl~ ~override~
+  COPY ~faiths_and_powers/kits/clerics/325_azuth/d5tb110b.spl~ ~override~
+  COPY ~faiths_and_powers/kits/clerics/325_azuth/d5tb110c.spl~ ~override~
+  COPY ~faiths_and_powers/kits/clerics/325_azuth/d5tb110d.spl~ ~override~
+  LAF B3_IDENTIFY_REGISTER INT_VAR uses = 1 STR_VAR resref = ~d5tb110a~ END
+  LAF B3_IDENTIFY_REGISTER INT_VAR uses = 2 STR_VAR resref = ~d5tb110b~ END
+  LAF B3_IDENTIFY_REGISTER INT_VAR uses = 3 STR_VAR resref = ~d5tb110c~ END
+  LAF B3_IDENTIFY_REGISTER INT_VAR uses = 4 STR_VAR resref = ~d5tb110d~ END
+END
+COPY ~faiths_and_powers/kits/clerics/325_azuth/d5tb110.spl~ ~override/d5llore.spl~
+  WRITE_SHORT 0x1c 4
+  LPF ALTER_SPELL_HEADER INT_VAR location = 4 END
+  SAY NAME1 @32505
+  SAY UNIDENTIFIED_DESC @32506
+APPEND ~d5clazu.2da~ ~LLORE       ****        ****        ****        ****        GA_D5LLORE  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****    ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+
+/*
 COPY ~faiths_and_powers/kits/multiclass/466_cm_bender/d5arcm1.spl~ ~override~
 	SAY NAME1 @46605
 	SAY UNIDENTIFIED_DESC @46606
@@ -316,6 +339,7 @@ COPY ~faiths_and_powers/kits/multiclass/466_cm_bender/d5_arcm6.2da~ ~override~
 COPY ~faiths_and_powers/kits/multiclass/466_cm_bender/d5_arc6b.bam~ ~override~
 COPY ~faiths_and_powers/kits/multiclass/466_cm_bender/d5_arc6c.bam~ ~override~
 //Huge thanks to DreamSlaveOne at forums.gibberlings3.net for providing the .BAMs for these abilities!
+*/
 /*
 ACTION_IF FILE_EXISTS_IN_GAME ~d5_wiz.d5~ THEN BEGIN
 	COPY_EXISTING ~d5_inmys.2da~ ~override~

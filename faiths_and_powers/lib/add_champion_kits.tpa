@@ -238,7 +238,7 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 		STR_VAR
 			kit_name = D5_ZCHAMP_ARVOREEN
 			// HUMAN, ELF, HALF_ELF, DWARF, HALFLING, GNOME and HALFORC.
-		clsrcreq = ~0 0 0 0 1 0 0~
+			clsrcreq = ~0 0 0 0 1 0 0~
 	END
 END
 
