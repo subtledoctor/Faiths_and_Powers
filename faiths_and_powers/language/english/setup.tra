@@ -851,7 +851,7 @@ With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that l
 //
 @37101  = ~hammer of moradin~
 @37102  = ~Hammer of Moradin~
-@37103  = ~HAMMER OF MORADIN:
+@37103  = ~HAMMER OF MORADIN: Moradin is the chief deity or the dwarven pantheon; a harsh but fair judge, he is strength and force of will embodied. The Hammers of Moradin are a military order dedicated to the defense dwarven holdings and the carving out of new dwarven territories. 
 
 Advantages: 
 - Priests of Moradin are unparalleled in the use and maintenance of war hammers. They have a +2 bonus to hit when attacking with a war hammer, and any war hammer they wield is considered to be of +3 enchantment for purposes of what enemies it can strike.
@@ -891,7 +891,7 @@ Restrictions:
 
 A warrior's intimate knowledge of vital spots on opponents allows <PRO_HIMHER> to, once per day, concentrate all of the attacks in one round to strike a vital area every time. With this ability, every attack roll made in the next round is a natural 20, resulting in a critical hit.~
 //
-// ... priest of baravar:
+// ... priest of marthammor:
 //
 @37301  = ~volamtar of marthammor~
 @37302  = ~Volamtar of Marthammor Duin~
@@ -915,7 +915,8 @@ With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that l
 //
 @38201  = ~hoodwinker of baravar~
 @38202  = ~Hoodwinker of Baravar Cloakshadow~
-@38203  = ~HOODWINKER OF BARAVAR CLOAKSHADOW: 
+@38203  = ~HOODWINKER OF BARAVAR CLOAKSHADOW: Baravar Cloakshadow, the Sly One, is the gnomish deity of deception and illusions.
+Clerics of Baravar are known as Hoodwinkers and tend to be the sneakiest of gnomes, who serve their communities by instructing them in disguise and camoflage.
 
 Advantages:
 - Hoodwinkers can innately cast Mirror Image once per day.
@@ -2383,7 +2384,7 @@ An opponent can only be affected by Wizard's Bane once per round.~
 
 @80901 = ~knight of the red falcon~
 @80902 = ~Knight of the Red Falcon~
-@80903 = ~KNIGHT OF THE RED FALCON: 
+@80903 = ~KNIGHT OF THE RED FALCON: The Red Knight, or the Lady of Strategy, is the deity of strategy and tactics. Sponsored into godhood by Tempus, Her dogma dictates the use of careful tactics in battle to achieve the most favourable victories. During the Time of Troubles, Lady Kaitlin Tindall Bloodhawk became the avatar of the Red Knight and defended Tethyr from a horde of monsters. Bloodhawk is now head of the Order of the Red Falcon, a martial order that trains officers and others in tactics and military history. 
 
 Advantages:
 - Mastery: Knights of the Red Falcon can attain mastery in any melee weapon.
@@ -2391,7 +2392,7 @@ Advantages:
 - Knight's Move: The smite of a Knight of the Red Falcon instills confusion in any opponent for one round if they do not save vs. spell.
 
 Disadvantages:
-- Everwatch Knights do not have a special smite ability.
+- Knights of the Red Falcon do not have a special smite ability.
 
 Restrictions:
 - Alignment: Any non-chaotic.
@@ -2630,7 +2631,8 @@ After the effect ends, the character becomes winded, suffering a -2 penalty to A
 
 @87001  = ~darksong knight~
 @87002  = ~Darksong Knight~
-@87003  = ~DARKSONG KNIGHT: ...
+@87003  = ~DARKSONG KNIGHT: Eilistraee is the Drow goddess of beauty, song, dance, freedom, moonlight, swordwork, and hunting. Notably she is patroness and protector of those few dark elves who long to return to the surface and live at peace with other races.
+Darksong Knights are dedicated to spreading the ethos of Eilistraee, advancing her causes, and especially to slaying the yochlol, the demons who served as the handmaidens of Lolth. Almost universally female, they utilise a wild and complex dancing fighting style. 
 
 Advantages:
 - May use the frenzy ability once per day.  The zealot gains an additional use of this ability at levels 10, 15 and 20.
