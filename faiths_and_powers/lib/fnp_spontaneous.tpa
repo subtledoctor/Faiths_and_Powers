@@ -684,6 +684,7 @@ COPY_EXISTING ~d5fnplst.2da~ ~override~
 // make innates that cast the original
 // ***** need to do differently if no sphere system...?
 		  COPY_EXISTING ~%base_spl%.spl~ ~override/%spt_spl%%suffix%.spl~
+			READ_SHORT 0x1c base_type
 			WRITE_SHORT 0x1c 4
 			WRITE_LONG 0x34 spell_level
 			READ_LONG 0x64 abil_offset
@@ -697,7 +698,12 @@ COPY_EXISTING ~d5fnplst.2da~ ~override~
 			END
 			LPF DELETE_EFFECT END
 			PATCH_IF (%abil_target% = 4) BEGIN
-			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 148 target = 1 power = %spell_level% parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%base_spl%~ END
+			  PATCH_IF base_type = 2 BEGIN
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 148 target = 1 power = %spell_level% parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%base_spl%~ END
+			  END
+			  PATCH_IF base_type = 1 BEGIN
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 148 target = 1 power = %spell_level% parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%fnp_spl%~ END
+			  END
 			  PATCH_IF (%abil_range% < 35) BEGIN
 				PATCH_IF (%abil_range% > 4) BEGIN
 					LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
@@ -708,7 +714,12 @@ COPY_EXISTING ~d5fnplst.2da~ ~override~
 			  END
 			END
 			ELSE BEGIN
-			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 power = %spell_level% parameter2 = 1 timing = 9 STR_VAR resource = EVAL ~%base_spl%~ END
+			  PATCH_IF base_type = 2 BEGIN
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 power = %spell_level% parameter2 = 1 timing = 9 STR_VAR resource = EVAL ~%base_spl%~ END
+			  END
+			  PATCH_IF base_type = 1 BEGIN
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 power = %spell_level% parameter2 = 1 timing = 9 STR_VAR resource = EVAL ~%fnp_spl%~ END
+			  END
 			END
 			LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5shm-%spell_level%~ END
 		  	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
@@ -1194,6 +1205,39 @@ END
 ACTION_IF (d5_spell_spontaneous = 0) BEGIN
   APPEND ~%kit_clab%.2da~ ~LEARNSPLS   GA_D5SHNIT  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 END
+
+
+//fix burning hands targeting_______________________________________________________
+//
+COPY_EXISTING ~spwi103.spl~ ~override~
+  READ_LONG 0x08 burning_hands_strref
+BUT_ONLY
+
+ACTION_IF (IS_AN_INT %burning_hands_strref%) BEGIN
+  COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+	PATCH_IF (%SOURCE_SIZE% > 0x71) BEGIN
+	  SET burning_change = 0
+	  READ_LONG 0x08 name
+	  PATCH_IF (name = burning_hands_strref) BEGIN
+		GET_OFFSET_ARRAY ab_array SPL_V10_HEADERS
+		PHP_EACH ab_array AS int => ab_off BEGIN
+		  PATCH_IF (burning_change = 0) BEGIN
+			READ_BYTE (ab_off + 0x0c) target
+			PATCH_IF target = 5 BEGIN
+			  SET burning_change = 1
+			END
+		  END
+		END
+		PATCH_IF (burning_change = 1) BEGIN
+		  LPF ALTER_SPELL_HEADER INT_VAR target = 1 END
+		  LPF ALTER_EFFECT INT_VAR match_opcode = 148 opcode = 146 target = 2 STR_VAR match_resource = ~spwi103~ END
+		  LPF ALTER_EFFECT INT_VAR match_opcode = 148 opcode = 146 target = 2 STR_VAR match_resource = ~d5p2103~ END
+		END
+	  END
+	END
+  BUT_ONLY
+END
+//__________________________________________________________________________________
 
 
 //MAKE +SPELL SLOT ITEMS WORK________________________________________________________
