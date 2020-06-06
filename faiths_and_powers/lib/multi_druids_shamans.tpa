@@ -2236,33 +2236,34 @@ BUT_ONLY
 // leave out the movement check... just stop movement and reenable it upon canceling dance
 // patch to 50% movement if the 'improved shamanic dance' mod is installed
 
-COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdn.bam~ ~override~		//	dance icon
-COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdn.spl~ ~override~		//	dance ability
-  SAY NAME1 @49921// Shamanic Dance
-  SAY UNIDENTIFIED_DESC @49921 
-  LPF ALTER_SPELL_HEADER INT_VAR location = 4 STR_VAR icon = ~d5shmdn~ END
-//  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5nshdn~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
-  PATCH_IF (MOD_IS_INSTALLED ~A7#ImprovedShamanicDance.tp2~ ~0~) BEGIN
-	LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 176 match_parameter1 = 0 parameter1 = 50 parameter2 = 2 END
-  END
-COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdnb.eff~ ~override~		//	232 eff triggered by song
-COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdnb.spl~ ~override~		//	aura triggered by 232 eff
-COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5nshdn.bam~ ~override~		//	stop dance icon
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shmdn.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdn.bam~ ~override~		//	dance icon
+  COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdn.spl~ ~override~		//	dance ability
+    SAY NAME1 @49921// Shamanic Dance
+    SAY UNIDENTIFIED_DESC @49921 
+    LPF ALTER_SPELL_HEADER INT_VAR location = 4 STR_VAR icon = ~d5shmdn~ END
+//	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5nshdn~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+    PATCH_IF (MOD_IS_INSTALLED ~A7#ImprovedShamanicDance.tp2~ ~0~) BEGIN
+ 	  LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 176 match_parameter1 = 0 parameter1 = 50 parameter2 = 2 END
+    END
+  COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdnb.eff~ ~override~		//	232 eff triggered by song
+  COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdnb.spl~ ~override~		//	aura triggered by 232 eff
+  COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5nshdn.bam~ ~override~		//	stop dance icon
 /*
-COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5nshdn.spl~				//	stop dance abil
-  SAY NAME1 @49923 // Stop Shamanic Dance
-  SAY UNIDENTIFIED_DESC @49923 
-  LPF ALTER_SPELL_HEADER INT_VAR target = 7 STR_VAR icon = ~d5nshdn~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5nshdn~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5nshdn.spl~				//	stop dance abil
+    SAY NAME1 @49923 // Stop Shamanic Dance
+    SAY UNIDENTIFIED_DESC @49923 
+    LPF ALTER_SPELL_HEADER INT_VAR target = 7 STR_VAR icon = ~d5nshdn~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5nshdn~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
 */
-CREATE EFF ~d5shmdn~
+  CREATE EFF ~d5shmdn~
 	WRITE_LONG 0x10 171
 	WRITE_LONG 0x14 1
 	WRITE_LONG 0x24 9
@@ -2271,34 +2272,35 @@ CREATE EFF ~d5shmdn~
 	WRITE_EVALUATED_ASCII 0x30 ~d5shmdn~ #8
 	WRITE_LONG 0x90 1
 	WRITE_EVALUATED_ASCII 0x94 ~D5SHMDN~ #8
-
+END
 
 //recreate detect illusions__________________________________________________________
 //
-COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdi.bam~ ~override~		//	detect icon
-COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdi.spl~ ~override~		//	dance ability
-  SAY NAME1 @49924 // Detect Illusions
-  SAY UNIDENTIFIED_DESC @49924 
-  LPF ALTER_SPELL_HEADER INT_VAR location = 4 STR_VAR icon = ~d5shmdi~ END
-//  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5nshdi~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 9 STR_VAR resource = ~d5shmdn~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 9 STR_VAR resource = ~d5shmdi~ END
-COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdib.eff~ ~override~							//	232 eff triggered by song
-COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdib.spl~ ~override~							//	aura triggered by 232 eff
-COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5nshdi.bam~ ~override~		//	stop detect icon
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shmdi.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdi.bam~ ~override~		//	detect icon
+  COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdi.spl~ ~override~		//	detect ability
+    SAY NAME1 @49924 // Detect Illusions
+    SAY UNIDENTIFIED_DESC @49924 
+    LPF ALTER_SPELL_HEADER INT_VAR location = 4 STR_VAR icon = ~d5shmdi~ END
+// 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5nshdi~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 9 STR_VAR resource = ~d5shmdn~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 9 STR_VAR resource = ~d5shmdi~ END
+  COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdib.eff~ ~override~							//	232 eff triggered by song
+  COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdib.spl~ ~override~							//	aura triggered by 232 eff
+  COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5nshdi.bam~ ~override~		//	stop detect icon
 /*
-COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5nshdi.spl~				//	stop detect abil
-  SAY NAME1 @49926 // Stop detecting illusions
-  SAY UNIDENTIFIED_DESC @49926 
-  LPF ALTER_SPELL_HEADER INT_VAR target = 7 STR_VAR icon = ~d5nshdi~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5nshdi~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5nshdi.spl~				//	stop detect abil
+    SAY NAME1 @49926 // Stop detecting illusions
+    SAY UNIDENTIFIED_DESC @49926 
+    LPF ALTER_SPELL_HEADER INT_VAR target = 7 STR_VAR icon = ~d5nshdi~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5nshdi~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
 */
-CREATE EFF ~d5shmdi~
+  CREATE EFF ~d5shmdi~
 	WRITE_LONG 0x10 171
 	WRITE_LONG 0x14 1
 	WRITE_LONG 0x24 9
@@ -2307,9 +2309,9 @@ CREATE EFF ~d5shmdi~
 	WRITE_EVALUATED_ASCII 0x30 ~d5shmdi~ #8
 	WRITE_LONG 0x90 1
 	WRITE_EVALUATED_ASCII 0x94 ~D5SHMDI~ #8
+END
 
-
-//learn spell item & initialize_______________________________________________________
+//learn spell item_____________________________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~%learn_res%b.spl~) BEGIN
   COPY_EXISTING ~%learn_res%b.spl~ ~override~

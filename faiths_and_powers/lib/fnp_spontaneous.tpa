@@ -11,7 +11,15 @@ DEFINE_ACTION_FUNCTION fnp_spontaneous STR_VAR kit_clab = ~x~ learn_res = ~d5msh
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fpspt.spl~) BEGIN
   COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5fpspt.spl~
+	SAY NAME1 @49917
+	SAY UNIDENTIFIED_DESC @49918
+	WRITE_SHORT 0x1c 4
 //	LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5fpsp3.spl~
+	SAY NAME1 @49917
+	SAY UNIDENTIFIED_DESC @49918
+	LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~d5lernpr~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5fpspt~ END
 END
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fpsp2.spl~) BEGIN
@@ -22,8 +30,8 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fpsp2.spl~) BEGIN
 	SAY UNIDENTIFIED_DESC @49918
 	LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~d5lernpr~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 0 duration = 7 STR_VAR resource = ~d5fpsp2~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5fpsp2~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = ~d5fpsp2~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5fpsp2~ END
   COPY ~faiths_and_powers/kits/misc/d5fpsp2.eff~ ~override~
   COPY ~faiths_and_powers/kits/misc/d5fpsp2.cre~ ~override~
   COMPILE ~faiths_and_powers/kits/misc/d5fpsp2.baf~
@@ -995,6 +1003,7 @@ COPY_EXISTING ~d5fpspt.spl~ ~override~
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 target = 1 parameter2 = 147 timing = 9 END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 24) parameter2 = %115_not_row% timing = 9 STR_VAR resource = ~d5shmsp~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 24) parameter2 = %115_bit_row% timing = 9 STR_VAR resource = ~d5shmsw~ END
+//  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 24) parameter2 = %kit_is_row% timing = 9 STR_VAR resource = ~d5shami~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 target = 1 timing = 9 STR_VAR resource = ~d5msorc~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = ~d5spm3m~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = ~d5fpspt~ END
@@ -1176,6 +1185,10 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shmsw.spl~) BEGIN
   COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5shmsw.spl~			//	add learn spells item
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 143 target = 1 parameter1 = 14 timing = 9 STR_VAR resource = ~d5shmsw~ END
 END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shamb.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5shami.spl~			//	add learn spells item
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 143 target = 1 parameter1 = 14 timing = 9 STR_VAR resource = ~d5shamb~ END
+END
 
 COPY_EXISTING ~d5fpspt.spl~ ~override~
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %kit_ids% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = EVAL ~%learn_res%b~ END
@@ -1187,23 +1200,38 @@ COPY_EXISTING ~d5fpspt.spl~ ~override~
 		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %kit_ids% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = EVAL ~d5t0%sphr%~ END
 	  END
 	END
+	PATCH_IF (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmbb~) || (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmrn~) || (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmth~) || (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmma~) || (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmnk~) BEGIN
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %kit_ids% parameter2 = %kit_is_row% timing = 4 duration = 1 STR_VAR resource = ~d5shami~ END
+	END
 IF_EXISTS BUT_ONLY
 
 ACTION_IF /*(%kit_class% != 6) && (%kit_class% != 12) &&*/ (%kit_class% != 21) BEGIN
- ACTION_IF (d5_spell_spontaneous = 0) || (~%%~ STRING_EQUAL_CASE ~d5shmbb~) || (~%%~ STRING_EQUAL_CASE ~d5shmrn~) || (~%%~ STRING_EQUAL_CASE ~d5shmth~) || (~%%~ STRING_EQUAL_CASE ~d5shmma~) || (~%%~ STRING_EQUAL_CASE ~d5shmnk~) BEGIN
+ ACTION_IF (d5_spell_spontaneous = 0) || (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmbb~) || (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmrn~) || (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmth~) || (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmma~) || (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmnk~) BEGIN
   COPY_EXISTING ~%kit_clab%.2da~ ~override~
 	APPEND_FILE ~override/d5sham.2da~
   IF_EXISTS
  END
  ACTION_IF (d5_spell_spontaneous > 0) BEGIN
-  ACTION_IF (FILE_EXISTS_IN_GAME ~%kit_clab%.2da~) && !(~%%~ STRING_EQUAL_CASE ~d5shmbb~) && !(~%%~ STRING_EQUAL_CASE ~d5shmrn~) && !(~%%~ STRING_EQUAL_CASE ~d5shmth~) && !(~%%~ STRING_EQUAL_CASE ~d5shmma~) && !(~%%~ STRING_EQUAL_CASE ~d5shmnk~) BEGIN
-	APPEND ~%kit_clab%.2da~ ~SPNT_SPLS    GA_D5FPSP2  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%kit_clab%.2da~) BEGIN
+	ACTION_IF !(~%kit_clab%~ STRING_EQUAL_CASE ~d5shmbb~) && !(~%kit_clab%~ STRING_EQUAL_CASE ~d5shmrn~) && !(~%kit_clab%~ STRING_EQUAL_CASE ~d5shmth~) && !(~%kit_clab%~ STRING_EQUAL_CASE ~d5shmma~) && !(~%kit_clab%~ STRING_EQUAL_CASE ~d5shmnk~) BEGIN
+	  APPEND ~%kit_clab%.2da~ ~SPNT_SPLS    GA_D5FPSP2  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+	END
+	ACTION_IF (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmbb~) || (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmrn~) || (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmth~) || (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmma~) || (~%kit_clab%~ STRING_EQUAL_CASE ~d5shmnk~) BEGIN
+	  APPEND ~%kit_clab%.2da~ ~SPNT_SPLS    GA_D5FPSPT  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+	  APPEND ~%kit_clab%.2da~ ~SPNT_SPLS    AP_D5FPSP3  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+	END
   END
  END
 END
 
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5shni2.spl~
+  SAY NAME1 @49950
+  SAY UNIDENTIFIED_DESC @49950
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shnit~ END
+
 ACTION_IF (d5_spell_spontaneous = 0) BEGIN
   APPEND ~%kit_clab%.2da~ ~LEARNSPLS   GA_D5SHNIT  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+  APPEND ~%kit_clab%.2da~ ~LEARNSPLS   AP_D5SHNI2  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 END
 
 

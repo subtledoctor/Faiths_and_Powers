@@ -2969,7 +2969,7 @@ END
 	u_plate_armor 		= 0
 	u_club_staff	 	= 1
 	u_hammers	 		= 1
-	u_maces 	 		= 0
+	u_maces 	 		= 1
 	u_flails 			= 0
 	u_axes 				= 0
 	u_daggers 			= 1
@@ -3153,7 +3153,7 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 	u_spears 	 		= 1
 	u_darts 			= 0
 	u_slings	 		= 1
-	u_bows 				= 0
+	u_bows 				= 1
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5mwat~
@@ -3493,7 +3493,7 @@ COPY ~faiths_and_powers/kits/druids/706_fire_mystic/d5myfi2.spl~ ~override~
 	u_spears 	 		= 1
 	u_darts 			= 0
 	u_slings	 		= 1
-	u_bows 				= 0
+	u_bows 				= 1
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5mfir~
@@ -3666,7 +3666,7 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 	u_spears 	 		= 1
 	u_darts 			= 0
 	u_slings	 		= 1
-	u_bows 				= 0
+	u_bows 				= 1
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5mlig~
@@ -3835,7 +3835,7 @@ COPY ~faiths_and_powers/kits/misc/d5disp7.spl~ ~override~
 	u_spears 	 		= 1
 	u_darts 			= 0
 	u_slings	 		= 1
-	u_bows 				= 0
+	u_bows 				= 1
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~d5mshd~
