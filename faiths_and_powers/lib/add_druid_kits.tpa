@@ -386,7 +386,7 @@ APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell_res%  ****        ****
 // make beetle swarm spell
 ACTION_IF !(GAME_IS ~iwdee~) BEGIN
 // animations
-  COPY ~faiths_and_powers/spheres/spells/animations/e210_beetle~ ~override~
+  COPY ~faiths_and_powers/spheres/spells/animations/e210_fire_beetle~ ~override~
   COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5smbtl.cre~ ~override~
 	LPF make_summon END
 END
@@ -1442,6 +1442,12 @@ OUTER_SET squirrel_animation = IDS_OF_SYMBOL (animate ~SQUIRREL~)
 ACTION_IF !(GAME_IS ~iwdee~) BEGIN
 // yeti
   COPY ~faiths_and_powers/spheres/spells/animations/e25d_yeti~ ~override~
+// copper beetle
+  COPY ~faiths_and_powers/spheres/spells/animations/e200_copper_beetle~ ~override~
+// fire beetle
+  COPY ~faiths_and_powers/spheres/spells/animations/e210_fire_beetle~ ~override~
+// black beetle
+  COPY ~faiths_and_powers/spheres/spells/animations/e220_black_beetle~ ~override~
 // rhino beetle
   COPY ~faiths_and_powers/spheres/spells/animations/e230_rhino_beetle~ ~override~
 // remorhaz

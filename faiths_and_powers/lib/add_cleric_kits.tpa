@@ -3968,7 +3968,7 @@ COPY_EXISTING ~sppr203.spl~ ~override/d5morh3.spl~
 ACTION_IF (GAME_IS ~bgee bg2ee eet iwdee~) BEGIN
   OUTER_SET cl_moradin_code = (0x4000 + %D5_CL_MORADIN%)
   COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
-	PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
+	PATCH_IF (%SOURCE_SIZE% > 0x71) BEGIN
 	  READ_BYTE 0x31 prof
 	  READ_SHORT 0x1c type
 	  PATCH_IF (%prof% = 97) BEGIN // hammers
@@ -4570,7 +4570,10 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 	END
   END
 BUT_ONLY
+/* this vv fails on Grey the Dog's items for some reason
+*/
 COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
+ PATCH_IF (%SOURCE_SIZE% > 0x71) BEGIN
   GET_OFFSET_ARRAY ab_array ITM_V10_HEADERS
   PHP_EACH ab_array AS int => ab_off BEGIN
 	READ_SHORT ab_off + 0x2a ab_proj
@@ -4582,6 +4585,7 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
 	  END
 	END
   END
+ END
 BUT_ONLY
 COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5baer2.spl~	// entangle immunity
 //  PHP_EACH entangling_array AS res => num BEGIN
