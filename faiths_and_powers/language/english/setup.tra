@@ -920,6 +920,25 @@ Restrictions:
 
 With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a Volamtar of Marthammor Duin can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. Red arrows at the edge of the screen will point in the general direction of the creatures in the area.~
 //
+// ... priest of haela:
+//
+@37401  = ~kaxanar of haela brightaxe~
+@37402  = ~Kaxanar of Haela Brightaxe~
+@37403  = ~KAXANAR OF HAELA BRIGHTAXE: fluff
+
+Advantages:
+- Kaxanar can be proficient with any weapon.
+- Kaxanar gain a +1 bonus to damage with any melee weapon.
+- Incite Rage: Battleguards can incite a berserker rage beginning at level 5, and again at levels 10, 15 and 20.  This ability is like the berserkers enrage, except that <PRO_HESHE> can incite this rage in <PRO_HIMHER>self or in others.
+
+Restrictions:
+- Alignment: may not be Lawful.
+~
+@37323  = ~Tracking~
+@37334  = ~Tracking
+
+With an intimate knowledge of <PRO_HISHER> surroundings and the creatures that live within them, a Volamtar of Marthammor Duin can use the Tracking ability to give <PRO_HIMHER>self a general idea of what creatures are in an area and which direction they are. Red arrows at the edge of the screen will point in the general direction of the creatures in the area.~
+//
 // ... priest of baravar:
 //
 @38201  = ~hoodwinker of baravar~

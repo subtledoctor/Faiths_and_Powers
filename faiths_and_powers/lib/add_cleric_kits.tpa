@@ -8,6 +8,8 @@
 
 DEFINE_ACTION_FUNCTION cleric_ur_priest BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_CLERIC_UR_PRIEST~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -191,6 +193,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_azuth BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_PRIEST_AZUTH~
 
@@ -399,6 +403,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_beshaba BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_PRIEST_BESHABA~
 //___________________________________________________________________________________
@@ -626,6 +632,8 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_cyric BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_CLERIC_CYRIC~
 //___________________________________________________________________________________
 
@@ -789,6 +797,8 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_deneir BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_PRIEST_DENEIR~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -941,6 +951,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_helm BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_CLERIC_HELM~
 
@@ -1114,6 +1126,8 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_ilmater BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_PRIEST_ILMATER~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -1263,6 +1277,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_kelemvor BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_CLERIC_KELEMVOR~
 
@@ -1470,6 +1486,8 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_lathander BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_CLERIC_LATHANDER~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -1644,8 +1662,9 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_leira BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_CL_LEIRA~
-//___________________________________________________________________________________
 
 //WEAPON PROFICIENCIES_______________________________________________________________
 //11        	                           T   S           F   Q             S S
@@ -1779,6 +1798,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_loviatar BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_CLERIC_LOVIATAR~
 
@@ -1936,6 +1957,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_malar BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_CLERIC_MALAR~
 
@@ -2223,6 +2246,8 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_moander BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_CLERIC_MOANDER~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -2371,6 +2396,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_mystra BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_CLERIC_MYSTRA~
 
@@ -2534,6 +2561,8 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_oghma BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_CLERIC_OGHMA~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -2678,6 +2707,8 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_shar BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_AC_SHAR~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -2818,6 +2849,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_sune BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_PRIEST_SUNE~
 
@@ -2986,6 +3019,8 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_talos BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_CLERIC_TALOS~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -3142,6 +3177,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_tempus BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_CLERIC_TEMPUS~
 
@@ -3305,6 +3342,8 @@ END
 
 DEFINE_ACTION_FUNCTION priest_tempus BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_PRIEST_TEMPUS~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -3445,6 +3484,8 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_torm BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_CLERIC_TORM~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -3584,6 +3625,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_tymora BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_CL_TYMORA~
 
@@ -3727,6 +3770,8 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_umberlee BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_CLERIC_UMBERLEE~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -3865,6 +3910,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_moradin BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_CL_MORADIN~
 
@@ -4048,6 +4095,8 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_clangeddin BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_CL_CLANGEDDIN~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -4191,6 +4240,8 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_marthammor BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_CL_MARTHAMMOR~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -4326,11 +4377,158 @@ END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
+//								KAXANAR OF HAELA
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+DEFINE_ACTION_FUNCTION cleric_haela BEGIN
+
+LAF check_kit_conflict END
+
+ADD_KIT ~B_CLERIC_HAELA~
+
+//WEAPON PROFICIENCIES________________________________________________________________
+//11                                   		T   S           F   Q             S S
+//10           		L S                     W   C           L   U             W I
+//9            		A M             B L S   O   I   W       A   A             O N
+//8            		R A             A O H   H   M   A       I   R C   S       R G
+//7            		G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6            		E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5            		S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4            		W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3            		O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2            		R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1            		D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+~B_CLERIC_HAELA     0 0 0 0 0 0 0 0~
+~B_CLERIC_HAELA     0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+
+//MINIMUM KIT STATS_________________________________________________________________
+//                  STR DEX CON INT WIS CHR
+~B_CLERIC_HAELA     13   0   12  0   9  0~
+
+//KIT STAT MODIFIERS________________________________________________________________
+//                  STR DEX CON INT WIS CHR
+~B_CLERIC_HAELA     0   0   0   0   0   0~
+
+//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
+//                  STR DEX CON INT WIS CHR
+~B_CLERIC_HAELA     15  0   0   0   15  0~
+
+//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
+//                  STR DEX CON INT WIS CHR
+~B_CLERIC_HAELA     15  0   0   0   15  0~
+
+//ALIGNMENT RESTRICTIONS____________________________________________________________
+//                  LG LN LE NG TN NE CG CN CE
+~B_CLERIC_HAELA     0  0  0  1  1  0  1  1  1~
+
+//DUAL CLASS OPTIONS________________________________________________________________
+//                  FT CL MA TH DR RA
+~B_CLERIC_HAELA     1  0  0  0  0  0~
+
+//KIT ABILITIES 2DA FILE______________________________________________________________
+~faiths_and_powers/kits/clerics/374_haela/b_chae.2da~
+
+//RACIAL KIT AVAILABILITY_____________________________________________________________
+~K_C_D~
+
+//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
+//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
+//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
+//         Monk = 20
+~0x00004000 3~
+
+//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
+~Cl0~
+
+//TOB STARTING EQUIPMENT_____________________________________________________________
+~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
+
+//CHARACTER CREATION KIT DESCRIPTION________________________________________________
+SAY @37401 //lower
+SAY @37402 //Mixed
+SAY @37403 //Help
+
+//EE KIT EXTRAS_____________________________________________________________________
+// 
+ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
+	LAF fl#add_kit_ee
+		INT_VAR
+			briefdesc = RESOLVE_STR_REF (@37403)
+		STR_VAR
+			kit_name = B_CLERIC_HAELA 
+			clswpbon = ~0 0 3~
+	END
+END
+
+//TEMPUS ABILITY FILES______________________________________________________________
+//
+COPY ~faiths_and_powers/kits/clerics/374_haela/b_chae.2da~ ~override~
+// Incite Rage
+ACTION_IF FILE_EXISTS_IN_GAME ~spcl321.spl~ BEGIN
+COPY_EXISTING ~spcl321.spl~ ~override/B_TEM03.spl~ // Incite Rage
+	SAY NAME1 @21004
+	SAY NAME2 @21004
+	SAY UNIDENTIFIED_DESC @21006 
+	SAY IDENTIFIED_DESC @21006 
+  WRITE_BYTE 0x7e 1//Target 1 cre
+END
+
+COPY ~faiths_and_powers/kits/clerics/210_tempus/b_tem05.spl~ ~override~    //+1 damage
+
+//DEFINE SPHERE ACCESS______________________________________________________________
+//
+ LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 1
+	u_plate_armor 		= 1
+	u_club_staff	 	= 1
+	u_hammers	 		= 2
+	u_maces 	 		= 1
+	u_flails 			= 1
+	u_axes 				= 2
+	u_daggers 			= 1
+	u_short_swords		= 1
+	u_long_swords		= 1
+	u_scimitars 		= 1
+	u_katanas 			= 1
+	u_bastard_swords 	= 1
+	u_2hand_swords 		= 1
+	u_halberds 			= 1
+	u_spears 	 		= 1
+	u_darts 			= 0
+	u_slings	 		= 1
+	u_bows 				= 0
+	u_crossbows 		= 1
+  STR_VAR
+    clab_name 		= ~b_chae~
+	sphere_list		= ~haela_spheres~
+	class 			= ~cleric~
+	multiclass 		= ~fc~
+ END
+
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (cleric_haela_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chae~ learn_res = ~b_chaez~ END
+ END
+ END
+ 
+END
+//__________________________________________________________________________________
+
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
 //								CLERIC OF BARAVAR
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_baravar BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_CLERIC_BARAVAR~
 
@@ -4473,6 +4671,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_baervan BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_CLERIC_BAERVAN~
 
@@ -4783,6 +4983,8 @@ END
 
 DEFINE_ACTION_FUNCTION cleric_urdlen BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_URDLEN~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -4921,6 +5123,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_yondalla BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_CLERIC_YONDALLA~
 
@@ -5076,6 +5280,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cleric_arvoreen BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_CLERIC_ARVOREEN~
 

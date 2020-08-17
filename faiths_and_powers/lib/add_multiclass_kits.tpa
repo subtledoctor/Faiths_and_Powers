@@ -8,6 +8,8 @@
 
 DEFINE_ACTION_FUNCTION cm_mystra BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_CM_MYSTRA~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -193,6 +195,8 @@ END
 
 DEFINE_ACTION_FUNCTION cm_azuth BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_CM_AZUTH~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -362,6 +366,8 @@ END
 
 DEFINE_ACTION_FUNCTION cr_mielikki BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_CR_MIELI~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -512,6 +518,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION cr_shaundakul BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_CR_SHAUNDAKUL~
 
@@ -667,6 +675,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION ct_mask BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_CT_MASK~
 
@@ -833,6 +843,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION ct_brandobaris BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_CT_BRANDOBARIS~
 
@@ -2518,6 +2530,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	OUTER_SPRINT crippstr ~%orig_crippstr%~
    END
   END
+  LAF check_kit_conflict END
   ACTION_IF (new_class = 15) BEGIN
    LAF ADD_KIT_EX
     INT_VAR

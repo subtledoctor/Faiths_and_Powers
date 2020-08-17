@@ -8,6 +8,8 @@
 
 DEFINE_ACTION_FUNCTION champion_arvoreen BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_CHAMP_ARVOREEN~
 //___________________________________________________________________________________
 
@@ -300,6 +302,8 @@ END
 
 DEFINE_ACTION_FUNCTION champion_azuth BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_CHAMP_AZUTH~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -465,6 +469,8 @@ END
 
 DEFINE_ACTION_FUNCTION champion_bane BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_CHAMP_BANE~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -622,6 +628,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION iwdee_champion_bane BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_CHAMP_BANE~
 
@@ -785,6 +793,8 @@ END
 
 DEFINE_ACTION_FUNCTION champion_helm BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_CHAMP_HELM~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -928,6 +938,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION iwdee_champion_helm BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_CHAMP_HELM~
 
@@ -1076,6 +1088,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION champion_kelemvor BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_CHAMP_KELE~
 
@@ -1247,6 +1261,8 @@ END
 
 DEFINE_ACTION_FUNCTION iwdee_champion_kelemvor BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_CHAMP_KELE~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -1400,6 +1416,8 @@ END
 
 DEFINE_ACTION_FUNCTION champion_moradin BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_CHAMP_MOR~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -1552,6 +1570,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION champion_red BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_CHAMP_RED~
 
@@ -1708,6 +1728,8 @@ END
 
 DEFINE_ACTION_FUNCTION champion_talos BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~B_CHAMP_TALOS~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -1848,6 +1870,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION iwdee_champion_talos BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_CHAMP_TALOS~
 
@@ -1993,6 +2017,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION champion_tempus BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_CHAMP_TEMP~
 
@@ -2163,6 +2189,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION champion_tyr BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~B_CHAMP_TYR~
 

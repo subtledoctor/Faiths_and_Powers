@@ -257,6 +257,8 @@ END	//	end function
 
 DEFINE_ACTION_FUNCTION fighter_druid BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_DR_FIGHTER~
 
 //WEAPON PROFICIENCIES_______________________________________________________________
@@ -527,6 +529,8 @@ END
 
 DEFINE_ACTION_FUNCTION druid_ranger BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_DR_RANGER~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -787,6 +791,8 @@ END
 
 DEFINE_ACTION_FUNCTION druid_thief BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_DR_THIEF~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -1044,6 +1050,8 @@ END
 
 DEFINE_ACTION_FUNCTION druid_mage BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_DR_MAGE~
 
 //WEAPON PROFICIENCIES_______________________________________________________________
@@ -1288,6 +1296,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION sorcerer_druid BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_DR_SORC~
 
@@ -1552,6 +1562,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION druid_monk BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_DR_MONK~
 
@@ -2361,6 +2373,8 @@ END	//	end item function
 
 DEFINE_ACTION_FUNCTION sham_barb BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_BARB_SHAMAN~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -2513,6 +2527,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION ranger_shaman BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_SHAMAN_RANGER~
 
@@ -2683,6 +2699,8 @@ END
 
 DEFINE_ACTION_FUNCTION shaman_thief BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_SHAMAN_THIEF~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -2840,6 +2858,8 @@ END
 
 DEFINE_ACTION_FUNCTION shaman_mage BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_SHAMAN_MAGE~
 
 //WEAPON PROFICIENCIES_______________________________________________________________
@@ -2989,6 +3009,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION shaman_monk BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_SHAMAN_MONK~
 

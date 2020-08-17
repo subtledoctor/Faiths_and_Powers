@@ -1738,6 +1738,39 @@ END
 
 //___________________________________________________________________________________
 //
+DEFINE_ACTION_FUNCTION haela_spheres 
+  RET_ARRAY haela_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY haela_spheres_array BEGIN
+	Life		 		=> major
+	Death		 		=> x
+	Creation			=> major
+	Destruction		 	=> major
+	Protection		 	=> major
+	War		 			=> major
+	Exploration		  	=> minor
+	Knowledge		 	=> minor
+	Deception	 		=> x
+	Thought		 		=> minor
+	Dread		 		=> x
+	Vigor		 		=> major
+	Affliction		 	=> x
+	Animal		 		=> x
+	Plant		 		=> x
+	Earth		 		=> minor
+	Water		 		=> x
+	Air		 			=> minor
+	Fire		 		=> x
+	Light	 			=> minor
+	Shadow		 		=> x
+	Magic		 		=> minor
+	Astral		    	=> x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
 DEFINE_ACTION_FUNCTION baravar_spheres 
   RET_ARRAY baravar_spheres_array
  BEGIN

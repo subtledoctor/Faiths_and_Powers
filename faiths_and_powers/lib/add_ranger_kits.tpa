@@ -67,6 +67,8 @@ COPY ~faiths_and_powers/kits/rangers/901_forest_ranger/haterace.2da~ ~override~
 
 //____________________________________________________________________________________
 //
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_RA_FOR~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -255,6 +257,8 @@ END
 
 DEFINE_ACTION_FUNCTION mountain_ranger BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_RA_MOU~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -409,6 +413,8 @@ END
 
 DEFINE_ACTION_FUNCTION desert_ranger BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_RA_DES~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -558,6 +564,8 @@ END
 
 DEFINE_ACTION_FUNCTION jungle_ranger BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5_RA_JUN~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -704,6 +712,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION arctic_ranger BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5_RA_ARC~
 
@@ -1077,6 +1087,8 @@ END
 
 DEFINE_ACTION_FUNCTION barbarian_ranger BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5RBARB~
 
 //WEAPON PROFICIENCIES_______________________________________________________________
@@ -1225,6 +1237,8 @@ END//___________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION mage_hunter BEGIN
 
+LAF check_kit_conflict END
+
 ADD_KIT ~D5MAGEH~
 
 //WEAPON PROFICIENCIES________________________________________________________________
@@ -1369,6 +1383,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION elven_archer BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5EARCH~
 
@@ -1586,6 +1602,8 @@ END
 //__________________________________________________________________________________
 
 DEFINE_ACTION_FUNCTION halfling_slinger BEGIN
+
+LAF check_kit_conflict END
 
 ADD_KIT ~D5SLING~
 

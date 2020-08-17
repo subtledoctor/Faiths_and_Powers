@@ -1782,6 +1782,39 @@ END
 
 //___________________________________________________________________________________
 //
+DEFINE_ACTION_FUNCTION haela_spheres 
+  RET_ARRAY haela_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY haela_spheres_array BEGIN
+	Healing		 		=> major
+	Necromantic		 	=> x
+	Creation			=> major
+	Decay				=> major
+	Protection		 	=> major
+	Combat		 		=> major
+	Travelers			=> minor
+	Divination		 	=> major
+	Wards		 		=> x
+	Thought		 		=> minor
+	Charm		 		=> x
+	Law			 		=> x
+	Chaos			 	=> x
+	Animal		 		=> x
+	Plant		 		=> x
+	Earth		 		=> minor
+	Water		 		=> x
+	Air		 			=> minor
+	Fire		 		=> minor
+	Sun		 			=> x
+	Shadow		 		=> x
+	Weather		 		=> major
+	Astral			    => x
+ END
+END
+//___________________________________________________________________________________
+
+//___________________________________________________________________________________
+//
 DEFINE_ACTION_FUNCTION baravar_spheres 
   RET_ARRAY baravar_spheres_array
  BEGIN

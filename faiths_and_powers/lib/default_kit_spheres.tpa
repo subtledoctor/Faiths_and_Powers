@@ -2240,6 +2240,42 @@ END
 //__________________________________________________________________________________
 END
 
+// HELGA - CLERIC OF HAELA
+
+ACTION_IF FILE_EXISTS_IN_GAME ~x3helcl.2da~ BEGIN
+//DEFINE SPHERE ACCESS______________________________________________________________
+//
+LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 1
+	u_plate_armor 		= 1
+	u_club_staff	 	= 1
+	u_hammers	 		= 2
+	u_maces 	 		= 1
+	u_flails 			= 1
+	u_axes 				= 2
+	u_daggers 			= 1
+	u_short_swords		= 1
+	u_long_swords		= 1
+	u_scimitars 		= 1
+	u_katanas 			= 1
+	u_bastard_swords 	= 1
+	u_2hand_swords 		= 1
+	u_halberds 			= 1
+	u_spears 	 		= 1
+	u_darts 			= 0
+	u_slings	 		= 1
+	u_bows 				= 0
+	u_crossbows 		= 1
+  STR_VAR
+    clab_name 		= ~x3helcl~
+	class 			= ~cleric~
+	sphere_list		= ~haela_spheres~
+END
+//__________________________________________________________________________________
+END
+
 
 END // end mod_kit_spheres function
 
