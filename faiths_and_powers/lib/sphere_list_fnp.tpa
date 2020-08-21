@@ -99,7 +99,7 @@ CLERIC_ABUNDANT_AMMO                    1	=	Creation
 WIZARD_GREASE                           1	=	Creation 
 CLERIC_MAGIC_STONE                      1	=	Creation
 WIZARD_GLITTERDUST                      2	=	Creation 
-WIZARD_WEB                              3	=	Creation
+spdr201                                 3	=	Creation // druid version of web
 CLERIC_STAR_METAL_CUDGEL                4	=	Creation
 d5clgol                                 5	=	Creation // animate clay construct
 CLERIC_BLADE_BARRIER                    6	=	Creation
@@ -357,8 +357,8 @@ WIZARD_SHADES                           6	=	Shadow
 B_W629                                  6	=	Shadow // Shades
 WIZARD_WRAITH_FORM                      7	=	Shadow
 WIZARD_POWER_WORD_BLIND                 7	=	Shadow
-CLERIC_SILENCE_15_FOOT                  1	=	Magic
-CLERIC_MISCAST_MAGIC                    2	=	Magic
+CLERIC_MISCAST_MAGIC                    1	=	Magic
+CLERIC_SILENCE_15_FOOT                  2	=	Magic
 CLERIC_DISPEL_MAGIC                     3	=	Magic
 WIZARD_MINOR_SPELL_DEFLECTION           3	=	Magic
 WIZARD_SECRET_WORD                      4	=	Magic
@@ -2360,8 +2360,8 @@ DEFINE_ACTION_FUNCTION mystic_earth_spheres
 	Fire 			=> x
 	Light 			=> x
 	Shadow 			=> x
-	Magic 			=> major
-	Astral			=> minor
+	Magic 			=> minor
+	Astral			=> major
  END
 END
 //___________________________________________________________________________________
@@ -2393,8 +2393,8 @@ DEFINE_ACTION_FUNCTION mystic_water_spheres
 	Fire 			=> x
 	Light 			=> x
 	Shadow 			=> x
-	Magic 			=> major
-	Astral			=> minor
+	Magic 			=> minor
+	Astral			=> major
  END
 END
 //___________________________________________________________________________________
@@ -2426,8 +2426,8 @@ DEFINE_ACTION_FUNCTION mystic_air_spheres
 	Fire 			=> x
 	Light 			=> minor
 	Shadow 			=> x
-	Magic 			=> major
-	Astral			=> minor
+	Magic 			=> minor
+	Astral			=> major
  END
 END
 //___________________________________________________________________________________
@@ -2459,8 +2459,8 @@ DEFINE_ACTION_FUNCTION mystic_fire_spheres
 	Fire 			=> focus
 	Light 			=> major
 	Shadow 			=> x
-	Magic 			=> major
-	Astral			=> minor
+	Magic 			=> minor
+	Astral			=> major
  END
 END
 //___________________________________________________________________________________
@@ -2492,8 +2492,8 @@ DEFINE_ACTION_FUNCTION mystic_light_spheres
 	Fire 			=> minor
 	Light 			=> focus
 	Shadow 			=> x
-	Magic 			=> major
-	Astral			=> minor
+	Magic 			=> minor
+	Astral			=> major
  END
 END
 //___________________________________________________________________________________
@@ -2525,8 +2525,8 @@ DEFINE_ACTION_FUNCTION mystic_shadow_spheres
 	Fire 			=> x
 	Light 			=> x
 	Shadow 			=> focus
-	Magic 			=> major
-	Astral			=> minor
+	Magic 			=> minor
+	Astral			=> major
  END
 END
 //___________________________________________________________________________________

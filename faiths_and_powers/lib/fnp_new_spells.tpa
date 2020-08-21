@@ -318,6 +318,7 @@ END
 COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.spl~ ~override/d5fnp11.spl~ 
 	SAY NAME1 @50201
 	SAY UNIDENTIFIED_DESC @50202
+	WRITE_SHORT 0x1c 2
 	WRITE_ASCII 0x3a ~d5clgolc~ #8
 	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clgolb~ END
 COPY ~faiths_and_powers/spheres/spells/creation/d5clgolc.bam~ ~override~ 
@@ -336,6 +337,7 @@ END
 COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.spl~ ~override/d5fnp12.spl~ 
 	SAY NAME1 @50204
 	SAY UNIDENTIFIED_DESC @50205
+	WRITE_SHORT 0x1c 2
 	WRITE_ASCII 0x3a ~d5clgolc~ #8
 	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clgolb~ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~golstone.itm~) BEGIN
@@ -355,6 +357,7 @@ END
 COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.spl~ ~override/d5fnp13.spl~ 
 	SAY NAME1 @50207
 	SAY UNIDENTIFIED_DESC @50208
+	WRITE_SHORT 0x1c 2
 	WRITE_ASCII 0x3a ~d5clgolc~ #8
 	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clgolb~ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~irongol.itm~) BEGIN
