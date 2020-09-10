@@ -478,7 +478,7 @@ END
 
 //apply spells to sphere system_____________________________________________________
 //
-LAM d5_minor_access_levels
+//LAM d5_minor_access_levels
 
 COPY ~d5/d5altsph.2da~ ~override~
 
@@ -522,7 +522,7 @@ BUT_ONLY
 <<<<<<<< d5/d5fnplst.2da
 2DA V1.0 
 SPLRES
-		MAJOR	MINOR	FOCUS	SPHERE	SYSTEM	SPONT	206		LEARN		EFF
+		MAJOR	MINOR	FOCUS	SPHERE	SYSTEM	SPONT	206		LEARN		EFF		SWITCH
 >>>>>>>> 
 COPY ~d5/d5fnplst.2da~ ~override/d5fnplst.2da~ 
 
@@ -580,6 +580,7 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 			OUTER_TEXT_SPRINT spont_206 ~d5t6%spl_ind%~
 			OUTER_TEXT_SPRINT spont_lrn ~d5tx%spl_ind%~
 			OUTER_TEXT_SPRINT spont_eff ~D5H%spl_ind%~
+			OUTER_TEXT_SPRINT switch_spl ~d5tz%spl_ind%~
 		  END
 	   	  ELSE BEGIN
 			OUTER_TEXT_SPRINT the_spell ~%spl%~
@@ -590,15 +591,16 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 			OUTER_TEXT_SPRINT spont_206 ~d5t6%spl_ind%~
 			OUTER_TEXT_SPRINT spont_lrn ~d5tx%spl_ind%~
 			OUTER_TEXT_SPRINT spont_eff ~D5H%spl_ind%~
+			OUTER_TEXT_SPRINT switch_spl ~d5tz%spl_ind%~
 		  END 
 		  ACTION_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ && !(~%the_spell%~ STRING_EQUAL_CASE ~d5fnp03~) BEGIN 
 			COPY_EXISTING ~%the_spell%.spl~ ~override~ 
 			  READ_SHORT 0x1c spell_type
 			  READ_LONG 0x34 spell_lvl
 			BUT_ONLY
-			ACTION_IF !(IS_AN_INT %d5_minor_shift%) BEGIN
+//			ACTION_IF !(IS_AN_INT %d5_minor_shift%) BEGIN
 			  OUTER_SET d5_minor_shift = 0
-			END
+//			END
 			ACTION_IF (%lvl% = 0) BEGIN
 			  OUTER_SET plvl = %spell_lvl%
 			  OUTER_SET mlvl = (%spell_lvl% + %d5_minor_shift%)
@@ -1049,7 +1051,7 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 			  END
 			END
 			ACTION_IF !(FILE_CONTAINS_EVALUATED (~d5fnplst.2da~ ~%the_spell%[ %TAB%]~)) BEGIN
-			  APPEND ~d5fnplst.2da~ ~%the_spell%	%major_spl%	%minor_spl%	%focus_res%	%desc_sph%	%sph%	%spont_spl%	%spont_206%	%spont_lrn%	%spont_eff%~
+			  APPEND ~d5fnplst.2da~ ~%the_spell%	%major_spl%	%minor_spl%	%focus_res%	%desc_sph%	%sph%	%spont_spl%	%spont_206%	%spont_lrn%	%spont_eff%	%switch_spl%~
 			END
 		  END
 		END

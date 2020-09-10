@@ -81,7 +81,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fnp04.spl~) BEGIN
 	  LPF ADD_SPELL_EFFECT INT_VAR header = %headr% opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 4 duration = 2 STR_VAR resource = EVAL ~D5FNG%eff%%headr%~ END
     END
   END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 4 duration = 2 STR_VAR resource = EVAL ~D5FNGVI~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 0 duration = 6 STR_VAR resource = EVAL ~D5FNGVI~ END
  COPY ~faiths_and_powers/spheres/spells/animal/d5fnp041.itm~ ~override~ 
   LPF DELETE_EFFECT INT_VAR match_opcode = 325 END
  COPY ~faiths_and_powers/spheres/spells/animal/d5fnp042.itm~ ~override~ 
@@ -132,7 +132,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fnp04.spl~) BEGIN
 	WRITE_LONG 0x14 2
 	WRITE_LONG 0x20 1
 	WRITE_LONG 0x24 0
-	WRITE_LONG 0x28 2
+	WRITE_LONG 0x28 6
 	WRITE_SHORT 0x2c 100
 	WRITE_ASCII 0x30 ~SPHLYBLS~ #8
  ACTION_FOR_EACH animal IN ~BDSHA01A~
@@ -202,9 +202,10 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fnp05.spl~) BEGIN
   WRITE_LONG 0x34 5
   WRITE_ASCII 0x3a ~d5fnp05c~ #8
   LPF ALTER_SPELL_HEADER INT_VAR location = 2 STR_VAR icon = ~d5fnp05b~ END
-  PATCH_FOR_EACH eff IN ~BLT~ ~H50~ ~T2~ ~D2~ ~S2~ ~VI~ BEGIN
+  PATCH_FOR_EACH eff IN ~BLT~ ~H50~ ~T2~ ~D2~ ~S2~ /*~VI~*/ BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 4 duration = 2 STR_VAR resource = EVAL ~D5GRO%eff%~ END
   END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 2 parameter1 = 2 parameter2 = 3 timing = 0 duration = 2 STR_VAR resource = EVAL ~D5GROVI~ END
  COPY ~faiths_and_powers/spheres/spells/animal/d5fnp05.itm~ ~override~ 
  CREATE EFF ~D5GROBLT~
 	WRITE_LONG 0x10 143
@@ -320,7 +321,7 @@ COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.spl~ ~override/d5fnp11.s
 	SAY UNIDENTIFIED_DESC @50202
 	WRITE_SHORT 0x1c 2
 	WRITE_ASCII 0x3a ~d5clgolc~ #8
-	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clgolb~ END
+	LPF ALTER_SPELL_HEADER INT_VAR location = 2 STR_VAR icon = ~d5clgolb~ END
 COPY ~faiths_and_powers/spheres/spells/creation/d5clgolc.bam~ ~override~ 
 COPY ~faiths_and_powers/spheres/spells/creation/d5clgolb.bam~ ~override~ 
 COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.eff~ ~override~ 
@@ -339,7 +340,7 @@ COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.spl~ ~override/d5fnp12.s
 	SAY UNIDENTIFIED_DESC @50205
 	WRITE_SHORT 0x1c 2
 	WRITE_ASCII 0x3a ~d5clgolc~ #8
-	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clgolb~ END
+	LPF ALTER_SPELL_HEADER INT_VAR location = 2 STR_VAR icon = ~d5clgolb~ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~golstone.itm~) BEGIN
   COPY ~faiths_and_powers/spheres/spells/creation/golstone.itm~ ~override~ 
 END
@@ -359,7 +360,7 @@ COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.spl~ ~override/d5fnp13.s
 	SAY UNIDENTIFIED_DESC @50208
 	WRITE_SHORT 0x1c 2
 	WRITE_ASCII 0x3a ~d5clgolc~ #8
-	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5clgolb~ END
+	LPF ALTER_SPELL_HEADER INT_VAR location = 2 STR_VAR icon = ~d5clgolb~ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~irongol.itm~) BEGIN
   COPY ~faiths_and_powers/spheres/spells/creation/irongol.itm~ ~override~ 
 END

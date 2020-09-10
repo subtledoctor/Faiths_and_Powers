@@ -1682,6 +1682,446 @@ BUT_ONLY
 END	//	end define function
 
 
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+
+//MAKE +SPELL SLOT ITEMS WORK________________________________________________________
+//
+DEFINE_ACTION_FUNCTION divine_spont_items BEGIN
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_divine_slot_items.d5~) BEGIN
+
+COPY_EXISTING ~splprot.2da~ ~override~
+  COUNT_2DA_COLS cols
+  READ_2DA_ENTRIES_NOW rows cols
+  FOR (row = 1; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	PATCH_IF (~%stat%~ STRING_EQUAL_CASE ~D5_SHAM_1_7~) BEGIN
+	  SET fake_sham_slots_1_7 = %row%
+	END
+	PATCH_IF (~%stat%~ STRING_EQUAL_CASE ~D5_SHAM=1_7~) BEGIN
+	  SET sham_slots_equal_1_7 = %row%
+	END
+	PATCH_IF (~%stat%~ STRING_EQUAL_CASE ~D5_FATIGUE_0~) BEGIN
+	  SET fatigue_zero = %row%
+	END
+	PATCH_IF (~%stat%~ STRING_EQUAL_CASE ~D5_PREP_SPLZ~) BEGIN
+	  SET prep_spells_row = %row%
+	END
+	PATCH_IF (~%stat%~ STRING_EQUAL_CASE ~D5_NOT_PREP~) BEGIN
+	  SET not_prep_row = %row%
+	END
+  END
+BUT_ONLY
+
+OUTER_SET generic_ind = 1
+OUTER_SET prstslot_item_ind = 1
+OUTER_TEXT_SPRINT $priest_slot_items(~0~ ~0~ ~0~ ~0~) ~item~
+COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ override
+  SET slot_item = 0
+  PATCH_IF SOURCE_SIZE > 0x72 BEGIN
+    GET_OFFSET_ARRAY glob_fx ITM_V10_GEN_EFFECTS
+    PHP_EACH glob_fx AS idx => off BEGIN
+      PATCH_IF SHORT_AT off == 62 BEGIN
+        SET slot_item = 1
+        READ_LONG off + 0x04 param1 ELSE 0
+        READ_LONG off + 0x08 param2 ELSE 0
+        FOR (spell_level = 1; spell_level < 10; ++spell_level) BEGIN
+          PATCH_IF param2 & (2 ** (spell_level - 1)) BEGIN
+            TEXT_SPRINT $priest_slot_items(~%generic_ind%~ ~%prstslot_item_ind%~ ~%spell_level%~ ~%param1%~) ~%SOURCE_RES%~
+            SET ++generic_ind
+          END
+        END
+        PATCH_IF param2 == 0 BEGIN
+          TEXT_SPRINT $priest_slot_items(~%generic_ind%~ ~%prstslot_item_ind%~ ~%param1%~ ~99~) ~%SOURCE_RES%~
+          SET ++generic_ind
+        END
+      END // ELSE
+      PATCH_IF SHORT_AT off == 177 /* || SHORT_AT off == 326 */ BEGIN
+        READ_ASCII off + 0x14 eff_res (8) NULL
+        INNER_PATCH_FILE ~%eff_res%.EFF~ BEGIN
+          PATCH_IF LONG_AT 0x010 == 62 BEGIN
+            SET slot_item = 1
+            READ_LONG 0x1c param1 ELSE 0
+            READ_LONG 0x20 param2 ELSE 0
+            FOR (spell_level = 1; spell_level < 10; ++spell_level) BEGIN
+              PATCH_IF param2 & (2 ** (spell_level - 1)) BEGIN
+                TEXT_SPRINT $priest_slot_items(~%generic_ind%~ ~%prstslot_item_ind%~ ~%spell_level%~ ~%param1%~) ~%SOURCE_RES%~
+                SET ++generic_ind
+              END
+            END
+            PATCH_IF param2 == 0 BEGIN
+              TEXT_SPRINT $priest_slot_items(~%generic_ind%~ ~%prstslot_item_ind%~ ~%param1%~ ~99~) ~%SOURCE_RES%~
+              SET ++generic_ind
+            END
+          END
+        END
+      END
+    END
+  END
+  PATCH_IF slot_item = 1 BEGIN
+    SET ++prstslot_item_ind
+  END
+BUT_ONLY
+	  
+ACTION_PHP_EACH priest_slot_items AS ind => slot_item BEGIN
+ ACTION_IF (%ind% > 0) BEGIN
+  PRINT ~%ind% %ind_1% %ind_2% %ind_3% %slot_item%~
+  ACTION_IF (%ind_3% < 99) BEGIN
+	ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t#%ind_1%%ind_2%.spl~) BEGIN
+	  COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t#%ind_1%%ind_2%.spl~
+		LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+		PATCH_IF (%ind_2% = 1) BEGIN
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 4) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		END
+		PATCH_IF (%ind_2% = 2) BEGIN
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 8) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		END
+		PATCH_IF (%ind_2% = 3) BEGIN
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 12) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		END
+		PATCH_IF (%ind_2% = 4) BEGIN
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 16) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		END
+		PATCH_IF (%ind_2% = 5) BEGIN
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 20) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		END
+		PATCH_IF (%ind_2% = 6) BEGIN
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 24) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		END
+		PATCH_IF (%ind_2% = 7) BEGIN
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 28) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		END
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%%ind_2%~ END
+		LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%%ind_2%~ END
+	END
+	ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t_%ind_1%%ind_2%.spl~) BEGIN
+	  COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t_%ind_1%%ind_2%.spl~
+		LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t#%ind_1%%ind_2%~ END
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 4 duration = 1 STR_VAR resource = EVAL ~d5t_%ind_1%%ind_2%~ END
+	END
+	COPY_EXISTING ~d5shlot.spl~ ~override~
+	  PATCH_IF (%ind_2% = 1) BEGIN
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 4) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%%ind_2%~ END
+	  END
+	  PATCH_IF (%ind_2% = 2) BEGIN
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 8) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%%ind_2%~ END
+	  END
+	  PATCH_IF (%ind_2% = 3) BEGIN
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 12) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%%ind_2%~ END
+	  END
+	  PATCH_IF (%ind_2% = 4) BEGIN
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 16) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%%ind_2%~ END
+	  END
+	  PATCH_IF (%ind_2% = 5) BEGIN
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 20) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%%ind_2%~ END
+	  END
+	  PATCH_IF (%ind_2% = 6) BEGIN
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 24) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%%ind_2%~ END
+	  END
+	  PATCH_IF (%ind_2% = 7) BEGIN
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 28) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%%ind_2%~ END
+	  END
+	IF_EXISTS BUT_ONLY
+	COPY_EXISTING ~%slot_item%.itm~ ~override~
+	  LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%%ind_2%~ END
+//	  LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t#%ind_1%%ind_2%~ END
+	  LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%%ind_2%~ END
+	  LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = EVAL ~d5t_%ind_1%%ind_2%~ END
+	IF_EXISTS BUT_ONLY
+  END	//	end if not spell-doubling
+  ACTION_IF (%ind_3% = 99) BEGIN
+	ACTION_IF (%ind_2% > 0) BEGIN
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t#%ind_1%1.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t#%ind_1%1.spl~
+		  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 4) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%1~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%1~ END
+	  END
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t_%ind_1%1.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t_%ind_1%1.spl~
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t#%ind_1%1~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 4 duration = 1 STR_VAR resource = EVAL ~d5t_%ind_1%1~ END
+	  END
+	  COPY_EXISTING ~d5shlot.spl~ ~override~
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 4) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%1~ END
+	  IF_EXISTS BUT_ONLY
+	  COPY_EXISTING ~%slot_item%.itm~ ~override~
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%1~ END
+//		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%1~ END
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = EVAL ~d5t_%ind_1%1~ END
+	  IF_EXISTS BUT_ONLY
+	END
+	ACTION_IF (%ind_2% > 1) BEGIN
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t#%ind_1%2.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t#%ind_1%2.spl~
+		  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 8) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%2~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%2~ END
+	  END
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t_%ind_1%2.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t_%ind_1%2.spl~
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t#%ind_1%2~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 4 duration = 1 STR_VAR resource = EVAL ~d5t_%ind_1%2~ END
+	  END
+	  COPY_EXISTING ~d5shlot.spl~ ~override~
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 4) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%2~ END
+	  IF_EXISTS BUT_ONLY
+	  COPY_EXISTING ~%slot_item%.itm~ ~override~
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%2~ END
+//		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%2~ END
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = EVAL ~d5t_%ind_1%2~ END
+	  IF_EXISTS BUT_ONLY
+	END
+	ACTION_IF (%ind_2% > 2) BEGIN
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t#%ind_1%3.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t#%ind_1%3.spl~
+		  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 12) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%3~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%3~ END
+	  END
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t_%ind_1%3.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t_%ind_1%3.spl~
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t#%ind_1%3~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 4 duration = 1 STR_VAR resource = EVAL ~d5t_%ind_1%3~ END
+	  END
+	  COPY_EXISTING ~d5shlot.spl~ ~override~
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 4) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%3~ END
+	  IF_EXISTS BUT_ONLY
+	  COPY_EXISTING ~%slot_item%.itm~ ~override~
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%3~ END
+//		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%3~ END
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = EVAL ~d5t_%ind_1%3~ END
+	  IF_EXISTS BUT_ONLY
+	END
+	ACTION_IF (%ind_2% > 3) BEGIN
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t#%ind_1%4.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t#%ind_1%4.spl~
+		  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 16) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%4~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%4~ END
+	  END
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t_%ind_1%4.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t_%ind_1%4.spl~
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t#%ind_1%4~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 4 duration = 1 STR_VAR resource = EVAL ~d5t_%ind_1%4~ END
+	  END
+	  COPY_EXISTING ~d5shlot.spl~ ~override~
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 4) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%4~ END
+	  IF_EXISTS BUT_ONLY
+	  COPY_EXISTING ~%slot_item%.itm~ ~override~
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%4~ END
+//		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%4~ END
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = EVAL ~d5t_%ind_1%4~ END
+	  IF_EXISTS BUT_ONLY
+	END
+	ACTION_IF (%ind_2% > 4) BEGIN
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t#%ind_1%5.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t#%ind_1%5.spl~
+		  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 20) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%5~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%5~ END
+	  END
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t_%ind_1%5.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t_%ind_1%5.spl~
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t#%ind_1%5~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 4 duration = 1 STR_VAR resource = EVAL ~d5t_%ind_1%5~ END
+	  END
+	  COPY_EXISTING ~d5shlot.spl~ ~override~
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 4) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%5~ END
+	  IF_EXISTS BUT_ONLY
+	  COPY_EXISTING ~%slot_item%.itm~ ~override~
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%5~ END
+//		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%5~ END
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = EVAL ~d5t_%ind_1%5~ END
+	  IF_EXISTS BUT_ONLY
+	END
+	ACTION_IF (%ind_2% > 5) BEGIN
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t#%ind_1%6.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t#%ind_1%6.spl~
+		  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 24) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%6~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%6~ END
+	  END
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t_%ind_1%6.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t_%ind_1%6.spl~
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t#%ind_1%6~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 4 duration = 1 STR_VAR resource = EVAL ~d5t_%ind_1%6~ END
+	  END
+	  COPY_EXISTING ~d5shlot.spl~ ~override~
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 4) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%6~ END
+	  IF_EXISTS BUT_ONLY
+	  COPY_EXISTING ~%slot_item%.itm~ ~override~
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%6~ END
+//		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%6~ END
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = EVAL ~d5t_%ind_1%6~ END
+	  IF_EXISTS BUT_ONLY
+	END
+	ACTION_IF (%ind_2% > 6) BEGIN
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t#%ind_1%7.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t#%ind_1%7.spl~
+		  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 28) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%7~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%7~ END
+	  END
+	  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5t_%ind_1%7.spl~) BEGIN
+		COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5t_%ind_1%7.spl~
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t#%ind_1%7~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 4 duration = 1 STR_VAR resource = EVAL ~d5t_%ind_1%7~ END
+	  END
+	  COPY_EXISTING ~d5shlot.spl~ ~override~
+		LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 4) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = EVAL ~d5t_%ind_1%7~ END
+	  IF_EXISTS BUT_ONLY
+	  COPY_EXISTING ~%slot_item%.itm~ ~override~
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5t#%ind_1%7~ END
+//		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~d5t_%ind_1%7~ END
+		LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = EVAL ~d5t_%ind_1%7~ END
+	  IF_EXISTS BUT_ONLY
+	END
+  END	//	end if not spell-doubling
+  COPY_EXISTING ~%slot_item%.itm~ ~override~
+//	LPF DELETE_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = ~d5t_000~ END
+//	LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5t_000~ END
+	LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5shplz~ END
+	LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = (0 - 1) opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
+	LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5ssplz~ END
+	LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = (0 - 1) opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5ssplz~ END
+  IF_EXISTS BUT_ONLY
+ END
+END
+
+/* test method
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5-2slt.spl~
+//  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 8) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5+2slt~ END
+
+COPY_EXISTING ~d5shlot.spl~ ~override~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (15 << 8) parameter2 = %sham_slots_equal_1_7% timing = 1 STR_VAR resource = ~d5-2slt~ END
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5+2slt.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 8) parameter2 = (134 + (0x10000 * 1)) timing = 1 duration = 0 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 1 STR_VAR resource = ~d5+2slt~ END
+
+COPY_EXISTING ~ring08.itm~ ~override~
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
+  LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5+2slt~ END
+  LPF ADD_ITEM_EQEFFECT INT_VAR insert_point = 0 opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = ~d5-2slt~ END
+*/
+
+COPY ~%MOD_FOLDER%/lib/d5_marker.d5~ ~override/d5_divine_slot_items.d5~
+
+END
+
+// ***** ^^ the above only needs to be done once ^^___________________________________
+
+END		//	end define function
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+
+DEFINE_ACTION_MACRO semi_wis_slots BEGIN
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY wis_nums_lets BEGIN
+	13	=> 1a
+	14	=> 1b
+	15	=> 2a
+	16	=> 2b
+	17	=> 3a
+	18	=> 3b
+	19	=> 4a
+	20	=> 4b
+	21	=> 5a
+	22	=> 5b
+	23	=> 6a
+	24	=> 6b
+	25	=> 7a
+END
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_semi_wis.d5~) BEGIN
+
+// stat-based bonus spells____________________________________________________________
+//
+
+//OUTER_SET string = RESOLVE_STR_REF(~something is happening...~)
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb1a.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 4) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+//  LPF ADD_SPELL_EFFECT INT_VAR opcode = 139 target = 1 parameter1 = %string% timing = 1 END
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb1b.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 4) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb2a.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 8) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb2b.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 8) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb3a.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 12) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb3b.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 12) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb4a.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 16) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb4b.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 16) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb5a.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 20) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb5b.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 20) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb6a.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 24) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb6b.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 24) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb7a.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 28) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+
+COPY_EXISTING ~d5shfrsh.spl~ ~override~
+  PHP_EACH wis_nums_lets AS wis => slot BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 326 target = 1 parameter1 = %wis% parameter2 = 128 timing = 1 STR_VAR resource = EVAL ~d5wisb%slot%~ END
+  END
+  PHP_EACH wis_nums_lets AS wis => slot BEGIN
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 1 STR_VAR resource = EVAL ~d5wisb%slot%~ END
+  END
+IF_EXISTS BUT_ONLY
+
+
+COPY ~%MOD_FOLDER%/lib/d5_marker.d5~ ~override/d5_semi_wis.d5~
+
+END
+
+// ***** ^^ the above only needs to be done once ^^___________________________________
+
+END		//	end define function
+
+
 //___________________________________________________________________________________
 //___________________________________________________________________________________
 

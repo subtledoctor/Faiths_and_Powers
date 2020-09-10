@@ -23,12 +23,13 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fpspt.spl~) BEGIN
 END
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5fpsp2.spl~) BEGIN
+  COPY ~faiths_and_powers/kits/misc/d5msplbk.bam~ ~override~
   COPY ~faiths_and_powers/kits/misc/d5lernpr.bam~ ~override~
   COPY ~faiths_and_powers/kits/misc/d5lernwi.bam~ ~override~
   COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5fpsp2.spl~
 	SAY NAME1 @49917
 	SAY UNIDENTIFIED_DESC @49918
-	LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~d5lernpr~ END
+	LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~d5msplbk~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0 parameter2 = 2 timing = 0 duration = 7 STR_VAR resource = ~d5fpsp2~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = ~d5fpsp2~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5fpsp2~ END
@@ -481,6 +482,7 @@ COPY ~d5/d5sham.2da~ ~override/d5sham.2da~
 //add spell slot stat checks to SPLPROT_______________________________________________
 //
 APPEND ~splprot.2da~ ~D5_SHAM_1_7%TAB%134%TAB%-1%TAB%7~ UNLESS ~D5_SHAM_1_7~
+APPEND ~splprot.2da~ ~D5_SHAM=1_7%TAB%134%TAB%-1%TAB%8~ UNLESS ~D5_SHAM=1_7~
 APPEND ~splprot.2da~ ~D5_FATIGUE_IS%TAB%30%TAB%-1%TAB%1~ UNLESS ~D5_FATIGUE_IS~
 APPEND ~splprot.2da~ ~D5_115_FEATS%TAB%115%TAB%-1%TAB%8~ UNLESS ~D5_115_FEATS~
 APPEND ~splprot.2da~ ~D5_115_NFEATS%TAB%115%TAB%-1%TAB%9~ UNLESS ~D5_115_NFEATS~
@@ -508,6 +510,9 @@ BUT_ONLY
 //create advance copies of some spells________________________________________________
 //
 COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5sh206.spl~
+
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5cspt0.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 24) parameter2 = (115 + (0x10000 * 1)) timing = 9 END
 
 COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5shot1a.spl~
 COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5shot1b.spl~
@@ -663,15 +668,35 @@ END
 <<<<<<<< d5/d5fnp_spt_done.2da
 SPELL
 >>>>>>>>
-COPY ~d5/d5fnp_spt_done.2da~ ~weidu_external/workspace/d5fnp_spt_done.2da~
+COPY ~d5/d5fnp_spt_done.2da~ ~weidu_external/faiths_and_powers/d5fnp_spt_done.2da~
 */
+
+ACTION_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~71~) OR (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~71~) BEGIN
+<<<<<<<< d5/d5cwtch1.txt
+BEGIN ~D5_CWTCH~
+
+IF ~Global("D5_CWTCH","GLOBAL",1)~ THEN BEGIN d5_cwtch
+SAY @141 
+>>>>>>>> 
+  COPY ~d5/d5cwtch1.txt~ ~weidu_external/faiths_and_powers/d5cwtch1.txt~
+
+<<<<<<<< d5/d5cwtch2.txt
+IF ~~ THEN REPLY @142 EXIT
+END
+
+>>>>>>>> 
+  COPY ~d5/d5cwtch2.txt~ ~weidu_external/faiths_and_powers/d5cwtch2.txt~
+
+  OUTER_SPRINT switch_prefix @141
+END
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY majorminor BEGIN
 	1 => P
-	2 => M
+//	2 => M
 END
 
 COPY_EXISTING ~d5fnplst.2da~ ~override~
+  SET switch_ind = 1
   COUNT_2DA_COLS cols
   COUNT_2DA_ROWS cols rows
   FOR (row = 0; row < rows; ++row) BEGIN
@@ -683,11 +708,13 @@ COPY_EXISTING ~d5fnplst.2da~ ~override~
 	  READ_2DA_ENTRY row 7 cols 206_spl
 	  READ_2DA_ENTRY row 8 cols lrn_spl
 	  READ_2DA_ENTRY row 9 cols spt_eff
+	  READ_2DA_ENTRY row 10 cols swch_spl
 	  INNER_ACTION BEGIN
-		ACTION_IF (FILE_EXISTS_IN_GAME ~%fnp_spl%.spl~) /*&& !(FILE_CONTAINS_EVALUATED (~weidu_external/workspace/d5fnp_spt_done.2da~ ~%fnp_spl%[ %TAB%]~))*/ BEGIN
+		ACTION_IF (FILE_EXISTS_IN_GAME ~%fnp_spl%.spl~) /*&& !(FILE_CONTAINS_EVALUATED (~weidu_external/faiths_and_powers/d5fnp_spt_done.2da~ ~%fnp_spl%[ %TAB%]~))*/ BEGIN
 		  COPY_EXISTING ~%fnp_spl%.spl~ ~override~
 			READ_LONG 0x34 spell_level
 			READ_ASCII 0x3a spell_icon
+			READ_STRREF NAME1 spell_name
 		  BUT_ONLY
 // make innates that cast the original
 // ***** need to do differently if no sphere system...?
@@ -754,7 +781,7 @@ COPY_EXISTING ~d5fnplst.2da~ ~override~
 		  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/%lrn_spl%%suffix%.spl~
 			WRITE_EVALUATED_ASCII 0x3a ~%spell_icon%~ #8
 		  	LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = EVAL ~%206_spl%%suffix%~ END
-			LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~%206_spl%%suffix%~ END
+			LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5sh206_spl~ END
 //		  	LPF ADD_SPELL_EFFECT INT_VAR opcode = 309 target = 1 parameter1 = 1 parameter2 = 0 timing = 9 STR_VAR resource = EVAL ~%fnp_spl%~ END
 		  	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
 //		  	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 parameter1 = 21 parameter2 = 105 target = 1 timing = 0 duration = 1 STR_VAR resource = EVAL ~%lrn_spl%%suffix%~ END
@@ -792,19 +819,97 @@ COPY_EXISTING ~d5fnplst.2da~ ~override~
 			LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 9 STR_VAR resource = EVAL ~%spt_eff%%suffix%~ END
 			LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 9 STR_VAR resource = EVAL ~%spt_eff%%suffix%~ END
 			LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 9 STR_VAR resource = EVAL ~%spt_eff%%suffix%~ END
+		  ACTION_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~71~) OR (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~72~) BEGIN
+			ACTION_IF !(~%spher%~ STRING_EQUAL_CASE ~Universal~) BEGIN
+			  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/%swch_spl%.spl~
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 1 STR_VAR resource = EVAL ~%fnp_spl%~ END
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 1 STR_VAR resource = EVAL ~%lrn_spl%%suffix%~ END 
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%206_spl%%suffix%~ END
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
+		      OUTER_SPRINT switch_spell_text ~%switch_prefix%: %spell_name%~
+		      APPEND_OUTER ~weidu_external/faiths_and_powers/d5cwtch1.txt~ ~~~~~IF ~HaveKnownSpellRES("%fnp_spl%")~ THEN REPLY ~%spell_name%~ GOTO d5_cwtch_%switch_ind%~~~~~ KEEP_CRLF
+		      APPEND_OUTER ~weidu_external/faiths_and_powers/d5cwtch2.txt~ ~~~~~IF ~~ THEN BEGIN d5_cwtch_%switch_ind% %WNL% SAY ~%switch_spell_text%~ %WNL% IF ~~ THEN REPLY @143 DO ~ApplySpellRES("%swch_spl%",myself)~ EXIT %WNL% IF ~~ THEN REPLY @144 GOTO d5_cwtch %WNL% IF ~~ THEN REPLY @142 EXIT %WNL% END %WNL%~~~~~ KEEP_CRLF
+			END
+		  END
 		 END
-//		APPEND_OUTER ~weidu_external/workspace/d5fnp_spt_done.2da~ ~%fnp_spl%	done~
+//		APPEND_OUTER ~weidu_external/faiths_and_powers/d5fnp_spt_done.2da~ ~%fnp_spl%	done~
 		END
 	  END
+	  SET ++switch_ind
 	END
   END
 BUT_ONLY
 
+
+//spell switching finish_______________________________________________________________
+//
+ACTION_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~71~) OR (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~72~) BEGIN
+
+ COPY ~weidu_external/faiths_and_powers/d5cwtch1.txt~ ~weidu_external/faiths_and_powers/d5cwtch.d~
+  APPEND_FILE ~weidu_external/faiths_and_powers/d5cwtch2.txt~
+
+COMPILE ~weidu_external/faiths_and_powers/d5cwtch.d~
+
+<<<<<<<< d5/d5cwtch.baf
+IF
+	Global("D5_CWTCH","GLOBAL",0)
+THEN
+	RESPONSE #100
+	SetGlobal("D5_CWTCH","GLOBAL",1)
+	ActionOverride(LastSummonerOf(Myself),StartDialogOverride("d5_cwtch",Myself))
+END
+IF
+	Global("D5_CWTCH","GLOBAL",1)
+THEN
+	RESPONSE #100
+	SetGlobal("D5_CWTCH","GLOBAL",0)
+	DestroySelf()
+END
+>>>>>>>> 
+COPY ~d5/d5cwtch.baf~ ~weidu_external/faiths_and_powers/d5cwtch.baf~
+
+COMPILE ~weidu_external/faiths_and_powers/d5cwtch.baf~
+
+COPY ~%MOD_FOLDER%/data/semi_spont/d5swtch.bam~ ~override~
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5cwtch.spl~
+  SAY NAME1 @141
+  SAY UNIDENTIFIED_DESC @141
+  WRITE_SHORT 0x1c 4
+  WRITE_ASCII 0x3a ~d5swtch~ #8
+  LPF ALTER_SPELL_HEADER INT_VAR location = 4 target = 5 STR_VAR icon = ~d5swtch~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 12 STR_VAR resource = ~d5cwtch~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 99 opcode = 172 target = 1 STR_VAR resource = ~d5cwtch~ END
+
+CREATE EFF ~d5cwtch~
+	WRITE_LONG 0x10 67
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 0
+	WRITE_LONG 0x28 12
+	WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~d5cwtch~ #8
+	WRITE_ASCII 0x70 ~d5_null~ #8
+
+COPY ~faiths_and_powers/kits/misc/d5cwtch.cre~ ~override~
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5cwch2.spl~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 2 parameter1 = (1 << 24) parameter2 = %115_bit_row% timing = 1 STR_VAR resource = ~d5cwch1~ END
+
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5cwch1.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 target = 1 parameter1 = (1 << 24) parameter2 = %115_bit_row% timing = 0 duration = 1 STR_VAR resource = ~d5cwch1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5cwtch~ END
+
+END	//	end if switching
+
 //apply EFF protections_______________________________________________________________
 //
-APPEND ~d5sham.2da~ ~NO_SPLS     AP_D5SH206 ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+APPEND ~d5sham.2da~ ~NO_SPLS     AP_D5CSPT0 ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 COPY_EXISTING ~d5fpspt.spl~ ~override~
+//  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 24) parameter2 = (115 + (0x10000 * 1)) timing = 9 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5cspt0~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5sh206~ END
 IF_EXISTS BUT_ONLY
 
@@ -1037,7 +1142,18 @@ COPY_EXISTING ~d5fpspt.spl~ ~override~
   END
 IF_EXISTS BUT_ONLY
 
-END	//	end if d5sham.2da doesn't exist
+// bonus spell slot items_____________________________________________________________
+//
+LAF divine_spont_items END
+
+// bonus WIS casting slots____________________________________________________________
+//
+ACTION_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~95~) BEGIN
+  LAM semi_wis_slots
+END
+
+
+END	//	end if d5sham.2da doesn't exist -- above code only needs to be run once
 
 COPY_EXISTING ~splprot.2da~ ~override~
   COUNT_2DA_COLS cols
@@ -1072,6 +1188,13 @@ SPLSLOTS    ****        AP_D5SHM1C  ****        AP_D5SHM2C  ****        AP_D5SHM
 ~ UNLESS ~SPLSLOTS~
 END
 
+ACTION_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~72~) BEGIN
+  APPEND ~%kit_clab%.2da~ ~SWITCH_SPL  AP_D5CSPT0  ****        AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        ****       AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        ****        AP_D5CWCH1  ****        **** ~ UNLESS ~SWITCH_SPL~
+END
+ACTION_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~71~) BEGIN
+  APPEND ~%kit_clab%.2da~ ~SWITCH_SPL  AP_D5CSPT0  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1 AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1  AP_D5CWCH1 ~ UNLESS ~SWITCH_SPL~
+END
+
 //initial memorizer = shamans only____________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
@@ -1085,7 +1208,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
   END
 END
 ACTION_IF (%kit_class% = 21) BEGIN
-  APPEND ~%kit_clab%.2da~ ~SPL_REST     GA_D5SPM3M  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+  APPEND ~%kit_clab%.2da~ ~SPL_REST     GA_D5SPM3M  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ UNLESS ~SPL_REST~
 END
 
 COPY ~faiths_and_powers/kits/misc/d5lernpr.bam~ ~override~
@@ -1101,7 +1224,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shmsp.itm~) BEGIN
   SAY NAME2 @49911
   SAY UNIDENTIFIED_DESC @49912
   SAY IDENTIFIED_DESC @49912
-  LPF ALTER_ITEM_HEADER INT_VAR header = 1 target = 7 speed = 0 STR_VAR icon = ~d5lernwi~ END
+  LPF ALTER_ITEM_HEADER INT_VAR header = 1 target = 7 speed = 0 STR_VAR icon = ~d5lernpr~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 146 opcode = 326 parameter1 = %kit_ids% parameter2 = %kit_is_row% STR_VAR resource = EVAL ~%learn_res%~ END
 END
 

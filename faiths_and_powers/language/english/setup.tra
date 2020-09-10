@@ -22,7 +22,8 @@
 @95  = ~Multiclass Cleric kits (install AFTER all other kit mods!!)~
 @99  = ~Apply FnP multiclass kits to NPCs~
 //
-//@100  = ~Select an installation method below:~
+//
+@100  = ~Select an installation method below:~
 @101  = ~ALL the new kits, the kit selection dialogue, and the sphere system ('radical version')~
 @102  = ~install everything (as designated in settings.ini)~
 @103  = ~choose components individually~
@@ -36,6 +37,10 @@
 @126  = ~Cast priest spells normally?~
 @127  = ~Confirmed, no change, cast spells normally.~
 @128  = ~Reconsider~
+@141  = ~Change known spell~
+@142  = ~Do not change any spells~
+@143  = ~Change this spell~
+@144  = ~Change a different spell~
 //
 @200  = ~new and revised cleric kits~
 // 
