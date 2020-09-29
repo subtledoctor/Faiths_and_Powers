@@ -99,6 +99,32 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_rpkn.2da~) BEGIN
   COPY ~faiths_and_powers/kits/misc/d5_rpkn.2da~ ~override~
 END
 
+//semi spont spellstate_______________________________________________________________
+//
+ACTION_IF (FILE_CONTAINS_EVALUATED (~splstate.ids~ ~D5_SPONT_DIVINE~)) BEGIN
+  COPY_EXISTING ~splstate.ids~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 1 ~state_name~
+	  READ_2DA_ENTRY_FORMER rows row 0 ~state_ind~
+	  PATCH_IF (~%state_name%~ STRING_EQUAL_CASE ~D5_SPONT_DIVINE~) BEGIN
+		SET spont_divine_state = %state_ind%
+	  END
+	END
+  BUT_ONLY
+END
+/*
+ACTION_IF !(FILE FILE_CONTAINS_EVALUATED (~splstate.ids~ ~D5_SPONT_DIVINE~)) BEGIN
+  LAF d5_resolve_state STR_VAR new_state_id = ~D5_SPONT_DIVINE~ RET new_state_ind END
+  OUTER_SET spont_divine_state = %new_state_ind%
+END
+*/
+ACTION_IF !(VARIABLE_IS_SET %spont_divine_state%) BEGIN
+  LAF d5_resolve_state STR_VAR new_state_id = ~D5_SPONT_DIVINE~ RET new_state_ind END
+  OUTER_SET spont_divine_state = %new_state_ind%
+END
+
 // create learnable spell list - sphere system________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
@@ -909,6 +935,22 @@ APPEND ~d5sham.2da~ ~NO_SPLS     AP_D5CSPT0 ****        ****        ****        
 
 COPY_EXISTING ~d5fpspt.spl~ ~override~
 //  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 24) parameter2 = (115 + (0x10000 * 1)) timing = 9 END
+  PATCH_IF (FILE_CONTAINS_EVALUATED (~splstate.ids~ ~D5_SPONT_DIVINE~)) BEGIN
+	INNER_ACTION BEGIN
+	  COPY_EXISTING ~splstate.ids~ ~override~
+		COUNT_2DA_COLS cols
+		READ_2DA_ENTRIES_NOW rows cols
+		FOR (row = 1; row < rows; ++row) BEGIN
+		  READ_2DA_ENTRY_FORMER rows row 1 ~state_name~
+		  READ_2DA_ENTRY_FORMER rows row 0 ~state_ind~
+		  PATCH_IF (~%state_name%~ STRING_EQUAL_CASE ~D5_SPONT_DIVINE~) BEGIN
+			SET spont_divine_state = %state_ind%
+		  END
+		END
+	  BUT_ONLY
+	END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 328 target = 1 special = 1 parameter2 = %spont_divine_state% timing = 9 END
+  END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5cspt0~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5sh206~ END
 IF_EXISTS BUT_ONLY
@@ -1096,7 +1138,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5srcnq.spl~) BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 144 target = 1 parameter2 = 3 timing = 9 END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 144 target = 1 parameter2 = 4 timing = 9 END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 144 target = 1 parameter2 = 5 timing = 9 END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 target = 1 parameter2 = 147 timing = 9 END
+//	LPF ADD_SPELL_EFFECT INT_VAR opcode = 101 target = 1 parameter2 = 147 timing = 9 END
 END
 
 APPEND ~d5sham.2da~ ~NO_QUICK    AP_D5SRCNQ  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
@@ -1390,6 +1432,8 @@ ACTION_IF (IS_AN_INT %burning_hands_strref%) BEGIN
 END
 //__________________________________________________________________________________
 
+
+/*
 
 //MAKE +SPELL SLOT ITEMS WORK________________________________________________________
 //
@@ -1810,6 +1854,8 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~d51l1dsp.eff~ BEGIN
  END
 
 END // end if not already done
+
+*/
 
 END	//	end function
 
