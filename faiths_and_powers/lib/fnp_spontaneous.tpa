@@ -697,7 +697,7 @@ SPELL
 COPY ~d5/d5fnp_spt_done.2da~ ~weidu_external/faiths_and_powers/d5fnp_spt_done.2da~
 */
 
-ACTION_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~71~) OR (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~71~) BEGIN
+ACTION_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~71~) OR (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~72~) BEGIN
 <<<<<<<< d5/d5cwtch1.txt
 BEGIN ~D5_CWTCH~
 
@@ -853,8 +853,8 @@ COPY_EXISTING ~d5fnplst.2da~ ~override~
 				LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%206_spl%%suffix%~ END
 				LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5shplz~ END
 		      OUTER_SPRINT switch_spell_text ~%switch_prefix%: %spell_name%~
-		      APPEND_OUTER ~weidu_external/faiths_and_powers/d5cwtch1.txt~ ~~~~~IF ~HaveKnownSpellRES("%fnp_spl%")~ THEN REPLY ~%spell_name%~ GOTO d5_cwtch_%switch_ind%~~~~~ KEEP_CRLF
-		      APPEND_OUTER ~weidu_external/faiths_and_powers/d5cwtch2.txt~ ~~~~~IF ~~ THEN BEGIN d5_cwtch_%switch_ind% %WNL% SAY ~%switch_spell_text%~ %WNL% IF ~~ THEN REPLY @143 DO ~ApplySpellRES("%swch_spl%",myself)~ EXIT %WNL% IF ~~ THEN REPLY @144 GOTO d5_cwtch %WNL% IF ~~ THEN REPLY @142 EXIT %WNL% END %WNL%~~~~~ KEEP_CRLF
+			  APPEND_OUTER ~weidu_external/faiths_and_powers/d5cwtch1.txt~ ~~~~~IF ~HaveKnownSpellRES("%fnp_spl%")~ THEN REPLY ~%spell_name%~ GOTO d5_cwtch_%switch_ind%~~~~~ KEEP_CRLF
+			  APPEND_OUTER ~weidu_external/faiths_and_powers/d5cwtch2.txt~ ~~~~~IF ~~ THEN BEGIN d5_cwtch_%switch_ind% %WNL% SAY ~%switch_spell_text%~ %WNL% IF ~~ THEN REPLY @143 DO ~ApplySpellRES("%swch_spl%",myself)~ EXIT %WNL% IF ~~ THEN REPLY @144 GOTO d5_cwtch %WNL% IF ~~ THEN REPLY @142 EXIT %WNL% END %WNL%~~~~~ KEEP_CRLF
 			END
 		  END
 		 END

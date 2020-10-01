@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.19~
+VERSION ~0.79.19.1~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -858,6 +858,7 @@ LAF universal_spells END
 
 BEGIN @85 // apply kits to multiclass NPCS
 DESIGNATED 85
+INSTALL_BY_DEFAULT
 
 
 //read in kit functions_____________________________________________________________
