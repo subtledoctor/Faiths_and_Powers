@@ -338,6 +338,7 @@ CLERIC_FIRE_SEEDS                       6	=	Fire
 CLERIC_FIRE_STORM                       7	=	Fire
 CLERIC_SUNSCORCH                        1	=	Light
 CLERIC_ALICORN_LANCE                    2	=	Light
+WIZARD_GLITTERDUST                      2	=	Light
 NOSR_CLERIC_REPULSE_UNDEAD              3	=	Light
 CLERIC_MOONBLADE                        3	=	Light
 CLERIC_WALL_OF_MOONLIGHT                4	=	Light

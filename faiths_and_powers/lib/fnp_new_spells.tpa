@@ -327,8 +327,8 @@ COPY ~faiths_and_powers/spheres/spells/creation/d5clgolc.bam~ ~override~
 COPY ~faiths_and_powers/spheres/spells/creation/d5clgolb.bam~ ~override~ 
 COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.eff~ ~override~ 
 COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.cre~ ~override~ 
-  SAY NAME1 50203
-  SAY NAME2 50203
+  SAY NAME1 @50203
+  SAY NAME2 @50203
 COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.itm~ ~override~ 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~golcly01.bcs~) BEGIN
   COPY ~faiths_and_powers/spheres/spells/creation/golcly01.bcs~ ~override~ 
@@ -348,8 +348,8 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~golstone.itm~) BEGIN
 END
 COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.eff~ ~override~ 
 COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.cre~ ~override~ 
-  SAY NAME1 50206
-  SAY NAME2 50206
+  SAY NAME1 @50206
+  SAY NAME2 @50206
 COPY ~faiths_and_powers/spheres/spells/creation/d5stgol.itm~ ~override~ 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~golsto01.bcs~) BEGIN
   COPY ~faiths_and_powers/spheres/spells/creation/golsto01.bcs~ ~override~ 
@@ -369,14 +369,28 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~irongol.itm~) BEGIN
 END
 COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.eff~ ~override~ 
 COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.cre~ ~override~ 
-  SAY NAME1 50209
-  SAY NAME2 50209
+  SAY NAME1 @50209
+  SAY NAME2 @50209
 COPY ~faiths_and_powers/spheres/spells/creation/d5jugol.itm~ ~override~ 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~goliro01.bcs~) BEGIN
   COPY ~faiths_and_powers/spheres/spells/creation/goliro01.bcs~ ~override~ 
 END
 
 // ***** need new BAMs for these!
+
+// nerf golem haste
+COPY_EXISTING ~spin978.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
+  LPF ALTER_EFFECT INT_VAR match_target = 2 target = 1 END
+  LPF ALTER_EFFECT INT_VAR match_duration = 48 duration = 12 END
+  LPF ALTER_EFFECT INT_VAR match_duration = 54 duration = 12 END
+  LPF ALTER_EFFECT INT_VAR match_duration = 60 duration = 12 END
+  LPF ALTER_EFFECT INT_VAR match_duration = 66 duration = 12 END
+  LPF ALTER_EFFECT INT_VAR match_duration = 72 duration = 12 END
+  LPF ALTER_EFFECT INT_VAR match_duration = 78 duration = 12 END
+  LPF ALTER_EFFECT INT_VAR match_duration = 84 duration = 12 END
+  LPF ALTER_EFFECT INT_VAR match_duration = 90 duration = 12 END
+IF_EXISTS BUT_ONLY
 
 //__________________________________________________________________________________
 
