@@ -341,6 +341,7 @@ END
   COPY_EXISTING ~d5dfor.2da~ ~override/d5drfi.2da~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
   ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
@@ -402,6 +403,8 @@ END
  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~clabdr01.2da~ ~override/d5drfi.2da~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
  END
  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
   COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
@@ -490,7 +493,7 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_FIGHTER~ ability = ~GA_TG#SPIR~ num
   END
  BUT_ONLY
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (forest_druid_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5drfi~ learn_res = ~d5drfiz~ END
  END
@@ -613,6 +616,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~d5dfor.2da~ ~override/d5drra.2da~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
   ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
@@ -674,24 +678,26 @@ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~clabdr01.2da~ ~override/d5drra.2da~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
   COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
 END
 APPEND ~d5drra.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
 
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5_imp_rangers.d5~) BEGIN
-  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_rfeat.d5~) BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5__imp_rangers.d5~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__rfeat.d5~) BEGIN
 	APPEND ~d5drra.2da~ ~TRACKING    GA_SPCL922  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
   END
-  ACTION_IF (FILE_EXISTS_IN_GAME ~d5_rfeat.d5~) BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__rfeat.d5~) BEGIN
 	APPEND ~d5drra.2da~ ~FEATS       AP_D5_RFF1  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
 	ACTION_IF !(GAME_IS ~iwdee~) BEGIN
 	  APPEND ~d5drra.2da~ ~FEATS       AP_D5_RFA9  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
 	END
   END
 END
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5_stride.d5~) BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5__stride.d5~) BEGIN
   APPEND ~d5drra.2da~ ~STRIDE      AP_SPCL151  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~ UNLESS ~STRIDE~
 END
 
@@ -752,7 +758,7 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_RANGER~ ability = ~GA_TG#SPIR~ num_
   END
  BUT_ONLY
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (forest_druid_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5drra~ learn_res = ~d5drraz~ END
  END
@@ -875,6 +881,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~d5dfor.2da~ ~override/d5drth.2da~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
   ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
@@ -936,6 +943,8 @@ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~clabdr01.2da~ ~override/d5drth.2da~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
   COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
@@ -1011,7 +1020,7 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_THIEF~ ability = ~GA_TG#SPIR~ num_a
   END
  BUT_ONLY
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (forest_druid_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5drth~ learn_res = ~d5drthz~ END
  END
@@ -1134,6 +1143,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~d5dfor.2da~ ~override/d5drma.2da~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
   ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
@@ -1195,6 +1205,8 @@ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~clabdr01.2da~ ~override/d5drma.2da~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
   COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
@@ -1258,7 +1270,7 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_MAGE~ ability = ~GA_TG#SPIR~ num_al
   END
  BUT_ONLY
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (forest_druid_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5drma~ learn_res = ~d5drmaz~ END
  END
@@ -1381,6 +1393,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~d5dfor.2da~ ~override/d5drsrc.2da~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
   ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
@@ -1442,6 +1455,8 @@ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~clabdr01.2da~ ~override/d5drsrc.2da~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
   COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
@@ -1518,7 +1533,7 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_SORC~ ability = ~GA_TG#SPIR~ num_al
   END
  BUT_ONLY
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (forest_druid_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5drsrc~ learn_res = ~d5drsrz~ END
  END
@@ -1647,6 +1662,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~d5dfor.2da~ ~override/d5drmnk.2da~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
   ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
@@ -1708,6 +1724,8 @@ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~clabdr01.2da~ ~override/d5drmnk.2da~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
   COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
@@ -1784,7 +1802,7 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_MONK~ ability = ~GA_TG#SPIR~ num_al
   END
  BUT_ONLY
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (forest_druid_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5drmnk~ learn_res = ~d5drmkz~ END
  END
@@ -2514,6 +2532,31 @@ END
 		base_class = ~P~
  END
 
+//GET KIT IDS_________________________________________________________________________
+//
+ OUTER_SET shambarb_code = (0x4000 + %D5_BARB_SHAMAN%)
+
+//5E CASTING COMPAT___________________________________________________________________
+// add 318 effects to exempt multisham from 5E casting
+ APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
+ COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_KIT_IS~ BEGIN
+	    SET kit_is_row = %row%
+	  END
+	END
+ BUT_ONLY
+ ACTION_FOR_EACH 5e_spl IN ~d5zz000~ ~d5zzini~ /*~d5zlots~*/ ~d5zltcl~ BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%5e_spl%.spl~) BEGIN
+    COPY_EXISTING ~%5e_spl%.spl~ ~override~
+	  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = %shambarb_code% parameter2 = %kit_is_row% timing = 0 duration = 1 STR_VAR resource = EVAL ~%5e_spl%~ END
+    BUT_ONLY
+  END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -2618,18 +2661,18 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
   COPY ~faiths_and_powers/kits/misc/d5_notu.spl~ ~override~
 END
 
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5_imp_rangers.d5~) BEGIN
-  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_rfeat.d5~) BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5__imp_rangers.d5~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__rfeat.d5~) BEGIN
 	APPEND ~d5shmrn.2da~ ~TRACKING    GA_SPCL922  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
   END
-  ACTION_IF (FILE_EXISTS_IN_GAME ~d5_rfeat.d5~) BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__rfeat.d5~) BEGIN
 	APPEND ~d5shmrn.2da~ ~FEATS       AP_D5_RFF1  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
 	ACTION_IF !(GAME_IS ~iwdee~) BEGIN
 	  APPEND ~d5shmrn.2da~ ~FEATS       AP_D5_RFA9  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
 	END
   END
 END
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5_stride.d5~) BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5__stride.d5~) BEGIN
   APPEND ~d5shmrn.2da~ ~STRIDE      AP_SPCL151  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~ UNLESS ~STRIDE~
 END
 
@@ -2683,6 +2726,31 @@ END
 		kit_name = ~D5_SHAMAN_RANGER~ 
 		kit_clab = ~d5shmrn~
 		base_class = ~P~
+ END
+
+//GET KIT IDS_________________________________________________________________________
+//
+ OUTER_SET shamran_code = (0x4000 + %D5_SHAMAN_RANGER%)
+
+//5E CASTING COMPAT___________________________________________________________________
+// add 318 effects to exempt multisham from 5E casting
+ APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
+ COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_KIT_IS~ BEGIN
+	    SET kit_is_row = %row%
+	  END
+	END
+ BUT_ONLY
+ ACTION_FOR_EACH 5e_spl IN ~d5zz000~ ~d5zzini~ /*~d5zlots~*/ ~d5zltcl~ BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%5e_spl%.spl~) BEGIN
+    COPY_EXISTING ~%5e_spl%.spl~ ~override~
+	  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = %shamran_code% parameter2 = %kit_is_row% timing = 0 duration = 1 STR_VAR resource = EVAL ~%5e_spl%~ END
+    BUT_ONLY
+  END
  END
 
 END
@@ -2844,6 +2912,31 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5tshdi.spl~
 		base_class = ~P~
  END
 
+//GET KIT IDS_________________________________________________________________________
+//
+ OUTER_SET shamthief_code = (0x4000 + %D5_SHAMAN_THIEF%)
+
+//5E CASTING COMPAT___________________________________________________________________
+// add 318 effects to exempt multisham from 5E casting
+ APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
+ COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_KIT_IS~ BEGIN
+	    SET kit_is_row = %row%
+	  END
+	END
+ BUT_ONLY
+ ACTION_FOR_EACH 5e_spl IN ~d5zz000~ ~d5zzini~ /*~d5zlots~*/ ~d5zltcl~ BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%5e_spl%.spl~) BEGIN
+    COPY_EXISTING ~%5e_spl%.spl~ ~override~
+	  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = %shamthief_code% parameter2 = %kit_is_row% timing = 0 duration = 1 STR_VAR resource = EVAL ~%5e_spl%~ END
+    BUT_ONLY
+  END
+ END
+
 END
 //__________________________________________________________________________________
 
@@ -2994,6 +3087,31 @@ END
 		kit_name = ~D5_SHAMAN_MAGE~ 
 		kit_clab = ~d5shmma~
 		base_class = ~P~
+ END
+
+//GET KIT IDS_________________________________________________________________________
+//
+ OUTER_SET shammage_code = (0x4000 + %D5_SHAMAN_MAGE%)
+
+//5E CASTING COMPAT___________________________________________________________________
+// add 318 effects to exempt multisham from 5E casting
+ APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
+ COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_KIT_IS~ BEGIN
+	    SET kit_is_row = %row%
+	  END
+	END
+ BUT_ONLY
+ ACTION_FOR_EACH 5e_spl IN ~d5zz000~ ~d5zzini~ /*~d5zlots~*/ ~d5zltcl~ BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%5e_spl%.spl~) BEGIN
+    COPY_EXISTING ~%5e_spl%.spl~ ~override~
+	  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = %shammage_code% parameter2 = %kit_is_row% timing = 0 duration = 1 STR_VAR resource = EVAL ~%5e_spl%~ END
+    BUT_ONLY
+  END
  END
 
 END
@@ -3182,6 +3300,31 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5tshdi.spl~
 		kit_name = ~D5_SHAMAN_MONK~ 
 		kit_clab = ~d5shmnk~
 		base_class = ~P~
+ END
+
+//GET KIT IDS_________________________________________________________________________
+//
+ OUTER_SET shammonk_code = (0x4000 + %D5_SHAMAN_MONK%)
+
+//5E CASTING COMPAT___________________________________________________________________
+// add 318 effects to exempt multisham from 5E casting
+ APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
+ COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_KIT_IS~ BEGIN
+	    SET kit_is_row = %row%
+	  END
+	END
+ BUT_ONLY
+ ACTION_FOR_EACH 5e_spl IN ~d5zz000~ ~d5zzini~ /*~d5zlots~*/ ~d5zltcl~ BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%5e_spl%.spl~) BEGIN
+    COPY_EXISTING ~%5e_spl%.spl~ ~override~
+	  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = %shammonk_code% parameter2 = %kit_is_row% timing = 0 duration = 1 STR_VAR resource = EVAL ~%5e_spl%~ END
+    BUT_ONLY
+  END
  END
 
 END
@@ -3435,12 +3578,21 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5shm-7.spl~ BEGIN
    LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 28) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
 END
 
+INCLUDE ~%MOD_FOLDER%/lib/semi_spontaneous.tpa~
+
+COPY_EXISTING ~mxsplshm.2da~ ~override~
+  LPF divine_casting_slots STR_VAR table_spl = ~d5prslt~ END
+BUT_ONLY
+
+APPEND ~d5sham.2da~  ~SPLSLOTS    AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  AP_D5PRSLT  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ UNLESS ~SPLSLOTS~
+
+/* better way ^^ to do this vv
 APPEND ~d5sham.2da~ ~SRCSLOTS    AP_D5SHM1A  AP_D5SHM1D  AP_D5SHM1E  AP_D5SHM1F  AP_D5SHM2D  AP_D5SHM2E  AP_D5SHM2F  AP_D5SHM3E  AP_D5SHM3F  AP_D5SHM4E  AP_D5SHM4F  AP_D5SHM5E  AP_D5SHM5F  AP_D5SHM6E  AP_D5SHM6F  AP_D5SHM7E  AP_D5SHM7F  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
 SRCSLOTS    AP_D5SHM1B  ****        ****        AP_D5SHM2A  ****        AP_D5SHM3A  AP_D5SHM3D  AP_D5SHM4A  AP_D5SHM4D  AP_D5SHM5A  AP_D5SHM5D  AP_D5SHM6A  AP_D5SHM6D  AP_D5SHM7A  AP_D5SHM7D  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
 SRCSLOTS    AP_D5SHM1C  ****        ****        AP_D5SHM2B  ****        AP_D5SHM3B  ****        AP_D5SHM4B  ****        AP_D5SHM5B  ****        AP_D5SHM6B  ****        AP_D5SHM7B  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
 SRCSLOTS    ****        ****        ****        AP_D5SHM2C  ****        AP_D5SHM3C  ****        AP_D5SHM4C  ****        AP_D5SHM5C  ****        AP_D5SHM6C  ****        AP_D5SHM7C  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
 ~
-
+*/
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_shmkn.2da~) BEGIN
   COPY_EXISTING ~splshmkn.2da~ ~override/d5_shmkn.2da~
@@ -3773,7 +3925,7 @@ END
 
 //handle universal spells_____________________________________________________________
 //
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
 
 // ***** use the d5_spontaneous function instead of this
 // and ALTER_EFFECT d5shnit.spl to give multisham .itm instead of 
@@ -3844,7 +3996,7 @@ END
 
 //handle all spells if no spheres_____________________________________________________
 //
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
 
  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5xpall.spl~
 
@@ -3904,7 +4056,7 @@ END
 
 //don't need initial memorizer________________________________________________________
 //
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5spmxm.spl~
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = ~d5spmem~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 4 duration = 1 STR_VAR resource = ~d5spm3m~ END

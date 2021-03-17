@@ -44,6 +44,8 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
+// base shaman
+//
 ACTION_IF FILE_EXISTS_IN_GAME ~clabsh01.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -73,13 +75,22 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabsh01.2da~ BEGIN
 	sphere_list		= ~vanilla_shaman_spheres~
 	class 			= ~shaman~
  END
- LAF fnp_spontaneous STR_VAR kit_clab = ~clabsh01~ learn_res = ~d5sh01z~ free_universal = ~no~ END
+
+// ACTION_IF (d5_spell_spontaneous = 0) BEGIN
+    LAF fnp_spell_choice STR_VAR this_kit_clab = ~clabsh01~ learn_itm_res = ~d5sh01z~ free_universal_spells = ~yes~ END
+// END
+// ACTION_IF (d5_spell_spontaneous > 0) BEGIN
+//    LAF fnp_spontaneous STR_VAR kit_clab = ~clabsh01~ learn_res = ~d5sh01z~ free_universal = ~no~ END
+// END
+
 END
 //__________________________________________________________________________________
 
-//ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5_deity.d5~ BEGIN
+//ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5__deity.d5~ BEGIN
 
 //DEFINE SPHERE ACCESS______________________________________________________________
+//
+// base trueclass cleric
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~clabpr01.2da~) && (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
  LAM vanilla_cleric_spheres
@@ -115,6 +126,8 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
+// base cleric of talos
+//
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpr02.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -148,6 +161,8 @@ END
 //__________________________________________________________________________________
 
 //DEFINE SPHERE ACCESS______________________________________________________________
+//
+// base cleric of helm
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpr03.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
@@ -183,6 +198,8 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
+// base cleric of lathander
+//
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpr04.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -216,6 +233,8 @@ END
 //__________________________________________________________________________________
 
 //DEFINE SPHERE ACCESS______________________________________________________________
+//
+// base cleric of tyr
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~ohtyr.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
@@ -252,6 +271,8 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
+// base cleric of tempus
+//
 ACTION_IF FILE_EXISTS_IN_GAME ~ohtempus.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -285,6 +306,8 @@ END
 //__________________________________________________________________________________
 
 //DEFINE SPHERE ACCESS______________________________________________________________
+//
+// base trueclass druid
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~clabdr01.2da~) && (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
  LAM vanilla_druid_spheres
@@ -320,6 +343,8 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
+// base totemic druid
+//
 ACTION_IF FILE_EXISTS_IN_GAME ~clabdr02.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -353,6 +378,8 @@ END
 //__________________________________________________________________________________
 
 //DEFINE SPHERE ACCESS______________________________________________________________
+//
+// base shapeshifter
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabdr03.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
@@ -388,6 +415,8 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
+// base avenger
+//
 ACTION_IF FILE_EXISTS_IN_GAME ~clabdr04.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -421,6 +450,8 @@ END
 //__________________________________________________________________________________
 
 //DEFINE SPHERE ACCESS______________________________________________________________
+//
+// base trueclass paladin
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpa01.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
@@ -456,6 +487,8 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
+// base cavalier
+//
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpa02.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -490,6 +523,8 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
+// base inquisitor
+//
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpa03.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -523,6 +558,8 @@ END
 //__________________________________________________________________________________
 
 //DEFINE SPHERE ACCESS______________________________________________________________
+//
+// base undead hunter
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpa04.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
@@ -592,6 +629,8 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
+// base blackguard
+//
 ACTION_IF FILE_EXISTS_IN_GAME ~clabpa06.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -624,9 +663,11 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabpa06.2da~ BEGIN
 END
 //__________________________________________________________________________________
 
-//END		// end if not exists d5_deity.d5
+//END		// end if not exists d5__deity.d5
 
 //DEFINE SPHERE ACCESS______________________________________________________________
+//
+// base trueclass ranger
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabrn01.2da~ && (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
  LAM vanilla_ranger_spheres
@@ -662,6 +703,8 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
+// base archer
+//
 ACTION_IF FILE_EXISTS_IN_GAME ~clabrn02.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -696,6 +739,8 @@ END
 
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
+// base stalker
+//
 ACTION_IF FILE_EXISTS_IN_GAME ~clabrn03.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
@@ -729,6 +774,8 @@ END
 //__________________________________________________________________________________
 
 //DEFINE SPHERE ACCESS______________________________________________________________
+//
+// base beastmaster
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabrn04.2da~ BEGIN
  LAF ~DEFINE_FNP_KIT_INFO~

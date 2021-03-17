@@ -158,7 +158,7 @@ COPY_EXISTING ~faiths_and_powers/kits/clerics/392_arvoreen/d5arvo2.spl~ ~overrid
 	class 			= ~ranger~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (champion_arvoreen_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5rnarv~ learn_res = ~d5rnarz~ END
  END
@@ -398,7 +398,7 @@ COPY ~faiths_and_powers/kits/champions/808_Azuth/b_ch108b.spl~ ~override~
 
 //REPLACE VANILLA KIT WITH THIS KIT__________________________________________________
 //
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_paladins.d5~ BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~d5__paladins.d5~ BEGIN
   ACTION_FOR_EACH race IN ~D~ ~E~ ~G~ ~H~ ~HE~ ~HL~ ~HO~ BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME ~K_D_%race%.2da~ BEGIN
 	  COPY_EXISTING ~K_P_%race%.2da~ ~override~
@@ -448,7 +448,7 @@ END
 	class 			= ~champion~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (champion_azuth_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ch08~ learn_res = ~b_ch08z~ END
  END
@@ -618,7 +618,7 @@ END
 	class 			= ~champion~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (champion_bane_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ch04~ learn_res = ~b_ch04z~ END
  END
@@ -928,7 +928,7 @@ END
 	class 			= ~champion~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (champion_helm_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ch05~ learn_res = ~b_ch05z~ END
  END
@@ -1200,7 +1200,7 @@ END
 
 //REPLACE VANILLA KIT WITH THIS KIT__________________________________________________
 //
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_paladins.d5~ BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~d5__paladins.d5~ BEGIN
   ACTION_FOR_EACH race IN ~D~ ~E~ ~G~ ~H~ ~HE~ ~HL~ ~HO~ BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME ~K_D_%race%.2da~ BEGIN
 	  COPY_EXISTING ~K_P_%race%.2da~ ~override~
@@ -1250,7 +1250,7 @@ END
 	class 			= ~champion~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (champion_kelemvor_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ch02~ learn_res = ~b_ch02z~ END
  END
@@ -1550,7 +1550,7 @@ COPY ~faiths_and_powers/kits/champions/807_Moradin/b_mor02.itm~ ~override~
 	class 			= ~champion~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (champion_moradin_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ch07~ learn_res = ~b_ch07z~ END
  END
@@ -1707,7 +1707,7 @@ END
 	class 			= ~champion~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (champion_red_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ch09~ learn_res = ~b_ch09z~ END
  END
@@ -1860,7 +1860,7 @@ END
 	class 			= ~champion~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (champion_talos_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ch06~ learn_res = ~b_ch06z~ END
  END
@@ -2169,7 +2169,7 @@ END
 	class 			= ~champion~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (champion_tempus_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ch03~ learn_res = ~b_ch03z~ END
  END
@@ -2289,7 +2289,7 @@ COPY ~faiths_and_powers/kits/champions/801_tyr/b_tyr01.spl~ ~override~
 
 //REPLACE VANILLA KIT WITH THIS KIT__________________________________________________
 //
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_paladins.d5~ BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~d5__paladins.d5~ BEGIN
   ACTION_FOR_EACH race IN ~D~ ~E~ ~G~ ~H~ ~HE~ ~HL~ ~HO~ BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME ~K_P_%race%.2da~ BEGIN
 	  COPY_EXISTING ~K_P_%race%.2da~ ~override~
@@ -2339,7 +2339,7 @@ END
 	class 			= ~champion~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (champion_tyr_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~b_ch01~ learn_res = ~b_ch01z~ END
  END

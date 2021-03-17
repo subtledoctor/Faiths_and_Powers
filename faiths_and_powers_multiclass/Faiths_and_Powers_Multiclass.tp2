@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.20~
+VERSION ~0.79.21~
 
 
 ALWAYS
@@ -142,7 +142,7 @@ INCLUDE ~faiths_and_powers/lib/multi_druids_shamans.tpa~
   ACTION_IF (FILE_EXISTS_IN_GAME ~qd_monk_multi.qd~) BEGIN
 	LAF shaman_monk END
   END  
-  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
 	LAF multiclass_shaman_system END
   END
   LAF multi_shaman_strongholds END
@@ -236,6 +236,7 @@ LAF remove_mc_menu_kits END
 
 BEGIN @99 // apply kits to multiclass NPCS
 DESIGNATED 99
+INSTALL_BY_DEFAULT
 
 
 //read in kit functions_____________________________________________________________

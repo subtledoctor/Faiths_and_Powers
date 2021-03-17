@@ -117,7 +117,7 @@ ACTION_FOR_EACH shield_spell IN ~spwi318~ ~spwi618~ ~spwi522~ ~spwi701~ ~spwi902
 END
 
 /*
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_wiz.d5~ THEN BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~d5__wiz.d5~ THEN BEGIN
 	COPY_EXISTING ~d5_inmys.2da~ ~override~
 		LPM remove_blank_lines
 		APPEND_FILE ~faiths_and_powers/kits/acolytes/325_mystra/mystracant.txt~
@@ -155,7 +155,7 @@ END
 	class 			= ~cleric_mage~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (cm_mystra_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5cmmys~ learn_res = ~d5cmmyz~ END
  END
@@ -326,7 +326,7 @@ END
 	class 			= ~cleric_mage~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (cm_azuth_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5cmazu~ learn_res = ~d5cmazz~ END
  END
@@ -479,7 +479,7 @@ COPY ~faiths_and_powers/kits/multiclass/491_cr_mielikki/d5crmie.2da~ ~override~
 	class 			= ~ranger_cleric~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (cr_mielikki_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5crmie~ learn_res = ~d5crmiz~ END
  END
@@ -636,7 +636,7 @@ COPY_EXISTING ~spwi402.spl~ ~override/d5crsh1.spl~
 	class 			= ~ranger_cleric~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (cr_shaundakul_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5crshn~ learn_res = ~d5crshz~ END
  END
@@ -804,7 +804,7 @@ COPY ~faiths_and_powers/kits/multiclass/469_mask/d5_mask3.cre~ ~override~
 	class 			= ~cleric_thief~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (ct_mask_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5ctmas~ learn_res = ~d5ctmaz~ END
  END
@@ -1025,7 +1025,7 @@ BUT_ONLY
 	class 			= ~cleric_thief~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (ct_brandobaris_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
   LAF fnp_spontaneous STR_VAR kit_clab = ~d5ctbra~ learn_res = ~d5ctbrz~ END
  END
@@ -1599,6 +1599,10 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	OUTER_SPRINT new_clab ~%clab_res%f~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
 	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZZ000~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZLTCL~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5NFEATS~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5FEATX~ ~****      ~
 	OUTER_SET new_class = 16
 	OUTER_SPRINT new_mixed ~%orig_mixed% Warrior~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
@@ -1829,6 +1833,10 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	OUTER_SPRINT new_clab ~%clab_res%f~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
 	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZZ000~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZLTCL~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5NFEATS~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5FEATX~ ~****      ~
 	OUTER_SET new_class = 8
 	OUTER_SPRINT new_mixed ~Fighter/%orig_mixed%~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
@@ -2057,6 +2065,10 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	OUTER_SPRINT new_clab ~%clab_res%r~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
 	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZZ000~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZLTCL~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5NFEATS~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5FEATX~ ~****      ~
 	OUTER_SET new_class = 18
 	OUTER_SPRINT new_mixed ~Ranger/%orig_mixed%~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
@@ -2285,6 +2297,10 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	OUTER_SPRINT new_clab ~%clab_res%t~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
 	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZZ000~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZLTCL~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5NFEATS~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5FEATX~ ~****      ~
 	OUTER_SET new_class = 15
 	OUTER_SPRINT new_mixed ~Thief/%orig_mixed%~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
@@ -2351,6 +2367,10 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	OUTER_SPRINT new_clab ~%clab_res%m~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
 	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZZ000~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZLTCL~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5NFEATS~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5FEATX~ ~****      ~
 	OUTER_SET new_class = 14
 	OUTER_SPRINT new_mixed ~Mage/%orig_mixed%~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
@@ -2411,6 +2431,10 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	OUTER_SPRINT new_clab ~%clab_res%s~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
 	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZZ000~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZLTCL~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5NFEATS~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5FEATX~ ~****      ~
 	OUTER_SET new_class = 14
 	OUTER_SPRINT new_mixed ~Sorcerer/%orig_mixed%~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
@@ -2471,6 +2495,10 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	OUTER_SPRINT new_clab ~%clab_res%k~
 	COPY_EXISTING ~%clab_res%.2da~ ~override/%new_clab%.2da~
 	  REPLACE_TEXTUALLY ~AP_D5SPMEM~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZZ000~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5ZLTCL~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5NFEATS~ ~****      ~
+	  REPLACE_TEXTUALLY ~AP_D5FEATX~ ~****      ~
 	OUTER_SET new_class = 15
 	OUTER_SPRINT new_mixed ~Monk/%orig_mixed%~
 	OUTER_INNER_PATCH_SAVE new_kittable ~%this_kittable%~ BEGIN
@@ -2838,7 +2866,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
   ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
 	LAF apply_fnp_usability STR_VAR clab_name = EVAL ~%new_clab%~ END
   END
-  ACTION_IF (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
    ACTION_IF (~%caster_type%~ STRING_EQUAL_CASE ~MYSTIC~) OR (d5_spell_spontaneous > 0) BEGIN
 	COPY_EXISTING ~kitlist.2da~ ~override~
 	  COUNT_2DA_ROWS 10 rows

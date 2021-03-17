@@ -56,7 +56,7 @@ END
 
 DEFINE_ACTION_FUNCTION multiclass_text BEGIN
 
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_multi_text.d5~) BEGIN
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__multi_text.d5~) BEGIN
   ACTION_IF (FILE_EXISTS_IN_GAME ~clastext.2da~) BEGIN
   	COPY_EXISTING ~clastext.2da~ ~override~
 		COUNT_2DA_COLS cols
@@ -147,7 +147,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~sodcltxt.2da~) BEGIN
 		SET_2DA_ENTRY %fd_row% 4 cols RESOLVE_STR_REF (@10055)
   	BUT_ONLY
   END
-  COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_multi_text.d5~
+  COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__multi_text.d5~
 END
 
 END // end function
@@ -230,13 +230,13 @@ END // end function
 
 DEFINE_ACTION_FUNCTION clear_druid_clab BEGIN
 
-  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_no_shapeshift.d5~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__no_shapeshift.d5~) BEGIN
 	COPY_EXISTING ~clabdr01.2da~ ~override~
 	  REMOVE_2DA_ROW 1 39
 	  REMOVE_2DA_ROW 1 39
 	  REMOVE_2DA_ROW 1 39
 	IF_EXISTS BUT_ONLY
-	COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_no_shapeshift.d5~
+	COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__no_shapeshift.d5~
   END
   
 END
@@ -340,7 +340,7 @@ END // end function
 
 DEFINE_ACTION_FUNCTION enable_multiclasses BEGIN
 
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_more_multi.d5~) BEGIN
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__more_multi.d5~) BEGIN
  ACTION_IF FILE_EXISTS_IN_GAME ~CLSRCREQ.2da~ BEGIN
   COPY_EXISTING ~clsrcreq.2da~ ~override~
 	COUNT_2DA_ROWS 8 rows
@@ -397,7 +397,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_more_multi.d5~) BEGIN
 	PRETTY_PRINT_2DA
   BUT_ONLY
  END
- COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_more_multi.d5~
+ COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__more_multi.d5~
 END
 
 END // end function
@@ -452,7 +452,7 @@ END // end function
 
 DEFINE_ACTION_FUNCTION remove_mc_menu_kits BEGIN
 
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_remove_multi_menu.d5~) BEGIN
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__remove_multi_menu.d5~) BEGIN
  ACTION_FOR_EACH class IN ~FD~ ~FC~ ~CR~ ~CT~ ~CM~ BEGIN
   ACTION_FOR_EACH race IN ~D~ ~E~ ~G~ ~H~ ~HE~ ~HL~ ~HO~ BEGIN
 	ACTION_IF FILE_EXISTS_IN_GAME ~K_%class%_%race%.2da~ BEGIN
@@ -468,7 +468,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_remove_multi_menu.d5~) BEGIN
 			  REMOVE_2DA_ROW (row - rows_removed) cols
 			  SET rows_removed += 1
 			  INNER_ACTION BEGIN
-				COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_remove_multi_menu.d5~
+				COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__remove_multi_menu.d5~
 			  END
 			END
 		  END
@@ -1352,7 +1352,7 @@ DEFINE_ACTION_FUNCTION clerics_use_magical_devices BEGIN
 	COPY_EXISTING ~%scroll%.itm~ ~override~
 	  WRITE_BYTE 0x1e (THIS BAND 0b01111111)
 	  WRITE_BYTE 0x1f (THIS BAND 0b10111001)
-	  PATCH_IF !(FILE_EXISTS_IN_GAME ~d5_umd.d5~) BEGIN
+	  PATCH_IF !(FILE_EXISTS_IN_GAME ~d5__umd.d5~) BEGIN
 		LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter2 = 6 parameter1 = %no_umd_specific% timing = 2 END
 	  END
 	BUT_ONLY
@@ -1367,7 +1367,7 @@ DEFINE_ACTION_FUNCTION clerics_use_magical_devices BEGIN
 	PATCH_IF (%cleric_use% BAND 0b10000000) = 0b10000000 BEGIN
 	  WRITE_BYTE 0x1e (THIS BAND 0b01111111)
 	  WRITE_BYTE 0x1f (THIS BAND 0b10111001)
-	  PATCH_IF !(FILE_EXISTS_IN_GAME ~d5_umd.d5~) BEGIN
+	  PATCH_IF !(FILE_EXISTS_IN_GAME ~d5__umd.d5~) BEGIN
 		LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 319 target = 1 parameter2 = 6 parameter1 = %no_umd_specific% timing = 2 END
 	  END
 	END
@@ -1393,7 +1393,7 @@ THEN
   BUT_ONLY
  END
 
- COPY ~%MOD_FOLDER%/lib/markers/d5_marker.d5~ ~override/d5_umd.d5~
+ COPY ~%MOD_FOLDER%/lib/markers/d5_marker.d5~ ~override/d5__umd.d5~
 
 END	//	end umd setup
 
@@ -1404,7 +1404,7 @@ END	//	end umd setup
 
 DEFINE_ACTION_FUNCTION cleric_clabs_umd BEGIN
 
- ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_cleric_umd.d5~) BEGIN
+ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__cleric_umd.d5~) BEGIN
 
   ACTION_FOR_EACH kitclab IN ~CLABMA01~ ~CLABMA02~ ~CLABMA03~ ~CLABMA04~ ~CLABMA05~ ~CLABMA06~ ~CLABMA07~ ~CLABMA08~ ~CLABMA09~ BEGIN 
 	ACTION_IF (NOT FILE_EXISTS_IN_GAME ~%kitclab%.2da~) THEN BEGIN
@@ -1456,7 +1456,7 @@ DEFINE_ACTION_FUNCTION cleric_clabs_umd BEGIN
 	BUT_ONLY
   END
 
-  COPY ~%MOD_FOLDER%/lib/markers/d5_marker.d5~ ~override/d5_cleric_umd.d5~
+  COPY ~%MOD_FOLDER%/lib/markers/d5_marker.d5~ ~override/d5__cleric_umd.d5~
 
  END
  
@@ -1690,7 +1690,7 @@ END	//	end define function
 //
 DEFINE_ACTION_FUNCTION divine_spont_items BEGIN
 
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_divine_slot_items.d5~) BEGIN
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__divine_slot_items.d5~) BEGIN
 
 COPY_EXISTING ~splprot.2da~ ~override~
   COUNT_2DA_COLS cols
@@ -2036,7 +2036,7 @@ ACTION_PHP_EACH priest_slot_items AS ind => slot_item BEGIN
  END
 END
 
-COPY ~%MOD_FOLDER%/lib/d5_marker.d5~ ~override/d5_divine_slot_items.d5~
+COPY ~%MOD_FOLDER%/lib/d5_marker.d5~ ~override/d5__divine_slot_items.d5~
 
 END
 
@@ -2067,7 +2067,7 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY wis_nums_lets BEGIN
 	25	=> 7a
 END
 
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_semi_wis.d5~) BEGIN
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__semi_wis.d5~) BEGIN
 
 // stat-based bonus spells____________________________________________________________
 //
@@ -2125,7 +2125,7 @@ COPY_EXISTING ~d5shfrsh.spl~ ~override~
 IF_EXISTS BUT_ONLY
 
 
-COPY ~%MOD_FOLDER%/lib/d5_marker.d5~ ~override/d5_semi_wis.d5~
+COPY ~%MOD_FOLDER%/lib/d5_marker.d5~ ~override/d5__semi_wis.d5~
 
 END
 

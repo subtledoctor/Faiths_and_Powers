@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.20~
+VERSION ~0.79.21~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -128,8 +128,8 @@ DESIGNATED 21
 SUBCOMPONENT @20 
 REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 
-COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_spheres.d5~
-COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_fnp_spheres.d5~
+COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__spheres.d5~
+COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__fnp_spheres.d5~
 
 ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   MOVE ~override/fnp_sphere_list.tpa~ ~weidu_external/faiths_and_powers/fnp_sphere_list_old.tpa~
@@ -179,8 +179,8 @@ BEGIN @22 // 2E-style sphere system
 DESIGNATED 22
 SUBCOMPONENT @20
 
-COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_spheres.d5~
-COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_2e_spheres.d5~
+COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__spheres.d5~
+COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__2e_spheres.d5~
 
 ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   MOVE ~override/fnp_sphere_list.tpa~ ~override/fnp_sphere_list_old.tpa~
@@ -228,10 +228,10 @@ INCLUDE ~faiths_and_powers/lib/sphere_system.tpa~
 //
 BEGIN @23 // player-supplied custom sphere system
 DESIGNATED 23
-SUBCOMPONENT @20 ((FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) && !(FILE_EXISTS_IN_GAME ~d5_spheres.d5~))
+SUBCOMPONENT @20 ((FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) && !(FILE_EXISTS_IN_GAME ~d5__spheres.d5~))
 
-COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_spheres.d5~
-COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_custom_spheres.d5~
+COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__spheres.d5~
+COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__custom_spheres.d5~
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   PRINT ~There is no sphere system defined! Please put a version of "fnp_sphere_list.tpa" into the override directory and try again.~
@@ -279,7 +279,7 @@ BEGIN @24 // no sphere system at all
 DESIGNATED 24
 SUBCOMPONENT @20
 
-COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_no_spheres.d5~
+COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__no_spheres.d5~
 //__________________________________________________________________________________
 
 
@@ -303,7 +303,7 @@ END
 INCLUDE ~faiths_and_powers/lib/add_cleric_kits.tpa~
 
 ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~21~) && !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~22~) &&! (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~23~) && !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~24~) BEGIN
-  COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_no_spheres.d5~
+  COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__no_spheres.d5~
 END
 
 LAM d5_kit_choices
@@ -453,7 +453,7 @@ END
 INCLUDE ~faiths_and_powers/lib/add_druid_kits.tpa~
 
 ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~21~) && !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~22~) &&! (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~23~) && !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~24~) BEGIN
-  COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_no_spheres.d5~
+  COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__no_spheres.d5~
 END
 
 //change druid class text____________________________________________________________
@@ -469,7 +469,7 @@ LAF druid_xp END
 /*
 //change shaman known spells________________________________________________________
 //
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_no_spheres.d5)~) BEGIN
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__no_spheres.d5)~) BEGIN
   LAF shaman_spells END
 END
 //__________________________________________________________________________________
@@ -477,7 +477,7 @@ END
 
 LAM d5_kit_choices
 
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5_no_spheres.d5~) BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5__no_spheres.d5~) BEGIN
    OUTER_SET d5_earth_mystic 	=	0
    OUTER_SET d5_water_mystic 	=	0
    OUTER_SET d5_air_mystic 		=	0
@@ -550,7 +550,7 @@ INCLUDE ~faiths_and_powers/lib/add_champion_kits.tpa~
 INCLUDE ~faiths_and_powers/lib/add_zealot_kits.tpa~
 
 ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~21~) && !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~22~) &&! (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~23~) && !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~24~) BEGIN
-  COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_no_spheres.d5~
+  COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__no_spheres.d5~
 END
 
 //ranger/paladin spell tables_______________________________________________________
@@ -560,7 +560,7 @@ LAF paladin_spell_tables END
 
 LAM d5_kit_choices
 
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5_no_spheres.d5~) || (ENGINE_IS ~tob bgt~) BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5__no_spheres.d5~) || (ENGINE_IS ~tob bgt~) BEGIN
    OUTER_SET d5_zealot_ilmater 		=	0
    OUTER_SET d5_zealot_corellon 	=	0
    OUTER_SET d5_zealot_sune 		=	0
@@ -699,7 +699,7 @@ END
 INCLUDE ~faiths_and_powers/lib/add_ranger_kits.tpa~
 
 ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~21~) && !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~22~) &&! (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~23~) && !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~24~) BEGIN
-  COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_no_spheres.d5~
+  COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__no_spheres.d5~
 END
 
 //ranger/paladin spell tables_______________________________________________________
@@ -759,7 +759,7 @@ BEGIN @75 // item usability
 DESIGNATED 75
 REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 
-COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5_fnp_usability.d5~
+COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__fnp_usability.d5~
 
 INCLUDE ~faiths_and_powers/lib/qd_multiclass.tpa~
 
@@ -804,9 +804,9 @@ INCLUDE ~faiths_and_powers/lib/item_usability.tpa~
 
 BEGIN @80 // apply sphere systen
 DESIGNATED 80
-INSTALL_BY_DEFAULT
+//INSTALL_BY_DEFAULT
 REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
-REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5_spheres.d5~) @8
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) @8
 FORBID_COMPONENT ~faiths_and_powers.tp2~ ~24~ @8
 
 

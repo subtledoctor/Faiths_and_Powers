@@ -127,7 +127,12 @@ BUT_ONLY
 		  BUT_ONLY
 		  ACTION_PHP_EACH d5_fnp_kit_caster_type AS this_kit => caster_type BEGIN
 			ACTION_IF (~%this_kit%~ STRING_EQUAL_CASE ~%goo%~) && !(~%caster_type%~ STRING_EQUAL_CASE ~mystic~) BEGIN
-			  APPEND ~%goo%.2da~ ~SPHERES     AP_D5SF%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
+			  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) BEGIN
+			    APPEND ~%goo%.2da~ ~SPHERES     AP_D5SF%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
+			  END
+			  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) BEGIN
+			    APPEND ~%goo%.2da~ ~SPHERES     AP_D5ZF%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
+			  END
 			END
 		  END
 		  ACTION_PHP_EACH d5_fnp_kit_caster_type AS this_kit => caster_type BEGIN
@@ -234,7 +239,7 @@ BUT_ONLY
 			PATCH_IF (~%sphere%~ STRING_EQUAL_CASE ~SPHERES~) BEGIN	
 			  FOR (col = 1; col < cols; ++col) BEGIN 
 				READ_2DA_ENTRY_FORMER rows row col ability
-				PATCH_IF (NOT ~%ability%~ STRING_EQUAL ~****~) BEGIN 
+				PATCH_IF !(~%ability%~ STRING_EQUAL ~****~) BEGIN 
 				  SET string_length = (STRING_LENGTH ~%ability%~) - 3
 				  LPF SUBSTRING INT_VAR start = 3 length = EVAL %string_length% STR_VAR string = EVAL ~%ability%~ RET abil_new = substring END
 				  INNER_ACTION BEGIN 

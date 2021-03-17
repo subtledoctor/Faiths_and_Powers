@@ -12,7 +12,7 @@ DEFINE_ACTION_FUNCTION change_usability BEGIN
 
 //copy marker file___________________________________________________________________
 //
-COPY ~faiths_and_powers/lib/markers/d5_fnp_usability.d5~ ~override~ 
+COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__fnp_usability.d5~ 
 //___________________________________________________________________________________
 
 //first, fix category 44_____________________________________________________________

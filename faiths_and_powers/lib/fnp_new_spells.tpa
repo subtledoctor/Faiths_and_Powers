@@ -1017,7 +1017,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~ #8
 
 //Change to life sphere if FnP installed
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~d5__spheres.d5~ BEGIN
 COPY_EXISTING ~%spell_res%.spl~ ~override~
  SPRINT old @50309//old text
  SPRINT new @50310//new text
