@@ -1067,12 +1067,14 @@ BUT_ONLY
 
 //UI work for contingency___________________________________________________________
 //
+/*
 // read d5fnplst.2da
 // find row with spwi617 in 1st col
 // find value in 2nd/3rd/4th cols
 // perform UI stuff on them
 // OR... just do it manually:
 
+// this isn't working anymore...
 ACTION_FOR_EACH cont_spl IN ~d5p2617~ ~d5m2617~ ~d5f2617~ BEGIN
   ACTION_IF (FILE_EXISTS_IN_GAME ~%cont_spl%.spl~) BEGIN
 	APPEND	~BGEE.LUA~	~mageBookStrings['%cont_spl%'] = mageBookStrings['SPWI617']~
@@ -1083,7 +1085,19 @@ COPY_EXISTING ~UI.menu~ ~override~
 	REPLACE_TEXTUALLY	~mageBookEnabled[ %TAB%]+==[ %TAB%]+true~	~((mageBookEnabled == true) or (bookMode == 1))~
 	REPLACE_TEXTUALLY	~mageBookEnabled[ %TAB%]+==[ %TAB%]+false~	~mageBookEnabled == false and bookMode == 0~
 BUT_ONLY
+*/
+
+// try this instead
+COPY_EXISTING ~ui.menu~ ~override~
+	REPLACE_TEXTUALLY CASE_SENSITIVE EXACT_MATCH ~contingencyDescription = mageBookStrings[contingencyResRef].tip~ ~			if not pcall(me_problem) then
+				contingencyDescription = 0
+			end~
+	REPLACE_TEXTUALLY CASE_SENSITIVE EXACT_MATCH ~--reload language~ ~function me_problem()
+	contingencyDescription = mageBookStrings[contingencyResRef].tip
+end
+--reload language~
 //__________________________________________________________________________________
+
 
 /*
 //add new spells to 206/318/321/324 effects_________________________________________
