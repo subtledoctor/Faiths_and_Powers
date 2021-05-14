@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.22~
+VERSION ~0.79.25~
 
 
 ALWAYS
@@ -236,7 +236,7 @@ LAF remove_mc_menu_kits END
 
 BEGIN @99 // apply kits to multiclass NPCS
 DESIGNATED 99
-INSTALL_BY_DEFAULT
+//INSTALL_BY_DEFAULT
 
 
 //read in kit functions_____________________________________________________________

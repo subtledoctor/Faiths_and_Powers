@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.24~
+VERSION ~0.79.25~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -154,7 +154,7 @@ ACTION_IF !(GAME_IS ~iwdee~) BEGIN
   LAM v75_add_iwd_divine_spells
 END
 // LAM v75_add_fnP_new_spells
- LAM v78_add_fnP_new_spells
+LAM v78_add_fnP_new_spells
 ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
   LAM v75_apply_sr_aoe_deflection
 END  

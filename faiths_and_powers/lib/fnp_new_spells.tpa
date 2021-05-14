@@ -38,12 +38,36 @@ COPY ~faiths_and_powers/spheres/spells/exploration/d5mhast.spl~ ~override/d5fnp0
 //__________________________________________________________________________________
 
 
-//identification
+//identification - uh, I mean, 'legend lore'
 //
+/*
 COPY_EXISTING ~spwi110.spl~ ~override/d5fnp03.spl~
-	WRITE_SHORT 0x1c 2
+  WRITE_SHORT 0x1c 2
 INCLUDE ~faiths_and_powers/lib/custom_identify.tpa~
 APPEND ~M_IDENT.LUA~ ~table.insert(identifyCustomList[1], 'd5fnp03')~
+*/
+
+INCLUDE ~faiths_and_powers/lib/b3identify.tph~
+LAF B3_IDENTIFY_INSTALL END
+
+COPY ~faiths_and_powers/spheres/spells/knowledge/d5tb110.spl~ ~override/d5fnp03.spl~
+  SAY NAME1 @52501
+  SAY UNIDENTIFIED_DESC @52502
+  WRITE_SHORT 0x1c 2
+  WRITE_SHORT 0x34 2
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5tb110a.spl~) BEGIN
+  COPY ~faiths_and_powers/spheres/spells/knowledge/d5tb110a.spl~ ~override~
+  COPY ~faiths_and_powers/spheres/spells/knowledge/d5tb110b.spl~ ~override~
+  COPY ~faiths_and_powers/spheres/spells/knowledge/d5tb110c.spl~ ~override~
+  COPY ~faiths_and_powers/spheres/spells/knowledge/d5tb110d.spl~ ~override~
+END
+
+LAF B3_IDENTIFY_REGISTER INT_VAR uses = 1 STR_VAR resref = ~d5tb110a~ END
+LAF B3_IDENTIFY_REGISTER INT_VAR uses = 2 STR_VAR resref = ~d5tb110b~ END
+LAF B3_IDENTIFY_REGISTER INT_VAR uses = 3 STR_VAR resref = ~d5tb110c~ END
+LAF B3_IDENTIFY_REGISTER INT_VAR uses = 4 STR_VAR resref = ~d5tb110d~ END
+
 //__________________________________________________________________________________
 
 

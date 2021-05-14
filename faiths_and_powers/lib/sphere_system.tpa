@@ -595,7 +595,7 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 			OUTER_TEXT_SPRINT spont_eff ~D5H%spl_ind%~
 			OUTER_TEXT_SPRINT switch_spl ~d5tz%spl_ind%~
 		  END 
-		  ACTION_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ && !(~%the_spell%~ STRING_EQUAL_CASE ~d5fnp03~) BEGIN 
+		  ACTION_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ BEGIN 
 			COPY_EXISTING ~%the_spell%.spl~ ~override~ 
 			  READ_SHORT 0x1c spell_type
 			  READ_LONG 0x34 spell_lvl
