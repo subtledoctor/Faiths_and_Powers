@@ -670,11 +670,11 @@ DEFINE_ACTION_FUNCTION apply_fnp_spheres STR_VAR clab_name = ~x~ BEGIN
 					LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = EVAL ~%class_letter%~ END
 					ACTION_IF (%col_length% = 1) BEGIN 
 					  COPY_EXISTING ~override/QD_MC%class_letter%0%col%.spl~ ~override~ 
-						LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %kit_code% parameter2 = 9 STR_VAR resource = EVAL ~%abil_new%#~ END  
+						LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %kit_code% parameter2 = 9 STR_VAR resource = EVAL ~%abil_new%#~ END  
 					END 
 					ACTION_IF (%col_length% = 2) BEGIN
 					  COPY_EXISTING ~override/QD_MC%class_letter%%col%.spl~ ~override~ 
-						LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %kit_code% parameter2 = 9 STR_VAR resource = EVAL ~%abil_new%#~ END  
+						LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %kit_code% parameter2 = 9 STR_VAR resource = EVAL ~%abil_new%#~ END  
 					END 
 				  END 
 				END
@@ -1205,7 +1205,7 @@ DEFINE_ACTION_FUNCTION apply_fnp_usability STR_VAR clab_name = ~x~ BEGIN
 				WRITE_EVALUATED_ASCII 0x30 ~d5_u%kit_index%~
 			  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = EVAL ~%class_letter%~ END
 			  COPY_EXISTING ~QD_MC%class_letter%01.spl~ ~override~ 
-				LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %kit_code% parameter2 = 9 STR_VAR resource = EVAL ~d5_u%kit_index%#~ END  
+				LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %kit_code% parameter2 = 9 STR_VAR resource = EVAL ~d5_u%kit_index%#~ END  
 			END 
 		  END
 		END

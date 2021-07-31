@@ -2117,7 +2117,7 @@ COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5wisb7a.spl~
 
 COPY_EXISTING ~d5shfrsh.spl~ ~override~
   PHP_EACH wis_nums_lets AS wis => slot BEGIN
-	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 326 target = 1 parameter1 = %wis% parameter2 = 128 timing = 1 STR_VAR resource = EVAL ~d5wisb%slot%~ END
+	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 326 target = 1 parameter1 = %wis% parameter2 = 130 timing = 1 STR_VAR resource = EVAL ~d5wisb%slot%~ END
   END
   PHP_EACH wis_nums_lets AS wis => slot BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 321 target = 1 timing = 1 STR_VAR resource = EVAL ~d5wisb%slot%~ END

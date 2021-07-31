@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.25~
+VERSION ~0.79.26~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -856,9 +856,9 @@ LAF universal_spells END
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
-BEGIN @85 // apply kits to multiclass NPCS
+BEGIN @85 // apply kits to NPCS
 DESIGNATED 85
-INSTALL_BY_DEFAULT
+//INSTALL_BY_DEFAULT
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~31~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~33~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~35~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~37~)  @8
 
 
