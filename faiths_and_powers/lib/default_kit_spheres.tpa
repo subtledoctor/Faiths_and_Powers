@@ -7,6 +7,8 @@
 
 DEFINE_ACTION_FUNCTION vanilla_kit_spheres BEGIN
 
+LAM d5_kit_choices 
+
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~clabshgs.2da~ BEGIN
@@ -266,6 +268,11 @@ ACTION_IF FILE_EXISTS_IN_GAME ~ohtyr.2da~ BEGIN
 	class 			= ~cleric~
 	multiclass 		= ~fc~
  END
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
+ ACTION_IF (cleric_tyr_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~ohtyr~ learn_res = ~ohtyrz~ END
+ END
+ END
 END
 //__________________________________________________________________________________
 
@@ -274,6 +281,9 @@ END
 // base cleric of tempus
 //
 ACTION_IF FILE_EXISTS_IN_GAME ~ohtempus.2da~ BEGIN
+ COPY_EXISTING ~ohtempus.2da~ ~override/d5tmpus.2da~
+ COPY_EXISTING ~kitlist.2da~ ~override~
+   REPLACE_TEXTUALLY ~ohtempus~ ~d5tmpus~
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -298,9 +308,14 @@ ACTION_IF FILE_EXISTS_IN_GAME ~ohtempus.2da~ BEGIN
 	u_bows 				= 0
 	u_crossbows 		= 1
   STR_VAR
-    clab_name 		= ~ohtempus~
+    clab_name 		= ~d5tmpus~
 	sphere_list		= ~tempus_spheres~
 	class 			= ~cleric~
+ END
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
+ ACTION_IF (cleric_tempus_spontaneous > 0) OR (d5_spell_spontaneous > 0) BEGIN
+  LAF fnp_spontaneous STR_VAR kit_clab = ~d5tmpus~ learn_res = ~d5tmpuz~ END
+ END
  END
 END
 //__________________________________________________________________________________

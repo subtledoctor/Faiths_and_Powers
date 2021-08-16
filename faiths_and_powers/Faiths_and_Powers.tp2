@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.26~
+VERSION ~0.79.27~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -27,6 +27,11 @@ ALWAYS
 	ACTION_IF NOT FILE_EXISTS ~override/d5_fnp_settings.ini~ BEGIN
   	  COPY ~faiths_and_powers/d5_fnp_settings.ini~ ~override~
 	END
+ 
+    COPY_EXISTING ~d5_fnp_settings.ini~ ~override~
+      PATCH_IF (FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) BEGIN
+        REPLACE_TEXTUALLY ~d5_spell_spontaneous 	=	1~ ~d5_spell_spontaneous 	=	0~
+      END
  
   	INCLUDE ~override/d5_fnp_settings.ini~
   	
@@ -280,6 +285,34 @@ DESIGNATED 24
 SUBCOMPONENT @20
 
 COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__no_spheres.d5~
+//__________________________________________________________________________________
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//							SPONTANEOUS CASTING OPTION
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+
+BEGIN @29 // install spont option
+DESIGNATED 29
+REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) @8
+REQUIRE_PREDICATE !(FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) @8
+
+ACTION_IF NOT FILE_EXISTS ~override/d5_fnp_settings.ini~ BEGIN
+  COPY ~faiths_and_powers/d5_fnp_settings.ini~ ~override~
+END
+
+COPY_EXISTING ~d5_fnp_settings.ini~ ~override~
+  REPLACE_TEXTUALLY ~d5_spell_spontaneous 	=	0~ ~d5_spell_spontaneous 	=	1~
+ 
+
 //__________________________________________________________________________________
 
 
@@ -804,7 +837,7 @@ INCLUDE ~faiths_and_powers/lib/item_usability.tpa~
 
 BEGIN @80 // apply sphere systen
 DESIGNATED 80
-//INSTALL_BY_DEFAULT
+INSTALL_BY_DEFAULT
 REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) @8
 FORBID_COMPONENT ~faiths_and_powers.tp2~ ~24~ @8

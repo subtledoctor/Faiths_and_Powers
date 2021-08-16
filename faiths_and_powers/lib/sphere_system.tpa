@@ -480,8 +480,6 @@ END
 
 //apply spells to sphere system_____________________________________________________
 //
-//LAM d5_minor_access_levels
-
 COPY ~d5/d5altsph.2da~ ~override~
 
 COPY ~d5/d5spsph.2da~ ~override~
@@ -524,7 +522,7 @@ BUT_ONLY
 <<<<<<<< d5/d5fnplst.2da
 2DA V1.0 
 SPLRES
-		MAJOR	MINOR	FOCUS	SPHERE	SYSTEM	SPONT	206		LEARN		EFF		SWITCH
+		MAJOR	MINOR	FOCUS	SPHERE	SYSTEM	SPONT_IND	SPONT_PROC
 >>>>>>>> 
 COPY ~d5/d5fnplst.2da~ ~override/d5fnplst.2da~ 
 
@@ -578,38 +576,25 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 			OUTER_TEXT_SPRINT priest_res ~d5p%spell_num%~
 			OUTER_TEXT_SPRINT minor_res ~d5m%spell_num%~
 			OUTER_TEXT_SPRINT focus_res ~d5f%spell_num%~
-			OUTER_TEXT_SPRINT spont_spl ~d5t%spl_ind%~
-			OUTER_TEXT_SPRINT spont_206 ~d5t6%spl_ind%~
-			OUTER_TEXT_SPRINT spont_lrn ~d5tx%spl_ind%~
-			OUTER_TEXT_SPRINT spont_eff ~D5H%spl_ind%~
-			OUTER_TEXT_SPRINT switch_spl ~d5tz%spl_ind%~
+			OUTER_TEXT_SPRINT spont_ind ~%spl_ind%~
 		  END
 	   	  ELSE BEGIN
 			OUTER_TEXT_SPRINT the_spell ~%spl%~
 			OUTER_TEXT_SPRINT priest_res ~d5pp%spl_ind%~
 			OUTER_TEXT_SPRINT minor_res ~d5mm%spl_ind%~
 			OUTER_TEXT_SPRINT focus_res ~d5ff%spl_ind%~
-			OUTER_TEXT_SPRINT spont_spl ~d5t%spl_ind%~
-			OUTER_TEXT_SPRINT spont_206 ~d5t6%spl_ind%~
-			OUTER_TEXT_SPRINT spont_lrn ~d5tx%spl_ind%~
-			OUTER_TEXT_SPRINT spont_eff ~D5H%spl_ind%~
-			OUTER_TEXT_SPRINT switch_spl ~d5tz%spl_ind%~
+			OUTER_TEXT_SPRINT spont_ind ~%spl_ind%~
 		  END 
 		  ACTION_IF FILE_EXISTS_IN_GAME ~%the_spell%.spl~ BEGIN 
 			COPY_EXISTING ~%the_spell%.spl~ ~override~ 
 			  READ_SHORT 0x1c spell_type
 			  READ_LONG 0x34 spell_lvl
 			BUT_ONLY
-//			ACTION_IF !(IS_AN_INT %d5_minor_shift%) BEGIN
-			  OUTER_SET d5_minor_shift = 0
-//			END
 			ACTION_IF (%lvl% = 0) BEGIN
 			  OUTER_SET plvl = %spell_lvl%
-			  OUTER_SET mlvl = (%spell_lvl% + %d5_minor_shift%)
 			  OUTER_SET flvl = (%spell_lvl% - 1)
 			END ELSE BEGIN
 			  OUTER_SET plvl = %lvl%
-			  OUTER_SET mlvl = (%lvl% + %d5_minor_shift%)
 			  OUTER_SET flvl = (%lvl% - 1)
 			END
 			ACTION_IF (%spell_type% = 2) BEGIN 							 // priest spells: add to spheres
@@ -631,79 +616,12 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 				  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%the_spell%~ END
 				IF_EXISTS BUT_ONLY
 				APPEND ~d5tp%shortsphere%.2da~ ~%sph%	%the_spell%	3~
-				ACTION_IF (%plvl% < 4) && (%d5_minor_shift% = 0) BEGIN
+				ACTION_IF (%plvl% < 4) BEGIN
 				  OUTER_SPRINT minor_spl ~%the_spell%~
 				  COPY_EXISTING ~%msphere%.spl~ ~override~
 					LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%the_spell%~ END
 				  IF_EXISTS BUT_ONLY
 				  APPEND ~d5tm%shortsphere%.2da~ ~%sph%	%the_spell%	3~
-				END
-				ACTION_IF (%plvl% < 4) && (%d5_minor_shift% >= 1) BEGIN
-				  OUTER_SPRINT minor_spl ~%minor_res%~
-				  ACTION_IF (FILE_EXISTS_IN_GAME ~%minor_res%.spl~) BEGIN
-					COPY_EXISTING ~%minor_res%.spl~ ~override~ 
-					  READ_LONG 0x50 "valid"
-					  PATCH_IF (%valid% >= 0) BEGIN 
-						READ_STRREF 0x50 ~desc~
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-						  REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]Sphere: ~ ~%WNL%Sphere: %desc_sph%, ~
-						END
-						SAY_EVALUATED 0x50 ~%new_desc%~
-					  END
-					BUT_ONLY
-					COPY_EXISTING ~%msphere%.spl~ ~override~
-					  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%minor_res%~ END
-					IF_EXISTS BUT_ONLY
-					APPEND ~d5tm%shortsphere%.2da~ ~%sph%	%minor_res%	3~
-				  END
-				  ACTION_IF !(FILE_EXISTS_IN_GAME ~%minor_res%.spl~) BEGIN
-					COPY_EXISTING ~%the_spell%.spl~ ~override/%minor_res%.spl~ 
-					  PATCH_IF (%d5_minor_shift% > 0) BEGIN
-						WRITE_LONG 0x34 %mlvl%
-					  END
-					  PATCH_IF (%d5_minor_shift% = 0) BEGIN
-						WRITE_LONG 0x34 %plvl%
-					  END
-					  READ_LONG 0x64 abil_offset
-					  READ_SHORT 0x68 abil_number
-					  READ_BYTE (%abil_offset% + 0x0c) abil_target
-					  READ_SHORT (%abil_offset% + 0x0e) abil_range
-					  READ_LONG 0x6a eff_offset
-					  WHILE (%abil_number% > 0) BEGIN
-						SET abil_number = (%abil_number% - 1)
-						WRITE_SHORT (%abil_offset% + 0x26 + (0x28 * %abil_number%)) 1
-					  END
-					  LPF DELETE_EFFECT END
-					  PATCH_IF (%abil_target% = 4) BEGIN
-						LPF ADD_SPELL_EFFECT INT_VAR opcode = 148 target = 1 power = %plvl% parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%the_spell%~ END
-						PATCH_IF (%abil_range% < 35) BEGIN
-						  PATCH_IF (%abil_range% > 4) BEGIN
-							LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
-						  END
-						  PATCH_IF (%abil_range% < 5) BEGIN
-							LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
-						  END
-						END
-					  END
-					  ELSE BEGIN
-						LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 power = %plvl% parameter1 = 0 parameter2 = 1 timing = 2 STR_VAR resource = EVAL ~%the_spell%~ END
-					  END
-					  READ_LONG 0x50 "valid"
-					  PATCH_IF (%valid% >= 0) BEGIN 
-						READ_STRREF 0x50 ~desc~
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-						  REPLACE_TEXTUALLY ~^Level:.*$~ ~Level: %plvl%~
-						  REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]Sphere:.*$~ ~~
-						  REPLACE_TEXTUALLY ~^Range:~ ~Sphere: %desc_sph% %WNL%Range:~
-						END
-						SAY_EVALUATED 0x50 ~%new_desc%~
-					  END
-					BUT_ONLY
-					COPY_EXISTING ~%msphere%.spl~ ~override~
-					  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%minor_res%~ END
-					IF_EXISTS BUT_ONLY
-					APPEND ~d5tm%shortsphere%.2da~ ~%sph%	%minor_res%	3~
-				  END
 				END
 				ACTION_IF (%plvl% = 1) OR (%plvl% = 7) BEGIN
 				  COPY_EXISTING ~%fsphere%.spl~ ~override~
@@ -779,74 +697,12 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 				  BUT_ONLY
 //				  APPEND ~d5tf%shortsphere%.2da~ ~%sph%	%priest_res%	3~
 				END
-				ACTION_IF (%plvl% < 4) && (%d5_minor_shift% = 0) BEGIN
+				ACTION_IF (%plvl% < 4) BEGIN
 				  OUTER_SPRINT minor_spl ~%priest_res%~
 				  COPY_EXISTING ~%msphere%.spl~ ~override~
 					LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%priest_res%~ END
 				  IF_EXISTS BUT_ONLY
 				  APPEND ~d5tm%shortsphere%.2da~ ~%sph%	%priest_res%	3~
-				END
-				ACTION_IF (%plvl% < 4) && (%d5_minor_shift% > 0) BEGIN
-				  OUTER_SPRINT minor_spl ~%minor_res%~
-				  ACTION_IF (FILE_EXISTS_IN_GAME ~%minor_res%.spl~) BEGIN
-					COPY_EXISTING ~%minor_res%.spl~ ~override~ 
-					  READ_LONG 0x50 "valid"
-					  PATCH_IF (%valid% >= 0) BEGIN 
-						READ_STRREF 0x50 ~desc~
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-						  REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]Sphere: ~ ~%WNL%Sphere: %desc_sph%, ~
-						END
-						SAY_EVALUATED 0x50 ~%new_desc%~
-					  END
-					BUT_ONLY
-					COPY_EXISTING ~%msphere%.spl~ ~override~
-					  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%minor_res%~ END
-					IF_EXISTS BUT_ONLY
-					APPEND ~d5tm%shortsphere%.2da~ ~%sph%	%minor_res%	3~
-				  END
-				  ACTION_IF !(FILE_EXISTS_IN_GAME ~%minor_res%.spl~) BEGIN
-					COPY_EXISTING ~%the_spell%.spl~ ~override/%minor_res%.spl~ 
-					  WRITE_LONG 0x34 %mlvl%
-					  READ_LONG 0x64 abil_offset
-					  READ_SHORT 0x68 abil_number
-					  READ_BYTE (%abil_offset% + 0x0c) abil_target
-					  READ_SHORT (%abil_offset% + 0x0e) abil_range
-					  READ_LONG 0x6a eff_offset
-					  WHILE (%abil_number% > 0) BEGIN
-						SET abil_number = (%abil_number% - 1)
-						WRITE_SHORT (%abil_offset% + 0x26 + (0x28 * %abil_number%)) 1
-					  END
-					  LPF DELETE_EFFECT END
-					  PATCH_IF (%abil_target% = 4) BEGIN
-						LPF ADD_SPELL_EFFECT INT_VAR opcode = 148 target = 1 power = %plvl% parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~%the_spell%~ END
-						PATCH_IF (%abil_range% < 35) BEGIN
-						  PATCH_IF (%abil_range% > 4) BEGIN
-							LPF ALTER_SPELL_HEADER INT_VAR range = (%abil_range% - 3) END
-						  END
-						  PATCH_IF (%abil_range% < 5) BEGIN
-							LPF ALTER_SPELL_HEADER INT_VAR target = 5 END
-						  END
-						END
-					  END
-					  ELSE BEGIN
-						LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 power = %plvl% parameter1 = 0 parameter2 = 1 timing = 2 STR_VAR resource = EVAL ~%the_spell%~ END
-					  END
-					  READ_LONG 0x50 "valid"
-					  PATCH_IF (%valid% >= 0) BEGIN 
-						READ_STRREF 0x50 ~desc~
-						INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-						  REPLACE_TEXTUALLY ~^Level:.*$~ ~Level: %plvl%~
-						  REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]Sphere:.*$~ ~~
-						  REPLACE_TEXTUALLY ~^Range:~ ~Sphere: %desc_sph% %WNL%Range:~
-						END
-						SAY_EVALUATED 0x50 ~%new_desc%~
-					  END
-					BUT_ONLY
-					COPY_EXISTING ~%msphere%.spl~ ~override~
-					  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%minor_res%~ END
-					IF_EXISTS BUT_ONLY
-					APPEND ~d5tm%shortsphere%.2da~ ~%sph%	%minor_res%	3~
-				  END
 				END
 				ACTION_IF (%plvl% > 1) BEGIN
 				  ACTION_IF (FILE_EXISTS_IN_GAME ~%focus_res%.spl~) BEGIN
@@ -962,52 +818,12 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 				  IF_EXISTS BUT_ONLY
 //				  APPEND ~d5tf%shortsphere%.2da~ ~%sph%	%priest_res%	3~
 			  END
-			  ACTION_IF (%plvl% < 4) && (%d5_minor_shift% = 0) BEGIN
+			  ACTION_IF (%plvl% < 4) BEGIN
 				OUTER_SPRINT minor_spl ~%priest_res%~
 				COPY_EXISTING ~%msphere%.spl~ ~override~
 				  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%priest_res%~ END
 				IF_EXISTS BUT_ONLY
 				APPEND ~d5tm%shortsphere%.2da~ ~%sph%	%priest_res%	3~
-			  END
-			  ACTION_IF (%plvl% < 4) && (%d5_minor_shift% > 0) BEGIN
-				OUTER_SPRINT minor_spl ~%minor_res%~
-				ACTION_IF (FILE_EXISTS_IN_GAME ~%minor_res%.spl~) BEGIN
-				  COPY_EXISTING ~%minor_res%.spl~ ~override~ 
-					READ_LONG 0x50 "valid"
-					PATCH_IF (%valid% >= 0) BEGIN 
-					  READ_STRREF 0x50 ~desc~
-					  INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-						REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]Sphere: ~ ~%WNL%Sphere: %desc_sph%, ~
-					  END
-					  SAY_EVALUATED 0x50 ~%new_desc%~
-					END
-				  BUT_ONLY
-				  COPY_EXISTING ~%msphere%.spl~ ~override~
-					LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%minor_res%~ END
-				  IF_EXISTS BUT_ONLY
-				  APPEND ~d5tm%shortsphere%.2da~ ~%sph%	%minor_res%	3~
-				END
-				ACTION_IF !(FILE_EXISTS_IN_GAME ~%minor_res%.spl~) BEGIN
-				  COPY_EXISTING ~%the_spell%.spl~ ~override/%minor_res%.spl~ 
-					WRITE_SHORT 0x1c 2
-					LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
-					WRITE_LONG 0x34 %mlvl%
-					READ_LONG 0x50 "valid"
-					PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-					  READ_STRREF 0x50 ~desc~
-					  INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-						REPLACE_TEXTUALLY ~^Level:.*$~ ~Level: %plvl%~
-						REPLACE_TEXTUALLY ~[%LNL%%MNL%%WNL%]Sphere:.*$~ ~~
-						REPLACE_TEXTUALLY ~^Range:~ ~Sphere: %desc_sph% %WNL%Range:~
-					  END
-					  SAY_EVALUATED 0x50 ~%new_desc%~
-					END
-				  BUT_ONLY
-				  COPY_EXISTING ~%msphere%.spl~ ~override~
-					LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%minor_res%~ END
-				  IF_EXISTS BUT_ONLY
-				  APPEND ~d5tm%shortsphere%.2da~ ~%sph%	%minor_res%	3~
-				END
 			  END
 			  ACTION_IF (%plvl% > 1) BEGIN
 				ACTION_IF (FILE_EXISTS_IN_GAME ~%focus_res%.spl~) BEGIN
@@ -1053,7 +869,7 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 			  END
 			END
 			ACTION_IF !(FILE_CONTAINS_EVALUATED (~d5fnplst.2da~ ~%the_spell%[ %TAB%]~)) BEGIN
-			  APPEND ~d5fnplst.2da~ ~%the_spell%	%major_spl%	%minor_spl%	%focus_res%	%desc_sph%	%sph%	%spont_spl%	%spont_206%	%spont_lrn%	%spont_eff%	%switch_spl%~
+			  APPEND ~d5fnplst.2da~ ~%the_spell%	%major_spl%	%minor_spl%	%focus_res%	%desc_sph%	%sph%	%spont_ind% 	no ~
 			END
 		  END
 		END
@@ -1210,7 +1026,7 @@ COPY ~faiths_and_powers/spheres/d5spm3m.spl~ ~override~
 	SAY NAME1 @1100
 	SAY UNIDENTIFIED_DESC @1101
 	WRITE_ASCII 0x3a ~d5spm3mb~ #8
-	LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5spm3mb~ END
+	LPF ALTER_SPELL_HEADER INT_VAR speed = 0 target = 7 STR_VAR icon = ~d5spm3mb~ END
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5spm3m~ END
 COPY ~faiths_and_powers/spheres/d5spm3mb.bam~ ~override~
 
@@ -1360,10 +1176,10 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 		  BUT_ONLY
 		  ACTION_PHP_EACH d5_fnp_kit_caster_type AS this_kit => caster_type BEGIN
 			ACTION_IF (~%this_kit%~ STRING_EQUAL_CASE ~%goo%~) && !(~%caster_type%~ STRING_EQUAL_CASE ~mystic~) BEGIN
-			  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) BEGIN
+			  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) AND !(FILE_EXISTS_IN_GAME ~d5__fnp_spont_casting.d5~) BEGIN
 			    APPEND ~%goo%.2da~ ~SPHERES     AP_D5SF%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
 			  END
-			  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) BEGIN
+			  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) OR (FILE_EXISTS_IN_GAME ~d5__fnp_spont_casting.d5~) BEGIN
 			    APPEND ~%goo%.2da~ ~SPHERES     AP_D5ZF%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
 			  END
 			END
