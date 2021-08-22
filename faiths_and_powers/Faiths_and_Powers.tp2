@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.27~
+VERSION ~0.79.28~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -24,19 +24,12 @@ ALWAYS
 
   	OUTER_SPRINT ~mod_folder~ ~faiths_and_powers~
 
-	ACTION_IF NOT FILE_EXISTS ~override/d5_fnp_settings.ini~ BEGIN
+	ACTION_IF !(FILE_EXISTS ~override/d5_fnp_settings.ini~) BEGIN
   	  COPY ~faiths_and_powers/d5_fnp_settings.ini~ ~override~
 	END
  
-    COPY_EXISTING ~d5_fnp_settings.ini~ ~override~
-      PATCH_IF (FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) BEGIN
-        REPLACE_TEXTUALLY ~d5_spell_spontaneous 	=	1~ ~d5_spell_spontaneous 	=	0~
-      END
- 
   	INCLUDE ~override/d5_fnp_settings.ini~
   	
-  	LAM d5_spont_option
-
 	INCLUDE ~faiths_and_powers/lib/nu_alter_effect.tpa~
 
 	INCLUDE ~faiths_and_powers/lib/qd_multiclass.tpa~
@@ -305,12 +298,8 @@ DESIGNATED 29
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) @8
 REQUIRE_PREDICATE !(FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) @8
 
-ACTION_IF NOT FILE_EXISTS ~override/d5_fnp_settings.ini~ BEGIN
-  COPY ~faiths_and_powers/d5_fnp_settings.ini~ ~override~
-END
 
-COPY_EXISTING ~d5_fnp_settings.ini~ ~override~
-  REPLACE_TEXTUALLY ~d5_spell_spontaneous 	=	0~ ~d5_spell_spontaneous 	=	1~
+COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__fnp_spont_option.d5~
  
 
 //__________________________________________________________________________________
@@ -340,6 +329,8 @@ ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~21~) && !(MOD_IS_INSTALLED
 END
 
 LAM d5_kit_choices
+
+//LAM d5_spont_option
 
 ACTION_IF (GAME_IS ~iwdee~) BEGIN
    OUTER_SET d5_cleric_kelemvor =	0
@@ -510,6 +501,8 @@ END
 
 LAM d5_kit_choices
 
+//LAM d5_spont_option
+
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5__no_spheres.d5~) BEGIN
    OUTER_SET d5_earth_mystic 	=	0
    OUTER_SET d5_water_mystic 	=	0
@@ -592,6 +585,8 @@ LAF paladin_spell_tables END
 //__________________________________________________________________________________
 
 LAM d5_kit_choices
+
+//LAM d5_spont_option
 
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5__no_spheres.d5~) || (ENGINE_IS ~tob bgt~) BEGIN
    OUTER_SET d5_zealot_ilmater 		=	0
@@ -741,6 +736,8 @@ LAF ranger_spell_tables END
 //__________________________________________________________________________________
 
 LAM d5_kit_choices
+
+//LAM d5_spont_option
 
 ACTION_IF (%d5_forest_ranger% = 1) BEGIN
  LAF forest_ranger END

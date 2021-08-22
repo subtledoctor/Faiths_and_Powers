@@ -3807,6 +3807,7 @@ COPY_EXISTING ~d5shclon.2da~ ~override~
 //	  ACTION_IF NOT FILE_EXISTS_IN_GAME ~%innate_spl%.spl~ BEGIN
 		COPY_EXISTING ~%book_spl%.spl~ ~override/%innate_spl%.spl~
 		  WRITE_SHORT 0x1c 4
+		  WRITE_BYTE 0x27 0									//	no sectype for the innates
 		  LPF ALTER_SPELL_HEADER INT_VAR location = 2 END
 		  READ_LONG 0x64 abil_offset
 		  READ_SHORT 0x68 abil_number
