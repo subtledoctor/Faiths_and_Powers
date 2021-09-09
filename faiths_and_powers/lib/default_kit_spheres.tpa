@@ -78,13 +78,14 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabsh01.2da~ BEGIN
 	class 			= ~shaman~
  END
 
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
 // ACTION_IF (d5_spell_spontaneous = 0) BEGIN
     LAF fnp_spell_choice STR_VAR this_kit_clab = ~clabsh01~ learn_itm_res = ~d5sh01z~ free_universal_spells = ~yes~ END
 // END
 // ACTION_IF (d5_spell_spontaneous > 0) BEGIN
 //    LAF fnp_spontaneous STR_VAR kit_clab = ~clabsh01~ learn_res = ~d5sh01z~ free_universal = ~no~ END
 // END
-
+ END
 END
 //__________________________________________________________________________________
 

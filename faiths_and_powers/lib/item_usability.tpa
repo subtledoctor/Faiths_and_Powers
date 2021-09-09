@@ -410,13 +410,13 @@ COPY_EXISTING_REGEXP	~.*\.sto~	override
 			15 16 17 18 19 20 21 22 23 24 25 26 27 29 30 WHEN add_category = 0	BEGIN	// Match any Weapon Categories
 				++add_category
 			END
-			69	BEGIN	//	Match Bastard Sword Category / No Unnecessary Duplication
+			69	BEGIN	//	Match "Bastard Sword" Category - No Unnecessary Duplication
 				SET add_category_0 = 0
 			END
-			57	BEGIN	//	Match Greatsword Category / No Unnecessary Duplication
+			57	BEGIN	//	Match "Greatsword" Category - No Unnecessary Duplication
 				SET add_category_1 = 0
 			END
-			44	BEGIN	//	Match Club Category / No Unnecessary Duplication
+			44	BEGIN	//	Match "Club" Category - No Unnecessary Duplication
 				SET add_category_2 = 0
 			END
 			DEFAULT

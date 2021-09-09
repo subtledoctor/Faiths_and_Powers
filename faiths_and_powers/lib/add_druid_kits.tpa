@@ -1424,7 +1424,7 @@ ACTION_IF NOT GAME_IS ~iwdee~ BEGIN
   OUTER_SET boring_beetle_animation = IDS_OF_SYMBOL (animate ~BEETLE_BORING~)		//
 END
 OUTER_SET fire_beetle_animation = IDS_OF_SYMBOL (animate ~BEETLE_COPPER~)			//
-OUTER_SET rhino_beetle_animation = IDS_OF_SYMBOL (animate ~BEETLE_RHINOCEROUS~)		//
+OUTER_SET rhino_beetle_animation = IDS_OF_SYMBOL (animate ~BEETLE_RHINOCEROS~)		//
 OUTER_SET giant_spider_animation = IDS_OF_SYMBOL (animate ~SPIDER_GIANT~)			//
 OUTER_SET sword_spider_animation = IDS_OF_SYMBOL (animate ~SPIDER_SWORD~)			//
 OUTER_SET remorhaz_animation = IDS_OF_SYMBOL (animate ~REMORHAZ~)					//
