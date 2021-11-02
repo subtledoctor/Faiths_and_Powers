@@ -385,6 +385,7 @@ APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell_res%  ****        ****
 LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~CLERIC_CREEPING_DOOM~ RET spell_res spell_num END
 APPEND ~clabdr04.2da~ ~HIVEKEEPER   ****        GA_%spell_res%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
+/* do this in new spells section
 // make beetle swarm spell
 ACTION_IF !(GAME_IS ~iwdee~) BEGIN
 // animations
@@ -443,7 +444,7 @@ COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5rhbtl.spl~
   WRITE_LONG 0x34 7
   LPF ALTER_SPELL_HEADER INT_VAR target = 4 location = 2 speed = 6 STR_VAR icon = ~*****~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5rhbtl~ END
-	
+*/
 
 APPEND ~clabdr04.2da~ ~
 HIVEKEEPER   GA_D5BTSWM  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****       ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 

@@ -536,7 +536,8 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shlist.2da~) BEGIN
   END
  BUT_ONLY
 
- INCLUDE ~faiths_and_powers/lib/sequencer_menu_d5.tpa~
+// INCLUDE ~faiths_and_powers/lib/sequencer_menu_d5.tpa~
+ INCLUDE ~faiths_and_powers/lib/sequencer_menu.tpa~
 
  LAF CREATE_SEQUENCER_MENU 
   INT_VAR 

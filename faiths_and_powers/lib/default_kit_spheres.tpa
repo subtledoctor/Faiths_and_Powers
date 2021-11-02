@@ -2339,6 +2339,42 @@ END
 //__________________________________________________________________________________
 END
 
+// FALDORN - SHADOW DRUID
+
+ACTION_IF FILE_EXISTS_IN_GAME ~L#FALDSD.2da~ BEGIN
+//DEFINE SPHERE ACCESS______________________________________________________________
+//
+LAF ~DEFINE_FNP_KIT_INFO~
+  INT_VAR
+	u_leather_armor 	= 1
+	u_chain_armor 		= 0
+	u_plate_armor 		= 0
+	u_club_staff	 	= 2
+	u_hammers	 		= 0
+	u_maces 	 		= 0
+	u_flails 			= 2
+	u_axes 				= 0
+	u_daggers 			= 2
+	u_short_swords		= 0
+	u_long_swords		= 0
+	u_scimitars 		= 2
+	u_katanas 			= 0
+	u_bastard_swords 	= 0
+	u_2hand_swords 		= 0
+	u_halberds 			= 0
+	u_spears 	 		= 2
+	u_darts 			= 2
+	u_slings	 		= 2
+	u_bows 				= 2
+	u_crossbows 		= 0
+  STR_VAR
+    clab_name 		= ~L#FALDSD~
+	class 			= ~occultist~
+	sphere_list		= ~druid_shadow_spheres~
+END
+//__________________________________________________________________________________
+END
+
 
 END // end mod_kit_spheres function
 
@@ -2398,14 +2434,14 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	class 			= ~cleric~
 	s_Life 			= ~major~
 	s_Death 		= ~minor~
-	s_Benediction 	= ~major~
+	s_Benediction 	= ~x~
 	s_Destruction 	= ~major~
 	s_Protection 	= ~major~
 	s_War 			= ~minor~
 	s_Exploration   = ~minor~
 	s_Knowledge 	= ~major~
 	s_Deception 	= ~x~
-	s_Thought 		= ~minor~
+	s_Thought 		= ~major~
 	s_Dread 		= ~major~
 	s_Vigor 		= ~minor~
 	s_Affliction 	= ~x~
@@ -2449,8 +2485,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
     clab_name 		= EVAL ~%green%~
 	class 			= ~druid~
 	s_Life 			= ~major~
-	s_Death 		= ~minor~
-	s_Benediction 	= ~x~
+	s_Death 		= ~x~
+	s_Benediction 	= ~minor~
 	s_Destruction 	= ~x~
 	s_Protection 	= ~x~
 	s_War 			= ~x~
@@ -2458,19 +2494,19 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Knowledge 	= ~x~
 	s_Deception 	= ~x~
 	s_Thought 		= ~minor~
-	s_Dread 		= ~minor~
+	s_Dread 		= ~x~
 	s_Vigor 		= ~major~
 	s_Affliction 	= ~major~
-	s_Animal 		= ~focus~
+	s_Animal 		= ~major~
 	s_Plant 		= ~major~
-	s_Earth 		= ~minor~
+	s_Earth 		= ~major~
 	s_Water 		= ~minor~
-	s_Air 			= ~minor~
-	s_Fire 			= ~x~
-	s_Light 		= ~x~
-	s_Shadow 		= ~minor~
+	s_Air 			= ~major~
+	s_Fire 			= ~minor~
+	s_Light 		= ~minor~
+	s_Shadow 		= ~x~
 	s_Magic 		= ~x~
-	s_Astral	     = ~x~
+	s_Astral	     = ~minor~
    END
   END
   ACTION_IF (%eggs% = 21) BEGIN //..................................................shamans
@@ -2506,8 +2542,8 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Destruction 	= ~x~
 	s_Protection 	= ~x~
 	s_War 			= ~x~
-	s_Exploration   = ~x~
-	s_Knowledge 	= ~x~
+	s_Exploration   = ~minor~
+	s_Knowledge 	= ~major~
 	s_Deception 	= ~x~
 	s_Thought 		= ~x~
 	s_Dread 		= ~x~
@@ -2519,7 +2555,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	s_Water 		= ~x~
 	s_Air 			= ~x~
 	s_Fire 			= ~x~
-	s_Light 		= ~x~
+	s_Light 		= ~minor~
 	s_Shadow 		= ~major~
 	s_Magic 		= ~x~
 	s_Astral	     = ~major~
@@ -2554,7 +2590,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	class 			= ~champion~
 	s_Life 			= ~paladin~
 	s_Death 		= ~x~
-	s_Benediction 	= ~paladin~
+	s_Benediction 	= ~x~
 	s_Destruction 	= ~paladin~
 	s_Protection 	= ~paladin~
 	s_War 			= ~paladin~

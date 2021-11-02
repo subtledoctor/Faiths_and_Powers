@@ -338,6 +338,130 @@ END
 //__________________________________________________________________________________
 
 
+// beetle swarm spell
+//
+ACTION_IF !(GAME_IS ~iwdee~) BEGIN
+// animations
+  COPY ~faiths_and_powers/spheres/spells/animations/e210_fire_beetle~ ~override~
+  COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5smbtl.cre~ ~override~
+	LPF make_summon END
+	WRITE_BYTE 0x270 5
+END
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5btswm.spl~
+  SAY NAME1 @73421
+  SAY UNIDENTIFIED_DESC @73422
+  WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 2
+  LPF ALTER_SPELL_HEADER INT_VAR target = 4 location = 2 speed = 6 STR_VAR icon = ~*****~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5btswm1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5btswm1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5btswm1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 75 STR_VAR resource = ~d5btswm1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 50 STR_VAR resource = ~d5btswm1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 25 STR_VAR resource = ~d5btswm1~ END
+/* use .eff instead
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 75 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 50 STR_VAR resource = ~d5smbtl~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 25 STR_VAR resource = ~d5smbtl~ END
+*/
+
+CREATE EFF ~d5btswm1~
+	WRITE_LONG 0x10 67
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x28 60
+	WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~d5smbtl~ #8
+
+
+// spider swarm spell
+//
+COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5smspid.cre~ ~override~
+	LPF make_summon END
+	WRITE_BYTE 0x270 5
+// and give it an appropriate weapon, like spidhu1.itm
+// ***** or make a new weapon for it!
+// ...not too much poison
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5spswm.spl~
+  SAY NAME1 @73423
+  SAY UNIDENTIFIED_DESC @73424
+  WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 3
+  LPF ALTER_SPELL_HEADER INT_VAR target = 4 location = 2 speed = 6 STR_VAR icon = ~*****~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5spswm1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5spswm1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5spswm1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 75 STR_VAR resource = ~d5spswm1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 50 STR_VAR resource = ~d5spswm1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 25 STR_VAR resource = ~d5spswm1~ END
+/* use .eff instead
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 75 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 50 STR_VAR resource = ~d5smspid~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 60 probability1 = 25 STR_VAR resource = ~d5smspid~ END
+*/
+
+CREATE EFF ~d5spswm1~
+	WRITE_LONG 0x10 67
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x28 60
+	WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~d5smspid~ #8
+
+
+// add spider spawn - spwi423 - at spell level 5
+//
+COPY_EXISTING ~spwi423.spl~ ~override/d5spspn.spl~
+  WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 5
+IF_EXISTS
+
+
+// add carrion summons - spwi623
+//
+COPY_EXISTING ~spwi623.spl~ ~override/d5carsm.spl~
+  WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 6
+IF_EXISTS
+
+
+// make summon rhino beetle spell
+//
+COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5rhbtl.cre~ ~override~
+	LPF make_summon END
+	WRITE_BYTE 0x270 5
+COPY ~faiths_and_powers/kits/misc/d5_base.spl~ ~override/d5rhbtl.spl~
+  SAY NAME1 @73425
+  SAY UNIDENTIFIED_DESC @73426
+  WRITE_SHORT 0x1c 2
+  WRITE_LONG 0x34 7
+  LPF ALTER_SPELL_HEADER INT_VAR target = 4 location = 2 speed = 6 STR_VAR icon = ~*****~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 100 STR_VAR resource = ~d5rhbtl1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 0 duration = 60 probability1 = 50 STR_VAR resource = ~d5rhbtl1~ END
+//  LPF ADD_SPELL_EFFECT INT_VAR opcode = 67 target = 1 parameter2 = 1 timing = 0 duration = 300 probability1 = 100 STR_VAR resource = ~d5rhbtl~ END
+
+CREATE EFF ~d5rhbtl1~
+	WRITE_LONG 0x10 67
+	WRITE_LONG 0x14 1
+	WRITE_LONG 0x14 2
+	WRITE_LONG 0x20 0
+	WRITE_LONG 0x24 1
+	WRITE_LONG 0x28 300
+	WRITE_SHORT 0x2c 100
+	WRITE_ASCII 0x30 ~d5rhbtl~ #8
+//__________________________________________________________________________________
+
+
 //animate clay construct
 // 
 COPY ~faiths_and_powers/spheres/spells/creation/d5clgol.spl~ ~override/d5fnp11.spl~ 

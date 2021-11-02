@@ -38,6 +38,8 @@ END
 
 //create sphere spells______________________________________________________________
 //
+//all/universal
+COPY ~faiths_and_powers/spheres/d5sxyz.spl~ ~override/d5spuni.spl~
 //life
 COPY ~faiths_and_powers/spheres/d5sxyz.spl~ ~override/d5splif.spl~
 //  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5splifx~ END
@@ -1150,6 +1152,7 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 	ACTION_IF (%roo% = 14) BEGIN 	// c/m
 	  COPY ~faiths_and_powers/spheres/hlas/lucmxyz.2da~ ~override/lub_%goo_1%.2da~
 	END
+	APPEND ~%goo%.2da~ ~SPHERES     AP_D5SPUNI  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
 	ACTION_PHP_EACH d5_fnp_spheres AS sphere => val BEGIN
 	  COPY_EXISTING ~d5altsph.2da~ ~override~
 		READ_2DA_ENTRIES_NOW rows 2

@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.79.30~
+VERSION ~0.79.31~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -511,6 +511,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__no_spheres.d5~) BEGIN
    OUTER_SET d5_light_mystic 	=	0
    OUTER_SET d5_shadow_mystic 	=	0
    OUTER_SET d5_elementalist 	=	0
+   OUTER_SET d5_hivekeeper_druid 	=	0
 END
 
 // (druids)

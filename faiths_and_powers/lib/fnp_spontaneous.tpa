@@ -36,7 +36,8 @@ BUT_ONLY
 // ***** the free_universal variable won't quite work yet if you set it to 'no'
 // in that case, need to add those spells to the kit's learnable list, and remove them from the spellbook
 
-INCLUDE ~faiths_and_powers/lib/sequencer_menu_d5.tpa~
+//INCLUDE ~faiths_and_powers/lib/sequencer_menu_d5.tpa~
+INCLUDE ~faiths_and_powers/lib/sequencer_menu.tpa~
 
 COPY_EXISTING ~kitlist.2da~ ~override~
   COUNT_2DA_ROWS 10 rows
