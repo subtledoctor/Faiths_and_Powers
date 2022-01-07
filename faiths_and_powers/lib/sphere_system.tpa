@@ -1179,7 +1179,7 @@ ACTION_PHP_EACH d5_kitlist_spheres AS goo => roo BEGIN
 		  BUT_ONLY
 		  ACTION_PHP_EACH d5_fnp_kit_caster_type AS this_kit => caster_type BEGIN
 			ACTION_IF (~%this_kit%~ STRING_EQUAL_CASE ~%goo%~) && !(~%caster_type%~ STRING_EQUAL_CASE ~mystic~) BEGIN
-			  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) AND !(FILE_EXISTS_IN_GAME ~d5__fnp_spont_casting.d5~) BEGIN
+			  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) /*AND !(FILE_EXISTS_IN_GAME ~d5__fnp_spont_casting.d5~)*/ BEGIN
 			    APPEND ~%goo%.2da~ ~SPHERES     AP_D5SF%shortsphere%  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ 
 			  END
 			  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) OR (FILE_EXISTS_IN_GAME ~d5__fnp_spont_casting.d5~) BEGIN
