@@ -379,7 +379,9 @@ ACTION_IF !(~%this_kit_clab%~ STRING_EQUAL_CASE ~x~) BEGIN
   ACTION_PHP_EACH kit_spont_list AS sph_spls => ind BEGIN
 	COPY_EXISTING ~%learn_itm_res%.2da~ ~override~
 	  LPM remove_blank_lines
-	  APPEND_FILE ~override/d5t%sph_spls%.2da~
+	  PATCH_IF (FILE_EXISTS_IN_GAME ~d5t%sph_spls%.2da~) BEGIN
+	    APPEND_FILE ~override/d5t%sph_spls%.2da~
+	  END
 	BUT_ONLY
   END
   ACTION_IF (%kit_class% = 21) && (~%free_universal_spells%~ STRING_EQUAL_CASE ~no~) BEGIN
@@ -645,7 +647,7 @@ END
 COPY_EXISTING ~d5shmsw.itm~ ~override~
   PATCH_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) AND (FILE_EXISTS_IN_GAME ~%learn_itm_res%.spl~) BEGIN
     LPF DELETE_EFFECT INT_VAR match_opcode = 326 match_parameter1 = %kit_ids% STR_VAR match_resource = EVAL ~%learn_itm_res%~ END 
-    LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 326 parameter1 = %kit_ids% parameter2 = %kit_is_row% STR_VAR resource = EVAL ~%learn_itm_res%~ END
+    LPF CLONE_EFFECT INT_VAR silent = 1 multi_match = 1 match_opcode = 326 parameter1 = %kit_ids% parameter2 = %kit_is_row% STR_VAR resource = EVAL ~%learn_itm_res%~ END
   END
 BUT_ONLY
 

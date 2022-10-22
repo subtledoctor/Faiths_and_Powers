@@ -1,5 +1,5 @@
 
-// 0.83.0
+// 0.85
 
 //REMOVE BLANK LINES MACRO___________________________________________________________
 //
@@ -731,6 +731,15 @@ END
 //
 DEFINE_ACTION_FUNCTION apply_fnp_usability STR_VAR clab_name = ~x~ BEGIN
 
+ ACTION_IF (FILE_EXISTS_IN_GAME ~d5_fnp_settings.ini~) BEGIN
+   INCLUDE ~override/d5_fnp_settings.ini~
+   LAM d5_fnp_weapon_usability
+ END
+ 
+ ACTION_IF !(VARIABLE_IS_SET %simpler_usability_changes%) BEGIN
+   OUTER_SET simpler_usability_changes = 0
+ END
+ 
  LAM ~READ_FNP_KIT_INFO~
 
  OUTER_TEXT_SPRINT hex_lat 			~04000000~
@@ -768,7 +777,8 @@ DEFINE_ACTION_FUNCTION apply_fnp_usability STR_VAR clab_name = ~x~ BEGIN
   END
 
  ACTION_PHP_EACH d5_fnp_mod_kit_use AS use => val BEGIN
-  ACTION_IF (~%use%~ STRING_EQUAL_CASE ~CHAIN_ARMOR~) BEGIN
+  ACTION_IF (simpler_usability_changes = 0) BEGIN
+   ACTION_IF (~%use%~ STRING_EQUAL_CASE ~CHAIN_ARMOR~) BEGIN
 	ACTION_IF (%val% = 1) BEGIN
 	  PRINT ~    %use_1% : %use% : %val%~
 	  COPY_EXISTING ~kitlist.2da~ ~override~
@@ -778,9 +788,9 @@ DEFINE_ACTION_FUNCTION apply_fnp_usability STR_VAR clab_name = ~x~ BEGIN
 		  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 5 kit_clab
 		  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 8 kit_class
 		  PATCH_IF (~%kit_clab%~ STRING_EQUAL_CASE ~%use_1%~) BEGIN
-//			PATCH_IF (%kit_class% = 3 || %kit_class% = 11 || %kit_class% = 21 || %kit_class% = 8 || %kit_class% = 14 || %kit_class% = 15 || %kit_class% = 18 || %kit_class% = 16) BEGIN
+			PATCH_IF (%kit_class% = 3 || %kit_class% = 11 || %kit_class% = 21 || %kit_class% = 8 || %kit_class% = 14 || %kit_class% = 15 || %kit_class% = 18 || %kit_class% = 16) BEGIN
 			  SET_2DA_ENTRY row 7 10 ~0x%hex_helm%~
-//			END
+			END
 		  END
 		END
 	  BUT_ONLY
@@ -794,9 +804,9 @@ DEFINE_ACTION_FUNCTION apply_fnp_usability STR_VAR clab_name = ~x~ BEGIN
 		  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 5 kit_clab
 		  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 8 kit_class
 		  PATCH_IF (~%kit_clab%~ STRING_EQUAL_CASE ~%use_1%~) BEGIN
-//			PATCH_IF (%kit_class% = 3 || %kit_class% = 11 || %kit_class% = 21 || %kit_class% = 8 || %kit_class% = 14 || %kit_class% = 15 || %kit_class% = 18 || %kit_class% = 16) BEGIN
+			PATCH_IF (%kit_class% = 3 || %kit_class% = 11 || %kit_class% = 21 || %kit_class% = 8 || %kit_class% = 14 || %kit_class% = 15 || %kit_class% = 18 || %kit_class% = 16) BEGIN
 			  SET_2DA_ENTRY row 7 10 ~0x%hex_lat%~
-//			END
+			END
 		  END
 		END
 	  BUT_ONLY
@@ -812,13 +822,14 @@ DEFINE_ACTION_FUNCTION apply_fnp_usability STR_VAR clab_name = ~x~ BEGIN
 		  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 5 kit_clab
 		  READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 8 kit_class
 		  PATCH_IF (~%kit_clab%~ STRING_EQUAL_CASE ~%use_1%~) BEGIN
-//			PATCH_IF (%kit_class% = 3 || %kit_class% = 11 || %kit_class% = 21 || %kit_class% = 8 || %kit_class% = 14 || %kit_class% = 15 || %kit_class% = 18 || %kit_class% = 16) BEGIN
+			PATCH_IF (%kit_class% = 3 || %kit_class% = 11 || %kit_class% = 21 || %kit_class% = 8 || %kit_class% = 14 || %kit_class% = 15 || %kit_class% = 18 || %kit_class% = 16) BEGIN
 			  SET_2DA_ENTRY row 7 10 ~0x%hex_talos%~
-//			END
+			END
 		  END
 		END
 	  BUT_ONLY
 	END
+   END
   END
  END
 
@@ -833,7 +844,7 @@ DEFINE_ACTION_FUNCTION apply_fnp_usability STR_VAR clab_name = ~x~ BEGIN
 	READ_2DA_ENTRY_FORMER ~r2en_kitlist~ row 9 kit_code
 	PATCH_IF (~%kit_clab%~ STRING_EQUAL_CASE ~%mod_clab%~) BEGIN
 //	  SET patch_row = %row%
-//	  PATCH_IF (%kit_class% = 3 || %kit_class% = 11 || %kit_class% = 21 || %kit_class% = 8 || %kit_class% = 14 || %kit_class% = 15 || %kit_class% = 18 || %kit_class% = 16) BEGIN
+	  PATCH_IF (%kit_class% = 3 || %kit_class% = 11 || %kit_class% = 21 || %kit_class% = 8 || %kit_class% = 14 || %kit_class% = 15 || %kit_class% = 18 || %kit_class% = 16) BEGIN
 		INNER_ACTION BEGIN
 		  COPY ~faiths_and_powers/data/misc/d5fnpuse.spl~ ~override/d5_u%kit_index%.spl~
 		END
@@ -1219,8 +1230,9 @@ DEFINE_ACTION_FUNCTION apply_fnp_usability STR_VAR clab_name = ~x~ BEGIN
 			END
 		  END
 		END
-		INNER_ACTION BEGIN
-		  ACTION_IF FILE_EXISTS_IN_GAME ~%mod_clab%.2da~ BEGIN
+		PATCH_IF (simpler_usability_changes = 0) BEGIN
+		 PATCH_IF FILE_EXISTS_IN_GAME ~%mod_clab%.2da~ BEGIN
+		  INNER_ACTION BEGIN
 			APPEND ~%mod_clab%.2da~ ~FNP_USABLE   AP_D5_U%kit_index%   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 			ACTION_IF (%kit_class% = 8 || %kit_class% = 14 || %kit_class% = 15 || %kit_class% = 18 || %kit_class% = 16) BEGIN
 			  ACTION_IF (%kit_class% = 8 || %kit_class% = 14 || %kit_class% = 15 || %kit_class% = 18) BEGIN
@@ -1244,8 +1256,9 @@ DEFINE_ACTION_FUNCTION apply_fnp_usability STR_VAR clab_name = ~x~ BEGIN
 				LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 timing = 9 resist_dispel = 0 power = 0 parameter1 = %kit_code% parameter2 = 9 STR_VAR resource = EVAL ~d5_u%kit_index%#~ END  
 			END 
 		  END
+		 END
 		END
-//	  END
+	  END
 	END
   END
  BUT_ONLY

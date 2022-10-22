@@ -1367,7 +1367,7 @@ COPY_EXISTING ~d5spsph.2da~ ~override~
 				  END
 				BUT_ONLY
 				COPY_EXISTING ~%sphere%.spl~ ~override~
-//				  LPF CLONE_EFFECT INT_VAR match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%priest_res%~ END
+//				  LPF CLONE_EFFECT INT_VAR silent=1 match_opcode=171 STR_VAR match_resource=~SPWI101~ resource = EVAL ~%priest_res%~ END
 				  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%priest_res%~ END
 				IF_EXISTS BUT_ONLY
 				APPEND ~d5tp%shortsphere%.2da~ ~%sph%	%priest_res%	3~
