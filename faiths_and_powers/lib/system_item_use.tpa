@@ -569,7 +569,7 @@ COPY_EXISTING ~weapprof.2da~ ~override~
     READ_2DA_ENTRY row 1 cols stat
     PATCH_IF (~%stat%~ STRING_EQUAL_CASE ~89~) BEGIN
       READ_2DA_ENTRY row 2 cols bswo_strref
-      GET_STRREF %bswo_strref% bwso_text
+      GET_STRREF %bswo_strref% bswo_text
     END
     PATCH_IF (~%stat%~ STRING_EQUAL_CASE ~90~) BEGIN
       READ_2DA_ENTRY row 2 cols lswo_strref
@@ -1083,8 +1083,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 //				LPF ADD_SPELL_EFFECT INT_VAR opcode = 181 target = 1 parameter1 = 5 parameter2 = 0 timing = 9 END
 			  BUT_ONLY
 			END
-		  END
-		  		  PATCH_IF (access > 0) BEGIN
+		  END ELSE BEGIN
 		    SPRINT these_weapon_use ~%these_weapon_use%~^~ - %lbow_text%
  - %sbow_text%
 ~

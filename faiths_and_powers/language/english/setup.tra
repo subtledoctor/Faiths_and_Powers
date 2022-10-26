@@ -2845,7 +2845,7 @@ Restrictions:
 //
 // ... dervishes:
 //
-@93200  = ~BEAST MASTER: This ranger is a wanderer and is not comfortable in civilized lands. Therefore, Beast Masters maintain a natural affinity for animals. In addition to being able to call normal animals for assistance, Beast Masters may summon a Spirit Wolf and even transform into a wolf-like form of a wolf.
+@93200  = ~BEAST MASTER: This ranger is a wanderer and is not comfortable in civilized lands. Therefore, Beast Masters maintain a natural affinity for animals. In addition to being able to call normal animals for assistance, Beast Masters may summon a Spirit Wolf and even transform into a bestial wolf-like form.
 
 Advantages:
 - +15% to Move Silently and Hide In Shadows.
@@ -2867,85 +2867,6 @@ Disadvantages:
 @93207  = ~Werewolf~
 @93208  = ~Wolfwere~
 @93209  = ~Greater Wolfwere~
-//
-@93301  = ~earth dervish~
-@93302  = ~Earth Dervish~
-@93303  = ~EARTH DERVISH: Earth Dervishes are the earth element imbued ranger counterpart to the druidic earth mystic.  They are capable of calling on their chosen element to bolster their defenses and empower their attacks. 
-
-Advantages:
-- 2% crushing damage resistance per level, up to a maximum of 40% at 20th level.
-- 20% of all melee hits Stun the target for 1-2 seconds upon a failed save vs. Death.
-
-Restrictions:
-- May not be Chaotic
-~
-@93304  = ~EARTH DERVISH: Earth Dervishes are the earth element imbued ranger counterpart to the druidic earth mystic.  They are capable of calling on their chosen element to bolster their defenses and empower their attacks. ~
-//
-@93401  = ~water dervish~
-@93402  = ~Water Dervish~
-@93403  = ~WATER DERVISH: Water Dervishes are the water element imbued ranger counterpart to the druidic water mystic.  They are capable of calling on their chosen element to bolster their defenses and empower their attacks. 
-
-Advantages:
-- 2% acid and cold damage resistance per level, up to a maximum of 40% at 20th level.
-- 20% of all melee hits cause 1d3 points of acid damage if the target fails a save vs. Breath.
-
-Restrictions:
-- May not be Lawful
-~
-@93404  = ~WATER DERVISH: Water Dervishes are the water element imbued ranger counterpart to the druidic water mystic.  They are capable of calling on their chosen element to bolster their defenses and empower their attacks.~
-//
-@93501  = ~air dervish~
-@93502  = ~Air Dervish~
-@93503  = ~AIR DERVISH: Air Dervishes are the air element imbued ranger counterpart to the druidic air mystic.  They are capable of calling on their chosen element to bolster their defenses and empower their attacks. 
-
-Advantages:
-- 2% electric damage resistance per level, up to a maximum of 40% at 20th level.
-- Immunity to harmful cloud-based spells.
-- 20% of all melee hits cause 1d3 points of electricity damage if the target fails a save vs. Breath.
-
-Restrictions:
-- May not be Lawful
-~
-@93504  = ~AIR DERVISH: Air Dervishes are the air element imbued ranger counterpart to the druidic air mystic.  They are capable of calling on their chosen element to bolster their defenses and empower their attacks.~
-//
-@93601  = ~fire dervish~
-@93602  = ~Fire Dervish~
-@93603  = ~FIRE DERVISH: Fire Dervishes are the fire element imbued ranger counterpart to the druidic fire mystic.  They are capable of calling on their chosen element to bolster their defenses and empower their attacks. 
-
-Advantages:
-- 2% fire damage resistance per level, up to a maximum of 40% at 20th level.
-- 20% of all melee hits cause 1d4 points of fire damage if the target fails a save vs. Breath.
-
-Restrictions:
-- May not be Lawful
-~
-@93604  = ~FIRE DERVISH: Fire Dervishes are the fire element imbued ranger counterpart to the druidic fire mystic.  They are capable of calling on their chosen element to bolster their defenses and empower their attacks.~
-//
-@93701  = ~light dervish~
-@93702  = ~Light Dervish~
-@93703  = ~LIGHT DERVISH: Light Dervishes are the light empowered ranger counterpart to the druidic light mystic.  They are capable of calling on their chosen specialty to bolster their defenses and empower their attacks.
-
-Advantages:
-- Immune to blindness, and may dispel low-level illusions (up to 3rd level) 3 times per day.
-- 40% of all melee hits cause the target to be bathed in Faerie Fire for 3 rounds, resulting in a -2 penalty to AC.
-
-Restrictions:
-- May not be Evil
-~
-@93704  = ~LIGHT DERVISH: Light Dervishes are the light empowered ranger counterpart to the druidic light mystic.  They are capable of calling on their chosen specialty to bolster their defenses and empower their attacks.~
-//
-@93801  = ~shadow dervish~
-@93802  = ~Shadow Dervish~
-@93803  = ~SHADOW DERVISH: Shadow Dervishes are the shadow empowered ranger counterpart to the druidic shadow mystic.  They are capable of calling on their chosen specialty to bolster their defenses and empower their attacks. 
-
-Advantages:
-- Immune to blindness.
-- 20% of all melee hits Blind the target for 5 seconds upon a failed save vs. Breath.
-
-Restrictions:
-- Must be Neutral
-~
-@93804  = ~SHADOW DERVISH: Shadow Dervishes are the shadow empowered ranger counterpart to the druidic shadow mystic.  They are capable of calling on their chosen specialty to bolster their defenses and empower their attacks.~
 //
 // ... scouts:
 //

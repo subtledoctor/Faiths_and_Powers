@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.85sd1~
+VERSION ~0.85sd2~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -87,6 +87,7 @@ LANGUAGE
   ~English~
   ~english~
   ~faiths_and_powers/language/english/setup.tra~
+  ~faiths_and_powers/language/english/fnp_spontaneous.tra~
   ~faiths_and_powers/language/english/IWD_spells.tra~
   ~faiths_and_powers/language/english/new_spells.tra~
   ~faiths_and_powers/language/english/HLA.tra~

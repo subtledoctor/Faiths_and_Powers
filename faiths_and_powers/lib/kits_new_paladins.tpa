@@ -432,7 +432,7 @@ APPEND ~clabpa01.2da~ ~PALADINS    AP_D5PA000  ****        ****        ****     
 COPY_EXISTING ~kitlist.2da~ ~override~
   COUNT_2DA_ROWS 10 rows
   FOR (row = 35; row < rows; ++row ) BEGIN
-    READ_2DA_ENTRY row 9 10 kitname
+    READ_2DA_ENTRY row 1 10 kitname
     READ_2DA_ENTRY row 5 10 kitclab
     READ_2DA_ENTRY row 8 10 kitclass
     READ_2DA_ENTRY row 9 10 kitids
@@ -703,7 +703,9 @@ END
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chtyr~ learn_res = ~b_chtyrz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chtyr~ learn_res = ~b_chtyz~ END
+  END
  END
 
 //apply alternate smite
@@ -728,9 +730,12 @@ END
   END
  BUT_ONLY
 
+// *****
+ OUTER_SET champion_tyr_code = (0x4000 + %B_CHAMP_TYR%)
+
  COPY_EXISTING ~d5pasmt1.spl~ ~override~
-  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = %B_CHAMP_TYR% parameter2 = %kit_is_row% timing = 0 duration = 6 STR_VAR resource = ~d5pasmt1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 parameter1 = %B_CHAMP_TYR% parameter2 = 9 timing = 2 STR_VAR resource = ~d5pastyr~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 1 parameter1 = %champion_tyr_code% parameter2 = %kit_is_row% timing = 0 duration = 6 STR_VAR resource = ~d5pasmt1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 parameter1 = %champion_tyr_code% parameter2 = 9 timing = 2 STR_VAR resource = ~d5pastyr~ END
 
  LAF apply_archetype_options STR_VAR this_kit = ~B_CHAMP_TYR~ END
 
@@ -847,7 +852,9 @@ COPY_EXISTING ~sppr408.spl~ ~override/d5pator1.spl~
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5chtor~ learn_res = ~d5chtorz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5chtor~ learn_res = ~d5chtoz~ END
+  END
  END
 
  LAF apply_archetype_options STR_VAR this_kit = ~D5_CHAMP_TORM~ END
@@ -984,7 +991,9 @@ END
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chhel~ learn_res = ~b_chhelz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chhel~ learn_res = ~b_chhez~ END
+  END
  END
 
  LAF apply_archetype_options STR_VAR this_kit = ~B_CHAMP_HELM~ END
@@ -1151,7 +1160,9 @@ COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5pailm9.spl~
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chilm~ learn_res = ~b_chilmz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chilm~ learn_res = ~b_chilz~ END
+  END
  END
 
 // apply special frenzy to pafrz1
@@ -1334,7 +1345,9 @@ END
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chkel~ learn_res = ~b_chkelz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chkel~ learn_res = ~b_chkez~ END
+  END
  END
 
 //apply alternate smite
@@ -1522,7 +1535,9 @@ END
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chkel~ learn_res = ~b_chkelz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chkel~ learn_res = ~b_chkez~ END
+  END
  END
 
 // apply special frenzy to pafrz1
@@ -1671,7 +1686,9 @@ COPY ~faiths_and_powers/kits/champions/868_sune/b_sun01.spl~ ~override~
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chsun~ learn_res = ~b_chsunz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chsun~ learn_res = ~b_chsuz~ END
+  END
  END
 
  LAF apply_archetype_options STR_VAR this_kit = ~B_CHAMPION_SUNE~ END
@@ -1823,7 +1840,9 @@ COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5pamys4.spl~
  END
  
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chmys~ learn_res = ~b_chmysz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chmys~ learn_res = ~b_chmyz~ END
+  END
  END
 
 //apply alternate smite
@@ -2003,7 +2022,9 @@ END
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chazu~ learn_res = ~b_chazuz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chazu~ learn_res = ~b_chazz~ END
+  END
  END
 
  LAF apply_archetype_options STR_VAR this_kit = ~B_CHAMP_AZUTH~ END
@@ -2139,7 +2160,9 @@ END
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chtem~ learn_res = ~b_chtemz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chtem~ learn_res = ~b_chtez~ END
+  END
  END
 
 // apply special frenzy to pafrz1
@@ -2287,7 +2310,9 @@ END
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chred~ learn_res = ~b_chredz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chred~ learn_res = ~b_chrez~ END
+  END
  END
 
  LAF apply_archetype_options STR_VAR this_kit = ~B_CHAMP_RED~ END
@@ -2454,7 +2479,9 @@ END
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chtal~ learn_res = ~b_chtalz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chtal~ learn_res = ~b_chtaz~ END
+  END
  END
 
 // apply special frenzy to pafrz1
@@ -2617,7 +2644,9 @@ END
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chkos~ learn_res = ~b_chkosz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chkos~ learn_res = ~b_chkoz~ END
+  END
  END
 
 // apply special frenzy to pafrz1
@@ -2757,7 +2786,9 @@ COPY_EXISTING ~d5pafrz.spl~ ~override/d5pafgar.spl~
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chgar~ learn_res = ~b_chgarz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chgar~ learn_res = ~b_chgaz~ END
+  END
  END
 
 // apply special frenzy to pafrz1
@@ -2918,7 +2949,9 @@ END
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chban~ learn_res = ~b_chbanz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chban~ learn_res = ~b_chbaz~ END
+  END
  END
 
 // apply special frenzy to pafrz1
@@ -3068,7 +3101,9 @@ COPY_EXISTING ~sppr612.spl~ ~override/d5paeil2.spl~
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_cheil~ learn_res = ~b_cheilz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_cheil~ learn_res = ~b_cheiz~ END
+  END
  END
 
  LAF apply_archetype_options STR_VAR this_kit = ~B_CHAMPION_EILISTRAEE~ END
@@ -3232,7 +3267,9 @@ COPY ~faiths_and_powers/kits/champions/867_corellon/d5pacor3.itm~ ~override~
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chcor~ learn_res = ~b_chcorz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chcor~ learn_res = ~b_chcoz~ END
+  END
  END
 
 // apply special frenzy to pafrz1
@@ -3390,7 +3427,9 @@ COPY ~faiths_and_powers/kits/champions/807_Moradin/b_mor02.itm~ ~override~
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chmor~ learn_res = ~b_chmorz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chmor~ learn_res = ~b_chmoz~ END
+  END
  END
 
  LAF apply_archetype_options STR_VAR this_kit = ~B_CHAMP_MOR~ END
@@ -3533,7 +3572,9 @@ COPY_EXISTING ~faiths_and_powers/kits/clerics/392_arvoreen/d5arvo2.spl~ ~overrid
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5charv~ learn_res = ~d5charvz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5charv~ learn_res = ~d5charz~ END
+  END
  END
 
  LAF apply_archetype_options STR_VAR this_kit = ~D5_CHAMP_ARVOREEN~ END
@@ -3671,7 +3712,9 @@ END
  END
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~b_chgru~ learn_res = ~b_chgruz~ END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~b_chgru~ learn_res = ~b_chgrz~ END
+  END
  END
 
 // apply special frenzy to pafrz1

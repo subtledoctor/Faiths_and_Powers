@@ -146,10 +146,10 @@ COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
 	class 			= ~druid~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5dfor~ learn_res = ~d5dforz~ END
- END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5dfor~ learn_res = ~d5dforz~ END
+  END
  END
 
 END
@@ -245,13 +245,18 @@ COPY ~faiths_and_powers/kits/druids/732_totemic/totemic.2da~ ~override/clabdr02.
 	class 			= ~druid~
  END
 
-/* can't do this for clabs w/ 8 characters!
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~clabdr02~ learn_res = ~d5dr02z~ END
- END
- END
+  COPY_EXISTING ~clabdr02.2da~ ~override/clabdr2.2da~
+/* let's see if it'll work another way...
+  COPY_EXISTING ~kitlist.2da~ ~~override
+    REPLACE_TEXTUALLY ~clabdr02~ ~clabdr2~
+  IF_EXISTS BUT_ONLY
 */
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~clabdr2~ learn_res = ~d5dr02z~ END
+  END
+  COPY_EXISTING ~clabdr2.2da~ ~override/clabdr02.2da~
+ END
 
 END
 //__________________________________________________________________________________
@@ -520,13 +525,18 @@ HIVEKEEPER   GA_D5RHBTL  ****        ****        ****        ****        ****   
 	class 			= ~druid~
  END
 
-/* can't do this for clabs w/ 8 characters!
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~clabdr04~ learn_res = ~d5dr04z~ END
- END
- END
+  COPY_EXISTING ~clabdr04.2da~ ~override/clabdr4.2da~
+/* let's see if it'll work another way...
+  COPY_EXISTING ~kitlist.2da~ ~~override
+    REPLACE_TEXTUALLY ~clabdr04~ ~clabdr4~
+  IF_EXISTS BUT_ONLY
 */
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~clabdr4~ learn_res = ~d5dr04z~ END
+  END
+  COPY_EXISTING ~clabdr4.2da~ ~override/clabdr04.2da~
+ END
 
 END
 //__________________________________________________________________________________
@@ -661,10 +671,10 @@ COPY ~faiths_and_powers/kits/druids/735_arctic_druid/d5drsc5.eff~ ~override~
 	class 			= ~druid~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5darc~ learn_res = ~d5darcz~ END
- END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5darc~ learn_res = ~d5darcz~ END
+  END
  END
 
 END
@@ -848,10 +858,10 @@ END
 	class 			= ~druid~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5dshad~ learn_res = ~d5dshdz~ END
- END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5dshad~ learn_res = ~d5dshdz~ END
+  END
  END
 
 END
@@ -1007,10 +1017,10 @@ COPY ~faiths_and_powers/kits/druids/737_gray_druid/d5drss8.eff~ ~override~
 	class 			= ~druid~
  END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5dgray~ learn_res = ~d5dgraz~ END
- END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5dgray~ learn_res = ~d5dgraz~ END
+  END
  END
 
 END
@@ -1302,10 +1312,10 @@ COMPILE ~d5/amaran+.d~
 
 END
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5dlost~ learn_res = ~d5dlstz~ END
- END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5dlost~ learn_res = ~d5dlstz~ END
+  END
  END
 
 END // end lost druid macro

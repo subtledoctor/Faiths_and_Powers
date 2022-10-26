@@ -493,10 +493,10 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_FIGHTER~ ability = ~GA_TG#SPIR~ num
   END
  BUT_ONLY
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5drfi~ learn_res = ~d5drfiz~ END
- END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5drfi~ learn_res = ~d5drfiz~ END
+  END
  END
 
 // ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
@@ -758,10 +758,10 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_RANGER~ ability = ~GA_TG#SPIR~ num_
   END
  BUT_ONLY
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5drra~ learn_res = ~d5drraz~ END
- END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5drra~ learn_res = ~d5drraz~ END
+  END
  END
 
 // ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
@@ -1020,10 +1020,10 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_THIEF~ ability = ~GA_TG#SPIR~ num_a
   END
  BUT_ONLY
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5drth~ learn_res = ~d5drthz~ END
- END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5drth~ learn_res = ~d5drthz~ END
+  END
  END
 
 // ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
@@ -1270,10 +1270,10 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_MAGE~ ability = ~GA_TG#SPIR~ num_al
   END
  BUT_ONLY
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5drma~ learn_res = ~d5drmaz~ END
- END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5drma~ learn_res = ~d5drmaz~ END
+  END
  END
 
 // ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
@@ -1533,10 +1533,10 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_SORC~ ability = ~GA_TG#SPIR~ num_al
   END
  BUT_ONLY
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5drsrc~ learn_res = ~d5drsrz~ END
- END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5drsrc~ learn_res = ~d5drsrz~ END
+  END
  END
 
 // ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
@@ -1802,10 +1802,10 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_MONK~ ability = ~GA_TG#SPIR~ num_al
   END
  BUT_ONLY
 
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5drmnk~ learn_res = ~d5drmkz~ END
- END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5drmnk~ learn_res = ~d5drmkz~ END
+  END
  END
 
 // ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
@@ -2269,8 +2269,8 @@ BUT_ONLY
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shmdn.spl~) BEGIN
   COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdn.bam~ ~override~		//	dance icon
   COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdn.spl~ ~override~		//	dance ability
-    SAY NAME1 @49921// Shamanic Dance
-    SAY UNIDENTIFIED_DESC @49921 
+    SAY NAME1 @1021// Shamanic Dance
+    SAY UNIDENTIFIED_DESC @1021 
     LPF ALTER_SPELL_HEADER INT_VAR location = 4 STR_VAR icon = ~d5shmdn~ END
 //	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5nshdn~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
@@ -2287,8 +2287,8 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shmdn.spl~) BEGIN
     LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 318 STR_VAR match_resource = ~spsh004~ resource = ~d5shmdnb~ END
 */
   COPY_EXISTING ~spsh004.spl~ ~override/d5shmdnb.spl~
-    SAY NAME1 @49921// Shamanic Dance
-    SAY UNIDENTIFIED_DESC @49921 
+    SAY NAME1 @1021// Shamanic Dance
+    SAY UNIDENTIFIED_DESC @1021 
     LPF ALTER_SPELL_HEADER INT_VAR location = 4 STR_VAR icon = ~d5shmdn~ END
     LPF ALTER_EFFECT INT_VAR silent = 1 match_opcode = 318 STR_VAR match_resource = ~spsh004~ resource = ~d5shmdnb~ END
     LPF DELETE_EFFECT INT_VAR check_globals = 0 match_opcode = 363 END
@@ -2297,8 +2297,8 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shmdn.spl~) BEGIN
   COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5nshdn.bam~ ~override~		//	stop dance icon
 /*
   COPY ~faiths_and_powers/data/misc/d5_base.spl~ ~override/d5nshdn.spl~				//	stop dance abil
-    SAY NAME1 @49923 // Stop Shamanic Dance
-    SAY UNIDENTIFIED_DESC @49923 
+    SAY NAME1 @1023 // Stop Shamanic Dance
+    SAY UNIDENTIFIED_DESC @1023 
     LPF ALTER_SPELL_HEADER INT_VAR target = 7 STR_VAR icon = ~d5nshdn~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5nshdn~ END
@@ -2321,8 +2321,8 @@ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shmdi.spl~) BEGIN
   COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdi.bam~ ~override~		//	detect icon
   COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shmdi.spl~ ~override~		//	detect ability
-    SAY NAME1 @49924 // Detect Illusions
-    SAY UNIDENTIFIED_DESC @49924 
+    SAY NAME1 @1024 // Detect Illusions
+    SAY UNIDENTIFIED_DESC @1024 
     LPF ALTER_SPELL_HEADER INT_VAR location = 4 STR_VAR icon = ~d5shmdi~ END
 // 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5nshdi~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5shmdn~ END
@@ -2334,8 +2334,8 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shmdi.spl~) BEGIN
   COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5nshdi.bam~ ~override~		//	stop detect icon
 /*
   COPY ~faiths_and_powers/data/misc/d5_base.spl~ ~override/d5nshdi.spl~				//	stop detect abil
-    SAY NAME1 @49926 // Stop detecting illusions
-    SAY UNIDENTIFIED_DESC @49926 
+    SAY NAME1 @1026 // Stop detecting illusions
+    SAY UNIDENTIFIED_DESC @1026 
     LPF ALTER_SPELL_HEADER INT_VAR target = 7 STR_VAR icon = ~d5nshdi~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5shmdi~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5nshdi~ END
@@ -2371,10 +2371,10 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5shamb.itm~) BEGIN
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shamb.itm~) BEGIN
  COPY ~faiths_and_powers/kits/multiclass/499_shambarb/d5shamb.itm~ ~override~		//	learn spells .itm
-  SAY NAME1 @49911
-  SAY NAME2 @49911
-  SAY UNIDENTIFIED_DESC @49912
-  SAY IDENTIFIED_DESC @49912
+  SAY NAME1 @1011
+  SAY NAME2 @1011
+  SAY UNIDENTIFIED_DESC @1012
+  SAY IDENTIFIED_DESC @1012
   LPF ALTER_ITEM_HEADER INT_VAR header = 1 target = 7 speed = 0 STR_VAR icon = ~d5nshdn~ END
   LPF ALTER_ITEM_HEADER INT_VAR header = 2 target = 7 speed = 0 STR_VAR icon = ~d5nshdi~ END
   LPF ADD_ITEM_EFFECT INT_VAR header = 2 insert_point = 0 opcode = 318 target = 1 parameter1 = 15 parameter2 = 105 timing = 0 duration = 0 STR_VAR resource = EVAL ~%SOURCE_RES%~ END
@@ -2389,7 +2389,7 @@ OUTER_INNER_PATCH ~1~ BEGIN
   WRITE_BYTE 0 0x0d
   READ_ASCII 0 mnl (1)  // 0x0d, Mac
 END
-LAF ~ADD_ITEM_TOOLTIPS~ STR_VAR item = ~d5shamb~ tooltips = ~@49921 @49924 @49911~ END
+LAF ~ADD_ITEM_TOOLTIPS~ STR_VAR item = ~d5shamb~ tooltips = ~@1021 @1024 @1011~ END
 
 /*
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shamb.eff~) BEGIN
@@ -2558,8 +2558,10 @@ END
  END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
 	LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmbb~ learn_res = ~d5shmbz~ END
 	LAF multiclass_shaman_item STR_VAR kit_clab = ~d5shmbb~ learn_res = ~d5shmbz~ END
+  END
  END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
@@ -2756,8 +2758,10 @@ END
  END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
 	LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmrn~ learn_res = ~d5shrnz~ END
 	LAF multiclass_shaman_item STR_VAR kit_clab = ~d5shmrn~ learn_res = ~d5shrnz~ END
+  END
  END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
@@ -2941,8 +2945,10 @@ COPY ~faiths_and_powers/data/misc/d5_base.spl~ ~override/d5tshdi.spl~
   END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
 	LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmth~ learn_res = ~d5shthz~ END
 	LAF multiclass_shaman_item STR_VAR kit_clab = ~d5shmth~ learn_res = ~d5shthz~ END
+  END
  END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
@@ -3119,8 +3125,10 @@ END
   END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
 	LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmma~ learn_res = ~d5shmaz~ END
 	LAF multiclass_shaman_item STR_VAR kit_clab = ~d5shmma~ learn_res = ~d5shmaz~ END
+  END
  END
  
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
@@ -3306,8 +3314,10 @@ COPY ~faiths_and_powers/data/misc/d5_base.spl~ ~override/d5tshdi.spl~
   END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
 	LAF fnp_spontaneous STR_VAR kit_clab = ~d5shmnk~ learn_res = ~d5shmkz~ END
 	LAF multiclass_shaman_item STR_VAR kit_clab = ~d5shmnk~ learn_res = ~d5shmkz~ END
+  END
  END
 
  ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN

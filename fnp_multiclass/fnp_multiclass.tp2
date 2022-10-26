@@ -2,7 +2,7 @@ BACKUP ~faiths_and_powers/backup~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.85sd1~
+VERSION ~0.85sd2~
 
 
 ALWAYS
@@ -12,9 +12,6 @@ ALWAYS
 	END
  
   	INCLUDE ~override/d5_fnp_settings.ini~
-	LAM d5_spont_option
-
-  	LAM d5_spont_option
 
 	INCLUDE ~faiths_and_powers/lib/fl#add_kit_ee.tpa~
 

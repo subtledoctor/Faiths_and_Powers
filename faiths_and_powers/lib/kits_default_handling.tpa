@@ -196,10 +196,10 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~ohtyr.2da~) BEGIN
 	class 			= ~cleric~
 	multiclass 		= ~fc~
  END
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~ohtyr~ learn_res = ~ohtyrz~ END
- END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~ohtyr~ learn_res = ~ohtyrz~ END
+  END
  END
 END
 //__________________________________________________________________________________
@@ -240,10 +240,10 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~ohtempus.2da~) BEGIN
 	sphere_list		= ~tempus_spheres~
 	class 			= ~cleric~
  END
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
-  LAF fnp_spontaneous STR_VAR kit_clab = ~d5tmpus~ learn_res = ~d5tmpuz~ END
- END
+  WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
+    LAF fnp_spontaneous STR_VAR kit_clab = ~d5tmpus~ learn_res = ~d5tmpuz~ END
+  END
  END
 END
 //__________________________________________________________________________________
@@ -463,7 +463,9 @@ ACTION_IF FILE_EXISTS_IN_GAME ~clabsh01.2da~ BEGIN
 
  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
 // ACTION_IF (d5_spell_spontaneous = 0) BEGIN
+   WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
     LAF fnp_spell_choice STR_VAR this_kit_clab = ~clabsh01~ learn_itm_res = ~d5sh01z~ free_universal_spells = ~yes~ END
+   END
 // END
 // ACTION_IF (d5_spell_spontaneous > 0) BEGIN
 //    LAF fnp_spontaneous STR_VAR kit_clab = ~clabsh01~ learn_res = ~d5sh01z~ free_universal = ~no~ END
@@ -2599,7 +2601,9 @@ LAF ~DEFINE_FNP_KIT_INFO~
    END
    ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) BEGIN
 //   ACTION_IF (d5_spell_spontaneous = 0) BEGIN
+     WITH_TRA ~faiths_and_powers/language/%LANGUAGE%/fnp_spontaneous.tra~ BEGIN
        LAF fnp_spell_choice STR_VAR this_kit_clab = EVAL ~%green%~ learn_itm_res = EVAL ~d5fs%green_2%~ free_universal_spells = ~yes~ END
+     END
 //   END
 //   ACTION_IF (d5_spell_spontaneous > 0) BEGIN
 //     LAF fnp_spontaneous STR_VAR kit_clab = EVAL ~%green%~ learn_res = EVAL ~%green%z~ free_universal = ~no~ END
