@@ -2700,10 +2700,12 @@ END
 //MULTICLASS SHAMAN FILES____________________________________________________________
 //
 COPY ~faiths_and_powers/kits/multiclass/496_shamranger/d5shmrn.2da~ ~override~
+/*
   PATCH_IF (FILE_EXISTS_IN_GAME ~d5rfor.2da~) BEGIN
 	APPEND_FILE ~faiths_and_powers/kits/rangers/901_forest_ranger/ranger_goodberry.txt~
 	APPEND_FILE ~faiths_and_powers/kits/rangers/901_forest_ranger/ranger_enemies.txt~
   END
+*/
 // cast this vv in d5yinit
 // APPEND ~d5shmrn.2da~ ~CAST_INIT   AP_D5FPSPT  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ UNLESS ~AP_D5FPSPT~
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN

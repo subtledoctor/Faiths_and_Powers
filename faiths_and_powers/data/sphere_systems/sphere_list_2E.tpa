@@ -278,9 +278,10 @@ END	//	end sphere spells macro
 //___________________________________________________________________________________
 //
 DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
-  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~P~ END 
-  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~P~ END 
-  COPY_EXISTING ~QD_MCP01.spl~ ~override~ // trueclass spheres via .eff
+  COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5fpclsp.spl~
+//  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~P~ END 
+//  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~P~ END 
+//  COPY_EXISTING ~QD_MCP01.spl~ ~override~ // trueclass spheres via .eff
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5splif#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5splif#~ END
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5smdea#~ END
@@ -341,9 +342,10 @@ END
 //___________________________________________________________________________________
 //
 DEFINE_ACTION_MACRO vanilla_druid_spheres BEGIN
-  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~D~ END 
-  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~D~ END 
-  COPY_EXISTING ~QD_MCD01.spl~ ~override~ // trueclass spheres via .eff
+  COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5fpdrsp.spl~
+//  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~D~ END 
+//  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~D~ END 
+//  COPY_EXISTING ~QD_MCD01.spl~ ~override~ // trueclass spheres via .eff
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spexp#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spexp#~ END
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spvig#~ END
@@ -406,9 +408,10 @@ END
 //___________________________________________________________________________________
 //
 DEFINE_ACTION_MACRO vanilla_ranger_spheres BEGIN
-  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~R~ END 
-  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~R~ END 
-  COPY_EXISTING ~QD_MCR01.spl~ ~override~ // trueclass spheres via .eff
+  COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5fpclsp.spl~
+//  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~R~ END 
+//  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~R~ END 
+//  COPY_EXISTING ~QD_MCR01.spl~ ~override~ // trueclass spheres via .eff
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spexp#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spexp#~ END
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spear#~ END
@@ -457,6 +460,138 @@ END
 
 
 DEFINE_ACTION_MACRO d5_deity_kit_sphere_lists BEGIN
+
+// default cleric list_______________________________________________________________
+//
+DEFINE_ACTION_FUNCTION default_cleric_spheres 
+  RET_ARRAY default_cleric_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY default_cleric_spheres_array BEGIN
+	Healing			=> major
+	Necromantic		=> major
+	Law				=> minor
+	Chaos			=> minor
+	Protection		=> major
+	Combat			=> major
+	Travelers		=> x
+	Divination		=> minor
+	Wards			=> major
+	Thought			=> major
+	Charm			=> x
+	Creation		=> major
+	Summoning		=> x
+	Animal			=> x
+	Plant			=> x
+	Earth			=> x
+	Water			=> x
+	Air				=> x
+	Fire			=> minor
+	Sun				=> minor
+	Weather			=> x
+	Numbers			=> x
+	Astral			=> major
+ END
+END
+//___________________________________________________________________________________
+
+// default paladin list______________________________________________________________
+//
+DEFINE_ACTION_FUNCTION default_paladin_spheres 
+  RET_ARRAY default_paladin_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY default_paladin_spheres_array BEGIN
+	Healing			=> paladin
+	Necromantic		=> x
+	Law				=> paladin
+	Chaos			=> x
+	Protection		=> paladin
+	Combat			=> paladin
+	Travelers		=> x
+	Divination		=> x
+	Wards			=> x
+	Thought			=> paladin
+	Charm			=> x
+	Creation		=> x
+	Summoning		=> x
+	Animal			=> x
+	Plant			=> x
+	Earth			=> x
+	Water			=> x
+	Air				=> x
+	Fire			=> x
+	Sun				=> paladin
+	Weather			=> x
+	Numbers			=> x
+	Astral			=> x
+ END
+END
+//___________________________________________________________________________________
+
+// default druid list________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION default_druid_spheres 
+  RET_ARRAY default_druid_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY default_druid_spheres_array BEGIN
+	Healing			=> minor
+	Necromantic		=> x
+	Law				=> x
+	Chaos			=> minor
+	Protection		=> x
+	Combat			=> x
+	Travelers		=> major
+	Divination		=> major
+	Wards			=> major
+	Thought			=> x
+	Charm			=> minor
+	Creation		=> minor
+	Summoning		=> x
+	Animal			=> major
+	Plant			=> major
+	Earth			=> major
+	Water			=> minor
+	Air				=> major
+	Fire			=> x
+	Sun				=> major
+	Weather			=> major
+	Numbers			=> x
+	Astral			=> x
+ END
+END
+//___________________________________________________________________________________
+
+// default ranger list_______________________________________________________________
+//
+DEFINE_ACTION_FUNCTION default_ranger_spheres 
+  RET_ARRAY default_ranger_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY default_ranger_spheres_array BEGIN
+	Healing			=> ranger
+	Necromantic		=> x
+	Law				=> x
+	Chaos			=> x
+	Protection		=> x
+	Combat			=> x
+	Travelers		=> ranger
+	Divination		=> x
+	Wards			=> x
+	Thought			=> x
+	Charm			=> x
+	Creation		=> x
+	Summoning		=> x
+	Animal			=> ranger
+	Plant			=> ranger
+	Earth			=> ranger
+	Water			=> x
+	Air				=> ranger
+	Fire			=> x
+	Sun				=> ranger
+	Weather			=> ranger
+	Numbers			=> x
+	Astral			=> x
+ END
+END
+//___________________________________________________________________________________
 
 // UR-PRIEST__________________________________________________________________________
 //

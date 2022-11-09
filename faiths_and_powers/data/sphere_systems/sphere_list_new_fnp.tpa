@@ -399,9 +399,10 @@ END	//	end sphere spells macro
 //___________________________________________________________________________________
 //
 DEFINE_ACTION_MACRO vanilla_cleric_spheres BEGIN
+  COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5fpclsp.spl~
 //  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~P~ END 
 //  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~P~ END 
-  COPY_EXISTING ~QD_MCP01.spl~ ~override~ // trueclass spheres via .eff
+//  COPY_EXISTING ~QD_MCP01.spl~ ~override~ // trueclass spheres via .eff
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5splif#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5splif#~ END
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spben#~ END
@@ -456,9 +457,10 @@ END
 //___________________________________________________________________________________
 //
 DEFINE_ACTION_MACRO vanilla_druid_spheres BEGIN
+  COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5fpdrsp.spl~
 //  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~D~ END 
 //  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~D~ END 
-  COPY_EXISTING ~QD_MCD01.spl~ ~override~ // trueclass spheres via .eff
+//  COPY_EXISTING ~QD_MCD01.spl~ ~override~ // trueclass spheres via .eff
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spani#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spani#~ END
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5sppla#~ END
@@ -545,9 +547,10 @@ END
 //___________________________________________________________________________________
 //
 DEFINE_ACTION_MACRO vanilla_ranger_spheres BEGIN
+  COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5fprnsp.spl~
 //  LAF QD_ENSURE_QDMC_SPL STR_VAR base_class = ~R~ END 
 //  LAF QD_ENSURE_BASE_CLAB STR_VAR base_class = ~R~ END 
-  COPY_EXISTING ~QD_MCR01.spl~ ~override~ // trueclass spheres via .eff
+//  COPY_EXISTING ~QD_MCR01.spl~ ~override~ // trueclass spheres via .eff
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spvig#~ END
 	LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 177 target = 1 parameter1 = 0x4000 parameter2 = 9 STR_VAR resource = ~d5spvig#~ END
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 match_parameter1 = 0x4000 match_parameter2 = 9 STR_VAR match_resource = ~d5spani#~ END
@@ -591,6 +594,138 @@ END
 
 
 DEFINE_ACTION_MACRO d5_deity_kit_sphere_lists BEGIN
+
+// default cleric list_______________________________________________________________
+//
+DEFINE_ACTION_FUNCTION default_cleric_spheres 
+  RET_ARRAY default_cleric_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY default_cleric_spheres_array BEGIN
+	All				=> major
+	Death			=> major
+	Law				=> minor
+	Chaos			=> minor
+	Protection		=> major
+	War				=> major
+	Time			=> x
+	Perception		=> major
+	Deceit			=> x
+	Thought			=> minor
+	Decay			=> x
+	Vigor			=> minor
+	Insects			=> x
+	Animal			=> x
+	Plant			=> x
+	Earth			=> x
+	Water			=> x
+	Air				=> x
+	Fire			=> minor
+	Radiance		=> major
+	Shadow			=> x
+	no_sphere_1		=> x
+	Astral		    => major
+ END
+END
+//___________________________________________________________________________________
+
+// default paladin list______________________________________________________________
+//
+DEFINE_ACTION_FUNCTION default_paladin_spheres 
+  RET_ARRAY default_paladin_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY default_paladin_spheres_array BEGIN
+	All				=> paladin
+	Death			=> x
+	Law				=> paladin
+	Chaos			=> x
+	Protection		=> paladin
+	War				=> paladin
+	Time			=> x
+	Perception		=> paladin
+	Deceit			=> x
+	Thought			=> x
+	Decay			=> x
+	Vigor			=> paladin
+	Insects			=> x
+	Animal			=> x
+	Plant			=> x
+	Earth			=> x
+	Water			=> x
+	Air				=> x
+	Fire			=> x
+	Radiance		=> paladin
+	Shadow			=> x
+	no_sphere_1		=> x
+	Astral		    => x
+ END
+END
+//___________________________________________________________________________________
+
+// default druid list________________________________________________________________
+//
+DEFINE_ACTION_FUNCTION default_druid_spheres 
+  RET_ARRAY default_druid_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY default_druid_spheres_array BEGIN
+	All				=> major
+	Death			=> minor
+	Law				=> x
+	Chaos			=> x
+	Protection		=> x
+	War				=> x
+	Time			=> minor
+	Perception		=> major
+	Deceit			=> x
+	Thought			=> x
+	Decay			=> major
+	Vigor			=> major
+	Insects			=> minor
+	Animal			=> major
+	Plant			=> major
+	Earth			=> major
+	Water			=> minor
+	Air				=> minor
+	Fire			=> minor
+	Radiance		=> major
+	Shadow			=> x
+	no_sphere_1		=> x
+	Astral		    => x
+ END
+END
+//___________________________________________________________________________________
+
+// default ranger list_______________________________________________________________
+//
+DEFINE_ACTION_FUNCTION default_ranger_spheres 
+  RET_ARRAY default_ranger_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY default_ranger_spheres_array BEGIN
+	All				=> ranger
+	Death			=> x
+	Law				=> x
+	Chaos			=> x
+	Protection		=> x
+	War				=> x
+	Time			=> x
+	Perception		=> x
+	Deceit			=> x
+	Thought			=> x
+	Decay			=> x
+	Vigor			=> ranger
+	Insects			=> x
+	Animal			=> ranger
+	Plant			=> ranger
+	Earth			=> x
+	Water			=> x
+	Air				=> ranger
+	Fire			=> x
+	Radiance		=> ranger
+	Shadow			=> x
+	no_sphere_1		=> x
+	Astral		    => x
+ END
+END
+//___________________________________________________________________________________
 
 // UR-PRIEST__________________________________________________________________________
 //
