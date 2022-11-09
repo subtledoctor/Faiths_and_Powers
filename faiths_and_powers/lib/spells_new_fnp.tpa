@@ -1571,7 +1571,7 @@ END
 */
 COPY ~%mod_folder%/spheres/spells/Destruction/b_pr101.eff~ ~override~
 COPY_EXISTING ~%mod_folder%/spheres/spells/Destruction/b_pr101.spl~ ~override~
-    SAY NAME1 @51708
+    SAY NAME1 @51707
     SAY UNIDENTIFIED_DESC @51708
     WRITE_SHORT 0x1c 2
     WRITE_LONG 0x34 1
