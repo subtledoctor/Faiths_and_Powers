@@ -2,7 +2,7 @@ BACKUP ~weidu_external/backup/faiths_and_powers~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.85sd6~
+VERSION ~0.85sd7~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -1234,7 +1234,16 @@ INCLUDE ~faiths_and_powers/lib/kits_default_handling.tpa~
 //END
 //__________________________________________________________________________________
 
-//universal spells available at CharGen_____________________________________________
+//reapply 5E casting for divine spells______________________________________________
+//
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) BEGIN
+  INCLUDE ~faiths_and_powers/lib/semi_spontaneous.tpa~
+  LAF semi_divine_spells END
+  LAF process_semi_spells END
+END
+//__________________________________________________________________________________
+
+//_____________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
   ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spont_items_mem.d5~) BEGIN
@@ -1267,7 +1276,7 @@ END
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
-/*  do this automatically as each kit is installed
+//  do this automatically as each kit is installed
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
@@ -1287,14 +1296,14 @@ REQUIRE_PREDICATE (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~31~) OR (MOD_IS_INS
 INCLUDE ~faiths_and_powers/lib/system_npc_kits.tpa~
  LAF npc_sc_kits END
 //__________________________________________________________________________________
-*/
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
-/*  do this up with the regular druids...?
+//  do this up with the regular druids...?
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
@@ -1361,7 +1370,7 @@ ACTION_IF FILE_EXISTS ~TobEx_ini/TobExVer.txt~ BEGIN
 	DELETE ~TobEx_ini/TobExVer.txt~
 END
 //__________________________________________________________________________________
-*/
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -1426,6 +1435,7 @@ ACTION_IF FILE_EXISTS ~TobEx_ini/TobExVer.txt~ BEGIN
 	DELETE ~TobEx_ini/TobExVer.txt~
 END
 //__________________________________________________________________________________
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -1508,7 +1518,7 @@ END
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
-/*  do this up with the multiclass kits (and some with the multidruid kits)
+//  do this up with the multiclass kits (and some with the multidruid kits)
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
@@ -1520,7 +1530,7 @@ BEGIN @99 // apply kits to multiclass NPCS
 DESIGNATED 99
 LABEL ~D5_FNP_MULTI_KITS_TO_NPCS~
 //INSTALL_BY_DEFAULT
-REQUIRE_PREDICATE (MOD_IS_INSTALLED ~fnp_multiclass.tp2~ ~91~) OR (MOD_IS_INSTALLED ~fnp_multiclass.tp2~ ~95~) @8
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~91~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~95~) @8
 
 
 //read in kit functions_____________________________________________________________
@@ -1529,4 +1539,3 @@ INCLUDE ~faiths_and_powers/lib/system_npc_kits.tpa~
 
 LAF npc_mc_kits END
 //__________________________________________________________________________________
-*
