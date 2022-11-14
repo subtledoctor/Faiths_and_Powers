@@ -257,92 +257,75 @@ END	//	end function
 
 DEFINE_ACTION_FUNCTION fighter_druid BEGIN
 
-LAF check_kit_conflict END
-
-ADD_KIT ~D5_DR_FIGHTER~
-
-//WEAPON PROFICIENCIES_______________________________________________________________
-//11                                     T   S           F   Q             S S
-//10             L S                     W   C           L   U             W I
-//9              A M             B L S   O   I   W       A   A             O N
-//8              R A             A O H   H   M   A       I   R C   S       R G
-//7              G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6              E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5              S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4              W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3              O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2              R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1              D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_DR_FIGHTER   0 0 0 0 0 0 0 0~
-~D5_DR_FIGHTER   0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 0 2 2 0 0 0 2 0 2 2 2 2 2 0 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-
-//MINIMUM KIT STATS_________________________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_FIGHTER       9   0   0   0   12  0~
-
-//KIT STAT MODIFIERS________________________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_FIGHTER       0   0   0   0   0   0~
-
-//REQUIREMENTS TO DUAL TO THIS KIT__________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_FIGHTER       17  0   0   0   17  0~
-
-//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_FIGHTER        15  0   0   0   15  0~
-
-//ALIGNMENT RESTRICTIONS____________________________________________________________
-//                 LG LN LE NG TN NE CG CN CE
-~D5_DR_FIGHTER       0  0  0  0  1  0  0  0  0~
-
-//DUAL CLASS OPTIONS________________________________________________________________
-//                 FT CL MA TH DR RA
-~D5_DR_FIGHTER       0  0  0  0  0  0~
-
-//KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/multiclass/451_fighter_druid/d5drfi.2da~
-
-//RACIAL KIT AVAILABILITY_____________________________________________________________
-~K_FC_D  K_FC_E  K_FC_G  K_FC_H  K_FC_HE  K_FC_HL  K_FC_HO~
-
-//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
-//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
-//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
-//         Monk = 20
-~0x08000000 8~ // totemic flag
-
-//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
-~Dr0~
-
-//TOB STARTING EQUIPMENT_____________________________________________________________
-~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
-
-//CHARACTER CREATION KIT DESCRIPTION________________________________________________
-SAY @45101
-SAY @45102
-SAY @45103
-
-//EE KIT EXTRAS______________________________________________________________________
-// 
-ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
-	LAF fl#add_kit_ee
-		INT_VAR
-			briefdesc = RESOLVE_STR_REF (@45103)
-		STR_VAR
-			kit_name = D5_DR_FIGHTER
-			clswpbon = ~1 0 2~
-	END
-END
-
 //MULTICLASS DRUID FILES______________________________________________________________
 //
- ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~d5dfor.2da~ ~override/d5drfi.2da~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
 	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
-  ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+  COPY_EXISTING ~clabdr01.2da~ ~override/d5drfi.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
+END
+APPEND ~d5drfi.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ UNLESS ~AP_D5_NOTU~
+
+//ADD KIT____________________________________________________________________________
+//
+LAF check_kit_conflict END
+
+LAF ADD_KIT_EX 
+  INT_VAR
+    kit_class  = 8
+    lower      = RESOLVE_STR_REF(@45101)
+    mixed      = RESOLVE_STR_REF(@45102)
+    help       = RESOLVE_STR_REF(@45103)
+    briefdesc  = RESOLVE_STR_REF(@45103)
+  STR_VAR
+    kit_name    = ~D5_DR_FIGHTER~
+    clab_base_d = ~override/d5drfi.2da~
+    unusable    = ~0x08000000~	//	totemic exclusion flag
+//                                         T   S           F   Q             S S
+//                 L S                     W   C           L   U             W I
+//                 A M             B L S   O   I   W       A   A             O N
+//                 R A             A O H   H   M   A       I   R C   S       R G
+//                 G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//                 E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//                 S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//                 W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//                 O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//                 R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//                 D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+    clasweap    = ~1 1 1 1 1 0 0 1~
+    weapprof    = ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 0 2 2 0 0 0 2 0 2 2 2 2 2 0 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+//                 ST DX CO IN WI CH
+    abclasrq    = ~9  0  0  0  12 12~
+    abclsmod    = ~0  0  0  0  0  0~
+    abdcdsrq    = ~17 0  0  0  17 0~
+    abdcscrq    = ~15 0  0  0  15 0~
+//                 LG LN LE NG TN NE CG CN CE
+    alignmnt    = ~0  1  0  1  1  1  0  1  0~
+//                 F C M T D R
+    dualclas    = ~0 0 0 0 0 0~
+//                 HU E  HE D  HL G  HO
+    clsrcreq    = ~1  1  1  1  1  1  1~
+    kittable    = ~K_FC_H K_FC_G K_FC_E K_FC_HE K_FC_HL K_FC_HO~
+    luabbr      = ~FD0~
+    clswpbon    = ~1 0 2~
+    stweap      = ~LEAT14	* HELM07 BAG20 RING06 RING31 CLCK02 BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H39 STAF08~
+  RET D5_DR_FIGHTER = kit_id
+END
+
+//SHAPESHIFT/ALIGNMENT/KIT TEXT______________________________________________________
+//
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5drsc1.spl~) BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
 	  SAY UNIDENTIFIED_DESC @73112
@@ -399,17 +382,7 @@ END
 	  END
 	END
   IF_EXISTS BUT_ONLY
- END
- ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  COPY_EXISTING ~clabdr01.2da~ ~override/d5drfi.2da~
-	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
-	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
-	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
- END
- ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
-  COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
- END
- APPEND ~d5drfi.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+END
 
 //NO SPHERE SYSTEM____________________________________________________________________
 //
@@ -507,18 +480,7 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_FIGHTER~ ability = ~GA_TG#SPIR~ num
 	LAF apply_fnp_usability STR_VAR clab_name = ~d5drfi~ END
  END
 
-//MULTICLASS KIT______________________________________________________________________
-//
- ACTION_IF FILE_EXISTS_IN_GAME ~d5drfi.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_DR_FIGHTER~ 
-		kit_clab = ~d5drfi~
-		base_class = ~P~
-  END
- END 
-
-END
+END	//	end function
 //__________________________________________________________________________________
 
 
@@ -532,84 +494,6 @@ END
 
 DEFINE_ACTION_FUNCTION druid_ranger BEGIN
 
-LAF check_kit_conflict END
-
-ADD_KIT ~D5_DR_RANGER~
-
-//WEAPON PROFICIENCIES________________________________________________________________
-//11                                     T   S           F   Q             S S
-//10             L S                     W   C           L   U             W I
-//9              A M             B L S   O   I   W       A   A             O N
-//8              R A             A O H   H   M   A       I   R C   S       R G
-//7              G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6              E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5              S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4              W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3              O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2              R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1              D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_DR_RANGER    0 0 0 0 0 0 0 0~
-~D5_DR_RANGER    0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 0 2 2 0 0 0 2 0 0 0 2 2 2 0 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-
-//MINIMUM KIT STATS_________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_RANGER        0   0   9   0   11  0~
-
-//KIT STAT MODIFIERS________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_RANGER        0   0   0   0   0   0~
-
-//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_RANGER        0   0   17  0   17  0~
-
-//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_RANGER        0   0   15  0   15  0~
-
-//ALIGNMENT RESTRICTIONS____________________________________________________________
-//                  LG LN LE NG TN NE CG CN CE
-~D5_DR_RANGER        0  0  0  1  0  0  0  0  0~
-
-//DUAL CLASS OPTIONS________________________________________________________________
-//                  FT CL MA TH DR RA
-~D5_DR_RANGER        0  0  0  0  0  0~
-
-//KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/multiclass/452_druid_ranger/d5drra.2da~
-
-//RACIAL KIT AVAILABILITY_____________________________________________________________
-~K_CR_D  K_CR_E  K_CR_G  K_CR_H  K_CR_HE  K_CR_HL  K_CR_HO~
-
-//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
-//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
-//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
-//         Monk = 20
-~0x08000000 18~ // totemic flag
-
-//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
-~CR0~
-
-//TOB STARTING EQUIPMENT_____________________________________________________________
-~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
-
-//CHARACTER CREATION KIT DESCRIPTION________________________________________________
-SAY @45201
-SAY @45202
-SAY @45103
-
-//EE KIT EXTRAS______________________________________________________________________
-// 
-ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
-	LAF fl#add_kit_ee
-		INT_VAR
-			briefdesc = RESOLVE_STR_REF (@45103)
-		STR_VAR
-			kit_name = D5_DR_RANGER
-			clswpbon = ~1 0 2~
-	END
-END
-
 //MULTICLASS DRUID FILES______________________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
@@ -617,6 +501,83 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
 	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+  COPY_EXISTING ~clabdr01.2da~ ~override/d5drra.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
+END
+
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
+END
+APPEND ~d5drra.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5__imp_rangers.d5~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__rfeat.d5~) BEGIN
+	APPEND ~d5drra.2da~ ~TRACKING    GA_SPCL922  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
+  END
+  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__rfeat.d5~) BEGIN
+	APPEND ~d5drra.2da~ ~FEATS       AP_D5_RFF1  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
+	ACTION_IF !(GAME_IS ~iwdee~) BEGIN
+	  APPEND ~d5drra.2da~ ~FEATS       AP_D5_RFA9  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
+	END
+  END
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5__stride.d5~) BEGIN
+  APPEND ~d5drra.2da~ ~STRIDE      AP_SPCL151  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~ UNLESS ~STRIDE~
+END
+
+//ADD KIT____________________________________________________________________________
+//
+LAF check_kit_conflict END
+
+LAF ADD_KIT_EX 
+  INT_VAR
+    kit_class  = 18
+    lower      = RESOLVE_STR_REF(@45201)
+    mixed      = RESOLVE_STR_REF(@45202)
+    help       = RESOLVE_STR_REF(@45103)
+    briefdesc  = RESOLVE_STR_REF(@45103)
+  STR_VAR
+    kit_name    = ~D5_DR_RANGER~
+    clab_base_d = ~override/d5drra.2da~
+    unusable    = ~0x08000000~	//	totemic exclusion flag
+//                                         T   S           F   Q             S S
+//                 L S                     W   C           L   U             W I
+//                 A M             B L S   O   I   W       A   A             O N
+//                 R A             A O H   H   M   A       I   R C   S       R G
+//                 G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//                 E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//                 S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//                 W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//                 O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//                 R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//                 D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+    clasweap    = ~1 1 1 1 1 0 0 1~
+    weapprof    = ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 0 2 2 0 0 0 2 0 0 0 2 2 2 0 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+//                 ST DX CO IN WI CH
+    abclasrq    = ~0  0  12 0  12 12~
+    abclsmod    = ~0  0  0  0  0  0~
+    abdcdsrq    = ~0  0  17 0  17 0~
+    abdcscrq    = ~0  0  15 0  15 0~
+//                 LG LN LE NG TN NE CG CN CE
+    alignmnt    = ~0  1  0  1  1  1  0  1  0~
+//                 F C M T D R
+    dualclas    = ~0 0 0 0 0 0~
+//                 HU E  HE D  HL G  HO
+    clsrcreq    = ~1  1  1  1  1  1  1~
+    kittable    = ~K_CR_D K_CR_E K_CR_G K_CR_H K_CR_HE K_CR_HL K_CR_HO~
+    luabbr      = ~FD0~
+    clswpbon    = ~1 0 2~
+    stweap      = ~LEAT14	* HELM07 BAG20 RING06 RING31 CLCK02 BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H39 STAF08~
+  RET D5_DR_RANGER = kit_id
+END
+
+//SHAPESHIFT/ALIGNMENT/KIT TEXT______________________________________________________
+//
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
@@ -674,31 +635,6 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	  END
 	END
   IF_EXISTS BUT_ONLY
-END
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  COPY_EXISTING ~clabdr01.2da~ ~override/d5drra.2da~
-	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
-	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
-	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
-END
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
-  COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
-END
-APPEND ~d5drra.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
-
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5__imp_rangers.d5~) BEGIN
-  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5__rfeat.d5~) BEGIN
-	APPEND ~d5drra.2da~ ~TRACKING    GA_SPCL922  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
-  END
-  ACTION_IF (FILE_EXISTS_IN_GAME ~d5__rfeat.d5~) BEGIN
-	APPEND ~d5drra.2da~ ~FEATS       AP_D5_RFF1  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
-	ACTION_IF !(GAME_IS ~iwdee~) BEGIN
-	  APPEND ~d5drra.2da~ ~FEATS       AP_D5_RFA9  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~
-	END
-  END
-END
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5__stride.d5~) BEGIN
-  APPEND ~d5drra.2da~ ~STRIDE      AP_SPCL151  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~ UNLESS ~STRIDE~
 END
 
 //NO SPHERE SYSTEM____________________________________________________________________
@@ -772,18 +708,7 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_RANGER~ ability = ~GA_TG#SPIR~ num_
 	LAF apply_fnp_usability STR_VAR clab_name = ~d5drra~ END
  END
 
-//MULTICLASS KIT______________________________________________________________________
-//
-ACTION_IF FILE_EXISTS_IN_GAME ~d5drra.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_DR_RANGER~ 
-		kit_clab = ~d5drra~
-		base_class = ~P~
-  END
-END 
-
-END
+END	//	end function
 //__________________________________________________________________________________
 
 
@@ -797,84 +722,6 @@ END
 
 DEFINE_ACTION_FUNCTION druid_thief BEGIN
 
-LAF check_kit_conflict END
-
-ADD_KIT ~D5_DR_THIEF~
-
-//WEAPON PROFICIENCIES________________________________________________________________
-//11                                     T   S           F   Q             S S
-//10             L S                     W   C           L   U             W I
-//9              A M             B L S   O   I   W       A   A             O N
-//8              R A             A O H   H   M   A       I   R C   S       R G
-//7              G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6              E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5              S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4              W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3              O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2              R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1              D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_DR_THIEF     0 0 0 0 0 0 0 0~
-~D5_DR_THIEF     0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 0 1 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-
-//MINIMUM KIT STATS_________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_THIEF         0   9   0   0   11  0~
-
-//KIT STAT MODIFIERS________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_THIEF         0   0   0   0   0   0~
-
-//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_THIEF         0   17  0   0   17  0~
-
-//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_THIEF         0   15  0   0   15  0~
-
-//ALIGNMENT RESTRICTIONS____________________________________________________________
-//                  LG LN LE NG TN NE CG CN CE
-~D5_DR_THIEF         0  0  0  0  1  0  0  0  0~
-
-//DUAL CLASS OPTIONS________________________________________________________________
-//                  FT CL MA TH DR RA
-~D5_DR_THIEF         0  0  0  0  0  0~
-
-//KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/multiclass/453_druid_thief/d5drth.2da~
-
-//RACIAL KIT AVAILABILITY_____________________________________________________________
-~K_CT_D  K_CT_E  K_CT_G  K_CT_H  K_CT_HE  K_CT_HL  K_CT_HO~
-
-//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
-//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
-//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
-//         Monk = 20
-~0x08000000 15~ // totemic flag
-
-//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
-~CT0~
-
-//TOB STARTING EQUIPMENT_____________________________________________________________
-~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
-
-//CHARACTER CREATION KIT DESCRIPTION________________________________________________
-SAY @45301
-SAY @45302
-SAY @45103
-
-//EE KIT EXTRAS______________________________________________________________________
-// 
-ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
-	LAF fl#add_kit_ee
-		INT_VAR
-			briefdesc = RESOLVE_STR_REF (@45103)
-		STR_VAR
-			kit_name = D5_DR_THIEF
-			clswpbon = ~0 0 3~
-	END
-END
-
 //MULTICLASS DRUID FILES______________________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
@@ -882,7 +729,68 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
 	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
-  ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+  COPY_EXISTING ~clabdr01.2da~ ~override/d5drth.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
+END
+APPEND ~d5drth.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+
+//ADD KIT____________________________________________________________________________
+//
+LAF check_kit_conflict END
+
+LAF ADD_KIT_EX 
+  INT_VAR
+    kit_class  = 15
+    lower      = RESOLVE_STR_REF(@45301)
+    mixed      = RESOLVE_STR_REF(@45302)
+    help       = RESOLVE_STR_REF(@45103)
+    briefdesc  = RESOLVE_STR_REF(@45103)
+  STR_VAR
+    kit_name    = ~D5_DR_THIEF~
+    clab_base_d = ~override/d5drth.2da~
+    unusable    = ~0x08000000~	//	totemic exclusion flag
+//                                         T   S           F   Q             S S
+//                 L S                     W   C           L   U             W I
+//                 A M             B L S   O   I   W       A   A             O N
+//                 R A             A O H   H   M   A       I   R C   S       R G
+//                 G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//                 E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//                 S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//                 W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//                 O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//                 R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//                 D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+    clasweap    = ~1 1 1 1 1 0 0 1~
+    weapprof    = ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 0 1 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+//                 ST DX CO IN WI CH
+    abclasrq    = ~0  12 0  0  12 12~
+    abclsmod    = ~0  0  0  0  0  0~
+    abdcdsrq    = ~0  17 0  0  17 0~
+    abdcscrq    = ~0  15 0  0  15 0~
+//                 LG LN LE NG TN NE CG CN CE
+    alignmnt    = ~0  1  0  1  1  1  0  1  0~
+//                 F C M T D R
+    dualclas    = ~0 0 0 0 0 0~
+//                 HU E  HE D  HL G  HO
+    clsrcreq    = ~1  1  1  1  1  1  1~
+    kittable    = ~K_CT_D K_CT_E K_CT_G K_CT_H K_CT_HE K_CT_HL K_CT_HO~
+    luabbr      = ~CT0~
+    clswpbon    = ~0 0 2~
+    stweap      = ~LEAT14	* HELM07 BAG20 RING06 RING31 CLCK02 BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H39 STAF08~
+  RET D5_DR_THIEF = kit_id
+END
+
+//SHAPESHIFT/ALIGNMENT/KIT TEXT______________________________________________________
+//
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5drsc1.spl~) BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
 	  SAY UNIDENTIFIED_DESC @73112
@@ -940,16 +848,6 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	END
   IF_EXISTS BUT_ONLY
 END
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  COPY_EXISTING ~clabdr01.2da~ ~override/d5drth.2da~
-	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
-	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
-	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
-END
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
-  COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
-END
-APPEND ~d5drth.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 //NO SPHERE SYSTEM____________________________________________________________________
 //
@@ -1034,18 +932,7 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_THIEF~ ability = ~GA_TG#SPIR~ num_a
 	LAF apply_fnp_usability STR_VAR clab_name = ~d5drth~ END
  END
 
-//MULTICLASS KIT______________________________________________________________________
-//
-ACTION_IF FILE_EXISTS_IN_GAME ~d5drth.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_DR_THIEF~ 
-		kit_clab = ~d5drth~
-		base_class = ~P~
-  END
-END 
-
-END
+END	//	end function
 //__________________________________________________________________________________
 
 
@@ -1059,84 +946,6 @@ END
 
 DEFINE_ACTION_FUNCTION druid_mage BEGIN
 
-LAF check_kit_conflict END
-
-ADD_KIT ~D5_DR_MAGE~
-
-//WEAPON PROFICIENCIES_______________________________________________________________
-//11                                     T   S           F   Q             S S
-//10             L S                     W   C           L   U             W I
-//9              A M             B L S   O   I   W       A   A             O N
-//8              R A             A O H   H   M   A       I   R C   S       R G
-//7              G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6              E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5              S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4              W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3              O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2              R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1              D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_DR_MAGE      0 0 0 0 0 0 0 0~
-~D5_DR_MAGE      0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 0 1 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-
-//MINIMUM KIT STATS_________________________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_MAGE          0   0   0   0   11  0~
-
-//KIT STAT MODIFIERS________________________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_MAGE          0   0   0   0   0   0~
-
-//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_MAGE          0   0   0   0   17  0~
-
-//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
-//                 STR DEX CON INT WIS CHR
-~D5_DR_MAGE          0   0   0   0   15  0~
-
-//ALIGNMENT RESTRICTIONS____________________________________________________________
-//                 LG LN LE NG TN NE CG CN CE
-~D5_DR_MAGE          0  0  0  0  1  0  0  0  0~
-
-//DUAL CLASS OPTIONS________________________________________________________________
-//                 FT CL MA TH DR RA
-~D5_DR_MAGE          0  0  0  0  0  0~
-
-//KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/multiclass/454_druid_mage/d5drma.2da~
-
-//RACIAL KIT AVAILABILITY_____________________________________________________________
-~K_CM_D  K_CM_E  K_CM_G  K_CM_H  K_CM_HE  K_CM_HL  K_CM_HO~
-
-//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
-//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
-//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
-//         Monk = 20
-~0x08000000 14~ // totemic flag
-
-//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
-~CM0~
-
-//TOB STARTING EQUIPMENT_____________________________________________________________
-~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
-
-//CHARACTER CREATION KIT DESCRIPTION________________________________________________
-SAY @45401
-SAY @45402
-SAY @45103
-
-//EE KIT EXTRAS______________________________________________________________________
-// 
-ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
-	LAF fl#add_kit_ee
-		INT_VAR
-			briefdesc = RESOLVE_STR_REF (@45103)
-		STR_VAR
-			kit_name = D5_DR_MAGE
-			clswpbon = ~0 0 3~
-	END
-END
-
 //MULTICLASS DRUID FILES______________________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
@@ -1144,7 +953,68 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
 	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
-  ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+  COPY_EXISTING ~clabdr01.2da~ ~override/d5drma.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
+END
+APPEND ~d5drma.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+
+//ADD KIT____________________________________________________________________________
+//
+LAF check_kit_conflict END
+
+LAF ADD_KIT_EX 
+  INT_VAR
+    kit_class  = 14
+    lower      = RESOLVE_STR_REF(@45401)
+    mixed      = RESOLVE_STR_REF(@45402)
+    help       = RESOLVE_STR_REF(@45103)
+    briefdesc  = RESOLVE_STR_REF(@45103)
+  STR_VAR
+    kit_name    = ~D5_DR_MAGE~
+    clab_base_d = ~override/d5drma.2da~
+    unusable    = ~0x08000000~	//	totemic exclusion flag
+//                                         T   S           F   Q             S S
+//                 L S                     W   C           L   U             W I
+//                 A M             B L S   O   I   W       A   A             O N
+//                 R A             A O H   H   M   A       I   R C   S       R G
+//                 G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//                 E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//                 S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//                 W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//                 O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//                 R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//                 D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+    clasweap    = ~1 1 1 1 1 0 0 1~
+    weapprof    = ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 0 1 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+//                 ST DX CO IN WI CH
+    abclasrq    = ~0  0  0  12 12 12~
+    abclsmod    = ~0  0  0  0  0  0~
+    abdcdsrq    = ~0  0  0  17 17 0~
+    abdcscrq    = ~0  0  0  15 15 0~
+//                 LG LN LE NG TN NE CG CN CE
+    alignmnt    = ~0  1  0  1  1  1  0  1  0~
+//                 F C M T D R
+    dualclas    = ~0 0 0 0 0 0~
+//                 HU E  HE D  HL G  HO
+    clsrcreq    = ~1  1  1  0  0  1  1~
+    kittable    = ~K_CM_E K_CM_G K_CM_H K_CM_HE K_CM_HO~
+    luabbr      = ~CM0~
+    clswpbon    = ~0 0 2~
+    stweap      = ~LEAT14	* HELM07 BAG20 RING06 RING31 CLCK02 BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H39 STAF08~
+  RET D5_DR_MAGE = kit_id
+END
+
+//SHAPESHIFT/ALIGNMENT/KIT TEXT______________________________________________________
+//
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5drsc1.spl~) BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
 	  SAY UNIDENTIFIED_DESC @73112
@@ -1202,16 +1072,6 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	END
   IF_EXISTS BUT_ONLY
 END
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  COPY_EXISTING ~clabdr01.2da~ ~override/d5drma.2da~
-	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
-	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
-	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
-END
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
-  COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
-END
-APPEND ~d5drma.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 //NO SPHERE SYSTEM____________________________________________________________________
 //
@@ -1284,18 +1144,7 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_MAGE~ ability = ~GA_TG#SPIR~ num_al
 	LAF apply_fnp_usability STR_VAR clab_name = ~d5drma~ END
  END
 
-//MULTICLASS KIT______________________________________________________________________
-//
- ACTION_IF FILE_EXISTS_IN_GAME ~d5drma.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_DR_MAGE~ 
-		kit_clab = ~d5drma~
-		base_class = ~P~
-  END
- END 
-
-END
+END	//	end function
 //__________________________________________________________________________________
 
 
@@ -1309,84 +1158,6 @@ END
 
 DEFINE_ACTION_FUNCTION sorcerer_druid BEGIN
 
-LAF check_kit_conflict END
-
-ADD_KIT ~D5_DR_SORC~
-
-//WEAPON PROFICIENCIES_______________________________________________________________
-//11                                     T   S           F   Q             S S
-//10             L S                     W   C           L   U             W I
-//9              A M             B L S   O   I   W       A   A             O N
-//8              R A             A O H   H   M   A       I   R C   S       R G
-//7              G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6              E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5              S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4              W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3              O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2              R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1              D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_DR_SORC      0 0 0 0 0 0 0 0~
-~D5_DR_SORC      0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 0 1 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-
-//MINIMUM KIT STATS_________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_SORC          0   0   0   0   11  0~
-
-//KIT STAT MODIFIERS________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_SORC          0   0   0   0   0   0~
-
-//REQUIREMENTS TO DUAL TO THIS KIT__________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_SORC          0   0   0   0   17  0~
-
-//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_SORC          0   0   0   0   15  0~
-
-//ALIGNMENT RESTRICTIONS____________________________________________________________
-//                  LG LN LE NG TN NE CG CN CE
-~D5_DR_SORC          0  0  0  0  1  0  0  0  0~
-
-//DUAL CLASS OPTIONS________________________________________________________________
-//                  FT CL MA TH DR RA
-~D5_DR_SORC          0  0  0  0  0  0~
-
-//KIT ABILITIES 2DA FILE_____________________________________________________________
-~faiths_and_powers/kits/multiclass/455_sorcerer_druid/d5drsrc.2da~
-
-//RACIAL KIT AVAILABILITY____________________________________________________________
-~K_CM_D  K_CM_E  K_CM_G  K_CM_H  K_CM_HE  K_CM_HL  K_CM_HO~
-
-//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
-//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
-//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
-//         Monk = 20
-~0x08000000 14~ // totemic flag
-
-//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
-~CM0~
-
-//TOB STARTING EQUIPMENT_____________________________________________________________
-~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
-
-//CHARACTER CREATION KIT DESCRIPTION________________________________________________
-SAY @45501
-SAY @45502
-SAY @45103
-
-//EE KIT EXTRAS______________________________________________________________________
-// 
-ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
-	LAF fl#add_kit_ee
-		INT_VAR
-			briefdesc = RESOLVE_STR_REF (@45103)
-		STR_VAR
-			kit_name = D5_DR_SORC
-			clswpbon = ~0 0 3~
-	END
-END
-
 //MULTICLASS DRUID FILES_____________________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
@@ -1394,7 +1165,69 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
 	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
-  ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+  COPY_EXISTING ~clabdr01.2da~ ~override/d5drsrc.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
+END
+APPEND ~d5drsrc.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+
+//ADD KIT____________________________________________________________________________
+//
+LAF check_kit_conflict END
+
+LAF ADD_KIT_EX 
+  INT_VAR
+    kit_class  = 14
+    lower      = RESOLVE_STR_REF(@45501)
+    mixed      = RESOLVE_STR_REF(@45502)
+    help       = RESOLVE_STR_REF(@45103)
+    briefdesc  = RESOLVE_STR_REF(@45103)
+  STR_VAR
+    kit_name    = ~D5_DR_SORC~
+    clab_base_d = ~override/d5drsrc.2da~
+    clab_base_m = ~override/d5fsorc.2da~
+    unusable    = ~0x08000000~	//	totemic exclusion flag
+//                                         T   S           F   Q             S S
+//                 L S                     W   C           L   U             W I
+//                 A M             B L S   O   I   W       A   A             O N
+//                 R A             A O H   H   M   A       I   R C   S       R G
+//                 G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//                 E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//                 S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//                 W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//                 O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//                 R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//                 D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+    clasweap    = ~1 1 1 1 1 0 0 1~
+    weapprof    = ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 1 0 0 0 1 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+//                 ST DX CO IN WI CH
+    abclasrq    = ~0  0  0  0  12 12~
+    abclsmod    = ~0  0  0  0  0  0~
+    abdcdsrq    = ~0  0  0  0  17 17~
+    abdcscrq    = ~0  0  0  0  15 15~
+//                 LG LN LE NG TN NE CG CN CE
+    alignmnt    = ~0  1  0  1  1  1  0  1  0~
+//                 F C M T D R
+    dualclas    = ~0 0 0 0 0 0~
+//                 HU E  HE D  HL G  HO
+    clsrcreq    = ~1  1  1  0  0  1  1~
+    kittable    = ~K_CM_E K_CM_G K_CM_H K_CM_HE K_CM_HO~
+    luabbr      = ~CM0~
+    clswpbon    = ~0 0 2~
+    stweap      = ~LEAT14	* HELM07 BAG20 RING06 RING31 CLCK02 BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H39 STAF08~
+  RET D5_DR_SORC = kit_id
+END
+
+//SHAPESHIFT/ALIGNMENT/KIT TEXT______________________________________________________
+//
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5drsc1.spl~) BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
 	  SAY UNIDENTIFIED_DESC @73112
@@ -1452,20 +1285,6 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	END
   IF_EXISTS BUT_ONLY
 END
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  COPY_EXISTING ~clabdr01.2da~ ~override/d5drsrc.2da~
-	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
-	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
-	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
-END
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
-  COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
-END
-APPEND ~d5drsrc.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
-//ACTION_IF (FILE_EXISTS_IN_GAME ~d5sorc.2da~) BEGIN
-//  COPY_EXISTING ~d5drsrc.2da~ ~override~
-//	APPEND_FILE ~override/d5sorc.2da~
-//END
 
 //NO SPHERE SYSTEM___________________________________________________________________
 //
@@ -1547,24 +1366,7 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_SORC~ ability = ~GA_TG#SPIR~ num_al
 	LAF apply_fnp_usability STR_VAR clab_name = ~d5drsrc~ END
  END
 
-//MULTICLASS KIT_____________________________________________________________________
-//
- ACTION_IF FILE_EXISTS_IN_GAME ~d5drsrc.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_DR_SORC~ 
-		kit_clab = ~d5drsrc~
-		base_class = ~P~
-  END
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_DR_SORC~ 
-		kit_clab = ~d5fsorc~
-		base_class = ~M~
-  END
- END 
-
-END
+END	//	end function
 //__________________________________________________________________________________
 
 
@@ -1578,84 +1380,6 @@ END
 
 DEFINE_ACTION_FUNCTION druid_monk BEGIN
 
-LAF check_kit_conflict END
-
-ADD_KIT ~D5_DR_MONK~
-
-//WEAPON PROFICIENCIES________________________________________________________________
-//11                                     T   S           F   Q             S S
-//10             L S                     W   C           L   U             W I
-//9              A M             B L S   O   I   W       A   A             O N
-//8              R A             A O H   H   M   A       I   R C   S       R G
-//7              G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
-//6              E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
-//5              S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
-//4              W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
-//3              O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
-//2              R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
-//1              D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
-~D5_DR_MONK      0 0 0 0 0 0 0 0~
-~D5_DR_MONK      0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
-
-//MINIMUM KIT STATS_________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_MONK         0   9   0   0   11  0~
-
-//KIT STAT MODIFIERS________________________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_MONK         0   0   0   0   0   0~
-
-//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_MONK         0   17  0   0   17  0~
-
-//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
-//                  STR DEX CON INT WIS CHR
-~D5_DR_MONK         0   15  0   0   15  0~
-
-//ALIGNMENT RESTRICTIONS____________________________________________________________
-//                  LG LN LE NG TN NE CG CN CE
-~D5_DR_MONK         0  0  0  0  1  0  0  0  0~
-
-//DUAL CLASS OPTIONS________________________________________________________________
-//                  FT CL MA TH DR RA
-~D5_DR_MONK         0  0  0  0  0  0~
-
-//KIT ABILITIES 2DA FILE______________________________________________________________
-~faiths_and_powers/kits/multiclass/456_druid_monk/d5drmnk.2da~
-
-//RACIAL KIT AVAILABILITY_____________________________________________________________
-~K_CT_H  K_CT_HE~
-
-//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
-//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
-//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
-//         Monk = 20
-~0x08000000 15~ // totemic flag
-
-//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
-~DR0~
-
-//TOB STARTING EQUIPMENT_____________________________________________________________
-~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
-
-//CHARACTER CREATION KIT DESCRIPTION________________________________________________
-SAY @45601
-SAY @45602
-SAY @45103
-
-//EE KIT EXTRAS______________________________________________________________________
-// 
-ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
-	LAF fl#add_kit_ee
-		INT_VAR
-			briefdesc = RESOLVE_STR_REF (@45103)
-		STR_VAR
-			kit_name = D5_DR_MONK
-			clswpbon = ~1 0 3~
-	END
-END
-
 //MULTICLASS DRUID FILES______________________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
@@ -1663,7 +1387,69 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
 	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
 	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
-  ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+  COPY_EXISTING ~clabdr01.2da~ ~override/d5drmnk.2da~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
+	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
+	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
+END
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
+  COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
+END
+APPEND ~d5drth.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+
+//ADD KIT____________________________________________________________________________
+//
+LAF check_kit_conflict END
+
+LAF ADD_KIT_EX 
+  INT_VAR
+    kit_class  = 15
+    lower      = RESOLVE_STR_REF(@45601)
+    mixed      = RESOLVE_STR_REF(@45602)
+    help       = RESOLVE_STR_REF(@45103)
+    briefdesc  = RESOLVE_STR_REF(@45103)
+  STR_VAR
+    kit_name    = ~D5_DR_MONK~
+    clab_base_d = ~override/d5drmnk.2da~
+    clab_base_t = ~override/QDMONK_C.2da~
+    unusable    = ~0x08000000~	//	totemic exclusion flag
+//                                         T   S           F   Q             S S
+//                 L S                     W   C           L   U             W I
+//                 A M             B L S   O   I   W       A   A             O N
+//                 R A             A O H   H   M   A       I   R C   S       R G
+//                 G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//                 E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//                 S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//                 W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//                 O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//                 R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//                 D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+    clasweap    = ~1 1 1 1 1 0 0 1~
+    weapprof    = ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+//                 ST DX CO IN WI CH
+    abclasrq    = ~0  12 0  0  12 12~
+    abclsmod    = ~0  0  0  0  0  0~
+    abdcdsrq    = ~0  17 0  0  17 0~
+    abdcscrq    = ~0  15 0  0  15 0~
+//                 LG LN LE NG TN NE CG CN CE
+    alignmnt    = ~0  1  0  1  1  1  0  1  0~
+//                 F C M T D R
+    dualclas    = ~0 0 0 0 0 0~
+//                 HU E  HE D  HL G  HO
+    clsrcreq    = ~1  1  1  0  0  0  1~
+    kittable    = ~K_CT_E K_CT_H K_CT_HE K_CT_HO~
+    luabbr      = ~DR0~
+    clswpbon    = ~1 0 2~
+    stweap      = ~LEAT14	* HELM07 BAG20 RING06 RING31 CLCK02 BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H39 STAF08~
+  RET D5_DR_MONK = kit_id
+END
+
+//SHAPESHIFT/ALIGNMENT/KIT TEXT______________________________________________________
+//
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
+  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5drsc1.spl~) BEGIN
 	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
 	  SAY NAME1 @73111
 	  SAY UNIDENTIFIED_DESC @73112
@@ -1721,16 +1507,6 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	END
   IF_EXISTS BUT_ONLY
 END
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  COPY_EXISTING ~clabdr01.2da~ ~override/d5drmnk.2da~
-	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789] ~ ~ ****      ~
-	REPLACE_TEXTUALLY ~ AP_D5_U[0123456789][0123456789][0123456789] ~ ~ ****       ~
-	REPLACE_TEXTUALLY ~ AP_QD_MCD[0123456789][0123456789] ~ ~ ****      ~
-END
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
-  COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
-END
-APPEND ~d5drth.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 //NO SPHERE SYSTEM____________________________________________________________________
 //
@@ -1824,21 +1600,6 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_MONK~ ability = ~GA_TG#SPIR~ num_al
 
 //MULTICLASS KIT______________________________________________________________________
 //
- ACTION_IF FILE_EXISTS_IN_GAME ~d5drmnk.2da~ BEGIN
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_DR_MONK~ 
-		kit_clab = ~d5drmnk~
-		base_class = ~P~
-  END
-  LAF qd_multiclass
-	STR_VAR
-		kit_name = ~D5_DR_MONK~ 
-		kit_clab = ~QDMONK_C~
-		base_class = ~T~
-  END
- END 
-
  /*
  ACTION_IF !(FILE_EXISTS_IN_GAME ~monkhlas.2da~) BEGIN
   COPY_EXISTING ~LUMO0.2da~ ~override/monkhlas.2da~
@@ -1867,7 +1628,7 @@ LAF action_add_hla STR_VAR kit_name = ~D5_DR_MONK~ ability = ~GA_TG#SPIR~ num_al
   END
  IF_EXISTS BUT_ONLY
 
-END
+END	//	end function
 //__________________________________________________________________________________
 
 

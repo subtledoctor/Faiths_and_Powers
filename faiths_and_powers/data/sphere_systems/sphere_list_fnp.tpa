@@ -5,7 +5,7 @@
 @12101  =  ~Universal~
 @12102  =  ~Life~
 @12103  =  ~Death~
-@12104  =  ~Vermin~
+@12104  =  ~Vermin~			//*
 @12105  =  ~Destruction~
 @12106  =  ~Protection~
 @12107  =  ~War~
@@ -336,7 +336,7 @@ WIZARD_ICE_STORM                        5	=	Water
 CLERIC_PROTECTION_FROM_ACID             5	=	Water // SR pro. acid
 CLERIC_PROTECTION_FROM_COLD             5	=	Water // SR pro. cold
 CLERIC_MIST_OF_ELDATH                   6	=	Water
-CLERIC_CONJURE_WATER_ELEMENTAL          6	=	Water
+NO_CLERIC_CONJURE_WATER_ELEMENTAL          6	=	Water
 b_pr602                                 6	=	Water // water elemental
 WIZARD_ACID_STORM                       7	=	Water
 b_w724                                  7	=	Water // acid storm

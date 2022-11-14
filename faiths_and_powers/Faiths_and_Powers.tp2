@@ -2,7 +2,7 @@ BACKUP ~weidu_external/backup/faiths_and_powers~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.85sd7~
+VERSION ~0.85sd8~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -1276,33 +1276,6 @@ END
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
-//  do this automatically as each kit is installed
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//						CHOOSE WHETHER TO CHANGE NPC KITS
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-BEGIN @85 // apply kits to NPCS
-DESIGNATED 85
-LABEL ~D5_FNP_KITS_TO_NPCS~
-//INSTALL_BY_DEFAULT
-REQUIRE_PREDICATE (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~31~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~33~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~35~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~37~)  @8
-
-
-//read in kit functions_____________________________________________________________
-//
-INCLUDE ~faiths_and_powers/lib/system_npc_kits.tpa~
- LAF npc_sc_kits END
-//__________________________________________________________________________________
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-
-
 //  do this up with the regular druids...?
 //__________________________________________________________________________________
 //__________________________________________________________________________________
@@ -1518,7 +1491,7 @@ END
 ////////////////////////////////////////////////////////////////////////////////////////
 
 
-//  do this up with the multiclass kits (and some with the multidruid kits)
+//  do this automatically as kits are installed...?
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
@@ -1528,14 +1501,20 @@ END
 
 BEGIN @99 // apply kits to multiclass NPCS
 DESIGNATED 99
-LABEL ~D5_FNP_MULTI_KITS_TO_NPCS~
+LABEL ~D5_FNP_KITS_TO_NPCS~
 //INSTALL_BY_DEFAULT
-REQUIRE_PREDICATE (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~91~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~95~) @8
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~31~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~33~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~35~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~91~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~95~) @8
 
 
 //read in kit functions_____________________________________________________________
 //
 INCLUDE ~faiths_and_powers/lib/system_npc_kits.tpa~
 
-LAF npc_mc_kits END
+ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~31~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~33~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~35~) BEGIN
+  LAF npc_sc_kits END
+END
+
+ACTION_IF (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~91~) OR (MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~95~) BEGIN
+  LAF npc_mc_kits END
+END
 //__________________________________________________________________________________

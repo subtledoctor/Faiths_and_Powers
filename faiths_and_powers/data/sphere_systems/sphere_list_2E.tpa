@@ -11,11 +11,11 @@
 @12207  =  ~Combat~
 @12208  =  ~Travelers~
 @12209  =  ~Divination~
-@12210  =  ~Wards~
+@12210  =  ~Wards~			//*
 @12211  =  ~Thought~
-@12212  =  ~Charm~
-@12213  =  ~Creation~
-@12214  =  ~Summoning~
+@12212  =  ~Charm~			//*
+@12213  =  ~Creation~		//*
+@12214  =  ~Summoning~		//*
 @12215  =  ~Animal~
 @12216  =  ~Plant~
 @12217  =  ~Earth~

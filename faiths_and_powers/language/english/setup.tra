@@ -2054,6 +2054,9 @@ Saving Throw: None
 
 With this spell, the caster can summon a massive rhino beetle to aid <PRO_HIMHER> in combat. The creature is large, incredibly strong, and has tough chitinous armored exterior. It is wholly loyal to the caster; it will use its girth to block enemies and its powerful bite attack to threaten them.
 ~
+@73429  = ~Rhinocerous Beetle~
+@73430  = ~Beetle~
+@73430  = ~Spider~
 //
 // ... arctic druid:
 //

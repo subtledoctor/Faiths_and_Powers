@@ -359,8 +359,11 @@ ACTION_IF !(GAME_IS ~iwdee~) BEGIN
 // animations
   COPY ~faiths_and_powers/spheres/spells/animations/e210_fire_beetle~ ~override~
   COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5smbtl.cre~ ~override~
+    SAY NAME1 @73421
+    SAY NAME2 @73421
 	LPF make_summon END
 	WRITE_BYTE 0x270 5
+	WRITE_BYTE 0x275 0
 END
 COPY ~faiths_and_powers/data/misc/d5_base.spl~ ~override/d5btswm.spl~
   SAY NAME1 @73421
@@ -400,8 +403,11 @@ CREATE EFF ~d5btswm1~
 COPY ~faiths_and_powers/data/new_spells/bams/d5spswmb.bam~ ~override~
 COPY ~faiths_and_powers/data/new_spells/bams/d5spswmc.bam~ ~override~
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5smspid.cre~ ~override~
+    SAY NAME1 @73421
+    SAY NAME2 @73421
 	LPF make_summon END
 	WRITE_BYTE 0x270 5
+	WRITE_BYTE 0x275 0
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5smspid.itm~ ~override~
 COPY ~faiths_and_powers/data/misc/d5_base.spl~ ~override/d5spswm.spl~
   SAY NAME1 @73423
@@ -458,6 +464,8 @@ IF_EXISTS
 COPY ~faiths_and_powers/data/new_spells/bams/d5rhbtlb.bam~ ~override~
 COPY ~faiths_and_powers/data/new_spells/bams/d5rhbtlc.bam~ ~override~
 COPY ~faiths_and_powers/kits/druids/734_hivekeeper/d5rhbtl.cre~ ~override~
+    SAY NAME1 @73429
+    SAY NAME2 @73429
 	LPF make_summon END
 	WRITE_BYTE 0x270 5
 COPY ~faiths_and_powers/data/misc/d5_base.spl~ ~override/d5rhbtl.spl~
@@ -3079,7 +3087,7 @@ LAF RES_NUM_OF_SPELL_NAME
 END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 324            // huge creature immune
+      INT_VAR match_opcode = 324  opcode = 318          // huge creature immune
       STR_VAR resource = EVAL ~%spell_res%~
   END      //
 
@@ -3133,14 +3141,20 @@ BUT_ONLY
  COPY ~%mod_folder%/spheres/spells/water/B_PRWA3.eff~ ~override~ // Summon Water Elemental
 //Spell itself
 COPY_EXISTING ~SPPR605.spl~ ~override/b_pr602.spl~  // Start with C Fire Elemental
-                  LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA1~ match_resource = ~SPFIR1P~  END //
-                  LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA2~ match_resource = ~SPFIR2P~  END //
-                  LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA3~ match_resource = ~SPFIR3P~  END //
+    SAY NAME1 @51701
+    SAY UNIDENTIFIED_DESC @51702
+    LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA1~ match_resource = ~SPFIR1~  END //
+    LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA1~ match_resource = ~SPFIR1P~  END //
+    LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA2~ match_resource = ~SPFIR2~  END //
+    LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA2~ match_resource = ~SPFIR2P~  END //
+    LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA3~ match_resource = ~SPFIR3~  END //
+    LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA3~ match_resource = ~SPFIR3P~  END //
 
+/*
 ADD_SPELL ~override/b_pr602.spl~ 1 6 ~CLERIC_CONJURE_WATER_ELEMENTAL~ //
-        SAY NAME1 @51701
-        SAY NAME2 @51701
-        SAY UNIDENTIFIED_DESC @51702
+    SAY NAME1 @51701
+    SAY NAME2 @51701
+    SAY UNIDENTIFIED_DESC @51702
 	SAY DESC @51702
 //Now, other spell stuff...
 //to clear earlier versions of the spell
@@ -3148,6 +3162,7 @@ LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~CLERIC_CONJURE_WATER_ELEMENTAL~
   RET spell_res
 END
+*/
 
 /* NEED TO CREATE UNIQUE SPELL ICON
 COPY_EXISTING ~%spell_res%.spl~ ~override~
