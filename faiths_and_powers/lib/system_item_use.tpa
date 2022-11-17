@@ -301,18 +301,21 @@ ACTION_IF (simpler_usability_changes = 0) BEGIN
 COPY_EXISTING_REGEXP GLOB ~^.+\.itm$~ ~override~
   PATCH_IF (%SOURCE_SIZE% > 0x71) BEGIN
 	READ_SHORT 	0x1c type
+	READ_BYTE   0x1e class_1
 	READ_BYTE 	0x1f class_2
 	READ_BYTE 	0x21 class_4  											// druid class usability
 	READ_BYTE 	0x29 kits
 	PATCH_IF (type = 2) BEGIN
-	  PATCH_IF ((%class_2% BAND 0b00001000) = 0b00000000) BEGIN 		// if *IS usable* by fighters
-		WRITE_BYTE 0x29 (%kits% BAND 0b11001000) 						// make usable by divine kits
-	  END
-	  PATCH_IF ((%class_2% BAND 0b00100000) = 0b00000000) BEGIN 		// if *IS usable* by fighter/mages (excluding scrolls and wands for now)
-		WRITE_BYTE  0x1e (%class_1% BAND 0b01111111) 					// make usable by clerics
-		WRITE_BYTE  0x1f (%class_2% BAND 0b00111000) 					// make usable by cleric multiclasses
-	  END
 	  READ_LONG 0x22 appearance
+	  PATCH_IF (appearance = 16690) OR (appearance = 16691) OR (appearance = 16692) BEGIN
+	    PATCH_IF ((%class_2% BAND 0b00001000) = 0b00000000) BEGIN 		// if *IS usable* by fighters
+		  WRITE_BYTE 0x29 (%kits% BAND 0b11001000) 						// make usable by divine kits
+	    END
+	    PATCH_IF ((%class_2% BAND 0b00100000) = 0b00000000) BEGIN 		// if *IS usable* by fighter/mages (excluding scrolls and wands for now)
+		  WRITE_BYTE  0x1e (%class_1% BAND 0b01111111) 					// make usable by clerics
+		  WRITE_BYTE  0x1f (%class_2% BAND 0b00111000) 					// make usable by cleric multiclasses
+	    END
+	  END
 //	  PATCH_IF (appearance = 16690) BEGIN 								// leather appearance
 //		WRITE_BYTE 0x29 (%kits% BAND 0b11101111) 						// make usable by shapeshifter
 //	  END
