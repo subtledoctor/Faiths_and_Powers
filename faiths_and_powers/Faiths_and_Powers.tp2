@@ -2,7 +2,7 @@ BACKUP ~weidu_external/backup/faiths_and_powers~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.85sd13~
+VERSION ~0.85sd14~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -1171,6 +1171,7 @@ LAM ~READ_FNP_KIT_INFO~
 //alter item usability______________________________________________________________
 //
 // LAM d5_fnp_weapon_usability	//	not implemented yet
+OUTER_SET simpler_usability_changes	=	0	//	do this for now instead
 
 INCLUDE ~faiths_and_powers/lib/system_item_use.tpa~
  LAF change_usability END
@@ -1309,6 +1310,9 @@ LAF enable_multiclasses END
 
 LAM d5_kit_choices
 
+// LAM d5_fnp_weapon_usability	//	not implemented yet
+OUTER_SET simpler_usability_changes	=	0	//	do this for now instead
+
 INCLUDE ~faiths_and_powers/lib/kits_multi_druids_shamans.tpa~
 
 //ACTION_IF (%multiclass_druids% = 1) BEGIN
@@ -1382,6 +1386,9 @@ LAF enable_multiclasses END
 
 LAM d5_kit_choices
 
+// LAM d5_fnp_weapon_usability	//	not implemented yet
+OUTER_SET simpler_usability_changes	=	0	//	do this for now instead
+
 INCLUDE ~faiths_and_powers/lib/kits_multi_druids_shamans.tpa~
 
 //ACTION_IF (%multiclass_shamans% = 1) BEGIN
@@ -1451,6 +1458,9 @@ LAF multiclass_text END
 LAF enable_multiclasses END
 
 LAM d5_kit_choices
+
+// LAM d5_fnp_weapon_usability	//	not implemented yet
+OUTER_SET simpler_usability_changes	=	0	//	do this for now instead
 
 INCLUDE ~faiths_and_powers/lib/kits_new_multiclass.tpa~
 
