@@ -2,7 +2,7 @@ BACKUP ~weidu_external/backup/faiths_and_powers~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.85sd11~
+VERSION ~0.85sd13~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -35,6 +35,7 @@ ALWAYS
 	INCLUDE ~faiths_and_powers/lib/bg2fp_effect_batches_fnp.tpa~
 //	INCLUDE ~faiths_and_powers/lib/bg2fp_effect_batches.tpa~
 	INCLUDE ~faiths_and_powers/lib/fl#add_kit_ee.tpa~
+	INCLUDE ~faiths_and_powers/lib/a7#add_kit_ex.tpa~
 	INCLUDE ~faiths_and_powers/lib/qd_multiclass.tpa~
 	INCLUDE ~faiths_and_powers/lib/system_misc_functions.tpa~
 	INCLUDE ~faiths_and_powers/lib/system_base.tpa~
@@ -1243,7 +1244,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) BEGIN
 END
 //__________________________________________________________________________________
 
-//_____________________________________________
+//__________________________________________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5__fnp_spont_option.d5~) BEGIN
   ACTION_IF (FILE_EXISTS_IN_GAME ~d5__spont_items_mem.d5~) BEGIN
@@ -1431,7 +1432,6 @@ ACTION_IF !(FILE_EXISTS ~TobEx_ini/TobExVer.txt~) BEGIN
   COPY ~%MOD_FOLDER%/data/TobExVer.txt~ ~TobEx_ini/TobExVer.txt~
 END
 
-INCLUDE ~faiths_and_powers/lib/a7#add_kit_ex.tpa~
 INCLUDE ~faiths_and_powers/lib/system_compat.tpa~
 //INCLUDE ~faiths_and_powers/lib/system_spheres.tpa~
 ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
