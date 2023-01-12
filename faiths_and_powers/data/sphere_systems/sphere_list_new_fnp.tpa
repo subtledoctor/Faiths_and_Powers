@@ -203,7 +203,6 @@ b_w429                                  4	=	Thought // Emotion: Hope
 WIZARD_EMOTION_HOPELESSNESS             4	=	Thought
 CLERIC_MENTAL_DOMINATION                5	=	Thought
 CLERIC_GREATER_COMMAND                  5	=	Thought
-CLERIC_CONFUSION                        6	=	Thought
 CLERIC_IMPERVIOUS_SANCTITY_OF_MIND      6	=	Thought
 CLERIC_NATURE_BEAUTY                    7	=	Thought
 CLERIC_UNFAILING_ENDURANCE              1	=	Vigor
