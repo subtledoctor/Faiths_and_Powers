@@ -2,7 +2,7 @@ BACKUP ~weidu_external/backup/faiths_and_powers~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.85sd16~
+VERSION ~0.85sd17~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -732,8 +732,8 @@ ACTION_IF	(ENGINE_IS ~tob bgt~) &&
 END
 
 ACTION_IF (cleric_umd = 1) BEGIN
-  LAF clerics_use_magical_devices END
-  LAF cleric_clabs_umd END
+  INCLUDE ~%MOD_FOLDER%/lib/d5_umd.tpa~
+  LAF use_magical_devices END
 END
 
 //Psionic Wild Talents______________________________________________________________
