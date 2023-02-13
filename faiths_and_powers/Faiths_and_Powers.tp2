@@ -2,7 +2,7 @@ BACKUP ~weidu_external/backup/faiths_and_powers~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.85sd17.1~
+VERSION ~0.85sd18~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -634,6 +634,7 @@ ACTION_IF (%cleric_baervan% = 1) BEGIN
   LAF cleric_baervan END
 END
 ACTION_IF (%cleric_urdlen% = 1) BEGIN
+  OUTER_SET cleric_umd = 1
   LAF cleric_urdlen END
 END
 ACTION_IF (%cleric_yondalla% = 1) BEGIN
@@ -644,11 +645,10 @@ ACTION_IF (%cleric_arvoreen% = 1) BEGIN
 END
 ACTION_IF (%scion_bhaal% = 1) BEGIN
   LAF scion_bhaal END
-  OUTER_SET cleric_umd = 1
 END
 ACTION_IF (%cleric_azuth% = 1) BEGIN
-  LAF cleric_azuth END
   OUTER_SET cleric_umd = 1
+  LAF cleric_azuth END
 END
 ACTION_IF (%cleric_beshaba% = 1) BEGIN
   LAF cleric_beshaba END
@@ -657,6 +657,7 @@ ACTION_IF (%cleric_cyric% = 1) BEGIN
   LAF cleric_cyric END
 END
 ACTION_IF (%cleric_deneir% = 1) BEGIN
+  OUTER_SET cleric_umd = 1
   LAF cleric_deneir END
 END
 ACTION_IF (%cleric_helm% = 1) BEGIN
@@ -684,12 +685,12 @@ ACTION_IF (%cleric_moander% = 1) BEGIN
   LAF cleric_moander END
 END
 ACTION_IF (%cleric_mystra% = 1) BEGIN
-  LAF cleric_mystra END
   OUTER_SET cleric_umd = 1
+  LAF cleric_mystra END
 END
 ACTION_IF (%cleric_oghma% = 1) BEGIN
-  LAF cleric_oghma END
   OUTER_SET cleric_umd = 1
+  LAF cleric_oghma END
 END
 ACTION_IF (%cleric_shar% = 1) BEGIN
   LAF cleric_shar END
