@@ -289,7 +289,7 @@ LAF ADD_KIT_EX
     briefdesc  = RESOLVE_STR_REF(@45103)
   STR_VAR
     kit_name    = ~D5_DR_FIGHTER~
-    clab_base_d = ~override/d5drfi.2da~
+    clab_base_p = ~override/d5drfi.2da~
     unusable    = ~0x08000000~	//	totemic exclusion flag
 //                                         T   S           F   Q             S S
 //                 L S                     W   C           L   U             W I
@@ -542,7 +542,7 @@ LAF ADD_KIT_EX
     briefdesc  = RESOLVE_STR_REF(@45103)
   STR_VAR
     kit_name    = ~D5_DR_RANGER~
-    clab_base_d = ~override/d5drra.2da~
+    clab_base_p = ~override/d5drra.2da~
     unusable    = ~0x08000000~	//	totemic exclusion flag
 //                                         T   S           F   Q             S S
 //                 L S                     W   C           L   U             W I
@@ -754,7 +754,7 @@ LAF ADD_KIT_EX
     briefdesc  = RESOLVE_STR_REF(@45103)
   STR_VAR
     kit_name    = ~D5_DR_THIEF~
-    clab_base_d = ~override/d5drth.2da~
+    clab_base_p = ~override/d5drth.2da~
     unusable    = ~0x08000000~	//	totemic exclusion flag
 //                                         T   S           F   Q             S S
 //                 L S                     W   C           L   U             W I
@@ -978,7 +978,7 @@ LAF ADD_KIT_EX
     briefdesc  = RESOLVE_STR_REF(@45103)
   STR_VAR
     kit_name    = ~D5_DR_MAGE~
-    clab_base_d = ~override/d5drma.2da~
+    clab_base_p = ~override/d5drma.2da~
     unusable    = ~0x08000000~	//	totemic exclusion flag
 //                                         T   S           F   Q             S S
 //                 L S                     W   C           L   U             W I
@@ -1190,7 +1190,7 @@ LAF ADD_KIT_EX
     briefdesc  = RESOLVE_STR_REF(@45103)
   STR_VAR
     kit_name    = ~D5_DR_SORC~
-    clab_base_d = ~override/d5drsrc.2da~
+    clab_base_p = ~override/d5drsrc.2da~
     clab_base_m = ~override/d5fsorc.2da~
     unusable    = ~0x08000000~	//	totemic exclusion flag
 //                                         T   S           F   Q             S S

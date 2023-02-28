@@ -2,7 +2,7 @@ BACKUP ~weidu_external/backup/faiths_and_powers~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.85sd18~
+VERSION ~0.85sd19~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -635,7 +635,6 @@ ACTION_IF (%cleric_baervan% = 1) BEGIN
 END
 ACTION_IF (%cleric_urdlen% = 1) BEGIN
   OUTER_SET cleric_umd = 1
-  LAF cleric_urdlen END
 END
 ACTION_IF (%cleric_yondalla% = 1) BEGIN
   LAF cleric_yondalla END
