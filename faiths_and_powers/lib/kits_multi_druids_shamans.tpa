@@ -1397,7 +1397,7 @@ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
   COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
 END
-APPEND ~d5drth.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+APPEND ~d5drmnk.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 //ADD KIT____________________________________________________________________________
 //
@@ -1412,7 +1412,7 @@ LAF ADD_KIT_EX
     briefdesc  = RESOLVE_STR_REF(@45103)
   STR_VAR
     kit_name    = ~D5_DR_MONK~
-    clab_base_d = ~override/d5drmnk.2da~
+    clab_base_p = ~override/d5drmnk.2da~
     clab_base_t = ~override/QDMONK_C.2da~
     unusable    = ~0x08000000~	//	totemic exclusion flag
 //                                         T   S           F   Q             S S
