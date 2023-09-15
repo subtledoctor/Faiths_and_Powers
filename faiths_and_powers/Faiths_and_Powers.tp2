@@ -2,7 +2,7 @@ BACKUP ~weidu_external/backup/faiths_and_powers~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.85sd19~
+VERSION ~0.85sd20~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -821,12 +821,12 @@ END
 ACTION_IF (%lost_druid% = 1) BEGIN
   LAF lost_druid END
 END
-ACTION_IF (%forest_druid% + %totemic_druid% + %hivekeeper_druid% + %northern_druid% + %lost_druid% > 0) BEGIN
-  LAF druid_shapeshifting END
-END
 ACTION_IF (%beast_lord% = 1) BEGIN
   LAF beast_lord END
 END
+//ACTION_IF (%forest_druid% + %totemic_druid% + %hivekeeper_druid% + %northern_druid% + %lost_druid% > 0) BEGIN
+  LAF druid_shapeshifting END
+//END
 ACTION_IF (%elementalist% = 1) BEGIN
   LAF elementalist END
 END

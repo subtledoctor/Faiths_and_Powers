@@ -1350,9 +1350,13 @@ COPY_EXISTING ~kit.ids~ ~override~
       SET arctic_row = %row%
       READ_2DA_ENTRY_FORMER rows arctic_row 0 northern_druid_code
     END
-    PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_GRAY~ BEGIN
-      SET gray_row = %row%
-      READ_2DA_ENTRY_FORMER rows gray_row 0 gray_druid_code
+    PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~SHAPESHIFTER~ BEGIN
+      SET shapeshifter_row = %row%
+      READ_2DA_ENTRY_FORMER rows shapeshifter_row 0 shapeshifter_druid_code
+    END
+    PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~BEASTFRIEND~ BEGIN
+      SET avenger_row = %row%
+      READ_2DA_ENTRY_FORMER rows avenger_row 0 avenger_druid_code
     END
     PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_SHAD~ BEGIN
       SET shadow_row = %row%
@@ -1362,13 +1366,25 @@ COPY_EXISTING ~kit.ids~ ~override~
       SET lost_row = %row%
       READ_2DA_ENTRY_FORMER rows lost_row 0 lost_druid_code
     END
+    PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_GRAY~ BEGIN
+      SET gray_row = %row%
+      READ_2DA_ENTRY_FORMER rows gray_row 0 gray_druid_code
+    END
+    PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_OC_BEAST~ BEGIN
+      SET beastlord_row = %row%
+      READ_2DA_ENTRY_FORMER rows beastlord_row 0 beastlord_druid_code
+    END
+    PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~K9HIVE~ BEGIN
+      SET hivemaster_row = %row%
+      READ_2DA_ENTRY_FORMER rows hivemaster_row 0 hivemaster_druid_code
+    END
+    PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~L#FALDSD~ BEGIN
+      SET faldorn_row = %row%
+      READ_2DA_ENTRY_FORMER rows faldorn_row 0 faldorn_druid_code
+    END
     PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FIGHTER~ BEGIN
       SET fighter_row = %row%
       READ_2DA_ENTRY_FORMER rows fighter_row 0 fighter_druid_code
-    END
-    PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_MAGE~ BEGIN
-      SET mage_row = %row%
-      READ_2DA_ENTRY_FORMER rows mage_row 0 mage_druid_code
     END
     PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_RANGER~ BEGIN
       SET ranger_row = %row%
@@ -1378,7 +1394,28 @@ COPY_EXISTING ~kit.ids~ ~override~
       SET thief_row = %row%
       READ_2DA_ENTRY_FORMER rows thief_row 0 thief_druid_code
     END
+    PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_MAGE~ BEGIN
+      SET mage_row = %row%
+      READ_2DA_ENTRY_FORMER rows mage_row 0 mage_druid_code
+    END
+    PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_SORC~ BEGIN
+      SET msorc_row = %row%
+      READ_2DA_ENTRY_FORMER rows sorc_row 0 sorcerer_druid_code
+    END
   END
+BUT_ONLY
+
+APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
+
+COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_KIT_IS~ BEGIN
+	    SET kit_is_row = %row%
+	  END
+	END
 BUT_ONLY
 //__________________________________________________________________________________
 
@@ -1386,6 +1423,8 @@ BUT_ONLY
 
 // get animations
 OUTER_SET ferret_animation = IDS_OF_SYMBOL (animate ~GROUNDHOG~)					//
+//OUTER_SET bat_animation = IDS_OF_SYMBOL (animate ~****~)					//
+//OUTER_SET swarm_animation = IDS_OF_SYMBOL (animate ~****~)					//
 OUTER_SET wolf_animation = IDS_OF_SYMBOL (animate ~WOLF~)							//
 OUTER_SET dire_wolf_animation = IDS_OF_SYMBOL (animate ~WOLF_DIRE~)					//
 OUTER_SET winter_wolf_animation = IDS_OF_SYMBOL (animate ~WOLF_WINTER~)				//
@@ -1529,6 +1568,8 @@ saving throws:
 //
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc.bam~ ~override~
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drfer.bam~ ~override~
+// bat?
+// swarm?
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drwlf1.bam~ ~override~
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drwlf2.bam~ ~override~
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drwlf3.bam~ ~override~
@@ -1556,12 +1597,272 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drcarc.bam~ ~override~
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drbask.bam~ ~override~
 
 
+ACTION_DEFINE_ASSOCIATIVE_ARRAY semi_innate_shape BEGIN
+  d5sc01 => d5drfer		// ferret
+  d5sc02 => d5drwlf1	// wolf
+  d5sc03 => d5drwlf2	// dire wolf
+  d5sc04 => d5drwlf3	// winter wolf
+  d5sc05 => d5drwlf4	// dread wolf
+  d5sc06 => d5drwlf5	// vampiric wolf
+  d5sc07 => d5drwlf6	// shadow wolf
+  d5sc08 => d5drber1	// black bear
+  d5sc09 => d5drber2	// cave bear
+  d5sc10 => d5drber3	// polar bear
+  d5sc11 => d5drbor1	// boar
+  d5sc12 => d5drcat1	// mountain lion
+  d5sc13 => d5drcat2	// panther
+  d5sc14 => d5dryeti	// yeti
+  d5sc15 => d5drsnak	// snake
+  d5sc16 => d5drwyv1	// baby wyvern
+  d5sc17 => d5drwyv2	// large wyvern
+  d5sc18 => d5drspd1	// giant spider
+  d5sc19 => d5drspd2	// sword spider
+  d5sc20 => d5drbtl1	// boring beetle
+  d5sc21 => d5drbtl2	// fire beetle
+  d5sc22 => d5drbtl3	// bombardier beetle
+  d5sc23 => d5drbtl4	// rhino beetle
+  d5sc24 => d5drremz	// remorhaz
+  d5sc25 => d5drcarc	// carrion crawler
+END
+/* need to make these... at least the ww ones
+  d5sc26 => d5drww1 	// werewolf
+  d5sc27 => d5drww2 	// greater werewolf
+  d5sc28 => d5drbask	// basilisk
+  d5sc29 => d5drspd3 	// mini spider
+  d5sc30 => d5drbat 	// bat
+  d5sc31 => d5drswrm 	// swarm
+*/
+
+COPY ~faiths_and_powers/kits/druids/shapechange/d5scpts.2da~ ~override~
+COPY ~faiths_and_powers/kits/druids/shapechange/d5sclst.2da~ ~override~
+COPY ~faiths_and_powers/kits/druids/shapechange/d5sckn.2da~ ~override~
+
+LAF semi_innate_casting INT_VAR semi_innate_stat = 110 semi_innate_shift = 16 STR_VAR semi_innate_prefix = ~d5sc~ semi_innate_array = ~semi_innate_shape~ points_table = ~d5scpts~ table_spl = ~d5scpts~ END
+
+
+/*
+/***** need to set up the animal choice spells, and figure out how to enable them to appear when chosen
+ -- looks like it is applying d5sc#L
+ -- so need to set up a few feat-style choice spells
+
+***** no! do it via dialogue like CSP!
+ -- dammit
+ 
+/***** remove d5scpls from all the shapechange innates
+ -- and add it to the natural form spell
+ 
+/***** give initial forms:
+ -- druid = bear1
+ -- avenger = beetle1
+ -- shapeshifter = wolf2
+ -- forest dru = bear1
+ -- northern = wolf1
+ -- lost dru = wolf4
+ -- beastlord = wolf2
+ -- hivekeeper = beetle1
+ -- faldorn sd = wolf1
+
+/***** apply big ones at high level:
+ -- druid = wyv2
+ -- avenger = beetle4
+ -- shapeshifter = ww2
+ -- forest dru = wyv2
+ -- northern = remz
+ -- lost dru = wolf5
+ -- beastlord = ww2
+ -- hivekeeper = beetle4
+
+***** have some L spells undo others and reapply B spells
+ -- wolf4 (05) remove all
+ -- wolf2 (03) remove wolf1 (02)
+ -- wolf3 (03) remove wolf1 (02)
+ -- bear2 (09) remove bear1 (08)
+ -- wyv2 (17) remove wyv1 (16)
+ -- ww2 (27) remove ww1 (26) & wolf2 (03)
+
+***** patch into clab tables
+ -- no choices for lost, shifter, beastlord
+ -- remove spcl643/644 from shifter (dr03)
+ -- beastlord/shifter gets ww1 at...7?
+
+***** make ww forms!
+ 
+***** NPC_EE book needs to remove/cancel all of these, *and* the ki points spell
+
+***** give different animals interesting effects
+ -- bear = knockdown; blunt resistance
+ -- wolf = grapple/pause
+ -- yeti = knockback
+ -- boar = web/entangle immunity; trip
+ -- cats = fast
+ -- spiders = web/entangle immunity
+ -- wyverns = web/entangle immunity
+ -- beetles = slashing resistance
+ -- snake = piercing AC bonus
+ -- wws = regeneration
+*/
+
+INCLUDE ~faiths_and_powers/lib/sequencer_menu.tpa~
+
+OUTER_SPRINT sc_select_string @73002 // ~sc Selection~ 
+OUTER_SET sc_select_strref = RESOLVE_STR_REF (@73002) // (%sc_select_string%)
+OUTER_SPRINT sc_title_string @73000 
+OUTER_SPRINT sc_label_string @73000 
+
+COPY_EXISTING ~d5sclst.2da~ ~override~
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  FOR (col = 1; col < cols; ++col) BEGIN
+	READ_2DA_ENTRY 0 (col - 1) (cols - 1) sc_kit_name
+	INNER_ACTION BEGIN
+	  COPY_EXISTING ~kitlist.2da~ ~override~
+		READ_2DA_ENTRIES_NOW rows 10
+		FOR (row = 1; row < rows; ++row) BEGIN
+		  READ_2DA_ENTRY_FORMER rows row 1 kit_name
+		  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~%sc_kit_name%~) BEGIN
+		    READ_2DA_ENTRY_FORMER rows row 0 kitlist_ind
+		    READ_2DA_ENTRY_FORMER rows row 3 kit_string
+		    READ_2DA_ENTRY_FORMER rows row 5 kit_clab
+		    READ_2DA_ENTRY_FORMER rows row 8 kit_class
+		    PATCH_IF !(~%kit_clab%~ STRING_EQUAL_CASE ~*~) BEGIN
+	          SPRINT $sc_kit_list(~%kitlist_ind%~)~%kit_clab%~
+	        END
+			GET_STRREF %kit_string% kit_string_strref
+			SPRINT sc_select_name ~%kit_string_strref% %sc_select_string%~
+			SET kit_seq_name = RESOLVE_STR_REF (~%sc_select_name%~) 
+			SET kit_seq_tip = RESOLVE_STR_REF (~%sc_select_name%~) 
+			SET kit_seq_index = %kitlist_ind% 
+			INNER_ACTION BEGIN
+			  LAF CREATE_SEQUENCER_MENU 
+			   INT_VAR 
+				name = %kit_seq_name%
+				tip = %kit_seq_tip%
+				desc = RESOLVE_STR_REF (~blah~) 
+				column = %col% 
+				class = 1
+			   STR_VAR 
+				resref = EVAL ~d5s%kit_seq_index%~
+				icon = ~*****~
+				spelltable = ~d5sckn~ 
+				spelllist = ~d5sclst~
+				title = EVAL ~%sc_title_string%~
+				label = EVAL ~%sc_label_string%~
+			  END
+			  ACTION_FOR_EACH let IN ~a~ ~b~ ~c~ ~d~ ~e~ BEGIN
+			    COPY_EXISTING ~d5s%kit_seq_index%.spl~ ~override/d5sc%kit_seq_index%%let%.spl~
+			      LPF ALTER_EFFECT INT_VAR match_opcode = 172 STR_VAR match_resource = EVAL ~d5sc%kit_seq_index%~ resource = EVAL ~d5sc%kit_seq_index%%let%~ END
+			    IF_EXISTS
+			  END
+			END
+		  END
+		END
+	  BUT_ONLY
+	END
+  END
+BUT_ONLY
+
+OUTER_SPRINT druid_sc_select_name ~Druid %sc_select_string%~
+OUTER_SET kit_seq_name = RESOLVE_STR_REF (~%druid_sc_select_name%~) 
+OUTER_SET kit_seq_tip = RESOLVE_STR_REF (~%druid_sc_select_name%~) 
+LAF CREATE_SEQUENCER_MENU 
+  INT_VAR 
+	name = %kit_seq_name%
+	tip = %kit_seq_tip%
+	desc = RESOLVE_STR_REF (~blah~) 
+	column = %col% 
+	class = 1
+  STR_VAR 
+	resref = EVAL ~d5s01~
+	icon = ~*****~
+	spelltable = ~d5sckn~ 
+	spelllist = ~d5sclst~
+	title = EVAL ~%sc_title_string%~
+	label = EVAL ~%sc_label_string%~
+END
+
+COPY_EXISTING ~d5sclst.2da~ ~override~
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  FOR (row = 0; row < rows; ++row) BEGIN
+  	READ_2DA_ENTRY row 0 cols ~book_feat~
+	INNER_ACTION BEGIN
+	  COPY_EXISTING ~%book_feat%.spl~ ~override~
+		LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5scpls~ END
+	  IF_EXISTS BUT_ONLY
+	  COPY_EXISTING ~%book_feat%.spl~ ~override/%book_feat%L.spl~
+		WRITE_SHORT 0x1c 4
+		WRITE_LONG 0x34 1
+		LPF DELETE_EFFECT END
+		LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%book_feat%~ END
+	  IF_EXISTS BUT_ONLY
+	END
+  END
+BUT_ONLY
+
+ACTION_FOR_EACH forest_dru IN
+  ~clabdr01~
+  ~d5dfor~
+BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%forest_dru%.2da~) BEGIN
+    APPEND ~%forest_dru%.2da~ ~
+WILDSHAPE   AP_D5SC000  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+WILDSHAPE   AP_D5SC08L  ****        ****        GA_D5SC__L  ****        ****        ****        GA_D5SC__L  ****        ****        ****        GA_D5SC__L  ****        ****        AP_D5SC17L  ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+  END
+END
+ACTION_FOR_EACH northern_dru IN
+  ~d5darc~
+BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%northern_dru%.2da~) BEGIN
+    APPEND ~%northern_dru%.2da~ ~
+WILDSHAPE   AP_D5SC000  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+WILDSHAPE   AP_D5SC02L  ****        ****        GA_D5SC__L  ****        ****        ****        GA_D5SC__L  ****        ****        ****        GA_D5SC__L  ****        ****        AP_D5SC24L  ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+  END
+END
+ACTION_FOR_EACH hive_dru IN
+  ~clabdr04~
+  ~K9HIVE~
+BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%hive_dru%.2da~) BEGIN
+    APPEND ~%hive_dru%.2da~ ~
+WILDSHAPE   AP_D5SC000  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+WILDSHAPE   AP_D5SC20L  ****        ****        GA_D5SC__L  ****        ****        ****        GA_D5SC__L  ****        ****        ****        GA_D5SC__L  ****        ****        AP_D5SC23L  ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+  END
+END
+ACTION_FOR_EACH lost_dru IN
+  ~d5dlost~
+BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%lost_dru%.2da~) BEGIN
+    APPEND ~%lost_dru%.2da~ ~
+WILDSHAPE   AP_D5SC000  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+WILDSHAPE   AP_D5SC05L  ****        ****        GA_D5SC__L  ****        ****        ****        GA_D5SC__L  ****        ****        ****        AP_D5SC06L  ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+  END
+END
+ACTION_FOR_EACH werewolf_dru IN
+  ~clabdr03~
+  ~d5obst~
+BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%werewolf_dru%.2da~) BEGIN
+    APPEND ~%werewolf_dru%.2da~ ~
+WILDSHAPE   AP_D5SC000  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+WILDSHAPE   AP_D5SC03L  ****        ****        ****        ****        AP_D5SC26L  ****        ****        ****        ****        ****        AP_D5SC27L  ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+  END
+END
+ACTION_FOR_EACH faldorn_dru IN
+  ~L#FALDSD~
+BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%faldorn_dru%.2da~) BEGIN
+    APPEND ~%faldorn_dru%.2da~ ~
+WILDSHAPE   AP_D5SC000  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+WILDSHAPE   AP_D5SC02L  ****        ****        GA_D5SC__L  ****        ****        ****        GA_D5SC__L  ****        ****        ****        GA_D5SC__L  ****        ****        GA_D5SC__L  ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+  END
+END
+
 // natural form
 //
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drnf.spl~ ~override~
   SAY NAME1 @73001
   SAY UNIDENTIFIED_DESC @73001
-  PATCH_FOR_EACH animal IN ~d5drfer~ 
+  PATCH_FOR_EACH animal IN  ~d5drfer~ 
   							~d5drwlf1~ 
   							~d5drwlf2~ 
   							~d5drwlf3~ 
@@ -1586,77 +1887,57 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drnf.spl~ ~override~
   							~d5drbtl4~ 
   							~d5drremz~ 
   							~d5drcarc~ 
-  							~d5drbask~ BEGIN
+  							~d5drww1~ 
+  							~d5drww2~  BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 112 STR_VAR resource = EVAL ~%animal%~  END 
-  END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 177 match_target = 1 match_parameter2 = 9 STR_VAR resource = ~d5drsc4~ END
-  PATCH_IF VARIABLE_IS_SET %forest_druid_code% BEGIN
-   LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = %forest_druid_code% STR_VAR resource = ~d5drsc1~ END
-  END
-  PATCH_IF VARIABLE_IS_SET %northern_druid_code% BEGIN
-   LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = %northern_druid_code% STR_VAR resource = ~d5drsc5~ END
-  END
-//  LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = %shadow_druid_code% STR_VAR resource = ~d5drsc8~ END
-  PATCH_IF VARIABLE_IS_SET %lost_druid_code% BEGIN
-   LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = %lost_druid_code% STR_VAR resource = ~d5drsc9~ END
-  END
-  PATCH_IF VARIABLE_IS_SET %fighter_druid_code% BEGIN
-	LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = %fighter_druid_code% STR_VAR resource = ~d5drsc1~ END
-  END
-  PATCH_IF VARIABLE_IS_SET %mage_druid_code% BEGIN
-	LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = %mage_druid_code% STR_VAR resource = ~d5drsc1~ END
-  END
-  PATCH_IF VARIABLE_IS_SET %ranger_druid_code% BEGIN
-	LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = %ranger_druid_code% STR_VAR resource = ~d5drsc1~ END
-  END
-  PATCH_IF VARIABLE_IS_SET %thief_druid_code% BEGIN
-	LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = %thief_druid_code% STR_VAR resource = ~d5drsc1~ END
   END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drbask~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drwwf~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 1 STR_VAR resource = ~d5scpls~ END
 
-/* already done with individual kits above
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc1.spl~ ~override~
-  SAY NAME1 @ // ~Shapeshift~
-  SAY UNIDENTIFIED_DESC @ // ~Choose an animal form to shapeshift into.~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc4.spl~ ~override~
-  SAY NAME1 @ // ~Shapeshift~
-  SAY UNIDENTIFIED_DESC @ // ~Choose an animal form to shapeshift into.~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc5.spl~ ~override~
-  SAY NAME1 @ // ~Shapeshift~
-  SAY UNIDENTIFIED_DESC @ // ~Choose an animal form to shapeshift into.~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc8.spl~ ~override~
-  SAY NAME1 @ // ~Shapeshift~
-  SAY UNIDENTIFIED_DESC @ // ~Choose an animal form to shapeshift into.~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc9.spl~ ~override~
-  SAY NAME1 @ // ~Shapeshift~
-  SAY UNIDENTIFIED_DESC @ // ~Choose an animal form to shapeshift into.~
+
+COPY_EXISTING ~d5sc000.spl~ ~override~
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter1 = 0x4000 parameter2 = 9 timing = 1 STR_VAR resource = ~d5sc08l~ END
+  PATCH_IF (VARIABLE_IS_DEFINED %forest_druid_code%) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %forest_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc08l~ END
+  END
+  PATCH_IF (VARIABLE_IS_DEFINED %northern_druid_code%) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %northern_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc02l~ END
+  END
+  PATCH_IF (VARIABLE_IS_DEFINED %avenger_druid_code%) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %avenger_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc20l~ END
+  END
+  PATCH_IF (VARIABLE_IS_DEFINED %shapeshifter_druid_code%) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %shapeshifter_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc03l~ END
+  END
+  PATCH_IF (VARIABLE_IS_DEFINED %beastlord_druid_code%) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %beastlord_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc03l~ END
+  END
+  PATCH_IF (VARIABLE_IS_DEFINED %lost_druid_code%) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %lost_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc05l~ END
+  END
+  PATCH_IF (VARIABLE_IS_DEFINED %hivemaster_druid_code%) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %hivemaster_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc20l~ END
+  END
+  PATCH_IF (VARIABLE_IS_DEFINED %faldorn_druid_code%) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %faldorn_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc02l~ END
+  END
+/* patch these in with the multiclass kits
+  PATCH_IF (VARIABLE_IS_DEFINED %fighter_druid_code%) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %fighter_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc08l~ END
+  END
+  PATCH_IF (VARIABLE_IS_DEFINED %ranger_druid_code%) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %ranger_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc12l~ END
+  END
+  PATCH_IF (VARIABLE_IS_DEFINED %thief_druid_code%) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %thief_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc02l~ END
+  END
+  PATCH_IF (VARIABLE_IS_DEFINED %mage_druid_code%) BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %mage_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc02l~ END
+  END
 */
-
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc1a.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc1b.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc1c.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc1d.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc1e.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc1f.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc4a.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc4b.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc4c.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc4d.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc4e.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc4f.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc5a.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc5b.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc5c.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc5d.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc5e.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc5f.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc8a.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc8b.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc9a.2da~ ~override~
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drsc9b.2da~ ~override~
-
+IF_EXISTS BUT_ONLY
 
 
 // animals
@@ -1667,11 +1948,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drfer.s
   SAY UNIDENTIFIED_DESC @73004
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drfer~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drfer~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 20 target = 1 parameter1 = 0 parameter2 = 0 timing = 0 duration = 12 END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drfer.itm~
@@ -1693,11 +1969,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drwlf1.
   SAY UNIDENTIFIED_DESC @73010
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = ~d5drwlf1~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drwlf1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drwlf1.itm~
   WRITE_LONG 0x60 2
@@ -1718,11 +1989,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drwlf2.
   SAY UNIDENTIFIED_DESC @73012
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drwlf2~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drwlf2~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drwlf2.itm~
   WRITE_LONG 0x60 2
@@ -1744,11 +2010,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drwlf3.
   SAY UNIDENTIFIED_DESC @73014
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drwlf3~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drwlf3~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drwwf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drwlf3.itm~
@@ -1777,11 +2038,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drwlf4.
   SAY UNIDENTIFIED_DESC @73016
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drwlf4~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drwlf4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drwlf4.itm~
   WRITE_LONG 0x60 2
@@ -1805,11 +2061,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drwlf5.
   SAY UNIDENTIFIED_DESC @73018
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drwlf5~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drwlf5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drwlf5.itm~
   WRITE_LONG 0x60 2
@@ -1832,11 +2083,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drwlf6.
   SAY UNIDENTIFIED_DESC @73020
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drwlf6~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drwlf6~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drwlf6.itm~
   WRITE_LONG 0x60 2
@@ -1860,11 +2106,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drber1.
   SAY UNIDENTIFIED_DESC @73024
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drber1~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drber1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drber1.itm~
   WRITE_LONG 0x60 2
@@ -1884,11 +2125,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drber2.
   SAY UNIDENTIFIED_DESC @73026
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drber2~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drber2~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drber2.itm~
   WRITE_LONG 0x60 2
@@ -1909,11 +2145,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drber3.
   SAY UNIDENTIFIED_DESC @73028
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drber3~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drber3~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drber3.itm~
   WRITE_LONG 0x60 2
@@ -1934,11 +2165,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drbor1.
   SAY UNIDENTIFIED_DESC @73038
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drbor1~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drbor1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drbor1.itm~
   WRITE_LONG 0x60 2
@@ -1953,6 +2179,7 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drbor1.
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 126 target = 1 parameter1 = 4 parameter2 = 0 timing = 2 END 
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 17 target = 1 parameter1 = 130 parameter2 = 2 timing = 2 END 
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 28 target = 1 parameter1 = 40 parameter2 = 1 timing = 2 END 
+// add immunity to web & entangle projectiles
 
 // mountain lion
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drcat1.spl~
@@ -1960,11 +2187,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drcat1.
   SAY UNIDENTIFIED_DESC @73032
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drcat1~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drcat1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drcat1.itm~
   WRITE_LONG 0x60 2
@@ -1984,11 +2206,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drcat2.
   SAY UNIDENTIFIED_DESC @73034
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drcat2~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drcat2~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drcat2.itm~
   WRITE_LONG 0x60 2
@@ -2010,11 +2227,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5dryeti.
   SAY UNIDENTIFIED_DESC @73040
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5dryeti~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5dryeti~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5dryeti.itm~
   WRITE_LONG 0x60 2
@@ -2023,7 +2235,7 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5dryeti.
   LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 3 END 	//	set base AC
   LPF ALTER_EFFECT INT_VAR match_opcode = 44 parameter1 = 19 END 	//	set STR
   LPF ALTER_EFFECT INT_VAR match_opcode = 15 parameter1 = 16 END 	//	set DEX
-  LPF ALTER_EFFECT INT_VAR match_opcode = 10 parameter1 = 18 END 	//	set CON
+  LPF ALTER_EFFECT INT_VAR match_opcode = 10 parameter1 = 20 END 	//	set CON
   LPF ALTER_ITEM_HEADER INT_VAR header_type = 1 header = 1 damage_type = 2 dicenumber = 2 dicesize = 4 thac0_bonus = 2 damage_bonus = 0 speed = 4 STR_VAR icon = ~ibclaw~  END 
   LPF ADD_ITEM_EFFECT INT_VAR header = 1 opcode = 235 target = 2 parameter1 = 5 parameter2 = 2 timing = 0 duration = 2 savingthrow = 2 savebonus = 0 END 
   LPF ADD_ITEM_EFFECT INT_VAR header = 1 opcode = 39 target = 2 timing = 0 duration = 2 savingthrow = 2 savebonus = 0 END 
@@ -2035,11 +2247,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drsnak.
   SAY UNIDENTIFIED_DESC @73042
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drsnak~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drsnak~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drsnak.itm~
   WRITE_LONG 0x60 2
@@ -2055,17 +2262,37 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drsnak.
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 0 target = 1 parameter1 = 5 parameter2 = 4 timing = 2 END 
 // add special constriction ability
 
-// large wyvern
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drwyv2.spl~
+// small wyvern
+COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drwyv1.spl~
   SAY NAME1 @73045
   SAY UNIDENTIFIED_DESC @73046
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drwyv1~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drwyv1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
+COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drwyv1.itm~
+  WRITE_LONG 0x60 2
+  LPF ALTER_EFFECT INT_VAR match_opcode = 53 parameter1 = %wyvern_animation% END 
+  LPF ALTER_EFFECT INT_VAR match_opcode = 1 parameter1 = 2 END 	//	set base APR
+  LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 0 END 	//	set base AC
+  LPF ALTER_EFFECT INT_VAR match_opcode = 44 parameter1 = 16 END 	//	set STR
+  LPF ALTER_EFFECT INT_VAR match_opcode = 15 parameter1 = 19 END 	//	set DEX
+  LPF ALTER_EFFECT INT_VAR match_opcode = 10 parameter1 = 16 END 	//	set CON
+  LPF ALTER_ITEM_HEADER INT_VAR header_type = 1 header = 1 damage_type = 3 dicenumber = 1 dicesize = 6 thac0_bonus = 2 damage_bonus = 0 speed = 4 STR_VAR icon = ~iswospdr~  END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 248 target = 1 timing = 2 STR_VAR resource = ~SPCL422~ END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 248 target = 1 timing = 2 STR_VAR resource = ~SPCL422A~ END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = ~SPDR201~ END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = ~SPWI215~ END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = ~SPPR105~ END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = ~SPPR324~ END 
+  LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = ~SPPR519~ END 
+// add immunity to web & entangle projectiles
+
+// large wyvern
+COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drwyv2.spl~
+  SAY NAME1 @73047
+  SAY UNIDENTIFIED_DESC @73048
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drwyv2~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drwyv2~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drwyv2.itm~
   WRITE_LONG 0x60 2
@@ -2073,7 +2300,7 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drwyv2.
   LPF ALTER_EFFECT INT_VAR match_opcode = 1 parameter1 = 2 END 	//	set base APR
   LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 = 0 END 	//	set base AC
   LPF ALTER_EFFECT INT_VAR match_opcode = 44 parameter1 = 20 END 	//	set STR
-  LPF ALTER_EFFECT INT_VAR match_opcode = 15 parameter1 = 19 END 	//	set DEX
+  LPF ALTER_EFFECT INT_VAR match_opcode = 15 parameter1 = 17 END 	//	set DEX
   LPF ALTER_EFFECT INT_VAR match_opcode = 10 parameter1 = 18 END 	//	set CON
   LPF ALTER_ITEM_HEADER INT_VAR header_type = 1 header = 1 damage_type = 3 dicenumber = 2 dicesize = 6 thac0_bonus = 2 damage_bonus = 0 speed = 4 STR_VAR icon = ~iswospdr~  END 
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 248 target = 1 timing = 2 STR_VAR resource = ~SPCL422~ END 
@@ -2083,6 +2310,7 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drwyv2.
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = ~SPPR105~ END 
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = ~SPPR324~ END 
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 2 STR_VAR resource = ~SPPR519~ END 
+// add immunity to web & entangle projectiles
 // add wing buffett?
 
 // giant spider
@@ -2091,11 +2319,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drspd1.
   SAY UNIDENTIFIED_DESC @73052
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drspd1~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drspd1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drspd1.itm~
   WRITE_LONG 0x60 2
@@ -2120,11 +2343,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drspd2.
   SAY UNIDENTIFIED_DESC @73054
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drspd2~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drspd2~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drspd2.itm~
   WRITE_LONG 0x60 2
@@ -2145,11 +2363,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drbtl1.
   SAY UNIDENTIFIED_DESC @73062
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drbtl1~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drbtl1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drbtl1.itm~
   WRITE_LONG 0x60 2
@@ -2172,11 +2385,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drbtl2.
   SAY UNIDENTIFIED_DESC @73064
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drbtl2~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drbtl2~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drbtl2.itm~
   WRITE_LONG 0x60 2
@@ -2197,11 +2405,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drbtl3.
   SAY UNIDENTIFIED_DESC @73066
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drbtl3~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drbtl3~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drbtl3.itm~
   WRITE_LONG 0x60 2
@@ -2222,11 +2425,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drbtl4.
   SAY UNIDENTIFIED_DESC @73068
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drbtl4~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drbtl4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drbtl4.itm~
   WRITE_LONG 0x60 2
@@ -2251,11 +2449,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drcarc.
   SAY UNIDENTIFIED_DESC @73072
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drcarc~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drcarc~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drcarc.itm~
   WRITE_LONG 0x60 2
@@ -2276,11 +2469,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drremz.
   SAY UNIDENTIFIED_DESC @73074
   LPF ALTER_SPELL_HEADER STR_VAR icon = ~d5drremz~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~d5drremz~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drremz.itm~
   WRITE_LONG 0x60 2
@@ -2300,6 +2488,41 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drremz.
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 89 target = 1 parameter1 = 50 parameter2 = 1 timing = 2 END 
   LPF ADD_ITEM_EQEFFECT INT_VAR opcode = 28 target = 1 parameter1 = 100 parameter2 = 1 timing = 2 END 
 // add something special to the attack...? or just lots of attacks?
+
+// werewolf
+COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drww1.spl~
+  SAY NAME1 @730
+  SAY UNIDENTIFIED_DESC @730
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
+COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drww1.itm~
+  WRITE_LONG 0x60 2
+  LPF ALTER_EFFECT INT_VAR match_opcode = 53 parameter1 = %werewolf_animation% END 
+  LPF ALTER_EFFECT INT_VAR match_opcode = 1 parameter1 =  END 	//	set base APR
+  LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 =  END 	//	set base AC
+  LPF ALTER_EFFECT INT_VAR match_opcode = 44 parameter1 = 18 END 	//	set STR
+  LPF ALTER_EFFECT INT_VAR match_opcode = 15 parameter1 = 18 END 	//	set DEX
+  LPF ALTER_EFFECT INT_VAR match_opcode = 10 parameter1 = 20 END 	//	set CON
+  LPF ALTER_ITEM_HEADER INT_VAR header_type = 1 header = 1 damage_type =  dicenumber =  dicesize =  thac0_bonus =  damage_bonus =  speed =  STR_VAR icon = ~iwolf~  END 
+
+// greater werewolf
+COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5drww2.spl~
+  SAY NAME1 @730
+  SAY UNIDENTIFIED_DESC @730
+  LPF ALTER_SPELL_HEADER STR_VAR icon = ~~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
+COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5drww2.itm~
+  WRITE_LONG 0x60 2
+  LPF ALTER_EFFECT INT_VAR match_opcode = 53 parameter1 = %greater_werewolf_animation% END 
+  LPF ALTER_EFFECT INT_VAR match_opcode = 1 parameter1 =  END 	//	set base APR
+  LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 =  END 	//	set base AC
+  LPF ALTER_EFFECT INT_VAR match_opcode = 44 parameter1 = 19 END 	//	set STR
+  LPF ALTER_EFFECT INT_VAR match_opcode = 15 parameter1 = 19 END 	//	set DEX
+  LPF ALTER_EFFECT INT_VAR match_opcode = 10 parameter1 = 22 END 	//	set CON
+  LPF ALTER_ITEM_HEADER INT_VAR header_type = 1 header = 1 damage_type =  dicenumber =  dicesize =  thac0_bonus =  damage_bonus =  speed =  STR_VAR icon = ~iwolf~  END 
+
 
 /*
  // basilisk
@@ -2347,28 +2570,6 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5dr.itm~
   LPF ALTER_ITEM_HEADER INT_VAR header_type = 1 header = 1 damage_type =  dicenumber =  dicesize =  thac0_bonus =  damage_bonus =  speed =  STR_VAR icon = ~iwolf~  END 
 
 // shambling mound
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5dr.spl~
-  SAY NAME1 @730
-  SAY UNIDENTIFIED_DESC @730
-  LPF ALTER_SPELL_HEADER STR_VAR icon = ~~ END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 111 STR_VAR resource = ~~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc1~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc4~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc5~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc8~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drsc9~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 parameter1 = 0 parameter2 = 1 timing = 9 STR_VAR resource = ~d5drnf~ END
-COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5dr.itm~
-  WRITE_LONG 0x60 2
-  LPF ALTER_EFFECT INT_VAR match_opcode = 53 parameter1 = %_animation% END 
-  LPF ALTER_EFFECT INT_VAR match_opcode = 1 parameter1 =  END 	//	set base APR
-  LPF ALTER_EFFECT INT_VAR match_opcode = 0 parameter1 =  END 	//	set base AC
-  LPF ALTER_EFFECT INT_VAR match_opcode = 44 parameter1 =  END 	//	set STR
-  LPF ALTER_EFFECT INT_VAR match_opcode = 15 parameter1 =  END 	//	set DEX
-  LPF ALTER_EFFECT INT_VAR match_opcode = 10 parameter1 =  END 	//	set CON
-  LPF ALTER_ITEM_HEADER INT_VAR header_type = 1 header = 1 damage_type =  dicenumber =  dicesize =  thac0_bonus =  damage_bonus =  speed =  STR_VAR icon = ~iwolf~  END 
-
-// wild boar
 COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.spl~ ~override/d5dr.spl~
   SAY NAME1 @730
   SAY UNIDENTIFIED_DESC @730
