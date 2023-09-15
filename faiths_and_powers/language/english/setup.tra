@@ -4,7 +4,7 @@
 @13 = ~*Please be patient. This will take some time...*~
 @18 = ~Component has been depreciated~
 //
-@20  = ~Choosee a Sphere System~
+@20  = ~Choose a Sphere System~
 @21  = ~oFnP: the original Faiths & Powers sphere system~
 @22  = ~AD&D/DR: inspired by PnP and Divine Remix~
 @23  = ~Vanilla: traditional spell lists, kits can cross the cleric/druid divide~
@@ -1862,55 +1862,117 @@ Upon using this ability, the Mystic is allowed to choose a spell from his repert
 //
 // ... druid shapeshifting:
 //
+@73000  = ~Choose a new shapeshift form~
 @73001  = ~Shapeshift: natural form~
+@73002  = ~Choose this form~
 @73003  = ~Shapeshift: ferret~
-@73004  = ~Shift into the form of a ferret.~
+@73004  = ~Shift into the form of a ferret
+
+FERRET: in ferret form the druid is hidden from view for up to two rounds. <PRO_HESHE> can use this to escape enemies or move undetected, and can attack once per round for 1d2 piercing damage.~
 @73009  = ~Shapeshift: wolf~
-@73010  = ~Shift into the form of a wolf~
+@73010  = ~Shift into the form of a wolf
+
+WOLF: in wolf form the druid can detect hidden enemies. He can attack 1.5 times per round for 2d4 piercing damage. Successful attacks have a chance to grapple the target, briefly Slowing them; they must make a saving throw to avoid this.~
 @73011  = ~Shapeshift: dire wolf~
-@73012  = ~Shift into the form of a dire wolf~
+@73012  = ~Shift into the form of a dire wolf
+
+DIRE WOLF: in dire wolf form the druid has 19 STR. He can attack 1.5 times per round for 2d6 piercing damage. Successful attacks have a chance to grapple the target, briefly Slowing them; they must make a saving throw to avoid this.~
 @73013  = ~Shapeshift: winter wolf~
-@73014  = ~Shift into the form of a winter wolf~
+@73014  = ~Shift into the form of a winter wolf
+
+WINTER WOLF: in this form the druid can attack 1.5 times per round for 2d4 piercing damage. Successful attacks have a chance to grapple the target, briefly Slowing them; they must make a saving throw to avoid this. Additionally, the druid gains the ability to use a ranged Ice Breath attack doing 6d4 cold damage (save for half).~
 @73015  = ~Shapeshift: dread wolf~
-@73016  = ~Shift into the form of a dread wolf~
+@73016  = ~Shift into the form of a dread wolf
+
+DREAD WOLF: in this form the druid can can attack 1.5 times per round for 2d4 piercing damage. Successful attacks can cause Disease in the target, sapping their Strength by 1 point if they fail a saving throw.  Additionally, the druid is 100% resistant to cold damage and 50% resistant to fire and electric damage.~
 @73017  = ~Shapeshift: vampire wolf~
-@73018  = ~Shift into the form of a vampire wolf~
+@73018  = ~Shift into the form of a vampire wolf
+
+VAMPIRIC WOLF: in this form the druid can can attack 1.5 times per round for 2d6 piercing damage. Successful attacks drain the target of 2 points of Constitution if they fail a saving throw.  Additionally, the druid is 100% resistant to cold damage and 50% resistant to fire and electric damage.~
 @73019  = ~Shapeshift: shadow wolf~
-@73020  = ~Shift into the form of a shadow wolf~
+@73020  = ~Shift into the form of a shadow wolf
+
+~
 @73023  = ~Shapeshift: black bear~
-@73024  = ~Shift into the form of a black bear~
+@73024  = ~Shift into the form of a black bear
+
+BLACK BEAR: in black bear form, the druid has 19 strength. <PRO_HESHE> can attack twice per round with claws that cause 2d6 slashing damage.~
 @73025  = ~Shapeshift: grizzly bear~
-@73026  = ~Shift into the form of a grizzly bear~
+@73026  = ~Shift into the form of a grizzly bear
+
+GRIZZLY BEAR: in grizzly bear form, the druid has 20 strength. <PRO_HESHE> can attack twice per round with claws that cause 2d6 slashing damage and, if the target fails a saving throw, and additional 2d4 crushing damage.~
 @73027  = ~Shapeshift: polar bear~
-@73028  = ~Shift into the form of a polar bear~
+@73028  = ~Shift into the form of a polar bear
+
+POLAR BEAR: in this form, the druid has 21 strength. <PRO_HESHE> can attack twice per round with claws that cause 2d8 slashing damage and, if the target fails a saving throw, and additional 2d4 crushing damage.~
 @73031  = ~Shapeshift: mountain lion~
-@73032  = ~Shift into the form of a mountain lion~
+@73032  = ~Shift into the form of a mountain lion
+
+MOUNTAIN LION: in this form, the druid can attack twice per round for 2d4 slashing damage. Successful attacks can knock the target to the ground if they fail a saving throw.~
 @73033  = ~Shapeshift: panther~
-@73034  = ~Shift into the form of a panther~
+@73034  = ~Shift into the form of a panther
+
+PANTHER: in this form, the druid can attack twice per round for 2d4 slashing damage. Successful attacks can knock the target to the ground if they fail a saving throw.~
 @73037  = ~Shapeshift: wild boar~
-@73038  = ~Shift into the form of a wild boar~
+@73038  = ~Shift into the form of a wild boar
+
+WILD BOAR: in this form, the druid can make 1.5 slashing attacks per round with strong tusks, and can bull-rush through any Entangle or Web effects.~
 @73039  = ~Shapeshift: yeti~
-@73040  = ~Shift into the form of a yeti~
+@73040  = ~Shift into the form of a yeti
+
+YETI: in this form the druid has 19 strength. <PRO_HESHE> can attack twice per round with fists that cause 2d6 crushing damage.  Additionally, successful attacks can knock the target away from the druid on a failed saving throw.~
 @73041  = ~Shapeshift: python~
-@73042  = ~Shift into the form of a python~
-@73045  = ~Shapeshift: wyvern~
-@73046  = ~Shift into the form of a large wyvern~
+@73042  = ~Shift into the form of a python
+
+PYTHON: in snake form, the druid can attack with a bite that causes 1d3 damage and poisons the target with similar effects to the Assassin's "Poison Weapon" ability. Additionally, the druid can attempt to constrict around an opponent, briefly paralyzing them if they fail a saving throw.~
+@73045  = ~Shapeshift: small wyvern~
+@73046  = ~Shift into the form of a small wyvern
+
+SMALL WYVERN: in wyvern form the druid can fly over ground-based obstacles like Entangle and Web spells. <PRO_HISHER> claws can rake victims twice per round for 1d6 damage and can can poison the target with similar effects to the Assassin's "Poison Weapon" ability.~
+@73047  = ~Shapeshift: large wyvern~
+@73048  = ~Shift into the form of a large wyvern
+
+LARGE WYVERN: in wyvern form the druid can fly over ground-based obstacles like Entangle and Web spells. <PRO_HISHER> powerful claws can rake victims for 2d6 damage and <PRO_HISHER> attacks can poison the target with similar effects to the Assassin's "Poison Weapon" ability. Additionally, the druid can create a powerful gust of wind that acts like a smaller version of a dragon's "Wing Buffet" ability.~
 @73051  = ~Shapeshift: giant spider~
-@73052  = ~Shift into the form of a giant spider~
+@73052  = ~Shift into the form of a giant spider
+
+GIANT SPIDER: in this form the druid can make 1.5 attacks per round for 1d8 piercing damage; when successful, these attacks deliver a poison with similar effects to the Assassin's "Poison Weapon" ability. The druid is immune to magical and nonmagical webs while in this form, and can deliver a lesser version of the "Web" spell at foes once per three rounds.~
 @73053  = ~Shapeshift: sword spider~
-@73054  = ~Shift into the form of a sword spider~
+@73054  = ~Shift into the form of a sword spider
+
+SWORD SPIDER: in this form, the druid can move extremely fast and attack 4 times per round for 1d6 slashing damage. The druid is immune to magical and nonmagical webs while in this form.~
 @73061  = ~Shapeshift: boring beetle~
-@73062  = ~Shift into the form of a boring beetle~
+@73062  = ~Shift into the form of a boring beetle
+
+BORING BEETLE: in this form the druid can make a powerful piercing attack once per round for 2d6+2 piercing damage. The beetle's hard shell gives the druid a 3-point armor class bonus against missile weapons, and 50% resistance to physical damage generally.~
 @73063  = ~Shapeshift: fire beetle~
-@73064  = ~Shift into the form of a fire beetle~
+@73064  = ~Shift into the form of a fire beetle
+
+FIRE BEETLE: in this form, the druid can make one pincer attack per round, for 2d4 piercing damage and and extra 2d4 fire damage. The druid has a 3-point armor class bonus against missile attacks, and 75% resistance to fire damage.~
 @73065  = ~Shapeshift: bombardier beetle~
-@73066  = ~Shift into the form of bombardier beetle~
+@73066  = ~Shift into the form of bombardier beetle
+
+BOMBARDIER BEETLE: in this form, the druid can make one pincer attack per round, for 2d4 piercing damage and and extra 2d4 acid damage. The druid has a 3-point armor class bonus against missile attacks, and 75% resistance to acid damage.~
 @73067  = ~Shapeshift: rhinocerous beetle~
-@73068  = ~Shift into the form of a rhinocerous beetle~
+@73068  = ~Shift into the form of a rhinocerous beetle
+
+RHINOCEROUS BEETLE: in this massive form, the druid has 22 strength. <PRO_HESHE> can attack twice per round with incredibly powerful pincers, for 3d6 piercing damage. <PRO_HISHER> hard armor gives a 4-point armor class bonus against slashing, crushing, and missile attacks, and 50% resistance to physical damage generally.~
 @73071  = ~Shapeshift: carrion crawler~
-@73072  = ~Shift into the form of a carrion crawler~
+@73072  = ~Shift into the form of a carrion crawler
+
+CARRION CRAWLER: in this form the druid can attack twice per round for 2d4 piercing damage. Successful attacks have a 50% chance to paralyze the victim for several rounds if they fail a saving throw vs. poison.~
 @73073  = ~Shapeshift: remorhaz~
-@73074  = ~Shift into the form of a remorhaz~
+@73074  = ~Shift into the form of a remorhaz
+
+REMORHAZ: in this powerful form, the druid has 21 strength and 100% resistance to cold damage. <PRO_HESHE> can attack 3 times per round with powerful pincers, for 2d6 piercing damage. <PRO_HISHER> hard armor gives a 4-point armor class bonus against slashing, crushing, and missile attacks, and 50% resistance to physical damage generally.~
+@73081  = ~Shapeshift: werewolf~
+@73082  = ~Shift into the form of a werewolf
+
+WEREWOLF: in this form, the druid has 18 strength and dexterity, and 20 constitution, and can regenerate 1 hit point per round. <PRO_HESHE> can make two claw attacks per round for 1d10 slashing damage, which can hit as magical +1 weapons. Additionally, this form has a natural 15% Magic Resistance and elemental damage resistance.~
+@73083  = ~Shapeshift: greater werewolf~
+@73084  = ~Shift into the form of a greater werewolf
+
+GREATER WEREWOLF: in this form, the druid has 19 strength and dexterity, and 22 constitution, and can regenerate 3 hit points per round. <PRO_HESHE> can make two claw attacks per round for 2d6 slashing damage, which can hit as magical +3 weapons. Additionally, this form is immune to attacks from nonmagical weapons, has a natural 30% Magic Resistance and elemental damage resistance.~
 //
 // ... druids:
 //
@@ -1920,30 +1982,13 @@ Upon using this ability, the Mystic is allowed to choose a spell from his repert
 
 Advantages:
 - At 1st level, may summon a Spirit Bear. The HD of the spirit animal increases to match the druid's level at 3rd, 5th, 7th and 10th level.
-- At 3rd level, may shapeshift into the form of a wolf or a ferret at will.
-- At 5th level, may shapeshift into the form of a black bear.
-- At 7th level, may shapeshift into the form of a python or a mountain lion.
-- At 9th level, may shapeshift into a larger dire wolf instead of a wolf.
-- At 9th level, the druid become immune to poison.
-- At 11th level, may shapeshift into a larger grizzly bear instead of a black bear.
-- At 13th level, may shapeshift into a large wyvern.
+- At 1st level, may shapeshift into the form of a black bear once per day. The Druid can change shape an additional time per day for every two levels gains, up to 11 uses per day at level 20.
+- At 4th level, the Druid may choose an additional animal form for shapeshifting.
+- At 8th level, the Druid may choose an additional animal form for shapeshifting.
+- At 12th level, the Druid may choose an additional animal form for shapeshifting.
+- At 15th level, the Druid may shapeshift into a large wyvern.
 - At 15th level, gains 10% resistance to damage from cold, fire, electricity, and acid.  These resistances increase by another 10% at levels 18 and 21.
 
-WOLF: in wolf form the druid can detect hidden enemies. He can attack 1.5 times per round for 2d4 piercing damage. Successful attacks have a chance to grapple the target, briefly Slowing them; they must make a saving throw to avoid this.
-
-FERRET: in ferret form the druid is hidden from view for up to two rounds. <PRO_HESHE> can use this to escape enemies or move undetected, and can attack once per round for 1d2 piercing damage.
-
-BLACK BEAR: in black bear form, the druid has 19 strength. <PRO_HESHE> can attack twice per round with claws that cause 2d6 slashing damage.
-
-PYTHON: in snake form, the druid can attack with a bite that causes 1d3 damage and poisons the target with similar effects to the Assassin's "Poison Weapon" ability. Additionally, the druid can attempt to constrict around an opponent, briefly paralyzing them if they fail a saving throw.
-
-MOUNTAIN LION: in mountain lion form, the druid can attack twice per round for 2d4 slashing damage. Successful attacks can knock the target to the ground if they fail a saving throw. 
-
-DIRE WOLF: in dire wolf form the druid has 19 STR. He can attack 1.5 times per round for 2d6 piercing damage. Successful attacks have a chance to grapple the target, briefly Slowing them; they must make a saving throw to avoid this.
-
-GRIZZLY BEAR: in grizzly bear form, the druid has 20 strength. <PRO_HESHE> can attack twice per round with claws that cause 2d6 slashing damage and, if the target fails a saving throw, and additional 2d4 crushing damage.
-
-WYVERN: in wyvern form the druid can fly over ground-based obstacles like Entangle and Web spells. <PRO_HISHER> powerful claws can rake victims for 2d6 damage and <PRO_HISHER> attacks can poison the target with similar effects to the Assassin's "Poison Weapon" ability. Additionally, the druid can create a powerful gust of wind that acts like a smaller version of a dragon's "Wing Buffet" ability.
 ~
 @73104  = ~FOREST DRUID: Most druids reside in the regions where soil is nutritious, plant life is abundant and animals thrive.  These regions are in many ways the epitome of harmonious ecosystems, and druids often charge themselves with nurturing and defending them.  Tall forests are a paradise in many ways: they provide shade from the sun, food and homes for animals and people, and wood for tools.  Forests are incessantly under threat of being torn down and subjugated by careless humans and demihumans. Forest druids therefore often live with a constant low-grade paranoia, which informs the stereotype of druids being hostile to civilization.~
 @73105  = ~~
@@ -1985,28 +2030,33 @@ Disadvantages:
 
 Advantages:
 - At 1st level, may summon a Spirit Spider. The HD of the spirit animal increases to match the druid's level at 3rd, 5th, 7th and 10th level.
-- At 3rd level, may shapeshift into the form of a giant beetle at will.
-- At 5th level, may shapeshift into the form of a giant spider.
-- At 7th level, may shapeshift into the form of a giant fire beetle or an acidic bombardier beetle.
-- At 9th level, may shapeshift into a sword spider.
-- At 9th level, the druid becomes immune to poison.
-- At 11th level, may shapeshift into a carrion crawler.
-- At 13th level, may shapeshift into a rhinocerous beetle.
+- At 1st level, may shapeshift into the form of a giant beetle once per day. The Druid can change shape an additional time per day for every two levels gains, up to 11 uses per day at level 20.
+- At 4th level, the Druid may choose an additional animal form for shapeshifting.
+- At 8th level, the Druid may choose an additional animal form for shapeshifting.
+- At 12th level, the Druid may choose an additional animal form for shapeshifting.
+- At 15th level, the Druid may shapeshift into a rhinocerous beetle.
 - At 15th level, gains 10% resistance to damage from cold, fire, electricity, and acid.  These resistances increase by another 10% at levels 18 and 21.
 
-BORING BEETLE: in this form the druid can make a powerful piercing attack once per round for 2d6+2 piercing damage. The beetle's hard shell gives the druid a 3-point armor class bonus against missile weapons, and 50% resistance to physical damage generally.
+~
+@73404  = ~AVENGER: A member of a special sect within the druidic order, a Druid of this type is dedicated to fighting those who would defile nature. Avengers have powers the average Druid does not—additional abilities that have been earned through extensive rituals, a process that is very physically draining.
 
-GIANT SPIDER: in this form the druid can make 1.5 attacks per round for 1d8 piercing damage; when successful, these attacks deliver a poison with similar effects to the Assassin's "Poison Weapon" ability. The druid is immune to magical and nonmagical webs while in this form, and can deliver a lesser version of the "Web" spell at foes once per three rounds.
+Advantages:
+– Six arcane spells are added to <PRO_HISHER> repertoire, all the way up to the 6th level. These are listed below:
+  1st level: Chromatic Orb.
+  2nd level: Web.
+  3rd level: Lightning Bolt.
+  4th level: Improved Invisibility.
+  5th level: Chaos.
+  6th level: Chain Lightning.
+- At 1st level, may shapeshift into the form of a giant beetle once per day. The Avenger can change shape an additional time per day for every two levels gains, up to 11 uses per day at level 20.
+- At 4th level, the Avenger may choose an additional animal form for shapeshifting.
+- At 8th level, the Avenger may choose an additional animal form for shapeshifting.
+- At 12th level, the Avenger may choose an additional animal form for shapeshifting.
+- At 15th level, the Avenger may shapeshift into a rhinocerous beetle.
 
-FIRE BEETLE: in this form, the druid can make one pincer attack per round, for 2d4 piercing damage and and extra 2d4 fire damage. The druid has a 3-point armor class bonus against missile attacks, and 75% resistance to fire damage.
-
-BOMBARDIER BEETLE: in this form, the druid can make one pincer attack per round, for 2d4 piercing damage and and extra 2d4 acid damage. The druid has a 3-point armor class bonus against missile attacks, and 75% resistance to acid damage.
-
-SWORD SPIDER: in this form, the druid can move extremely fast and attack 4 times per round for 2d4 slashing damage. The druid is immune to magical and nonmagical webs while in this form.
-
-CARRION CRAWLER: in this form the druid can attack twice per round for 2d4 piercing damage. Successful attacks have a 50% chance to paralyze the victim for several rounds if they fail a saving throw vs. poison.
-
-RHINOCEROUS BEETLE: in this massive form, the druid has 22 strength. <PRO_HESHE> can attack twice per round with incredibly powerful pincers, for 3d6 piercing damage. <PRO_HISHER> hard armor gives a 4-point armor class bonus against slashing, crushing, and missile attacks, and 50% resistance to physical damage generally.
+Disadvantages:
+– May not wear heavier armor than leather.
+– Incurs a -2 penalty to Strength and Constitution.
 ~
 @73411  = ~Sumon Spirit Spider~
 @73412  = ~~
@@ -2067,30 +2117,13 @@ With this spell, the caster can summon a massive rhino beetle to aid <PRO_HIMHER
 
 Advantages:
 - At 1st level, may summon a Spirit Wolf. The HD of the spirit animal increases to match the druid's level at 3rd, 5th, 7th and 10th level.
-- At 3rd level, may shapeshift into the form of a wolf at will.
-- At 5th level, may shapeshift into the form of a black bear or a giant beetle.
-- At 7th level, may shapeshift into the form of a yeti.
-- At 9th level, may shapeshift into a winter wolf instead of a wolf.
-- At 9th level, the druid become immune to poison.
-- At 11th level, may shapeshift into a polar bear instead of a black bear.
-- At 13th level, may shapeshift into a remorhaz.
+- At 1st level, may shapeshift into the form of a wolf once per day. The Druid can change shape an additional time per day for every two levels gains, up to 11 uses per day at level 20.
+- At 4th level, the Druid may choose an additional animal form for shapeshifting.
+- At 8th level, the Druid may choose an additional animal form for shapeshifting.
+- At 12th level, the Druid may choose an additional animal form for shapeshifting.
+- At 15th level, the Druid may shapeshift into a remorhaz.
 - At 15th level, gains 10% resistance to damage from cold, fire, electricity, and acid.  These resistances increase by another 10% at levels 18 and 21.
 
-WOLF: in this form the druid can detect hidden enemies. <PRO_HESHE> can attack 1.5 times per round for 2d4 piercing damage. Successful attacks have a chance to grapple the target, briefly Slowing them; they must make a saving throw to avoid this.
-
-BLACK BEAR: in this form, the druid has 19 strength. <PRO_HESHE> can attack twice per round with claws that cause 2d6 slashing damage.
-
-BORING BEETLE: in this form the druid can make a powerful piercing attack once per round for 2d6+2 piercing damage. The beetle's hard shell gives the druid a 3-point armor class bonus against missile weapons, and 50% resistance to physical damage generally.
-
-YETI: in this form the druid has 19 strength. <PRO_HESHE> can attack twice per round with fists that cause 2d6 crushing damage.  Additionally, successful attacks can knock the target away from the druid on a failed saving throw.
-
-FIRE BEETLE: in this form, the druid can make one pincer attack per round, for 2d4 piercing damage and and extra 2d4 fire damage. The druid has a 3-point armor class bonus against missile attacks, and 75% resistance to fire damage.
-
-WINTER WOLF: in this form the druid can attack 1.5 times per round for 2d4 piercing damage. Successful attacks have a chance to grapple the target, briefly Slowing them; they must make a saving throw to avoid this. Additionally, the druid gains the ability to use a ranged Ice Breath attack doing 6d4 cold damage (save for half).
-
-POLAR BEAR: in this form, the druid has 21 strength. <PRO_HESHE> can attack twice per round with claws that cause 2d8 slashing damage and, if the target fails a saving throw, and additional 2d4 crushing damage.
-
-REMORHAZ: in this powerful form, the druid has 21 strength and 100% resistance to cold damage. <PRO_HESHE> can attack 3 times per round with powerful pincers, for 2d6 piercing damage. <PRO_HISHER> hard armor gives a 4-point armor class bonus against slashing, crushing, and missile attacks, and 50% resistance to physical damage generally.
 ~
 //
 // ... shadow druid:
@@ -2125,7 +2158,7 @@ Disadvantages:
 
 Advantages:
 - At 1st level, may summon a Dread Wolf. This ability summons two dread wolves at 7th level, and three at 10th level.
-- At 5th level, may shapeshift into the form of a dread wolf.
+- At 1st level, may shapeshift into the form of a dread wolf.
 - At 9th level, may shapeshift into a vampiric wolf.
 - At 9th level, the druid becomes immune to level drain.
 - At 15th level, gains 10% resistance to damage from cold, fire, electricity, and acid.  These resistances increase by another 10% at levels 18 and 21.
@@ -2148,8 +2181,9 @@ Disadvantages:
 Advantages:
 - May cast "Beast Claw" as an innate ability, at will.
 - 20% of all Beast Claw attacks cause infection upon a failed save vs. Death, weakening the target and causing a 10% chance of spell failure.
-- At 6th level, may shapeshift into a hybrid werewolf form once per day. This form increases in power to that of a greater werewolf at 12th level, and a werewolf lord at 18th level.
-- May allocate 2 points (++) to Single-Weapon Style.
+- At 4th level, may shapeshift into the form of a dire wolf once per day. The Beast Lord can change shape an additional time per day for every two levels gains, up to 11 uses per day at level 20.
+- At 6th level, the Beast Lord may shapeshift into the form of a werewolf instead of a dire wolf.
+- At 12th level, the Beast Lord may shapeshift into the form of a greater werewolf instead of a werewolf.
 
 Restrictions:
 - May not be Lawful
@@ -2157,7 +2191,7 @@ Restrictions:
 @76204  = ~BEAST LORD: these individuals have come to understand that within even the most rational and civilized man or woman lies an animal driven by primal needs and desires. (Often, this understanding is developed from horrifying experiments performed on subjects who are very rarely willing.) Through the application of a serum derived from a strain of lycanthropy, the Beast Lord can all forth <PRO_HISHER> own bestial nature, causing <PRO_HISHER> very body to take on lupine qualities. This also gives the Beast Lord a deep insight into magic relating to summoning and controlling animals.
 ~
 @76205  = ~~
-@76211  = ~Claws of Malar~
+@76211  = ~Beast Claw~
 @76212  = ~Dispel Claws~
 @76213  = ~Shapeshift: werewolf~
 @76214  = ~Shapeshift: natural form~
@@ -2165,6 +2199,18 @@ Restrictions:
 @76216  = ~werewolf~
 @76217  = ~greater werewolf~
 @76218  = ~werewolf lord~
+@76219  = ~Shapeshifter: This Druid is not called Shapeshifter because <PRO_HESHE> has access to a great variety of forms, but rather because of <PRO_HISHER> complete dedication to a single alternate form. This Druid has willingly allowed <PRO_HIMHER>self to become infected with lycanthropy, but due to intense study, training, and control over natural magic, <PRO_HESHE> has the ability to control the affliction. The creature <PRO_HESHE> becomes is that of the werewolf, the most famous of the lycanthropic shape changers.
+
+Advantages:
+- May cast "Beast Claw" as an innate ability, at will.
+- 20% of all Beast Claw attacks cause infection upon a failed save vs. Death, weakening the target and causing a 10% chance of spell failure.
+- At 4th level, may shapeshift into the form of a dire wolf once per day. The Beast Lord can change shape an additional time per day for every two levels gains, up to 11 uses per day at level 20.
+- At 6th level, the Beast Lord may shapeshift into the form of a werewolf instead of a dire wolf.
+- At 13th level, the Beast Lord may shapeshift into the form of a greater werewolf instead of a werewolf.
+
+Restrictions:
+- May not be Lawful
+~
 //
 // ... elementalist:
 //

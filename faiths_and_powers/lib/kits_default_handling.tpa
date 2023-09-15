@@ -1431,7 +1431,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 2
   STR_VAR
     clab_name 		= EVAL ~nmrnwlrn~
-	sphere_list		= ~ranger_forest_spheres~
+	sphere_list		= ~elven_archer_spheres~
 	class 			= ~scout~
 END
 //__________________________________________________________________________________
@@ -1468,7 +1468,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 1
   STR_VAR
     clab_name 		= EVAL ~nmrnbsln~
-	sphere_list		= ~ranger_forest_spheres~
+	sphere_list		= ~elven_archer_spheres~
 	class 			= ~scout~
 END
 //__________________________________________________________________________________
@@ -1544,12 +1544,8 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
 	u_crossbows 		= 3
   STR_VAR
     clab_name 		= EVAL ~nmrnfrrn~
-    s_Protection 	= ~ranger~
-    s_War 			= ~ranger~
-    s_Vigor 		= ~ranger~
-    s_Animal 		= ~ranger~
-    s_Plant 		= ~ranger~
 	class 			= ~scout~
+	sphere_list		= ~DR_justifier_spheres~
  END
 END
 //__________________________________________________________________________________
@@ -1588,10 +1584,8 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
 	u_crossbows 		= 3
   STR_VAR
     clab_name 		= EVAL ~a#justif~
-    s_Protection 	= ~ranger~
-    s_War 			= ~ranger~
-    s_Vigor 		= ~ranger~
 	class 			= ~scout~
+	sphere_list		= ~DR_justifier_spheres~
  END
 END
 //__________________________________________________________________________________
@@ -2036,7 +2030,7 @@ END
 //__________________________________________________________________________________
 END
 
-// I HATE UNDEAD - UNDED PREDATOR (RANGER)
+// I HATE UNDEAD - UNDEAD PREDATOR (RANGER)
 
 ACTION_IF (FILE_EXISTS_IN_GAME ~rahuup.2da~) BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
@@ -2067,29 +2061,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
   STR_VAR
     clab_name 		= ~rahuup~
 	class 			= ~ranger~
-	s_Life 			= ~minor~
-	s_Death 		= ~x~
-	s_Benediction 	= ~x~
-	s_Destruction 	= ~x~
-	s_Protection 	= ~x~
-	s_War 			= ~x~
-	s_Exploration   = ~minor~
-	s_Knowledge 	= ~x~
-	s_Deception 	= ~x~
-	s_Thought 		= ~x~
-	s_Dread 		= ~x~
-	s_Vigor 		= ~major~
-	s_Affliction 	= ~x~
-	s_Animal 		= ~minor~
-	s_Plant 		= ~minor~
-	s_Earth 		= ~major~
-	s_Water 		= ~x~
-	s_Air 			= ~x~
-	s_Fire 			= ~x~
-	s_Light 		= ~major~
-	s_Shadow 		= ~x~
-	s_Magic 		= ~x~
-	s_Astral	     = ~x~
+	sphere_list		= ~vanilla_undead_hunter_spheres~
 END
 //__________________________________________________________________________________
 END
@@ -2126,29 +2098,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
     clab_name 		= ~rahuhr~
 	class 			= ~cleric~
 	multiclass 		= ~fc~
-	s_Life 			= ~major~
-	s_Death 		= ~x~
-	s_Benediction 	= ~minor~
-	s_Destruction 	= ~major~
-	s_Protection 	= ~major~
-	s_War 			= ~major~
-	s_Exploration   = ~minor~
-	s_Knowledge 	= ~minor~
-	s_Deception 	= ~x~
-	s_Thought 		= ~x~
-	s_Dread 		= ~minor~
-	s_Vigor 		= ~major~
-	s_Affliction 	= ~x~
-	s_Animal 		= ~x~
-	s_Plant 		= ~x~
-	s_Earth 		= ~x~
-	s_Water 		= ~x~
-	s_Air 			= ~x~
-	s_Fire 			= ~minor~
-	s_Light 		= ~major~
-	s_Shadow 		= ~x~
-	s_Magic 		= ~minor~
-	s_Astral	     = ~major~
+	sphere_list		= ~lathander_spheres~
 END
 //__________________________________________________________________________________
 END
@@ -2184,29 +2134,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
   STR_VAR
     clab_name 		= ~rahuce~
 	class 			= ~druid~
-	s_Life 			= ~minor~
-	s_Death 		= ~x~
-	s_Benediction 	= ~x~
-	s_Destruction 	= ~major~
-	s_Protection 	= ~x~
-	s_War 			= ~x~
-	s_Exploration   = ~major~
-	s_Knowledge 	= ~minor~
-	s_Deception 	= ~x~
-	s_Thought 		= ~x~
-	s_Dread 		= ~x~
-	s_Vigor 		= ~major~
-	s_Affliction 	= ~x~
-	s_Animal 		= ~x~
-	s_Plant 		= ~major~
-	s_Earth 		= ~major~
-	s_Water 		= ~minor~
-	s_Air 			= ~minor~
-	s_Fire 			= ~major~
-	s_Light 		= ~major~
-	s_Shadow 		= ~minor~
-	s_Magic 		= ~x~
-	s_Astral	     = ~x~
+	sphere_list		= ~vanilla_avenger_spheres~
 END
 //__________________________________________________________________________________
 END

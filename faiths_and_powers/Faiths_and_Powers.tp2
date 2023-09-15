@@ -774,6 +774,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   INCLUDE ~override/fnp_sphere_list.tpa~
 END
 INCLUDE ~faiths_and_powers/lib/kits_new_druids.tpa~
+INCLUDE ~faiths_and_powers/lib/semi_spontaneous.tpa~
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__no_spheres.d5~
@@ -1219,7 +1220,7 @@ INCLUDE ~faiths_and_powers/lib/kits_default_handling.tpa~
  LAF default_kit_spheres END
 //__________________________________________________________________________________
 
-//read system_base info in order to apply sphere system/item usability_______________
+//read system_base info in order to apply sphere system/item usability______________
 //
  LAM ~READ_FNP_KIT_INFO~
 //__________________________________________________________________________________
@@ -1315,7 +1316,6 @@ OUTER_SET simpler_usability_changes	=	0	//	do this for now instead
 
 INCLUDE ~faiths_and_powers/lib/kits_multi_druids_shamans.tpa~
 
-//ACTION_IF (%multiclass_druids% = 1) BEGIN
   LAF fighter_druid END
   LAF druid_ranger END
   LAF druid_thief END
@@ -1328,11 +1328,6 @@ INCLUDE ~faiths_and_powers/lib/kits_multi_druids_shamans.tpa~
   END  
   LAF multi_druid_strongholds END
 /*
-  ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-    LAF multi_druid_shapeshifting END
-  END
-*/
-/*
   ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~80~) BEGIN
     LAF no_spheres_druid_spells END
   END
@@ -1340,7 +1335,6 @@ INCLUDE ~faiths_and_powers/lib/kits_multi_druids_shamans.tpa~
   ACTION_IF !(MOD_IS_INSTALLED ~faiths_and_powers.tp2~ ~75~) BEGIN
     LAF no_spheres_druid_usability END
   END
-//END
 
 LAF remove_mc_menu_kits END
 

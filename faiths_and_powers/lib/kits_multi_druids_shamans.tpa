@@ -225,6 +225,7 @@ COPY_EXISTING ~kit.ids~ ~override~
 BUT_ONLY
 
 
+/*
 COPY_EXISTING ~d5drnf.spl~ ~override~
   PATCH_IF VARIABLE_IS_SET %fighter_druid_code% BEGIN
 	LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = %fighter_druid_code% STR_VAR resource = ~d5drsc1~ END
@@ -242,6 +243,7 @@ COPY_EXISTING ~d5drnf.spl~ ~override~
 	LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = %monk_druid_code% STR_VAR resource = ~d5drsc1~ END
   END
 BUT_ONLY
+*/
 
 END	//	end function
 //__________________________________________________________________________________
@@ -275,6 +277,11 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
   COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
 END
 APPEND ~d5drfi.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~ UNLESS ~AP_D5_NOTU~
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5sc000.spl~) BEGIN
+  APPEND ~d5drfi.2da~ ~WILDSHAPE   AP_D5SC000  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+WILDSHAPE   AP_D5SC8L   ****        ****        GA_D5SC00A  ****        ****        ****        GA_D5SC00B  ****        ****        ****        GA_D5SC00C  ****        ****        AP_D5SC10L  ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+END
+
 
 //ADD KIT____________________________________________________________________________
 //
@@ -324,16 +331,71 @@ END
 
 //SHAPESHIFT/ALIGNMENT/KIT TEXT______________________________________________________
 //
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5drsc1.spl~) BEGIN
-	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
-	  SAY NAME1 @73111
-	  SAY UNIDENTIFIED_DESC @73112
-	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5sc000.spl~) BEGIN
+  APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
+  COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_KIT_IS~ BEGIN
+	    SET kit_is_row = %row%
+	  END
+	END
+  BUT_ONLY
+  COPY_EXISTING ~kit.ids~ ~override~
+    COUNT_2DA_COLS cols 
+    READ_2DA_ENTRIES_NOW rows cols 
+    FOR (row = 1; row < rows; ++row) BEGIN 
+      READ_2DA_ENTRY_FORMER rows row 1 ~kit_name~ 
+      READ_2DA_ENTRY_FORMER rows row 0 kit_code
+      PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FIGHTER~ BEGIN
+        SET fighter_druid_code = kit_code
+      END
+    END
+  BUT_ONLY
+  COPY_EXISTING ~d5sc000.spl~ ~override~
+    PATCH_IF (VARIABLE_IS_SET %fighter_druid_code%) BEGIN
+      LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %fighter_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc08l~ END
+    END
+  BUT_ONLY
+  <<<<<<<< d5/d5sctmp.baf
+
+  >>>>>>>>
+  COPY ~d5/d5sctmp.baf~ ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~
+  COPY_EXISTING ~d5sclst.2da~ ~override~
+    COUNT_2DA_COLS cols
+    COUNT_2DA_ROWS cols rows
+    FOR (col = 1; col < cols; ++col) BEGIN
+      READ_2DA_ENTRY 0 col cols feat_kit
+      PATCH_IF (~%feat_kit%~ STRING_EQUAL_CASE ~D5_DR_FIGHTER~) BEGIN
+        FOR (row = 1; row < rows; ++row) BEGIN
+          READ_2DA_ENTRY row col cols val
+          PATCH_PRINT ~%feat_kit% - %row% - %val%~
+          PATCH_IF (~%val%~ STRING_EQUAL_CASE ~1~) BEGIN
+            INNER_ACTION BEGIN
+              APPEND_OUTER ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~ 
+~
+IF
+	NumberOfTimesTalkedTo(0)
+	Kit(LastSummonerOf(Myself),"%feat_kit%")
+THEN
+	RESPONSE #100
+	SetGlobal("D5SC%row%","GLOBAL",1)
+	Continue()
+END
+~
+            END // end inner action
+          END
+        END // end rows
+      END
+    END // end cols
+  BUT_ONLY
+  ACTION_IF (FILE_EXISTS_IN_GAME ~d5scdlg.bcs~) BEGIN
+    EXTEND_TOP ~d5scdlg.bcs~ ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~
   END
-  COPY_EXISTING ~d5drnf.spl~ ~override~
-	LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = (0x4000 + %D5_DR_FIGHTER%) STR_VAR resource = ~d5drsc1~ END
-  IF_EXISTS BUT_ONLY
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~alignmnt.2da~ ~override~
 	COUNT_2DA_ROWS 10 rows
 	FOR (row = 1; row < rows; ++row) BEGIN
@@ -358,30 +420,22 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
 	  END
 	END
   IF_EXISTS BUT_ONLY
-  COPY_EXISTING ~clastext.2da~ ~override~
-	COUNT_2DA_ROWS 10 rows
-	FOR (row = 1; row < rows; ++row) BEGIN
-	  READ_2DA_ENTRY row 0 10 kit_name
-	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
-		READ_2DA_ENTRY row 4 10 nudru_desc
-	  END
-	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FIGHTER~) BEGIN
-		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
-	  END
-	END
-  IF_EXISTS BUT_ONLY
-  COPY_EXISTING ~sodcltxt.2da~ ~override~
-	COUNT_2DA_ROWS 10 rows
-	FOR (row = 1; row < rows; ++row) BEGIN
-	  READ_2DA_ENTRY row 0 10 kit_name
-	  PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
-		READ_2DA_ENTRY row 4 10 nudru_desc
-	  END
-	  PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FIGHTER~) BEGIN
-		SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
-	  END
-	END
-  IF_EXISTS BUT_ONLY
+  ACTION_FOR_EACH text IN ~clastext~ ~sodcltxt~ ~bgclatxt~ BEGIN
+    ACTION_IF (FILE_EXISTS_IN_GAME ~%text%.2da~) BEGIN
+      COPY_EXISTING ~%text%.2da~ ~override~
+	    COUNT_2DA_ROWS 10 rows
+	    FOR (row = 1; row < rows; ++row) BEGIN
+	      READ_2DA_ENTRY row 0 10 kit_name
+	      PATCH_IF (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FOR~) BEGIN
+	    	READ_2DA_ENTRY row 4 10 nudru_desc
+	      END
+	      PATCH_IF (VARIABLE_IS_SET %nudru_desc%) && (~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_FIGHTER~) BEGIN
+	    	SET_2DA_ENTRY row 4 10 nudru_desc // or do: RESOLVE_STR_REF (@73103)
+	      END
+	    END
+      BUT_ONLY
+    END
+  END
 END
 
 //NO SPHERE SYSTEM____________________________________________________________________
@@ -528,6 +582,10 @@ END
 ACTION_IF (FILE_EXISTS_IN_GAME ~d5__stride.d5~) BEGIN
   APPEND ~d5drra.2da~ ~STRIDE      AP_SPCL151  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****         ****        ****        ****        ****        ****        ****  ~ UNLESS ~STRIDE~
 END
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5sc000.spl~) BEGIN
+  APPEND ~d5drra.2da~ ~WILDSHAPE   AP_D5SC000  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+WILDSHAPE   AP_D5SC2L   ****        ****        GA_D5SC00A  ****        ****        ****        GA_D5SC00B  ****        ****        ****        GA_D5SC00C  ****        ****        AP_D5SC10L  ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+END
 
 //ADD KIT____________________________________________________________________________
 //
@@ -577,16 +635,71 @@ END
 
 //SHAPESHIFT/ALIGNMENT/KIT TEXT______________________________________________________
 //
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5drsc1.spl~ BEGIN
-	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
-	  SAY NAME1 @73111
-	  SAY UNIDENTIFIED_DESC @73112
-	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5sc000.spl~) BEGIN
+  APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
+  COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_KIT_IS~ BEGIN
+	    SET kit_is_row = %row%
+	  END
+	END
+  BUT_ONLY
+  COPY_EXISTING ~kit.ids~ ~override~
+    COUNT_2DA_COLS cols 
+    READ_2DA_ENTRIES_NOW rows cols 
+    FOR (row = 1; row < rows; ++row) BEGIN 
+      READ_2DA_ENTRY_FORMER rows row 1 ~kit_name~ 
+      READ_2DA_ENTRY_FORMER rows row 0 kit_code
+      PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_RANGER~ BEGIN
+        SET ranger_druid_code = kit_code
+      END
+    END
+  BUT_ONLY
+  COPY_EXISTING ~d5sc000.spl~ ~override~
+    PATCH_IF (VARIABLE_IS_SET %ranger_druid_code%) BEGIN
+      LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %ranger_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc12l~ END
+    END
+  BUT_ONLY
+  <<<<<<<< d5/d5sctmp.baf
+
+  >>>>>>>>
+  COPY ~d5/d5sctmp.baf~ ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~
+  COPY_EXISTING ~d5sclst.2da~ ~override~
+    COUNT_2DA_COLS cols
+    COUNT_2DA_ROWS cols rows
+    FOR (col = 1; col < cols; ++col) BEGIN
+      READ_2DA_ENTRY 0 col cols feat_kit
+      PATCH_IF (~%feat_kit%~ STRING_EQUAL_CASE ~D5_DR_RANGER~) BEGIN
+        FOR (row = 1; row < rows; ++row) BEGIN
+          READ_2DA_ENTRY row col cols val
+          PATCH_PRINT ~%feat_kit% - %row% - %val%~
+          PATCH_IF (~%val%~ STRING_EQUAL_CASE ~1~) BEGIN
+            INNER_ACTION BEGIN
+              APPEND_OUTER ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~ 
+~
+IF
+	NumberOfTimesTalkedTo(0)
+	Kit(LastSummonerOf(Myself),"%feat_kit%")
+THEN
+	RESPONSE #100
+	SetGlobal("D5SC%row%","GLOBAL",1)
+	Continue()
+END
+~
+            END // end inner action
+          END
+        END
+      END // end rows
+    END // end cols
+  BUT_ONLY
+  ACTION_IF (FILE_EXISTS_IN_GAME ~d5scdlg.bcs~) BEGIN
+    EXTEND_TOP ~d5scdlg.bcs~ ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~
   END
-  COPY_EXISTING ~d5drnf.spl~ ~override~
-	LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = (0x4000 + %D5_DR_RANGER%) STR_VAR resource = ~d5drsc1~ END
-  IF_EXISTS BUT_ONLY
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~alignmnt.2da~ ~override~
 	COUNT_2DA_ROWS 10 rows
 	FOR (row = 1; row < rows; ++row) BEGIN
@@ -740,6 +853,10 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
   COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
 END
 APPEND ~d5drth.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5sc000.spl~) BEGIN
+  APPEND ~d5drth.2da~ ~WILDSHAPE   AP_D5SC000  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+WILDSHAPE   AP_D5SC1L   ****        ****        GA_D5SC00A  ****        ****        ****        GA_D5SC00B  ****        ****        ****        GA_D5SC00C  ****        ****        AP_D5SC00D  ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+END
 
 //ADD KIT____________________________________________________________________________
 //
@@ -789,16 +906,71 @@ END
 
 //SHAPESHIFT/ALIGNMENT/KIT TEXT______________________________________________________
 //
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5drsc1.spl~) BEGIN
-	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
-	  SAY NAME1 @73111
-	  SAY UNIDENTIFIED_DESC @73112
-	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5sc000.spl~) BEGIN
+  APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
+  COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_KIT_IS~ BEGIN
+	    SET kit_is_row = %row%
+	  END
+	END
+  BUT_ONLY
+  COPY_EXISTING ~kit.ids~ ~override~
+    COUNT_2DA_COLS cols 
+    READ_2DA_ENTRIES_NOW rows cols 
+    FOR (row = 1; row < rows; ++row) BEGIN 
+      READ_2DA_ENTRY_FORMER rows row 1 ~kit_name~ 
+      READ_2DA_ENTRY_FORMER rows row 0 kit_code
+      PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_THIEF~ BEGIN
+        SET thief_druid_code = kit_code
+      END
+    END
+  BUT_ONLY
+  COPY_EXISTING ~d5sc000.spl~ ~override~
+    PATCH_IF (VARIABLE_IS_SET %thief_druid_code%) BEGIN
+      LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %thief_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc02l~ END
+    END
+  BUT_ONLY
+  <<<<<<<< d5/d5sctmp.baf
+
+  >>>>>>>>
+  COPY ~d5/d5sctmp.baf~ ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~
+  COPY_EXISTING ~d5sclst.2da~ ~override~
+    COUNT_2DA_COLS cols
+    COUNT_2DA_ROWS cols rows
+    FOR (col = 1; col < cols; ++col) BEGIN
+      READ_2DA_ENTRY 0 col cols feat_kit
+      PATCH_IF (~%feat_kit%~ STRING_EQUAL_CASE ~D5_DR_THIEF~) BEGIN
+        FOR (row = 1; row < rows; ++row) BEGIN
+          READ_2DA_ENTRY row col cols val
+          PATCH_PRINT ~%feat_kit% - %row% - %val%~
+          PATCH_IF (~%val%~ STRING_EQUAL_CASE ~1~) BEGIN
+            INNER_ACTION BEGIN
+              APPEND_OUTER ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~ 
+~
+IF
+	NumberOfTimesTalkedTo(0)
+	Kit(LastSummonerOf(Myself),"%feat_kit%")
+THEN
+	RESPONSE #100
+	SetGlobal("D5SC%row%","GLOBAL",1)
+	Continue()
+END
+~
+            END // end inner action
+          END
+        END
+      END // end rows
+    END // end cols
+  BUT_ONLY
+  ACTION_IF (FILE_EXISTS_IN_GAME ~d5scdlg.bcs~) BEGIN
+    EXTEND_TOP ~d5scdlg.bcs~ ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~
   END
-  COPY_EXISTING ~d5drnf.spl~ ~override~
-	LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = (0x4000 + %D5_DR_THIEF%) STR_VAR resource = ~d5drsc1~ END
-  IF_EXISTS BUT_ONLY
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~alignmnt.2da~ ~override~
 	COUNT_2DA_ROWS 10 rows
 	FOR (row = 1; row < rows; ++row) BEGIN
@@ -964,6 +1136,10 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
   COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
 END
 APPEND ~d5drma.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5sc000.spl~) BEGIN
+  APPEND ~d5drma.2da~ ~WILDSHAPE   AP_D5SC000  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+WILDSHAPE   AP_D5SC2L   ****        ****        GA_D5SC00A  ****        ****        ****        GA_D5SC00B  ****        ****        ****        GA_D5SC00C  ****        ****        AP_D5SC00D  ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+END
 
 //ADD KIT____________________________________________________________________________
 //
@@ -1013,16 +1189,71 @@ END
 
 //SHAPESHIFT/ALIGNMENT/KIT TEXT______________________________________________________
 //
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5drsc1.spl~) BEGIN
-	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
-	  SAY NAME1 @73111
-	  SAY UNIDENTIFIED_DESC @73112
-	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5sc000.spl~) BEGIN
+  APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
+  COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_KIT_IS~ BEGIN
+	    SET kit_is_row = %row%
+	  END
+	END
+  BUT_ONLY
+  COPY_EXISTING ~kit.ids~ ~override~
+    COUNT_2DA_COLS cols 
+    READ_2DA_ENTRIES_NOW rows cols 
+    FOR (row = 1; row < rows; ++row) BEGIN 
+      READ_2DA_ENTRY_FORMER rows row 1 ~kit_name~ 
+      READ_2DA_ENTRY_FORMER rows row 0 kit_code
+      PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_MAGE~ BEGIN
+        SET mage_druid_code = kit_code
+      END
+    END
+  BUT_ONLY
+  COPY_EXISTING ~d5sc000.spl~ ~override~
+    PATCH_IF (VARIABLE_IS_SET %mage_druid_code%) BEGIN
+      LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %mage_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc02l~ END
+    END
+  BUT_ONLY
+  <<<<<<<< d5/d5sctmp.baf
+
+  >>>>>>>>
+  COPY ~d5/d5sctmp.baf~ ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~
+  COPY_EXISTING ~d5sclst.2da~ ~override~
+    COUNT_2DA_COLS cols
+    COUNT_2DA_ROWS cols rows
+    FOR (col = 1; col < cols; ++col) BEGIN
+      READ_2DA_ENTRY 0 col cols feat_kit
+      PATCH_IF (~%feat_kit%~ STRING_EQUAL_CASE ~D5_DR_MAGE~) BEGIN
+        FOR (row = 1; row < rows; ++row) BEGIN
+          READ_2DA_ENTRY row col cols val
+          PATCH_PRINT ~%feat_kit% - %row% - %val%~
+          PATCH_IF (~%val%~ STRING_EQUAL_CASE ~1~) BEGIN
+            INNER_ACTION BEGIN
+              APPEND_OUTER ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~ 
+~
+IF
+	NumberOfTimesTalkedTo(0)
+	Kit(LastSummonerOf(Myself),"%feat_kit%")
+THEN
+	RESPONSE #100
+	SetGlobal("D5SC%row%","GLOBAL",1)
+	Continue()
+END
+~
+            END // end inner action
+          END
+        END
+      END // end rows
+    END // end cols
+  BUT_ONLY
+  ACTION_IF (FILE_EXISTS_IN_GAME ~d5scdlg.bcs~) BEGIN
+    EXTEND_TOP ~d5scdlg.bcs~ ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~
   END
-  COPY_EXISTING ~d5drnf.spl~ ~override~
-	LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = (0x4000 + %D5_DR_MAGE%) STR_VAR resource = ~d5drsc1~ END
-  IF_EXISTS BUT_ONLY
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~alignmnt.2da~ ~override~
 	COUNT_2DA_ROWS 10 rows
 	FOR (row = 1; row < rows; ++row) BEGIN
@@ -1176,6 +1407,10 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
   COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
 END
 APPEND ~d5drsrc.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5sc000.spl~) BEGIN
+  APPEND ~d5drsrc.2da~ ~WILDSHAPE   AP_D5SC000  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+WILDSHAPE   AP_D5SC2L   ****        ****        GA_D5SC00A  ****        ****        ****        GA_D5SC00B  ****        ****        ****        GA_D5SC00C  ****        ****        AP_D5SC00D  ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+END
 
 //ADD KIT____________________________________________________________________________
 //
@@ -1226,16 +1461,71 @@ END
 
 //SHAPESHIFT/ALIGNMENT/KIT TEXT______________________________________________________
 //
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5drsc1.spl~) BEGIN
-	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
-	  SAY NAME1 @73111
-	  SAY UNIDENTIFIED_DESC @73112
-	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5sc000.spl~) BEGIN
+  APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
+  COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_KIT_IS~ BEGIN
+	    SET kit_is_row = %row%
+	  END
+	END
+  BUT_ONLY
+  COPY_EXISTING ~kit.ids~ ~override~
+    COUNT_2DA_COLS cols 
+    READ_2DA_ENTRIES_NOW rows cols 
+    FOR (row = 1; row < rows; ++row) BEGIN 
+      READ_2DA_ENTRY_FORMER rows row 1 ~kit_name~ 
+      READ_2DA_ENTRY_FORMER rows row 0 kit_code
+      PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_SORC~ BEGIN
+        SET sorcerer_druid_code = kit_code
+      END
+    END
+  BUT_ONLY
+  COPY_EXISTING ~d5sc000.spl~ ~override~
+    PATCH_IF (VARIABLE_IS_SET %sorcerer_druid_code%) BEGIN
+      LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %sorcerer_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc02l~ END
+    END
+  BUT_ONLY
+  <<<<<<<< d5/d5sctmp.baf
+
+  >>>>>>>>
+  COPY ~d5/d5sctmp.baf~ ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~
+  COPY_EXISTING ~d5sclst.2da~ ~override~
+    COUNT_2DA_COLS cols
+    COUNT_2DA_ROWS cols rows
+    FOR (col = 1; col < cols; ++col) BEGIN
+      READ_2DA_ENTRY 0 col cols feat_kit
+      PATCH_IF (~%feat_kit%~ STRING_EQUAL_CASE ~D5_DR_SORC~) BEGIN
+        FOR (row = 1; row < rows; ++row) BEGIN
+          READ_2DA_ENTRY row col cols val
+          PATCH_PRINT ~%feat_kit% - %row% - %val%~
+          PATCH_IF (~%val%~ STRING_EQUAL_CASE ~1~) BEGIN
+            INNER_ACTION BEGIN
+              APPEND_OUTER ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~ 
+~
+IF
+	NumberOfTimesTalkedTo(0)
+	Kit(LastSummonerOf(Myself),"%feat_kit%")
+THEN
+	RESPONSE #100
+	SetGlobal("D5SC%row%","GLOBAL",1)
+	Continue()
+END
+~
+            END // end inner action
+          END
+        END
+      END // end rows
+    END // end cols
+  BUT_ONLY
+  ACTION_IF (FILE_EXISTS_IN_GAME ~d5scdlg.bcs~) BEGIN
+    EXTEND_TOP ~d5scdlg.bcs~ ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~
   END
-  COPY_EXISTING ~d5drnf.spl~ ~override~
-	LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = (0x4000 + %D5_DR_SORC%) STR_VAR resource = ~d5drsc1~ END
-  IF_EXISTS BUT_ONLY
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~alignmnt.2da~ ~override~
 	COUNT_2DA_ROWS 10 rows
 	FOR (row = 1; row < rows; ++row) BEGIN
@@ -1398,6 +1688,10 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5_notu.spl~) BEGIN
   COPY ~faiths_and_powers/data/misc/d5_notu.spl~ ~override~
 END
 APPEND ~d5drmnk.2da~ ~NO_TURN     AP_D5_NOTU  AP_D5_NOTU  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5sc000.spl~) BEGIN
+  APPEND ~d5drmnk.2da~ ~WILDSHAPE   AP_D5SC000  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+WILDSHAPE   AP_D5SC2L   ****        ****        GA_D5SC00A  ****        ****        ****        GA_D5SC00B  ****        ****        ****        GA_D5SC00C  ****        ****        AP_D5SC00D  ****        ****        ****        ****        ****     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+END
 
 //ADD KIT____________________________________________________________________________
 //
@@ -1448,16 +1742,71 @@ END
 
 //SHAPESHIFT/ALIGNMENT/KIT TEXT______________________________________________________
 //
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
-  ACTION_IF !(FILE_EXISTS_IN_GAME ~d5drsc1.spl~) BEGIN
-	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.spl~ ~override~
-	  SAY NAME1 @73111
-	  SAY UNIDENTIFIED_DESC @73112
-	COPY ~faiths_and_powers/kits/druids/731_forest_druid/d5drsc1.eff~ ~override~
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5sc000.spl~) BEGIN
+  APPEND ~splprot.2da~ ~D5_KIT_IS%TAB%152%TAB%-1%TAB%1~ UNLESS ~D5_KIT_IS~
+  COPY_EXISTING ~splprot.2da~ ~override~
+	COUNT_2DA_COLS cols
+	READ_2DA_ENTRIES_NOW rows cols
+	FOR (row = 1; row < rows; ++row) BEGIN
+	  READ_2DA_ENTRY_FORMER rows row 0 ~stat~
+	  PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_KIT_IS~ BEGIN
+	    SET kit_is_row = %row%
+	  END
+	END
+  BUT_ONLY
+  COPY_EXISTING ~kit.ids~ ~override~
+    COUNT_2DA_COLS cols 
+    READ_2DA_ENTRIES_NOW rows cols 
+    FOR (row = 1; row < rows; ++row) BEGIN 
+      READ_2DA_ENTRY_FORMER rows row 1 ~kit_name~ 
+      READ_2DA_ENTRY_FORMER rows row 0 kit_code
+      PATCH_IF ~%kit_name%~ STRING_EQUAL_CASE ~D5_DR_MONK~ BEGIN
+        SET monk_druid_code = kit_code
+      END
+    END
+  BUT_ONLY
+  COPY_EXISTING ~d5sc000.spl~ ~override~
+    PATCH_IF (VARIABLE_IS_SET %monk_druid_code%) BEGIN
+      LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = %monk_druid_code% parameter2 = %kit_is_row% timing = 1 STR_VAR resource = ~d5sc02l~ END
+    END
+  BUT_ONLY
+  <<<<<<<< d5/d5sctmp.baf
+
+  >>>>>>>>
+  COPY ~d5/d5sctmp.baf~ ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~
+  COPY_EXISTING ~d5sclst.2da~ ~override~
+    COUNT_2DA_COLS cols
+    COUNT_2DA_ROWS cols rows
+    FOR (col = 1; col < cols; ++col) BEGIN
+      READ_2DA_ENTRY 0 col cols feat_kit
+      PATCH_IF (~%feat_kit%~ STRING_EQUAL_CASE ~D5_DR_MONK~) BEGIN
+        FOR (row = 1; row < rows; ++row) BEGIN
+          READ_2DA_ENTRY row col cols val
+          PATCH_PRINT ~%feat_kit% - %row% - %val%~
+          PATCH_IF (~%val%~ STRING_EQUAL_CASE ~1~) BEGIN
+            INNER_ACTION BEGIN
+              APPEND_OUTER ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~ 
+~
+IF
+	NumberOfTimesTalkedTo(0)
+	Kit(LastSummonerOf(Myself),"%feat_kit%")
+THEN
+	RESPONSE #100
+	SetGlobal("D5SC%row%","GLOBAL",1)
+	Continue()
+END
+~
+            END // end inner action
+          END
+        END
+      END // end rows
+    END // end cols
+  BUT_ONLY
+  ACTION_IF (FILE_EXISTS_IN_GAME ~d5scdlg.bcs~) BEGIN
+    EXTEND_TOP ~d5scdlg.bcs~ ~weidu_external/%MOD_FOLDER%/compile/d5sctmp.baf~
   END
-  COPY_EXISTING ~d5drnf.spl~ ~override~
-	LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 match_target = 1 match_parameter2 = 9 parameter1 = (0x4000 + %D5_DR_MONK%) STR_VAR resource = ~d5drsc1~ END
-  IF_EXISTS BUT_ONLY
+END
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5dfor.2da~) BEGIN
   COPY_EXISTING ~alignmnt.2da~ ~override~
 	COUNT_2DA_ROWS 10 rows
 	FOR (row = 1; row < rows; ++row) BEGIN
