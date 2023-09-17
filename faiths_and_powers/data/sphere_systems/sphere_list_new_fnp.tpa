@@ -3416,8 +3416,10 @@ END
 
 //___________________________________________________________________________________
 //
-DEFINE_ACTION_MACRO DR_oozemaster_spheres BEGIN
-  ACTION_DEFINE_ASSOCIATIVE_ARRAY a#ooze_spheres BEGIN
+DEFINE_ACTION_FUNCTION dr_oozemaster_spheres
+  RET_ARRAY dr_oozemaster_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY dr_oozemaster_spheres_array BEGIN
 	All				=> major
 	Death			=> x
 	Law				=> x
@@ -3447,13 +3449,15 @@ END
 
 //___________________________________________________________________________________
 //
-DEFINE_ACTION_MACRO DR_justifier_spheres BEGIN
- ACTION_DEFINE_ASSOCIATIVE_ARRAY a#justif_spheres BEGIN
-	All				=> ranger
+DEFINE_ACTION_FUNCTION dr_justifier_spheres
+  RET_ARRAY dr_justifier_spheres_array
+ BEGIN
+  ACTION_DEFINE_ASSOCIATIVE_ARRAY dr_justifier_spheres_array BEGIN
+	All				=> x
 	Death			=> x
 	Law				=> x
 	Chaos			=> x
-	Protection		=> x
+	Protection		=> ranger
 	War				=> x
 	Time			=> x
 	Perception		=> x

@@ -1088,7 +1088,6 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~a#ooze.2da~) BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
- LAM DR_oozemaster_spheres
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1114,7 +1113,8 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= EVAL ~a#ooze~
-	class 			= ~occultist~
+	class 			= ~druid~
+	sphere_list		= ~dr_oozemaster_spheres~
  END
 END
 //__________________________________________________________________________________
@@ -1518,7 +1518,6 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~nmrnfrrn.2da~) BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
- LAM DR_justifier_spheres
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1545,7 +1544,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   STR_VAR
     clab_name 		= EVAL ~nmrnfrrn~
 	class 			= ~scout~
-	sphere_list		= ~DR_justifier_spheres~
+	sphere_list		= ~dr_justifier_spheres~
  END
 END
 //__________________________________________________________________________________
@@ -1558,7 +1557,6 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~a#justif.2da~) BEGIN
 //DEFINE SPHERE ACCESS______________________________________________________________
 //
 ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
- LAM DR_justifier_spheres
  LAF ~DEFINE_FNP_KIT_INFO~
   INT_VAR
 	u_leather_armor 	= 1
@@ -1585,7 +1583,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   STR_VAR
     clab_name 		= EVAL ~a#justif~
 	class 			= ~scout~
-	sphere_list		= ~DR_justifier_spheres~
+	sphere_list		= ~dr_justifier_spheres~
  END
 END
 //__________________________________________________________________________________
@@ -1881,7 +1879,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
   STR_VAR
     clab_name 		= EVAL ~k9hive~
 	sphere_list		= ~druid_hivekeeper_spheres~
-	class 			= ~occultist~
+	class 			= ~druid~
 END
 //__________________________________________________________________________________
 END
@@ -2313,7 +2311,7 @@ LAF ~DEFINE_FNP_KIT_INFO~
 	u_crossbows 		= 0
   STR_VAR
     clab_name 		= ~L#FALDSD~
-	class 			= ~occultist~
+	class 			= ~druid~
 	sphere_list		= ~druid_shadow_spheres~
 END
 //__________________________________________________________________________________

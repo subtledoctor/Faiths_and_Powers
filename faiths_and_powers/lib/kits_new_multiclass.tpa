@@ -2725,7 +2725,7 @@ ACTION_PHP_EACH d5_fnp_multiclass_kits AS ind => mc_kit BEGIN
 	 luabbr      = EVAL ~%hla_table%~
 //   RET kit_id
    END
-   ACTION_IF (new_class = 16)
+   ACTION_IF (new_class = 16) BEGIN
      ACTION_IF (FILE_EXISTS_IN_GAME ~d5sc000~) BEGIN
        COPY_EXISTING ~kit.ids~ ~override~
          COUNT_2DA_COLS cols 
