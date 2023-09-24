@@ -2,7 +2,7 @@ BACKUP ~weidu_external/backup/faiths_and_powers~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.85sd22~
+VERSION ~0.85sd23~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -560,7 +560,7 @@ BEGIN @30 // install spont option
 DESIGNATED 30
 LABEL ~D5_FNP_SPONTANEOUS_CASTING_OPTION~
 REQUIRE_PREDICATE (FILE_EXISTS_IN_GAME ~d5__spheres.d5~) @8
-REQUIRE_PREDICATE !(FILE_EXISTS_IN_GAME ~d5__5E_casting_divine.d5~) @8
+REQUIRE_PREDICATE !(FILE_EXISTS_IN_GAME ~d5__5E_casting_clerics.d5~) @8
 
 
 COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__fnp_spont_option.d5~
