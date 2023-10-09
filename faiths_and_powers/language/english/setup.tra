@@ -632,12 +632,12 @@ Restrictions:
 //
 @21901  = ~paingiver of loviatar~
 @21902  = ~Paingiver of Loviatar~
-@21903  = ~PAINGIVER OF LOVIATAR: Known as The Maiden of Pain and The Willing Whip, loviatar is the evil goddess of agony. She is often seen as a cold-hearted bully, calculating and despotic; she revels in inflicting physical and psychological suffering. Her priests, known simply as "Paingivers" find freedom and power in such pain, and they seek to spread that gospel to others... regardless whether their victims are actually seeking such enlightenment.
+@21903  = ~PAINGIVER OF LOVIATAR: Known as The Maiden of Pain and The Willing Whip, Loviatar is the evil goddess of agony. She is often seen as a cold-hearted bully, calculating and despotic; she revels in inflicting physical and psychological suffering. Her priests, known simply as "Paingivers" find freedom and power in such pain, and they seek to spread that gospel to others... regardless whether their victims are actually seeking such enlightenment.
 
 Advantages:
 - Can use the Pain Touch ability at will.
 
-PAIN TOUCH: When the priest of Lovitar activates this ability, her mere touch creates waves of pain for any creature with a nervous system.  When she touches any creature, they must save vs death or suffer a -2 penalty to their dexterity and -4 to thac0 as they writhe in agony and will suffer 1 point of non-lethal damage every 12 seconds.
+PAIN TOUCH: When the priest of Loviatar activates this ability, her mere touch creates waves of pain for any creature with a nervous system.  When she touches any creature, they must save vs death or suffer a -2 penalty to their dexterity and -4 to thac0 as they writhe in agony and will suffer 1 point of non-lethal damage every 12 seconds.
 The penalties and damage occurs over an excruciating period of 10 rounds.
 Pain touch remains activated indefinitely, but the Paingiver may suppress it as needed.
 
@@ -645,7 +645,7 @@ Pain touch remains activated indefinitely, but the Paingiver may suppress it as 
 
 LOVIATAR'S CARESS:
 
-When the cleric uses this ability, <PRO_HISHER> hands become instruments of Lovitar for four rounds.  <PRO_HESHE> can strike with uncanny accuracy with <PRO_HISHER> hands (+10 to hit) and <PRO_HESHE> inflicts an additional +2 points of damage per level to a maximum of +20 points at 10th level.  This spell stacks with other unarmed attacks, such as the priest's pain touch.
+When the cleric uses this ability, <PRO_HISHER> hands become instruments of Loviatar for four rounds.  <PRO_HESHE> can strike with uncanny accuracy with <PRO_HISHER> hands (+10 to hit) and <PRO_HESHE> inflicts an additional +2 points of damage per level to a maximum of +20 points at 10th level.  This spell stacks with other unarmed attacks, such as the priest's pain touch.
 
 Restrictions:
 - May not be Good.
@@ -656,7 +656,7 @@ Restrictions:
 Duration: Special
 Saving Throw: Poison/Death
 
-When the priest of Lovitar activates this ability, her mere touch creates waves of pain for any creature with a nervous system.  When <PRO_HESHE> touches any creature, they must save vs death or suffer a -2 penalty to their dexterity and -4 to thac0 as they writhe in agony and will suffer 1 point of non-lethal damage every 12 seconds.
+When the priest of Loviatar activates this ability, her mere touch creates waves of pain for any creature with a nervous system.  When <PRO_HESHE> touches any creature, they must save vs death or suffer a -2 penalty to their dexterity and -4 to thac0 as they writhe in agony and will suffer 1 point of non-lethal damage every 12 seconds.
 The penalties and damage occurs over an excruciating period of 10 rounds.
 
 Paingivers have have this touch indefinitely, but they can suppress it as needed.
@@ -665,7 +665,7 @@ Paingivers have have this touch indefinitely, but they can suppress it as needed
 @21914  = ~Loviatar's Caress~
 @21915  = ~Loviatar's Caress
 
-When the cleric uses this ability, <PRO_HISHER> hands become instruments of Lovitar for four rounds.  <PRO_HESHE> can strike with uncanny accuracy with <PRO_HISHER> hands (+10 to hit) and <PRO_HESHE> inflicts an additional +2 points of damage per level to a maximum of +20 points at 10th level.  This spell stacks with other unarmed attacks, such as the priest's pain touch.~
+When the cleric uses this ability, <PRO_HISHER> hands become instruments of Loviatar for four rounds.  <PRO_HESHE> can strike with uncanny accuracy with <PRO_HISHER> hands (+10 to hit) and <PRO_HESHE> inflicts an additional +2 points of damage per level to a maximum of +20 points at 10th level.  This spell stacks with other unarmed attacks, such as the priest's pain touch.~
 @21916  = ~Suppress Pain Touch~
 //
 // ... cleric of Talos:
@@ -954,13 +954,13 @@ Restrictions:
 //
 @33201 = ~doommaster of beshaba~
 @33202 = ~Doommaster of Beshaba~
-@33203 = ~DOOM<PRO_MASTERMISTRESS> OF BESHABA:  Beshaba, the maid of misfortune, is the jealous goddess of ill-fate.  Not worshiped so much as feared, she demands tribute, or at least lip service, else she is likey to doom those that offend her to a life of failure.  Her priests work to ensure that she her ego is adequately sated.
+@33203 = ~DOOMMASTER OF BESHABA:  Beshaba, the maid of misfortune, is the jealous goddess of ill-fate.  Not worshiped so much as feared, she demands tribute, or at least lip service, else she is likely to doom those that offend her to a life of failure.  Her priests work to ensure that she her ego is adequately sated.
 
 Advantages:
 -  Doommasters can cast a special version of the doom spell at will.  It can be used once, and only once, on a given opponent.
 -  Doommasters gain a +1 bonus to all saves.
--  At 7th level, the doommaster can cast misfire as a special ability once per day.  Misfire works as the spell of the same name.  The doommaster can use this abilty an additional time per day at levels 10, 13, 16 and 19.
--  At 10th level, the doommaster can cast misfortune. <PRO_HESHE> can use this abilty one additional time at levels 15, and 20.
+-  At 7th level, the Doommaster can cast misfire as a special ability once per day.  Misfire works as the spell of the same name.  The Doommaster can use this abilty an additional time per day at levels 10, 13, 16 and 19.
+-  At 10th level, the Doommaster can cast misfortune. <PRO_HESHE> can use this abilty one additional time at levels 15, and 20.
 
 MISFORTUNE: This abilty curses the target, causing them a penalty of -10 penalty to THAC0, saves and AC for one round/level if they fail a save vs. spell.
 
