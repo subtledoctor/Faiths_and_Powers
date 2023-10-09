@@ -60,28 +60,33 @@ END
 // weapon mastery
 INCLUDE ~%MOD_FOLDER%/lib/dialprof.tpa~
 
+/*
 OUTER_SPRINT prof_script_name ~d5pazw~
 OUTER_SET script_level_one = 0
 OUTER_SET script_higher_levels = 0
 OUTER_SPRINT class_dlgs ~pa~
+*/
 
-LAM PROF_DIALOGUE
+  LAF PROF_DIALOGUE INT_VAR script_level_one = 0 script_higher_levels = 0 ignore_max = 1 STR_VAR prof_script_name = ~d5pazw~ class_dlgs = ~pa~ END
 
-COPY_EXISTING ~d5pazwpa.dlg~ ~override~
+COPY_EXISTING ~d5pazwp.dlg~ ~override~
   DECOMPILE_AND_PATCH BEGIN
     REPLACE_TEXTUALLY ~GlobalGT("D5_PROF_111","LOCALS",[012345]~ ~GlobalGT("D5_PROF_111","LOCALS",99~
     REPLACE_TEXTUALLY ~GlobalGT("D5_PROF_112","LOCALS",[012345]~ ~GlobalGT("D5_PROF_112","LOCALS",99~
     REPLACE_TEXTUALLY ~GlobalGT("D5_PROF_113","LOCALS",[012345]~ ~GlobalGT("D5_PROF_113","LOCALS",99~
     REPLACE_TEXTUALLY ~GlobalGT("D5_PROF_114","LOCALS",[012345]~ ~GlobalGT("D5_PROF_114","LOCALS",99~
+/*
     REPLACE_TEXTUALLY ~CheckStatGT(myself,9,LEVEL)~ ~CheckStatGT(myself,8,LEVEL)~
     REPLACE_TEXTUALLY ~"LOCALS",2) Proficiency(Myself~ ~"LOCALS",1) Proficiency(Myself~
     REPLACE_TEXTUALLY ~"LOCALS",3) Proficiency(Myself~ ~"LOCALS",2) Proficiency(Myself~
     REPLACE_TEXTUALLY ~"LOCALS",4) Proficiency(Myself~ ~"LOCALS",3) Proficiency(Myself~
     REPLACE_TEXTUALLY ~"LOCALS",5) Proficiency(Myself~ ~"LOCALS",4) Proficiency(Myself~
+*/
   END
 IF_EXISTS BUT_ONLY
 
-COPY_EXISTING ~d5pazw1.spl~ ~override~
+COPY ~%MOD_FOLDER%/lib/d5_base.spl~ ~override/d5pazw1.spl~
+  LPF ADD_SPELL_EFFECT INT_VAR target = 1 opcode = 171 timing = 1 STR_VAR resource = EVAL ~d5pazw~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 duration = 0 STR_VAR resource = ~d5pazw1~ END
   
 // disease immunity

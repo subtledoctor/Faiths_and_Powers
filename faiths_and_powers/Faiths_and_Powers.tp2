@@ -2,7 +2,7 @@ BACKUP ~weidu_external/backup/faiths_and_powers~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.85sd24~
+VERSION ~0.86sd1~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -774,7 +774,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   INCLUDE ~override/fnp_sphere_list.tpa~
 END
 INCLUDE ~faiths_and_powers/lib/kits_new_druids.tpa~
-INCLUDE ~faiths_and_powers/lib/semi_spontaneous.tpa~
+INCLUDE ~faiths_and_powers/lib/semi_innate.tpa~
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__no_spheres.d5~
@@ -893,6 +893,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   INCLUDE ~override/fnp_sphere_list.tpa~
 END
 INCLUDE ~faiths_and_powers/lib/kits_new_paladins.tpa~
+INCLUDE ~faiths_and_powers/lib/dialprof.tpa~
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__no_spheres.d5~
@@ -971,6 +972,7 @@ ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   INCLUDE ~override/fnp_sphere_list.tpa~
 END
 INCLUDE ~faiths_and_powers/lib/kits_new_paladins.tpa~
+INCLUDE ~faiths_and_powers/lib/dialprof.tpa~
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
   COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__no_spheres.d5~

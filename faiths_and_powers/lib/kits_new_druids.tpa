@@ -2433,7 +2433,7 @@ COPY_EXISTING ~d5sclst.2da~ ~override~
 BUT_ONLY
 */
 
-ACTION_PHP_EACH sc_spl AS sc_res => thing BEGIN
+ACTION_PHP_EACH semi_innate_shape AS sc_res => thing BEGIN
   ACTION_IF (FILE_EXISTS_IN_GAME ~%sc_res%.spl~) BEGIN
     COPY_EXISTING ~%sc_res%i.spl~ ~override~
       LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5scpls~ END
