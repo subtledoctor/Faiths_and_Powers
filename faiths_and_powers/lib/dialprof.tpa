@@ -1,4 +1,4 @@
-/* v4.1 
+/* v4.2
 	- function not macro; 
 	- no longer makes 171 ability; 
 	- fixed class abbreviations; 
@@ -1138,10 +1138,10 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	LOOKUP_IDS_SYMBOL_OF_INT kitids_name ~kit~ %kitids_num%
 	LOOKUP_IDS_SYMBOL_OF_INT classids_name ~class~ %classids_num%
 	PATCH_IF (classids_num = 1) BEGIN
-	  SPRINT short_class ~ma~
+	  SPRINT short_class ~w~
 	END
 	PATCH_IF (classids_num = 2) BEGIN
-	  SPRINT short_class ~fi~
+	  SPRINT short_class ~f~
 	  PATCH_IF (fighter_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1150,7 +1150,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 7) BEGIN
-	  SPRINT short_class ~fi~
+	  SPRINT short_class ~f~
 	  PATCH_IF (fighter_dlg = 1) OR (mage_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1159,7 +1159,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 8) BEGIN
-	  SPRINT short_class ~fi~
+	  SPRINT short_class ~f~
 	  PATCH_IF (fighter_dlg = 1) OR (cleric_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1168,7 +1168,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 9) BEGIN
-	  SPRINT short_class ~fi~
+	  SPRINT short_class ~f~
 	  PATCH_IF (fighter_dlg = 1) OR (thief_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1177,7 +1177,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 10) BEGIN
-	  SPRINT short_class ~fi~
+	  SPRINT short_class ~f~
 	  PATCH_IF (fighter_dlg = 1) OR (mage_dlg = 1) OR (thief_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1186,7 +1186,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 16) BEGIN
-	  SPRINT short_class ~fi~
+	  SPRINT short_class ~f~
 	  PATCH_IF (fighter_dlg = 1) OR (druid_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1195,7 +1195,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 17) BEGIN
-	  SPRINT short_class ~fi~
+	  SPRINT short_class ~f~
 	  PATCH_IF (fighter_dlg = 1) OR (mage_dlg = 1) OR (cleric_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1204,7 +1204,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 3) BEGIN
-	  SPRINT short_class ~cl~
+	  SPRINT short_class ~c~
 	  PATCH_IF (cleric_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1213,7 +1213,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 14) BEGIN
-	  SPRINT short_class ~cl~
+	  SPRINT short_class ~c~
 	  PATCH_IF (cleric_dlg = 1) OR (mage_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1222,7 +1222,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 15) BEGIN
-	  SPRINT short_class ~cl~
+	  SPRINT short_class ~c~
 	  PATCH_IF (cleric_dlg = 1) OR (thief_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1231,7 +1231,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 4) BEGIN
-	  SPRINT short_class ~th~
+	  SPRINT short_class ~t~
 	  PATCH_IF (thief_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1240,7 +1240,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 13) BEGIN
-	  SPRINT short_class ~th~
+	  SPRINT short_class ~t~
 	  PATCH_IF (thief_dlg = 1) OR (mage_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1249,16 +1249,16 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 5) BEGIN
-	  SPRINT short_class ~ba~
+	  SPRINT short_class ~b~
 	END
 	PATCH_IF (classids_num = 6) BEGIN
-	  SPRINT short_class ~pa~
+	  SPRINT short_class ~p~
 	END
 	PATCH_IF (classids_num = 11) BEGIN
-	  SPRINT short_class ~dr~
+	  SPRINT short_class ~d~
 	END
 	PATCH_IF (classids_num = 12) BEGIN
-	  SPRINT short_class ~ra~
+	  SPRINT short_class ~r~
 	  PATCH_IF (ranger_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1267,7 +1267,7 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 18) BEGIN
-	  SPRINT short_class ~ra~
+	  SPRINT short_class ~r~
 	  PATCH_IF (ranger_dlg = 1) OR (cleric_dlg = 1) BEGIN
 	    SET valid_class = 1
 	  END
@@ -1276,13 +1276,13 @@ COPY_EXISTING ~kitlist.2da~ ~override~
 	  END
 	END
 	PATCH_IF (classids_num = 19) BEGIN
-	  SPRINT short_class ~so~
+	  SPRINT short_class ~s~
 	END
 	PATCH_IF (classids_num = 20) BEGIN
-	  SPRINT short_class ~mo~
+	  SPRINT short_class ~k~
 	END
 	PATCH_IF (classids_num = 21) BEGIN
-	  SPRINT short_class ~sh~
+	  SPRINT short_class ~h~
 	END
 	PATCH_IF (valid_class = 1) BEGIN
 	  PATCH_IF (VARIABLE_IS_SET %kitids_name%) AND (VARIABLE_IS_SET %classids_name%) BEGIN
@@ -3049,8 +3049,8 @@ ACTION_FOR_EACH class IN ~fighter~ ~ranger~ ~paladin~ ~cleric~ ~druid~ ~shaman~ 
 LAM BASE_DLG
 
 COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%f.d~
-	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%fi~
-	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%FI~
+	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%f~
+	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%F~
 	REPLACE_TEXTUALLY ~sp_min_level~ ~%fighter_sp_min_level%~
 	REPLACE_TEXTUALLY ~ma_min_level~ ~%fighter_ma_min_level%~
 	REPLACE_TEXTUALLY ~hi_min_level~ ~%fighter_hi_min_level%~
@@ -3058,8 +3058,8 @@ COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%f
     LPM prof_name_replacements
 
 COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%r.d~
-	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%ra~
-	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%RA~
+	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%r~
+	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%R~
 	REPLACE_TEXTUALLY ~sp_min_level~ ~%ranger_sp_min_level%~
 	REPLACE_TEXTUALLY ~ma_min_level~ ~%ranger_ma_min_level%~
 	REPLACE_TEXTUALLY ~hi_min_level~ ~%ranger_hi_min_level%~
@@ -3067,8 +3067,8 @@ COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%r
     LPM prof_name_replacements
 	
 COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%p.d~
-	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%pa~
-	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%PA~
+	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%p~
+	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%P~
 	REPLACE_TEXTUALLY ~sp_min_level~ ~%paladin_sp_min_level%~
 	REPLACE_TEXTUALLY ~ma_min_level~ ~%paladin_ma_min_level%~
 	REPLACE_TEXTUALLY ~hi_min_level~ ~%paladin_hi_min_level%~
@@ -3076,8 +3076,8 @@ COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%p
     LPM prof_name_replacements
 	
 COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%c.d~
-	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%cl~
-	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%CL~
+	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%c~
+	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%C~
 	REPLACE_TEXTUALLY ~sp_min_level~ ~%cleric_sp_min_level%~
 	REPLACE_TEXTUALLY ~ma_min_level~ ~%cleric_ma_min_level%~
 	REPLACE_TEXTUALLY ~hi_min_level~ ~%cleric_hi_min_level%~
@@ -3085,8 +3085,8 @@ COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%c
     LPM prof_name_replacements
 	
 COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%d.d~
-	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%dr~
-	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%DR~
+	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%d~
+	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%D~
 	REPLACE_TEXTUALLY ~sp_min_level~ ~%druid_sp_min_level%~
 	REPLACE_TEXTUALLY ~ma_min_level~ ~%druid_ma_min_level%~
 	REPLACE_TEXTUALLY ~hi_min_level~ ~%druid_hi_min_level%~
@@ -3094,8 +3094,8 @@ COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%d
     LPM prof_name_replacements
 	
 COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%h.d~
-	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%sh~
-	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%SH~
+	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%h~
+	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%H~
 	REPLACE_TEXTUALLY ~sp_min_level~ ~%shaman_sp_min_level%~
 	REPLACE_TEXTUALLY ~ma_min_level~ ~%shaman_ma_min_level%~
 	REPLACE_TEXTUALLY ~hi_min_level~ ~%shaman_hi_min_level%~
@@ -3103,8 +3103,8 @@ COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%h
     LPM prof_name_replacements
 	
 COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%t.d~
-	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%th~
-	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%TH~
+	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%t~
+	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%T~
 	REPLACE_TEXTUALLY ~sp_min_level~ ~%thief_sp_min_level%~
 	REPLACE_TEXTUALLY ~ma_min_level~ ~%thief_ma_min_level%~
 	REPLACE_TEXTUALLY ~hi_min_level~ ~%thief_hi_min_level%~
@@ -3112,8 +3112,8 @@ COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%t
     LPM prof_name_replacements
 	
 COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%b.d~
-	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%ba~
-	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%BA~
+	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%b~
+	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%B~
 	REPLACE_TEXTUALLY ~sp_min_level~ ~%bard_sp_min_level%~
 	REPLACE_TEXTUALLY ~ma_min_level~ ~%bard_ma_min_level%~
 	REPLACE_TEXTUALLY ~hi_min_level~ ~%bard_hi_min_level%~
@@ -3121,8 +3121,8 @@ COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%b
     LPM prof_name_replacements
 	
 COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%w.d~
-	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%ma~
-	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%MA~
+	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%w~
+	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%W~
 	REPLACE_TEXTUALLY ~sp_min_level~ ~%mage_sp_min_level%~
 	REPLACE_TEXTUALLY ~ma_min_level~ ~%mage_ma_min_level%~
 	REPLACE_TEXTUALLY ~hi_min_level~ ~%mage_hi_min_level%~
@@ -3130,8 +3130,8 @@ COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%w
     LPM prof_name_replacements
 	
 COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%s.d~
-	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%so~
-	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%SO~
+	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%s~
+	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%S~
 	REPLACE_TEXTUALLY ~sp_min_level~ ~%sorcerer_sp_min_level%~
 	REPLACE_TEXTUALLY ~ma_min_level~ ~%sorcerer_ma_min_level%~
 	REPLACE_TEXTUALLY ~hi_min_level~ ~%sorcerer_hi_min_level%~
@@ -3139,8 +3139,8 @@ COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%s
     LPM prof_name_replacements
 	
 COPY ~inline/d5profx.d~ ~weidu_external/%MOD_FOLDER%/compile/%prof_script_name%k.d~
-	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%mo~
-	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%MO~
+	REPLACE_TEXTUALLY ~d5profx~ ~%prof_script_name%k~
+	REPLACE_TEXTUALLY ~D5PROFX~ ~%prof_script_name%K~
 	REPLACE_TEXTUALLY ~sp_min_level~ ~%monk_sp_min_level%~
 	REPLACE_TEXTUALLY ~ma_min_level~ ~%monk_ma_min_level%~
 	REPLACE_TEXTUALLY ~hi_min_level~ ~%monk_hi_min_level%~
