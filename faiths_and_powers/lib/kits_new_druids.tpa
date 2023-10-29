@@ -2410,37 +2410,10 @@ COPY ~faiths_and_powers/kits/druids/shapechange/d5drscb.itm~ ~override/d5dr.itm~
 
 LAF semi_innate_casting INT_VAR semi_innate_stat = 110 semi_innate_shift = 16 STR_VAR semi_innate_prefix = ~d5sc~ semi_innate_array = ~semi_innate_shape~ points_table = ~d5scpts~ table_spl = ~d5scpts~ END
 
-/*
-COPY_EXISTING ~d5sclst.2da~ ~override~
-  COUNT_2DA_COLS cols
-  COUNT_2DA_ROWS cols rows
-  FOR (row = 1; row < rows; ++row) BEGIN
-  	READ_2DA_ENTRY row 1 cols ~list_feat~
-	INNER_ACTION BEGIN
-	  ACTION_IF (FILE_EXISTS_IN_GAME ~%list_feat%i.spl~) BEGIN
-	    COPY_EXISTING ~%list_feat%i.spl~ ~override~
-		  LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5scpls~ END
-	    BUT_ONLY
-	  END
-	  COPY_EXISTING ~%list_feat%.spl~ ~override/%list_feat%L.spl~
-		WRITE_SHORT 0x1c 4
-		WRITE_LONG 0x34 1
-		LPF DELETE_EFFECT END
-		LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%list_feat%~ END
-	  IF_EXISTS BUT_ONLY
-	END
-  END
-BUT_ONLY
-*/
-
 ACTION_PHP_EACH semi_innate_shape AS sc_res => thing BEGIN
-  ACTION_IF (FILE_EXISTS_IN_GAME ~%sc_res%.spl~) BEGIN
+  ACTION_IF (FILE_EXISTS_IN_GAME ~%sc_res%i.spl~) BEGIN
     COPY_EXISTING ~%sc_res%i.spl~ ~override~
       LPF DELETE_EFFECT INT_VAR match_opcode = 146 STR_VAR match_resource = ~d5scpls~ END
-    BUT_ONLY
-    COPY_EXISTING ~%sc_res%.spl~ ~override/%sc_resL.spl~
-		LPF DELETE_EFFECT END
-		LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 171 target = 1 timing = 9 STR_VAR resource = EVAL ~%list_feat%~ END
     BUT_ONLY
   END
 END
