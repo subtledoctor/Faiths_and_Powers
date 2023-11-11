@@ -754,7 +754,7 @@ Restrictions:
 @31003  = ~SEEKER OF OGHMA:  Oghma is a greater god of knowledge, sagecraft, learning, and wisdom. He is venerated by those seeking information - particularly lost or hidden information. When a Seeker demonstrates solid service or true loyalty in Oghma's cause, <PRO_HESHE> is bestowed with the title of Loremaster. This is a great honor; while outsiders may perceive the god of sages as belonging in dusty libraries, the fact is that many Oghmanite priests are of an adventuresome bent.
 
 Advantages:
-- Bloodstalkers can cast spells from scrolls normally restricted to wizards.
+- Seekers can cast spells from scrolls normally restricted to wizards.
 - Once per day, a Seeker can concentrate and briefly increase <PRO_HISHER> ability to understand and identify the workings of magical items.
 - From 3rd level, a Seeker can innately cast Know Opponent, making it easier for <PRO_HIMHER>self and <PRO_HISHER> allies to strike the target creature.
 - From 9th level, a Seeker can innately cast Feeblemind.
@@ -2370,7 +2370,7 @@ Restrictions:
 Paladins of Tyr may adopt either the Defender or Inquisitor archetype.
 
 Advantages:
-- Protection from Evil. A champion of Torm is always protected by the effects of a 'Protection from Evil' spell.
+- Protection from Evil. A champion of Tyr is always protected by the effects of a 'Protection from Evil' spell.
 - Smite Evil: when using a Defender's Smite ability, attacks deal an extra 1d6 damage if the target is evil.
 - Weapon Mastery: Paladins of Tyr can advance one step further than most champions in weapon proficiency.
 
@@ -2613,7 +2613,7 @@ Restrictions:
 @86202  = ~Eye of Gruumsh~
 @86203  = ~EYE OF GRUUMSH: The eye of Gruumsh's devotion is such that they pluck out their eye in honor of their deity.  
 
-Champions of Kossuth may only adopt the Zealot archetype.
+Champions of Gruumsh may only adopt the Zealot archetype.
 
 Advantages:
 - May innately cast Slow at enemies, once per day.
@@ -2751,7 +2751,7 @@ Advantages:
 
 Restrictions:
 - Alignment: Any non-evil
-- The Zealot of Mystra must maintain a reputation of 8 or fall.
+- The champion of Mystra must maintain a reputation of 8 or fall.
 ~
 @87001  = ~darksong knight~
 @87002  = ~Darksong Knight~
