@@ -2599,3 +2599,5 @@ Méditation n'a aucun effet si le prêtre est sous l'effet de Bénédiction, Aid
 // 105000000-105000005 unused (XXX Minor Wounds)
 // 106000000-106000001 unused (Infravision)
 // 107000000-107000001 unused (Hold Animal)
+
+@108000000 = ~Identifications restantes : ~
