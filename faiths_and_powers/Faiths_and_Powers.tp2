@@ -2,7 +2,7 @@ BACKUP ~weidu_external/backup/faiths_and_powers~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.86sd6~
+VERSION ~0.86sd7~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -14,11 +14,8 @@ ASK_EVERY_COMPONENT
 ALWAYS
 
 	ACTION_IF GAME_IS ~iwdee~ BEGIN
-	  ACTION_IF FILE_EXISTS_IN_GAME "#bonecir.spl" BEGIN
-		DISABLE_FROM_KEY "#bonecir.spl"
-	  END
-	  ACTION_IF FILE_EXISTS "override\#bonecir.spl" BEGIN
-		DELETE "override\#bonecir.spl"
+	  ACTION_IF FILE_EXISTS_IN_GAME ~#bonecir.spl~ BEGIN
+		COPY_EXISTING ~sppr101.spl~ ~override/#bonecir.spl~
 	  END
 	END
   	OUTER_SPRINT ~mod_folder~ ~faiths_and_powers~
