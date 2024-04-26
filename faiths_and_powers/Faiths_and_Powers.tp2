@@ -89,6 +89,14 @@ LANGUAGE
   ~faiths_and_powers/language/english/IWD_spells.tra~
   ~faiths_and_powers/language/english/new_spells.tra~
   ~faiths_and_powers/language/english/HLA.tra~
+LANGUAGE
+  ~French~
+  ~french~
+  ~faiths_and_powers/language/french/setup.tra~
+  ~faiths_and_powers/language/french/fnp_spontaneous.tra~
+  ~faiths_and_powers/language/french/IWD_spells.tra~
+  ~faiths_and_powers/language/french/new_spells.tra~
+  ~faiths_and_powers/language/french/HLA.tra~
 //___________________________________________________________________________________
 
 
