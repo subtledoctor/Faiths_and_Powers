@@ -5,7 +5,7 @@
 @12301  =  ~Universal~
 @12302  =  ~Cleric~ 		// all cleric-valid spells, not a particular sphere
 @12303  =  ~Death~
-@12304  =  ~Vermin~
+@12304  =  ~Dread~
 @12305  =  ~Destruction~
 @12306  =  ~Protection~
 @12307  =  ~War~
@@ -13,7 +13,7 @@
 @12309  =  ~Knowledge~
 @12310  =  ~Deception~
 @12311  =  ~Thought~
-@12312  =  ~Dread~
+@12312  =  ~Vermin~
 @12313  =  ~Druid~ 			// all druid-valid spells, not a particular sphere
 @12314  =  ~Affliction~
 @12315  =  ~Animal~

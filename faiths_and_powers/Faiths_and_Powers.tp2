@@ -2,7 +2,7 @@ BACKUP ~weidu_external/backup/faiths_and_powers~
 AUTHOR ~SubtleD and Grammarsalad~
 
 
-VERSION ~0.86sd8~
+VERSION ~0.86sd9~
 
 
 //README ~faiths_and_powers/readme-pnp.html~
@@ -104,7 +104,6 @@ LANGUAGE
 ////////////////////////////////////////////////////////////////////////////////////////
 
 // ***** remove ADD_SPELL if sphere system
-// ***** add weapon usability to kit descriptions
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
@@ -541,6 +540,74 @@ INCLUDE ~override/fnp_sphere_list.tpa~
 
 LAF create_spheres END
 //__________________________________________________________________________________
+
+
+
+/*
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @26 // 3E 'Domains'-style sphere system - start with a broad base of spells, then choose more
+DESIGNATED 26
+SUBCOMPONENT @20 
+LABEL ~D5_DOMAINS_SPHERE_SYSTEM~
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @8
+
+COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__spheres.d5~
+COPY ~faiths_and_powers/lib/markers/d5_marker.d5~ ~override/d5__domain_spheres.d5~
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~fnp_sphere_list.tpa~) BEGIN
+  MOVE ~override/fnp_sphere_list.tpa~ ~weidu_external/faiths_and_powers/fnp_sphere_list_old.tpa~
+END
+
+//prep sphere system________________________________________________________________
+//
+COPY ~faiths_and_powers/data/sphere_systems/sphere_list_domains.tpa~ ~override/fnp_sphere_list.tpa~
+
+//Add IWD and new spells____________________________________________________________
+//
+LAM d5_spell_options
+
+ACTION_CLEAR_ARRAY aoe_spell
+
+ACTION_IF (include_new_FNP_spells = 1) BEGIN
+  INCLUDE ~faiths_and_powers/lib/spells_new_v75.tpa~      	//includes spells from the 0.75 series  
+  INCLUDE ~faiths_and_powers/lib/spells_new_fnp.tpa~   		//new spells from the 0.77 series 
+//  LAM v75_add_fnP_new_spells
+  LAM v78_add_FnP_new_spells
+END
+
+ACTION_IF !(GAME_IS ~iwdee~) BEGIN
+  ACTION_IF (include_IWD_arcane_spells = 1) BEGIN
+    LAM v75_add_iwd_arcane_spells
+  END
+  ACTION_IF (include_IWD_divine_spells = 1) BEGIN
+    LAM v75_add_iwd_divine_spells
+  END
+END
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~) BEGIN
+  LAM v75_apply_sr_aoe_deflection
+END  
+
+LAF fix_spell_bams END
+
+COPY ~faiths_and_powers/data/hlas/system_FnP_2/~ ~weidu_external/faiths_and_powers/hlas~
+
+//INCLUDE ~%mod_folder%/lib/immunities.tpa~					//	DO AT THE VERY END OF ALL SPELL INSTALLS
+
+INCLUDE ~faiths_and_powers/lib/system_spheres.tpa~
+
+ LAF prep_vanilla_spells END
+
+INCLUDE ~override/fnp_sphere_list.tpa~
+ LAM define_sphere_names
+ LAM d5_define_sphere_spells
+ LAM d5_deity_kit_sphere_lists
+
+LAF create_spheres END
+//__________________________________________________________________________________
+*/
 
 
 

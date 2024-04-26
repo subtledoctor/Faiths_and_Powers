@@ -767,8 +767,10 @@ END
 
 //add spell slot stat checks to SPLPROT_______________________________________________
 //
-APPEND ~splprot.2da~ ~D5_DIV_1_7%TAB%134%TAB%-1%TAB%7~ UNLESS ~D5_DIV_1_7~
-APPEND ~splprot.2da~ ~D5_DIV=1_7%TAB%134%TAB%-1%TAB%8~ UNLESS ~D5_DIV=1_7~
+APPEND ~splprot.2da~ ~D5_DIV_1_6%TAB%134%TAB%-1%TAB%7~ UNLESS ~D5_DIV_1_6~
+APPEND ~splprot.2da~ ~D5_DIV=1_6%TAB%134%TAB%-1%TAB%8~ UNLESS ~D5_DIV=1_6~
+APPEND ~splprot.2da~ ~D5_SPL_7_9%TAB%109%TAB%-1%TAB%7~ UNLESS ~D5_SPL_7_9~
+APPEND ~splprot.2da~ ~D5_SPL=7_9%TAB%109%TAB%-1%TAB%8~ UNLESS ~D5_SPL=7_9~
 //APPEND ~splprot.2da~ ~D5_FATIGUE_IS%TAB%30%TAB%-1%TAB%1~ UNLESS ~D5_FATIGUE_IS~
 APPEND ~splprot.2da~ ~D5_FATIGUE_0%TAB%30%TAB%0%TAB%1~ UNLESS ~D5_FATIGUE_0~
 APPEND ~splprot.2da~ ~D5_115_FEATS%TAB%115%TAB%-1%TAB%8~ UNLESS ~D5_115_FEATS~
@@ -779,11 +781,17 @@ COPY_EXISTING ~splprot.2da~ ~override~
   READ_2DA_ENTRIES_NOW rows cols
   FOR (row = 1; row < rows; ++row) BEGIN
 	READ_2DA_ENTRY_FORMER rows row 0 ~stat~
-	PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_DIV_1_7~ BEGIN
-	  SET fake_sham_slots_1_7 = %row%
+	PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_DIV_1_6~ BEGIN
+	  SET fake_sham_slots_1_6 = %row%
 	END
-	PATCH_IF (~%stat%~ STRING_EQUAL_CASE ~D5_DIV=1_7~) BEGIN
-	  SET fake_sham_equal_1_7 = %row%
+	PATCH_IF (~%stat%~ STRING_EQUAL_CASE ~D5_DIV=1_6~) BEGIN
+	  SET fake_sham_equal_1_6 = %row%
+	END
+	PATCH_IF ~%stat%~ STRING_EQUAL_CASE ~D5_SPL_7_9~ BEGIN
+	  SET fake_sham_slots_7 = %row%
+	END
+	PATCH_IF (~%stat%~ STRING_EQUAL_CASE ~D5_SPL=7_9~) BEGIN
+	  SET fake_sham_equal_7 = %row%
 	END
 	PATCH_IF (~%stat%~ STRING_EQUAL_CASE ~D5_FATIGUE_0~) BEGIN
 	  SET fatigue_zero = %row%
@@ -853,46 +861,46 @@ COPY ~faiths_and_powers/lib/semi_spont/d5_base.spl~ ~override/d5ydot9c.spl~
 COPY ~faiths_and_powers/lib/semi_spont/d5_base.spl~ ~override/d5ydot9d.spl~
 
 COPY ~faiths_and_powers/lib/semi_spont/d5_base.spl~ ~override/d5yspld.spl~
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 4) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot1a~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 4) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot1b~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 4) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot1c~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 4) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot1d~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 8) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot2a~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 8) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot2b~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 8) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot2c~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 8) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot2d~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 12) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot3a~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 12) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot3b~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 12) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot3c~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 12) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot3d~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 16) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot4a~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 16) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot4b~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 16) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot4c~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 16) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot4d~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 20) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot5a~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 20) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot5b~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 20) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot5c~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 20) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot5d~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 24) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot6a~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 24) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot6b~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 24) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot6c~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 24) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot6d~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 28) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot7a~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 28) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot7b~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 28) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot7c~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 28) parameter2 = %fake_sham_slots_1_7% timing = 1 STR_VAR resource = ~d5ydot7d~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 8) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot1a~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 8) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot1b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 8) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot1c~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 8) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot1d~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 12) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot2a~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 12) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot2b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 12) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot2c~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 12) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot2d~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 16) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot3a~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 16) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot3b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 16) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot3c~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 16) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot3d~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 20) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot4a~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 20) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot4b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 20) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot4c~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 20) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot4d~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 24) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot5a~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 24) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot5b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 24) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot5c~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 24) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot5d~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 28) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot6a~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 28) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot6b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 28) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot6c~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 28) parameter2 = %fake_sham_slots_1_6% timing = 1 STR_VAR resource = ~d5ydot6d~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (1 << 16) parameter2 = %fake_sham_slots_7% timing = 1 STR_VAR resource = ~d5ydot7a~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (2 << 16) parameter2 = %fake_sham_slots_7% timing = 1 STR_VAR resource = ~d5ydot7b~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (4 << 16) parameter2 = %fake_sham_slots_7% timing = 1 STR_VAR resource = ~d5ydot7c~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (8 << 16) parameter2 = %fake_sham_slots_7% timing = 1 STR_VAR resource = ~d5ydot7d~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 0 duration = 1 STR_VAR resource = ~d5yspld~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 318 insert_point = 0 target = 1 parameter1 = %semi_sham_state% parameter2 = 111 timing = 0 duration = 1 STR_VAR resource = ~d5yspld~ END
 
 //assign stats for spell slots to each spell level____________________________________
 //
-// divine level 1 = 	134 << 4
-// divine level 2 = 	134 << 8
-// divine level 3 = 	134 << 12
-// divine level 4 = 	134 << 16
-// divine level 5 = 	134 << 20
-// divine level 6 = 	134 << 24
-// divine level 7 = 	134 << 28
+// divine level 1 = 	134 << 8
+// divine level 2 = 	134 << 12
+// divine level 3 = 	134 << 16
+// divine level 4 = 	134 << 20
+// divine level 5 = 	134 << 24
+// divine level 6 = 	134 << 28
+// divine level 7 = 	109 << 16
 //
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm1a.spl~) BEGIN
@@ -901,7 +909,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm1a.spl~) BEGIN
 	  SAY NAME1 ~Extra first level spell slot~
 	  SAY UNIDENTIFIED_DESC ~Extra first level spell slot~
 	  LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~spcl919b~ END
-	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 4) parameter2 = (134 + (0x10000 * 1)) timing = 9 END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 8) parameter2 = (134 + (0x10000 * 1)) timing = 9 END
 	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~d5shm1%let%~ END
   END
 END
@@ -911,7 +919,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm2a.spl~) BEGIN
 	  SAY NAME1 ~Extra second level spell slot~
 	  SAY UNIDENTIFIED_DESC ~Extra second level spell slot~
 	  LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~spcl919b~ END
-	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 8) parameter2 = (134 + (0x10000 * 1)) timing = 9 END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 12) parameter2 = (134 + (0x10000 * 1)) timing = 9 END
 	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~d5shm2%let%~ END
   END
 END
@@ -921,7 +929,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm3a.spl~) BEGIN
 	  SAY NAME1 ~Extra third level spell slot~
 	  SAY UNIDENTIFIED_DESC ~Extra third level spell slot~
 	  LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~spcl919b~ END
-	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 12) parameter2 = (134 + (0x10000 * 1)) timing = 9 END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 16) parameter2 = (134 + (0x10000 * 1)) timing = 9 END
 	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~d5shm3%let%~ END
   END
 END
@@ -931,7 +939,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm4a.spl~) BEGIN
 	  SAY NAME1 ~Extra fourth level spell slot~
 	  SAY UNIDENTIFIED_DESC~Extra fourth level spell slot~
 	  LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~spcl919b~ END
-	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 16) parameter2 = (134 + (0x10000 * 1)) timing = 9 END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 20) parameter2 = (134 + (0x10000 * 1)) timing = 9 END
 	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~d5shm4%let%~ END
   END
 END
@@ -941,7 +949,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm5a.spl~) BEGIN
 	  SAY NAME1 ~Extra fifth level spell slot~
 	  SAY UNIDENTIFIED_DESC ~Extra fifth level spell slot~
 	  LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~spcl919b~ END
-	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 20) parameter2 = (134 + (0x10000 * 1)) timing = 9 END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 24) parameter2 = (134 + (0x10000 * 1)) timing = 9 END
 	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~d5shm5%let%~ END
   END
 END
@@ -951,7 +959,7 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm6a.spl~) BEGIN
 	  SAY NAME1 ~Extra sixth level spell slot~
 	  SAY UNIDENTIFIED_DESC ~Extra sixth level spell slot~
 	  LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~spcl919b~ END
-	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 24) parameter2 = (134 + (0x10000 * 1)) timing = 9 END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 28) parameter2 = (134 + (0x10000 * 1)) timing = 9 END
 	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~d5shm6%let%~ END
   END
 END
@@ -961,38 +969,38 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm7a.spl~) BEGIN
 	  SAY NAME1 ~Extra seventh level spell slot~
 	  SAY UNIDENTIFIED_DESC ~Extra seventh level spell slot~
 	  LPF ALTER_SPELL_HEADER INT_VAR target = 5 STR_VAR icon = ~spcl919b~ END
-	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 28) parameter2 = (134 + (0x10000 * 1)) timing = 9 END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (1 << 16) parameter2 = (109 + (0x10000 * 1)) timing = 9 END
 	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~d5shm7%let%~ END
   END
 END
 
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm-1.spl~) BEGIN
  COPY ~faiths_and_powers/lib/semi_spont/d5_base.spl~ ~override/d5shm-1.spl~
-   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 4) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 8) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm-2.spl~) BEGIN
  COPY ~faiths_and_powers/lib/semi_spont/d5_base.spl~ ~override/d5shm-2.spl~
-   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 8) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 12) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm-3.spl~) BEGIN
  COPY ~faiths_and_powers/lib/semi_spont/d5_base.spl~ ~override/d5shm-3.spl~
-   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 12) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 16) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm-4.spl~) BEGIN
  COPY ~faiths_and_powers/lib/semi_spont/d5_base.spl~ ~override/d5shm-4.spl~
-   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 16) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 20) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm-5.spl~) BEGIN
  COPY ~faiths_and_powers/lib/semi_spont/d5_base.spl~ ~override/d5shm-5.spl~
-   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 20) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 24) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm-6.spl~) BEGIN
  COPY ~faiths_and_powers/lib/semi_spont/d5_base.spl~ ~override/d5shm-6.spl~
-   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 24) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 28) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
 END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d5shm-7.spl~) BEGIN
  COPY ~faiths_and_powers/lib/semi_spont/d5_base.spl~ ~override/d5shm-7.spl~
-   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 28) parameter2 = (134 + (0x10000 * 1)) timing = 1 END
+   LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = ((0 - 1) << 16) parameter2 = (109 + (0x10000 * 1)) timing = 1 END
 END
 
 
